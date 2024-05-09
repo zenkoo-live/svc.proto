@@ -40,6 +40,7 @@
     - [LiveStatReq](#svc-biz-gift-LiveStatReq)
     - [LiveStatResp](#svc-biz-gift-LiveStatResp)
   
+    - [GiftRecommend](#svc-biz-gift-GiftRecommend)
     - [GiftStatus](#svc-biz-gift-GiftStatus)
     - [GiftType](#svc-biz-gift-GiftType)
   
@@ -287,11 +288,12 @@
 | gift_id | [int64](#int64) |  | 礼物id |
 | gift_name | [string](#string) |  | 礼物名称 |
 | type | [GiftType](#svc-biz-gift-GiftType) |  | 礼物类型 |
+| status | [GiftStatus](#svc-biz-gift-GiftStatus) |  | 礼物状态 |
+| recommend | [GiftRecommend](#svc-biz-gift-GiftRecommend) |  | 礼物推荐状态 |
 | price | [int32](#int32) |  | 价格 |
 | desc | [string](#string) |  | 描述 |
 | combo_timeout | [int32](#int32) |  | combo触发间隔时间 |
 | combo_showtime | [int32](#int32) |  | combo效果展示时间 |
-| status | [GiftStatus](#svc-biz-gift-GiftStatus) |  | 礼物状态 |
 | prize | [string](#string) |  | 奖励(json字符串:{&#34;user_exp&#34;:100, &#34;anchor_exp&#34;:20}) |
 | pack | [string](#string) |  | 批量包(json字符串:[{pack:&#34;20&#34;,desc:&#34;&#34;},{pack:&#34;99&#34;,desc:&#34;&#34;}]) |
 | pic | [string](#string) |  | 图片资源(json字符串:{&#34;icon&#34;:&#34;&#34;, &#34;icon_gif&#34;:&#34;&#34;, &#34;chat_icon&#34;:&#34;&#34;, &#34;combo_bg&#34;:&#34;&#34;, &#34;combo_icon&#34;:&#34;&#34;}) |
@@ -521,6 +523,19 @@
  
 
 
+<a name="svc-biz-gift-GiftRecommend"></a>
+
+### GiftRecommend
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| GiftRecommendUnknown | 0 | 未知 |
+| GiftRecommendYes | 1 | 推荐 |
+| GiftRecommendNo | 2 | 未推荐 |
+
+
+
 <a name="svc-biz-gift-GiftStatus"></a>
 
 ### GiftStatus
@@ -529,8 +544,8 @@
 | Name | Number | Description |
 | ---- | ------ | ----------- |
 | GiftStatusUnknown | 0 | 未知 |
-| GiftStatusOffline | 1 | 下线 |
-| GiftStatusOnline | 2 | 上线 |
+| GiftStatusOnline | 1 | 上线 |
+| GiftStatusOffline | 2 | 下线 |
 
 
 

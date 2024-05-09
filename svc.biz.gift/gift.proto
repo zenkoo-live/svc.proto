@@ -28,22 +28,29 @@ enum GiftType {
 }
 enum GiftStatus {
     GiftStatusUnknown = 0; // 未知
-    GiftStatusOffline = 1; // 下线
-    GiftStatusOnline = 2; // 上线
+    GiftStatusOnline = 1; // 上线
+    GiftStatusOffline = 2; // 下线
+}
+
+enum GiftRecommend {
+    GiftRecommendUnknown = 0; // 未知
+    GiftRecommendYes = 1; // 推荐
+    GiftRecommendNo = 2; // 未推荐
 }
 
 message GiftInfo {
     int64 gift_id = 1; // 礼物id
     string gift_name = 2; // 礼物名称
     GiftType type = 3; // 礼物类型
-    int32 price = 4; // 价格
-    string desc = 5; // 描述
-    int32 combo_timeout = 6; // combo触发间隔时间
-    int32 combo_showtime = 7; // combo效果展示时间
-    GiftStatus status = 8; // 礼物状态
-    string prize = 9; // 奖励(json字符串:{"user_exp":100, "anchor_exp":20})
-    string pack = 10; // 批量包(json字符串:[{pack:"20",desc:""},{pack:"99",desc:""}])
-    string pic = 11; // 图片资源(json字符串:{"icon":"", "icon_gif":"", "chat_icon":"", "combo_bg":"", "combo_icon":""})
+    GiftStatus status = 4; // 礼物状态
+    GiftRecommend recommend = 5; // 礼物推荐状态
+    int32 price = 6; // 价格
+    string desc = 7; // 描述
+    int32 combo_timeout = 8; // combo触发间隔时间
+    int32 combo_showtime = 9; // combo效果展示时间
+    string prize = 10; // 奖励(json字符串:{"user_exp":100, "anchor_exp":20})
+    string pack = 11; // 批量包(json字符串:[{pack:"20",desc:""},{pack:"99",desc:""}])
+    string pic = 12; // 图片资源(json字符串:{"icon":"", "icon_gif":"", "chat_icon":"", "combo_bg":"", "combo_icon":""})
     
 }
 
