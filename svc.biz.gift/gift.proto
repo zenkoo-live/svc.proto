@@ -20,17 +20,30 @@ service Gift {
     rpc LiveStat(LiveStatReq) returns (LiveStatResp) {}
 }
 
+enum GiftType {
+    GiftTypeUnknown = 0; // 未知
+    GiftTypeCommon = 1; // 普通礼物
+    GiftTypeFan = 2; // 粉丝礼物
+    GiftTypeAristocrat = 3; // 贵族礼物
+}
+enum GiftStatus {
+    GiftStatusUnknown = 0; // 未知
+    GiftStatusOffline = 1; // 下线
+    GiftStatusOnline = 2; // 上线
+}
+
 message GiftInfo {
     int64 gift_id = 1; // 礼物id
     string gift_name = 2; // 礼物名称
-    int32 price = 3; // 价格
-    string desc = 4; // 描述
-    int32 combo_timeout = 5;//combo触发间隔时间
-    int32 combo_showtime = 6;//combo效果展示时间
-    int32 status = 7; // 0下线 1在线
-    string prize = 8; // 奖励(json字符串:{"user_exp":100, "anchor_exp":20})
-    string pack = 9; // 批量包(json字符串:[{pack:"20",desc:""},{pack:"99",desc:""}])
-    string pic = 10; // 图片资源(json字符串:{"icon":"", "icon_gif":"", "chat_icon":"", "combo_bg":"", "combo_icon":""})
+    GiftType type = 3; // 礼物类型
+    int32 price = 4; // 价格
+    string desc = 5; // 描述
+    int32 combo_timeout = 6; // combo触发间隔时间
+    int32 combo_showtime = 7; // combo效果展示时间
+    GiftStatus status = 8; // 礼物状态
+    string prize = 9; // 奖励(json字符串:{"user_exp":100, "anchor_exp":20})
+    string pack = 10; // 批量包(json字符串:[{pack:"20",desc:""},{pack:"99",desc:""}])
+    string pic = 11; // 图片资源(json字符串:{"icon":"", "icon_gif":"", "chat_icon":"", "combo_bg":"", "combo_icon":""})
     
 }
 
@@ -64,8 +77,8 @@ message GiftUpdateResp {
 message GiftListAdminReq {
     int32 pageno = 1;
     int32 pagenum = 2;
-    int32 type = 3;
-    int32 status = 4;
+    GiftType type = 3;
+    GiftStatus status = 4;
     string keyword = 5;
 }
 

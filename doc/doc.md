@@ -40,6 +40,9 @@
     - [LiveStatReq](#svc-biz-gift-LiveStatReq)
     - [LiveStatResp](#svc-biz-gift-LiveStatResp)
   
+    - [GiftStatus](#svc-biz-gift-GiftStatus)
+    - [GiftType](#svc-biz-gift-GiftType)
+  
     - [Gift](#svc-biz-gift-Gift)
   
 - [Scalar Value Types](#scalar-value-types)
@@ -283,11 +286,12 @@
 | ----- | ---- | ----- | ----------- |
 | gift_id | [int64](#int64) |  | 礼物id |
 | gift_name | [string](#string) |  | 礼物名称 |
+| type | [GiftType](#svc-biz-gift-GiftType) |  | 礼物类型 |
 | price | [int32](#int32) |  | 价格 |
 | desc | [string](#string) |  | 描述 |
 | combo_timeout | [int32](#int32) |  | combo触发间隔时间 |
 | combo_showtime | [int32](#int32) |  | combo效果展示时间 |
-| status | [int32](#int32) |  | 0下线 1在线 |
+| status | [GiftStatus](#svc-biz-gift-GiftStatus) |  | 礼物状态 |
 | prize | [string](#string) |  | 奖励(json字符串:{&#34;user_exp&#34;:100, &#34;anchor_exp&#34;:20}) |
 | pack | [string](#string) |  | 批量包(json字符串:[{pack:&#34;20&#34;,desc:&#34;&#34;},{pack:&#34;99&#34;,desc:&#34;&#34;}]) |
 | pic | [string](#string) |  | 图片资源(json字符串:{&#34;icon&#34;:&#34;&#34;, &#34;icon_gif&#34;:&#34;&#34;, &#34;chat_icon&#34;:&#34;&#34;, &#34;combo_bg&#34;:&#34;&#34;, &#34;combo_icon&#34;:&#34;&#34;}) |
@@ -307,8 +311,8 @@
 | ----- | ---- | ----- | ----------- |
 | pageno | [int32](#int32) |  |  |
 | pagenum | [int32](#int32) |  |  |
-| type | [int32](#int32) |  |  |
-| status | [int32](#int32) |  |  |
+| type | [GiftType](#svc-biz-gift-GiftType) |  |  |
+| status | [GiftStatus](#svc-biz-gift-GiftStatus) |  |  |
 | keyword | [string](#string) |  |  |
 
 
@@ -515,6 +519,33 @@
 
 
  
+
+
+<a name="svc-biz-gift-GiftStatus"></a>
+
+### GiftStatus
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| GiftStatusUnknown | 0 | 未知 |
+| GiftStatusOffline | 1 | 下线 |
+| GiftStatusOnline | 2 | 上线 |
+
+
+
+<a name="svc-biz-gift-GiftType"></a>
+
+### GiftType
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| GiftTypeUnknown | 0 | 未知 |
+| GiftTypeCommon | 1 | 普通礼物 |
+| GiftTypeFan | 2 | 粉丝礼物 |
+| GiftTypeAristocrat | 3 | 贵族礼物 |
+
 
  
 
