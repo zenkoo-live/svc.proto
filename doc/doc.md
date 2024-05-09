@@ -218,10 +218,10 @@
 | ----- | ---- | ----- | ----------- |
 | pageno | [int32](#int32) |  | 第几页 |
 | pagenum | [int32](#int32) |  | 每页几条数据 |
-| uid | [int64](#int64) |  |  |
-| live_id | [int64](#int64) |  |  |
-| start_time | [string](#string) |  | 时间戳RFC399格式 |
-| end_time | [string](#string) |  | 时间戳RFC399格式 |
+| room_id | [int64](#int64) |  | 房间id |
+| live_id | [int64](#int64) |  | 直播id |
+| start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开始时间 |
+| end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 结束时间 |
 
 
 
@@ -281,24 +281,16 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| gift_id | [int64](#int64) |  |  |
-| name | [string](#string) |  |  |
-| price | [int32](#int32) |  |  |
-| desc | [string](#string) |  |  |
-| prize | [string](#string) |  | 奖励，json字符串 |
-| pack | [string](#string) |  | 批量赠送，json字符串 |
-| status | [int32](#int32) |  | 0下线 1在线 |
-| start_time | [string](#string) |  | 时间戳RFC399格式 |
-| end_time | [string](#string) |  | 时间戳RFC399格式 |
-| position | [string](#string) |  | 展示位置，json字符串 |
-| pic | [string](#string) |  | 图片资源，json字符串 |
+| gift_id | [int64](#int64) |  | 礼物id |
+| gift_name | [string](#string) |  | 礼物名称 |
+| price | [int32](#int32) |  | 价格 |
+| desc | [string](#string) |  | 描述 |
 | combo_timeout | [int32](#int32) |  | combo触发间隔时间 |
 | combo_showtime | [int32](#int32) |  | combo效果展示时间 |
-| banner_switch | [int32](#int32) |  | 横幅开关 |
-| banner_info | [string](#string) |  | 横幅配置详情 |
-| luckbag_switch | [int32](#int32) |  | 福袋开关 |
-| type | [int32](#int32) |  | 礼物类型 pay收费，free免费 |
-| effect | [string](#string) |  | 礼物特效 |
+| status | [int32](#int32) |  | 0下线 1在线 |
+| prize | [string](#string) |  | 奖励(json字符串:{&#34;user_exp&#34;:100, &#34;anchor_exp&#34;:20}) |
+| pack | [string](#string) |  | 批量包(json字符串:[{pack:&#34;20&#34;,desc:&#34;&#34;},{pack:&#34;99&#34;,desc:&#34;&#34;}]) |
+| pic | [string](#string) |  | 图片资源(json字符串:{&#34;icon&#34;:&#34;&#34;, &#34;icon_gif&#34;:&#34;&#34;, &#34;chat_icon&#34;:&#34;&#34;, &#34;combo_bg&#34;:&#34;&#34;, &#34;combo_icon&#34;:&#34;&#34;}) |
 
 
 
@@ -308,7 +300,7 @@
 <a name="svc-biz-gift-GiftListAdminReq"></a>
 
 ### GiftListAdminReq
-礼物列表
+礼物列表（后台使用）
 
 
 | Field | Type | Label | Description |
@@ -343,7 +335,7 @@
 <a name="svc-biz-gift-GiftListReq"></a>
 
 ### GiftListReq
-走本地缓存的礼物列表
+礼物列表（房间使用）
 
 
 
@@ -374,18 +366,18 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| gift_id | [int64](#int64) |  |  |
-| gift_name | [string](#string) |  |  |
-| num | [int32](#int32) |  |  |
-| price | [int32](#int32) |  |  |
-| total_price | [int32](#int32) |  |  |
-| from_uid | [int64](#int64) |  |  |
-| from_nickname | [string](#string) |  |  |
-| to_uid | [int64](#int64) |  |  |
-| to_nickname | [string](#string) |  |  |
-| room_uid | [int64](#int64) |  |  |
-| room_nickname | [string](#string) |  |  |
-| create_time | [string](#string) |  | 时间戳RFC399格式 |
+| gift_id | [int64](#int64) |  | 礼物id |
+| gift_name | [string](#string) |  | 礼物名 |
+| num | [int32](#int32) |  | 数量 |
+| price | [int32](#int32) |  | 单价 |
+| total_price | [int32](#int32) |  | 总价 |
+| from_uid | [int64](#int64) |  | 送礼uid |
+| from_nickname | [string](#string) |  | 送礼人昵称 |
+| to_uid | [int64](#int64) |  | 接收者uid |
+| to_nickname | [string](#string) |  | 接收者昵称 |
+| room_id | [int64](#int64) |  | 房间id |
+| live_id | [int64](#int64) |  | 直播id |
+| create_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
 
 
 
@@ -402,9 +394,9 @@
 | ----- | ---- | ----- | ----------- |
 | pageno | [int32](#int32) |  | 第几页 |
 | pagenum | [int32](#int32) |  | 每页几条数据 |
-| uid | [int64](#int64) |  |  |
-| start_time | [string](#string) |  | 时间戳RFC399格式 |
-| end_time | [string](#string) |  | 时间戳RFC399格式 |
+| uid | [int64](#int64) |  | 用户id |
+| start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开始时间 |
+| end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 结束时间 |
 
 
 
@@ -434,13 +426,14 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| uuid | [int64](#int64) |  |  |
-| order_id | [int64](#int64) |  |  |
-| gift_id | [int64](#int64) |  |  |
-| from_uid | [int64](#int64) |  |  |
-| to_uid | [int64](#int64) |  |  |
-| num | [int32](#int32) |  |  |
-| room_uid | [int64](#int64) |  |  |
+| uuid | [int64](#int64) |  | 唯一标识 |
+| order_id | [int64](#int64) |  | 支付订单id |
+| gift_id | [int64](#int64) |  | 礼物id |
+| from_uid | [int64](#int64) |  | 赠送者uid |
+| to_uid | [int64](#int64) |  | 接收者uid |
+| num | [int32](#int32) |  | 数量 |
+| room_id | [int64](#int64) |  | 房间id |
+| live_id | [int64](#int64) |  | 直播id |
 
 
 
@@ -455,9 +448,9 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| sendret | [bool](#bool) |  |  |
-| combo | [int32](#int32) |  |  |
-| group | [string](#string) |  |  |
+| sendret | [bool](#bool) |  | 赠送结果 |
+| combo_num | [int32](#int32) |  | 连击数 |
+| combo_group | [string](#string) |  | 连击组 |
 
 
 
@@ -472,6 +465,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| gift_id | [int64](#int64) |  |  |
 | gift | [GiftInfo](#svc-biz-gift-GiftInfo) |  |  |
 | update_filed | [google.protobuf.FieldMask](#google-protobuf-FieldMask) |  |  |
 
@@ -486,11 +480,6 @@
 
 
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| updated | [bool](#bool) |  |  |
-
-
 
 
 
@@ -503,6 +492,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| room_id | [int64](#int64) |  |  |
 | live_id | [int64](#int64) |  |  |
 
 
