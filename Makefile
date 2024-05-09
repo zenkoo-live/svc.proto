@@ -46,7 +46,7 @@ summary:
 
 build:
 	@printf "\033[1;36m  Compiling protos ...\033[0m\n"
-	@for f in $(shell find -name '*.proto') ; do \
+	@for f in $(shell find . -name '*.proto') ; do \
 		printf "    Compiling <$${f}>\n"  && \
 		$(PROTOC) --go_out=. --go-grpc_out=. --micro_out=. $${f} ; \
 	done
@@ -60,5 +60,5 @@ micro:
 doc:
 	@printf "\033[1;36m  Generating document ...\033[0m\n"
 	@mkdir -p $(PREFIX)/doc
-	@$(PROTOC) --doc_opt=markdown,doc.md --doc_out=./doc $(shell find -name '*.proto')
+	@$(PROTOC) --doc_opt=markdown,doc.md --doc_out=./doc $(shell find . -name '*.proto')
 	@echo

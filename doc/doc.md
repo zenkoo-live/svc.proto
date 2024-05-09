@@ -3,8 +3,8 @@
 
 ## Table of Contents
 
-- [svc.web.streamer/streamer.proto](#svc-web-streamer_streamer-proto)
-    - [Streamer](#svc-web-streamer-Streamer)
+- [svc.biz.account/account.proto](#svc-biz-account_account-proto)
+    - [Account](#svc-biz-account-Account)
   
 - [svc.infra.setting/setting.proto](#svc-infra-setting_setting-proto)
     - [Setting](#svc-infra-setting-Setting)
@@ -15,17 +15,41 @@
 - [svc.web.dashboard/dashboard.proto](#svc-web-dashboard_dashboard-proto)
     - [Dashboard](#svc-web-dashboard-Dashboard)
   
-- [svc.biz.account/account.proto](#svc-biz-account_account-proto)
-    - [Account](#svc-biz-account-Account)
+- [svc.web.streamer/streamer.proto](#svc-web-streamer_streamer-proto)
+    - [Streamer](#svc-web-streamer-Streamer)
+  
+- [svc.biz.gift/gift.proto](#svc-biz-gift_gift-proto)
+    - [GiftAddReq](#svc-biz-gift-GiftAddReq)
+    - [GiftAddResp](#svc-biz-gift-GiftAddResp)
+    - [GiftGetRecordReq](#svc-biz-gift-GiftGetRecordReq)
+    - [GiftGetRecordResp](#svc-biz-gift-GiftGetRecordResp)
+    - [GiftGetReq](#svc-biz-gift-GiftGetReq)
+    - [GiftGetResp](#svc-biz-gift-GiftGetResp)
+    - [GiftInfo](#svc-biz-gift-GiftInfo)
+    - [GiftListAdminReq](#svc-biz-gift-GiftListAdminReq)
+    - [GiftListAdminResp](#svc-biz-gift-GiftListAdminResp)
+    - [GiftListReq](#svc-biz-gift-GiftListReq)
+    - [GiftListResp](#svc-biz-gift-GiftListResp)
+    - [GiftSendRecord](#svc-biz-gift-GiftSendRecord)
+    - [GiftSendRecordReq](#svc-biz-gift-GiftSendRecordReq)
+    - [GiftSendRecordResp](#svc-biz-gift-GiftSendRecordResp)
+    - [GiftSendReq](#svc-biz-gift-GiftSendReq)
+    - [GiftSendResp](#svc-biz-gift-GiftSendResp)
+    - [GiftUpdateReq](#svc-biz-gift-GiftUpdateReq)
+    - [GiftUpdateResp](#svc-biz-gift-GiftUpdateResp)
+    - [LiveStatReq](#svc-biz-gift-LiveStatReq)
+    - [LiveStatResp](#svc-biz-gift-LiveStatResp)
+  
+    - [Gift](#svc-biz-gift-Gift)
   
 - [Scalar Value Types](#scalar-value-types)
 
 
 
-<a name="svc-web-streamer_streamer-proto"></a>
+<a name="svc-biz-account_account-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## svc.web.streamer/streamer.proto
+## svc.biz.account/account.proto
 
 
  
@@ -35,9 +59,9 @@
  
 
 
-<a name="svc-web-streamer-Streamer"></a>
+<a name="svc-biz-account-Account"></a>
 
-### Streamer
+### Account
 
 
 | Method Name | Request Type | Response Type | Description |
@@ -122,10 +146,10 @@
 
 
 
-<a name="svc-biz-account_account-proto"></a>
+<a name="svc-web-streamer_streamer-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## svc.biz.account/account.proto
+## svc.web.streamer/streamer.proto
 
 
  
@@ -135,13 +159,394 @@
  
 
 
-<a name="svc-biz-account-Account"></a>
+<a name="svc-web-streamer-Streamer"></a>
 
-### Account
+### Streamer
 
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
+
+ 
+
+
+
+<a name="svc-biz-gift_gift-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.biz.gift/gift.proto
+
+
+
+<a name="svc-biz-gift-GiftAddReq"></a>
+
+### GiftAddReq
+添加礼物
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| gift | [GiftInfo](#svc-biz-gift-GiftInfo) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-gift-GiftAddResp"></a>
+
+### GiftAddResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| gift_id | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-gift-GiftGetRecordReq"></a>
+
+### GiftGetRecordReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| pageno | [int32](#int32) |  | 第几页 |
+| pagenum | [int32](#int32) |  | 每页几条数据 |
+| uid | [int64](#int64) |  |  |
+| live_id | [int64](#int64) |  |  |
+| start_time | [string](#string) |  | 时间戳RFC399格式 |
+| end_time | [string](#string) |  | 时间戳RFC399格式 |
+
+
+
+
+
+
+<a name="svc-biz-gift-GiftGetRecordResp"></a>
+
+### GiftGetRecordResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [GiftSendRecord](#svc-biz-gift-GiftSendRecord) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-gift-GiftGetReq"></a>
+
+### GiftGetReq
+获取礼物
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| gift_id | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-gift-GiftGetResp"></a>
+
+### GiftGetResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| gift | [GiftInfo](#svc-biz-gift-GiftInfo) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-gift-GiftInfo"></a>
+
+### GiftInfo
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| gift_id | [int64](#int64) |  |  |
+| name | [string](#string) |  |  |
+| price | [int32](#int32) |  |  |
+| desc | [string](#string) |  |  |
+| prize | [string](#string) |  | 奖励，json字符串 |
+| pack | [string](#string) |  | 批量赠送，json字符串 |
+| status | [int32](#int32) |  | 0下线 1在线 |
+| start_time | [string](#string) |  | 时间戳RFC399格式 |
+| end_time | [string](#string) |  | 时间戳RFC399格式 |
+| position | [string](#string) |  | 展示位置，json字符串 |
+| pic | [string](#string) |  | 图片资源，json字符串 |
+| combo_timeout | [int32](#int32) |  | combo触发间隔时间 |
+| combo_showtime | [int32](#int32) |  | combo效果展示时间 |
+| banner_switch | [int32](#int32) |  | 横幅开关 |
+| banner_info | [string](#string) |  | 横幅配置详情 |
+| luckbag_switch | [int32](#int32) |  | 福袋开关 |
+| type | [int32](#int32) |  | 礼物类型 pay收费，free免费 |
+| effect | [string](#string) |  | 礼物特效 |
+
+
+
+
+
+
+<a name="svc-biz-gift-GiftListAdminReq"></a>
+
+### GiftListAdminReq
+礼物列表
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| pageno | [int32](#int32) |  |  |
+| pagenum | [int32](#int32) |  |  |
+| type | [int32](#int32) |  |  |
+| status | [int32](#int32) |  |  |
+| keyword | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-gift-GiftListAdminResp"></a>
+
+### GiftListAdminResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [GiftInfo](#svc-biz-gift-GiftInfo) | repeated |  |
+| total | [int32](#int32) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-gift-GiftListReq"></a>
+
+### GiftListReq
+走本地缓存的礼物列表
+
+
+
+
+
+
+<a name="svc-biz-gift-GiftListResp"></a>
+
+### GiftListResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [GiftInfo](#svc-biz-gift-GiftInfo) | repeated |  |
+| total | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-gift-GiftSendRecord"></a>
+
+### GiftSendRecord
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| gift_id | [int64](#int64) |  |  |
+| gift_name | [string](#string) |  |  |
+| num | [int32](#int32) |  |  |
+| price | [int32](#int32) |  |  |
+| total_price | [int32](#int32) |  |  |
+| from_uid | [int64](#int64) |  |  |
+| from_nickname | [string](#string) |  |  |
+| to_uid | [int64](#int64) |  |  |
+| to_nickname | [string](#string) |  |  |
+| room_uid | [int64](#int64) |  |  |
+| room_nickname | [string](#string) |  |  |
+| create_time | [string](#string) |  | 时间戳RFC399格式 |
+
+
+
+
+
+
+<a name="svc-biz-gift-GiftSendRecordReq"></a>
+
+### GiftSendRecordReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| pageno | [int32](#int32) |  | 第几页 |
+| pagenum | [int32](#int32) |  | 每页几条数据 |
+| uid | [int64](#int64) |  |  |
+| start_time | [string](#string) |  | 时间戳RFC399格式 |
+| end_time | [string](#string) |  | 时间戳RFC399格式 |
+
+
+
+
+
+
+<a name="svc-biz-gift-GiftSendRecordResp"></a>
+
+### GiftSendRecordResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [GiftSendRecord](#svc-biz-gift-GiftSendRecord) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-gift-GiftSendReq"></a>
+
+### GiftSendReq
+赠送礼物
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| uuid | [int64](#int64) |  |  |
+| order_id | [int64](#int64) |  |  |
+| gift_id | [int64](#int64) |  |  |
+| from_uid | [int64](#int64) |  |  |
+| to_uid | [int64](#int64) |  |  |
+| num | [int32](#int32) |  |  |
+| room_uid | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-gift-GiftSendResp"></a>
+
+### GiftSendResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| sendret | [bool](#bool) |  |  |
+| combo | [int32](#int32) |  |  |
+| group | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-gift-GiftUpdateReq"></a>
+
+### GiftUpdateReq
+更新礼物
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| gift | [GiftInfo](#svc-biz-gift-GiftInfo) |  |  |
+| update_filed | [google.protobuf.FieldMask](#google-protobuf-FieldMask) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-gift-GiftUpdateResp"></a>
+
+### GiftUpdateResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| updated | [bool](#bool) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-gift-LiveStatReq"></a>
+
+### LiveStatReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| live_id | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-gift-LiveStatResp"></a>
+
+### LiveStatResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| total_cost | [int32](#int32) |  |  |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="svc-biz-gift-Gift"></a>
+
+### Gift
+
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| Add | [GiftAddReq](#svc-biz-gift-GiftAddReq) | [GiftAddResp](#svc-biz-gift-GiftAddResp) |  |
+| Get | [GiftGetReq](#svc-biz-gift-GiftGetReq) | [GiftGetResp](#svc-biz-gift-GiftGetResp) |  |
+| Update | [GiftUpdateReq](#svc-biz-gift-GiftUpdateReq) | [GiftUpdateResp](#svc-biz-gift-GiftUpdateResp) |  |
+| ListAdmin | [GiftListAdminReq](#svc-biz-gift-GiftListAdminReq) | [GiftListAdminResp](#svc-biz-gift-GiftListAdminResp) |  |
+| List | [GiftListReq](#svc-biz-gift-GiftListReq) | [GiftListResp](#svc-biz-gift-GiftListResp) |  |
+| Send | [GiftSendReq](#svc-biz-gift-GiftSendReq) | [GiftSendResp](#svc-biz-gift-GiftSendResp) |  |
+| SendRecord | [GiftSendRecordReq](#svc-biz-gift-GiftSendRecordReq) | [GiftSendRecordResp](#svc-biz-gift-GiftSendRecordResp) |  |
+| GetRecord | [GiftGetRecordReq](#svc-biz-gift-GiftGetRecordReq) | [GiftGetRecordResp](#svc-biz-gift-GiftGetRecordResp) |  |
+| LiveStat | [LiveStatReq](#svc-biz-gift-LiveStatReq) | [LiveStatResp](#svc-biz-gift-LiveStatResp) |  |
 
  
 
