@@ -1,0 +1,159 @@
+syntax = "proto3";
+
+package svc.biz.gift;
+
+import "google/protobuf/field_mask.proto";
+
+option go_package="./svc.biz.gift;gift";
+
+
+service Gift {
+    rpc Add(GiftAddReq) returns (GiftAddResp) {}
+    rpc Get(GiftGetReq) returns (GiftGetResp) {}
+    rpc Update(GiftUpdateReq) returns (GiftUpdateResp) {}
+    rpc ListAdmin(GiftListAdminReq) returns (GiftListAdminResp) {}
+    rpc List(GiftListReq) returns (GiftListResp) {}
+    rpc Send (GiftSendReq) returns (GiftSendResp) {}
+    rpc SendRecord(GiftSendRecordReq) returns (GiftSendRecordResp) {}
+    rpc GetRecord(GiftGetRecordReq) returns (GiftGetRecordResp) {}
+    rpc LiveStat(LiveStatReq) returns (LiveStatResp) {}
+}
+
+message GiftInfo {
+    int64 gift_id = 1;
+    string name = 2;
+    int32 price = 3;
+    string desc = 4;
+    string prize = 5;//奖励，json字符串
+    string pack = 6;//批量赠送，json字符串
+    int32 status = 7; //0下线 1在线
+    string start_time = 8; //时间戳RFC399格式
+    string end_time = 9; //时间戳RFC399格式
+    string position = 10;//展示位置，json字符串
+    string pic = 11;//图片资源，json字符串
+    int32 combo_timeout = 12;//combo触发间隔时间
+    int32 combo_showtime = 13;//combo效果展示时间
+    int32 banner_switch = 14;//横幅开关
+    string banner_info = 15;//横幅配置详情
+    int32 luckbag_switch = 16;//福袋开关
+    int32 type = 17; //礼物类型 pay收费，free免费
+    string effect = 18; // 礼物特效
+}
+
+//添加礼物
+message GiftAddReq {
+    GiftInfo gift = 1;
+}
+
+message GiftAddResp {
+    int64 gift_id = 1;
+}
+
+//获取礼物
+message GiftGetReq {
+    int64 gift_id = 1;
+}
+
+message GiftGetResp {
+    GiftInfo gift = 1;
+}
+
+//更新礼物
+message GiftUpdateReq {
+    GiftInfo gift = 1;
+    google.protobuf.FieldMask update_filed = 2;
+}
+
+message GiftUpdateResp {
+    bool updated = 1;
+}
+
+//礼物列表
+message GiftListAdminReq {
+    int32 pageno = 1;
+    int32 pagenum = 2;
+    int32 type = 3;
+    int32 status = 4;
+    string keyword = 5;
+}
+
+message GiftListAdminResp {
+    repeated GiftInfo items = 1;
+    int32 total = 2;
+}
+
+//走本地缓存的礼物列表
+message GiftListReq {
+    
+}
+
+message GiftListResp {
+    repeated GiftInfo items = 1;
+    int64 total = 2;
+}
+
+//赠送礼物
+message GiftSendReq {
+    int64 uuid = 1;
+    int64 order_id = 2;
+    int64 gift_id = 3;
+    int64 from_uid = 5;
+    int64 to_uid = 7;
+    int32 num = 9;
+    int64 room_uid = 14;
+}
+
+message GiftSendResp {
+    bool sendret = 1;
+    int32 combo = 2;
+    string group = 3;
+}
+
+message GiftSendRecord {
+    int64 gift_id = 1;
+    string gift_name = 2;
+    int32 num =3;
+    int32 price = 4;
+    int32 total_price = 5;
+    int64 from_uid = 6;
+    string from_nickname = 7;
+    int64 to_uid = 8;
+    string to_nickname = 9;
+    int64 room_uid = 10;
+    string room_nickname = 11;
+    string create_time = 12; //时间戳RFC399格式
+}
+
+message GiftGetRecordReq {
+    int32 pageno = 1; // 第几页
+    int32 pagenum = 2; // 每页几条数据
+    int64 uid = 3;
+    int64 live_id = 4;
+    string start_time = 5; //时间戳RFC399格式
+    string end_time = 6; //时间戳RFC399格式
+
+}
+
+message GiftGetRecordResp {
+    repeated GiftSendRecord items = 1;
+}
+
+message GiftSendRecordReq {
+    int32 pageno = 1; // 第几页
+    int32 pagenum = 2; // 每页几条数据
+    int64 uid = 3;
+    string start_time = 4; //时间戳RFC399格式
+    string end_time = 5; //时间戳RFC399格式
+}
+
+message GiftSendRecordResp {
+    repeated GiftSendRecord items = 1;
+}
+
+message LiveStatReq {
+    int64 live_id = 1;
+}
+
+message LiveStatResp {
+    int32 total_cost = 1;
+}
