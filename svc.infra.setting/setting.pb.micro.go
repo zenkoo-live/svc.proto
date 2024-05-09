@@ -36,6 +36,7 @@ func NewSettingEndpoints() []*api.Endpoint {
 // Client API for Setting service
 
 type SettingService interface {
+	Greeting(ctx context.Context, in *SettingGreetingReq, opts ...client.CallOption) (*SettingGreetingResp, error)
 }
 
 type settingService struct {
@@ -50,13 +51,25 @@ func NewSettingService(name string, c client.Client) SettingService {
 	}
 }
 
+func (c *settingService) Greeting(ctx context.Context, in *SettingGreetingReq, opts ...client.CallOption) (*SettingGreetingResp, error) {
+	req := c.c.NewRequest(c.name, "Setting.Greeting", in)
+	out := new(SettingGreetingResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for Setting service
 
 type SettingHandler interface {
+	Greeting(context.Context, *SettingGreetingReq, *SettingGreetingResp) error
 }
 
 func RegisterSettingHandler(s server.Server, hdlr SettingHandler, opts ...server.HandlerOption) error {
 	type setting interface {
+		Greeting(ctx context.Context, in *SettingGreetingReq, out *SettingGreetingResp) error
 	}
 	type Setting struct {
 		setting
@@ -67,4 +80,8 @@ func RegisterSettingHandler(s server.Server, hdlr SettingHandler, opts ...server
 
 type settingHandler struct {
 	SettingHandler
+}
+
+func (h *settingHandler) Greeting(ctx context.Context, in *SettingGreetingReq, out *SettingGreetingResp) error {
+	return h.SettingHandler.Greeting(ctx, in, out)
 }

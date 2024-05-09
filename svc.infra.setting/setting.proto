@@ -4,4 +4,12 @@ package svc.infra.setting;
 option go_package="./svc.infra.setting;setting";
 
 service Setting {
+    rpc Greeting(SettingGreetingReq) returns (SettingGreetingResp) {}
+}
+
+message SettingGreetingReq {
+    string name = 1;
+}
+message SettingGreetingResp {
+    string name = 1;
 }
