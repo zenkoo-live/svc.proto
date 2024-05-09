@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+package svc.biz.account;
+option go_package="./svc.biz.account;account";
+
+service Account {
+}

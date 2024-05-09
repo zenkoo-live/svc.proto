@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+package svc.web.streamer;
+option go_package="./svc.web.streamer;streamer";
+
+service Streamer {
+}

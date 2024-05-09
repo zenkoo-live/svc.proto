@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+package svc.web.viewer;
+option go_package="./svc.web.viewer;viewer";
+
+service Viewer {
+}

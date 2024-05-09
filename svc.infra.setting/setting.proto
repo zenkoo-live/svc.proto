@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+package svc.infra.setting;
+option go_package="./svc.infra.setting;setting";
+
+service Setting {
+}

@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+package svc.web.dashboard;
+option go_package="./svc.web.dashboard;dashboard";
+
+service Dashboard {
+}
