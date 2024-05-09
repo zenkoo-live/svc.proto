@@ -3,8 +3,8 @@
 
 ## Table of Contents
 
-- [svc.web.streamer/streamer.proto](#svc-web-streamer_streamer-proto)
-    - [Streamer](#svc-web-streamer-Streamer)
+- [svc.biz.account/account.proto](#svc-biz-account_account-proto)
+    - [Account](#svc-biz-account-Account)
   
 - [svc.infra.setting/setting.proto](#svc-infra-setting_setting-proto)
     - [SettingGreetingReq](#svc-infra-setting-SettingGreetingReq)
@@ -14,6 +14,12 @@
   
 - [svc.web.viewer/viewer.proto](#svc-web-viewer_viewer-proto)
     - [Viewer](#svc-web-viewer-Viewer)
+  
+- [svc.web.dashboard/dashboard.proto](#svc-web-dashboard_dashboard-proto)
+    - [Dashboard](#svc-web-dashboard-Dashboard)
+  
+- [svc.web.streamer/streamer.proto](#svc-web-streamer_streamer-proto)
+    - [Streamer](#svc-web-streamer-Streamer)
   
 - [svc.biz.gift/gift.proto](#svc-biz-gift_gift-proto)
     - [GiftAddReq](#svc-biz-gift-GiftAddReq)
@@ -43,20 +49,14 @@
   
     - [Gift](#svc-biz-gift-Gift)
   
-- [svc.web.dashboard/dashboard.proto](#svc-web-dashboard_dashboard-proto)
-    - [Dashboard](#svc-web-dashboard-Dashboard)
-  
-- [svc.biz.account/account.proto](#svc-biz-account_account-proto)
-    - [Account](#svc-biz-account-Account)
-  
 - [Scalar Value Types](#scalar-value-types)
 
 
 
-<a name="svc-web-streamer_streamer-proto"></a>
+<a name="svc-biz-account_account-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## svc.web.streamer/streamer.proto
+## svc.biz.account/account.proto
 
 
  
@@ -66,9 +66,9 @@
  
 
 
-<a name="svc-web-streamer-Streamer"></a>
+<a name="svc-biz-account-Account"></a>
 
-### Streamer
+### Account
 
 
 | Method Name | Request Type | Response Type | Description |
@@ -150,6 +150,56 @@
 <a name="svc-web-viewer-Viewer"></a>
 
 ### Viewer
+
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+
+ 
+
+
+
+<a name="svc-web-dashboard_dashboard-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.web.dashboard/dashboard.proto
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="svc-web-dashboard-Dashboard"></a>
+
+### Dashboard
+
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+
+ 
+
+
+
+<a name="svc-web-streamer_streamer-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.web.streamer/streamer.proto
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="svc-web-streamer-Streamer"></a>
+
+### Streamer
 
 
 | Method Name | Request Type | Response Type | Description |
@@ -567,56 +617,6 @@
 | SendRecord | [GiftSendRecordReq](#svc-biz-gift-GiftSendRecordReq) | [GiftSendRecordResp](#svc-biz-gift-GiftSendRecordResp) |  |
 | GetRecord | [GiftGetRecordReq](#svc-biz-gift-GiftGetRecordReq) | [GiftGetRecordResp](#svc-biz-gift-GiftGetRecordResp) |  |
 | LiveStat | [LiveStatReq](#svc-biz-gift-LiveStatReq) | [LiveStatResp](#svc-biz-gift-LiveStatResp) |  |
-
- 
-
-
-
-<a name="svc-web-dashboard_dashboard-proto"></a>
-<p align="right"><a href="#top">Top</a></p>
-
-## svc.web.dashboard/dashboard.proto
-
-
- 
-
- 
-
- 
-
-
-<a name="svc-web-dashboard-Dashboard"></a>
-
-### Dashboard
-
-
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-
- 
-
-
-
-<a name="svc-biz-account_account-proto"></a>
-<p align="right"><a href="#top">Top</a></p>
-
-## svc.biz.account/account.proto
-
-
- 
-
- 
-
- 
-
-
-<a name="svc-biz-account-Account"></a>
-
-### Account
-
-
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
 
  
 
