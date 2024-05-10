@@ -51,6 +51,9 @@ build:
 		$(PROTOC) --go_out=. --go-grpc_out=. --micro_out=. $${f} ; \
 	done
 	@echo
+	@printf "\033[1;36m  Generating services ...\033[0m\n"
+	@$(GO) run generate.go
+	@echo
 
 micro:
 	@$(GO) install google.golang.org/protobuf/cmd/protoc-gen-go@latest
