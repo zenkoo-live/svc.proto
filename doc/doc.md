@@ -295,11 +295,12 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| pageno | [int32](#int32) |  |  |
-| pagenum | [int32](#int32) |  |  |
-| type | [GiftType](#svc-biz-gift-GiftType) |  |  |
-| status | [GiftStatus](#svc-biz-gift-GiftStatus) |  |  |
-| keyword | [string](#string) |  |  |
+| return_count | [bool](#bool) |  | 是否返回总数 |
+| pageno | [int32](#int32) |  | 第几页 |
+| pagenum | [int32](#int32) |  | 每页几条数据 |
+| type | [GiftType](#svc-biz-gift-GiftType) |  | 礼物类型 |
+| status | [GiftStatus](#svc-biz-gift-GiftStatus) |  | 礼物状态 |
+| keyword | [string](#string) |  | 关键字 |
 
 
 
