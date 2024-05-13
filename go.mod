@@ -1,6 +1,6 @@
 module github.com/zenkoo-live/svc.proto
 
-go 1.22.3
+go 1.23
 
 require (
 	github.com/go-micro/plugins/v4/client/grpc v1.2.1
