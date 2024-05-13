@@ -46,8 +46,8 @@ type GiftService interface {
 	Update(ctx context.Context, in *GiftUpdateReq, opts ...client.CallOption) (*GiftUpdateResp, error)
 	// ListAdmin 后台查询礼物列表接口
 	ListAdmin(ctx context.Context, in *ListAdminReq, opts ...client.CallOption) (*ListAdminResp, error)
-	// ListOnline 前台房间礼物查询接口
-	ListOnline(ctx context.Context, in *ListOnlineReq, opts ...client.CallOption) (*ListOnlineResp, error)
+	// ListOnlineByType 前台房间礼物查询接口
+	ListOnlineByType(ctx context.Context, in *ListOnlineByTypeReq, opts ...client.CallOption) (*ListOnlineByTypeResp, error)
 	// GiftSendReq 送礼物接口
 	Send(ctx context.Context, in *GiftSendReq, opts ...client.CallOption) (*GiftSendResp, error)
 	// SendRecord 送礼记录
@@ -110,9 +110,9 @@ func (c *giftService) ListAdmin(ctx context.Context, in *ListAdminReq, opts ...c
 	return out, nil
 }
 
-func (c *giftService) ListOnline(ctx context.Context, in *ListOnlineReq, opts ...client.CallOption) (*ListOnlineResp, error) {
-	req := c.c.NewRequest(c.name, "Gift.ListOnline", in)
-	out := new(ListOnlineResp)
+func (c *giftService) ListOnlineByType(ctx context.Context, in *ListOnlineByTypeReq, opts ...client.CallOption) (*ListOnlineByTypeResp, error) {
+	req := c.c.NewRequest(c.name, "Gift.ListOnlineByType", in)
+	out := new(ListOnlineByTypeResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -171,8 +171,8 @@ type GiftHandler interface {
 	Update(context.Context, *GiftUpdateReq, *GiftUpdateResp) error
 	// ListAdmin 后台查询礼物列表接口
 	ListAdmin(context.Context, *ListAdminReq, *ListAdminResp) error
-	// ListOnline 前台房间礼物查询接口
-	ListOnline(context.Context, *ListOnlineReq, *ListOnlineResp) error
+	// ListOnlineByType 前台房间礼物查询接口
+	ListOnlineByType(context.Context, *ListOnlineByTypeReq, *ListOnlineByTypeResp) error
 	// GiftSendReq 送礼物接口
 	Send(context.Context, *GiftSendReq, *GiftSendResp) error
 	// SendRecord 送礼记录
@@ -189,7 +189,7 @@ func RegisterGiftHandler(s server.Server, hdlr GiftHandler, opts ...server.Handl
 		Get(ctx context.Context, in *GiftGetReq, out *GiftGetResp) error
 		Update(ctx context.Context, in *GiftUpdateReq, out *GiftUpdateResp) error
 		ListAdmin(ctx context.Context, in *ListAdminReq, out *ListAdminResp) error
-		ListOnline(ctx context.Context, in *ListOnlineReq, out *ListOnlineResp) error
+		ListOnlineByType(ctx context.Context, in *ListOnlineByTypeReq, out *ListOnlineByTypeResp) error
 		Send(ctx context.Context, in *GiftSendReq, out *GiftSendResp) error
 		SendRecord(ctx context.Context, in *GiftSendRecordReq, out *GiftSendRecordResp) error
 		GetRecord(ctx context.Context, in *GiftGetRecordReq, out *GiftGetRecordResp) error
@@ -222,8 +222,8 @@ func (h *giftHandler) ListAdmin(ctx context.Context, in *ListAdminReq, out *List
 	return h.GiftHandler.ListAdmin(ctx, in, out)
 }
 
-func (h *giftHandler) ListOnline(ctx context.Context, in *ListOnlineReq, out *ListOnlineResp) error {
-	return h.GiftHandler.ListOnline(ctx, in, out)
+func (h *giftHandler) ListOnlineByType(ctx context.Context, in *ListOnlineByTypeReq, out *ListOnlineByTypeResp) error {
+	return h.GiftHandler.ListOnlineByType(ctx, in, out)
 }
 
 func (h *giftHandler) Send(ctx context.Context, in *GiftSendReq, out *GiftSendResp) error {

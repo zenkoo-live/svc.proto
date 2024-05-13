@@ -19,15 +19,15 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Gift_Add_FullMethodName        = "/svc.biz.gift.Gift/Add"
-	Gift_Get_FullMethodName        = "/svc.biz.gift.Gift/Get"
-	Gift_Update_FullMethodName     = "/svc.biz.gift.Gift/Update"
-	Gift_ListAdmin_FullMethodName  = "/svc.biz.gift.Gift/ListAdmin"
-	Gift_ListOnline_FullMethodName = "/svc.biz.gift.Gift/ListOnline"
-	Gift_Send_FullMethodName       = "/svc.biz.gift.Gift/Send"
-	Gift_SendRecord_FullMethodName = "/svc.biz.gift.Gift/SendRecord"
-	Gift_GetRecord_FullMethodName  = "/svc.biz.gift.Gift/GetRecord"
-	Gift_LiveStat_FullMethodName   = "/svc.biz.gift.Gift/LiveStat"
+	Gift_Add_FullMethodName              = "/svc.biz.gift.Gift/Add"
+	Gift_Get_FullMethodName              = "/svc.biz.gift.Gift/Get"
+	Gift_Update_FullMethodName           = "/svc.biz.gift.Gift/Update"
+	Gift_ListAdmin_FullMethodName        = "/svc.biz.gift.Gift/ListAdmin"
+	Gift_ListOnlineByType_FullMethodName = "/svc.biz.gift.Gift/ListOnlineByType"
+	Gift_Send_FullMethodName             = "/svc.biz.gift.Gift/Send"
+	Gift_SendRecord_FullMethodName       = "/svc.biz.gift.Gift/SendRecord"
+	Gift_GetRecord_FullMethodName        = "/svc.biz.gift.Gift/GetRecord"
+	Gift_LiveStat_FullMethodName         = "/svc.biz.gift.Gift/LiveStat"
 )
 
 // GiftClient is the client API for Gift service.
@@ -42,8 +42,8 @@ type GiftClient interface {
 	Update(ctx context.Context, in *GiftUpdateReq, opts ...grpc.CallOption) (*GiftUpdateResp, error)
 	// ListAdmin 后台查询礼物列表接口
 	ListAdmin(ctx context.Context, in *ListAdminReq, opts ...grpc.CallOption) (*ListAdminResp, error)
-	// ListOnline 前台房间礼物查询接口
-	ListOnline(ctx context.Context, in *ListOnlineReq, opts ...grpc.CallOption) (*ListOnlineResp, error)
+	// ListOnlineByType 前台房间礼物查询接口
+	ListOnlineByType(ctx context.Context, in *ListOnlineByTypeReq, opts ...grpc.CallOption) (*ListOnlineByTypeResp, error)
 	// GiftSendReq 送礼物接口
 	Send(ctx context.Context, in *GiftSendReq, opts ...grpc.CallOption) (*GiftSendResp, error)
 	// SendRecord 送礼记录
@@ -98,9 +98,9 @@ func (c *giftClient) ListAdmin(ctx context.Context, in *ListAdminReq, opts ...gr
 	return out, nil
 }
 
-func (c *giftClient) ListOnline(ctx context.Context, in *ListOnlineReq, opts ...grpc.CallOption) (*ListOnlineResp, error) {
-	out := new(ListOnlineResp)
-	err := c.cc.Invoke(ctx, Gift_ListOnline_FullMethodName, in, out, opts...)
+func (c *giftClient) ListOnlineByType(ctx context.Context, in *ListOnlineByTypeReq, opts ...grpc.CallOption) (*ListOnlineByTypeResp, error) {
+	out := new(ListOnlineByTypeResp)
+	err := c.cc.Invoke(ctx, Gift_ListOnlineByType_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -155,8 +155,8 @@ type GiftServer interface {
 	Update(context.Context, *GiftUpdateReq) (*GiftUpdateResp, error)
 	// ListAdmin 后台查询礼物列表接口
 	ListAdmin(context.Context, *ListAdminReq) (*ListAdminResp, error)
-	// ListOnline 前台房间礼物查询接口
-	ListOnline(context.Context, *ListOnlineReq) (*ListOnlineResp, error)
+	// ListOnlineByType 前台房间礼物查询接口
+	ListOnlineByType(context.Context, *ListOnlineByTypeReq) (*ListOnlineByTypeResp, error)
 	// GiftSendReq 送礼物接口
 	Send(context.Context, *GiftSendReq) (*GiftSendResp, error)
 	// SendRecord 送礼记录
@@ -184,8 +184,8 @@ func (UnimplementedGiftServer) Update(context.Context, *GiftUpdateReq) (*GiftUpd
 func (UnimplementedGiftServer) ListAdmin(context.Context, *ListAdminReq) (*ListAdminResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListAdmin not implemented")
 }
-func (UnimplementedGiftServer) ListOnline(context.Context, *ListOnlineReq) (*ListOnlineResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListOnline not implemented")
+func (UnimplementedGiftServer) ListOnlineByType(context.Context, *ListOnlineByTypeReq) (*ListOnlineByTypeResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListOnlineByType not implemented")
 }
 func (UnimplementedGiftServer) Send(context.Context, *GiftSendReq) (*GiftSendResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Send not implemented")
@@ -284,20 +284,20 @@ func _Gift_ListAdmin_Handler(srv interface{}, ctx context.Context, dec func(inte
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Gift_ListOnline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListOnlineReq)
+func _Gift_ListOnlineByType_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListOnlineByTypeReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GiftServer).ListOnline(ctx, in)
+		return srv.(GiftServer).ListOnlineByType(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Gift_ListOnline_FullMethodName,
+		FullMethod: Gift_ListOnlineByType_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GiftServer).ListOnline(ctx, req.(*ListOnlineReq))
+		return srv.(GiftServer).ListOnlineByType(ctx, req.(*ListOnlineByTypeReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -398,8 +398,8 @@ var Gift_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Gift_ListAdmin_Handler,
 		},
 		{
-			MethodName: "ListOnline",
-			Handler:    _Gift_ListOnline_Handler,
+			MethodName: "ListOnlineByType",
+			Handler:    _Gift_ListOnlineByType_Handler,
 		},
 		{
 			MethodName: "Send",

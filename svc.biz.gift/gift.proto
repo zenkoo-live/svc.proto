@@ -17,8 +17,8 @@ service Gift {
     rpc Update(GiftUpdateReq) returns (GiftUpdateResp) {}
     // ListAdmin 后台查询礼物列表接口
     rpc ListAdmin(ListAdminReq) returns (ListAdminResp) {}
-    // ListOnline 前台房间礼物查询接口
-    rpc ListOnline(ListOnlineReq) returns (ListOnlineResp) {}
+    // ListOnlineByType 前台房间礼物查询接口
+    rpc ListOnlineByType(ListOnlineByTypeReq) returns (ListOnlineByTypeResp) {}
     // GiftSendReq 送礼物接口
     rpc Send (GiftSendReq) returns (GiftSendResp) {}
     // SendRecord 送礼记录
@@ -105,10 +105,10 @@ message ListAdminResp {
 }
 
 //礼物列表（房间使用）
-message ListOnlineReq {
+message ListOnlineByTypeReq {
     GiftType type = 1; // 礼物类型
 }
-message ListOnlineResp {
+message ListOnlineByTypeResp {
     repeated GiftInfo items = 1;
 }
 
