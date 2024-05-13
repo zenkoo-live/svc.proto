@@ -366,7 +366,7 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | items | [GiftInfo](#svc-biz-gift-GiftInfo) | repeated |  |
-| total | [int32](#int32) |  |  |
+| total | [int64](#int64) |  |  |
 
 
 

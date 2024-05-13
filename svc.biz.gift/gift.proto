@@ -92,7 +92,7 @@ message GiftListAdminReq {
 
 message GiftListAdminResp {
     repeated GiftInfo items = 1;
-    int32 total = 2;
+    int64 total = 2;
 }
 
 //礼物列表（房间使用）
