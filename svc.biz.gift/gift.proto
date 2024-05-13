@@ -9,14 +9,23 @@ option go_package="./svc.biz.gift;gift";
 
 
 service Gift {
+    // Add 添加礼物
     rpc Add(GiftAddReq) returns (GiftAddResp) {}
+     // Get 查询礼物
     rpc Get(GiftGetReq) returns (GiftGetResp) {}
+    // Update 更新礼物
     rpc Update(GiftUpdateReq) returns (GiftUpdateResp) {}
+    // ListAdmin 后台查询礼物列表接口
     rpc ListAdmin(GiftListAdminReq) returns (GiftListAdminResp) {}
+    // List 前台房间礼物查询接口
     rpc List(GiftListReq) returns (GiftListResp) {}
+    // GiftSendReq 送礼物接口
     rpc Send (GiftSendReq) returns (GiftSendResp) {}
+    // SendRecord 送礼记录
     rpc SendRecord(GiftSendRecordReq) returns (GiftSendRecordResp) {}
+    // GetRecord 收礼记录
     rpc GetRecord(GiftGetRecordReq) returns (GiftGetRecordResp) {}
+    // LiveStat 直播统计
     rpc LiveStat(LiveStatReq) returns (LiveStatResp) {}
 }
 
@@ -97,7 +106,7 @@ message GiftListAdminResp {
 
 //礼物列表（房间使用）
 message GiftListReq {
-    
+    GiftType type = 1; // 礼物类型
 }
 message GiftListResp {
     repeated GiftInfo items = 1;

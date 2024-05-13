@@ -38,14 +38,23 @@ func NewGiftEndpoints() []*api.Endpoint {
 // Client API for Gift service
 
 type GiftService interface {
+	// Add 添加礼物
 	Add(ctx context.Context, in *GiftAddReq, opts ...client.CallOption) (*GiftAddResp, error)
+	// Get 查询礼物
 	Get(ctx context.Context, in *GiftGetReq, opts ...client.CallOption) (*GiftGetResp, error)
+	// Update 更新礼物
 	Update(ctx context.Context, in *GiftUpdateReq, opts ...client.CallOption) (*GiftUpdateResp, error)
+	// ListAdmin 后台查询礼物列表接口
 	ListAdmin(ctx context.Context, in *GiftListAdminReq, opts ...client.CallOption) (*GiftListAdminResp, error)
+	// List 前台房间礼物查询接口
 	List(ctx context.Context, in *GiftListReq, opts ...client.CallOption) (*GiftListResp, error)
+	// GiftSendReq 送礼物接口
 	Send(ctx context.Context, in *GiftSendReq, opts ...client.CallOption) (*GiftSendResp, error)
+	// SendRecord 送礼记录
 	SendRecord(ctx context.Context, in *GiftSendRecordReq, opts ...client.CallOption) (*GiftSendRecordResp, error)
+	// GetRecord 收礼记录
 	GetRecord(ctx context.Context, in *GiftGetRecordReq, opts ...client.CallOption) (*GiftGetRecordResp, error)
+	// LiveStat 直播统计
 	LiveStat(ctx context.Context, in *LiveStatReq, opts ...client.CallOption) (*LiveStatResp, error)
 }
 
@@ -154,14 +163,23 @@ func (c *giftService) LiveStat(ctx context.Context, in *LiveStatReq, opts ...cli
 // Server API for Gift service
 
 type GiftHandler interface {
+	// Add 添加礼物
 	Add(context.Context, *GiftAddReq, *GiftAddResp) error
+	// Get 查询礼物
 	Get(context.Context, *GiftGetReq, *GiftGetResp) error
+	// Update 更新礼物
 	Update(context.Context, *GiftUpdateReq, *GiftUpdateResp) error
+	// ListAdmin 后台查询礼物列表接口
 	ListAdmin(context.Context, *GiftListAdminReq, *GiftListAdminResp) error
+	// List 前台房间礼物查询接口
 	List(context.Context, *GiftListReq, *GiftListResp) error
+	// GiftSendReq 送礼物接口
 	Send(context.Context, *GiftSendReq, *GiftSendResp) error
+	// SendRecord 送礼记录
 	SendRecord(context.Context, *GiftSendRecordReq, *GiftSendRecordResp) error
+	// GetRecord 收礼记录
 	GetRecord(context.Context, *GiftGetRecordReq, *GiftGetRecordResp) error
+	// LiveStat 直播统计
 	LiveStat(context.Context, *LiveStatReq, *LiveStatResp) error
 }
 
