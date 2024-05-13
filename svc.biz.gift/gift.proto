@@ -16,9 +16,9 @@ service Gift {
     // Update 更新礼物
     rpc Update(GiftUpdateReq) returns (GiftUpdateResp) {}
     // ListAdmin 后台查询礼物列表接口
-    rpc ListAdmin(GiftListAdminReq) returns (GiftListAdminResp) {}
-    // List 前台房间礼物查询接口
-    rpc List(GiftListReq) returns (GiftListResp) {}
+    rpc ListAdmin(ListAdminReq) returns (ListAdminResp) {}
+    // ListOnline 前台房间礼物查询接口
+    rpc ListOnline(ListOnlineReq) returns (ListOnlineResp) {}
     // GiftSendReq 送礼物接口
     rpc Send (GiftSendReq) returns (GiftSendResp) {}
     // SendRecord 送礼记录
@@ -90,7 +90,7 @@ message GiftUpdateResp {
 }
 
 //礼物列表（后台使用）
-message GiftListAdminReq {
+message ListAdminReq {
     bool return_count = 1; // 是否返回总数
     int32 pageno = 2; // 第几页
     int32 pagenum = 3; // 每页几条数据
@@ -99,18 +99,17 @@ message GiftListAdminReq {
     string keyword = 6; // 关键字
 }
 
-message GiftListAdminResp {
+message ListAdminResp {
     repeated GiftInfo items = 1;
     int64 total = 2;
 }
 
 //礼物列表（房间使用）
-message GiftListReq {
+message ListOnlineReq {
     GiftType type = 1; // 礼物类型
 }
-message GiftListResp {
+message ListOnlineResp {
     repeated GiftInfo items = 1;
-    int64 total = 2;
 }
 
 //赠送礼物

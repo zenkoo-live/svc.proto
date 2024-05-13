@@ -29,10 +29,6 @@
     - [GiftGetReq](#svc-biz-gift-GiftGetReq)
     - [GiftGetResp](#svc-biz-gift-GiftGetResp)
     - [GiftInfo](#svc-biz-gift-GiftInfo)
-    - [GiftListAdminReq](#svc-biz-gift-GiftListAdminReq)
-    - [GiftListAdminResp](#svc-biz-gift-GiftListAdminResp)
-    - [GiftListReq](#svc-biz-gift-GiftListReq)
-    - [GiftListResp](#svc-biz-gift-GiftListResp)
     - [GiftSendRecord](#svc-biz-gift-GiftSendRecord)
     - [GiftSendRecordReq](#svc-biz-gift-GiftSendRecordReq)
     - [GiftSendRecordResp](#svc-biz-gift-GiftSendRecordResp)
@@ -40,6 +36,10 @@
     - [GiftSendResp](#svc-biz-gift-GiftSendResp)
     - [GiftUpdateReq](#svc-biz-gift-GiftUpdateReq)
     - [GiftUpdateResp](#svc-biz-gift-GiftUpdateResp)
+    - [ListAdminReq](#svc-biz-gift-ListAdminReq)
+    - [ListAdminResp](#svc-biz-gift-ListAdminResp)
+    - [ListOnlineReq](#svc-biz-gift-ListOnlineReq)
+    - [ListOnlineResp](#svc-biz-gift-ListOnlineResp)
     - [LiveStatReq](#svc-biz-gift-LiveStatReq)
     - [LiveStatResp](#svc-biz-gift-LiveStatResp)
   
@@ -337,73 +337,6 @@
 
 
 
-<a name="svc-biz-gift-GiftListAdminReq"></a>
-
-### GiftListAdminReq
-礼物列表（后台使用）
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| return_count | [bool](#bool) |  | 是否返回总数 |
-| pageno | [int32](#int32) |  | 第几页 |
-| pagenum | [int32](#int32) |  | 每页几条数据 |
-| type | [GiftType](#svc-biz-gift-GiftType) |  | 礼物类型 |
-| status | [GiftStatus](#svc-biz-gift-GiftStatus) |  | 礼物状态 |
-| keyword | [string](#string) |  | 关键字 |
-
-
-
-
-
-
-<a name="svc-biz-gift-GiftListAdminResp"></a>
-
-### GiftListAdminResp
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| items | [GiftInfo](#svc-biz-gift-GiftInfo) | repeated |  |
-| total | [int64](#int64) |  |  |
-
-
-
-
-
-
-<a name="svc-biz-gift-GiftListReq"></a>
-
-### GiftListReq
-礼物列表（房间使用）
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| type | [GiftType](#svc-biz-gift-GiftType) |  | 礼物类型 |
-
-
-
-
-
-
-<a name="svc-biz-gift-GiftListResp"></a>
-
-### GiftListResp
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| items | [GiftInfo](#svc-biz-gift-GiftInfo) | repeated |  |
-| total | [int64](#int64) |  |  |
-
-
-
-
-
-
 <a name="svc-biz-gift-GiftSendRecord"></a>
 
 ### GiftSendRecord
@@ -530,6 +463,72 @@
 
 
 
+<a name="svc-biz-gift-ListAdminReq"></a>
+
+### ListAdminReq
+礼物列表（后台使用）
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| return_count | [bool](#bool) |  | 是否返回总数 |
+| pageno | [int32](#int32) |  | 第几页 |
+| pagenum | [int32](#int32) |  | 每页几条数据 |
+| type | [GiftType](#svc-biz-gift-GiftType) |  | 礼物类型 |
+| status | [GiftStatus](#svc-biz-gift-GiftStatus) |  | 礼物状态 |
+| keyword | [string](#string) |  | 关键字 |
+
+
+
+
+
+
+<a name="svc-biz-gift-ListAdminResp"></a>
+
+### ListAdminResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [GiftInfo](#svc-biz-gift-GiftInfo) | repeated |  |
+| total | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-gift-ListOnlineReq"></a>
+
+### ListOnlineReq
+礼物列表（房间使用）
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| type | [GiftType](#svc-biz-gift-GiftType) |  | 礼物类型 |
+
+
+
+
+
+
+<a name="svc-biz-gift-ListOnlineResp"></a>
+
+### ListOnlineResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [GiftInfo](#svc-biz-gift-GiftInfo) | repeated |  |
+
+
+
+
+
+
 <a name="svc-biz-gift-LiveStatReq"></a>
 
 ### LiveStatReq
@@ -617,8 +616,8 @@
 | Add | [GiftAddReq](#svc-biz-gift-GiftAddReq) | [GiftAddResp](#svc-biz-gift-GiftAddResp) | Add 添加礼物 |
 | Get | [GiftGetReq](#svc-biz-gift-GiftGetReq) | [GiftGetResp](#svc-biz-gift-GiftGetResp) | Get 查询礼物 |
 | Update | [GiftUpdateReq](#svc-biz-gift-GiftUpdateReq) | [GiftUpdateResp](#svc-biz-gift-GiftUpdateResp) | Update 更新礼物 |
-| ListAdmin | [GiftListAdminReq](#svc-biz-gift-GiftListAdminReq) | [GiftListAdminResp](#svc-biz-gift-GiftListAdminResp) | ListAdmin 后台查询礼物列表接口 |
-| List | [GiftListReq](#svc-biz-gift-GiftListReq) | [GiftListResp](#svc-biz-gift-GiftListResp) | List 前台房间礼物查询接口 |
+| ListAdmin | [ListAdminReq](#svc-biz-gift-ListAdminReq) | [ListAdminResp](#svc-biz-gift-ListAdminResp) | ListAdmin 后台查询礼物列表接口 |
+| ListOnline | [ListOnlineReq](#svc-biz-gift-ListOnlineReq) | [ListOnlineResp](#svc-biz-gift-ListOnlineResp) | ListOnline 前台房间礼物查询接口 |
 | Send | [GiftSendReq](#svc-biz-gift-GiftSendReq) | [GiftSendResp](#svc-biz-gift-GiftSendResp) | GiftSendReq 送礼物接口 |
 | SendRecord | [GiftSendRecordReq](#svc-biz-gift-GiftSendRecordReq) | [GiftSendRecordResp](#svc-biz-gift-GiftSendRecordResp) | SendRecord 送礼记录 |
 | GetRecord | [GiftGetRecordReq](#svc-biz-gift-GiftGetRecordReq) | [GiftGetRecordResp](#svc-biz-gift-GiftGetRecordResp) | GetRecord 收礼记录 |
