@@ -44,7 +44,7 @@ type GiftClient interface {
 	ListAdmin(ctx context.Context, in *ListAdminReq, opts ...grpc.CallOption) (*ListAdminResp, error)
 	// ListOnlineByType 前台房间礼物查询接口
 	ListOnlineByType(ctx context.Context, in *ListOnlineByTypeReq, opts ...grpc.CallOption) (*ListOnlineByTypeResp, error)
-	// GiftSendReq 送礼物接口
+	// Send 送礼物接口
 	Send(ctx context.Context, in *GiftSendReq, opts ...grpc.CallOption) (*GiftSendResp, error)
 	// SendRecord 送礼记录
 	SendRecord(ctx context.Context, in *GiftSendRecordReq, opts ...grpc.CallOption) (*GiftSendRecordResp, error)
@@ -157,7 +157,7 @@ type GiftServer interface {
 	ListAdmin(context.Context, *ListAdminReq) (*ListAdminResp, error)
 	// ListOnlineByType 前台房间礼物查询接口
 	ListOnlineByType(context.Context, *ListOnlineByTypeReq) (*ListOnlineByTypeResp, error)
-	// GiftSendReq 送礼物接口
+	// Send 送礼物接口
 	Send(context.Context, *GiftSendReq) (*GiftSendResp, error)
 	// SendRecord 送礼记录
 	SendRecord(context.Context, *GiftSendRecordReq) (*GiftSendRecordResp, error)

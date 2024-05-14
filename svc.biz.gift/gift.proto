@@ -19,7 +19,7 @@ service Gift {
     rpc ListAdmin(ListAdminReq) returns (ListAdminResp) {}
     // ListOnlineByType 前台房间礼物查询接口
     rpc ListOnlineByType(ListOnlineByTypeReq) returns (ListOnlineByTypeResp) {}
-    // GiftSendReq 送礼物接口
+    // Send 送礼物接口
     rpc Send (GiftSendReq) returns (GiftSendResp) {}
     // SendRecord 送礼记录
     rpc SendRecord(GiftSendRecordReq) returns (GiftSendRecordResp) {}
@@ -117,11 +117,12 @@ message GiftSendReq {
     int64 uuid = 1; // 唯一标识
     int64 order_id = 2; // 支付订单id
     int64 gift_id = 3; // 礼物id
-    int64 from_uid = 4; // 赠送者uid
-    int64 to_uid = 5; // 接收者uid
-    int32 num =6; // 数量
-    int64 room_id = 7; // 房间id
-    int64 live_id = 8; // 直播id
+    int32 num =4; // 数量
+    int64 prize = 5; // 礼物单价（主要用做验证）
+    int64 from_uid = 6; // 赠送者uid
+    int64 to_uid = 7; // 接收者uid
+    int64 room_id = 8; // 房间id
+    int64 live_id = 9; // 直播id
 }
 message GiftSendResp {
     bool sendret = 1; // 赠送结果

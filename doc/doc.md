@@ -408,9 +408,10 @@
 | uuid | [int64](#int64) |  | 唯一标识 |
 | order_id | [int64](#int64) |  | 支付订单id |
 | gift_id | [int64](#int64) |  | 礼物id |
+| num | [int32](#int32) |  | 数量 |
+| prize | [int64](#int64) |  | 礼物单价（主要用做验证） |
 | from_uid | [int64](#int64) |  | 赠送者uid |
 | to_uid | [int64](#int64) |  | 接收者uid |
-| num | [int32](#int32) |  | 数量 |
 | room_id | [int64](#int64) |  | 房间id |
 | live_id | [int64](#int64) |  | 直播id |
 
@@ -618,7 +619,7 @@
 | Update | [GiftUpdateReq](#svc-biz-gift-GiftUpdateReq) | [GiftUpdateResp](#svc-biz-gift-GiftUpdateResp) | Update 更新礼物 |
 | ListAdmin | [ListAdminReq](#svc-biz-gift-ListAdminReq) | [ListAdminResp](#svc-biz-gift-ListAdminResp) | ListAdmin 后台查询礼物列表接口 |
 | ListOnlineByType | [ListOnlineByTypeReq](#svc-biz-gift-ListOnlineByTypeReq) | [ListOnlineByTypeResp](#svc-biz-gift-ListOnlineByTypeResp) | ListOnlineByType 前台房间礼物查询接口 |
-| Send | [GiftSendReq](#svc-biz-gift-GiftSendReq) | [GiftSendResp](#svc-biz-gift-GiftSendResp) | GiftSendReq 送礼物接口 |
+| Send | [GiftSendReq](#svc-biz-gift-GiftSendReq) | [GiftSendResp](#svc-biz-gift-GiftSendResp) | Send 送礼物接口 |
 | SendRecord | [GiftSendRecordReq](#svc-biz-gift-GiftSendRecordReq) | [GiftSendRecordResp](#svc-biz-gift-GiftSendRecordResp) | SendRecord 送礼记录 |
 | GetRecord | [GiftGetRecordReq](#svc-biz-gift-GiftGetRecordReq) | [GiftGetRecordResp](#svc-biz-gift-GiftGetRecordResp) | GetRecord 收礼记录 |
 | LiveStat | [LiveStatReq](#svc-biz-gift-LiveStatReq) | [LiveStatResp](#svc-biz-gift-LiveStatResp) | LiveStat 直播统计 |
