@@ -118,7 +118,7 @@ message GiftSendReq {
     int64 order_id = 2; // 支付订单id
     int64 gift_id = 3; // 礼物id
     int32 num =4; // 数量
-    int64 prize = 5; // 礼物单价（主要用做验证）
+    int32 prize = 5; // 礼物单价（主要用做验证）
     int64 from_uid = 6; // 赠送者uid
     int64 to_uid = 7; // 接收者uid
     int64 room_id = 8; // 房间id

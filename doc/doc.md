@@ -409,7 +409,7 @@
 | order_id | [int64](#int64) |  | 支付订单id |
 | gift_id | [int64](#int64) |  | 礼物id |
 | num | [int32](#int32) |  | 数量 |
-| prize | [int64](#int64) |  | 礼物单价（主要用做验证） |
+| prize | [int32](#int32) |  | 礼物单价（主要用做验证） |
 | from_uid | [int64](#int64) |  | 赠送者uid |
 | to_uid | [int64](#int64) |  | 接收者uid |
 | room_id | [int64](#int64) |  | 房间id |
