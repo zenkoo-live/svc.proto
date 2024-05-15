@@ -239,7 +239,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| gift_id | [int64](#int64) |  |  |
+| gift_id | [string](#string) |  |  |
 
 
 
@@ -256,8 +256,8 @@
 | ----- | ---- | ----- | ----------- |
 | pageno | [int32](#int32) |  | 第几页 |
 | pagenum | [int32](#int32) |  | 每页几条数据 |
-| room_id | [int64](#int64) |  | 房间id |
-| live_id | [int64](#int64) |  | 直播id |
+| room_id | [string](#string) |  | 房间id |
+| live_id | [string](#string) |  | 直播id |
 | start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开始时间 |
 | end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 结束时间 |
 
@@ -289,7 +289,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| gift_id | [int64](#int64) |  |  |
+| gift_id | [string](#string) |  |  |
 
 
 
@@ -319,7 +319,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| gift_id | [int64](#int64) |  | 礼物id |
+| gift_id | [string](#string) |  | 礼物id |
 | gift_name | [string](#string) |  | 礼物名称 |
 | type | [GiftType](#svc-biz-gift-GiftType) |  | 礼物类型 |
 | status | [GiftStatus](#svc-biz-gift-GiftStatus) |  | 礼物状态 |
@@ -345,17 +345,17 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| gift_id | [int64](#int64) |  | 礼物id |
+| gift_id | [string](#string) |  | 礼物id |
 | gift_name | [string](#string) |  | 礼物名 |
 | num | [int32](#int32) |  | 数量 |
 | price | [int32](#int32) |  | 单价 |
 | total_price | [int32](#int32) |  | 总价 |
-| from_uid | [int64](#int64) |  | 送礼uid |
+| from_uid | [string](#string) |  | 送礼uid |
 | from_nickname | [string](#string) |  | 送礼人昵称 |
-| to_uid | [int64](#int64) |  | 接收者uid |
+| to_uid | [string](#string) |  | 接收者uid |
 | to_nickname | [string](#string) |  | 接收者昵称 |
-| room_id | [int64](#int64) |  | 房间id |
-| live_id | [int64](#int64) |  | 直播id |
+| room_id | [string](#string) |  | 房间id |
+| live_id | [string](#string) |  | 直播id |
 | create_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
 
 
@@ -373,7 +373,7 @@
 | ----- | ---- | ----- | ----------- |
 | pageno | [int32](#int32) |  | 第几页 |
 | pagenum | [int32](#int32) |  | 每页几条数据 |
-| uid | [int64](#int64) |  | 用户id |
+| uid | [string](#string) |  | 用户id |
 | start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开始时间 |
 | end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 结束时间 |
 
@@ -405,15 +405,15 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| uuid | [int64](#int64) |  | 唯一标识 |
-| order_id | [int64](#int64) |  | 支付订单id |
-| gift_id | [int64](#int64) |  | 礼物id |
+| uuid | [string](#string) |  | 唯一标识 |
+| order_id | [string](#string) |  | 支付订单id |
+| gift_id | [string](#string) |  | 礼物id |
 | num | [int32](#int32) |  | 数量 |
 | prize | [int32](#int32) |  | 礼物单价（主要用做验证） |
-| from_uid | [int64](#int64) |  | 赠送者uid |
-| to_uid | [int64](#int64) |  | 接收者uid |
-| room_id | [int64](#int64) |  | 房间id |
-| live_id | [int64](#int64) |  | 直播id |
+| from_uid | [string](#string) |  | 赠送者uid |
+| to_uid | [string](#string) |  | 接收者uid |
+| room_id | [string](#string) |  | 房间id |
+| live_id | [string](#string) |  | 直播id |
 
 
 
@@ -445,7 +445,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| gift_id | [int64](#int64) |  |  |
+| gift_id | [string](#string) |  |  |
 | gift | [GiftInfo](#svc-biz-gift-GiftInfo) |  |  |
 | update_filed | [google.protobuf.FieldMask](#google-protobuf-FieldMask) |  |  |
 
@@ -538,8 +538,8 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| room_id | [int64](#int64) |  |  |
-| live_id | [int64](#int64) |  |  |
+| room_id | [string](#string) |  |  |
+| live_id | [string](#string) |  |  |
 
 
 
