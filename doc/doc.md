@@ -3,20 +3,24 @@
 
 ## Table of Contents
 
-- [svc.biz.account/account.proto](#svc-biz-account_account-proto)
-    - [Account](#svc-biz-account-Account)
-  
 - [svc.infra.setting/setting.proto](#svc-infra-setting_setting-proto)
+    - [MarqueeInfo](#svc-infra-setting-MarqueeInfo)
     - [SettingGreetingReq](#svc-infra-setting-SettingGreetingReq)
     - [SettingGreetingResp](#svc-infra-setting-SettingGreetingResp)
   
+    - [MarqueeStatus](#svc-infra-setting-MarqueeStatus)
+    - [MarqueeType](#svc-infra-setting-MarqueeType)
+  
     - [Setting](#svc-infra-setting-Setting)
   
-- [svc.web.viewer/viewer.proto](#svc-web-viewer_viewer-proto)
-    - [Viewer](#svc-web-viewer-Viewer)
+- [svc.biz.account/account.proto](#svc-biz-account_account-proto)
+    - [Account](#svc-biz-account-Account)
   
 - [svc.web.dashboard/dashboard.proto](#svc-web-dashboard_dashboard-proto)
     - [Dashboard](#svc-web-dashboard-Dashboard)
+  
+- [svc.web.viewer/viewer.proto](#svc-web-viewer_viewer-proto)
+    - [Viewer](#svc-web-viewer-Viewer)
   
 - [svc.web.streamer/streamer.proto](#svc-web-streamer_streamer-proto)
     - [Streamer](#svc-web-streamer-Streamer)
@@ -53,35 +57,32 @@
 
 
 
-<a name="svc-biz-account_account-proto"></a>
-<p align="right"><a href="#top">Top</a></p>
-
-## svc.biz.account/account.proto
-
-
- 
-
- 
-
- 
-
-
-<a name="svc-biz-account-Account"></a>
-
-### Account
-
-
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-
- 
-
-
-
 <a name="svc-infra-setting_setting-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
 ## svc.infra.setting/setting.proto
+
+
+
+<a name="svc-infra-setting-MarqueeInfo"></a>
+
+### MarqueeInfo
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| marquee_id | [int64](#int64) |  | 跑马灯id |
+| type | [MarqueeType](#svc-infra-setting-MarqueeType) |  | 跑马灯类型 |
+| content | [string](#string) |  | 跑马灯内容 |
+| start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开始时间 |
+| end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 结束时间 |
+| status | [MarqueeStatus](#svc-infra-setting-MarqueeStatus) |  | 状态 |
+| create_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+| admin_id | [int32](#int32) |  | 操作账号 |
+
+
+
 
 
 
@@ -116,6 +117,33 @@
 
  
 
+
+<a name="svc-infra-setting-MarqueeStatus"></a>
+
+### MarqueeStatus
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| MarqueeStatusInvaild | 0 | 已失效 |
+| MarqueeStatusShow | 1 | 进行中 |
+
+
+
+<a name="svc-infra-setting-MarqueeType"></a>
+
+### MarqueeType
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| MarqueeTypeHome | 0 | 首页 |
+| MarqueeTypeAmusement | 1 | 娱乐页 |
+| MarqueeTypeLive | 2 | 直播间 |
+| MarqueeTypePersonalCenter | 3 | 个人中心 |
+| MarqueeTypePay | 4 | 充值 |
+
+
  
 
  
@@ -134,10 +162,10 @@
 
 
 
-<a name="svc-web-viewer_viewer-proto"></a>
+<a name="svc-biz-account_account-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## svc.web.viewer/viewer.proto
+## svc.biz.account/account.proto
 
 
  
@@ -147,9 +175,9 @@
  
 
 
-<a name="svc-web-viewer-Viewer"></a>
+<a name="svc-biz-account-Account"></a>
 
-### Viewer
+### Account
 
 
 | Method Name | Request Type | Response Type | Description |
@@ -175,6 +203,31 @@
 <a name="svc-web-dashboard-Dashboard"></a>
 
 ### Dashboard
+
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+
+ 
+
+
+
+<a name="svc-web-viewer_viewer-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.web.viewer/viewer.proto
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="svc-web-viewer-Viewer"></a>
+
+### Viewer
 
 
 | Method Name | Request Type | Response Type | Description |

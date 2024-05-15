@@ -1,6 +1,9 @@
 syntax = "proto3";
 
 package svc.infra.setting;
+
+import "google/protobuf/timestamp.proto";
+
 option go_package="./svc.infra.setting;setting";
 
 service Setting {
@@ -12,4 +15,28 @@ message SettingGreetingReq {
 }
 message SettingGreetingResp {
     string name = 1;
+}
+
+enum MarqueeType {
+    MarqueeTypeHome = 0; //首页
+    MarqueeTypeAmusement = 1; //娱乐页
+    MarqueeTypeLive = 2; //直播间
+    MarqueeTypePersonalCenter = 3; //个人中心
+    MarqueeTypePay = 4; //充值
+}
+
+enum MarqueeStatus {
+    MarqueeStatusInvaild = 0; //已失效
+    MarqueeStatusShow = 1; //进行中
+}
+
+message MarqueeInfo {
+    int64 marquee_id = 1; // 跑马灯id
+    MarqueeType type=2; //跑马灯类型
+    string content = 3; // 跑马灯内容
+    google.protobuf.Timestamp  start_time = 4; // 开始时间
+    google.protobuf.Timestamp  end_time = 5; // 结束时间
+    MarqueeStatus status =6; //状态
+    google.protobuf.Timestamp create_time = 7; // 创建时间
+    int32 admin_id = 8;//操作账号
 }
