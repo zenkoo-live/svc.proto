@@ -38,8 +38,9 @@
     - [GiftUpdateResp](#svc-biz-gift-GiftUpdateResp)
     - [ListAdminReq](#svc-biz-gift-ListAdminReq)
     - [ListAdminResp](#svc-biz-gift-ListAdminResp)
+    - [ListOnlineAllReq](#svc-biz-gift-ListOnlineAllReq)
     - [ListOnlineByTypeReq](#svc-biz-gift-ListOnlineByTypeReq)
-    - [ListOnlineByTypeResp](#svc-biz-gift-ListOnlineByTypeResp)
+    - [ListOnlineResp](#svc-biz-gift-ListOnlineResp)
     - [LiveStatReq](#svc-biz-gift-LiveStatReq)
     - [LiveStatResp](#svc-biz-gift-LiveStatResp)
   
@@ -48,6 +49,7 @@
     - [GiftType](#svc-biz-gift-GiftType)
   
     - [Gift](#svc-biz-gift-Gift)
+    - [YourService](#svc-biz-gift-YourService)
   
 - [Scalar Value Types](#scalar-value-types)
 
@@ -348,15 +350,11 @@
 | gift_id | [string](#string) |  | 礼物id |
 | gift_name | [string](#string) |  | 礼物名 |
 | num | [int32](#int32) |  | 数量 |
-| price | [int32](#int32) |  | 单价 |
 | total_price | [int32](#int32) |  | 总价 |
 | from_uid | [string](#string) |  | 送礼uid |
-| from_nickname | [string](#string) |  | 送礼人昵称 |
-| to_uid | [string](#string) |  | 接收者uid |
-| to_nickname | [string](#string) |  | 接收者昵称 |
 | room_id | [string](#string) |  | 房间id |
 | live_id | [string](#string) |  | 直播id |
-| create_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+| send_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
 
 
 
@@ -373,7 +371,7 @@
 | ----- | ---- | ----- | ----------- |
 | pageno | [int32](#int32) |  | 第几页 |
 | pagenum | [int32](#int32) |  | 每页几条数据 |
-| uid | [string](#string) |  | 用户id |
+| from_uid | [string](#string) |  | 用户id |
 | start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开始时间 |
 | end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 结束时间 |
 
@@ -500,6 +498,16 @@
 
 
 
+<a name="svc-biz-gift-ListOnlineAllReq"></a>
+
+### ListOnlineAllReq
+
+
+
+
+
+
+
 <a name="svc-biz-gift-ListOnlineByTypeReq"></a>
 
 ### ListOnlineByTypeReq
@@ -515,9 +523,9 @@
 
 
 
-<a name="svc-biz-gift-ListOnlineByTypeResp"></a>
+<a name="svc-biz-gift-ListOnlineResp"></a>
 
-### ListOnlineByTypeResp
+### ListOnlineResp
 
 
 
@@ -618,11 +626,22 @@
 | Get | [GiftGetReq](#svc-biz-gift-GiftGetReq) | [GiftGetResp](#svc-biz-gift-GiftGetResp) | Get 查询礼物 |
 | Update | [GiftUpdateReq](#svc-biz-gift-GiftUpdateReq) | [GiftUpdateResp](#svc-biz-gift-GiftUpdateResp) | Update 更新礼物 |
 | ListAdmin | [ListAdminReq](#svc-biz-gift-ListAdminReq) | [ListAdminResp](#svc-biz-gift-ListAdminResp) | ListAdmin 后台查询礼物列表接口 |
-| ListOnlineByType | [ListOnlineByTypeReq](#svc-biz-gift-ListOnlineByTypeReq) | [ListOnlineByTypeResp](#svc-biz-gift-ListOnlineByTypeResp) | ListOnlineByType 前台房间礼物查询接口 |
+| ListOnlineByType | [ListOnlineByTypeReq](#svc-biz-gift-ListOnlineByTypeReq) | [ListOnlineResp](#svc-biz-gift-ListOnlineResp) | ListOnlineByType 前台房间礼物查询接口 |
+| ListOnlineAll | [ListOnlineAllReq](#svc-biz-gift-ListOnlineAllReq) | [ListOnlineResp](#svc-biz-gift-ListOnlineResp) | ListOnlineAll 所有礼物的缓存接口 |
 | Send | [GiftSendReq](#svc-biz-gift-GiftSendReq) | [GiftSendResp](#svc-biz-gift-GiftSendResp) | Send 送礼物接口 |
 | SendRecord | [GiftSendRecordReq](#svc-biz-gift-GiftSendRecordReq) | [GiftSendRecordResp](#svc-biz-gift-GiftSendRecordResp) | SendRecord 送礼记录 |
 | GetRecord | [GiftGetRecordReq](#svc-biz-gift-GiftGetRecordReq) | [GiftGetRecordResp](#svc-biz-gift-GiftGetRecordResp) | GetRecord 收礼记录 |
 | LiveStat | [LiveStatReq](#svc-biz-gift-LiveStatReq) | [LiveStatResp](#svc-biz-gift-LiveStatResp) | LiveStat 直播统计 |
+
+
+<a name="svc-biz-gift-YourService"></a>
+
+### YourService
+定义你的服务
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| EmptyMethod | [.google.protobuf.Empty](#google-protobuf-Empty) | [.google.protobuf.Empty](#google-protobuf-Empty) | 使用Empty作为返回类型的RPC |
 
  
 

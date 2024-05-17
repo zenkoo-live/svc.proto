@@ -4,9 +4,15 @@ package svc.biz.gift;
 
 import "google/protobuf/field_mask.proto";
 import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
 
 option go_package="./svc.biz.gift;gift";
 
+// 定义你的服务
+service YourService {
+  // 使用Empty作为返回类型的RPC
+  rpc EmptyMethod(google.protobuf.Empty) returns (google.protobuf.Empty);
+}
 
 service Gift {
     // Add 添加礼物
@@ -18,7 +24,9 @@ service Gift {
     // ListAdmin 后台查询礼物列表接口
     rpc ListAdmin(ListAdminReq) returns (ListAdminResp) {}
     // ListOnlineByType 前台房间礼物查询接口
-    rpc ListOnlineByType(ListOnlineByTypeReq) returns (ListOnlineByTypeResp) {}
+    rpc ListOnlineByType(ListOnlineByTypeReq) returns (ListOnlineResp) {}
+    // ListOnlineAll 所有礼物的缓存接口
+    rpc ListOnlineAll(ListOnlineAllReq) returns (ListOnlineResp) {}
     // Send 送礼物接口
     rpc Send (GiftSendReq) returns (GiftSendResp) {}
     // SendRecord 送礼记录
@@ -108,8 +116,12 @@ message ListAdminResp {
 message ListOnlineByTypeReq {
     GiftType type = 1; // 礼物类型
 }
-message ListOnlineByTypeResp {
+message ListOnlineResp {
     repeated GiftInfo items = 1;
+}
+
+message ListOnlineAllReq {
+    
 }
 
 //赠送礼物
@@ -134,15 +146,11 @@ message GiftSendRecord {
     string gift_id = 1; // 礼物id
     string gift_name = 2;  // 礼物名
     int32 num = 3; // 数量
-    int32 price = 4; // 单价
-    int32 total_price = 5; // 总价
-    string from_uid = 6; // 送礼uid
-    string from_nickname = 7; // 送礼人昵称
-    string to_uid = 8; // 接收者uid
-    string to_nickname = 9;// 接收者昵称
-    string room_id = 10; // 房间id
-    string live_id = 11;  // 直播id
-    google.protobuf.Timestamp create_time = 12; // 创建时间
+    int32 total_price = 4; // 总价
+    string from_uid = 5; // 送礼uid
+    string room_id = 6; // 房间id
+    string live_id = 7;  // 直播id
+    google.protobuf.Timestamp send_time = 8; // 创建时间
 }
 
 message GiftGetRecordReq {
@@ -162,7 +170,7 @@ message GiftGetRecordResp {
 message GiftSendRecordReq {
     int32 pageno = 1; // 第几页
     int32 pagenum = 2; // 每页几条数据
-    string uid = 3; // 用户id
+    string from_uid = 3; // 用户id
     google.protobuf.Timestamp  start_time = 4; // 开始时间
     google.protobuf.Timestamp  end_time = 5; // 结束时间
 }

@@ -6,6 +6,7 @@ package gift
 import (
 	fmt "fmt"
 	proto "google.golang.org/protobuf/proto"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	_ "google.golang.org/protobuf/types/known/fieldmaskpb"
 	_ "google.golang.org/protobuf/types/known/timestamppb"
 	math "math"
@@ -29,6 +30,67 @@ var _ context.Context
 var _ client.Option
 var _ server.Option
 
+// Api Endpoints for YourService service
+
+func NewYourServiceEndpoints() []*api.Endpoint {
+	return []*api.Endpoint{}
+}
+
+// Client API for YourService service
+
+type YourService interface {
+	// 使用Empty作为返回类型的RPC
+	EmptyMethod(ctx context.Context, in *emptypb.Empty, opts ...client.CallOption) (*emptypb.Empty, error)
+}
+
+type yourService struct {
+	c    client.Client
+	name string
+}
+
+func NewYourService(name string, c client.Client) YourService {
+	return &yourService{
+		c:    c,
+		name: name,
+	}
+}
+
+func (c *yourService) EmptyMethod(ctx context.Context, in *emptypb.Empty, opts ...client.CallOption) (*emptypb.Empty, error) {
+	req := c.c.NewRequest(c.name, "YourService.EmptyMethod", in)
+	out := new(emptypb.Empty)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// Server API for YourService service
+
+type YourServiceHandler interface {
+	// 使用Empty作为返回类型的RPC
+	EmptyMethod(context.Context, *emptypb.Empty, *emptypb.Empty) error
+}
+
+func RegisterYourServiceHandler(s server.Server, hdlr YourServiceHandler, opts ...server.HandlerOption) error {
+	type yourService interface {
+		EmptyMethod(ctx context.Context, in *emptypb.Empty, out *emptypb.Empty) error
+	}
+	type YourService struct {
+		yourService
+	}
+	h := &yourServiceHandler{hdlr}
+	return s.Handle(s.NewHandler(&YourService{h}, opts...))
+}
+
+type yourServiceHandler struct {
+	YourServiceHandler
+}
+
+func (h *yourServiceHandler) EmptyMethod(ctx context.Context, in *emptypb.Empty, out *emptypb.Empty) error {
+	return h.YourServiceHandler.EmptyMethod(ctx, in, out)
+}
+
 // Api Endpoints for Gift service
 
 func NewGiftEndpoints() []*api.Endpoint {
@@ -47,7 +109,9 @@ type GiftService interface {
 	// ListAdmin 后台查询礼物列表接口
 	ListAdmin(ctx context.Context, in *ListAdminReq, opts ...client.CallOption) (*ListAdminResp, error)
 	// ListOnlineByType 前台房间礼物查询接口
-	ListOnlineByType(ctx context.Context, in *ListOnlineByTypeReq, opts ...client.CallOption) (*ListOnlineByTypeResp, error)
+	ListOnlineByType(ctx context.Context, in *ListOnlineByTypeReq, opts ...client.CallOption) (*ListOnlineResp, error)
+	// ListOnlineAll 所有礼物的缓存接口
+	ListOnlineAll(ctx context.Context, in *ListOnlineAllReq, opts ...client.CallOption) (*ListOnlineResp, error)
 	// Send 送礼物接口
 	Send(ctx context.Context, in *GiftSendReq, opts ...client.CallOption) (*GiftSendResp, error)
 	// SendRecord 送礼记录
@@ -110,9 +174,19 @@ func (c *giftService) ListAdmin(ctx context.Context, in *ListAdminReq, opts ...c
 	return out, nil
 }
 
-func (c *giftService) ListOnlineByType(ctx context.Context, in *ListOnlineByTypeReq, opts ...client.CallOption) (*ListOnlineByTypeResp, error) {
+func (c *giftService) ListOnlineByType(ctx context.Context, in *ListOnlineByTypeReq, opts ...client.CallOption) (*ListOnlineResp, error) {
 	req := c.c.NewRequest(c.name, "Gift.ListOnlineByType", in)
-	out := new(ListOnlineByTypeResp)
+	out := new(ListOnlineResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *giftService) ListOnlineAll(ctx context.Context, in *ListOnlineAllReq, opts ...client.CallOption) (*ListOnlineResp, error) {
+	req := c.c.NewRequest(c.name, "Gift.ListOnlineAll", in)
+	out := new(ListOnlineResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -172,7 +246,9 @@ type GiftHandler interface {
 	// ListAdmin 后台查询礼物列表接口
 	ListAdmin(context.Context, *ListAdminReq, *ListAdminResp) error
 	// ListOnlineByType 前台房间礼物查询接口
-	ListOnlineByType(context.Context, *ListOnlineByTypeReq, *ListOnlineByTypeResp) error
+	ListOnlineByType(context.Context, *ListOnlineByTypeReq, *ListOnlineResp) error
+	// ListOnlineAll 所有礼物的缓存接口
+	ListOnlineAll(context.Context, *ListOnlineAllReq, *ListOnlineResp) error
 	// Send 送礼物接口
 	Send(context.Context, *GiftSendReq, *GiftSendResp) error
 	// SendRecord 送礼记录
@@ -189,7 +265,8 @@ func RegisterGiftHandler(s server.Server, hdlr GiftHandler, opts ...server.Handl
 		Get(ctx context.Context, in *GiftGetReq, out *GiftGetResp) error
 		Update(ctx context.Context, in *GiftUpdateReq, out *GiftUpdateResp) error
 		ListAdmin(ctx context.Context, in *ListAdminReq, out *ListAdminResp) error
-		ListOnlineByType(ctx context.Context, in *ListOnlineByTypeReq, out *ListOnlineByTypeResp) error
+		ListOnlineByType(ctx context.Context, in *ListOnlineByTypeReq, out *ListOnlineResp) error
+		ListOnlineAll(ctx context.Context, in *ListOnlineAllReq, out *ListOnlineResp) error
 		Send(ctx context.Context, in *GiftSendReq, out *GiftSendResp) error
 		SendRecord(ctx context.Context, in *GiftSendRecordReq, out *GiftSendRecordResp) error
 		GetRecord(ctx context.Context, in *GiftGetRecordReq, out *GiftGetRecordResp) error
@@ -222,8 +299,12 @@ func (h *giftHandler) ListAdmin(ctx context.Context, in *ListAdminReq, out *List
 	return h.GiftHandler.ListAdmin(ctx, in, out)
 }
 
-func (h *giftHandler) ListOnlineByType(ctx context.Context, in *ListOnlineByTypeReq, out *ListOnlineByTypeResp) error {
+func (h *giftHandler) ListOnlineByType(ctx context.Context, in *ListOnlineByTypeReq, out *ListOnlineResp) error {
 	return h.GiftHandler.ListOnlineByType(ctx, in, out)
+}
+
+func (h *giftHandler) ListOnlineAll(ctx context.Context, in *ListOnlineAllReq, out *ListOnlineResp) error {
+	return h.GiftHandler.ListOnlineAll(ctx, in, out)
 }
 
 func (h *giftHandler) Send(ctx context.Context, in *GiftSendReq, out *GiftSendResp) error {
