@@ -7,6 +7,7 @@ import (
 	cltGrpc "github.com/go-micro/plugins/v4/client/grpc"
 
 	svcBizAccount "github.com/zenkoo-live/svc.proto/svc.biz.account"
+	svcBizAsset "github.com/zenkoo-live/svc.proto/svc.biz.asset"
 	svcBizGift "github.com/zenkoo-live/svc.proto/svc.biz.gift"
 	svcInfraSetting "github.com/zenkoo-live/svc.proto/svc.infra.setting"
 	svcWebDashboard "github.com/zenkoo-live/svc.proto/svc.web.dashboard"
@@ -18,6 +19,7 @@ const (
 	AppName = "zenkoo"
 
 	SvcBizAccount   = "svc.biz.account"
+	SvcBizAsset     = "svc.biz.asset"
 	SvcWebDashboard = "svc.web.dashboard"
 	SvcBizGift      = "svc.biz.gift"
 	SvcInfraSetting = "svc.infra.setting"
@@ -29,6 +31,7 @@ var (
 	clt = cltGrpc.NewClient()
 
 	SvcBizAccountAccount     = svcBizAccount.NewAccountService(AppName+"::"+SvcBizAccount, clt)
+	SvcBizAssetAsset         = svcBizAsset.NewAssetService(AppName+"::"+SvcBizAsset, clt)
 	SvcWebDashboardDashboard = svcWebDashboard.NewDashboardService(AppName+"::"+SvcWebDashboard, clt)
 	SvcBizGiftGift           = svcBizGift.NewGiftService(AppName+"::"+SvcBizGift, clt)
 	SvcInfraSettingSetting   = svcInfraSetting.NewSettingService(AppName+"::"+SvcInfraSetting, clt)

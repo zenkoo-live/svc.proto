@@ -15,6 +15,74 @@
 - [svc.web.viewer/viewer.proto](#svc-web-viewer_viewer-proto)
     - [Viewer](#svc-web-viewer-Viewer)
   
+- [svc.biz.asset/asset.proto](#svc-biz-asset_asset-proto)
+    - [AnchorCoinDetail](#svc-biz-asset-AnchorCoinDetail)
+    - [AnchorCoinValue](#svc-biz-asset-AnchorCoinValue)
+    - [DecrAnchorCoinReq](#svc-biz-asset-DecrAnchorCoinReq)
+    - [DecrAnchorCoinResp](#svc-biz-asset-DecrAnchorCoinResp)
+    - [DecrMerchantCoinReq](#svc-biz-asset-DecrMerchantCoinReq)
+    - [DecrMerchantCoinResp](#svc-biz-asset-DecrMerchantCoinResp)
+    - [DecrUnionCoinReq](#svc-biz-asset-DecrUnionCoinReq)
+    - [DecrUnionCoinResp](#svc-biz-asset-DecrUnionCoinResp)
+    - [DecrUserCoinReq](#svc-biz-asset-DecrUserCoinReq)
+    - [DecrUserCoinResp](#svc-biz-asset-DecrUserCoinResp)
+    - [DecrUserMoneyReq](#svc-biz-asset-DecrUserMoneyReq)
+    - [DecrUserMoneyResp](#svc-biz-asset-DecrUserMoneyResp)
+    - [GetAnchorCoinMultiReq](#svc-biz-asset-GetAnchorCoinMultiReq)
+    - [GetAnchorCoinMultiResp](#svc-biz-asset-GetAnchorCoinMultiResp)
+    - [GetAnchorCoinMultiResp.ValueMapEntry](#svc-biz-asset-GetAnchorCoinMultiResp-ValueMapEntry)
+    - [GetAnchorCoinReq](#svc-biz-asset-GetAnchorCoinReq)
+    - [GetAnchorCoinResp](#svc-biz-asset-GetAnchorCoinResp)
+    - [GetMerchantCoinMultiReq](#svc-biz-asset-GetMerchantCoinMultiReq)
+    - [GetMerchantCoinMultiResp](#svc-biz-asset-GetMerchantCoinMultiResp)
+    - [GetMerchantCoinMultiResp.ValueMapEntry](#svc-biz-asset-GetMerchantCoinMultiResp-ValueMapEntry)
+    - [GetMerchantCoinReq](#svc-biz-asset-GetMerchantCoinReq)
+    - [GetMerchantCoinResp](#svc-biz-asset-GetMerchantCoinResp)
+    - [GetUnionCoinMultiReq](#svc-biz-asset-GetUnionCoinMultiReq)
+    - [GetUnionCoinMultiResp](#svc-biz-asset-GetUnionCoinMultiResp)
+    - [GetUnionCoinMultiResp.ValueMapEntry](#svc-biz-asset-GetUnionCoinMultiResp-ValueMapEntry)
+    - [GetUnionCoinReq](#svc-biz-asset-GetUnionCoinReq)
+    - [GetUnionCoinResp](#svc-biz-asset-GetUnionCoinResp)
+    - [GetUserCoinMultiReq](#svc-biz-asset-GetUserCoinMultiReq)
+    - [GetUserCoinMultiResp](#svc-biz-asset-GetUserCoinMultiResp)
+    - [GetUserCoinMultiResp.ValueMapEntry](#svc-biz-asset-GetUserCoinMultiResp-ValueMapEntry)
+    - [GetUserCoinReq](#svc-biz-asset-GetUserCoinReq)
+    - [GetUserCoinResp](#svc-biz-asset-GetUserCoinResp)
+    - [GetUserMoneyMultiReq](#svc-biz-asset-GetUserMoneyMultiReq)
+    - [GetUserMoneyMultiResp](#svc-biz-asset-GetUserMoneyMultiResp)
+    - [GetUserMoneyMultiResp.ValueMapEntry](#svc-biz-asset-GetUserMoneyMultiResp-ValueMapEntry)
+    - [GetUserMoneyReq](#svc-biz-asset-GetUserMoneyReq)
+    - [GetUserMoneyResp](#svc-biz-asset-GetUserMoneyResp)
+    - [IncrAnchorCoinReq](#svc-biz-asset-IncrAnchorCoinReq)
+    - [IncrAnchorCoinResp](#svc-biz-asset-IncrAnchorCoinResp)
+    - [IncrMerchantCoinReq](#svc-biz-asset-IncrMerchantCoinReq)
+    - [IncrMerchantCoinResp](#svc-biz-asset-IncrMerchantCoinResp)
+    - [IncrUnionCoinReq](#svc-biz-asset-IncrUnionCoinReq)
+    - [IncrUnionCoinResp](#svc-biz-asset-IncrUnionCoinResp)
+    - [IncrUserCoinReq](#svc-biz-asset-IncrUserCoinReq)
+    - [IncrUserCoinResp](#svc-biz-asset-IncrUserCoinResp)
+    - [IncrUserMoneyReq](#svc-biz-asset-IncrUserMoneyReq)
+    - [IncrUserMoneyResp](#svc-biz-asset-IncrUserMoneyResp)
+    - [ListAnchorCoinDetailReq](#svc-biz-asset-ListAnchorCoinDetailReq)
+    - [ListAnchorCoinDetailResp](#svc-biz-asset-ListAnchorCoinDetailResp)
+    - [ListMerchantCoinDetailReq](#svc-biz-asset-ListMerchantCoinDetailReq)
+    - [ListMerchantCoinDetailResp](#svc-biz-asset-ListMerchantCoinDetailResp)
+    - [ListUnionCoinDetailReq](#svc-biz-asset-ListUnionCoinDetailReq)
+    - [ListUnionCoinDetailResp](#svc-biz-asset-ListUnionCoinDetailResp)
+    - [ListUserCoinDetailReq](#svc-biz-asset-ListUserCoinDetailReq)
+    - [ListUserCoinDetailResp](#svc-biz-asset-ListUserCoinDetailResp)
+    - [ListUserMoneyDetailReq](#svc-biz-asset-ListUserMoneyDetailReq)
+    - [ListUserMoneyDetailResp](#svc-biz-asset-ListUserMoneyDetailResp)
+    - [MerchantCoinDetail](#svc-biz-asset-MerchantCoinDetail)
+    - [MerchantCoinValue](#svc-biz-asset-MerchantCoinValue)
+    - [UnionCoinDetail](#svc-biz-asset-UnionCoinDetail)
+    - [UnionCoinValue](#svc-biz-asset-UnionCoinValue)
+    - [UserCoinDetail](#svc-biz-asset-UserCoinDetail)
+    - [UserCoinValue](#svc-biz-asset-UserCoinValue)
+    - [UserMoneyDetail](#svc-biz-asset-UserMoneyDetail)
+  
+    - [Asset](#svc-biz-asset-Asset)
+  
 - [svc.web.dashboard/dashboard.proto](#svc-web-dashboard_dashboard-proto)
     - [Dashboard](#svc-web-dashboard-Dashboard)
   
@@ -154,6 +222,1259 @@
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
+
+ 
+
+
+
+<a name="svc-biz-asset_asset-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.biz.asset/asset.proto
+
+
+
+<a name="svc-biz-asset-AnchorCoinDetail"></a>
+
+### AnchorCoinDetail
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| detail_id | [string](#string) |  | 明细id |
+| trade_id | [string](#string) |  | 业务方交易id |
+| uid | [string](#string) |  |  |
+| app_id | [string](#string) |  |  |
+| serial_number | [int64](#int64) |  | 流水号,单账户连续自增 |
+| trans_direction | [int64](#int64) |  | 交易方向 1 增加 2 减少 |
+| trans_type | [int64](#int64) |  | 交易类别 |
+| value | [int64](#int64) |  |  |
+| value_before | [int64](#int64) |  |  |
+| value_after | [int64](#int64) |  |  |
+| limited_value | [int64](#int64) |  |  |
+| limited_value_before | [int64](#int64) |  |  |
+| limited_value_after | [int64](#int64) |  |  |
+| trans_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 业务时间 |
+| summary | [string](#string) |  | 摘要,json 实际会做格式和核心字段校验 |
+
+
+
+
+
+
+<a name="svc-biz-asset-AnchorCoinValue"></a>
+
+### AnchorCoinValue
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| value | [int64](#int64) |  | 余额 |
+| limited_value | [int64](#int64) |  | 低权限余额 |
+
+
+
+
+
+
+<a name="svc-biz-asset-DecrAnchorCoinReq"></a>
+
+### DecrAnchorCoinReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| uid | [string](#string) |  |  |
+| app_id | [string](#string) |  |  |
+| value | [int64](#int64) |  |  |
+| trans_type | [int64](#int64) |  | 交易类别 |
+| trade_id | [string](#string) |  | 业务方交易id,业务方保证唯一,支持幂等 |
+| summary | [string](#string) |  | 摘要,json 实际会做格式和核心字段校验 |
+
+
+
+
+
+
+<a name="svc-biz-asset-DecrAnchorCoinResp"></a>
+
+### DecrAnchorCoinResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| uid | [string](#string) |  |  |
+| app_id | [string](#string) |  |  |
+| new_value | [AnchorCoinValue](#svc-biz-asset-AnchorCoinValue) |  |  |
+| trade_id | [string](#string) |  | 业务方交易id |
+| detail_id | [string](#string) |  | 明细id |
+| serial_number | [int64](#int64) |  | 流水号,单账户连续自增 |
+| trans_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 业务时间 |
+
+
+
+
+
+
+<a name="svc-biz-asset-DecrMerchantCoinReq"></a>
+
+### DecrMerchantCoinReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| uid | [string](#string) |  |  |
+| app_id | [string](#string) |  |  |
+| value | [int64](#int64) |  |  |
+| trans_type | [int64](#int64) |  | 交易类别 |
+| trade_id | [string](#string) |  | 业务方交易id,业务方保证唯一,支持幂等 |
+| summary | [string](#string) |  | 摘要,json 实际会做格式和核心字段校验 |
+
+
+
+
+
+
+<a name="svc-biz-asset-DecrMerchantCoinResp"></a>
+
+### DecrMerchantCoinResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| uid | [string](#string) |  |  |
+| app_id | [string](#string) |  |  |
+| new_value | [MerchantCoinValue](#svc-biz-asset-MerchantCoinValue) |  |  |
+| trade_id | [string](#string) |  | 业务方交易id |
+| detail_id | [string](#string) |  | 明细id |
+| serial_number | [int64](#int64) |  | 流水号,单账户连续自增 |
+| trans_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 业务时间 |
+
+
+
+
+
+
+<a name="svc-biz-asset-DecrUnionCoinReq"></a>
+
+### DecrUnionCoinReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| uid | [string](#string) |  |  |
+| app_id | [string](#string) |  |  |
+| value | [int64](#int64) |  |  |
+| trans_type | [int64](#int64) |  | 交易类别 |
+| trade_id | [string](#string) |  | 业务方交易id,业务方保证唯一,支持幂等 |
+| summary | [string](#string) |  | 摘要,json 实际会做格式和核心字段校验 |
+
+
+
+
+
+
+<a name="svc-biz-asset-DecrUnionCoinResp"></a>
+
+### DecrUnionCoinResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| uid | [string](#string) |  |  |
+| app_id | [string](#string) |  |  |
+| new_value | [UnionCoinValue](#svc-biz-asset-UnionCoinValue) |  |  |
+| trade_id | [string](#string) |  | 业务方交易id |
+| detail_id | [string](#string) |  | 明细id |
+| serial_number | [int64](#int64) |  | 流水号,单账户连续自增 |
+| trans_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 业务时间 |
+
+
+
+
+
+
+<a name="svc-biz-asset-DecrUserCoinReq"></a>
+
+### DecrUserCoinReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| uid | [string](#string) |  |  |
+| app_id | [string](#string) |  |  |
+| value | [int64](#int64) |  |  |
+| trans_type | [int64](#int64) |  | 交易类别 |
+| trade_id | [string](#string) |  | 业务方交易id,业务方保证唯一,支持幂等 |
+| summary | [string](#string) |  | 摘要,json 实际会做格式和核心字段校验 |
+
+
+
+
+
+
+<a name="svc-biz-asset-DecrUserCoinResp"></a>
+
+### DecrUserCoinResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| uid | [string](#string) |  |  |
+| app_id | [string](#string) |  |  |
+| new_value | [UserCoinValue](#svc-biz-asset-UserCoinValue) |  |  |
+| trade_id | [string](#string) |  | 业务方交易id |
+| detail_id | [string](#string) |  | 明细id |
+| serial_number | [int64](#int64) |  | 流水号,单账户连续自增 |
+| trans_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 业务时间 |
+
+
+
+
+
+
+<a name="svc-biz-asset-DecrUserMoneyReq"></a>
+
+### DecrUserMoneyReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| uid | [string](#string) |  |  |
+| value | [int64](#int64) |  |  |
+| trans_type | [int64](#int64) |  | 交易类别 |
+| trade_id | [string](#string) |  | 业务方交易id,业务方保证唯一,支持幂等 |
+| summary | [string](#string) |  | 摘要,json 实际会做格式和核心字段校验 |
+
+
+
+
+
+
+<a name="svc-biz-asset-DecrUserMoneyResp"></a>
+
+### DecrUserMoneyResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| uid | [string](#string) |  |  |
+| new_value | [int64](#int64) |  |  |
+| trade_id | [string](#string) |  | 业务方交易id |
+| detail_id | [string](#string) |  | 明细id |
+| serial_number | [int64](#int64) |  | 流水号,单账户连续自增 |
+| trans_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 业务时间 |
+
+
+
+
+
+
+<a name="svc-biz-asset-GetAnchorCoinMultiReq"></a>
+
+### GetAnchorCoinMultiReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| uids | [string](#string) | repeated |  |
+| app_id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-asset-GetAnchorCoinMultiResp"></a>
+
+### GetAnchorCoinMultiResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| value_map | [GetAnchorCoinMultiResp.ValueMapEntry](#svc-biz-asset-GetAnchorCoinMultiResp-ValueMapEntry) | repeated | uid-&gt;value |
+
+
+
+
+
+
+<a name="svc-biz-asset-GetAnchorCoinMultiResp-ValueMapEntry"></a>
+
+### GetAnchorCoinMultiResp.ValueMapEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [AnchorCoinValue](#svc-biz-asset-AnchorCoinValue) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-asset-GetAnchorCoinReq"></a>
+
+### GetAnchorCoinReq
+虚拟币 coin-----------------
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| uid | [string](#string) |  |  |
+| app_id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-asset-GetAnchorCoinResp"></a>
+
+### GetAnchorCoinResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| value | [int64](#int64) |  | 余额 |
+| limited_value | [int64](#int64) |  | 低权限余额 |
+
+
+
+
+
+
+<a name="svc-biz-asset-GetMerchantCoinMultiReq"></a>
+
+### GetMerchantCoinMultiReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| uids | [string](#string) | repeated |  |
+| app_id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-asset-GetMerchantCoinMultiResp"></a>
+
+### GetMerchantCoinMultiResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| value_map | [GetMerchantCoinMultiResp.ValueMapEntry](#svc-biz-asset-GetMerchantCoinMultiResp-ValueMapEntry) | repeated | uid-&gt;value |
+
+
+
+
+
+
+<a name="svc-biz-asset-GetMerchantCoinMultiResp-ValueMapEntry"></a>
+
+### GetMerchantCoinMultiResp.ValueMapEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [MerchantCoinValue](#svc-biz-asset-MerchantCoinValue) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-asset-GetMerchantCoinReq"></a>
+
+### GetMerchantCoinReq
+虚拟币 coin-----------------
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| uid | [string](#string) |  |  |
+| app_id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-asset-GetMerchantCoinResp"></a>
+
+### GetMerchantCoinResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| value | [int64](#int64) |  | 余额 |
+| limited_value | [int64](#int64) |  | 低权限余额 |
+
+
+
+
+
+
+<a name="svc-biz-asset-GetUnionCoinMultiReq"></a>
+
+### GetUnionCoinMultiReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| uids | [string](#string) | repeated |  |
+| app_id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-asset-GetUnionCoinMultiResp"></a>
+
+### GetUnionCoinMultiResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| value_map | [GetUnionCoinMultiResp.ValueMapEntry](#svc-biz-asset-GetUnionCoinMultiResp-ValueMapEntry) | repeated | uid-&gt;value |
+
+
+
+
+
+
+<a name="svc-biz-asset-GetUnionCoinMultiResp-ValueMapEntry"></a>
+
+### GetUnionCoinMultiResp.ValueMapEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [UnionCoinValue](#svc-biz-asset-UnionCoinValue) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-asset-GetUnionCoinReq"></a>
+
+### GetUnionCoinReq
+虚拟币 coin-----------------
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| uid | [string](#string) |  |  |
+| app_id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-asset-GetUnionCoinResp"></a>
+
+### GetUnionCoinResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| value | [int64](#int64) |  | 余额 |
+| limited_value | [int64](#int64) |  | 低权限余额 |
+
+
+
+
+
+
+<a name="svc-biz-asset-GetUserCoinMultiReq"></a>
+
+### GetUserCoinMultiReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| uids | [string](#string) | repeated |  |
+| app_id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-asset-GetUserCoinMultiResp"></a>
+
+### GetUserCoinMultiResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| value_map | [GetUserCoinMultiResp.ValueMapEntry](#svc-biz-asset-GetUserCoinMultiResp-ValueMapEntry) | repeated | uid-&gt;value |
+
+
+
+
+
+
+<a name="svc-biz-asset-GetUserCoinMultiResp-ValueMapEntry"></a>
+
+### GetUserCoinMultiResp.ValueMapEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [UserCoinValue](#svc-biz-asset-UserCoinValue) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-asset-GetUserCoinReq"></a>
+
+### GetUserCoinReq
+虚拟币 coin-----------------
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| uid | [string](#string) |  |  |
+| app_id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-asset-GetUserCoinResp"></a>
+
+### GetUserCoinResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| value | [int64](#int64) |  | 余额 |
+| limited_value | [int64](#int64) |  | 低权限余额 |
+
+
+
+
+
+
+<a name="svc-biz-asset-GetUserMoneyMultiReq"></a>
+
+### GetUserMoneyMultiReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| uids | [string](#string) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-asset-GetUserMoneyMultiResp"></a>
+
+### GetUserMoneyMultiResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| value_map | [GetUserMoneyMultiResp.ValueMapEntry](#svc-biz-asset-GetUserMoneyMultiResp-ValueMapEntry) | repeated | uid-&gt;value |
+
+
+
+
+
+
+<a name="svc-biz-asset-GetUserMoneyMultiResp-ValueMapEntry"></a>
+
+### GetUserMoneyMultiResp.ValueMapEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-asset-GetUserMoneyReq"></a>
+
+### GetUserMoneyReq
+--------------User用户资产(含游客)---------------
+余额 money-----------------
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| uid | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-asset-GetUserMoneyResp"></a>
+
+### GetUserMoneyResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| value | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-asset-IncrAnchorCoinReq"></a>
+
+### IncrAnchorCoinReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| uid | [string](#string) |  |  |
+| app_id | [string](#string) |  |  |
+| value | [int64](#int64) |  |  |
+| trans_type | [int64](#int64) |  | 交易类别,增加普通余额或低权限余额按此字段自动判断 |
+| trade_id | [string](#string) |  | 业务方交易id,业务方保证唯一,支持幂等 |
+| summary | [string](#string) |  | 摘要,json 实际会做格式和核心字段校验 |
+
+
+
+
+
+
+<a name="svc-biz-asset-IncrAnchorCoinResp"></a>
+
+### IncrAnchorCoinResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| uid | [string](#string) |  |  |
+| app_id | [string](#string) |  |  |
+| new_value | [AnchorCoinValue](#svc-biz-asset-AnchorCoinValue) |  |  |
+| trade_id | [string](#string) |  | 业务方交易id |
+| detail_id | [string](#string) |  | 明细id |
+| serial_number | [int64](#int64) |  | 流水号,单账户连续自增 |
+| trans_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 业务时间 |
+
+
+
+
+
+
+<a name="svc-biz-asset-IncrMerchantCoinReq"></a>
+
+### IncrMerchantCoinReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| uid | [string](#string) |  |  |
+| app_id | [string](#string) |  |  |
+| value | [int64](#int64) |  |  |
+| trans_type | [int64](#int64) |  | 交易类别,增加普通余额或低权限余额按此字段自动判断 |
+| trade_id | [string](#string) |  | 业务方交易id,业务方保证唯一,支持幂等 |
+| summary | [string](#string) |  | 摘要,json 实际会做格式和核心字段校验 |
+
+
+
+
+
+
+<a name="svc-biz-asset-IncrMerchantCoinResp"></a>
+
+### IncrMerchantCoinResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| uid | [string](#string) |  |  |
+| app_id | [string](#string) |  |  |
+| new_value | [MerchantCoinValue](#svc-biz-asset-MerchantCoinValue) |  |  |
+| trade_id | [string](#string) |  | 业务方交易id |
+| detail_id | [string](#string) |  | 明细id |
+| serial_number | [int64](#int64) |  | 流水号,单账户连续自增 |
+| trans_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 业务时间 |
+
+
+
+
+
+
+<a name="svc-biz-asset-IncrUnionCoinReq"></a>
+
+### IncrUnionCoinReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| uid | [string](#string) |  |  |
+| app_id | [string](#string) |  |  |
+| value | [int64](#int64) |  |  |
+| trans_type | [int64](#int64) |  | 交易类别,增加普通余额或低权限余额按此字段自动判断 |
+| trade_id | [string](#string) |  | 业务方交易id,业务方保证唯一,支持幂等 |
+| summary | [string](#string) |  | 摘要,json 实际会做格式和核心字段校验 |
+
+
+
+
+
+
+<a name="svc-biz-asset-IncrUnionCoinResp"></a>
+
+### IncrUnionCoinResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| uid | [string](#string) |  |  |
+| app_id | [string](#string) |  |  |
+| new_value | [UnionCoinValue](#svc-biz-asset-UnionCoinValue) |  |  |
+| trade_id | [string](#string) |  | 业务方交易id |
+| detail_id | [string](#string) |  | 明细id |
+| serial_number | [int64](#int64) |  | 流水号,单账户连续自增 |
+| trans_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 业务时间 |
+
+
+
+
+
+
+<a name="svc-biz-asset-IncrUserCoinReq"></a>
+
+### IncrUserCoinReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| uid | [string](#string) |  |  |
+| app_id | [string](#string) |  |  |
+| value | [int64](#int64) |  |  |
+| trans_type | [int64](#int64) |  | 交易类别,增加普通余额或低权限余额按此字段自动判断 |
+| trade_id | [string](#string) |  | 业务方交易id,业务方保证唯一,支持幂等 |
+| summary | [string](#string) |  | 摘要,json 实际会做格式和核心字段校验 |
+
+
+
+
+
+
+<a name="svc-biz-asset-IncrUserCoinResp"></a>
+
+### IncrUserCoinResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| uid | [string](#string) |  |  |
+| app_id | [string](#string) |  |  |
+| new_value | [UserCoinValue](#svc-biz-asset-UserCoinValue) |  |  |
+| trade_id | [string](#string) |  | 业务方交易id |
+| detail_id | [string](#string) |  | 明细id |
+| serial_number | [int64](#int64) |  | 流水号,单账户连续自增 |
+| trans_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 业务时间 |
+
+
+
+
+
+
+<a name="svc-biz-asset-IncrUserMoneyReq"></a>
+
+### IncrUserMoneyReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| uid | [string](#string) |  |  |
+| value | [int64](#int64) |  |  |
+| trans_type | [int64](#int64) |  | 交易类别 |
+| trade_id | [string](#string) |  | 业务方交易id,业务方保证唯一,支持幂等 |
+| summary | [string](#string) |  | 摘要,json 实际会做格式和核心字段校验 |
+
+
+
+
+
+
+<a name="svc-biz-asset-IncrUserMoneyResp"></a>
+
+### IncrUserMoneyResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| uid | [string](#string) |  |  |
+| new_value | [int64](#int64) |  |  |
+| trade_id | [string](#string) |  | 业务方交易id |
+| detail_id | [string](#string) |  | 明细id |
+| serial_number | [int64](#int64) |  | 流水号,单账户连续自增 |
+| trans_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 业务时间 |
+
+
+
+
+
+
+<a name="svc-biz-asset-ListAnchorCoinDetailReq"></a>
+
+### ListAnchorCoinDetailReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| uid | [string](#string) |  |  |
+| app_id | [string](#string) |  |  |
+| trans_direction | [int64](#int64) |  | 交易方向 0 不限 1 增加 2 减少 |
+| trans_type | [int64](#int64) | repeated | 交易类别: 空表示不限 |
+| start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开始时间(含) |
+| end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 结束时间(不含) |
+| page | [int64](#int64) |  | 页码 |
+| page_size | [int64](#int64) |  | 单页条数 |
+
+
+
+
+
+
+<a name="svc-biz-asset-ListAnchorCoinDetailResp"></a>
+
+### ListAnchorCoinDetailResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [AnchorCoinDetail](#svc-biz-asset-AnchorCoinDetail) | repeated |  |
+| page | [int64](#int64) |  | 页码 |
+| page_size | [int64](#int64) |  | 单页条数 |
+| total | [int64](#int64) |  | 符合筛选的总条数 |
+
+
+
+
+
+
+<a name="svc-biz-asset-ListMerchantCoinDetailReq"></a>
+
+### ListMerchantCoinDetailReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| uid | [string](#string) |  |  |
+| app_id | [string](#string) |  |  |
+| trans_direction | [int64](#int64) |  | 交易方向 0 不限 1 增加 2 减少 |
+| trans_type | [int64](#int64) | repeated | 交易类别: 空表示不限 |
+| start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开始时间(含) |
+| end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 结束时间(不含) |
+| page | [int64](#int64) |  | 页码 |
+| page_size | [int64](#int64) |  | 单页条数 |
+
+
+
+
+
+
+<a name="svc-biz-asset-ListMerchantCoinDetailResp"></a>
+
+### ListMerchantCoinDetailResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [MerchantCoinDetail](#svc-biz-asset-MerchantCoinDetail) | repeated |  |
+| page | [int64](#int64) |  | 页码 |
+| page_size | [int64](#int64) |  | 单页条数 |
+| total | [int64](#int64) |  | 符合筛选的总条数 |
+
+
+
+
+
+
+<a name="svc-biz-asset-ListUnionCoinDetailReq"></a>
+
+### ListUnionCoinDetailReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| uid | [string](#string) |  |  |
+| app_id | [string](#string) |  |  |
+| trans_direction | [int64](#int64) |  | 交易方向 0 不限 1 增加 2 减少 |
+| trans_type | [int64](#int64) | repeated | 交易类别: 空表示不限 |
+| start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开始时间(含) |
+| end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 结束时间(不含) |
+| page | [int64](#int64) |  | 页码 |
+| page_size | [int64](#int64) |  | 单页条数 |
+
+
+
+
+
+
+<a name="svc-biz-asset-ListUnionCoinDetailResp"></a>
+
+### ListUnionCoinDetailResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [UnionCoinDetail](#svc-biz-asset-UnionCoinDetail) | repeated |  |
+| page | [int64](#int64) |  | 页码 |
+| page_size | [int64](#int64) |  | 单页条数 |
+| total | [int64](#int64) |  | 符合筛选的总条数 |
+
+
+
+
+
+
+<a name="svc-biz-asset-ListUserCoinDetailReq"></a>
+
+### ListUserCoinDetailReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| uid | [string](#string) |  |  |
+| app_id | [string](#string) |  |  |
+| trans_direction | [int64](#int64) |  | 交易方向 0 不限 1 增加 2 减少 |
+| trans_type | [int64](#int64) | repeated | 交易类别: 空表示不限 |
+| start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开始时间(含) |
+| end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 结束时间(不含) |
+| page | [int64](#int64) |  | 页码 |
+| page_size | [int64](#int64) |  | 单页条数 |
+
+
+
+
+
+
+<a name="svc-biz-asset-ListUserCoinDetailResp"></a>
+
+### ListUserCoinDetailResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [UserCoinDetail](#svc-biz-asset-UserCoinDetail) | repeated |  |
+| page | [int64](#int64) |  | 页码 |
+| page_size | [int64](#int64) |  | 单页条数 |
+| total | [int64](#int64) |  | 符合筛选的总条数 |
+
+
+
+
+
+
+<a name="svc-biz-asset-ListUserMoneyDetailReq"></a>
+
+### ListUserMoneyDetailReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| uid | [string](#string) |  |  |
+| trans_direction | [int64](#int64) |  | 交易方向 0 不限 1 增加 2 减少 |
+| trans_type | [int64](#int64) | repeated | 交易类别: 空表示不限 |
+| start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开始时间(含) |
+| end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 结束时间(不含) |
+| page | [int64](#int64) |  | 页码 |
+| page_size | [int64](#int64) |  | 单页条数 |
+
+
+
+
+
+
+<a name="svc-biz-asset-ListUserMoneyDetailResp"></a>
+
+### ListUserMoneyDetailResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [UserMoneyDetail](#svc-biz-asset-UserMoneyDetail) | repeated |  |
+| page | [int64](#int64) |  | 页码 |
+| page_size | [int64](#int64) |  | 单页条数 |
+| total | [int64](#int64) |  | 符合筛选的总条数 |
+
+
+
+
+
+
+<a name="svc-biz-asset-MerchantCoinDetail"></a>
+
+### MerchantCoinDetail
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| detail_id | [string](#string) |  | 明细id |
+| trade_id | [string](#string) |  | 业务方交易id |
+| uid | [string](#string) |  |  |
+| app_id | [string](#string) |  |  |
+| serial_number | [int64](#int64) |  | 流水号,单账户连续自增 |
+| trans_direction | [int64](#int64) |  | 交易方向 1 增加 2 减少 |
+| trans_type | [int64](#int64) |  | 交易类别 |
+| value | [int64](#int64) |  |  |
+| value_before | [int64](#int64) |  |  |
+| value_after | [int64](#int64) |  |  |
+| limited_value | [int64](#int64) |  |  |
+| limited_value_before | [int64](#int64) |  |  |
+| limited_value_after | [int64](#int64) |  |  |
+| trans_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 业务时间 |
+| summary | [string](#string) |  | 摘要,json 实际会做格式和核心字段校验 |
+
+
+
+
+
+
+<a name="svc-biz-asset-MerchantCoinValue"></a>
+
+### MerchantCoinValue
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| value | [int64](#int64) |  | 余额 |
+| limited_value | [int64](#int64) |  | 低权限余额 |
+
+
+
+
+
+
+<a name="svc-biz-asset-UnionCoinDetail"></a>
+
+### UnionCoinDetail
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| detail_id | [string](#string) |  | 明细id |
+| trade_id | [string](#string) |  | 业务方交易id |
+| uid | [string](#string) |  |  |
+| app_id | [string](#string) |  |  |
+| serial_number | [int64](#int64) |  | 流水号,单账户连续自增 |
+| trans_direction | [int64](#int64) |  | 交易方向 1 增加 2 减少 |
+| trans_type | [int64](#int64) |  | 交易类别 |
+| value | [int64](#int64) |  |  |
+| value_before | [int64](#int64) |  |  |
+| value_after | [int64](#int64) |  |  |
+| limited_value | [int64](#int64) |  |  |
+| limited_value_before | [int64](#int64) |  |  |
+| limited_value_after | [int64](#int64) |  |  |
+| trans_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 业务时间 |
+| summary | [string](#string) |  | 摘要,json 实际会做格式和核心字段校验 |
+
+
+
+
+
+
+<a name="svc-biz-asset-UnionCoinValue"></a>
+
+### UnionCoinValue
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| value | [int64](#int64) |  | 余额 |
+| limited_value | [int64](#int64) |  | 低权限余额 |
+
+
+
+
+
+
+<a name="svc-biz-asset-UserCoinDetail"></a>
+
+### UserCoinDetail
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| detail_id | [string](#string) |  | 明细id |
+| trade_id | [string](#string) |  | 业务方交易id |
+| uid | [string](#string) |  |  |
+| app_id | [string](#string) |  |  |
+| serial_number | [int64](#int64) |  | 流水号,单账户连续自增 |
+| trans_direction | [int64](#int64) |  | 交易方向 1 增加 2 减少 |
+| trans_type | [int64](#int64) |  | 交易类别 |
+| value | [int64](#int64) |  |  |
+| value_before | [int64](#int64) |  |  |
+| value_after | [int64](#int64) |  |  |
+| limited_value | [int64](#int64) |  |  |
+| limited_value_before | [int64](#int64) |  |  |
+| limited_value_after | [int64](#int64) |  |  |
+| trans_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 业务时间 |
+| summary | [string](#string) |  | 摘要,json 实际会做格式和核心字段校验 |
+
+
+
+
+
+
+<a name="svc-biz-asset-UserCoinValue"></a>
+
+### UserCoinValue
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| value | [int64](#int64) |  | 余额 |
+| limited_value | [int64](#int64) |  | 低权限余额 |
+
+
+
+
+
+
+<a name="svc-biz-asset-UserMoneyDetail"></a>
+
+### UserMoneyDetail
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| detail_id | [string](#string) |  | 明细id |
+| trade_id | [string](#string) |  | 业务方交易id |
+| uid | [string](#string) |  |  |
+| serial_number | [int64](#int64) |  | 流水号,单账户连续自增 |
+| trans_direction | [int64](#int64) |  | 交易方向 1 增加 2 减少 |
+| trans_type | [int64](#int64) |  | 交易类别 |
+| value | [int64](#int64) |  |  |
+| value_before | [int64](#int64) |  |  |
+| value_after | [int64](#int64) |  |  |
+| trans_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 业务时间 |
+| summary | [string](#string) |  | 摘要,json 实际会做格式和核心字段校验 |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="svc-biz-asset-Asset"></a>
+
+### Asset
+
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| GetUserMoney | [GetUserMoneyReq](#svc-biz-asset-GetUserMoneyReq) | [GetUserMoneyResp](#svc-biz-asset-GetUserMoneyResp) | 余额 money |
+| GetUserMoneyMulti | [GetUserMoneyMultiReq](#svc-biz-asset-GetUserMoneyMultiReq) | [GetUserMoneyMultiResp](#svc-biz-asset-GetUserMoneyMultiResp) |  |
+| IncrUserMoney | [IncrUserMoneyReq](#svc-biz-asset-IncrUserMoneyReq) | [IncrUserMoneyResp](#svc-biz-asset-IncrUserMoneyResp) |  |
+| DecrUserMoney | [DecrUserMoneyReq](#svc-biz-asset-DecrUserMoneyReq) | [DecrUserMoneyResp](#svc-biz-asset-DecrUserMoneyResp) |  |
+| ListUserMoneyDetail | [ListUserMoneyDetailReq](#svc-biz-asset-ListUserMoneyDetailReq) | [ListUserMoneyDetailResp](#svc-biz-asset-ListUserMoneyDetailResp) |  |
+| GetUserCoin | [GetUserCoinReq](#svc-biz-asset-GetUserCoinReq) | [GetUserCoinResp](#svc-biz-asset-GetUserCoinResp) | 虚拟币coin |
+| GetUserCoinMulti | [GetUserCoinMultiReq](#svc-biz-asset-GetUserCoinMultiReq) | [GetUserCoinMultiResp](#svc-biz-asset-GetUserCoinMultiResp) |  |
+| IncrUserCoin | [IncrUserCoinReq](#svc-biz-asset-IncrUserCoinReq) | [IncrUserCoinResp](#svc-biz-asset-IncrUserCoinResp) |  |
+| DecrUserCoin | [DecrUserCoinReq](#svc-biz-asset-DecrUserCoinReq) | [DecrUserCoinResp](#svc-biz-asset-DecrUserCoinResp) |  |
+| ListUserCoinDetail | [ListUserCoinDetailReq](#svc-biz-asset-ListUserCoinDetailReq) | [ListUserCoinDetailResp](#svc-biz-asset-ListUserCoinDetailResp) |  |
+| GetAnchorCoin | [GetAnchorCoinReq](#svc-biz-asset-GetAnchorCoinReq) | [GetAnchorCoinResp](#svc-biz-asset-GetAnchorCoinResp) | 虚拟币coin |
+| GetAnchorCoinMulti | [GetAnchorCoinMultiReq](#svc-biz-asset-GetAnchorCoinMultiReq) | [GetAnchorCoinMultiResp](#svc-biz-asset-GetAnchorCoinMultiResp) |  |
+| IncrAnchorCoin | [IncrAnchorCoinReq](#svc-biz-asset-IncrAnchorCoinReq) | [IncrAnchorCoinResp](#svc-biz-asset-IncrAnchorCoinResp) |  |
+| DecrAnchorCoin | [DecrAnchorCoinReq](#svc-biz-asset-DecrAnchorCoinReq) | [DecrAnchorCoinResp](#svc-biz-asset-DecrAnchorCoinResp) |  |
+| ListAnchorCoinDetail | [ListAnchorCoinDetailReq](#svc-biz-asset-ListAnchorCoinDetailReq) | [ListAnchorCoinDetailResp](#svc-biz-asset-ListAnchorCoinDetailResp) |  |
+| GetUnionCoin | [GetUnionCoinReq](#svc-biz-asset-GetUnionCoinReq) | [GetUnionCoinResp](#svc-biz-asset-GetUnionCoinResp) | 虚拟币coin |
+| GetUnionCoinMulti | [GetUnionCoinMultiReq](#svc-biz-asset-GetUnionCoinMultiReq) | [GetUnionCoinMultiResp](#svc-biz-asset-GetUnionCoinMultiResp) |  |
+| IncrUnionCoin | [IncrUnionCoinReq](#svc-biz-asset-IncrUnionCoinReq) | [IncrUnionCoinResp](#svc-biz-asset-IncrUnionCoinResp) |  |
+| DecrUnionCoin | [DecrUnionCoinReq](#svc-biz-asset-DecrUnionCoinReq) | [DecrUnionCoinResp](#svc-biz-asset-DecrUnionCoinResp) |  |
+| ListUnionCoinDetail | [ListUnionCoinDetailReq](#svc-biz-asset-ListUnionCoinDetailReq) | [ListUnionCoinDetailResp](#svc-biz-asset-ListUnionCoinDetailResp) |  |
+| GetMerchantCoin | [GetMerchantCoinReq](#svc-biz-asset-GetMerchantCoinReq) | [GetMerchantCoinResp](#svc-biz-asset-GetMerchantCoinResp) | 虚拟币coin |
+| GetMerchantCoinMulti | [GetMerchantCoinMultiReq](#svc-biz-asset-GetMerchantCoinMultiReq) | [GetMerchantCoinMultiResp](#svc-biz-asset-GetMerchantCoinMultiResp) |  |
+| IncrMerchantCoin | [IncrMerchantCoinReq](#svc-biz-asset-IncrMerchantCoinReq) | [IncrMerchantCoinResp](#svc-biz-asset-IncrMerchantCoinResp) |  |
+| DecrMerchantCoin | [DecrMerchantCoinReq](#svc-biz-asset-DecrMerchantCoinReq) | [DecrMerchantCoinResp](#svc-biz-asset-DecrMerchantCoinResp) |  |
+| ListMerchantCoinDetail | [ListMerchantCoinDetailReq](#svc-biz-asset-ListMerchantCoinDetailReq) | [ListMerchantCoinDetailResp](#svc-biz-asset-ListMerchantCoinDetailResp) |  |
 
  
 
