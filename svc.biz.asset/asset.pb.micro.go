@@ -41,38 +41,38 @@ type AssetService interface {
 	// 余额 money
 	GetUserMoney(ctx context.Context, in *GetUserMoneyReq, opts ...client.CallOption) (*GetUserMoneyResp, error)
 	GetUserMoneyMulti(ctx context.Context, in *GetUserMoneyMultiReq, opts ...client.CallOption) (*GetUserMoneyMultiResp, error)
-	IncrUserMoney(ctx context.Context, in *IncrUserMoneyReq, opts ...client.CallOption) (*IncrUserMoneyResp, error)
-	DecrUserMoney(ctx context.Context, in *DecrUserMoneyReq, opts ...client.CallOption) (*DecrUserMoneyResp, error)
+	IncrUserMoney(ctx context.Context, in *IncrUserMoneyReq, opts ...client.CallOption) (*ChangeUserMoneyResp, error)
+	DecrUserMoney(ctx context.Context, in *DecrUserMoneyReq, opts ...client.CallOption) (*ChangeUserMoneyResp, error)
 	ListUserMoneyDetail(ctx context.Context, in *ListUserMoneyDetailReq, opts ...client.CallOption) (*ListUserMoneyDetailResp, error)
 	// 虚拟币coin
 	GetUserCoin(ctx context.Context, in *GetUserCoinReq, opts ...client.CallOption) (*GetUserCoinResp, error)
 	GetUserCoinMulti(ctx context.Context, in *GetUserCoinMultiReq, opts ...client.CallOption) (*GetUserCoinMultiResp, error)
-	IncrUserCoin(ctx context.Context, in *IncrUserCoinReq, opts ...client.CallOption) (*IncrUserCoinResp, error)
-	DecrUserCoin(ctx context.Context, in *DecrUserCoinReq, opts ...client.CallOption) (*DecrUserCoinResp, error)
+	IncrUserCoin(ctx context.Context, in *IncrUserCoinReq, opts ...client.CallOption) (*ChangeUserCoinResp, error)
+	DecrUserCoin(ctx context.Context, in *DecrUserCoinReq, opts ...client.CallOption) (*ChangeUserCoinResp, error)
 	ListUserCoinDetail(ctx context.Context, in *ListUserCoinDetailReq, opts ...client.CallOption) (*ListUserCoinDetailResp, error)
 	// 虚拟币coin
 	GetAnchorCoin(ctx context.Context, in *GetAnchorCoinReq, opts ...client.CallOption) (*GetAnchorCoinResp, error)
 	GetAnchorCoinMulti(ctx context.Context, in *GetAnchorCoinMultiReq, opts ...client.CallOption) (*GetAnchorCoinMultiResp, error)
-	IncrAnchorCoin(ctx context.Context, in *IncrAnchorCoinReq, opts ...client.CallOption) (*IncrAnchorCoinResp, error)
-	DecrAnchorCoin(ctx context.Context, in *DecrAnchorCoinReq, opts ...client.CallOption) (*DecrAnchorCoinResp, error)
+	IncrAnchorCoin(ctx context.Context, in *IncrAnchorCoinReq, opts ...client.CallOption) (*ChangeAnchorCoinResp, error)
+	DecrAnchorCoin(ctx context.Context, in *DecrAnchorCoinReq, opts ...client.CallOption) (*ChangeAnchorCoinResp, error)
 	ListAnchorCoinDetail(ctx context.Context, in *ListAnchorCoinDetailReq, opts ...client.CallOption) (*ListAnchorCoinDetailResp, error)
 	// 虚拟币coin
 	GetUnionCoin(ctx context.Context, in *GetUnionCoinReq, opts ...client.CallOption) (*GetUnionCoinResp, error)
 	GetUnionCoinMulti(ctx context.Context, in *GetUnionCoinMultiReq, opts ...client.CallOption) (*GetUnionCoinMultiResp, error)
-	IncrUnionCoin(ctx context.Context, in *IncrUnionCoinReq, opts ...client.CallOption) (*IncrUnionCoinResp, error)
-	DecrUnionCoin(ctx context.Context, in *DecrUnionCoinReq, opts ...client.CallOption) (*DecrUnionCoinResp, error)
+	IncrUnionCoin(ctx context.Context, in *IncrUnionCoinReq, opts ...client.CallOption) (*ChangeUnionCoinResp, error)
+	DecrUnionCoin(ctx context.Context, in *DecrUnionCoinReq, opts ...client.CallOption) (*ChangeUnionCoinResp, error)
 	ListUnionCoinDetail(ctx context.Context, in *ListUnionCoinDetailReq, opts ...client.CallOption) (*ListUnionCoinDetailResp, error)
 	// 余额 money
 	GetMerchantMoney(ctx context.Context, in *GetMerchantMoneyReq, opts ...client.CallOption) (*GetMerchantMoneyResp, error)
 	GetMerchantMoneyMulti(ctx context.Context, in *GetMerchantMoneyMultiReq, opts ...client.CallOption) (*GetMerchantMoneyMultiResp, error)
-	IncrMerchantMoney(ctx context.Context, in *IncrMerchantMoneyReq, opts ...client.CallOption) (*IncrMerchantMoneyResp, error)
-	DecrMerchantMoney(ctx context.Context, in *DecrMerchantMoneyReq, opts ...client.CallOption) (*DecrMerchantMoneyResp, error)
+	IncrMerchantMoney(ctx context.Context, in *IncrMerchantMoneyReq, opts ...client.CallOption) (*ChangeMerchantMoneyResp, error)
+	DecrMerchantMoney(ctx context.Context, in *DecrMerchantMoneyReq, opts ...client.CallOption) (*ChangeMerchantMoneyResp, error)
 	ListMerchantMoneyDetail(ctx context.Context, in *ListMerchantMoneyDetailReq, opts ...client.CallOption) (*ListMerchantMoneyDetailResp, error)
 	// 虚拟币coin
 	GetMerchantCoin(ctx context.Context, in *GetMerchantCoinReq, opts ...client.CallOption) (*GetMerchantCoinResp, error)
 	GetMerchantCoinMulti(ctx context.Context, in *GetMerchantCoinMultiReq, opts ...client.CallOption) (*GetMerchantCoinMultiResp, error)
-	IncrMerchantCoin(ctx context.Context, in *IncrMerchantCoinReq, opts ...client.CallOption) (*IncrMerchantCoinResp, error)
-	DecrMerchantCoin(ctx context.Context, in *DecrMerchantCoinReq, opts ...client.CallOption) (*DecrMerchantCoinResp, error)
+	IncrMerchantCoin(ctx context.Context, in *IncrMerchantCoinReq, opts ...client.CallOption) (*ChangeMerchantCoinResp, error)
+	DecrMerchantCoin(ctx context.Context, in *DecrMerchantCoinReq, opts ...client.CallOption) (*ChangeMerchantCoinResp, error)
 	ListMerchantCoinDetail(ctx context.Context, in *ListMerchantCoinDetailReq, opts ...client.CallOption) (*ListMerchantCoinDetailResp, error)
 }
 
@@ -108,9 +108,9 @@ func (c *assetService) GetUserMoneyMulti(ctx context.Context, in *GetUserMoneyMu
 	return out, nil
 }
 
-func (c *assetService) IncrUserMoney(ctx context.Context, in *IncrUserMoneyReq, opts ...client.CallOption) (*IncrUserMoneyResp, error) {
+func (c *assetService) IncrUserMoney(ctx context.Context, in *IncrUserMoneyReq, opts ...client.CallOption) (*ChangeUserMoneyResp, error) {
 	req := c.c.NewRequest(c.name, "Asset.IncrUserMoney", in)
-	out := new(IncrUserMoneyResp)
+	out := new(ChangeUserMoneyResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -118,9 +118,9 @@ func (c *assetService) IncrUserMoney(ctx context.Context, in *IncrUserMoneyReq, 
 	return out, nil
 }
 
-func (c *assetService) DecrUserMoney(ctx context.Context, in *DecrUserMoneyReq, opts ...client.CallOption) (*DecrUserMoneyResp, error) {
+func (c *assetService) DecrUserMoney(ctx context.Context, in *DecrUserMoneyReq, opts ...client.CallOption) (*ChangeUserMoneyResp, error) {
 	req := c.c.NewRequest(c.name, "Asset.DecrUserMoney", in)
-	out := new(DecrUserMoneyResp)
+	out := new(ChangeUserMoneyResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -158,9 +158,9 @@ func (c *assetService) GetUserCoinMulti(ctx context.Context, in *GetUserCoinMult
 	return out, nil
 }
 
-func (c *assetService) IncrUserCoin(ctx context.Context, in *IncrUserCoinReq, opts ...client.CallOption) (*IncrUserCoinResp, error) {
+func (c *assetService) IncrUserCoin(ctx context.Context, in *IncrUserCoinReq, opts ...client.CallOption) (*ChangeUserCoinResp, error) {
 	req := c.c.NewRequest(c.name, "Asset.IncrUserCoin", in)
-	out := new(IncrUserCoinResp)
+	out := new(ChangeUserCoinResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -168,9 +168,9 @@ func (c *assetService) IncrUserCoin(ctx context.Context, in *IncrUserCoinReq, op
 	return out, nil
 }
 
-func (c *assetService) DecrUserCoin(ctx context.Context, in *DecrUserCoinReq, opts ...client.CallOption) (*DecrUserCoinResp, error) {
+func (c *assetService) DecrUserCoin(ctx context.Context, in *DecrUserCoinReq, opts ...client.CallOption) (*ChangeUserCoinResp, error) {
 	req := c.c.NewRequest(c.name, "Asset.DecrUserCoin", in)
-	out := new(DecrUserCoinResp)
+	out := new(ChangeUserCoinResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -208,9 +208,9 @@ func (c *assetService) GetAnchorCoinMulti(ctx context.Context, in *GetAnchorCoin
 	return out, nil
 }
 
-func (c *assetService) IncrAnchorCoin(ctx context.Context, in *IncrAnchorCoinReq, opts ...client.CallOption) (*IncrAnchorCoinResp, error) {
+func (c *assetService) IncrAnchorCoin(ctx context.Context, in *IncrAnchorCoinReq, opts ...client.CallOption) (*ChangeAnchorCoinResp, error) {
 	req := c.c.NewRequest(c.name, "Asset.IncrAnchorCoin", in)
-	out := new(IncrAnchorCoinResp)
+	out := new(ChangeAnchorCoinResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -218,9 +218,9 @@ func (c *assetService) IncrAnchorCoin(ctx context.Context, in *IncrAnchorCoinReq
 	return out, nil
 }
 
-func (c *assetService) DecrAnchorCoin(ctx context.Context, in *DecrAnchorCoinReq, opts ...client.CallOption) (*DecrAnchorCoinResp, error) {
+func (c *assetService) DecrAnchorCoin(ctx context.Context, in *DecrAnchorCoinReq, opts ...client.CallOption) (*ChangeAnchorCoinResp, error) {
 	req := c.c.NewRequest(c.name, "Asset.DecrAnchorCoin", in)
-	out := new(DecrAnchorCoinResp)
+	out := new(ChangeAnchorCoinResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -258,9 +258,9 @@ func (c *assetService) GetUnionCoinMulti(ctx context.Context, in *GetUnionCoinMu
 	return out, nil
 }
 
-func (c *assetService) IncrUnionCoin(ctx context.Context, in *IncrUnionCoinReq, opts ...client.CallOption) (*IncrUnionCoinResp, error) {
+func (c *assetService) IncrUnionCoin(ctx context.Context, in *IncrUnionCoinReq, opts ...client.CallOption) (*ChangeUnionCoinResp, error) {
 	req := c.c.NewRequest(c.name, "Asset.IncrUnionCoin", in)
-	out := new(IncrUnionCoinResp)
+	out := new(ChangeUnionCoinResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -268,9 +268,9 @@ func (c *assetService) IncrUnionCoin(ctx context.Context, in *IncrUnionCoinReq, 
 	return out, nil
 }
 
-func (c *assetService) DecrUnionCoin(ctx context.Context, in *DecrUnionCoinReq, opts ...client.CallOption) (*DecrUnionCoinResp, error) {
+func (c *assetService) DecrUnionCoin(ctx context.Context, in *DecrUnionCoinReq, opts ...client.CallOption) (*ChangeUnionCoinResp, error) {
 	req := c.c.NewRequest(c.name, "Asset.DecrUnionCoin", in)
-	out := new(DecrUnionCoinResp)
+	out := new(ChangeUnionCoinResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -308,9 +308,9 @@ func (c *assetService) GetMerchantMoneyMulti(ctx context.Context, in *GetMerchan
 	return out, nil
 }
 
-func (c *assetService) IncrMerchantMoney(ctx context.Context, in *IncrMerchantMoneyReq, opts ...client.CallOption) (*IncrMerchantMoneyResp, error) {
+func (c *assetService) IncrMerchantMoney(ctx context.Context, in *IncrMerchantMoneyReq, opts ...client.CallOption) (*ChangeMerchantMoneyResp, error) {
 	req := c.c.NewRequest(c.name, "Asset.IncrMerchantMoney", in)
-	out := new(IncrMerchantMoneyResp)
+	out := new(ChangeMerchantMoneyResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -318,9 +318,9 @@ func (c *assetService) IncrMerchantMoney(ctx context.Context, in *IncrMerchantMo
 	return out, nil
 }
 
-func (c *assetService) DecrMerchantMoney(ctx context.Context, in *DecrMerchantMoneyReq, opts ...client.CallOption) (*DecrMerchantMoneyResp, error) {
+func (c *assetService) DecrMerchantMoney(ctx context.Context, in *DecrMerchantMoneyReq, opts ...client.CallOption) (*ChangeMerchantMoneyResp, error) {
 	req := c.c.NewRequest(c.name, "Asset.DecrMerchantMoney", in)
-	out := new(DecrMerchantMoneyResp)
+	out := new(ChangeMerchantMoneyResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -358,9 +358,9 @@ func (c *assetService) GetMerchantCoinMulti(ctx context.Context, in *GetMerchant
 	return out, nil
 }
 
-func (c *assetService) IncrMerchantCoin(ctx context.Context, in *IncrMerchantCoinReq, opts ...client.CallOption) (*IncrMerchantCoinResp, error) {
+func (c *assetService) IncrMerchantCoin(ctx context.Context, in *IncrMerchantCoinReq, opts ...client.CallOption) (*ChangeMerchantCoinResp, error) {
 	req := c.c.NewRequest(c.name, "Asset.IncrMerchantCoin", in)
-	out := new(IncrMerchantCoinResp)
+	out := new(ChangeMerchantCoinResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -368,9 +368,9 @@ func (c *assetService) IncrMerchantCoin(ctx context.Context, in *IncrMerchantCoi
 	return out, nil
 }
 
-func (c *assetService) DecrMerchantCoin(ctx context.Context, in *DecrMerchantCoinReq, opts ...client.CallOption) (*DecrMerchantCoinResp, error) {
+func (c *assetService) DecrMerchantCoin(ctx context.Context, in *DecrMerchantCoinReq, opts ...client.CallOption) (*ChangeMerchantCoinResp, error) {
 	req := c.c.NewRequest(c.name, "Asset.DecrMerchantCoin", in)
-	out := new(DecrMerchantCoinResp)
+	out := new(ChangeMerchantCoinResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -394,38 +394,38 @@ type AssetHandler interface {
 	// 余额 money
 	GetUserMoney(context.Context, *GetUserMoneyReq, *GetUserMoneyResp) error
 	GetUserMoneyMulti(context.Context, *GetUserMoneyMultiReq, *GetUserMoneyMultiResp) error
-	IncrUserMoney(context.Context, *IncrUserMoneyReq, *IncrUserMoneyResp) error
-	DecrUserMoney(context.Context, *DecrUserMoneyReq, *DecrUserMoneyResp) error
+	IncrUserMoney(context.Context, *IncrUserMoneyReq, *ChangeUserMoneyResp) error
+	DecrUserMoney(context.Context, *DecrUserMoneyReq, *ChangeUserMoneyResp) error
 	ListUserMoneyDetail(context.Context, *ListUserMoneyDetailReq, *ListUserMoneyDetailResp) error
 	// 虚拟币coin
 	GetUserCoin(context.Context, *GetUserCoinReq, *GetUserCoinResp) error
 	GetUserCoinMulti(context.Context, *GetUserCoinMultiReq, *GetUserCoinMultiResp) error
-	IncrUserCoin(context.Context, *IncrUserCoinReq, *IncrUserCoinResp) error
-	DecrUserCoin(context.Context, *DecrUserCoinReq, *DecrUserCoinResp) error
+	IncrUserCoin(context.Context, *IncrUserCoinReq, *ChangeUserCoinResp) error
+	DecrUserCoin(context.Context, *DecrUserCoinReq, *ChangeUserCoinResp) error
 	ListUserCoinDetail(context.Context, *ListUserCoinDetailReq, *ListUserCoinDetailResp) error
 	// 虚拟币coin
 	GetAnchorCoin(context.Context, *GetAnchorCoinReq, *GetAnchorCoinResp) error
 	GetAnchorCoinMulti(context.Context, *GetAnchorCoinMultiReq, *GetAnchorCoinMultiResp) error
-	IncrAnchorCoin(context.Context, *IncrAnchorCoinReq, *IncrAnchorCoinResp) error
-	DecrAnchorCoin(context.Context, *DecrAnchorCoinReq, *DecrAnchorCoinResp) error
+	IncrAnchorCoin(context.Context, *IncrAnchorCoinReq, *ChangeAnchorCoinResp) error
+	DecrAnchorCoin(context.Context, *DecrAnchorCoinReq, *ChangeAnchorCoinResp) error
 	ListAnchorCoinDetail(context.Context, *ListAnchorCoinDetailReq, *ListAnchorCoinDetailResp) error
 	// 虚拟币coin
 	GetUnionCoin(context.Context, *GetUnionCoinReq, *GetUnionCoinResp) error
 	GetUnionCoinMulti(context.Context, *GetUnionCoinMultiReq, *GetUnionCoinMultiResp) error
-	IncrUnionCoin(context.Context, *IncrUnionCoinReq, *IncrUnionCoinResp) error
-	DecrUnionCoin(context.Context, *DecrUnionCoinReq, *DecrUnionCoinResp) error
+	IncrUnionCoin(context.Context, *IncrUnionCoinReq, *ChangeUnionCoinResp) error
+	DecrUnionCoin(context.Context, *DecrUnionCoinReq, *ChangeUnionCoinResp) error
 	ListUnionCoinDetail(context.Context, *ListUnionCoinDetailReq, *ListUnionCoinDetailResp) error
 	// 余额 money
 	GetMerchantMoney(context.Context, *GetMerchantMoneyReq, *GetMerchantMoneyResp) error
 	GetMerchantMoneyMulti(context.Context, *GetMerchantMoneyMultiReq, *GetMerchantMoneyMultiResp) error
-	IncrMerchantMoney(context.Context, *IncrMerchantMoneyReq, *IncrMerchantMoneyResp) error
-	DecrMerchantMoney(context.Context, *DecrMerchantMoneyReq, *DecrMerchantMoneyResp) error
+	IncrMerchantMoney(context.Context, *IncrMerchantMoneyReq, *ChangeMerchantMoneyResp) error
+	DecrMerchantMoney(context.Context, *DecrMerchantMoneyReq, *ChangeMerchantMoneyResp) error
 	ListMerchantMoneyDetail(context.Context, *ListMerchantMoneyDetailReq, *ListMerchantMoneyDetailResp) error
 	// 虚拟币coin
 	GetMerchantCoin(context.Context, *GetMerchantCoinReq, *GetMerchantCoinResp) error
 	GetMerchantCoinMulti(context.Context, *GetMerchantCoinMultiReq, *GetMerchantCoinMultiResp) error
-	IncrMerchantCoin(context.Context, *IncrMerchantCoinReq, *IncrMerchantCoinResp) error
-	DecrMerchantCoin(context.Context, *DecrMerchantCoinReq, *DecrMerchantCoinResp) error
+	IncrMerchantCoin(context.Context, *IncrMerchantCoinReq, *ChangeMerchantCoinResp) error
+	DecrMerchantCoin(context.Context, *DecrMerchantCoinReq, *ChangeMerchantCoinResp) error
 	ListMerchantCoinDetail(context.Context, *ListMerchantCoinDetailReq, *ListMerchantCoinDetailResp) error
 }
 
@@ -433,33 +433,33 @@ func RegisterAssetHandler(s server.Server, hdlr AssetHandler, opts ...server.Han
 	type asset interface {
 		GetUserMoney(ctx context.Context, in *GetUserMoneyReq, out *GetUserMoneyResp) error
 		GetUserMoneyMulti(ctx context.Context, in *GetUserMoneyMultiReq, out *GetUserMoneyMultiResp) error
-		IncrUserMoney(ctx context.Context, in *IncrUserMoneyReq, out *IncrUserMoneyResp) error
-		DecrUserMoney(ctx context.Context, in *DecrUserMoneyReq, out *DecrUserMoneyResp) error
+		IncrUserMoney(ctx context.Context, in *IncrUserMoneyReq, out *ChangeUserMoneyResp) error
+		DecrUserMoney(ctx context.Context, in *DecrUserMoneyReq, out *ChangeUserMoneyResp) error
 		ListUserMoneyDetail(ctx context.Context, in *ListUserMoneyDetailReq, out *ListUserMoneyDetailResp) error
 		GetUserCoin(ctx context.Context, in *GetUserCoinReq, out *GetUserCoinResp) error
 		GetUserCoinMulti(ctx context.Context, in *GetUserCoinMultiReq, out *GetUserCoinMultiResp) error
-		IncrUserCoin(ctx context.Context, in *IncrUserCoinReq, out *IncrUserCoinResp) error
-		DecrUserCoin(ctx context.Context, in *DecrUserCoinReq, out *DecrUserCoinResp) error
+		IncrUserCoin(ctx context.Context, in *IncrUserCoinReq, out *ChangeUserCoinResp) error
+		DecrUserCoin(ctx context.Context, in *DecrUserCoinReq, out *ChangeUserCoinResp) error
 		ListUserCoinDetail(ctx context.Context, in *ListUserCoinDetailReq, out *ListUserCoinDetailResp) error
 		GetAnchorCoin(ctx context.Context, in *GetAnchorCoinReq, out *GetAnchorCoinResp) error
 		GetAnchorCoinMulti(ctx context.Context, in *GetAnchorCoinMultiReq, out *GetAnchorCoinMultiResp) error
-		IncrAnchorCoin(ctx context.Context, in *IncrAnchorCoinReq, out *IncrAnchorCoinResp) error
-		DecrAnchorCoin(ctx context.Context, in *DecrAnchorCoinReq, out *DecrAnchorCoinResp) error
+		IncrAnchorCoin(ctx context.Context, in *IncrAnchorCoinReq, out *ChangeAnchorCoinResp) error
+		DecrAnchorCoin(ctx context.Context, in *DecrAnchorCoinReq, out *ChangeAnchorCoinResp) error
 		ListAnchorCoinDetail(ctx context.Context, in *ListAnchorCoinDetailReq, out *ListAnchorCoinDetailResp) error
 		GetUnionCoin(ctx context.Context, in *GetUnionCoinReq, out *GetUnionCoinResp) error
 		GetUnionCoinMulti(ctx context.Context, in *GetUnionCoinMultiReq, out *GetUnionCoinMultiResp) error
-		IncrUnionCoin(ctx context.Context, in *IncrUnionCoinReq, out *IncrUnionCoinResp) error
-		DecrUnionCoin(ctx context.Context, in *DecrUnionCoinReq, out *DecrUnionCoinResp) error
+		IncrUnionCoin(ctx context.Context, in *IncrUnionCoinReq, out *ChangeUnionCoinResp) error
+		DecrUnionCoin(ctx context.Context, in *DecrUnionCoinReq, out *ChangeUnionCoinResp) error
 		ListUnionCoinDetail(ctx context.Context, in *ListUnionCoinDetailReq, out *ListUnionCoinDetailResp) error
 		GetMerchantMoney(ctx context.Context, in *GetMerchantMoneyReq, out *GetMerchantMoneyResp) error
 		GetMerchantMoneyMulti(ctx context.Context, in *GetMerchantMoneyMultiReq, out *GetMerchantMoneyMultiResp) error
-		IncrMerchantMoney(ctx context.Context, in *IncrMerchantMoneyReq, out *IncrMerchantMoneyResp) error
-		DecrMerchantMoney(ctx context.Context, in *DecrMerchantMoneyReq, out *DecrMerchantMoneyResp) error
+		IncrMerchantMoney(ctx context.Context, in *IncrMerchantMoneyReq, out *ChangeMerchantMoneyResp) error
+		DecrMerchantMoney(ctx context.Context, in *DecrMerchantMoneyReq, out *ChangeMerchantMoneyResp) error
 		ListMerchantMoneyDetail(ctx context.Context, in *ListMerchantMoneyDetailReq, out *ListMerchantMoneyDetailResp) error
 		GetMerchantCoin(ctx context.Context, in *GetMerchantCoinReq, out *GetMerchantCoinResp) error
 		GetMerchantCoinMulti(ctx context.Context, in *GetMerchantCoinMultiReq, out *GetMerchantCoinMultiResp) error
-		IncrMerchantCoin(ctx context.Context, in *IncrMerchantCoinReq, out *IncrMerchantCoinResp) error
-		DecrMerchantCoin(ctx context.Context, in *DecrMerchantCoinReq, out *DecrMerchantCoinResp) error
+		IncrMerchantCoin(ctx context.Context, in *IncrMerchantCoinReq, out *ChangeMerchantCoinResp) error
+		DecrMerchantCoin(ctx context.Context, in *DecrMerchantCoinReq, out *ChangeMerchantCoinResp) error
 		ListMerchantCoinDetail(ctx context.Context, in *ListMerchantCoinDetailReq, out *ListMerchantCoinDetailResp) error
 	}
 	type Asset struct {
@@ -481,11 +481,11 @@ func (h *assetHandler) GetUserMoneyMulti(ctx context.Context, in *GetUserMoneyMu
 	return h.AssetHandler.GetUserMoneyMulti(ctx, in, out)
 }
 
-func (h *assetHandler) IncrUserMoney(ctx context.Context, in *IncrUserMoneyReq, out *IncrUserMoneyResp) error {
+func (h *assetHandler) IncrUserMoney(ctx context.Context, in *IncrUserMoneyReq, out *ChangeUserMoneyResp) error {
 	return h.AssetHandler.IncrUserMoney(ctx, in, out)
 }
 
-func (h *assetHandler) DecrUserMoney(ctx context.Context, in *DecrUserMoneyReq, out *DecrUserMoneyResp) error {
+func (h *assetHandler) DecrUserMoney(ctx context.Context, in *DecrUserMoneyReq, out *ChangeUserMoneyResp) error {
 	return h.AssetHandler.DecrUserMoney(ctx, in, out)
 }
 
@@ -501,11 +501,11 @@ func (h *assetHandler) GetUserCoinMulti(ctx context.Context, in *GetUserCoinMult
 	return h.AssetHandler.GetUserCoinMulti(ctx, in, out)
 }
 
-func (h *assetHandler) IncrUserCoin(ctx context.Context, in *IncrUserCoinReq, out *IncrUserCoinResp) error {
+func (h *assetHandler) IncrUserCoin(ctx context.Context, in *IncrUserCoinReq, out *ChangeUserCoinResp) error {
 	return h.AssetHandler.IncrUserCoin(ctx, in, out)
 }
 
-func (h *assetHandler) DecrUserCoin(ctx context.Context, in *DecrUserCoinReq, out *DecrUserCoinResp) error {
+func (h *assetHandler) DecrUserCoin(ctx context.Context, in *DecrUserCoinReq, out *ChangeUserCoinResp) error {
 	return h.AssetHandler.DecrUserCoin(ctx, in, out)
 }
 
@@ -521,11 +521,11 @@ func (h *assetHandler) GetAnchorCoinMulti(ctx context.Context, in *GetAnchorCoin
 	return h.AssetHandler.GetAnchorCoinMulti(ctx, in, out)
 }
 
-func (h *assetHandler) IncrAnchorCoin(ctx context.Context, in *IncrAnchorCoinReq, out *IncrAnchorCoinResp) error {
+func (h *assetHandler) IncrAnchorCoin(ctx context.Context, in *IncrAnchorCoinReq, out *ChangeAnchorCoinResp) error {
 	return h.AssetHandler.IncrAnchorCoin(ctx, in, out)
 }
 
-func (h *assetHandler) DecrAnchorCoin(ctx context.Context, in *DecrAnchorCoinReq, out *DecrAnchorCoinResp) error {
+func (h *assetHandler) DecrAnchorCoin(ctx context.Context, in *DecrAnchorCoinReq, out *ChangeAnchorCoinResp) error {
 	return h.AssetHandler.DecrAnchorCoin(ctx, in, out)
 }
 
@@ -541,11 +541,11 @@ func (h *assetHandler) GetUnionCoinMulti(ctx context.Context, in *GetUnionCoinMu
 	return h.AssetHandler.GetUnionCoinMulti(ctx, in, out)
 }
 
-func (h *assetHandler) IncrUnionCoin(ctx context.Context, in *IncrUnionCoinReq, out *IncrUnionCoinResp) error {
+func (h *assetHandler) IncrUnionCoin(ctx context.Context, in *IncrUnionCoinReq, out *ChangeUnionCoinResp) error {
 	return h.AssetHandler.IncrUnionCoin(ctx, in, out)
 }
 
-func (h *assetHandler) DecrUnionCoin(ctx context.Context, in *DecrUnionCoinReq, out *DecrUnionCoinResp) error {
+func (h *assetHandler) DecrUnionCoin(ctx context.Context, in *DecrUnionCoinReq, out *ChangeUnionCoinResp) error {
 	return h.AssetHandler.DecrUnionCoin(ctx, in, out)
 }
 
@@ -561,11 +561,11 @@ func (h *assetHandler) GetMerchantMoneyMulti(ctx context.Context, in *GetMerchan
 	return h.AssetHandler.GetMerchantMoneyMulti(ctx, in, out)
 }
 
-func (h *assetHandler) IncrMerchantMoney(ctx context.Context, in *IncrMerchantMoneyReq, out *IncrMerchantMoneyResp) error {
+func (h *assetHandler) IncrMerchantMoney(ctx context.Context, in *IncrMerchantMoneyReq, out *ChangeMerchantMoneyResp) error {
 	return h.AssetHandler.IncrMerchantMoney(ctx, in, out)
 }
 
-func (h *assetHandler) DecrMerchantMoney(ctx context.Context, in *DecrMerchantMoneyReq, out *DecrMerchantMoneyResp) error {
+func (h *assetHandler) DecrMerchantMoney(ctx context.Context, in *DecrMerchantMoneyReq, out *ChangeMerchantMoneyResp) error {
 	return h.AssetHandler.DecrMerchantMoney(ctx, in, out)
 }
 
@@ -581,11 +581,11 @@ func (h *assetHandler) GetMerchantCoinMulti(ctx context.Context, in *GetMerchant
 	return h.AssetHandler.GetMerchantCoinMulti(ctx, in, out)
 }
 
-func (h *assetHandler) IncrMerchantCoin(ctx context.Context, in *IncrMerchantCoinReq, out *IncrMerchantCoinResp) error {
+func (h *assetHandler) IncrMerchantCoin(ctx context.Context, in *IncrMerchantCoinReq, out *ChangeMerchantCoinResp) error {
 	return h.AssetHandler.IncrMerchantCoin(ctx, in, out)
 }
 
-func (h *assetHandler) DecrMerchantCoin(ctx context.Context, in *DecrMerchantCoinReq, out *DecrMerchantCoinResp) error {
+func (h *assetHandler) DecrMerchantCoin(ctx context.Context, in *DecrMerchantCoinReq, out *ChangeMerchantCoinResp) error {
 	return h.AssetHandler.DecrMerchantCoin(ctx, in, out)
 }
 
