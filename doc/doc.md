@@ -3,8 +3,8 @@
 
 ## Table of Contents
 
-- [svc.biz.account/account.proto](#svc-biz-account_account-proto)
-    - [Account](#svc-biz-account-Account)
+- [svc.web.streamer/streamer.proto](#svc-web-streamer_streamer-proto)
+    - [Streamer](#svc-web-streamer-Streamer)
   
 - [svc.infra.setting/setting.proto](#svc-infra-setting_setting-proto)
     - [SettingGreetingReq](#svc-infra-setting-SettingGreetingReq)
@@ -14,12 +14,6 @@
   
 - [svc.web.viewer/viewer.proto](#svc-web-viewer_viewer-proto)
     - [Viewer](#svc-web-viewer-Viewer)
-  
-- [svc.web.dashboard/dashboard.proto](#svc-web-dashboard_dashboard-proto)
-    - [Dashboard](#svc-web-dashboard-Dashboard)
-  
-- [svc.web.streamer/streamer.proto](#svc-web-streamer_streamer-proto)
-    - [Streamer](#svc-web-streamer-Streamer)
   
 - [svc.biz.gift/gift.proto](#svc-biz-gift_gift-proto)
     - [GiftAddReq](#svc-biz-gift-GiftAddReq)
@@ -51,14 +45,20 @@
     - [Gift](#svc-biz-gift-Gift)
     - [YourService](#svc-biz-gift-YourService)
   
+- [svc.web.dashboard/dashboard.proto](#svc-web-dashboard_dashboard-proto)
+    - [Dashboard](#svc-web-dashboard-Dashboard)
+  
+- [svc.biz.account/account.proto](#svc-biz-account_account-proto)
+    - [Account](#svc-biz-account-Account)
+  
 - [Scalar Value Types](#scalar-value-types)
 
 
 
-<a name="svc-biz-account_account-proto"></a>
+<a name="svc-web-streamer_streamer-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## svc.biz.account/account.proto
+## svc.web.streamer/streamer.proto
 
 
  
@@ -68,9 +68,9 @@
  
 
 
-<a name="svc-biz-account-Account"></a>
+<a name="svc-web-streamer-Streamer"></a>
 
-### Account
+### Streamer
 
 
 | Method Name | Request Type | Response Type | Description |
@@ -152,56 +152,6 @@
 <a name="svc-web-viewer-Viewer"></a>
 
 ### Viewer
-
-
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-
- 
-
-
-
-<a name="svc-web-dashboard_dashboard-proto"></a>
-<p align="right"><a href="#top">Top</a></p>
-
-## svc.web.dashboard/dashboard.proto
-
-
- 
-
- 
-
- 
-
-
-<a name="svc-web-dashboard-Dashboard"></a>
-
-### Dashboard
-
-
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-
- 
-
-
-
-<a name="svc-web-streamer_streamer-proto"></a>
-<p align="right"><a href="#top">Top</a></p>
-
-## svc.web.streamer/streamer.proto
-
-
- 
-
- 
-
- 
-
-
-<a name="svc-web-streamer-Streamer"></a>
-
-### Streamer
 
 
 | Method Name | Request Type | Response Type | Description |
@@ -642,6 +592,56 @@
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
 | EmptyMethod | [.google.protobuf.Empty](#google-protobuf-Empty) | [.google.protobuf.Empty](#google-protobuf-Empty) | 使用Empty作为返回类型的RPC |
+
+ 
+
+
+
+<a name="svc-web-dashboard_dashboard-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.web.dashboard/dashboard.proto
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="svc-web-dashboard-Dashboard"></a>
+
+### Dashboard
+
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+
+ 
+
+
+
+<a name="svc-biz-account_account-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.biz.account/account.proto
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="svc-biz-account-Account"></a>
+
+### Account
+
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
 
  
 
