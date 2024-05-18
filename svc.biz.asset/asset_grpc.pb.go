@@ -19,31 +19,36 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Asset_GetUserMoney_FullMethodName           = "/svc.biz.asset.Asset/GetUserMoney"
-	Asset_GetUserMoneyMulti_FullMethodName      = "/svc.biz.asset.Asset/GetUserMoneyMulti"
-	Asset_IncrUserMoney_FullMethodName          = "/svc.biz.asset.Asset/IncrUserMoney"
-	Asset_DecrUserMoney_FullMethodName          = "/svc.biz.asset.Asset/DecrUserMoney"
-	Asset_ListUserMoneyDetail_FullMethodName    = "/svc.biz.asset.Asset/ListUserMoneyDetail"
-	Asset_GetUserCoin_FullMethodName            = "/svc.biz.asset.Asset/GetUserCoin"
-	Asset_GetUserCoinMulti_FullMethodName       = "/svc.biz.asset.Asset/GetUserCoinMulti"
-	Asset_IncrUserCoin_FullMethodName           = "/svc.biz.asset.Asset/IncrUserCoin"
-	Asset_DecrUserCoin_FullMethodName           = "/svc.biz.asset.Asset/DecrUserCoin"
-	Asset_ListUserCoinDetail_FullMethodName     = "/svc.biz.asset.Asset/ListUserCoinDetail"
-	Asset_GetAnchorCoin_FullMethodName          = "/svc.biz.asset.Asset/GetAnchorCoin"
-	Asset_GetAnchorCoinMulti_FullMethodName     = "/svc.biz.asset.Asset/GetAnchorCoinMulti"
-	Asset_IncrAnchorCoin_FullMethodName         = "/svc.biz.asset.Asset/IncrAnchorCoin"
-	Asset_DecrAnchorCoin_FullMethodName         = "/svc.biz.asset.Asset/DecrAnchorCoin"
-	Asset_ListAnchorCoinDetail_FullMethodName   = "/svc.biz.asset.Asset/ListAnchorCoinDetail"
-	Asset_GetUnionCoin_FullMethodName           = "/svc.biz.asset.Asset/GetUnionCoin"
-	Asset_GetUnionCoinMulti_FullMethodName      = "/svc.biz.asset.Asset/GetUnionCoinMulti"
-	Asset_IncrUnionCoin_FullMethodName          = "/svc.biz.asset.Asset/IncrUnionCoin"
-	Asset_DecrUnionCoin_FullMethodName          = "/svc.biz.asset.Asset/DecrUnionCoin"
-	Asset_ListUnionCoinDetail_FullMethodName    = "/svc.biz.asset.Asset/ListUnionCoinDetail"
-	Asset_GetMerchantCoin_FullMethodName        = "/svc.biz.asset.Asset/GetMerchantCoin"
-	Asset_GetMerchantCoinMulti_FullMethodName   = "/svc.biz.asset.Asset/GetMerchantCoinMulti"
-	Asset_IncrMerchantCoin_FullMethodName       = "/svc.biz.asset.Asset/IncrMerchantCoin"
-	Asset_DecrMerchantCoin_FullMethodName       = "/svc.biz.asset.Asset/DecrMerchantCoin"
-	Asset_ListMerchantCoinDetail_FullMethodName = "/svc.biz.asset.Asset/ListMerchantCoinDetail"
+	Asset_GetUserMoney_FullMethodName            = "/svc.biz.asset.Asset/GetUserMoney"
+	Asset_GetUserMoneyMulti_FullMethodName       = "/svc.biz.asset.Asset/GetUserMoneyMulti"
+	Asset_IncrUserMoney_FullMethodName           = "/svc.biz.asset.Asset/IncrUserMoney"
+	Asset_DecrUserMoney_FullMethodName           = "/svc.biz.asset.Asset/DecrUserMoney"
+	Asset_ListUserMoneyDetail_FullMethodName     = "/svc.biz.asset.Asset/ListUserMoneyDetail"
+	Asset_GetUserCoin_FullMethodName             = "/svc.biz.asset.Asset/GetUserCoin"
+	Asset_GetUserCoinMulti_FullMethodName        = "/svc.biz.asset.Asset/GetUserCoinMulti"
+	Asset_IncrUserCoin_FullMethodName            = "/svc.biz.asset.Asset/IncrUserCoin"
+	Asset_DecrUserCoin_FullMethodName            = "/svc.biz.asset.Asset/DecrUserCoin"
+	Asset_ListUserCoinDetail_FullMethodName      = "/svc.biz.asset.Asset/ListUserCoinDetail"
+	Asset_GetAnchorCoin_FullMethodName           = "/svc.biz.asset.Asset/GetAnchorCoin"
+	Asset_GetAnchorCoinMulti_FullMethodName      = "/svc.biz.asset.Asset/GetAnchorCoinMulti"
+	Asset_IncrAnchorCoin_FullMethodName          = "/svc.biz.asset.Asset/IncrAnchorCoin"
+	Asset_DecrAnchorCoin_FullMethodName          = "/svc.biz.asset.Asset/DecrAnchorCoin"
+	Asset_ListAnchorCoinDetail_FullMethodName    = "/svc.biz.asset.Asset/ListAnchorCoinDetail"
+	Asset_GetUnionCoin_FullMethodName            = "/svc.biz.asset.Asset/GetUnionCoin"
+	Asset_GetUnionCoinMulti_FullMethodName       = "/svc.biz.asset.Asset/GetUnionCoinMulti"
+	Asset_IncrUnionCoin_FullMethodName           = "/svc.biz.asset.Asset/IncrUnionCoin"
+	Asset_DecrUnionCoin_FullMethodName           = "/svc.biz.asset.Asset/DecrUnionCoin"
+	Asset_ListUnionCoinDetail_FullMethodName     = "/svc.biz.asset.Asset/ListUnionCoinDetail"
+	Asset_GetMerchantMoney_FullMethodName        = "/svc.biz.asset.Asset/GetMerchantMoney"
+	Asset_GetMerchantMoneyMulti_FullMethodName   = "/svc.biz.asset.Asset/GetMerchantMoneyMulti"
+	Asset_IncrMerchantMoney_FullMethodName       = "/svc.biz.asset.Asset/IncrMerchantMoney"
+	Asset_DecrMerchantMoney_FullMethodName       = "/svc.biz.asset.Asset/DecrMerchantMoney"
+	Asset_ListMerchantMoneyDetail_FullMethodName = "/svc.biz.asset.Asset/ListMerchantMoneyDetail"
+	Asset_GetMerchantCoin_FullMethodName         = "/svc.biz.asset.Asset/GetMerchantCoin"
+	Asset_GetMerchantCoinMulti_FullMethodName    = "/svc.biz.asset.Asset/GetMerchantCoinMulti"
+	Asset_IncrMerchantCoin_FullMethodName        = "/svc.biz.asset.Asset/IncrMerchantCoin"
+	Asset_DecrMerchantCoin_FullMethodName        = "/svc.biz.asset.Asset/DecrMerchantCoin"
+	Asset_ListMerchantCoinDetail_FullMethodName  = "/svc.biz.asset.Asset/ListMerchantCoinDetail"
 )
 
 // AssetClient is the client API for Asset service.
@@ -74,6 +79,12 @@ type AssetClient interface {
 	IncrUnionCoin(ctx context.Context, in *IncrUnionCoinReq, opts ...grpc.CallOption) (*IncrUnionCoinResp, error)
 	DecrUnionCoin(ctx context.Context, in *DecrUnionCoinReq, opts ...grpc.CallOption) (*DecrUnionCoinResp, error)
 	ListUnionCoinDetail(ctx context.Context, in *ListUnionCoinDetailReq, opts ...grpc.CallOption) (*ListUnionCoinDetailResp, error)
+	// 余额 money
+	GetMerchantMoney(ctx context.Context, in *GetMerchantMoneyReq, opts ...grpc.CallOption) (*GetMerchantMoneyResp, error)
+	GetMerchantMoneyMulti(ctx context.Context, in *GetMerchantMoneyMultiReq, opts ...grpc.CallOption) (*GetMerchantMoneyMultiResp, error)
+	IncrMerchantMoney(ctx context.Context, in *IncrMerchantMoneyReq, opts ...grpc.CallOption) (*IncrMerchantMoneyResp, error)
+	DecrMerchantMoney(ctx context.Context, in *DecrMerchantMoneyReq, opts ...grpc.CallOption) (*DecrMerchantMoneyResp, error)
+	ListMerchantMoneyDetail(ctx context.Context, in *ListMerchantMoneyDetailReq, opts ...grpc.CallOption) (*ListMerchantMoneyDetailResp, error)
 	// 虚拟币coin
 	GetMerchantCoin(ctx context.Context, in *GetMerchantCoinReq, opts ...grpc.CallOption) (*GetMerchantCoinResp, error)
 	GetMerchantCoinMulti(ctx context.Context, in *GetMerchantCoinMultiReq, opts ...grpc.CallOption) (*GetMerchantCoinMultiResp, error)
@@ -270,6 +281,51 @@ func (c *assetClient) ListUnionCoinDetail(ctx context.Context, in *ListUnionCoin
 	return out, nil
 }
 
+func (c *assetClient) GetMerchantMoney(ctx context.Context, in *GetMerchantMoneyReq, opts ...grpc.CallOption) (*GetMerchantMoneyResp, error) {
+	out := new(GetMerchantMoneyResp)
+	err := c.cc.Invoke(ctx, Asset_GetMerchantMoney_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *assetClient) GetMerchantMoneyMulti(ctx context.Context, in *GetMerchantMoneyMultiReq, opts ...grpc.CallOption) (*GetMerchantMoneyMultiResp, error) {
+	out := new(GetMerchantMoneyMultiResp)
+	err := c.cc.Invoke(ctx, Asset_GetMerchantMoneyMulti_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *assetClient) IncrMerchantMoney(ctx context.Context, in *IncrMerchantMoneyReq, opts ...grpc.CallOption) (*IncrMerchantMoneyResp, error) {
+	out := new(IncrMerchantMoneyResp)
+	err := c.cc.Invoke(ctx, Asset_IncrMerchantMoney_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *assetClient) DecrMerchantMoney(ctx context.Context, in *DecrMerchantMoneyReq, opts ...grpc.CallOption) (*DecrMerchantMoneyResp, error) {
+	out := new(DecrMerchantMoneyResp)
+	err := c.cc.Invoke(ctx, Asset_DecrMerchantMoney_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *assetClient) ListMerchantMoneyDetail(ctx context.Context, in *ListMerchantMoneyDetailReq, opts ...grpc.CallOption) (*ListMerchantMoneyDetailResp, error) {
+	out := new(ListMerchantMoneyDetailResp)
+	err := c.cc.Invoke(ctx, Asset_ListMerchantMoneyDetail_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *assetClient) GetMerchantCoin(ctx context.Context, in *GetMerchantCoinReq, opts ...grpc.CallOption) (*GetMerchantCoinResp, error) {
 	out := new(GetMerchantCoinResp)
 	err := c.cc.Invoke(ctx, Asset_GetMerchantCoin_FullMethodName, in, out, opts...)
@@ -343,6 +399,12 @@ type AssetServer interface {
 	IncrUnionCoin(context.Context, *IncrUnionCoinReq) (*IncrUnionCoinResp, error)
 	DecrUnionCoin(context.Context, *DecrUnionCoinReq) (*DecrUnionCoinResp, error)
 	ListUnionCoinDetail(context.Context, *ListUnionCoinDetailReq) (*ListUnionCoinDetailResp, error)
+	// 余额 money
+	GetMerchantMoney(context.Context, *GetMerchantMoneyReq) (*GetMerchantMoneyResp, error)
+	GetMerchantMoneyMulti(context.Context, *GetMerchantMoneyMultiReq) (*GetMerchantMoneyMultiResp, error)
+	IncrMerchantMoney(context.Context, *IncrMerchantMoneyReq) (*IncrMerchantMoneyResp, error)
+	DecrMerchantMoney(context.Context, *DecrMerchantMoneyReq) (*DecrMerchantMoneyResp, error)
+	ListMerchantMoneyDetail(context.Context, *ListMerchantMoneyDetailReq) (*ListMerchantMoneyDetailResp, error)
 	// 虚拟币coin
 	GetMerchantCoin(context.Context, *GetMerchantCoinReq) (*GetMerchantCoinResp, error)
 	GetMerchantCoinMulti(context.Context, *GetMerchantCoinMultiReq) (*GetMerchantCoinMultiResp, error)
@@ -415,6 +477,21 @@ func (UnimplementedAssetServer) DecrUnionCoin(context.Context, *DecrUnionCoinReq
 }
 func (UnimplementedAssetServer) ListUnionCoinDetail(context.Context, *ListUnionCoinDetailReq) (*ListUnionCoinDetailResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListUnionCoinDetail not implemented")
+}
+func (UnimplementedAssetServer) GetMerchantMoney(context.Context, *GetMerchantMoneyReq) (*GetMerchantMoneyResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetMerchantMoney not implemented")
+}
+func (UnimplementedAssetServer) GetMerchantMoneyMulti(context.Context, *GetMerchantMoneyMultiReq) (*GetMerchantMoneyMultiResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetMerchantMoneyMulti not implemented")
+}
+func (UnimplementedAssetServer) IncrMerchantMoney(context.Context, *IncrMerchantMoneyReq) (*IncrMerchantMoneyResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method IncrMerchantMoney not implemented")
+}
+func (UnimplementedAssetServer) DecrMerchantMoney(context.Context, *DecrMerchantMoneyReq) (*DecrMerchantMoneyResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DecrMerchantMoney not implemented")
+}
+func (UnimplementedAssetServer) ListMerchantMoneyDetail(context.Context, *ListMerchantMoneyDetailReq) (*ListMerchantMoneyDetailResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListMerchantMoneyDetail not implemented")
 }
 func (UnimplementedAssetServer) GetMerchantCoin(context.Context, *GetMerchantCoinReq) (*GetMerchantCoinResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMerchantCoin not implemented")
@@ -804,6 +881,96 @@ func _Asset_ListUnionCoinDetail_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Asset_GetMerchantMoney_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetMerchantMoneyReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AssetServer).GetMerchantMoney(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Asset_GetMerchantMoney_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AssetServer).GetMerchantMoney(ctx, req.(*GetMerchantMoneyReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Asset_GetMerchantMoneyMulti_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetMerchantMoneyMultiReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AssetServer).GetMerchantMoneyMulti(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Asset_GetMerchantMoneyMulti_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AssetServer).GetMerchantMoneyMulti(ctx, req.(*GetMerchantMoneyMultiReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Asset_IncrMerchantMoney_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IncrMerchantMoneyReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AssetServer).IncrMerchantMoney(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Asset_IncrMerchantMoney_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AssetServer).IncrMerchantMoney(ctx, req.(*IncrMerchantMoneyReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Asset_DecrMerchantMoney_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DecrMerchantMoneyReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AssetServer).DecrMerchantMoney(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Asset_DecrMerchantMoney_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AssetServer).DecrMerchantMoney(ctx, req.(*DecrMerchantMoneyReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Asset_ListMerchantMoneyDetail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListMerchantMoneyDetailReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AssetServer).ListMerchantMoneyDetail(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Asset_ListMerchantMoneyDetail_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AssetServer).ListMerchantMoneyDetail(ctx, req.(*ListMerchantMoneyDetailReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Asset_GetMerchantCoin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetMerchantCoinReq)
 	if err := dec(in); err != nil {
@@ -980,6 +1147,26 @@ var Asset_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListUnionCoinDetail",
 			Handler:    _Asset_ListUnionCoinDetail_Handler,
+		},
+		{
+			MethodName: "GetMerchantMoney",
+			Handler:    _Asset_GetMerchantMoney_Handler,
+		},
+		{
+			MethodName: "GetMerchantMoneyMulti",
+			Handler:    _Asset_GetMerchantMoneyMulti_Handler,
+		},
+		{
+			MethodName: "IncrMerchantMoney",
+			Handler:    _Asset_IncrMerchantMoney_Handler,
+		},
+		{
+			MethodName: "DecrMerchantMoney",
+			Handler:    _Asset_DecrMerchantMoney_Handler,
+		},
+		{
+			MethodName: "ListMerchantMoneyDetail",
+			Handler:    _Asset_ListMerchantMoneyDetail_Handler,
 		},
 		{
 			MethodName: "GetMerchantCoin",
