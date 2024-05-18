@@ -11,6 +11,7 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -19,29 +20,133 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Gift_Add_FullMethodName        = "/svc.biz.gift.Gift/Add"
-	Gift_Get_FullMethodName        = "/svc.biz.gift.Gift/Get"
-	Gift_Update_FullMethodName     = "/svc.biz.gift.Gift/Update"
-	Gift_ListAdmin_FullMethodName  = "/svc.biz.gift.Gift/ListAdmin"
-	Gift_List_FullMethodName       = "/svc.biz.gift.Gift/List"
-	Gift_Send_FullMethodName       = "/svc.biz.gift.Gift/Send"
-	Gift_SendRecord_FullMethodName = "/svc.biz.gift.Gift/SendRecord"
-	Gift_GetRecord_FullMethodName  = "/svc.biz.gift.Gift/GetRecord"
-	Gift_LiveStat_FullMethodName   = "/svc.biz.gift.Gift/LiveStat"
+	YourService_EmptyMethod_FullMethodName = "/svc.biz.gift.YourService/EmptyMethod"
+)
+
+// YourServiceClient is the client API for YourService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type YourServiceClient interface {
+	// 使用Empty作为返回类型的RPC
+	EmptyMethod(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
+}
+
+type yourServiceClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewYourServiceClient(cc grpc.ClientConnInterface) YourServiceClient {
+	return &yourServiceClient{cc}
+}
+
+func (c *yourServiceClient) EmptyMethod(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, YourService_EmptyMethod_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// YourServiceServer is the server API for YourService service.
+// All implementations must embed UnimplementedYourServiceServer
+// for forward compatibility
+type YourServiceServer interface {
+	// 使用Empty作为返回类型的RPC
+	EmptyMethod(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
+	mustEmbedUnimplementedYourServiceServer()
+}
+
+// UnimplementedYourServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedYourServiceServer struct {
+}
+
+func (UnimplementedYourServiceServer) EmptyMethod(context.Context, *emptypb.Empty) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EmptyMethod not implemented")
+}
+func (UnimplementedYourServiceServer) mustEmbedUnimplementedYourServiceServer() {}
+
+// UnsafeYourServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to YourServiceServer will
+// result in compilation errors.
+type UnsafeYourServiceServer interface {
+	mustEmbedUnimplementedYourServiceServer()
+}
+
+func RegisterYourServiceServer(s grpc.ServiceRegistrar, srv YourServiceServer) {
+	s.RegisterService(&YourService_ServiceDesc, srv)
+}
+
+func _YourService_EmptyMethod_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(YourServiceServer).EmptyMethod(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: YourService_EmptyMethod_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(YourServiceServer).EmptyMethod(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// YourService_ServiceDesc is the grpc.ServiceDesc for YourService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var YourService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "svc.biz.gift.YourService",
+	HandlerType: (*YourServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "EmptyMethod",
+			Handler:    _YourService_EmptyMethod_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "svc.biz.gift/gift.proto",
+}
+
+const (
+	Gift_Add_FullMethodName              = "/svc.biz.gift.Gift/Add"
+	Gift_Get_FullMethodName              = "/svc.biz.gift.Gift/Get"
+	Gift_Update_FullMethodName           = "/svc.biz.gift.Gift/Update"
+	Gift_ListAdmin_FullMethodName        = "/svc.biz.gift.Gift/ListAdmin"
+	Gift_ListOnlineByType_FullMethodName = "/svc.biz.gift.Gift/ListOnlineByType"
+	Gift_ListOnlineAll_FullMethodName    = "/svc.biz.gift.Gift/ListOnlineAll"
+	Gift_Send_FullMethodName             = "/svc.biz.gift.Gift/Send"
+	Gift_SendRecord_FullMethodName       = "/svc.biz.gift.Gift/SendRecord"
+	Gift_GetRecord_FullMethodName        = "/svc.biz.gift.Gift/GetRecord"
+	Gift_LiveStat_FullMethodName         = "/svc.biz.gift.Gift/LiveStat"
 )
 
 // GiftClient is the client API for Gift service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type GiftClient interface {
+	// Add 添加礼物
 	Add(ctx context.Context, in *GiftAddReq, opts ...grpc.CallOption) (*GiftAddResp, error)
+	// Get 查询礼物
 	Get(ctx context.Context, in *GiftGetReq, opts ...grpc.CallOption) (*GiftGetResp, error)
+	// Update 更新礼物
 	Update(ctx context.Context, in *GiftUpdateReq, opts ...grpc.CallOption) (*GiftUpdateResp, error)
-	ListAdmin(ctx context.Context, in *GiftListAdminReq, opts ...grpc.CallOption) (*GiftListAdminResp, error)
-	List(ctx context.Context, in *GiftListReq, opts ...grpc.CallOption) (*GiftListResp, error)
+	// ListAdmin 后台查询礼物列表接口
+	ListAdmin(ctx context.Context, in *ListAdminReq, opts ...grpc.CallOption) (*ListAdminResp, error)
+	// ListOnlineByType 前台房间礼物查询接口
+	ListOnlineByType(ctx context.Context, in *ListOnlineByTypeReq, opts ...grpc.CallOption) (*ListOnlineResp, error)
+	// ListOnlineAll 所有礼物的缓存接口
+	ListOnlineAll(ctx context.Context, in *ListOnlineAllReq, opts ...grpc.CallOption) (*ListOnlineResp, error)
+	// Send 送礼物接口
 	Send(ctx context.Context, in *GiftSendReq, opts ...grpc.CallOption) (*GiftSendResp, error)
+	// SendRecord 送礼记录
 	SendRecord(ctx context.Context, in *GiftSendRecordReq, opts ...grpc.CallOption) (*GiftSendRecordResp, error)
+	// GetRecord 收礼记录
 	GetRecord(ctx context.Context, in *GiftGetRecordReq, opts ...grpc.CallOption) (*GiftGetRecordResp, error)
+	// LiveStat 直播统计
 	LiveStat(ctx context.Context, in *LiveStatReq, opts ...grpc.CallOption) (*LiveStatResp, error)
 }
 
@@ -80,8 +185,8 @@ func (c *giftClient) Update(ctx context.Context, in *GiftUpdateReq, opts ...grpc
 	return out, nil
 }
 
-func (c *giftClient) ListAdmin(ctx context.Context, in *GiftListAdminReq, opts ...grpc.CallOption) (*GiftListAdminResp, error) {
-	out := new(GiftListAdminResp)
+func (c *giftClient) ListAdmin(ctx context.Context, in *ListAdminReq, opts ...grpc.CallOption) (*ListAdminResp, error) {
+	out := new(ListAdminResp)
 	err := c.cc.Invoke(ctx, Gift_ListAdmin_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -89,9 +194,18 @@ func (c *giftClient) ListAdmin(ctx context.Context, in *GiftListAdminReq, opts .
 	return out, nil
 }
 
-func (c *giftClient) List(ctx context.Context, in *GiftListReq, opts ...grpc.CallOption) (*GiftListResp, error) {
-	out := new(GiftListResp)
-	err := c.cc.Invoke(ctx, Gift_List_FullMethodName, in, out, opts...)
+func (c *giftClient) ListOnlineByType(ctx context.Context, in *ListOnlineByTypeReq, opts ...grpc.CallOption) (*ListOnlineResp, error) {
+	out := new(ListOnlineResp)
+	err := c.cc.Invoke(ctx, Gift_ListOnlineByType_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *giftClient) ListOnlineAll(ctx context.Context, in *ListOnlineAllReq, opts ...grpc.CallOption) (*ListOnlineResp, error) {
+	out := new(ListOnlineResp)
+	err := c.cc.Invoke(ctx, Gift_ListOnlineAll_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -138,14 +252,25 @@ func (c *giftClient) LiveStat(ctx context.Context, in *LiveStatReq, opts ...grpc
 // All implementations must embed UnimplementedGiftServer
 // for forward compatibility
 type GiftServer interface {
+	// Add 添加礼物
 	Add(context.Context, *GiftAddReq) (*GiftAddResp, error)
+	// Get 查询礼物
 	Get(context.Context, *GiftGetReq) (*GiftGetResp, error)
+	// Update 更新礼物
 	Update(context.Context, *GiftUpdateReq) (*GiftUpdateResp, error)
-	ListAdmin(context.Context, *GiftListAdminReq) (*GiftListAdminResp, error)
-	List(context.Context, *GiftListReq) (*GiftListResp, error)
+	// ListAdmin 后台查询礼物列表接口
+	ListAdmin(context.Context, *ListAdminReq) (*ListAdminResp, error)
+	// ListOnlineByType 前台房间礼物查询接口
+	ListOnlineByType(context.Context, *ListOnlineByTypeReq) (*ListOnlineResp, error)
+	// ListOnlineAll 所有礼物的缓存接口
+	ListOnlineAll(context.Context, *ListOnlineAllReq) (*ListOnlineResp, error)
+	// Send 送礼物接口
 	Send(context.Context, *GiftSendReq) (*GiftSendResp, error)
+	// SendRecord 送礼记录
 	SendRecord(context.Context, *GiftSendRecordReq) (*GiftSendRecordResp, error)
+	// GetRecord 收礼记录
 	GetRecord(context.Context, *GiftGetRecordReq) (*GiftGetRecordResp, error)
+	// LiveStat 直播统计
 	LiveStat(context.Context, *LiveStatReq) (*LiveStatResp, error)
 	mustEmbedUnimplementedGiftServer()
 }
@@ -163,11 +288,14 @@ func (UnimplementedGiftServer) Get(context.Context, *GiftGetReq) (*GiftGetResp, 
 func (UnimplementedGiftServer) Update(context.Context, *GiftUpdateReq) (*GiftUpdateResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedGiftServer) ListAdmin(context.Context, *GiftListAdminReq) (*GiftListAdminResp, error) {
+func (UnimplementedGiftServer) ListAdmin(context.Context, *ListAdminReq) (*ListAdminResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListAdmin not implemented")
 }
-func (UnimplementedGiftServer) List(context.Context, *GiftListReq) (*GiftListResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
+func (UnimplementedGiftServer) ListOnlineByType(context.Context, *ListOnlineByTypeReq) (*ListOnlineResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListOnlineByType not implemented")
+}
+func (UnimplementedGiftServer) ListOnlineAll(context.Context, *ListOnlineAllReq) (*ListOnlineResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListOnlineAll not implemented")
 }
 func (UnimplementedGiftServer) Send(context.Context, *GiftSendReq) (*GiftSendResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Send not implemented")
@@ -249,7 +377,7 @@ func _Gift_Update_Handler(srv interface{}, ctx context.Context, dec func(interfa
 }
 
 func _Gift_ListAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GiftListAdminReq)
+	in := new(ListAdminReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -261,25 +389,43 @@ func _Gift_ListAdmin_Handler(srv interface{}, ctx context.Context, dec func(inte
 		FullMethod: Gift_ListAdmin_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GiftServer).ListAdmin(ctx, req.(*GiftListAdminReq))
+		return srv.(GiftServer).ListAdmin(ctx, req.(*ListAdminReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Gift_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GiftListReq)
+func _Gift_ListOnlineByType_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListOnlineByTypeReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GiftServer).List(ctx, in)
+		return srv.(GiftServer).ListOnlineByType(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Gift_List_FullMethodName,
+		FullMethod: Gift_ListOnlineByType_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GiftServer).List(ctx, req.(*GiftListReq))
+		return srv.(GiftServer).ListOnlineByType(ctx, req.(*ListOnlineByTypeReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Gift_ListOnlineAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListOnlineAllReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GiftServer).ListOnlineAll(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Gift_ListOnlineAll_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GiftServer).ListOnlineAll(ctx, req.(*ListOnlineAllReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -380,8 +526,12 @@ var Gift_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Gift_ListAdmin_Handler,
 		},
 		{
-			MethodName: "List",
-			Handler:    _Gift_List_Handler,
+			MethodName: "ListOnlineByType",
+			Handler:    _Gift_ListOnlineByType_Handler,
+		},
+		{
+			MethodName: "ListOnlineAll",
+			Handler:    _Gift_ListOnlineAll_Handler,
 		},
 		{
 			MethodName: "Send",
