@@ -284,12 +284,11 @@ CategoryInfo 分类详情
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
+| Get | [GetReq](#svc-biz-room-GetReq) | [GetResp](#svc-biz-room-GetResp) | 获取分类 |
 | Create | [CreateReq](#svc-biz-room-CreateReq) | [CreateResp](#svc-biz-room-CreateResp) | 创建分类 |
 | Update | [UpdateReq](#svc-biz-room-UpdateReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | 更新某个分类信息 |
 | Delete | [DeleteReq](#svc-biz-room-DeleteReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | 删除一个分类信息 |
-| Get | [GetReq](#svc-biz-room-GetReq) | [GetResp](#svc-biz-room-GetResp) | 获取某个分类信息 |
 | List | [ListReq](#svc-biz-room-ListReq) | [ListResp](#svc-biz-room-ListResp) | 获取分类，返回子级集合 |
-| ListAll | [ListReq](#svc-biz-room-ListReq) | [ListResp](#svc-biz-room-ListResp) | 获取分类 |
 | ListTree | [ListTreeReq](#svc-biz-room-ListTreeReq) | [ListTreeResp](#svc-biz-room-ListTreeResp) | 获取全部板块分类（分类及子分类树结构） |
 
  

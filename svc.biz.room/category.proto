@@ -10,18 +10,16 @@ option go_package="./svc.biz.room;room";
 
 // 分类
 service Category {
+  // 获取分类
+  rpc Get(GetReq) returns (GetResp) {}
   // 创建分类
   rpc Create(CreateReq) returns (CreateResp) {}
   // 更新某个分类信息
   rpc Update(UpdateReq) returns (google.protobuf.Empty) {}
   // 删除一个分类信息
   rpc Delete(DeleteReq) returns (google.protobuf.Empty) {}
-  // 获取某个分类信息
-  rpc Get(GetReq) returns (GetResp) {}
   // 获取分类，返回子级集合
   rpc List(ListReq) returns (ListResp) {}
-  // 获取分类
-  rpc ListAll(ListReq) returns (ListResp) {}
   // 获取全部板块分类（分类及子分类树结构）
   rpc ListTree(ListTreeReq) returns (ListTreeResp) {}
 }

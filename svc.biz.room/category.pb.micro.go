@@ -39,18 +39,16 @@ func NewCategoryEndpoints() []*api.Endpoint {
 // Client API for Category service
 
 type CategoryService interface {
+	// 获取分类
+	Get(ctx context.Context, in *GetReq, opts ...client.CallOption) (*GetResp, error)
 	// 创建分类
 	Create(ctx context.Context, in *CreateReq, opts ...client.CallOption) (*CreateResp, error)
 	// 更新某个分类信息
 	Update(ctx context.Context, in *UpdateReq, opts ...client.CallOption) (*emptypb.Empty, error)
 	// 删除一个分类信息
 	Delete(ctx context.Context, in *DeleteReq, opts ...client.CallOption) (*emptypb.Empty, error)
-	// 获取某个分类信息
-	Get(ctx context.Context, in *GetReq, opts ...client.CallOption) (*GetResp, error)
 	// 获取分类，返回子级集合
 	List(ctx context.Context, in *ListReq, opts ...client.CallOption) (*ListResp, error)
-	// 获取分类
-	ListAll(ctx context.Context, in *ListReq, opts ...client.CallOption) (*ListResp, error)
 	// 获取全部板块分类（分类及子分类树结构）
 	ListTree(ctx context.Context, in *ListTreeReq, opts ...client.CallOption) (*ListTreeResp, error)
 }
@@ -65,6 +63,16 @@ func NewCategoryService(name string, c client.Client) CategoryService {
 		c:    c,
 		name: name,
 	}
+}
+
+func (c *categoryService) Get(ctx context.Context, in *GetReq, opts ...client.CallOption) (*GetResp, error) {
+	req := c.c.NewRequest(c.name, "Category.Get", in)
+	out := new(GetResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *categoryService) Create(ctx context.Context, in *CreateReq, opts ...client.CallOption) (*CreateResp, error) {
@@ -97,28 +105,8 @@ func (c *categoryService) Delete(ctx context.Context, in *DeleteReq, opts ...cli
 	return out, nil
 }
 
-func (c *categoryService) Get(ctx context.Context, in *GetReq, opts ...client.CallOption) (*GetResp, error) {
-	req := c.c.NewRequest(c.name, "Category.Get", in)
-	out := new(GetResp)
-	err := c.c.Call(ctx, req, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *categoryService) List(ctx context.Context, in *ListReq, opts ...client.CallOption) (*ListResp, error) {
 	req := c.c.NewRequest(c.name, "Category.List", in)
-	out := new(ListResp)
-	err := c.c.Call(ctx, req, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *categoryService) ListAll(ctx context.Context, in *ListReq, opts ...client.CallOption) (*ListResp, error) {
-	req := c.c.NewRequest(c.name, "Category.ListAll", in)
 	out := new(ListResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
@@ -140,30 +128,27 @@ func (c *categoryService) ListTree(ctx context.Context, in *ListTreeReq, opts ..
 // Server API for Category service
 
 type CategoryHandler interface {
+	// 获取分类
+	Get(context.Context, *GetReq, *GetResp) error
 	// 创建分类
 	Create(context.Context, *CreateReq, *CreateResp) error
 	// 更新某个分类信息
 	Update(context.Context, *UpdateReq, *emptypb.Empty) error
 	// 删除一个分类信息
 	Delete(context.Context, *DeleteReq, *emptypb.Empty) error
-	// 获取某个分类信息
-	Get(context.Context, *GetReq, *GetResp) error
 	// 获取分类，返回子级集合
 	List(context.Context, *ListReq, *ListResp) error
-	// 获取分类
-	ListAll(context.Context, *ListReq, *ListResp) error
 	// 获取全部板块分类（分类及子分类树结构）
 	ListTree(context.Context, *ListTreeReq, *ListTreeResp) error
 }
 
 func RegisterCategoryHandler(s server.Server, hdlr CategoryHandler, opts ...server.HandlerOption) error {
 	type category interface {
+		Get(ctx context.Context, in *GetReq, out *GetResp) error
 		Create(ctx context.Context, in *CreateReq, out *CreateResp) error
 		Update(ctx context.Context, in *UpdateReq, out *emptypb.Empty) error
 		Delete(ctx context.Context, in *DeleteReq, out *emptypb.Empty) error
-		Get(ctx context.Context, in *GetReq, out *GetResp) error
 		List(ctx context.Context, in *ListReq, out *ListResp) error
-		ListAll(ctx context.Context, in *ListReq, out *ListResp) error
 		ListTree(ctx context.Context, in *ListTreeReq, out *ListTreeResp) error
 	}
 	type Category struct {
@@ -175,6 +160,10 @@ func RegisterCategoryHandler(s server.Server, hdlr CategoryHandler, opts ...serv
 
 type categoryHandler struct {
 	CategoryHandler
+}
+
+func (h *categoryHandler) Get(ctx context.Context, in *GetReq, out *GetResp) error {
+	return h.CategoryHandler.Get(ctx, in, out)
 }
 
 func (h *categoryHandler) Create(ctx context.Context, in *CreateReq, out *CreateResp) error {
@@ -189,16 +178,8 @@ func (h *categoryHandler) Delete(ctx context.Context, in *DeleteReq, out *emptyp
 	return h.CategoryHandler.Delete(ctx, in, out)
 }
 
-func (h *categoryHandler) Get(ctx context.Context, in *GetReq, out *GetResp) error {
-	return h.CategoryHandler.Get(ctx, in, out)
-}
-
 func (h *categoryHandler) List(ctx context.Context, in *ListReq, out *ListResp) error {
 	return h.CategoryHandler.List(ctx, in, out)
-}
-
-func (h *categoryHandler) ListAll(ctx context.Context, in *ListReq, out *ListResp) error {
-	return h.CategoryHandler.ListAll(ctx, in, out)
 }
 
 func (h *categoryHandler) ListTree(ctx context.Context, in *ListTreeReq, out *ListTreeResp) error {
