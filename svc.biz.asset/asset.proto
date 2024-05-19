@@ -137,26 +137,18 @@ message UserCoinValue {
   int64 limited_value = 2;// 低权限余额
 }
 message GetUserCoinReq {
-  string merchant_id = 1;
-  string app_id = 2;
   string uid = 3;
 }
 message GetUserCoinResp {
   UserCoinValue value = 1;// 余额
 }
 message GetUserCoinMultiReq {
-  string merchant_id = 1;
-  string app_id = 2;
   repeated string uids = 3;
 }
 message GetUserCoinMultiResp {
-  string merchant_id = 1;
-  string app_id = 2;
   map<string,UserCoinValue> value_map  = 3; // uid->value
 }
 message IncrUserCoinReq {
-  string merchant_id = 1;
-  string app_id = 2;
   string uid = 3;
   UserCoinValue value = 4;
   int64 trans_type = 5; // 交易类别,增加普通余额或低权限余额按此字段自动判断
@@ -164,8 +156,6 @@ message IncrUserCoinReq {
   string summary = 7;//摘要,json 实际会做格式和核心字段校验
 }
 message DecrUserCoinReq {
-  string merchant_id = 1;
-  string app_id = 2;
   string uid = 3;
   int64 value = 4;
   int64 rule = 5;// 扣减规则: 0 仅普通余额 1 仅低权限余额 2 先扣普通后扣低权限 3 先扣低权限后扣普通
@@ -174,8 +164,6 @@ message DecrUserCoinReq {
   string summary = 8;//摘要,json 实际会做格式和核心字段校验
 }
 message ChangeUserCoinResp {
-  string merchant_id = 1;
-  string app_id = 2;
   string uid = 3;
   UserCoinValue new_value = 4;
   string trade_id = 5;// 业务方交易id
@@ -184,8 +172,6 @@ message ChangeUserCoinResp {
   google.protobuf.Timestamp trans_time = 8; // 业务时间
 }
 message ListUserCoinDetailReq {
-  string merchant_id = 1;
-  string app_id = 2;
   string uid = 3;
   int64 trans_direction = 4; // 交易方向 0 不限 1 增加 2 减少
   repeated int64 trans_type = 5; // 交易类别: 空表示不限
@@ -202,8 +188,6 @@ message ListUserCoinDetailResp {
   int64 total = 4;// 符合筛选的总条数
 }
 message UserCoinDetail {
-  string merchant_id = 1;
-  string app_id = 2;
   string uid = 3;
   string detail_id = 4;// 明细id
   string trade_id = 5;// 业务方交易id

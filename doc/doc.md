@@ -920,8 +920,6 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| merchant_id | [string](#string) |  |  |
-| app_id | [string](#string) |  |  |
 | uid | [string](#string) |  |  |
 | new_value | [UserCoinValue](#svc-biz-asset-UserCoinValue) |  |  |
 | trade_id | [string](#string) |  | 业务方交易id |
@@ -1027,8 +1025,6 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| merchant_id | [string](#string) |  |  |
-| app_id | [string](#string) |  |  |
 | uid | [string](#string) |  |  |
 | value | [int64](#int64) |  |  |
 | rule | [int64](#int64) |  | 扣减规则: 0 仅普通余额 1 仅低权限余额 2 先扣普通后扣低权限 3 先扣低权限后扣普通 |
@@ -1309,8 +1305,6 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| merchant_id | [string](#string) |  |  |
-| app_id | [string](#string) |  |  |
 | uids | [string](#string) | repeated |  |
 
 
@@ -1326,8 +1320,6 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| merchant_id | [string](#string) |  |  |
-| app_id | [string](#string) |  |  |
 | value_map | [GetUserCoinMultiResp.ValueMapEntry](#svc-biz-asset-GetUserCoinMultiResp-ValueMapEntry) | repeated | uid-&gt;value |
 
 
@@ -1359,8 +1351,6 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| merchant_id | [string](#string) |  |  |
-| app_id | [string](#string) |  |  |
 | uid | [string](#string) |  |  |
 
 
@@ -1531,8 +1521,6 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| merchant_id | [string](#string) |  |  |
-| app_id | [string](#string) |  |  |
 | uid | [string](#string) |  |  |
 | value | [UserCoinValue](#svc-biz-asset-UserCoinValue) |  |  |
 | trans_type | [int64](#int64) |  | 交易类别,增加普通余额或低权限余额按此字段自动判断 |
@@ -1693,8 +1681,6 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| merchant_id | [string](#string) |  |  |
-| app_id | [string](#string) |  |  |
 | uid | [string](#string) |  |  |
 | trans_direction | [int64](#int64) |  | 交易方向 0 不限 1 增加 2 减少 |
 | trans_type | [int64](#int64) | repeated | 交易类别: 空表示不限 |
@@ -1898,8 +1884,6 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| merchant_id | [string](#string) |  |  |
-| app_id | [string](#string) |  |  |
 | uid | [string](#string) |  |  |
 | detail_id | [string](#string) |  | 明细id |
 | trade_id | [string](#string) |  | 业务方交易id |
