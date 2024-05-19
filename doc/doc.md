@@ -3,8 +3,23 @@
 
 ## Table of Contents
 
-- [svc.web.streamer/streamer.proto](#svc-web-streamer_streamer-proto)
-    - [Streamer](#svc-web-streamer-Streamer)
+- [svc.biz.account/account.proto](#svc-biz-account_account-proto)
+    - [Account](#svc-biz-account-Account)
+  
+- [svc.biz.room/category.proto](#svc-biz-room_category-proto)
+    - [CategoryInfo](#svc-biz-room-CategoryInfo)
+    - [CreateReq](#svc-biz-room-CreateReq)
+    - [CreateResp](#svc-biz-room-CreateResp)
+    - [DeleteReq](#svc-biz-room-DeleteReq)
+    - [GetReq](#svc-biz-room-GetReq)
+    - [GetResp](#svc-biz-room-GetResp)
+    - [ListReq](#svc-biz-room-ListReq)
+    - [ListResp](#svc-biz-room-ListResp)
+    - [ListTreeReq](#svc-biz-room-ListTreeReq)
+    - [ListTreeResp](#svc-biz-room-ListTreeResp)
+    - [UpdateReq](#svc-biz-room-UpdateReq)
+  
+    - [Category](#svc-biz-room-Category)
   
 - [svc.infra.setting/setting.proto](#svc-infra-setting_setting-proto)
     - [SettingGreetingReq](#svc-infra-setting-SettingGreetingReq)
@@ -14,6 +29,12 @@
   
 - [svc.web.viewer/viewer.proto](#svc-web-viewer_viewer-proto)
     - [Viewer](#svc-web-viewer-Viewer)
+  
+- [svc.web.dashboard/dashboard.proto](#svc-web-dashboard_dashboard-proto)
+    - [Dashboard](#svc-web-dashboard-Dashboard)
+  
+- [svc.web.streamer/streamer.proto](#svc-web-streamer_streamer-proto)
+    - [Streamer](#svc-web-streamer-Streamer)
   
 - [svc.biz.gift/gift.proto](#svc-biz-gift_gift-proto)
     - [GiftAddReq](#svc-biz-gift-GiftAddReq)
@@ -44,20 +65,14 @@
   
     - [Gift](#svc-biz-gift-Gift)
   
-- [svc.web.dashboard/dashboard.proto](#svc-web-dashboard_dashboard-proto)
-    - [Dashboard](#svc-web-dashboard-Dashboard)
-  
-- [svc.biz.account/account.proto](#svc-biz-account_account-proto)
-    - [Account](#svc-biz-account-Account)
-  
 - [Scalar Value Types](#scalar-value-types)
 
 
 
-<a name="svc-web-streamer_streamer-proto"></a>
+<a name="svc-biz-account_account-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## svc.web.streamer/streamer.proto
+## svc.biz.account/account.proto
 
 
  
@@ -67,13 +82,215 @@
  
 
 
-<a name="svc-web-streamer-Streamer"></a>
+<a name="svc-biz-account-Account"></a>
 
-### Streamer
+### Account
 
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
+
+ 
+
+
+
+<a name="svc-biz-room_category-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.biz.room/category.proto
+
+
+
+<a name="svc-biz-room-CategoryInfo"></a>
+
+### CategoryInfo
+CategoryInfo 分类详情
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| category_id | [int64](#int64) |  |  |
+| start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+| end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+| parent_id | [int64](#int64) |  | 父级ID |
+| category_code | [string](#string) |  | 代号（唯一，预留） |
+| category_name | [string](#string) |  | 名称 |
+| sort | [int32](#int32) |  | 排序 |
+| childrens | [CategoryInfo](#svc-biz-room-CategoryInfo) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-room-CreateReq"></a>
+
+### CreateReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| category | [CategoryInfo](#svc-biz-room-CategoryInfo) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-room-CreateResp"></a>
+
+### CreateResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| category | [CategoryInfo](#svc-biz-room-CategoryInfo) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-room-DeleteReq"></a>
+
+### DeleteReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| category_id | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-room-GetReq"></a>
+
+### GetReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| category_id | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-room-GetResp"></a>
+
+### GetResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| category | [CategoryInfo](#svc-biz-room-CategoryInfo) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-room-ListReq"></a>
+
+### ListReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent_id | [int64](#int64) |  | 父级ID |
+| return_count | [bool](#bool) |  | 是否返回总数 |
+
+
+
+
+
+
+<a name="svc-biz-room-ListResp"></a>
+
+### ListResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [CategoryInfo](#svc-biz-room-CategoryInfo) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-room-ListTreeReq"></a>
+
+### ListTreeReq
+获取全部板块分类（分类及子分类树结构）
+
+
+
+
+
+
+<a name="svc-biz-room-ListTreeResp"></a>
+
+### ListTreeResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [CategoryInfo](#svc-biz-room-CategoryInfo) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-room-UpdateReq"></a>
+
+### UpdateReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| category_id | [int64](#int64) |  |  |
+| category | [CategoryInfo](#svc-biz-room-CategoryInfo) |  |  |
+| update_mask | [google.protobuf.FieldMask](#google-protobuf-FieldMask) |  |  |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="svc-biz-room-Category"></a>
+
+### Category
+分类
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| Create | [CreateReq](#svc-biz-room-CreateReq) | [CreateResp](#svc-biz-room-CreateResp) | 创建分类 |
+| Update | [UpdateReq](#svc-biz-room-UpdateReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | 更新某个分类信息 |
+| Delete | [DeleteReq](#svc-biz-room-DeleteReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | 删除一个分类信息 |
+| Get | [GetReq](#svc-biz-room-GetReq) | [GetResp](#svc-biz-room-GetResp) | 获取某个分类信息 |
+| List | [ListReq](#svc-biz-room-ListReq) | [ListResp](#svc-biz-room-ListResp) | 获取分类，返回子级集合 |
+| ListAll | [ListReq](#svc-biz-room-ListReq) | [ListResp](#svc-biz-room-ListResp) | 获取分类 |
+| ListTree | [ListTreeReq](#svc-biz-room-ListTreeReq) | [ListTreeResp](#svc-biz-room-ListTreeResp) | 获取全部板块分类（分类及子分类树结构） |
 
  
 
@@ -151,6 +368,56 @@
 <a name="svc-web-viewer-Viewer"></a>
 
 ### Viewer
+
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+
+ 
+
+
+
+<a name="svc-web-dashboard_dashboard-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.web.dashboard/dashboard.proto
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="svc-web-dashboard-Dashboard"></a>
+
+### Dashboard
+
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+
+ 
+
+
+
+<a name="svc-web-streamer_streamer-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.web.streamer/streamer.proto
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="svc-web-streamer-Streamer"></a>
+
+### Streamer
 
 
 | Method Name | Request Type | Response Type | Description |
@@ -581,56 +848,6 @@
 | SendRecord | [GiftSendRecordReq](#svc-biz-gift-GiftSendRecordReq) | [GiftSendRecordResp](#svc-biz-gift-GiftSendRecordResp) | SendRecord 送礼记录 |
 | GetRecord | [GiftGetRecordReq](#svc-biz-gift-GiftGetRecordReq) | [GiftGetRecordResp](#svc-biz-gift-GiftGetRecordResp) | GetRecord 收礼记录 |
 | LiveStat | [LiveStatReq](#svc-biz-gift-LiveStatReq) | [LiveStatResp](#svc-biz-gift-LiveStatResp) | LiveStat 直播统计 |
-
- 
-
-
-
-<a name="svc-web-dashboard_dashboard-proto"></a>
-<p align="right"><a href="#top">Top</a></p>
-
-## svc.web.dashboard/dashboard.proto
-
-
- 
-
- 
-
- 
-
-
-<a name="svc-web-dashboard-Dashboard"></a>
-
-### Dashboard
-
-
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-
- 
-
-
-
-<a name="svc-biz-account_account-proto"></a>
-<p align="right"><a href="#top">Top</a></p>
-
-## svc.biz.account/account.proto
-
-
- 
-
- 
-
- 
-
-
-<a name="svc-biz-account-Account"></a>
-
-### Account
-
-
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
 
  
 

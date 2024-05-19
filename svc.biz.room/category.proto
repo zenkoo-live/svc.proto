@@ -1,0 +1,79 @@
+syntax = "proto3";
+
+package svc.biz.room;
+
+import "google/protobuf/field_mask.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+option go_package="./svc.biz.room;room";
+
+// 分类
+service Category {
+  // 创建分类
+  rpc Create(CreateReq) returns (CreateResp) {}
+  // 更新某个分类信息
+  rpc Update(UpdateReq) returns (google.protobuf.Empty) {}
+  // 删除一个分类信息
+  rpc Delete(DeleteReq) returns (google.protobuf.Empty) {}
+  // 获取某个分类信息
+  rpc Get(GetReq) returns (GetResp) {}
+  // 获取分类，返回子级集合
+  rpc List(ListReq) returns (ListResp) {}
+  // 获取分类
+  rpc ListAll(ListReq) returns (ListResp) {}
+  // 获取全部板块分类（分类及子分类树结构）
+  rpc ListTree(ListTreeReq) returns (ListTreeResp) {}
+}
+
+// CategoryInfo 分类详情
+message CategoryInfo {
+  int64 category_id = 1; 
+  google.protobuf.Timestamp start_time = 2;
+  google.protobuf.Timestamp end_time = 3;
+  int64 parent_id = 4; // 父级ID
+  string category_code = 5; // 代号（唯一，预留）
+  string category_name = 6; // 名称
+  int32 sort = 7; // 排序
+  repeated CategoryInfo childrens = 8;
+}
+
+message CreateReq {
+  CategoryInfo category = 1;
+}
+message CreateResp {
+  CategoryInfo category = 1;
+}
+
+message UpdateReq {
+  int64 category_id = 1; 
+  CategoryInfo category = 2;
+  google.protobuf.FieldMask update_mask = 3;
+}
+
+message GetReq {
+  int64 category_id = 1; 
+}
+message GetResp{
+  CategoryInfo category = 1;
+}
+
+message DeleteReq{
+  int64 category_id = 1; 
+}
+
+message ListReq {
+  int64 parent_id = 1; // 父级ID
+  bool return_count = 2; // 是否返回总数
+}
+message ListResp {
+  repeated CategoryInfo items = 1;
+}
+
+//获取全部板块分类（分类及子分类树结构）
+message ListTreeReq {
+
+}
+message ListTreeResp {
+  repeated CategoryInfo items = 1;
+}
