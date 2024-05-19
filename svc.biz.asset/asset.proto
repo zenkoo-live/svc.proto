@@ -24,14 +24,14 @@ service Asset {
   rpc DecrUserCoin(DecrUserCoinReq) returns (ChangeUserCoinResp) {} // 减
   rpc ListUserCoinDetail(ListUserCoinDetailReq) returns (ListUserCoinDetailResp) {} // 查询明细
 
-  // ---------------Anchor主播资产---------------
-
+  // ---------------Streamer主播资产---------------
+  
   // 虚拟币coin
-  rpc GetAnchorCoin(GetAnchorCoinReq) returns (GetAnchorCoinResp) {} // 查询
-  rpc GetAnchorCoinMulti(GetAnchorCoinMultiReq) returns (GetAnchorCoinMultiResp) {} // 批量查询
-  rpc IncrAnchorCoin(IncrAnchorCoinReq) returns (ChangeAnchorCoinResp) {} // 增
-  rpc DecrAnchorCoin(DecrAnchorCoinReq) returns (ChangeAnchorCoinResp) {} // 减
-  rpc ListAnchorCoinDetail(ListAnchorCoinDetailReq) returns (ListAnchorCoinDetailResp) {} // 查询明细
+  rpc GetStreamerCoin(GetStreamerCoinReq) returns (GetStreamerCoinResp) {} // 查询
+  rpc GetStreamerCoinMulti(GetStreamerCoinMultiReq) returns (GetStreamerCoinMultiResp) {} // 批量查询
+  rpc IncrStreamerCoin(IncrStreamerCoinReq) returns (ChangeStreamerCoinResp) {} // 增
+  rpc DecrStreamerCoin(DecrStreamerCoinReq) returns (ChangeStreamerCoinResp) {} // 减
+  rpc ListStreamerCoinDetail(ListStreamerCoinDetailReq) returns (ListStreamerCoinDetailResp) {} // 查询明细
 
   // ---------------Union工会资产---------------
 
@@ -44,12 +44,6 @@ service Asset {
 
   // ---------------Merchant商户资产---------------
 
-  // 余额 money
-  rpc GetMerchantMoney(GetMerchantMoneyReq) returns (GetMerchantMoneyResp) {} // 查询
-  rpc GetMerchantMoneyMulti(GetMerchantMoneyMultiReq) returns (GetMerchantMoneyMultiResp) {} // 批量查询
-  rpc IncrMerchantMoney(IncrMerchantMoneyReq) returns (ChangeMerchantMoneyResp) {} // 增
-  rpc DecrMerchantMoney(DecrMerchantMoneyReq) returns (ChangeMerchantMoneyResp) {} // 减
-  rpc ListMerchantMoneyDetail(ListMerchantMoneyDetailReq) returns (ListMerchantMoneyDetailResp) {} // 查询明细
   // 虚拟币coin
   rpc GetMerchantCoin(GetMerchantCoinReq) returns (GetMerchantCoinResp) {} // 查询
   rpc GetMerchantCoinMulti(GetMerchantCoinMultiReq) returns (GetMerchantCoinMultiResp) {} // 批量查询
@@ -222,64 +216,64 @@ message UserCoinDetail {
   string summary = 12;//摘要,json 实际会做格式和核心字段校验
 }
 
-// --------------Anchor主播资产---------------
+// --------------Streamer主播资产---------------
 
 // 虚拟币 coin-----------------
-message AnchorCoinValue {
+message StreamerCoinValue {
   int64 value = 1;// 余额
   int64 limited_value = 2;// 低权限余额
 }
-message GetAnchorCoinReq {
+message GetStreamerCoinReq {
   string merchant_id = 1;
   string app_id = 2;
-  string anchor_id = 3;
+  string streamer_id = 3;
 }
-message GetAnchorCoinResp {
-  AnchorCoinValue value = 1;// 余额
+message GetStreamerCoinResp {
+  StreamerCoinValue value = 1;// 余额
 }
-message GetAnchorCoinMultiReq {
+message GetStreamerCoinMultiReq {
   string merchant_id = 1;
   string app_id = 2;
-  repeated string anchor_ids = 3;
+  repeated string streamer_ids = 3;
 }
-message GetAnchorCoinMultiResp {
+message GetStreamerCoinMultiResp {
   string merchant_id = 1;
   string app_id = 2;
-  map<string,AnchorCoinValue> value_map  = 3; // anchor_id->value
+  map<string,StreamerCoinValue> value_map  = 3; // streamer_id->value
 }
-message IncrAnchorCoinReq {
+message IncrStreamerCoinReq {
   string merchant_id = 1;
   string app_id = 2;
-  string anchor_id = 3;
-  AnchorCoinValue value = 4;
+  string streamer_id = 3;
+  StreamerCoinValue value = 4;
   int64 trans_type = 5; // 交易类别,增加普通余额或低权限余额按此字段自动判断
   string trade_id = 6;// 业务方交易id,业务方保证唯一,支持幂等
   string summary = 7;//摘要,json 实际会做格式和核心字段校验
 }
-message DecrAnchorCoinReq {
+message DecrStreamerCoinReq {
   string merchant_id = 1;
   string app_id = 2;
-  string anchor_id = 3;
+  string streamer_id = 3;
   int64 value = 4;
   int64 rule = 5;// 扣减规则: 0 仅普通余额 1 仅低权限余额
   int64 trans_type = 6; // 交易类别
   string trade_id = 7;// 业务方交易id,业务方保证唯一,支持幂等
   string summary = 8;//摘要,json 实际会做格式和核心字段校验
 }
-message ChangeAnchorCoinResp {
+message ChangeStreamerCoinResp {
   string merchant_id = 1;
   string app_id = 2;
-  string anchor_id = 3;
-  AnchorCoinValue new_value = 4;
+  string streamer_id = 3;
+  StreamerCoinValue new_value = 4;
   string trade_id = 5;// 业务方交易id
   string detail_id = 6;// 明细id
   int64 serial_number = 7;// 流水号,单账户连续自增
   google.protobuf.Timestamp trans_time = 8; // 业务时间
 }
-message ListAnchorCoinDetailReq {
+message ListStreamerCoinDetailReq {
   string merchant_id = 1;
   string app_id = 2;
-  string anchor_id = 3;
+  string streamer_id = 3;
   int64 trans_direction = 4; // 交易方向 0 不限 1 增加 2 减少
   repeated int64 trans_type = 5; // 交易类别: 空表示不限
   google.protobuf.Timestamp start_time = 6; // 开始时间(含)
@@ -288,16 +282,16 @@ message ListAnchorCoinDetailReq {
   int64 page = 50; // 页码
   int64 page_size = 51; // 单页条数
 }
-message ListAnchorCoinDetailResp {
-  repeated AnchorCoinDetail items = 1;
+message ListStreamerCoinDetailResp {
+  repeated StreamerCoinDetail items = 1;
   int64 page = 2; // 页码
   int64 page_size = 3; // 单页条数
   int64 total = 4;// 符合筛选的总条数
 }
-message AnchorCoinDetail {
+message StreamerCoinDetail {
   string merchant_id = 1;
   string app_id = 2;
-  string anchor_id = 3;
+  string streamer_id = 3;
   string detail_id = 4;// 明细id
   string trade_id = 5;// 业务方交易id
   int64 serial_number = 6;// 流水号,单账户连续自增
@@ -397,69 +391,6 @@ message UnionCoinDetail {
 }
 
 // --------------Merchant商户资产---------------
-
-// 余额 money-----------------
-message GetMerchantMoneyReq {
-  string merchant_id = 1;
-}
-message GetMerchantMoneyResp {
-  int64 value = 1;
-}
-message GetMerchantMoneyMultiReq {
-  repeated string merchant_id = 1;
-}
-message GetMerchantMoneyMultiResp {
-  map<string,int64> value_map  = 1; // merchant_id->value
-}
-message IncrMerchantMoneyReq {
-  string merchant_id = 1;
-  int64 value = 2;
-  int64 trans_type = 3; // 交易类别
-  string trade_id = 4;// 业务方交易id,业务方保证唯一,支持幂等
-  string summary = 5;//摘要,json 实际会做格式和核心字段校验
-}
-message DecrMerchantMoneyReq {
-  string merchant_id = 1;
-  int64 value = 2;
-  int64 trans_type = 3; // 交易类别
-  string trade_id = 4;// 业务方交易id,业务方保证唯一,支持幂等
-  string summary = 5;//摘要,json 实际会做格式和核心字段校验
-}
-message ChangeMerchantMoneyResp {
-  string merchant_id = 1;
-  int64 new_value = 2;
-  string trade_id = 3;// 业务方交易id
-  string detail_id = 4;// 明细id
-  int64 serial_number = 5;// 流水号,单账户连续自增
-  google.protobuf.Timestamp trans_time = 6; // 业务时间
-}
-message ListMerchantMoneyDetailReq {
-  string merchant_id = 1;
-  int64 trans_direction = 2; // 交易方向 0 不限 1 增加 2 减少
-  repeated int64 trans_type = 3; // 交易类别: 空表示不限
-  google.protobuf.Timestamp start_time = 4; // 开始时间(含)
-  google.protobuf.Timestamp end_time = 5; // 结束时间(不含)
-
-  int64 page = 50; // 页码
-  int64 page_size = 51; // 单页条数
-}
-message ListMerchantMoneyDetailResp {
-  repeated MerchantMoneyDetail items = 1;
-  int64 page = 2; // 页码
-  int64 page_size = 3; // 单页条数
-  int64 total = 4;// 符合筛选的总条数
-}
-message MerchantMoneyDetail {
-  string merchant_id = 1;
-  string detail_id = 4;// 明细id
-  string trade_id = 5;// 业务方交易id
-  int64 serial_number = 6;// 流水号,单账户连续自增
-  int64 trans_direction = 7; // 交易方向 1 增加 2 减少
-  int64 trans_type = 8; // 交易类别
-  ValueChange value_change = 9;
-  google.protobuf.Timestamp trans_time = 11; // 业务时间
-  string summary = 12;//摘要,json 实际会做格式和核心字段校验
-}
 
 // 虚拟币 coin-----------------
 message MerchantCoinValue {

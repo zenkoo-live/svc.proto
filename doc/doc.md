@@ -53,35 +53,26 @@
     - [Viewer](#svc-web-viewer-Viewer)
   
 - [svc.biz.asset/asset.proto](#svc-biz-asset_asset-proto)
-    - [AnchorCoinDetail](#svc-biz-asset-AnchorCoinDetail)
-    - [AnchorCoinValue](#svc-biz-asset-AnchorCoinValue)
-    - [ChangeAnchorCoinResp](#svc-biz-asset-ChangeAnchorCoinResp)
     - [ChangeMerchantCoinResp](#svc-biz-asset-ChangeMerchantCoinResp)
-    - [ChangeMerchantMoneyResp](#svc-biz-asset-ChangeMerchantMoneyResp)
+    - [ChangeStreamerCoinResp](#svc-biz-asset-ChangeStreamerCoinResp)
     - [ChangeUnionCoinResp](#svc-biz-asset-ChangeUnionCoinResp)
     - [ChangeUserCoinResp](#svc-biz-asset-ChangeUserCoinResp)
     - [ChangeUserMoneyResp](#svc-biz-asset-ChangeUserMoneyResp)
-    - [DecrAnchorCoinReq](#svc-biz-asset-DecrAnchorCoinReq)
     - [DecrMerchantCoinReq](#svc-biz-asset-DecrMerchantCoinReq)
-    - [DecrMerchantMoneyReq](#svc-biz-asset-DecrMerchantMoneyReq)
+    - [DecrStreamerCoinReq](#svc-biz-asset-DecrStreamerCoinReq)
     - [DecrUnionCoinReq](#svc-biz-asset-DecrUnionCoinReq)
     - [DecrUserCoinReq](#svc-biz-asset-DecrUserCoinReq)
     - [DecrUserMoneyReq](#svc-biz-asset-DecrUserMoneyReq)
-    - [GetAnchorCoinMultiReq](#svc-biz-asset-GetAnchorCoinMultiReq)
-    - [GetAnchorCoinMultiResp](#svc-biz-asset-GetAnchorCoinMultiResp)
-    - [GetAnchorCoinMultiResp.ValueMapEntry](#svc-biz-asset-GetAnchorCoinMultiResp-ValueMapEntry)
-    - [GetAnchorCoinReq](#svc-biz-asset-GetAnchorCoinReq)
-    - [GetAnchorCoinResp](#svc-biz-asset-GetAnchorCoinResp)
     - [GetMerchantCoinMultiReq](#svc-biz-asset-GetMerchantCoinMultiReq)
     - [GetMerchantCoinMultiResp](#svc-biz-asset-GetMerchantCoinMultiResp)
     - [GetMerchantCoinMultiResp.ValueMapEntry](#svc-biz-asset-GetMerchantCoinMultiResp-ValueMapEntry)
     - [GetMerchantCoinReq](#svc-biz-asset-GetMerchantCoinReq)
     - [GetMerchantCoinResp](#svc-biz-asset-GetMerchantCoinResp)
-    - [GetMerchantMoneyMultiReq](#svc-biz-asset-GetMerchantMoneyMultiReq)
-    - [GetMerchantMoneyMultiResp](#svc-biz-asset-GetMerchantMoneyMultiResp)
-    - [GetMerchantMoneyMultiResp.ValueMapEntry](#svc-biz-asset-GetMerchantMoneyMultiResp-ValueMapEntry)
-    - [GetMerchantMoneyReq](#svc-biz-asset-GetMerchantMoneyReq)
-    - [GetMerchantMoneyResp](#svc-biz-asset-GetMerchantMoneyResp)
+    - [GetStreamerCoinMultiReq](#svc-biz-asset-GetStreamerCoinMultiReq)
+    - [GetStreamerCoinMultiResp](#svc-biz-asset-GetStreamerCoinMultiResp)
+    - [GetStreamerCoinMultiResp.ValueMapEntry](#svc-biz-asset-GetStreamerCoinMultiResp-ValueMapEntry)
+    - [GetStreamerCoinReq](#svc-biz-asset-GetStreamerCoinReq)
+    - [GetStreamerCoinResp](#svc-biz-asset-GetStreamerCoinResp)
     - [GetUnionCoinMultiReq](#svc-biz-asset-GetUnionCoinMultiReq)
     - [GetUnionCoinMultiResp](#svc-biz-asset-GetUnionCoinMultiResp)
     - [GetUnionCoinMultiResp.ValueMapEntry](#svc-biz-asset-GetUnionCoinMultiResp-ValueMapEntry)
@@ -97,18 +88,15 @@
     - [GetUserMoneyMultiResp.ValueMapEntry](#svc-biz-asset-GetUserMoneyMultiResp-ValueMapEntry)
     - [GetUserMoneyReq](#svc-biz-asset-GetUserMoneyReq)
     - [GetUserMoneyResp](#svc-biz-asset-GetUserMoneyResp)
-    - [IncrAnchorCoinReq](#svc-biz-asset-IncrAnchorCoinReq)
     - [IncrMerchantCoinReq](#svc-biz-asset-IncrMerchantCoinReq)
-    - [IncrMerchantMoneyReq](#svc-biz-asset-IncrMerchantMoneyReq)
+    - [IncrStreamerCoinReq](#svc-biz-asset-IncrStreamerCoinReq)
     - [IncrUnionCoinReq](#svc-biz-asset-IncrUnionCoinReq)
     - [IncrUserCoinReq](#svc-biz-asset-IncrUserCoinReq)
     - [IncrUserMoneyReq](#svc-biz-asset-IncrUserMoneyReq)
-    - [ListAnchorCoinDetailReq](#svc-biz-asset-ListAnchorCoinDetailReq)
-    - [ListAnchorCoinDetailResp](#svc-biz-asset-ListAnchorCoinDetailResp)
     - [ListMerchantCoinDetailReq](#svc-biz-asset-ListMerchantCoinDetailReq)
     - [ListMerchantCoinDetailResp](#svc-biz-asset-ListMerchantCoinDetailResp)
-    - [ListMerchantMoneyDetailReq](#svc-biz-asset-ListMerchantMoneyDetailReq)
-    - [ListMerchantMoneyDetailResp](#svc-biz-asset-ListMerchantMoneyDetailResp)
+    - [ListStreamerCoinDetailReq](#svc-biz-asset-ListStreamerCoinDetailReq)
+    - [ListStreamerCoinDetailResp](#svc-biz-asset-ListStreamerCoinDetailResp)
     - [ListUnionCoinDetailReq](#svc-biz-asset-ListUnionCoinDetailReq)
     - [ListUnionCoinDetailResp](#svc-biz-asset-ListUnionCoinDetailResp)
     - [ListUserCoinDetailReq](#svc-biz-asset-ListUserCoinDetailReq)
@@ -117,7 +105,8 @@
     - [ListUserMoneyDetailResp](#svc-biz-asset-ListUserMoneyDetailResp)
     - [MerchantCoinDetail](#svc-biz-asset-MerchantCoinDetail)
     - [MerchantCoinValue](#svc-biz-asset-MerchantCoinValue)
-    - [MerchantMoneyDetail](#svc-biz-asset-MerchantMoneyDetail)
+    - [StreamerCoinDetail](#svc-biz-asset-StreamerCoinDetail)
+    - [StreamerCoinValue](#svc-biz-asset-StreamerCoinValue)
     - [UnionCoinDetail](#svc-biz-asset-UnionCoinDetail)
     - [UnionCoinValue](#svc-biz-asset-UnionCoinValue)
     - [UserCoinDetail](#svc-biz-asset-UserCoinDetail)
@@ -859,70 +848,6 @@
 
 
 
-<a name="svc-biz-asset-AnchorCoinDetail"></a>
-
-### AnchorCoinDetail
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| merchant_id | [string](#string) |  |  |
-| app_id | [string](#string) |  |  |
-| anchor_id | [string](#string) |  |  |
-| detail_id | [string](#string) |  | 明细id |
-| trade_id | [string](#string) |  | 业务方交易id |
-| serial_number | [int64](#int64) |  | 流水号,单账户连续自增 |
-| trans_direction | [int64](#int64) |  | 交易方向 1 增加 2 减少 |
-| trans_type | [int64](#int64) |  | 交易类别 |
-| value_change | [ValueChange](#svc-biz-asset-ValueChange) |  |  |
-| limited_value_change | [ValueChange](#svc-biz-asset-ValueChange) |  |  |
-| trans_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 业务时间 |
-| summary | [string](#string) |  | 摘要,json 实际会做格式和核心字段校验 |
-
-
-
-
-
-
-<a name="svc-biz-asset-AnchorCoinValue"></a>
-
-### AnchorCoinValue
-虚拟币 coin-----------------
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| value | [int64](#int64) |  | 余额 |
-| limited_value | [int64](#int64) |  | 低权限余额 |
-
-
-
-
-
-
-<a name="svc-biz-asset-ChangeAnchorCoinResp"></a>
-
-### ChangeAnchorCoinResp
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| merchant_id | [string](#string) |  |  |
-| app_id | [string](#string) |  |  |
-| anchor_id | [string](#string) |  |  |
-| new_value | [AnchorCoinValue](#svc-biz-asset-AnchorCoinValue) |  |  |
-| trade_id | [string](#string) |  | 业务方交易id |
-| detail_id | [string](#string) |  | 明细id |
-| serial_number | [int64](#int64) |  | 流水号,单账户连续自增 |
-| trans_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 业务时间 |
-
-
-
-
-
-
 <a name="svc-biz-asset-ChangeMerchantCoinResp"></a>
 
 ### ChangeMerchantCoinResp
@@ -943,16 +868,18 @@
 
 
 
-<a name="svc-biz-asset-ChangeMerchantMoneyResp"></a>
+<a name="svc-biz-asset-ChangeStreamerCoinResp"></a>
 
-### ChangeMerchantMoneyResp
+### ChangeStreamerCoinResp
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | merchant_id | [string](#string) |  |  |
-| new_value | [int64](#int64) |  |  |
+| app_id | [string](#string) |  |  |
+| streamer_id | [string](#string) |  |  |
+| new_value | [StreamerCoinValue](#svc-biz-asset-StreamerCoinValue) |  |  |
 | trade_id | [string](#string) |  | 业务方交易id |
 | detail_id | [string](#string) |  | 明细id |
 | serial_number | [int64](#int64) |  | 流水号,单账户连续自增 |
@@ -1028,28 +955,6 @@
 
 
 
-<a name="svc-biz-asset-DecrAnchorCoinReq"></a>
-
-### DecrAnchorCoinReq
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| merchant_id | [string](#string) |  |  |
-| app_id | [string](#string) |  |  |
-| anchor_id | [string](#string) |  |  |
-| value | [int64](#int64) |  |  |
-| rule | [int64](#int64) |  | 扣减规则: 0 仅普通余额 1 仅低权限余额 |
-| trans_type | [int64](#int64) |  | 交易类别 |
-| trade_id | [string](#string) |  | 业务方交易id,业务方保证唯一,支持幂等 |
-| summary | [string](#string) |  | 摘要,json 实际会做格式和核心字段校验 |
-
-
-
-
-
-
 <a name="svc-biz-asset-DecrMerchantCoinReq"></a>
 
 ### DecrMerchantCoinReq
@@ -1070,16 +975,19 @@
 
 
 
-<a name="svc-biz-asset-DecrMerchantMoneyReq"></a>
+<a name="svc-biz-asset-DecrStreamerCoinReq"></a>
 
-### DecrMerchantMoneyReq
+### DecrStreamerCoinReq
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | merchant_id | [string](#string) |  |  |
+| app_id | [string](#string) |  |  |
+| streamer_id | [string](#string) |  |  |
 | value | [int64](#int64) |  |  |
+| rule | [int64](#int64) |  | 扣减规则: 0 仅普通余额 1 仅低权限余额 |
 | trans_type | [int64](#int64) |  | 交易类别 |
 | trade_id | [string](#string) |  | 业务方交易id,业务方保证唯一,支持幂等 |
 | summary | [string](#string) |  | 摘要,json 实际会做格式和核心字段校验 |
@@ -1147,88 +1055,6 @@
 | trans_type | [int64](#int64) |  | 交易类别 |
 | trade_id | [string](#string) |  | 业务方交易id,业务方保证唯一,支持幂等 |
 | summary | [string](#string) |  | 摘要,json 实际会做格式和核心字段校验 |
-
-
-
-
-
-
-<a name="svc-biz-asset-GetAnchorCoinMultiReq"></a>
-
-### GetAnchorCoinMultiReq
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| merchant_id | [string](#string) |  |  |
-| app_id | [string](#string) |  |  |
-| anchor_ids | [string](#string) | repeated |  |
-
-
-
-
-
-
-<a name="svc-biz-asset-GetAnchorCoinMultiResp"></a>
-
-### GetAnchorCoinMultiResp
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| merchant_id | [string](#string) |  |  |
-| app_id | [string](#string) |  |  |
-| value_map | [GetAnchorCoinMultiResp.ValueMapEntry](#svc-biz-asset-GetAnchorCoinMultiResp-ValueMapEntry) | repeated | anchor_id-&gt;value |
-
-
-
-
-
-
-<a name="svc-biz-asset-GetAnchorCoinMultiResp-ValueMapEntry"></a>
-
-### GetAnchorCoinMultiResp.ValueMapEntry
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| key | [string](#string) |  |  |
-| value | [AnchorCoinValue](#svc-biz-asset-AnchorCoinValue) |  |  |
-
-
-
-
-
-
-<a name="svc-biz-asset-GetAnchorCoinReq"></a>
-
-### GetAnchorCoinReq
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| merchant_id | [string](#string) |  |  |
-| app_id | [string](#string) |  |  |
-| anchor_id | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="svc-biz-asset-GetAnchorCoinResp"></a>
-
-### GetAnchorCoinResp
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| value | [AnchorCoinValue](#svc-biz-asset-AnchorCoinValue) |  | 余额 |
 
 
 
@@ -1311,76 +1137,82 @@
 
 
 
-<a name="svc-biz-asset-GetMerchantMoneyMultiReq"></a>
+<a name="svc-biz-asset-GetStreamerCoinMultiReq"></a>
 
-### GetMerchantMoneyMultiReq
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| merchant_id | [string](#string) | repeated |  |
-
-
-
-
-
-
-<a name="svc-biz-asset-GetMerchantMoneyMultiResp"></a>
-
-### GetMerchantMoneyMultiResp
+### GetStreamerCoinMultiReq
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| value_map | [GetMerchantMoneyMultiResp.ValueMapEntry](#svc-biz-asset-GetMerchantMoneyMultiResp-ValueMapEntry) | repeated | merchant_id-&gt;value |
+| merchant_id | [string](#string) |  |  |
+| app_id | [string](#string) |  |  |
+| streamer_ids | [string](#string) | repeated |  |
 
 
 
 
 
 
-<a name="svc-biz-asset-GetMerchantMoneyMultiResp-ValueMapEntry"></a>
+<a name="svc-biz-asset-GetStreamerCoinMultiResp"></a>
 
-### GetMerchantMoneyMultiResp.ValueMapEntry
+### GetStreamerCoinMultiResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| merchant_id | [string](#string) |  |  |
+| app_id | [string](#string) |  |  |
+| value_map | [GetStreamerCoinMultiResp.ValueMapEntry](#svc-biz-asset-GetStreamerCoinMultiResp-ValueMapEntry) | repeated | streamer_id-&gt;value |
+
+
+
+
+
+
+<a name="svc-biz-asset-GetStreamerCoinMultiResp-ValueMapEntry"></a>
+
+### GetStreamerCoinMultiResp.ValueMapEntry
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | key | [string](#string) |  |  |
-| value | [int64](#int64) |  |  |
+| value | [StreamerCoinValue](#svc-biz-asset-StreamerCoinValue) |  |  |
 
 
 
 
 
 
-<a name="svc-biz-asset-GetMerchantMoneyReq"></a>
+<a name="svc-biz-asset-GetStreamerCoinReq"></a>
 
-### GetMerchantMoneyReq
-余额 money-----------------
+### GetStreamerCoinReq
+
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | merchant_id | [string](#string) |  |  |
+| app_id | [string](#string) |  |  |
+| streamer_id | [string](#string) |  |  |
 
 
 
 
 
 
-<a name="svc-biz-asset-GetMerchantMoneyResp"></a>
+<a name="svc-biz-asset-GetStreamerCoinResp"></a>
 
-### GetMerchantMoneyResp
+### GetStreamerCoinResp
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| value | [int64](#int64) |  |  |
+| value | [StreamerCoinValue](#svc-biz-asset-StreamerCoinValue) |  | 余额 |
 
 
 
@@ -1630,27 +1462,6 @@
 
 
 
-<a name="svc-biz-asset-IncrAnchorCoinReq"></a>
-
-### IncrAnchorCoinReq
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| merchant_id | [string](#string) |  |  |
-| app_id | [string](#string) |  |  |
-| anchor_id | [string](#string) |  |  |
-| value | [AnchorCoinValue](#svc-biz-asset-AnchorCoinValue) |  |  |
-| trans_type | [int64](#int64) |  | 交易类别,增加普通余额或低权限余额按此字段自动判断 |
-| trade_id | [string](#string) |  | 业务方交易id,业务方保证唯一,支持幂等 |
-| summary | [string](#string) |  | 摘要,json 实际会做格式和核心字段校验 |
-
-
-
-
-
-
 <a name="svc-biz-asset-IncrMerchantCoinReq"></a>
 
 ### IncrMerchantCoinReq
@@ -1670,17 +1481,19 @@
 
 
 
-<a name="svc-biz-asset-IncrMerchantMoneyReq"></a>
+<a name="svc-biz-asset-IncrStreamerCoinReq"></a>
 
-### IncrMerchantMoneyReq
+### IncrStreamerCoinReq
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | merchant_id | [string](#string) |  |  |
-| value | [int64](#int64) |  |  |
-| trans_type | [int64](#int64) |  | 交易类别 |
+| app_id | [string](#string) |  |  |
+| streamer_id | [string](#string) |  |  |
+| value | [StreamerCoinValue](#svc-biz-asset-StreamerCoinValue) |  |  |
+| trans_type | [int64](#int64) |  | 交易类别,增加普通余额或低权限余额按此字段自动判断 |
 | trade_id | [string](#string) |  | 业务方交易id,业务方保证唯一,支持幂等 |
 | summary | [string](#string) |  | 摘要,json 实际会做格式和核心字段校验 |
 
@@ -1751,47 +1564,6 @@
 
 
 
-<a name="svc-biz-asset-ListAnchorCoinDetailReq"></a>
-
-### ListAnchorCoinDetailReq
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| merchant_id | [string](#string) |  |  |
-| app_id | [string](#string) |  |  |
-| anchor_id | [string](#string) |  |  |
-| trans_direction | [int64](#int64) |  | 交易方向 0 不限 1 增加 2 减少 |
-| trans_type | [int64](#int64) | repeated | 交易类别: 空表示不限 |
-| start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开始时间(含) |
-| end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 结束时间(不含) |
-| page | [int64](#int64) |  | 页码 |
-| page_size | [int64](#int64) |  | 单页条数 |
-
-
-
-
-
-
-<a name="svc-biz-asset-ListAnchorCoinDetailResp"></a>
-
-### ListAnchorCoinDetailResp
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| items | [AnchorCoinDetail](#svc-biz-asset-AnchorCoinDetail) | repeated |  |
-| page | [int64](#int64) |  | 页码 |
-| page_size | [int64](#int64) |  | 单页条数 |
-| total | [int64](#int64) |  | 符合筛选的总条数 |
-
-
-
-
-
-
 <a name="svc-biz-asset-ListMerchantCoinDetailReq"></a>
 
 ### ListMerchantCoinDetailReq
@@ -1831,15 +1603,17 @@
 
 
 
-<a name="svc-biz-asset-ListMerchantMoneyDetailReq"></a>
+<a name="svc-biz-asset-ListStreamerCoinDetailReq"></a>
 
-### ListMerchantMoneyDetailReq
+### ListStreamerCoinDetailReq
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | merchant_id | [string](#string) |  |  |
+| app_id | [string](#string) |  |  |
+| streamer_id | [string](#string) |  |  |
 | trans_direction | [int64](#int64) |  | 交易方向 0 不限 1 增加 2 减少 |
 | trans_type | [int64](#int64) | repeated | 交易类别: 空表示不限 |
 | start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开始时间(含) |
@@ -1852,15 +1626,15 @@
 
 
 
-<a name="svc-biz-asset-ListMerchantMoneyDetailResp"></a>
+<a name="svc-biz-asset-ListStreamerCoinDetailResp"></a>
 
-### ListMerchantMoneyDetailResp
+### ListStreamerCoinDetailResp
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| items | [MerchantMoneyDetail](#svc-biz-asset-MerchantMoneyDetail) | repeated |  |
+| items | [StreamerCoinDetail](#svc-biz-asset-StreamerCoinDetail) | repeated |  |
 | page | [int64](#int64) |  | 页码 |
 | page_size | [int64](#int64) |  | 单页条数 |
 | total | [int64](#int64) |  | 符合筛选的总条数 |
@@ -2032,23 +1806,42 @@
 
 
 
-<a name="svc-biz-asset-MerchantMoneyDetail"></a>
+<a name="svc-biz-asset-StreamerCoinDetail"></a>
 
-### MerchantMoneyDetail
+### StreamerCoinDetail
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | merchant_id | [string](#string) |  |  |
+| app_id | [string](#string) |  |  |
+| streamer_id | [string](#string) |  |  |
 | detail_id | [string](#string) |  | 明细id |
 | trade_id | [string](#string) |  | 业务方交易id |
 | serial_number | [int64](#int64) |  | 流水号,单账户连续自增 |
 | trans_direction | [int64](#int64) |  | 交易方向 1 增加 2 减少 |
 | trans_type | [int64](#int64) |  | 交易类别 |
 | value_change | [ValueChange](#svc-biz-asset-ValueChange) |  |  |
+| limited_value_change | [ValueChange](#svc-biz-asset-ValueChange) |  |  |
 | trans_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 业务时间 |
 | summary | [string](#string) |  | 摘要,json 实际会做格式和核心字段校验 |
+
+
+
+
+
+
+<a name="svc-biz-asset-StreamerCoinValue"></a>
+
+### StreamerCoinValue
+虚拟币 coin-----------------
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| value | [int64](#int64) |  | 余额 |
+| limited_value | [int64](#int64) |  | 低权限余额 |
 
 
 
@@ -2203,21 +1996,16 @@
 | IncrUserCoin | [IncrUserCoinReq](#svc-biz-asset-IncrUserCoinReq) | [ChangeUserCoinResp](#svc-biz-asset-ChangeUserCoinResp) |  |
 | DecrUserCoin | [DecrUserCoinReq](#svc-biz-asset-DecrUserCoinReq) | [ChangeUserCoinResp](#svc-biz-asset-ChangeUserCoinResp) |  |
 | ListUserCoinDetail | [ListUserCoinDetailReq](#svc-biz-asset-ListUserCoinDetailReq) | [ListUserCoinDetailResp](#svc-biz-asset-ListUserCoinDetailResp) |  |
-| GetAnchorCoin | [GetAnchorCoinReq](#svc-biz-asset-GetAnchorCoinReq) | [GetAnchorCoinResp](#svc-biz-asset-GetAnchorCoinResp) | 虚拟币coin |
-| GetAnchorCoinMulti | [GetAnchorCoinMultiReq](#svc-biz-asset-GetAnchorCoinMultiReq) | [GetAnchorCoinMultiResp](#svc-biz-asset-GetAnchorCoinMultiResp) |  |
-| IncrAnchorCoin | [IncrAnchorCoinReq](#svc-biz-asset-IncrAnchorCoinReq) | [ChangeAnchorCoinResp](#svc-biz-asset-ChangeAnchorCoinResp) |  |
-| DecrAnchorCoin | [DecrAnchorCoinReq](#svc-biz-asset-DecrAnchorCoinReq) | [ChangeAnchorCoinResp](#svc-biz-asset-ChangeAnchorCoinResp) |  |
-| ListAnchorCoinDetail | [ListAnchorCoinDetailReq](#svc-biz-asset-ListAnchorCoinDetailReq) | [ListAnchorCoinDetailResp](#svc-biz-asset-ListAnchorCoinDetailResp) |  |
+| GetStreamerCoin | [GetStreamerCoinReq](#svc-biz-asset-GetStreamerCoinReq) | [GetStreamerCoinResp](#svc-biz-asset-GetStreamerCoinResp) | 虚拟币coin |
+| GetStreamerCoinMulti | [GetStreamerCoinMultiReq](#svc-biz-asset-GetStreamerCoinMultiReq) | [GetStreamerCoinMultiResp](#svc-biz-asset-GetStreamerCoinMultiResp) |  |
+| IncrStreamerCoin | [IncrStreamerCoinReq](#svc-biz-asset-IncrStreamerCoinReq) | [ChangeStreamerCoinResp](#svc-biz-asset-ChangeStreamerCoinResp) |  |
+| DecrStreamerCoin | [DecrStreamerCoinReq](#svc-biz-asset-DecrStreamerCoinReq) | [ChangeStreamerCoinResp](#svc-biz-asset-ChangeStreamerCoinResp) |  |
+| ListStreamerCoinDetail | [ListStreamerCoinDetailReq](#svc-biz-asset-ListStreamerCoinDetailReq) | [ListStreamerCoinDetailResp](#svc-biz-asset-ListStreamerCoinDetailResp) |  |
 | GetUnionCoin | [GetUnionCoinReq](#svc-biz-asset-GetUnionCoinReq) | [GetUnionCoinResp](#svc-biz-asset-GetUnionCoinResp) | 虚拟币coin |
 | GetUnionCoinMulti | [GetUnionCoinMultiReq](#svc-biz-asset-GetUnionCoinMultiReq) | [GetUnionCoinMultiResp](#svc-biz-asset-GetUnionCoinMultiResp) |  |
 | IncrUnionCoin | [IncrUnionCoinReq](#svc-biz-asset-IncrUnionCoinReq) | [ChangeUnionCoinResp](#svc-biz-asset-ChangeUnionCoinResp) |  |
 | DecrUnionCoin | [DecrUnionCoinReq](#svc-biz-asset-DecrUnionCoinReq) | [ChangeUnionCoinResp](#svc-biz-asset-ChangeUnionCoinResp) |  |
 | ListUnionCoinDetail | [ListUnionCoinDetailReq](#svc-biz-asset-ListUnionCoinDetailReq) | [ListUnionCoinDetailResp](#svc-biz-asset-ListUnionCoinDetailResp) |  |
-| GetMerchantMoney | [GetMerchantMoneyReq](#svc-biz-asset-GetMerchantMoneyReq) | [GetMerchantMoneyResp](#svc-biz-asset-GetMerchantMoneyResp) | 余额 money |
-| GetMerchantMoneyMulti | [GetMerchantMoneyMultiReq](#svc-biz-asset-GetMerchantMoneyMultiReq) | [GetMerchantMoneyMultiResp](#svc-biz-asset-GetMerchantMoneyMultiResp) |  |
-| IncrMerchantMoney | [IncrMerchantMoneyReq](#svc-biz-asset-IncrMerchantMoneyReq) | [ChangeMerchantMoneyResp](#svc-biz-asset-ChangeMerchantMoneyResp) |  |
-| DecrMerchantMoney | [DecrMerchantMoneyReq](#svc-biz-asset-DecrMerchantMoneyReq) | [ChangeMerchantMoneyResp](#svc-biz-asset-ChangeMerchantMoneyResp) |  |
-| ListMerchantMoneyDetail | [ListMerchantMoneyDetailReq](#svc-biz-asset-ListMerchantMoneyDetailReq) | [ListMerchantMoneyDetailResp](#svc-biz-asset-ListMerchantMoneyDetailResp) |  |
 | GetMerchantCoin | [GetMerchantCoinReq](#svc-biz-asset-GetMerchantCoinReq) | [GetMerchantCoinResp](#svc-biz-asset-GetMerchantCoinResp) | 虚拟币coin |
 | GetMerchantCoinMulti | [GetMerchantCoinMultiReq](#svc-biz-asset-GetMerchantCoinMultiReq) | [GetMerchantCoinMultiResp](#svc-biz-asset-GetMerchantCoinMultiResp) |  |
 | IncrMerchantCoin | [IncrMerchantCoinReq](#svc-biz-asset-IncrMerchantCoinReq) | [ChangeMerchantCoinResp](#svc-biz-asset-ChangeMerchantCoinResp) |  |
