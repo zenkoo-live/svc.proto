@@ -896,8 +896,6 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| merchant_id | [string](#string) |  |  |
-| app_id | [string](#string) |  |  |
 | union_id | [string](#string) |  |  |
 | new_value | [UnionCoinValue](#svc-biz-asset-UnionCoinValue) |  |  |
 | trade_id | [string](#string) |  | 业务方交易id |
@@ -999,8 +997,6 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| merchant_id | [string](#string) |  |  |
-| app_id | [string](#string) |  |  |
 | union_id | [string](#string) |  |  |
 | value | [int64](#int64) |  |  |
 | rule | [int64](#int64) |  | 扣减规则: 0 仅普通余额 1 仅低权限余额 |
@@ -1213,8 +1209,6 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| merchant_id | [string](#string) |  |  |
-| app_id | [string](#string) |  |  |
 | union_ids | [string](#string) | repeated |  |
 
 
@@ -1230,8 +1224,6 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| merchant_id | [string](#string) |  |  |
-| app_id | [string](#string) |  |  |
 | value_map | [GetUnionCoinMultiResp.ValueMapEntry](#svc-biz-asset-GetUnionCoinMultiResp-ValueMapEntry) | repeated | union_id-&gt;value |
 
 
@@ -1263,8 +1255,6 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| merchant_id | [string](#string) |  |  |
-| app_id | [string](#string) |  |  |
 | union_id | [string](#string) |  |  |
 
 
@@ -1488,8 +1478,6 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| merchant_id | [string](#string) |  |  |
-| app_id | [string](#string) |  |  |
 | union_id | [string](#string) |  |  |
 | value | [UnionCoinValue](#svc-biz-asset-UnionCoinValue) |  |  |
 | trans_type | [int64](#int64) |  | 交易类别,增加普通余额或低权限余额按此字段自动判断 |
@@ -1626,8 +1614,6 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| merchant_id | [string](#string) |  |  |
-| app_id | [string](#string) |  |  |
 | union_id | [string](#string) |  |  |
 | trans_direction | [int64](#int64) |  | 交易方向 0 不限 1 增加 2 减少 |
 | trans_type | [int64](#int64) | repeated | 交易类别: 空表示不限 |
@@ -1826,8 +1812,6 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| merchant_id | [string](#string) |  |  |
-| app_id | [string](#string) |  |  |
 | union_id | [string](#string) |  |  |
 | detail_id | [string](#string) |  | 明细id |
 | trade_id | [string](#string) |  | 业务方交易id |
