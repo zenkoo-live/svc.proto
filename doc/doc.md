@@ -49,7 +49,6 @@
     - [GiftType](#svc-biz-gift-GiftType)
   
     - [Gift](#svc-biz-gift-Gift)
-    - [YourService](#svc-biz-gift-YourService)
   
 - [Scalar Value Types](#scalar-value-types)
 
@@ -632,16 +631,6 @@
 | SendRecord | [GiftSendRecordReq](#svc-biz-gift-GiftSendRecordReq) | [GiftSendRecordResp](#svc-biz-gift-GiftSendRecordResp) | SendRecord 送礼记录 |
 | GetRecord | [GiftGetRecordReq](#svc-biz-gift-GiftGetRecordReq) | [GiftGetRecordResp](#svc-biz-gift-GiftGetRecordResp) | GetRecord 收礼记录 |
 | LiveStat | [LiveStatReq](#svc-biz-gift-LiveStatReq) | [LiveStatResp](#svc-biz-gift-LiveStatResp) | LiveStat 直播统计 |
-
-
-<a name="svc-biz-gift-YourService"></a>
-
-### YourService
-定义你的服务
-
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-| EmptyMethod | [.google.protobuf.Empty](#google-protobuf-Empty) | [.google.protobuf.Empty](#google-protobuf-Empty) | 使用Empty作为返回类型的RPC |
 
  
 

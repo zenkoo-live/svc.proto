@@ -6,7 +6,6 @@ package gift
 import (
 	fmt "fmt"
 	proto "google.golang.org/protobuf/proto"
-	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	_ "google.golang.org/protobuf/types/known/fieldmaskpb"
 	_ "google.golang.org/protobuf/types/known/timestamppb"
 	math "math"
@@ -29,67 +28,6 @@ var _ api.Endpoint
 var _ context.Context
 var _ client.Option
 var _ server.Option
-
-// Api Endpoints for YourService service
-
-func NewYourServiceEndpoints() []*api.Endpoint {
-	return []*api.Endpoint{}
-}
-
-// Client API for YourService service
-
-type YourService interface {
-	// 使用Empty作为返回类型的RPC
-	EmptyMethod(ctx context.Context, in *emptypb.Empty, opts ...client.CallOption) (*emptypb.Empty, error)
-}
-
-type yourService struct {
-	c    client.Client
-	name string
-}
-
-func NewYourService(name string, c client.Client) YourService {
-	return &yourService{
-		c:    c,
-		name: name,
-	}
-}
-
-func (c *yourService) EmptyMethod(ctx context.Context, in *emptypb.Empty, opts ...client.CallOption) (*emptypb.Empty, error) {
-	req := c.c.NewRequest(c.name, "YourService.EmptyMethod", in)
-	out := new(emptypb.Empty)
-	err := c.c.Call(ctx, req, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// Server API for YourService service
-
-type YourServiceHandler interface {
-	// 使用Empty作为返回类型的RPC
-	EmptyMethod(context.Context, *emptypb.Empty, *emptypb.Empty) error
-}
-
-func RegisterYourServiceHandler(s server.Server, hdlr YourServiceHandler, opts ...server.HandlerOption) error {
-	type yourService interface {
-		EmptyMethod(ctx context.Context, in *emptypb.Empty, out *emptypb.Empty) error
-	}
-	type YourService struct {
-		yourService
-	}
-	h := &yourServiceHandler{hdlr}
-	return s.Handle(s.NewHandler(&YourService{h}, opts...))
-}
-
-type yourServiceHandler struct {
-	YourServiceHandler
-}
-
-func (h *yourServiceHandler) EmptyMethod(ctx context.Context, in *emptypb.Empty, out *emptypb.Empty) error {
-	return h.YourServiceHandler.EmptyMethod(ctx, in, out)
-}
 
 // Api Endpoints for Gift service
 
