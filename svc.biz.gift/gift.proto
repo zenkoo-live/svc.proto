@@ -4,15 +4,8 @@ package svc.biz.gift;
 
 import "google/protobuf/field_mask.proto";
 import "google/protobuf/timestamp.proto";
-import "google/protobuf/empty.proto";
 
 option go_package="./svc.biz.gift;gift";
-
-// 定义你的服务
-service YourService {
-  // 使用Empty作为返回类型的RPC
-  rpc EmptyMethod(google.protobuf.Empty) returns (google.protobuf.Empty);
-}
 
 service Gift {
     // Add 添加礼物
