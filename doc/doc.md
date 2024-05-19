@@ -6,6 +6,43 @@
 - [svc.biz.account/account.proto](#svc-biz-account_account-proto)
     - [Account](#svc-biz-account-Account)
   
+- [svc.biz.trade/trade.proto](#svc-biz-trade_trade-proto)
+    - [BuyLiveTicketReq](#svc-biz-trade-BuyLiveTicketReq)
+    - [BuyLiveTicketResp](#svc-biz-trade-BuyLiveTicketResp)
+    - [BuyLuckyIdReq](#svc-biz-trade-BuyLuckyIdReq)
+    - [BuyLuckyIdResp](#svc-biz-trade-BuyLuckyIdResp)
+    - [BuyRideReq](#svc-biz-trade-BuyRideReq)
+    - [BuyRideResp](#svc-biz-trade-BuyRideResp)
+    - [GiftInfo](#svc-biz-trade-GiftInfo)
+    - [JoinAnchorFansGroupReq](#svc-biz-trade-JoinAnchorFansGroupReq)
+    - [JoinAnchorFansGroupResp](#svc-biz-trade-JoinAnchorFansGroupResp)
+    - [LiveInfo](#svc-biz-trade-LiveInfo)
+    - [MoneyExchangeCoinReq](#svc-biz-trade-MoneyExchangeCoinReq)
+    - [MoneyExchangeCoinResp](#svc-biz-trade-MoneyExchangeCoinResp)
+    - [MoneyRechargeReq](#svc-biz-trade-MoneyRechargeReq)
+    - [MoneyRechargeReq.PayInfo](#svc-biz-trade-MoneyRechargeReq-PayInfo)
+    - [MoneyRechargeResp](#svc-biz-trade-MoneyRechargeResp)
+    - [MoneyWithdrawReq](#svc-biz-trade-MoneyWithdrawReq)
+    - [MoneyWithdrawResp](#svc-biz-trade-MoneyWithdrawResp)
+    - [PayBulletChatReq](#svc-biz-trade-PayBulletChatReq)
+    - [PayBulletChatResp](#svc-biz-trade-PayBulletChatResp)
+    - [PayLiveDurationFeeReq](#svc-biz-trade-PayLiveDurationFeeReq)
+    - [PayLiveDurationFeeResp](#svc-biz-trade-PayLiveDurationFeeResp)
+    - [SendGiftInLiveReq](#svc-biz-trade-SendGiftInLiveReq)
+    - [SendGiftInLiveResp](#svc-biz-trade-SendGiftInLiveResp)
+    - [TradeInfo](#svc-biz-trade-TradeInfo)
+    - [TradeResult](#svc-biz-trade-TradeResult)
+    - [UserCoinValue](#svc-biz-trade-UserCoinValue)
+    - [UserInfo](#svc-biz-trade-UserInfo)
+    - [VipActivateReq](#svc-biz-trade-VipActivateReq)
+    - [VipActivateResp](#svc-biz-trade-VipActivateResp)
+    - [VipExtendReq](#svc-biz-trade-VipExtendReq)
+    - [VipExtendResp](#svc-biz-trade-VipExtendResp)
+    - [VipUpgradeReq](#svc-biz-trade-VipUpgradeReq)
+    - [VipUpgradeResp](#svc-biz-trade-VipUpgradeResp)
+  
+    - [Trade](#svc-biz-trade-Trade)
+  
 - [svc.infra.setting/setting.proto](#svc-infra-setting_setting-proto)
     - [SettingGreetingReq](#svc-infra-setting-SettingGreetingReq)
     - [SettingGreetingResp](#svc-infra-setting-SettingGreetingResp)
@@ -148,6 +185,587 @@
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
+
+ 
+
+
+
+<a name="svc-biz-trade_trade-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.biz.trade/trade.proto
+
+
+
+<a name="svc-biz-trade-BuyLiveTicketReq"></a>
+
+### BuyLiveTicketReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| trade_info | [TradeInfo](#svc-biz-trade-TradeInfo) |  |  |
+| buyer | [UserInfo](#svc-biz-trade-UserInfo) |  |  |
+| live_info | [LiveInfo](#svc-biz-trade-LiveInfo) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-trade-BuyLiveTicketResp"></a>
+
+### BuyLiveTicketResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| trade_result | [TradeResult](#svc-biz-trade-TradeResult) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-trade-BuyLuckyIdReq"></a>
+
+### BuyLuckyIdReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| trade_info | [TradeInfo](#svc-biz-trade-TradeInfo) |  |  |
+| buyer | [UserInfo](#svc-biz-trade-UserInfo) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-trade-BuyLuckyIdResp"></a>
+
+### BuyLuckyIdResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| trade_result | [TradeResult](#svc-biz-trade-TradeResult) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-trade-BuyRideReq"></a>
+
+### BuyRideReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| trade_info | [TradeInfo](#svc-biz-trade-TradeInfo) |  |  |
+| buyer | [UserInfo](#svc-biz-trade-UserInfo) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-trade-BuyRideResp"></a>
+
+### BuyRideResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| trade_result | [TradeResult](#svc-biz-trade-TradeResult) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-trade-GiftInfo"></a>
+
+### GiftInfo
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| gift_id | [string](#string) |  |  |
+| gift_name | [string](#string) |  |  |
+| gift_type | [int64](#int64) |  |  |
+| price | [int32](#int32) |  |  |
+| num | [string](#string) |  |  |
+| icon | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-trade-JoinAnchorFansGroupReq"></a>
+
+### JoinAnchorFansGroupReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| trade_info | [TradeInfo](#svc-biz-trade-TradeInfo) |  |  |
+| buyer | [UserInfo](#svc-biz-trade-UserInfo) |  |  |
+| live_info | [LiveInfo](#svc-biz-trade-LiveInfo) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-trade-JoinAnchorFansGroupResp"></a>
+
+### JoinAnchorFansGroupResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| trade_result | [TradeResult](#svc-biz-trade-TradeResult) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-trade-LiveInfo"></a>
+
+### LiveInfo
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| merchant_id | [string](#string) |  |  |
+| app_id | [string](#string) |  |  |
+| room_id | [string](#string) |  |  |
+| anchor_id | [string](#string) |  |  |
+| live_id | [string](#string) |  |  |
+| live_type | [int64](#int64) |  | 直播类型 |
+| live_category | [int64](#int64) |  | 直播分类 |
+
+
+
+
+
+
+<a name="svc-biz-trade-MoneyExchangeCoinReq"></a>
+
+### MoneyExchangeCoinReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| trade_info | [TradeInfo](#svc-biz-trade-TradeInfo) |  |  |
+| user | [UserInfo](#svc-biz-trade-UserInfo) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-trade-MoneyExchangeCoinResp"></a>
+
+### MoneyExchangeCoinResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| trade_result | [TradeResult](#svc-biz-trade-TradeResult) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-trade-MoneyRechargeReq"></a>
+
+### MoneyRechargeReq
+待讨论
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| trade_info | [TradeInfo](#svc-biz-trade-TradeInfo) |  |  |
+| user | [UserInfo](#svc-biz-trade-UserInfo) |  |  |
+| pay_info | [MoneyRechargeReq.PayInfo](#svc-biz-trade-MoneyRechargeReq-PayInfo) |  |  |
+| recharge_amount | [int64](#int64) |  | 充值余额金额 |
+| attach | [string](#string) |  | 透传的附加信息,等待约定 |
+
+
+
+
+
+
+<a name="svc-biz-trade-MoneyRechargeReq-PayInfo"></a>
+
+### MoneyRechargeReq.PayInfo
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| pay_channel | [string](#string) |  |  |
+| pay_method | [string](#string) |  |  |
+| currency_code | [string](#string) |  | 币种代码 CNY |
+| amount | [string](#string) |  | 币种金额 |
+
+
+
+
+
+
+<a name="svc-biz-trade-MoneyRechargeResp"></a>
+
+### MoneyRechargeResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| trade_result | [TradeResult](#svc-biz-trade-TradeResult) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-trade-MoneyWithdrawReq"></a>
+
+### MoneyWithdrawReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| trade_info | [TradeInfo](#svc-biz-trade-TradeInfo) |  |  |
+| user | [UserInfo](#svc-biz-trade-UserInfo) |  |  |
+| withdraw_amount | [int64](#int64) |  | 提现金额 |
+
+
+
+
+
+
+<a name="svc-biz-trade-MoneyWithdrawResp"></a>
+
+### MoneyWithdrawResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| trade_result | [TradeResult](#svc-biz-trade-TradeResult) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-trade-PayBulletChatReq"></a>
+
+### PayBulletChatReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| trade_info | [TradeInfo](#svc-biz-trade-TradeInfo) |  |  |
+| buyer | [UserInfo](#svc-biz-trade-UserInfo) |  |  |
+| live_info | [LiveInfo](#svc-biz-trade-LiveInfo) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-trade-PayBulletChatResp"></a>
+
+### PayBulletChatResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| trade_result | [TradeResult](#svc-biz-trade-TradeResult) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-trade-PayLiveDurationFeeReq"></a>
+
+### PayLiveDurationFeeReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| trade_info | [TradeInfo](#svc-biz-trade-TradeInfo) |  |  |
+| buyer | [UserInfo](#svc-biz-trade-UserInfo) |  |  |
+| live_info | [LiveInfo](#svc-biz-trade-LiveInfo) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-trade-PayLiveDurationFeeResp"></a>
+
+### PayLiveDurationFeeResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| trade_result | [TradeResult](#svc-biz-trade-TradeResult) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-trade-SendGiftInLiveReq"></a>
+
+### SendGiftInLiveReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| trade_info | [TradeInfo](#svc-biz-trade-TradeInfo) |  |  |
+| sender | [UserInfo](#svc-biz-trade-UserInfo) |  |  |
+| receiver | [UserInfo](#svc-biz-trade-UserInfo) |  |  |
+| gift | [GiftInfo](#svc-biz-trade-GiftInfo) |  |  |
+| live_info | [LiveInfo](#svc-biz-trade-LiveInfo) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-trade-SendGiftInLiveResp"></a>
+
+### SendGiftInLiveResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| trade_result | [TradeResult](#svc-biz-trade-TradeResult) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-trade-TradeInfo"></a>
+
+### TradeInfo
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| merchant_id | [string](#string) |  | 交易发生的商户 |
+| app_id | [string](#string) |  | 交易发生的app |
+| trade_id | [string](#string) |  | 业务方交易id,业务方保证唯一,支持幂等 |
+| trans_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 业务时间 |
+
+
+
+
+
+
+<a name="svc-biz-trade-TradeResult"></a>
+
+### TradeResult
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| value | [UserCoinValue](#svc-biz-trade-UserCoinValue) |  |  |
+| serial_number | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-trade-UserCoinValue"></a>
+
+### UserCoinValue
+总余额=value&#43;limited_value
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| value | [int64](#int64) |  | 余额 |
+| limited_value | [int64](#int64) |  | 低权限余额 |
+
+
+
+
+
+
+<a name="svc-biz-trade-UserInfo"></a>
+
+### UserInfo
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| merchant_id | [string](#string) |  |  |
+| app_id | [string](#string) |  |  |
+| uid | [string](#string) |  |  |
+| nickname | [string](#string) |  |  |
+| avatar | [string](#string) |  |  |
+| union_id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-trade-VipActivateReq"></a>
+
+### VipActivateReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| trade_info | [TradeInfo](#svc-biz-trade-TradeInfo) |  |  |
+| buyer | [UserInfo](#svc-biz-trade-UserInfo) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-trade-VipActivateResp"></a>
+
+### VipActivateResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| trade_result | [TradeResult](#svc-biz-trade-TradeResult) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-trade-VipExtendReq"></a>
+
+### VipExtendReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| trade_info | [TradeInfo](#svc-biz-trade-TradeInfo) |  |  |
+| buyer | [UserInfo](#svc-biz-trade-UserInfo) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-trade-VipExtendResp"></a>
+
+### VipExtendResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| trade_result | [TradeResult](#svc-biz-trade-TradeResult) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-trade-VipUpgradeReq"></a>
+
+### VipUpgradeReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| trade_info | [TradeInfo](#svc-biz-trade-TradeInfo) |  |  |
+| buyer | [UserInfo](#svc-biz-trade-UserInfo) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-trade-VipUpgradeResp"></a>
+
+### VipUpgradeResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| trade_result | [TradeResult](#svc-biz-trade-TradeResult) |  |  |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="svc-biz-trade-Trade"></a>
+
+### Trade
+
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| SendGiftInLive | [SendGiftInLiveReq](#svc-biz-trade-SendGiftInLiveReq) | [SendGiftInLiveResp](#svc-biz-trade-SendGiftInLiveResp) |  |
+| BuyLiveTicket | [BuyLiveTicketReq](#svc-biz-trade-BuyLiveTicketReq) | [BuyLiveTicketResp](#svc-biz-trade-BuyLiveTicketResp) |  |
+| PayLiveDurationFee | [PayLiveDurationFeeReq](#svc-biz-trade-PayLiveDurationFeeReq) | [PayLiveDurationFeeResp](#svc-biz-trade-PayLiveDurationFeeResp) |  |
+| JoinAnchorFansGroup | [JoinAnchorFansGroupReq](#svc-biz-trade-JoinAnchorFansGroupReq) | [JoinAnchorFansGroupResp](#svc-biz-trade-JoinAnchorFansGroupResp) |  |
+| PayBulletChat | [PayBulletChatReq](#svc-biz-trade-PayBulletChatReq) | [PayBulletChatResp](#svc-biz-trade-PayBulletChatResp) |  |
+| VipActivate | [VipActivateReq](#svc-biz-trade-VipActivateReq) | [VipActivateResp](#svc-biz-trade-VipActivateResp) |  |
+| VipExtend | [VipExtendReq](#svc-biz-trade-VipExtendReq) | [VipExtendResp](#svc-biz-trade-VipExtendResp) |  |
+| VipUpgrade | [VipUpgradeReq](#svc-biz-trade-VipUpgradeReq) | [VipUpgradeResp](#svc-biz-trade-VipUpgradeResp) |  |
+| BuyRide | [BuyRideReq](#svc-biz-trade-BuyRideReq) | [BuyRideResp](#svc-biz-trade-BuyRideResp) |  |
+| BuyLuckyId | [BuyLuckyIdReq](#svc-biz-trade-BuyLuckyIdReq) | [BuyLuckyIdResp](#svc-biz-trade-BuyLuckyIdResp) |  |
+| MoneyRecharge | [MoneyRechargeReq](#svc-biz-trade-MoneyRechargeReq) | [MoneyRechargeResp](#svc-biz-trade-MoneyRechargeResp) |  |
+| MoneyWithdraw | [MoneyWithdrawReq](#svc-biz-trade-MoneyWithdrawReq) | [MoneyWithdrawResp](#svc-biz-trade-MoneyWithdrawResp) |  |
+| MoneyExchangeCoin | [MoneyExchangeCoinReq](#svc-biz-trade-MoneyExchangeCoinReq) | [MoneyExchangeCoinResp](#svc-biz-trade-MoneyExchangeCoinResp) |  |
 
  
 

@@ -9,6 +9,7 @@ import (
 	svcBizAccount "github.com/zenkoo-live/svc.proto/svc.biz.account"
 	svcBizAsset "github.com/zenkoo-live/svc.proto/svc.biz.asset"
 	svcBizGift "github.com/zenkoo-live/svc.proto/svc.biz.gift"
+	svcBizTrade "github.com/zenkoo-live/svc.proto/svc.biz.trade"
 	svcInfraSetting "github.com/zenkoo-live/svc.proto/svc.infra.setting"
 	svcWebDashboard "github.com/zenkoo-live/svc.proto/svc.web.dashboard"
 	svcWebStreamer "github.com/zenkoo-live/svc.proto/svc.web.streamer"
@@ -24,6 +25,7 @@ const (
 	SvcBizGift      = "svc.biz.gift"
 	SvcInfraSetting = "svc.infra.setting"
 	SvcWebStreamer  = "svc.web.streamer"
+	SvcBizTrade     = "svc.biz.trade"
 	SvcWebViewer    = "svc.web.viewer"
 )
 
@@ -36,5 +38,6 @@ var (
 	SvcBizGiftGift           = svcBizGift.NewGiftService(AppName+"::"+SvcBizGift, clt)
 	SvcInfraSettingSetting   = svcInfraSetting.NewSettingService(AppName+"::"+SvcInfraSetting, clt)
 	SvcWebStreamerStreamer   = svcWebStreamer.NewStreamerService(AppName+"::"+SvcWebStreamer, clt)
+	SvcBizTradeTrade         = svcBizTrade.NewTradeService(AppName+"::"+SvcBizTrade, clt)
 	SvcWebViewerViewer       = svcWebViewer.NewViewerService(AppName+"::"+SvcWebViewer, clt)
 )
