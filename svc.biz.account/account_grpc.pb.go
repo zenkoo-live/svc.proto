@@ -11,6 +11,7 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -19,6 +20,7 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
+	Account_InitDB_FullMethodName         = "/svc.biz.account.Account/InitDB"
 	Account_GetViewer_FullMethodName      = "/svc.biz.account.Account/GetViewer"
 	Account_ListViewers_FullMethodName    = "/svc.biz.account.Account/ListViewers"
 	Account_AddViewer_FullMethodName      = "/svc.biz.account.Account/AddViewer"
@@ -40,6 +42,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AccountClient interface {
+	InitDB(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*InitDBResp, error)
 	GetViewer(ctx context.Context, in *GetViewerReq, opts ...grpc.CallOption) (*GetViewerResp, error)
 	ListViewers(ctx context.Context, in *ListViewersReq, opts ...grpc.CallOption) (*ListViewersResp, error)
 	AddViewer(ctx context.Context, in *AddViewerReq, opts ...grpc.CallOption) (*AddViewerResp, error)
@@ -63,6 +66,15 @@ type accountClient struct {
 
 func NewAccountClient(cc grpc.ClientConnInterface) AccountClient {
 	return &accountClient{cc}
+}
+
+func (c *accountClient) InitDB(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*InitDBResp, error) {
+	out := new(InitDBResp)
+	err := c.cc.Invoke(ctx, Account_InitDB_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *accountClient) GetViewer(ctx context.Context, in *GetViewerReq, opts ...grpc.CallOption) (*GetViewerResp, error) {
@@ -204,6 +216,7 @@ func (c *accountClient) DeleteManager(ctx context.Context, in *DeleteManagerReq,
 // All implementations must embed UnimplementedAccountServer
 // for forward compatibility
 type AccountServer interface {
+	InitDB(context.Context, *emptypb.Empty) (*InitDBResp, error)
 	GetViewer(context.Context, *GetViewerReq) (*GetViewerResp, error)
 	ListViewers(context.Context, *ListViewersReq) (*ListViewersResp, error)
 	AddViewer(context.Context, *AddViewerReq) (*AddViewerResp, error)
@@ -226,6 +239,9 @@ type AccountServer interface {
 type UnimplementedAccountServer struct {
 }
 
+func (UnimplementedAccountServer) InitDB(context.Context, *emptypb.Empty) (*InitDBResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method InitDB not implemented")
+}
 func (UnimplementedAccountServer) GetViewer(context.Context, *GetViewerReq) (*GetViewerResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetViewer not implemented")
 }
@@ -282,6 +298,24 @@ type UnsafeAccountServer interface {
 
 func RegisterAccountServer(s grpc.ServiceRegistrar, srv AccountServer) {
 	s.RegisterService(&Account_ServiceDesc, srv)
+}
+
+func _Account_InitDB_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AccountServer).InitDB(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Account_InitDB_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AccountServer).InitDB(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _Account_GetViewer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -561,6 +595,10 @@ var Account_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "svc.biz.account.Account",
 	HandlerType: (*AccountServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "InitDB",
+			Handler:    _Account_InitDB_Handler,
+		},
 		{
 			MethodName: "GetViewer",
 			Handler:    _Account_GetViewer_Handler,

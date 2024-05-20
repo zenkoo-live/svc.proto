@@ -3,9 +3,12 @@ syntax = "proto3";
 package svc.biz.account;
 option go_package="./svc.biz.account;account";
 
+import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
 
 service Account {
+    rpc InitDB(google.protobuf.Empty) returns (InitDBResp); // 初始化数据库
+
     rpc GetViewer(GetViewerReq) returns (GetViewerResp); // 获取普通账号
     rpc ListViewers(ListViewersReq) returns (ListViewersResp); // 获取普通账号列表
     rpc AddViewer(AddViewerReq) returns (AddViewerResp); // 添加普通账号
@@ -23,6 +26,10 @@ service Account {
     rpc AddManager(AddManagerReq) returns (AddManagerResp); // 添加普通账号
     rpc UpdateManager(UpdateManagerReq) returns (UpdateManagerResp); // 更新主播账号
     rpc DeleteManager(DeleteManagerReq) returns (DeleteManagerResp); // 删除主播账号
+}
+
+message InitDBResp {
+    bool result = 1;
 }
 
 enum ManagerTypes {
