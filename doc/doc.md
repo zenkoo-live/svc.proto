@@ -66,6 +66,7 @@
     - [GetStreamerResp](#svc-biz-account-GetStreamerResp)
     - [GetViewerReq](#svc-biz-account-GetViewerReq)
     - [GetViewerResp](#svc-biz-account-GetViewerResp)
+    - [InitDBResp](#svc-biz-account-InitDBResp)
     - [ListManagersReq](#svc-biz-account-ListManagersReq)
     - [ListManagersResp](#svc-biz-account-ListManagersResp)
     - [ListStreamersReq](#svc-biz-account-ListStreamersReq)
@@ -927,6 +928,21 @@
 
 
 
+<a name="svc-biz-account-InitDBResp"></a>
+
+### InitDBResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| result | [bool](#bool) |  |  |
+
+
+
+
+
+
 <a name="svc-biz-account-ListManagersReq"></a>
 
 ### ListManagersReq
@@ -1202,6 +1218,7 @@ Models
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
+| InitDB | [.google.protobuf.Empty](#google-protobuf-Empty) | [InitDBResp](#svc-biz-account-InitDBResp) | 初始化数据库 |
 | GetViewer | [GetViewerReq](#svc-biz-account-GetViewerReq) | [GetViewerResp](#svc-biz-account-GetViewerResp) | 获取普通账号 |
 | ListViewers | [ListViewersReq](#svc-biz-account-ListViewersReq) | [ListViewersResp](#svc-biz-account-ListViewersResp) | 获取普通账号列表 |
 | AddViewer | [AddViewerReq](#svc-biz-account-AddViewerReq) | [AddViewerResp](#svc-biz-account-AddViewerResp) | 添加普通账号 |

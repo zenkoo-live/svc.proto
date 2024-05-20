@@ -6,6 +6,7 @@ package account
 import (
 	fmt "fmt"
 	proto "google.golang.org/protobuf/proto"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	_ "google.golang.org/protobuf/types/known/timestamppb"
 	math "math"
 )
@@ -37,6 +38,7 @@ func NewAccountEndpoints() []*api.Endpoint {
 // Client API for Account service
 
 type AccountService interface {
+	InitDB(ctx context.Context, in *emptypb.Empty, opts ...client.CallOption) (*InitDBResp, error)
 	GetViewer(ctx context.Context, in *GetViewerReq, opts ...client.CallOption) (*GetViewerResp, error)
 	ListViewers(ctx context.Context, in *ListViewersReq, opts ...client.CallOption) (*ListViewersResp, error)
 	AddViewer(ctx context.Context, in *AddViewerReq, opts ...client.CallOption) (*AddViewerResp, error)
@@ -64,6 +66,16 @@ func NewAccountService(name string, c client.Client) AccountService {
 		c:    c,
 		name: name,
 	}
+}
+
+func (c *accountService) InitDB(ctx context.Context, in *emptypb.Empty, opts ...client.CallOption) (*InitDBResp, error) {
+	req := c.c.NewRequest(c.name, "Account.InitDB", in)
+	out := new(InitDBResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *accountService) GetViewer(ctx context.Context, in *GetViewerReq, opts ...client.CallOption) (*GetViewerResp, error) {
@@ -219,6 +231,7 @@ func (c *accountService) DeleteManager(ctx context.Context, in *DeleteManagerReq
 // Server API for Account service
 
 type AccountHandler interface {
+	InitDB(context.Context, *emptypb.Empty, *InitDBResp) error
 	GetViewer(context.Context, *GetViewerReq, *GetViewerResp) error
 	ListViewers(context.Context, *ListViewersReq, *ListViewersResp) error
 	AddViewer(context.Context, *AddViewerReq, *AddViewerResp) error
@@ -238,6 +251,7 @@ type AccountHandler interface {
 
 func RegisterAccountHandler(s server.Server, hdlr AccountHandler, opts ...server.HandlerOption) error {
 	type account interface {
+		InitDB(ctx context.Context, in *emptypb.Empty, out *InitDBResp) error
 		GetViewer(ctx context.Context, in *GetViewerReq, out *GetViewerResp) error
 		ListViewers(ctx context.Context, in *ListViewersReq, out *ListViewersResp) error
 		AddViewer(ctx context.Context, in *AddViewerReq, out *AddViewerResp) error
@@ -263,6 +277,10 @@ func RegisterAccountHandler(s server.Server, hdlr AccountHandler, opts ...server
 
 type accountHandler struct {
 	AccountHandler
+}
+
+func (h *accountHandler) InitDB(ctx context.Context, in *emptypb.Empty, out *InitDBResp) error {
+	return h.AccountHandler.InitDB(ctx, in, out)
 }
 
 func (h *accountHandler) GetViewer(ctx context.Context, in *GetViewerReq, out *GetViewerResp) error {
