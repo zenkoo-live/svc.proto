@@ -110,8 +110,8 @@ CategoryInfo 分类详情
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | category_id | [int64](#int64) |  |  |
-| start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
-| end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+| updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
 | parent_id | [int64](#int64) |  | 父级ID |
 | category_code | [string](#string) |  | 代号（唯一，预留） |
 | category_name | [string](#string) |  | 名称 |

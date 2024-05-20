@@ -27,8 +27,8 @@ service Category {
 // CategoryInfo 分类详情
 message CategoryInfo {
   int64 category_id = 1; 
-  google.protobuf.Timestamp start_time = 2;
-  google.protobuf.Timestamp end_time = 3;
+  google.protobuf.Timestamp created_at = 2;
+  google.protobuf.Timestamp updated_at = 3;
   int64 parent_id = 4; // 父级ID
   string category_code = 5; // 代号（唯一，预留）
   string category_name = 6; // 名称
