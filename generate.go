@@ -133,7 +133,7 @@ func getServices() map[string]*svcSpec {
 					if err != nil {
 						log.Fatal(err)
 					}
-
+					// 先找到包名
 					ast.Inspect(af, func(n ast.Node) bool {
 						switch t := n.(type) {
 						case *ast.File:
@@ -148,10 +148,10 @@ func getServices() map[string]*svcSpec {
 									Services:  make(map[string]string),
 								}
 							}
-
 						}
 						return true
 					})
+					// 再找到服务名
 					ast.Inspect(af, func(n ast.Node) bool {
 						switch t := n.(type) {
 						case *ast.FuncDecl:

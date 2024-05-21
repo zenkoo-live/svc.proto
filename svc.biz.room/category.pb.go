@@ -430,7 +430,7 @@ type ListCategoryReq struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ParentId    int64 `protobuf:"varint,1,opt,name=parent_id,json=parentId,proto3" json:"parent_id,omitempty"`          // 父级ID
+	ParentId    int64 `protobuf:"varint,1,opt,name=parent_id,json=parentId,proto3" json:"parent_id,omitempty"`          // 父级ID，跟级分类传1
 	ReturnCount bool  `protobuf:"varint,2,opt,name=return_count,json=returnCount,proto3" json:"return_count,omitempty"` // 是否返回总数
 }
 

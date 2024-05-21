@@ -61,7 +61,7 @@ message DeleteCategoryReq{
 }
 
 message ListCategoryReq {
-  int64 parent_id = 1; // 父级ID
+  int64 parent_id = 1; // 父级ID，跟级分类传1
   bool return_count = 2; // 是否返回总数
 }
 message ListCategoryResp {

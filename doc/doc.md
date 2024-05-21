@@ -813,7 +813,7 @@ CategoryInfo 分类详情
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent_id | [int64](#int64) |  | 父级ID |
+| parent_id | [int64](#int64) |  | 父级ID，跟级分类传1 |
 | return_count | [bool](#bool) |  | 是否返回总数 |
 
 
