@@ -6,6 +6,8 @@ package account
 import (
 	fmt "fmt"
 	proto "google.golang.org/protobuf/proto"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
+	_ "google.golang.org/protobuf/types/known/timestamppb"
 	math "math"
 )
 
@@ -36,6 +38,22 @@ func NewAccountEndpoints() []*api.Endpoint {
 // Client API for Account service
 
 type AccountService interface {
+	InitDB(ctx context.Context, in *emptypb.Empty, opts ...client.CallOption) (*InitDBResp, error)
+	GetViewer(ctx context.Context, in *GetViewerReq, opts ...client.CallOption) (*GetViewerResp, error)
+	ListViewers(ctx context.Context, in *ListViewersReq, opts ...client.CallOption) (*ListViewersResp, error)
+	AddViewer(ctx context.Context, in *AddViewerReq, opts ...client.CallOption) (*AddViewerResp, error)
+	UpdateViewer(ctx context.Context, in *UpdateViewerReq, opts ...client.CallOption) (*UpdateViewerResp, error)
+	DeleteViewer(ctx context.Context, in *DeleteViewerReq, opts ...client.CallOption) (*DeleteViewerResp, error)
+	GetStreamer(ctx context.Context, in *GetStreamerReq, opts ...client.CallOption) (*GetStreamerResp, error)
+	ListStreamers(ctx context.Context, in *ListStreamersReq, opts ...client.CallOption) (*ListStreamersResp, error)
+	AddStreamer(ctx context.Context, in *AddStreamerReq, opts ...client.CallOption) (*AddStreamerResp, error)
+	UpdateStreamer(ctx context.Context, in *UpdateStreamerReq, opts ...client.CallOption) (*UpdateStreamerResp, error)
+	DeleteStreamer(ctx context.Context, in *DeleteStreamerReq, opts ...client.CallOption) (*DeleteStreamerResp, error)
+	GetManager(ctx context.Context, in *GetManagerReq, opts ...client.CallOption) (*GetManagerResp, error)
+	ListManagers(ctx context.Context, in *ListManagersReq, opts ...client.CallOption) (*ListManagersResp, error)
+	AddManager(ctx context.Context, in *AddManagerReq, opts ...client.CallOption) (*AddManagerResp, error)
+	UpdateManager(ctx context.Context, in *UpdateManagerReq, opts ...client.CallOption) (*UpdateManagerResp, error)
+	DeleteManager(ctx context.Context, in *DeleteManagerReq, opts ...client.CallOption) (*DeleteManagerResp, error)
 }
 
 type accountService struct {
@@ -50,13 +68,205 @@ func NewAccountService(name string, c client.Client) AccountService {
 	}
 }
 
+func (c *accountService) InitDB(ctx context.Context, in *emptypb.Empty, opts ...client.CallOption) (*InitDBResp, error) {
+	req := c.c.NewRequest(c.name, "Account.InitDB", in)
+	out := new(InitDBResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *accountService) GetViewer(ctx context.Context, in *GetViewerReq, opts ...client.CallOption) (*GetViewerResp, error) {
+	req := c.c.NewRequest(c.name, "Account.GetViewer", in)
+	out := new(GetViewerResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *accountService) ListViewers(ctx context.Context, in *ListViewersReq, opts ...client.CallOption) (*ListViewersResp, error) {
+	req := c.c.NewRequest(c.name, "Account.ListViewers", in)
+	out := new(ListViewersResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *accountService) AddViewer(ctx context.Context, in *AddViewerReq, opts ...client.CallOption) (*AddViewerResp, error) {
+	req := c.c.NewRequest(c.name, "Account.AddViewer", in)
+	out := new(AddViewerResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *accountService) UpdateViewer(ctx context.Context, in *UpdateViewerReq, opts ...client.CallOption) (*UpdateViewerResp, error) {
+	req := c.c.NewRequest(c.name, "Account.UpdateViewer", in)
+	out := new(UpdateViewerResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *accountService) DeleteViewer(ctx context.Context, in *DeleteViewerReq, opts ...client.CallOption) (*DeleteViewerResp, error) {
+	req := c.c.NewRequest(c.name, "Account.DeleteViewer", in)
+	out := new(DeleteViewerResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *accountService) GetStreamer(ctx context.Context, in *GetStreamerReq, opts ...client.CallOption) (*GetStreamerResp, error) {
+	req := c.c.NewRequest(c.name, "Account.GetStreamer", in)
+	out := new(GetStreamerResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *accountService) ListStreamers(ctx context.Context, in *ListStreamersReq, opts ...client.CallOption) (*ListStreamersResp, error) {
+	req := c.c.NewRequest(c.name, "Account.ListStreamers", in)
+	out := new(ListStreamersResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *accountService) AddStreamer(ctx context.Context, in *AddStreamerReq, opts ...client.CallOption) (*AddStreamerResp, error) {
+	req := c.c.NewRequest(c.name, "Account.AddStreamer", in)
+	out := new(AddStreamerResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *accountService) UpdateStreamer(ctx context.Context, in *UpdateStreamerReq, opts ...client.CallOption) (*UpdateStreamerResp, error) {
+	req := c.c.NewRequest(c.name, "Account.UpdateStreamer", in)
+	out := new(UpdateStreamerResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *accountService) DeleteStreamer(ctx context.Context, in *DeleteStreamerReq, opts ...client.CallOption) (*DeleteStreamerResp, error) {
+	req := c.c.NewRequest(c.name, "Account.DeleteStreamer", in)
+	out := new(DeleteStreamerResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *accountService) GetManager(ctx context.Context, in *GetManagerReq, opts ...client.CallOption) (*GetManagerResp, error) {
+	req := c.c.NewRequest(c.name, "Account.GetManager", in)
+	out := new(GetManagerResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *accountService) ListManagers(ctx context.Context, in *ListManagersReq, opts ...client.CallOption) (*ListManagersResp, error) {
+	req := c.c.NewRequest(c.name, "Account.ListManagers", in)
+	out := new(ListManagersResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *accountService) AddManager(ctx context.Context, in *AddManagerReq, opts ...client.CallOption) (*AddManagerResp, error) {
+	req := c.c.NewRequest(c.name, "Account.AddManager", in)
+	out := new(AddManagerResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *accountService) UpdateManager(ctx context.Context, in *UpdateManagerReq, opts ...client.CallOption) (*UpdateManagerResp, error) {
+	req := c.c.NewRequest(c.name, "Account.UpdateManager", in)
+	out := new(UpdateManagerResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *accountService) DeleteManager(ctx context.Context, in *DeleteManagerReq, opts ...client.CallOption) (*DeleteManagerResp, error) {
+	req := c.c.NewRequest(c.name, "Account.DeleteManager", in)
+	out := new(DeleteManagerResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for Account service
 
 type AccountHandler interface {
+	InitDB(context.Context, *emptypb.Empty, *InitDBResp) error
+	GetViewer(context.Context, *GetViewerReq, *GetViewerResp) error
+	ListViewers(context.Context, *ListViewersReq, *ListViewersResp) error
+	AddViewer(context.Context, *AddViewerReq, *AddViewerResp) error
+	UpdateViewer(context.Context, *UpdateViewerReq, *UpdateViewerResp) error
+	DeleteViewer(context.Context, *DeleteViewerReq, *DeleteViewerResp) error
+	GetStreamer(context.Context, *GetStreamerReq, *GetStreamerResp) error
+	ListStreamers(context.Context, *ListStreamersReq, *ListStreamersResp) error
+	AddStreamer(context.Context, *AddStreamerReq, *AddStreamerResp) error
+	UpdateStreamer(context.Context, *UpdateStreamerReq, *UpdateStreamerResp) error
+	DeleteStreamer(context.Context, *DeleteStreamerReq, *DeleteStreamerResp) error
+	GetManager(context.Context, *GetManagerReq, *GetManagerResp) error
+	ListManagers(context.Context, *ListManagersReq, *ListManagersResp) error
+	AddManager(context.Context, *AddManagerReq, *AddManagerResp) error
+	UpdateManager(context.Context, *UpdateManagerReq, *UpdateManagerResp) error
+	DeleteManager(context.Context, *DeleteManagerReq, *DeleteManagerResp) error
 }
 
 func RegisterAccountHandler(s server.Server, hdlr AccountHandler, opts ...server.HandlerOption) error {
 	type account interface {
+		InitDB(ctx context.Context, in *emptypb.Empty, out *InitDBResp) error
+		GetViewer(ctx context.Context, in *GetViewerReq, out *GetViewerResp) error
+		ListViewers(ctx context.Context, in *ListViewersReq, out *ListViewersResp) error
+		AddViewer(ctx context.Context, in *AddViewerReq, out *AddViewerResp) error
+		UpdateViewer(ctx context.Context, in *UpdateViewerReq, out *UpdateViewerResp) error
+		DeleteViewer(ctx context.Context, in *DeleteViewerReq, out *DeleteViewerResp) error
+		GetStreamer(ctx context.Context, in *GetStreamerReq, out *GetStreamerResp) error
+		ListStreamers(ctx context.Context, in *ListStreamersReq, out *ListStreamersResp) error
+		AddStreamer(ctx context.Context, in *AddStreamerReq, out *AddStreamerResp) error
+		UpdateStreamer(ctx context.Context, in *UpdateStreamerReq, out *UpdateStreamerResp) error
+		DeleteStreamer(ctx context.Context, in *DeleteStreamerReq, out *DeleteStreamerResp) error
+		GetManager(ctx context.Context, in *GetManagerReq, out *GetManagerResp) error
+		ListManagers(ctx context.Context, in *ListManagersReq, out *ListManagersResp) error
+		AddManager(ctx context.Context, in *AddManagerReq, out *AddManagerResp) error
+		UpdateManager(ctx context.Context, in *UpdateManagerReq, out *UpdateManagerResp) error
+		DeleteManager(ctx context.Context, in *DeleteManagerReq, out *DeleteManagerResp) error
 	}
 	type Account struct {
 		account
@@ -67,4 +277,68 @@ func RegisterAccountHandler(s server.Server, hdlr AccountHandler, opts ...server
 
 type accountHandler struct {
 	AccountHandler
+}
+
+func (h *accountHandler) InitDB(ctx context.Context, in *emptypb.Empty, out *InitDBResp) error {
+	return h.AccountHandler.InitDB(ctx, in, out)
+}
+
+func (h *accountHandler) GetViewer(ctx context.Context, in *GetViewerReq, out *GetViewerResp) error {
+	return h.AccountHandler.GetViewer(ctx, in, out)
+}
+
+func (h *accountHandler) ListViewers(ctx context.Context, in *ListViewersReq, out *ListViewersResp) error {
+	return h.AccountHandler.ListViewers(ctx, in, out)
+}
+
+func (h *accountHandler) AddViewer(ctx context.Context, in *AddViewerReq, out *AddViewerResp) error {
+	return h.AccountHandler.AddViewer(ctx, in, out)
+}
+
+func (h *accountHandler) UpdateViewer(ctx context.Context, in *UpdateViewerReq, out *UpdateViewerResp) error {
+	return h.AccountHandler.UpdateViewer(ctx, in, out)
+}
+
+func (h *accountHandler) DeleteViewer(ctx context.Context, in *DeleteViewerReq, out *DeleteViewerResp) error {
+	return h.AccountHandler.DeleteViewer(ctx, in, out)
+}
+
+func (h *accountHandler) GetStreamer(ctx context.Context, in *GetStreamerReq, out *GetStreamerResp) error {
+	return h.AccountHandler.GetStreamer(ctx, in, out)
+}
+
+func (h *accountHandler) ListStreamers(ctx context.Context, in *ListStreamersReq, out *ListStreamersResp) error {
+	return h.AccountHandler.ListStreamers(ctx, in, out)
+}
+
+func (h *accountHandler) AddStreamer(ctx context.Context, in *AddStreamerReq, out *AddStreamerResp) error {
+	return h.AccountHandler.AddStreamer(ctx, in, out)
+}
+
+func (h *accountHandler) UpdateStreamer(ctx context.Context, in *UpdateStreamerReq, out *UpdateStreamerResp) error {
+	return h.AccountHandler.UpdateStreamer(ctx, in, out)
+}
+
+func (h *accountHandler) DeleteStreamer(ctx context.Context, in *DeleteStreamerReq, out *DeleteStreamerResp) error {
+	return h.AccountHandler.DeleteStreamer(ctx, in, out)
+}
+
+func (h *accountHandler) GetManager(ctx context.Context, in *GetManagerReq, out *GetManagerResp) error {
+	return h.AccountHandler.GetManager(ctx, in, out)
+}
+
+func (h *accountHandler) ListManagers(ctx context.Context, in *ListManagersReq, out *ListManagersResp) error {
+	return h.AccountHandler.ListManagers(ctx, in, out)
+}
+
+func (h *accountHandler) AddManager(ctx context.Context, in *AddManagerReq, out *AddManagerResp) error {
+	return h.AccountHandler.AddManager(ctx, in, out)
+}
+
+func (h *accountHandler) UpdateManager(ctx context.Context, in *UpdateManagerReq, out *UpdateManagerResp) error {
+	return h.AccountHandler.UpdateManager(ctx, in, out)
+}
+
+func (h *accountHandler) DeleteManager(ctx context.Context, in *DeleteManagerReq, out *DeleteManagerResp) error {
+	return h.AccountHandler.DeleteManager(ctx, in, out)
 }

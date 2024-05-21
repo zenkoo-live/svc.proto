@@ -9,7 +9,10 @@ package account
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
+	sync "sync"
 )
 
 const (
@@ -19,24 +22,2250 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type ManagerTypes int32
+
+const (
+	ManagerTypes_ManagerTypeUnknown  ManagerTypes = 0 // 未知
+	ManagerTypes_ManagerTypePlatform ManagerTypes = 1 // 平台管理者
+	ManagerTypes_ManagerTypeMerchant ManagerTypes = 2 // 商户管理者
+	ManagerTypes_ManagerTypeUnion    ManagerTypes = 3 // 工会
+)
+
+// Enum value maps for ManagerTypes.
+var (
+	ManagerTypes_name = map[int32]string{
+		0: "ManagerTypeUnknown",
+		1: "ManagerTypePlatform",
+		2: "ManagerTypeMerchant",
+		3: "ManagerTypeUnion",
+	}
+	ManagerTypes_value = map[string]int32{
+		"ManagerTypeUnknown":  0,
+		"ManagerTypePlatform": 1,
+		"ManagerTypeMerchant": 2,
+		"ManagerTypeUnion":    3,
+	}
+)
+
+func (x ManagerTypes) Enum() *ManagerTypes {
+	p := new(ManagerTypes)
+	*p = x
+	return p
+}
+
+func (x ManagerTypes) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (ManagerTypes) Descriptor() protoreflect.EnumDescriptor {
+	return file_svc_biz_account_account_proto_enumTypes[0].Descriptor()
+}
+
+func (ManagerTypes) Type() protoreflect.EnumType {
+	return &file_svc_biz_account_account_proto_enumTypes[0]
+}
+
+func (x ManagerTypes) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use ManagerTypes.Descriptor instead.
+func (ManagerTypes) EnumDescriptor() ([]byte, []int) {
+	return file_svc_biz_account_account_proto_rawDescGZIP(), []int{0}
+}
+
+type InitDBResp struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Result bool `protobuf:"varint,1,opt,name=result,proto3" json:"result,omitempty"`
+}
+
+func (x *InitDBResp) Reset() {
+	*x = InitDBResp{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_biz_account_account_proto_msgTypes[0]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *InitDBResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*InitDBResp) ProtoMessage() {}
+
+func (x *InitDBResp) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_biz_account_account_proto_msgTypes[0]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use InitDBResp.ProtoReflect.Descriptor instead.
+func (*InitDBResp) Descriptor() ([]byte, []int) {
+	return file_svc_biz_account_account_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *InitDBResp) GetResult() bool {
+	if x != nil {
+		return x.Result
+	}
+	return false
+}
+
+// Models
+type Viewer struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id          string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`                                       // 内部ID
+	DisplayId   string                 `protobuf:"bytes,2,opt,name=display_id,json=displayId,proto3" json:"display_id,omitempty"`        // 用于显示和索引的数字ID
+	Name        string                 `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`                                   // 用户名
+	Nickname    string                 `protobuf:"bytes,4,opt,name=nickname,proto3" json:"nickname,omitempty"`                           // 昵称
+	Mobile      string                 `protobuf:"bytes,11,opt,name=mobile,proto3" json:"mobile,omitempty"`                              // 手机
+	Email       string                 `protobuf:"bytes,12,opt,name=email,proto3" json:"email,omitempty"`                                // 邮箱
+	DeviceIdent string                 `protobuf:"bytes,13,opt,name=device_ident,json=deviceIdent,proto3" json:"device_ident,omitempty"` // 设备号 / 指纹
+	Password    *string                `protobuf:"bytes,21,opt,name=password,proto3,oneof" json:"password,omitempty"`                    // 密码
+	CreatedAt   *timestamppb.Timestamp `protobuf:"bytes,255,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`      // 创建时间
+}
+
+func (x *Viewer) Reset() {
+	*x = Viewer{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_biz_account_account_proto_msgTypes[1]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Viewer) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Viewer) ProtoMessage() {}
+
+func (x *Viewer) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_biz_account_account_proto_msgTypes[1]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Viewer.ProtoReflect.Descriptor instead.
+func (*Viewer) Descriptor() ([]byte, []int) {
+	return file_svc_biz_account_account_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *Viewer) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *Viewer) GetDisplayId() string {
+	if x != nil {
+		return x.DisplayId
+	}
+	return ""
+}
+
+func (x *Viewer) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *Viewer) GetNickname() string {
+	if x != nil {
+		return x.Nickname
+	}
+	return ""
+}
+
+func (x *Viewer) GetMobile() string {
+	if x != nil {
+		return x.Mobile
+	}
+	return ""
+}
+
+func (x *Viewer) GetEmail() string {
+	if x != nil {
+		return x.Email
+	}
+	return ""
+}
+
+func (x *Viewer) GetDeviceIdent() string {
+	if x != nil {
+		return x.DeviceIdent
+	}
+	return ""
+}
+
+func (x *Viewer) GetPassword() string {
+	if x != nil && x.Password != nil {
+		return *x.Password
+	}
+	return ""
+}
+
+func (x *Viewer) GetCreatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return nil
+}
+
+type Streamer struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id        string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`                                  // 内部ID
+	DisplayId string                 `protobuf:"bytes,2,opt,name=display_id,json=displayId,proto3" json:"display_id,omitempty"`   // 用于显示和索引的数字ID
+	Name      string                 `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`                              // 用户名
+	Mobile    string                 `protobuf:"bytes,11,opt,name=mobile,proto3" json:"mobile,omitempty"`                         // 手机
+	Email     string                 `protobuf:"bytes,12,opt,name=email,proto3" json:"email,omitempty"`                           // 邮箱
+	Password  *string                `protobuf:"bytes,21,opt,name=password,proto3,oneof" json:"password,omitempty"`               // 密码
+	CreatedAt *timestamppb.Timestamp `protobuf:"bytes,255,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"` // 创建时间
+}
+
+func (x *Streamer) Reset() {
+	*x = Streamer{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_biz_account_account_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Streamer) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Streamer) ProtoMessage() {}
+
+func (x *Streamer) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_biz_account_account_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Streamer.ProtoReflect.Descriptor instead.
+func (*Streamer) Descriptor() ([]byte, []int) {
+	return file_svc_biz_account_account_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *Streamer) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *Streamer) GetDisplayId() string {
+	if x != nil {
+		return x.DisplayId
+	}
+	return ""
+}
+
+func (x *Streamer) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *Streamer) GetMobile() string {
+	if x != nil {
+		return x.Mobile
+	}
+	return ""
+}
+
+func (x *Streamer) GetEmail() string {
+	if x != nil {
+		return x.Email
+	}
+	return ""
+}
+
+func (x *Streamer) GetPassword() string {
+	if x != nil && x.Password != nil {
+		return *x.Password
+	}
+	return ""
+}
+
+func (x *Streamer) GetCreatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return nil
+}
+
+type Manager struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id        string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`                                        // 内部ID
+	Type      ManagerTypes           `protobuf:"varint,2,opt,name=type,proto3,enum=svc.biz.account.ManagerTypes" json:"type,omitempty"` // 类型：平台 / 商户 / 工会
+	Name      string                 `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`                                    // 用户名
+	Mobile    string                 `protobuf:"bytes,11,opt,name=mobile,proto3" json:"mobile,omitempty"`                               // 手机
+	Email     string                 `protobuf:"bytes,12,opt,name=email,proto3" json:"email,omitempty"`                                 // 邮箱
+	Password  *string                `protobuf:"bytes,21,opt,name=password,proto3,oneof" json:"password,omitempty"`                     // 密码
+	CreatedAt *timestamppb.Timestamp `protobuf:"bytes,255,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`       // 创建时间
+}
+
+func (x *Manager) Reset() {
+	*x = Manager{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_biz_account_account_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Manager) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Manager) ProtoMessage() {}
+
+func (x *Manager) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_biz_account_account_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Manager.ProtoReflect.Descriptor instead.
+func (*Manager) Descriptor() ([]byte, []int) {
+	return file_svc_biz_account_account_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *Manager) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *Manager) GetType() ManagerTypes {
+	if x != nil {
+		return x.Type
+	}
+	return ManagerTypes_ManagerTypeUnknown
+}
+
+func (x *Manager) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *Manager) GetMobile() string {
+	if x != nil {
+		return x.Mobile
+	}
+	return ""
+}
+
+func (x *Manager) GetEmail() string {
+	if x != nil {
+		return x.Email
+	}
+	return ""
+}
+
+func (x *Manager) GetPassword() string {
+	if x != nil && x.Password != nil {
+		return *x.Password
+	}
+	return ""
+}
+
+func (x *Manager) GetCreatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return nil
+}
+
+// {{{ [Viewer]
+type GetViewerReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Condition *Viewer `protobuf:"bytes,1,opt,name=condition,proto3" json:"condition,omitempty"`
+}
+
+func (x *GetViewerReq) Reset() {
+	*x = GetViewerReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_biz_account_account_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetViewerReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetViewerReq) ProtoMessage() {}
+
+func (x *GetViewerReq) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_biz_account_account_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetViewerReq.ProtoReflect.Descriptor instead.
+func (*GetViewerReq) Descriptor() ([]byte, []int) {
+	return file_svc_biz_account_account_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *GetViewerReq) GetCondition() *Viewer {
+	if x != nil {
+		return x.Condition
+	}
+	return nil
+}
+
+type GetViewerResp struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Viewer *Viewer `protobuf:"bytes,1,opt,name=viewer,proto3" json:"viewer,omitempty"`
+}
+
+func (x *GetViewerResp) Reset() {
+	*x = GetViewerResp{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_biz_account_account_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetViewerResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetViewerResp) ProtoMessage() {}
+
+func (x *GetViewerResp) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_biz_account_account_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetViewerResp.ProtoReflect.Descriptor instead.
+func (*GetViewerResp) Descriptor() ([]byte, []int) {
+	return file_svc_biz_account_account_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *GetViewerResp) GetViewer() *Viewer {
+	if x != nil {
+		return x.Viewer
+	}
+	return nil
+}
+
+type ListViewersReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Condition *Viewer `protobuf:"bytes,1,opt,name=condition,proto3" json:"condition,omitempty"`
+}
+
+func (x *ListViewersReq) Reset() {
+	*x = ListViewersReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_biz_account_account_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListViewersReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListViewersReq) ProtoMessage() {}
+
+func (x *ListViewersReq) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_biz_account_account_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListViewersReq.ProtoReflect.Descriptor instead.
+func (*ListViewersReq) Descriptor() ([]byte, []int) {
+	return file_svc_biz_account_account_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *ListViewersReq) GetCondition() *Viewer {
+	if x != nil {
+		return x.Condition
+	}
+	return nil
+}
+
+type ListViewersResp struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Viewers []*Viewer `protobuf:"bytes,1,rep,name=viewers,proto3" json:"viewers,omitempty"`
+}
+
+func (x *ListViewersResp) Reset() {
+	*x = ListViewersResp{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_biz_account_account_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListViewersResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListViewersResp) ProtoMessage() {}
+
+func (x *ListViewersResp) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_biz_account_account_proto_msgTypes[7]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListViewersResp.ProtoReflect.Descriptor instead.
+func (*ListViewersResp) Descriptor() ([]byte, []int) {
+	return file_svc_biz_account_account_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *ListViewersResp) GetViewers() []*Viewer {
+	if x != nil {
+		return x.Viewers
+	}
+	return nil
+}
+
+type AddViewerReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Viewer *Viewer `protobuf:"bytes,1,opt,name=viewer,proto3" json:"viewer,omitempty"`
+}
+
+func (x *AddViewerReq) Reset() {
+	*x = AddViewerReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_biz_account_account_proto_msgTypes[8]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddViewerReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddViewerReq) ProtoMessage() {}
+
+func (x *AddViewerReq) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_biz_account_account_proto_msgTypes[8]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddViewerReq.ProtoReflect.Descriptor instead.
+func (*AddViewerReq) Descriptor() ([]byte, []int) {
+	return file_svc_biz_account_account_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *AddViewerReq) GetViewer() *Viewer {
+	if x != nil {
+		return x.Viewer
+	}
+	return nil
+}
+
+type AddViewerResp struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Viewer *Viewer `protobuf:"bytes,1,opt,name=viewer,proto3" json:"viewer,omitempty"`
+	Result bool    `protobuf:"varint,255,opt,name=result,proto3" json:"result,omitempty"`
+}
+
+func (x *AddViewerResp) Reset() {
+	*x = AddViewerResp{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_biz_account_account_proto_msgTypes[9]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddViewerResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddViewerResp) ProtoMessage() {}
+
+func (x *AddViewerResp) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_biz_account_account_proto_msgTypes[9]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddViewerResp.ProtoReflect.Descriptor instead.
+func (*AddViewerResp) Descriptor() ([]byte, []int) {
+	return file_svc_biz_account_account_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *AddViewerResp) GetViewer() *Viewer {
+	if x != nil {
+		return x.Viewer
+	}
+	return nil
+}
+
+func (x *AddViewerResp) GetResult() bool {
+	if x != nil {
+		return x.Result
+	}
+	return false
+}
+
+type UpdateViewerReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Condition *Viewer `protobuf:"bytes,1,opt,name=condition,proto3" json:"condition,omitempty"`
+}
+
+func (x *UpdateViewerReq) Reset() {
+	*x = UpdateViewerReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_biz_account_account_proto_msgTypes[10]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateViewerReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateViewerReq) ProtoMessage() {}
+
+func (x *UpdateViewerReq) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_biz_account_account_proto_msgTypes[10]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateViewerReq.ProtoReflect.Descriptor instead.
+func (*UpdateViewerReq) Descriptor() ([]byte, []int) {
+	return file_svc_biz_account_account_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *UpdateViewerReq) GetCondition() *Viewer {
+	if x != nil {
+		return x.Condition
+	}
+	return nil
+}
+
+type UpdateViewerResp struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Updated int64 `protobuf:"varint,1,opt,name=updated,proto3" json:"updated,omitempty"`
+}
+
+func (x *UpdateViewerResp) Reset() {
+	*x = UpdateViewerResp{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_biz_account_account_proto_msgTypes[11]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateViewerResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateViewerResp) ProtoMessage() {}
+
+func (x *UpdateViewerResp) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_biz_account_account_proto_msgTypes[11]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateViewerResp.ProtoReflect.Descriptor instead.
+func (*UpdateViewerResp) Descriptor() ([]byte, []int) {
+	return file_svc_biz_account_account_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *UpdateViewerResp) GetUpdated() int64 {
+	if x != nil {
+		return x.Updated
+	}
+	return 0
+}
+
+type DeleteViewerReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Condition *Viewer `protobuf:"bytes,1,opt,name=condition,proto3" json:"condition,omitempty"`
+}
+
+func (x *DeleteViewerReq) Reset() {
+	*x = DeleteViewerReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_biz_account_account_proto_msgTypes[12]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteViewerReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteViewerReq) ProtoMessage() {}
+
+func (x *DeleteViewerReq) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_biz_account_account_proto_msgTypes[12]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteViewerReq.ProtoReflect.Descriptor instead.
+func (*DeleteViewerReq) Descriptor() ([]byte, []int) {
+	return file_svc_biz_account_account_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *DeleteViewerReq) GetCondition() *Viewer {
+	if x != nil {
+		return x.Condition
+	}
+	return nil
+}
+
+type DeleteViewerResp struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Deleted int64 `protobuf:"varint,1,opt,name=deleted,proto3" json:"deleted,omitempty"`
+}
+
+func (x *DeleteViewerResp) Reset() {
+	*x = DeleteViewerResp{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_biz_account_account_proto_msgTypes[13]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteViewerResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteViewerResp) ProtoMessage() {}
+
+func (x *DeleteViewerResp) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_biz_account_account_proto_msgTypes[13]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteViewerResp.ProtoReflect.Descriptor instead.
+func (*DeleteViewerResp) Descriptor() ([]byte, []int) {
+	return file_svc_biz_account_account_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *DeleteViewerResp) GetDeleted() int64 {
+	if x != nil {
+		return x.Deleted
+	}
+	return 0
+}
+
+// {{{ [Streamer]
+type GetStreamerReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Condition *Streamer `protobuf:"bytes,1,opt,name=condition,proto3" json:"condition,omitempty"`
+}
+
+func (x *GetStreamerReq) Reset() {
+	*x = GetStreamerReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_biz_account_account_proto_msgTypes[14]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetStreamerReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetStreamerReq) ProtoMessage() {}
+
+func (x *GetStreamerReq) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_biz_account_account_proto_msgTypes[14]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetStreamerReq.ProtoReflect.Descriptor instead.
+func (*GetStreamerReq) Descriptor() ([]byte, []int) {
+	return file_svc_biz_account_account_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *GetStreamerReq) GetCondition() *Streamer {
+	if x != nil {
+		return x.Condition
+	}
+	return nil
+}
+
+type GetStreamerResp struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Streamer *Streamer `protobuf:"bytes,1,opt,name=streamer,proto3" json:"streamer,omitempty"`
+}
+
+func (x *GetStreamerResp) Reset() {
+	*x = GetStreamerResp{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_biz_account_account_proto_msgTypes[15]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetStreamerResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetStreamerResp) ProtoMessage() {}
+
+func (x *GetStreamerResp) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_biz_account_account_proto_msgTypes[15]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetStreamerResp.ProtoReflect.Descriptor instead.
+func (*GetStreamerResp) Descriptor() ([]byte, []int) {
+	return file_svc_biz_account_account_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *GetStreamerResp) GetStreamer() *Streamer {
+	if x != nil {
+		return x.Streamer
+	}
+	return nil
+}
+
+type ListStreamersReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Condition *Streamer `protobuf:"bytes,1,opt,name=condition,proto3" json:"condition,omitempty"`
+}
+
+func (x *ListStreamersReq) Reset() {
+	*x = ListStreamersReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_biz_account_account_proto_msgTypes[16]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListStreamersReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListStreamersReq) ProtoMessage() {}
+
+func (x *ListStreamersReq) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_biz_account_account_proto_msgTypes[16]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListStreamersReq.ProtoReflect.Descriptor instead.
+func (*ListStreamersReq) Descriptor() ([]byte, []int) {
+	return file_svc_biz_account_account_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *ListStreamersReq) GetCondition() *Streamer {
+	if x != nil {
+		return x.Condition
+	}
+	return nil
+}
+
+type ListStreamersResp struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Streamers []*Streamer `protobuf:"bytes,1,rep,name=streamers,proto3" json:"streamers,omitempty"`
+}
+
+func (x *ListStreamersResp) Reset() {
+	*x = ListStreamersResp{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_biz_account_account_proto_msgTypes[17]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListStreamersResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListStreamersResp) ProtoMessage() {}
+
+func (x *ListStreamersResp) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_biz_account_account_proto_msgTypes[17]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListStreamersResp.ProtoReflect.Descriptor instead.
+func (*ListStreamersResp) Descriptor() ([]byte, []int) {
+	return file_svc_biz_account_account_proto_rawDescGZIP(), []int{17}
+}
+
+func (x *ListStreamersResp) GetStreamers() []*Streamer {
+	if x != nil {
+		return x.Streamers
+	}
+	return nil
+}
+
+type AddStreamerReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Streamer *Streamer `protobuf:"bytes,1,opt,name=streamer,proto3" json:"streamer,omitempty"`
+}
+
+func (x *AddStreamerReq) Reset() {
+	*x = AddStreamerReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_biz_account_account_proto_msgTypes[18]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddStreamerReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddStreamerReq) ProtoMessage() {}
+
+func (x *AddStreamerReq) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_biz_account_account_proto_msgTypes[18]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddStreamerReq.ProtoReflect.Descriptor instead.
+func (*AddStreamerReq) Descriptor() ([]byte, []int) {
+	return file_svc_biz_account_account_proto_rawDescGZIP(), []int{18}
+}
+
+func (x *AddStreamerReq) GetStreamer() *Streamer {
+	if x != nil {
+		return x.Streamer
+	}
+	return nil
+}
+
+type AddStreamerResp struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Streamer *Streamer `protobuf:"bytes,1,opt,name=streamer,proto3" json:"streamer,omitempty"`
+	Result   bool      `protobuf:"varint,255,opt,name=result,proto3" json:"result,omitempty"`
+}
+
+func (x *AddStreamerResp) Reset() {
+	*x = AddStreamerResp{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_biz_account_account_proto_msgTypes[19]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddStreamerResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddStreamerResp) ProtoMessage() {}
+
+func (x *AddStreamerResp) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_biz_account_account_proto_msgTypes[19]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddStreamerResp.ProtoReflect.Descriptor instead.
+func (*AddStreamerResp) Descriptor() ([]byte, []int) {
+	return file_svc_biz_account_account_proto_rawDescGZIP(), []int{19}
+}
+
+func (x *AddStreamerResp) GetStreamer() *Streamer {
+	if x != nil {
+		return x.Streamer
+	}
+	return nil
+}
+
+func (x *AddStreamerResp) GetResult() bool {
+	if x != nil {
+		return x.Result
+	}
+	return false
+}
+
+type UpdateStreamerReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Condition *Streamer `protobuf:"bytes,1,opt,name=condition,proto3" json:"condition,omitempty"`
+}
+
+func (x *UpdateStreamerReq) Reset() {
+	*x = UpdateStreamerReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_biz_account_account_proto_msgTypes[20]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateStreamerReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateStreamerReq) ProtoMessage() {}
+
+func (x *UpdateStreamerReq) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_biz_account_account_proto_msgTypes[20]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateStreamerReq.ProtoReflect.Descriptor instead.
+func (*UpdateStreamerReq) Descriptor() ([]byte, []int) {
+	return file_svc_biz_account_account_proto_rawDescGZIP(), []int{20}
+}
+
+func (x *UpdateStreamerReq) GetCondition() *Streamer {
+	if x != nil {
+		return x.Condition
+	}
+	return nil
+}
+
+type UpdateStreamerResp struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Updated int64 `protobuf:"varint,1,opt,name=updated,proto3" json:"updated,omitempty"`
+}
+
+func (x *UpdateStreamerResp) Reset() {
+	*x = UpdateStreamerResp{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_biz_account_account_proto_msgTypes[21]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateStreamerResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateStreamerResp) ProtoMessage() {}
+
+func (x *UpdateStreamerResp) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_biz_account_account_proto_msgTypes[21]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateStreamerResp.ProtoReflect.Descriptor instead.
+func (*UpdateStreamerResp) Descriptor() ([]byte, []int) {
+	return file_svc_biz_account_account_proto_rawDescGZIP(), []int{21}
+}
+
+func (x *UpdateStreamerResp) GetUpdated() int64 {
+	if x != nil {
+		return x.Updated
+	}
+	return 0
+}
+
+type DeleteStreamerReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Condition *Streamer `protobuf:"bytes,1,opt,name=condition,proto3" json:"condition,omitempty"`
+}
+
+func (x *DeleteStreamerReq) Reset() {
+	*x = DeleteStreamerReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_biz_account_account_proto_msgTypes[22]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteStreamerReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteStreamerReq) ProtoMessage() {}
+
+func (x *DeleteStreamerReq) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_biz_account_account_proto_msgTypes[22]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteStreamerReq.ProtoReflect.Descriptor instead.
+func (*DeleteStreamerReq) Descriptor() ([]byte, []int) {
+	return file_svc_biz_account_account_proto_rawDescGZIP(), []int{22}
+}
+
+func (x *DeleteStreamerReq) GetCondition() *Streamer {
+	if x != nil {
+		return x.Condition
+	}
+	return nil
+}
+
+type DeleteStreamerResp struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Deleted int64 `protobuf:"varint,1,opt,name=deleted,proto3" json:"deleted,omitempty"`
+}
+
+func (x *DeleteStreamerResp) Reset() {
+	*x = DeleteStreamerResp{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_biz_account_account_proto_msgTypes[23]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteStreamerResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteStreamerResp) ProtoMessage() {}
+
+func (x *DeleteStreamerResp) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_biz_account_account_proto_msgTypes[23]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteStreamerResp.ProtoReflect.Descriptor instead.
+func (*DeleteStreamerResp) Descriptor() ([]byte, []int) {
+	return file_svc_biz_account_account_proto_rawDescGZIP(), []int{23}
+}
+
+func (x *DeleteStreamerResp) GetDeleted() int64 {
+	if x != nil {
+		return x.Deleted
+	}
+	return 0
+}
+
+// {{{ [Manager]
+type GetManagerReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Condition *Manager `protobuf:"bytes,1,opt,name=condition,proto3" json:"condition,omitempty"`
+}
+
+func (x *GetManagerReq) Reset() {
+	*x = GetManagerReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_biz_account_account_proto_msgTypes[24]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetManagerReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetManagerReq) ProtoMessage() {}
+
+func (x *GetManagerReq) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_biz_account_account_proto_msgTypes[24]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetManagerReq.ProtoReflect.Descriptor instead.
+func (*GetManagerReq) Descriptor() ([]byte, []int) {
+	return file_svc_biz_account_account_proto_rawDescGZIP(), []int{24}
+}
+
+func (x *GetManagerReq) GetCondition() *Manager {
+	if x != nil {
+		return x.Condition
+	}
+	return nil
+}
+
+type GetManagerResp struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Manager *Manager `protobuf:"bytes,1,opt,name=manager,proto3" json:"manager,omitempty"`
+}
+
+func (x *GetManagerResp) Reset() {
+	*x = GetManagerResp{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_biz_account_account_proto_msgTypes[25]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetManagerResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetManagerResp) ProtoMessage() {}
+
+func (x *GetManagerResp) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_biz_account_account_proto_msgTypes[25]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetManagerResp.ProtoReflect.Descriptor instead.
+func (*GetManagerResp) Descriptor() ([]byte, []int) {
+	return file_svc_biz_account_account_proto_rawDescGZIP(), []int{25}
+}
+
+func (x *GetManagerResp) GetManager() *Manager {
+	if x != nil {
+		return x.Manager
+	}
+	return nil
+}
+
+type ListManagersReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Condition *Manager `protobuf:"bytes,1,opt,name=condition,proto3" json:"condition,omitempty"`
+}
+
+func (x *ListManagersReq) Reset() {
+	*x = ListManagersReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_biz_account_account_proto_msgTypes[26]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListManagersReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListManagersReq) ProtoMessage() {}
+
+func (x *ListManagersReq) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_biz_account_account_proto_msgTypes[26]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListManagersReq.ProtoReflect.Descriptor instead.
+func (*ListManagersReq) Descriptor() ([]byte, []int) {
+	return file_svc_biz_account_account_proto_rawDescGZIP(), []int{26}
+}
+
+func (x *ListManagersReq) GetCondition() *Manager {
+	if x != nil {
+		return x.Condition
+	}
+	return nil
+}
+
+type ListManagersResp struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Managers []*Manager `protobuf:"bytes,1,rep,name=managers,proto3" json:"managers,omitempty"`
+}
+
+func (x *ListManagersResp) Reset() {
+	*x = ListManagersResp{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_biz_account_account_proto_msgTypes[27]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListManagersResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListManagersResp) ProtoMessage() {}
+
+func (x *ListManagersResp) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_biz_account_account_proto_msgTypes[27]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListManagersResp.ProtoReflect.Descriptor instead.
+func (*ListManagersResp) Descriptor() ([]byte, []int) {
+	return file_svc_biz_account_account_proto_rawDescGZIP(), []int{27}
+}
+
+func (x *ListManagersResp) GetManagers() []*Manager {
+	if x != nil {
+		return x.Managers
+	}
+	return nil
+}
+
+type AddManagerReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Manager *Manager `protobuf:"bytes,1,opt,name=manager,proto3" json:"manager,omitempty"`
+}
+
+func (x *AddManagerReq) Reset() {
+	*x = AddManagerReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_biz_account_account_proto_msgTypes[28]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddManagerReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddManagerReq) ProtoMessage() {}
+
+func (x *AddManagerReq) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_biz_account_account_proto_msgTypes[28]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddManagerReq.ProtoReflect.Descriptor instead.
+func (*AddManagerReq) Descriptor() ([]byte, []int) {
+	return file_svc_biz_account_account_proto_rawDescGZIP(), []int{28}
+}
+
+func (x *AddManagerReq) GetManager() *Manager {
+	if x != nil {
+		return x.Manager
+	}
+	return nil
+}
+
+type AddManagerResp struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Manager *Manager `protobuf:"bytes,1,opt,name=manager,proto3" json:"manager,omitempty"`
+	Result  bool     `protobuf:"varint,255,opt,name=result,proto3" json:"result,omitempty"`
+}
+
+func (x *AddManagerResp) Reset() {
+	*x = AddManagerResp{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_biz_account_account_proto_msgTypes[29]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddManagerResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddManagerResp) ProtoMessage() {}
+
+func (x *AddManagerResp) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_biz_account_account_proto_msgTypes[29]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddManagerResp.ProtoReflect.Descriptor instead.
+func (*AddManagerResp) Descriptor() ([]byte, []int) {
+	return file_svc_biz_account_account_proto_rawDescGZIP(), []int{29}
+}
+
+func (x *AddManagerResp) GetManager() *Manager {
+	if x != nil {
+		return x.Manager
+	}
+	return nil
+}
+
+func (x *AddManagerResp) GetResult() bool {
+	if x != nil {
+		return x.Result
+	}
+	return false
+}
+
+type UpdateManagerReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Condition *Manager `protobuf:"bytes,1,opt,name=condition,proto3" json:"condition,omitempty"`
+}
+
+func (x *UpdateManagerReq) Reset() {
+	*x = UpdateManagerReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_biz_account_account_proto_msgTypes[30]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateManagerReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateManagerReq) ProtoMessage() {}
+
+func (x *UpdateManagerReq) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_biz_account_account_proto_msgTypes[30]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateManagerReq.ProtoReflect.Descriptor instead.
+func (*UpdateManagerReq) Descriptor() ([]byte, []int) {
+	return file_svc_biz_account_account_proto_rawDescGZIP(), []int{30}
+}
+
+func (x *UpdateManagerReq) GetCondition() *Manager {
+	if x != nil {
+		return x.Condition
+	}
+	return nil
+}
+
+type UpdateManagerResp struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Updated int64 `protobuf:"varint,1,opt,name=updated,proto3" json:"updated,omitempty"`
+}
+
+func (x *UpdateManagerResp) Reset() {
+	*x = UpdateManagerResp{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_biz_account_account_proto_msgTypes[31]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateManagerResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateManagerResp) ProtoMessage() {}
+
+func (x *UpdateManagerResp) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_biz_account_account_proto_msgTypes[31]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateManagerResp.ProtoReflect.Descriptor instead.
+func (*UpdateManagerResp) Descriptor() ([]byte, []int) {
+	return file_svc_biz_account_account_proto_rawDescGZIP(), []int{31}
+}
+
+func (x *UpdateManagerResp) GetUpdated() int64 {
+	if x != nil {
+		return x.Updated
+	}
+	return 0
+}
+
+type DeleteManagerReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Condition *Manager `protobuf:"bytes,1,opt,name=condition,proto3" json:"condition,omitempty"`
+}
+
+func (x *DeleteManagerReq) Reset() {
+	*x = DeleteManagerReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_biz_account_account_proto_msgTypes[32]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteManagerReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteManagerReq) ProtoMessage() {}
+
+func (x *DeleteManagerReq) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_biz_account_account_proto_msgTypes[32]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteManagerReq.ProtoReflect.Descriptor instead.
+func (*DeleteManagerReq) Descriptor() ([]byte, []int) {
+	return file_svc_biz_account_account_proto_rawDescGZIP(), []int{32}
+}
+
+func (x *DeleteManagerReq) GetCondition() *Manager {
+	if x != nil {
+		return x.Condition
+	}
+	return nil
+}
+
+type DeleteManagerResp struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Deleted int64 `protobuf:"varint,1,opt,name=deleted,proto3" json:"deleted,omitempty"`
+}
+
+func (x *DeleteManagerResp) Reset() {
+	*x = DeleteManagerResp{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_biz_account_account_proto_msgTypes[33]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteManagerResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteManagerResp) ProtoMessage() {}
+
+func (x *DeleteManagerResp) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_biz_account_account_proto_msgTypes[33]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteManagerResp.ProtoReflect.Descriptor instead.
+func (*DeleteManagerResp) Descriptor() ([]byte, []int) {
+	return file_svc_biz_account_account_proto_rawDescGZIP(), []int{33}
+}
+
+func (x *DeleteManagerResp) GetDeleted() int64 {
+	if x != nil {
+		return x.Deleted
+	}
+	return 0
+}
+
 var File_svc_biz_account_account_proto protoreflect.FileDescriptor
 
 var file_svc_biz_account_account_proto_rawDesc = []byte{
 	0x0a, 0x1d, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e,
 	0x74, 0x2f, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12,
 	0x0f, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74,
-	0x32, 0x09, 0x0a, 0x07, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x42, 0x1b, 0x5a, 0x19, 0x2e,
-	0x2f, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74,
-	0x3b, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x1a, 0x1b, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75,
+	0x66, 0x2f, 0x65, 0x6d, 0x70, 0x74, 0x79, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1f, 0x67,
+	0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x74,
+	0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x24,
+	0x0a, 0x0a, 0x49, 0x6e, 0x69, 0x74, 0x44, 0x42, 0x52, 0x65, 0x73, 0x70, 0x12, 0x16, 0x0a, 0x06,
+	0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x06, 0x72, 0x65,
+	0x73, 0x75, 0x6c, 0x74, 0x22, 0xa2, 0x02, 0x0a, 0x06, 0x56, 0x69, 0x65, 0x77, 0x65, 0x72, 0x12,
+	0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12,
+	0x1d, 0x0a, 0x0a, 0x64, 0x69, 0x73, 0x70, 0x6c, 0x61, 0x79, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x09, 0x64, 0x69, 0x73, 0x70, 0x6c, 0x61, 0x79, 0x49, 0x64, 0x12, 0x12,
+	0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61,
+	0x6d, 0x65, 0x12, 0x1a, 0x0a, 0x08, 0x6e, 0x69, 0x63, 0x6b, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x04,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x6e, 0x69, 0x63, 0x6b, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x16,
+	0x0a, 0x06, 0x6d, 0x6f, 0x62, 0x69, 0x6c, 0x65, 0x18, 0x0b, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06,
+	0x6d, 0x6f, 0x62, 0x69, 0x6c, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x18,
+	0x0c, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x12, 0x21, 0x0a, 0x0c,
+	0x64, 0x65, 0x76, 0x69, 0x63, 0x65, 0x5f, 0x69, 0x64, 0x65, 0x6e, 0x74, 0x18, 0x0d, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x0b, 0x64, 0x65, 0x76, 0x69, 0x63, 0x65, 0x49, 0x64, 0x65, 0x6e, 0x74, 0x12,
+	0x1f, 0x0a, 0x08, 0x70, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x18, 0x15, 0x20, 0x01, 0x28,
+	0x09, 0x48, 0x00, 0x52, 0x08, 0x70, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x88, 0x01, 0x01,
+	0x12, 0x3a, 0x0a, 0x0a, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x64, 0x5f, 0x61, 0x74, 0x18, 0xff,
+	0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d,
+	0x70, 0x52, 0x09, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x64, 0x41, 0x74, 0x42, 0x0b, 0x0a, 0x09,
+	0x5f, 0x70, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x22, 0xe5, 0x01, 0x0a, 0x08, 0x53, 0x74,
+	0x72, 0x65, 0x61, 0x6d, 0x65, 0x72, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x1d, 0x0a, 0x0a, 0x64, 0x69, 0x73, 0x70, 0x6c, 0x61,
+	0x79, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x64, 0x69, 0x73, 0x70,
+	0x6c, 0x61, 0x79, 0x49, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x03, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x6d, 0x6f, 0x62,
+	0x69, 0x6c, 0x65, 0x18, 0x0b, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x6d, 0x6f, 0x62, 0x69, 0x6c,
+	0x65, 0x12, 0x14, 0x0a, 0x05, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x18, 0x0c, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x05, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x12, 0x1f, 0x0a, 0x08, 0x70, 0x61, 0x73, 0x73, 0x77,
+	0x6f, 0x72, 0x64, 0x18, 0x15, 0x20, 0x01, 0x28, 0x09, 0x48, 0x00, 0x52, 0x08, 0x70, 0x61, 0x73,
+	0x73, 0x77, 0x6f, 0x72, 0x64, 0x88, 0x01, 0x01, 0x12, 0x3a, 0x0a, 0x0a, 0x63, 0x72, 0x65, 0x61,
+	0x74, 0x65, 0x64, 0x5f, 0x61, 0x74, 0x18, 0xff, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e,
+	0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e,
+	0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x52, 0x09, 0x63, 0x72, 0x65, 0x61, 0x74,
+	0x65, 0x64, 0x41, 0x74, 0x42, 0x0b, 0x0a, 0x09, 0x5f, 0x70, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72,
+	0x64, 0x22, 0xf8, 0x01, 0x0a, 0x07, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x12, 0x0e, 0x0a,
+	0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x31, 0x0a,
+	0x04, 0x74, 0x79, 0x70, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x1d, 0x2e, 0x73, 0x76,
+	0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x2e, 0x4d, 0x61,
+	0x6e, 0x61, 0x67, 0x65, 0x72, 0x54, 0x79, 0x70, 0x65, 0x73, 0x52, 0x04, 0x74, 0x79, 0x70, 0x65,
+	0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04,
+	0x6e, 0x61, 0x6d, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x6d, 0x6f, 0x62, 0x69, 0x6c, 0x65, 0x18, 0x0b,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x6d, 0x6f, 0x62, 0x69, 0x6c, 0x65, 0x12, 0x14, 0x0a, 0x05,
+	0x65, 0x6d, 0x61, 0x69, 0x6c, 0x18, 0x0c, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x65, 0x6d, 0x61,
+	0x69, 0x6c, 0x12, 0x1f, 0x0a, 0x08, 0x70, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x18, 0x15,
+	0x20, 0x01, 0x28, 0x09, 0x48, 0x00, 0x52, 0x08, 0x70, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64,
+	0x88, 0x01, 0x01, 0x12, 0x3a, 0x0a, 0x0a, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x64, 0x5f, 0x61,
+	0x74, 0x18, 0xff, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c,
+	0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73,
+	0x74, 0x61, 0x6d, 0x70, 0x52, 0x09, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x64, 0x41, 0x74, 0x42,
+	0x0b, 0x0a, 0x09, 0x5f, 0x70, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x22, 0x45, 0x0a, 0x0c,
+	0x47, 0x65, 0x74, 0x56, 0x69, 0x65, 0x77, 0x65, 0x72, 0x52, 0x65, 0x71, 0x12, 0x35, 0x0a, 0x09,
+	0x63, 0x6f, 0x6e, 0x64, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32,
+	0x17, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e,
+	0x74, 0x2e, 0x56, 0x69, 0x65, 0x77, 0x65, 0x72, 0x52, 0x09, 0x63, 0x6f, 0x6e, 0x64, 0x69, 0x74,
+	0x69, 0x6f, 0x6e, 0x22, 0x40, 0x0a, 0x0d, 0x47, 0x65, 0x74, 0x56, 0x69, 0x65, 0x77, 0x65, 0x72,
+	0x52, 0x65, 0x73, 0x70, 0x12, 0x2f, 0x0a, 0x06, 0x76, 0x69, 0x65, 0x77, 0x65, 0x72, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x0b, 0x32, 0x17, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x61,
+	0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x2e, 0x56, 0x69, 0x65, 0x77, 0x65, 0x72, 0x52, 0x06, 0x76,
+	0x69, 0x65, 0x77, 0x65, 0x72, 0x22, 0x47, 0x0a, 0x0e, 0x4c, 0x69, 0x73, 0x74, 0x56, 0x69, 0x65,
+	0x77, 0x65, 0x72, 0x73, 0x52, 0x65, 0x71, 0x12, 0x35, 0x0a, 0x09, 0x63, 0x6f, 0x6e, 0x64, 0x69,
+	0x74, 0x69, 0x6f, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x17, 0x2e, 0x73, 0x76, 0x63,
+	0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x2e, 0x56, 0x69, 0x65,
+	0x77, 0x65, 0x72, 0x52, 0x09, 0x63, 0x6f, 0x6e, 0x64, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x22, 0x44,
+	0x0a, 0x0f, 0x4c, 0x69, 0x73, 0x74, 0x56, 0x69, 0x65, 0x77, 0x65, 0x72, 0x73, 0x52, 0x65, 0x73,
+	0x70, 0x12, 0x31, 0x0a, 0x07, 0x76, 0x69, 0x65, 0x77, 0x65, 0x72, 0x73, 0x18, 0x01, 0x20, 0x03,
+	0x28, 0x0b, 0x32, 0x17, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x61, 0x63, 0x63,
+	0x6f, 0x75, 0x6e, 0x74, 0x2e, 0x56, 0x69, 0x65, 0x77, 0x65, 0x72, 0x52, 0x07, 0x76, 0x69, 0x65,
+	0x77, 0x65, 0x72, 0x73, 0x22, 0x3f, 0x0a, 0x0c, 0x41, 0x64, 0x64, 0x56, 0x69, 0x65, 0x77, 0x65,
+	0x72, 0x52, 0x65, 0x71, 0x12, 0x2f, 0x0a, 0x06, 0x76, 0x69, 0x65, 0x77, 0x65, 0x72, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x0b, 0x32, 0x17, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x61,
+	0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x2e, 0x56, 0x69, 0x65, 0x77, 0x65, 0x72, 0x52, 0x06, 0x76,
+	0x69, 0x65, 0x77, 0x65, 0x72, 0x22, 0x59, 0x0a, 0x0d, 0x41, 0x64, 0x64, 0x56, 0x69, 0x65, 0x77,
+	0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x12, 0x2f, 0x0a, 0x06, 0x76, 0x69, 0x65, 0x77, 0x65, 0x72,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x17, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a,
+	0x2e, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x2e, 0x56, 0x69, 0x65, 0x77, 0x65, 0x72, 0x52,
+	0x06, 0x76, 0x69, 0x65, 0x77, 0x65, 0x72, 0x12, 0x17, 0x0a, 0x06, 0x72, 0x65, 0x73, 0x75, 0x6c,
+	0x74, 0x18, 0xff, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x06, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74,
+	0x22, 0x48, 0x0a, 0x0f, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x56, 0x69, 0x65, 0x77, 0x65, 0x72,
+	0x52, 0x65, 0x71, 0x12, 0x35, 0x0a, 0x09, 0x63, 0x6f, 0x6e, 0x64, 0x69, 0x74, 0x69, 0x6f, 0x6e,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x17, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a,
+	0x2e, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x2e, 0x56, 0x69, 0x65, 0x77, 0x65, 0x72, 0x52,
+	0x09, 0x63, 0x6f, 0x6e, 0x64, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x22, 0x2c, 0x0a, 0x10, 0x55, 0x70,
+	0x64, 0x61, 0x74, 0x65, 0x56, 0x69, 0x65, 0x77, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x12, 0x18,
+	0x0a, 0x07, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52,
+	0x07, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x64, 0x22, 0x48, 0x0a, 0x0f, 0x44, 0x65, 0x6c, 0x65,
+	0x74, 0x65, 0x56, 0x69, 0x65, 0x77, 0x65, 0x72, 0x52, 0x65, 0x71, 0x12, 0x35, 0x0a, 0x09, 0x63,
+	0x6f, 0x6e, 0x64, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x17,
+	0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74,
+	0x2e, 0x56, 0x69, 0x65, 0x77, 0x65, 0x72, 0x52, 0x09, 0x63, 0x6f, 0x6e, 0x64, 0x69, 0x74, 0x69,
+	0x6f, 0x6e, 0x22, 0x2c, 0x0a, 0x10, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x56, 0x69, 0x65, 0x77,
+	0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x12, 0x18, 0x0a, 0x07, 0x64, 0x65, 0x6c, 0x65, 0x74, 0x65,
+	0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x07, 0x64, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x64,
+	0x22, 0x49, 0x0a, 0x0e, 0x47, 0x65, 0x74, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x65, 0x72, 0x52,
+	0x65, 0x71, 0x12, 0x37, 0x0a, 0x09, 0x63, 0x6f, 0x6e, 0x64, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e,
+	0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x2e, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x65, 0x72,
+	0x52, 0x09, 0x63, 0x6f, 0x6e, 0x64, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x22, 0x48, 0x0a, 0x0f, 0x47,
+	0x65, 0x74, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x12, 0x35,
+	0x0a, 0x08, 0x73, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b,
+	0x32, 0x19, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x61, 0x63, 0x63, 0x6f, 0x75,
+	0x6e, 0x74, 0x2e, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x65, 0x72, 0x52, 0x08, 0x73, 0x74, 0x72,
+	0x65, 0x61, 0x6d, 0x65, 0x72, 0x22, 0x4b, 0x0a, 0x10, 0x4c, 0x69, 0x73, 0x74, 0x53, 0x74, 0x72,
+	0x65, 0x61, 0x6d, 0x65, 0x72, 0x73, 0x52, 0x65, 0x71, 0x12, 0x37, 0x0a, 0x09, 0x63, 0x6f, 0x6e,
+	0x64, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x73,
+	0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x2e, 0x53,
+	0x74, 0x72, 0x65, 0x61, 0x6d, 0x65, 0x72, 0x52, 0x09, 0x63, 0x6f, 0x6e, 0x64, 0x69, 0x74, 0x69,
+	0x6f, 0x6e, 0x22, 0x4c, 0x0a, 0x11, 0x4c, 0x69, 0x73, 0x74, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d,
+	0x65, 0x72, 0x73, 0x52, 0x65, 0x73, 0x70, 0x12, 0x37, 0x0a, 0x09, 0x73, 0x74, 0x72, 0x65, 0x61,
+	0x6d, 0x65, 0x72, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x73, 0x76, 0x63,
+	0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x2e, 0x53, 0x74, 0x72,
+	0x65, 0x61, 0x6d, 0x65, 0x72, 0x52, 0x09, 0x73, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x65, 0x72, 0x73,
+	0x22, 0x47, 0x0a, 0x0e, 0x41, 0x64, 0x64, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x65, 0x72, 0x52,
+	0x65, 0x71, 0x12, 0x35, 0x0a, 0x08, 0x73, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x65, 0x72, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x61,
+	0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x2e, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x65, 0x72, 0x52,
+	0x08, 0x73, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x65, 0x72, 0x22, 0x61, 0x0a, 0x0f, 0x41, 0x64, 0x64,
+	0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x12, 0x35, 0x0a, 0x08,
+	0x73, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19,
+	0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74,
+	0x2e, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x65, 0x72, 0x52, 0x08, 0x73, 0x74, 0x72, 0x65, 0x61,
+	0x6d, 0x65, 0x72, 0x12, 0x17, 0x0a, 0x06, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x18, 0xff, 0x01,
+	0x20, 0x01, 0x28, 0x08, 0x52, 0x06, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x22, 0x4c, 0x0a, 0x11,
+	0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x65, 0x72, 0x52, 0x65,
+	0x71, 0x12, 0x37, 0x0a, 0x09, 0x63, 0x6f, 0x6e, 0x64, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x61,
+	0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x2e, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x65, 0x72, 0x52,
+	0x09, 0x63, 0x6f, 0x6e, 0x64, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x22, 0x2e, 0x0a, 0x12, 0x55, 0x70,
+	0x64, 0x61, 0x74, 0x65, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70,
+	0x12, 0x18, 0x0a, 0x07, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x03, 0x52, 0x07, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x64, 0x22, 0x4c, 0x0a, 0x11, 0x44, 0x65,
+	0x6c, 0x65, 0x74, 0x65, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x65, 0x72, 0x52, 0x65, 0x71, 0x12,
+	0x37, 0x0a, 0x09, 0x63, 0x6f, 0x6e, 0x64, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x0b, 0x32, 0x19, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x61, 0x63, 0x63,
+	0x6f, 0x75, 0x6e, 0x74, 0x2e, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x65, 0x72, 0x52, 0x09, 0x63,
+	0x6f, 0x6e, 0x64, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x22, 0x2e, 0x0a, 0x12, 0x44, 0x65, 0x6c, 0x65,
+	0x74, 0x65, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x12, 0x18,
+	0x0a, 0x07, 0x64, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52,
+	0x07, 0x64, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x64, 0x22, 0x47, 0x0a, 0x0d, 0x47, 0x65, 0x74, 0x4d,
+	0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x52, 0x65, 0x71, 0x12, 0x36, 0x0a, 0x09, 0x63, 0x6f, 0x6e,
+	0x64, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x18, 0x2e, 0x73,
+	0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x2e, 0x4d,
+	0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x52, 0x09, 0x63, 0x6f, 0x6e, 0x64, 0x69, 0x74, 0x69, 0x6f,
+	0x6e, 0x22, 0x44, 0x0a, 0x0e, 0x47, 0x65, 0x74, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x52,
+	0x65, 0x73, 0x70, 0x12, 0x32, 0x0a, 0x07, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x0b, 0x32, 0x18, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x61,
+	0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x2e, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x52, 0x07,
+	0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x22, 0x49, 0x0a, 0x0f, 0x4c, 0x69, 0x73, 0x74, 0x4d,
+	0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x73, 0x52, 0x65, 0x71, 0x12, 0x36, 0x0a, 0x09, 0x63, 0x6f,
+	0x6e, 0x64, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x18, 0x2e,
+	0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x2e,
+	0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x52, 0x09, 0x63, 0x6f, 0x6e, 0x64, 0x69, 0x74, 0x69,
+	0x6f, 0x6e, 0x22, 0x48, 0x0a, 0x10, 0x4c, 0x69, 0x73, 0x74, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65,
+	0x72, 0x73, 0x52, 0x65, 0x73, 0x70, 0x12, 0x34, 0x0a, 0x08, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65,
+	0x72, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x18, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62,
+	0x69, 0x7a, 0x2e, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x2e, 0x4d, 0x61, 0x6e, 0x61, 0x67,
+	0x65, 0x72, 0x52, 0x08, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x73, 0x22, 0x43, 0x0a, 0x0d,
+	0x41, 0x64, 0x64, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x52, 0x65, 0x71, 0x12, 0x32, 0x0a,
+	0x07, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x18,
+	0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74,
+	0x2e, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x52, 0x07, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65,
+	0x72, 0x22, 0x5d, 0x0a, 0x0e, 0x41, 0x64, 0x64, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x52,
+	0x65, 0x73, 0x70, 0x12, 0x32, 0x0a, 0x07, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x0b, 0x32, 0x18, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x61,
+	0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x2e, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x52, 0x07,
+	0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x12, 0x17, 0x0a, 0x06, 0x72, 0x65, 0x73, 0x75, 0x6c,
+	0x74, 0x18, 0xff, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x06, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74,
+	0x22, 0x4a, 0x0a, 0x10, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65,
+	0x72, 0x52, 0x65, 0x71, 0x12, 0x36, 0x0a, 0x09, 0x63, 0x6f, 0x6e, 0x64, 0x69, 0x74, 0x69, 0x6f,
+	0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x18, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69,
+	0x7a, 0x2e, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x2e, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65,
+	0x72, 0x52, 0x09, 0x63, 0x6f, 0x6e, 0x64, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x22, 0x2d, 0x0a, 0x11,
+	0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x52, 0x65, 0x73,
+	0x70, 0x12, 0x18, 0x0a, 0x07, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x64, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x03, 0x52, 0x07, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x64, 0x22, 0x4a, 0x0a, 0x10, 0x44,
+	0x65, 0x6c, 0x65, 0x74, 0x65, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x52, 0x65, 0x71, 0x12,
+	0x36, 0x0a, 0x09, 0x63, 0x6f, 0x6e, 0x64, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x0b, 0x32, 0x18, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x61, 0x63, 0x63,
+	0x6f, 0x75, 0x6e, 0x74, 0x2e, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x52, 0x09, 0x63, 0x6f,
+	0x6e, 0x64, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x22, 0x2d, 0x0a, 0x11, 0x44, 0x65, 0x6c, 0x65, 0x74,
+	0x65, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x12, 0x18, 0x0a, 0x07,
+	0x64, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x07, 0x64,
+	0x65, 0x6c, 0x65, 0x74, 0x65, 0x64, 0x2a, 0x6e, 0x0a, 0x0c, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65,
+	0x72, 0x54, 0x79, 0x70, 0x65, 0x73, 0x12, 0x16, 0x0a, 0x12, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65,
+	0x72, 0x54, 0x79, 0x70, 0x65, 0x55, 0x6e, 0x6b, 0x6e, 0x6f, 0x77, 0x6e, 0x10, 0x00, 0x12, 0x17,
+	0x0a, 0x13, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x54, 0x79, 0x70, 0x65, 0x50, 0x6c, 0x61,
+	0x74, 0x66, 0x6f, 0x72, 0x6d, 0x10, 0x01, 0x12, 0x17, 0x0a, 0x13, 0x4d, 0x61, 0x6e, 0x61, 0x67,
+	0x65, 0x72, 0x54, 0x79, 0x70, 0x65, 0x4d, 0x65, 0x72, 0x63, 0x68, 0x61, 0x6e, 0x74, 0x10, 0x02,
+	0x12, 0x14, 0x0a, 0x10, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x54, 0x79, 0x70, 0x65, 0x55,
+	0x6e, 0x69, 0x6f, 0x6e, 0x10, 0x03, 0x32, 0xb1, 0x0a, 0x0a, 0x07, 0x41, 0x63, 0x63, 0x6f, 0x75,
+	0x6e, 0x74, 0x12, 0x3d, 0x0a, 0x06, 0x49, 0x6e, 0x69, 0x74, 0x44, 0x42, 0x12, 0x16, 0x2e, 0x67,
+	0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x45,
+	0x6d, 0x70, 0x74, 0x79, 0x1a, 0x1b, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x61,
+	0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x2e, 0x49, 0x6e, 0x69, 0x74, 0x44, 0x42, 0x52, 0x65, 0x73,
+	0x70, 0x12, 0x4a, 0x0a, 0x09, 0x47, 0x65, 0x74, 0x56, 0x69, 0x65, 0x77, 0x65, 0x72, 0x12, 0x1d,
+	0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74,
+	0x2e, 0x47, 0x65, 0x74, 0x56, 0x69, 0x65, 0x77, 0x65, 0x72, 0x52, 0x65, 0x71, 0x1a, 0x1e, 0x2e,
+	0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x2e,
+	0x47, 0x65, 0x74, 0x56, 0x69, 0x65, 0x77, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x12, 0x50, 0x0a,
+	0x0b, 0x4c, 0x69, 0x73, 0x74, 0x56, 0x69, 0x65, 0x77, 0x65, 0x72, 0x73, 0x12, 0x1f, 0x2e, 0x73,
+	0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x2e, 0x4c,
+	0x69, 0x73, 0x74, 0x56, 0x69, 0x65, 0x77, 0x65, 0x72, 0x73, 0x52, 0x65, 0x71, 0x1a, 0x20, 0x2e,
+	0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x2e,
+	0x4c, 0x69, 0x73, 0x74, 0x56, 0x69, 0x65, 0x77, 0x65, 0x72, 0x73, 0x52, 0x65, 0x73, 0x70, 0x12,
+	0x4a, 0x0a, 0x09, 0x41, 0x64, 0x64, 0x56, 0x69, 0x65, 0x77, 0x65, 0x72, 0x12, 0x1d, 0x2e, 0x73,
+	0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x2e, 0x41,
+	0x64, 0x64, 0x56, 0x69, 0x65, 0x77, 0x65, 0x72, 0x52, 0x65, 0x71, 0x1a, 0x1e, 0x2e, 0x73, 0x76,
+	0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x2e, 0x41, 0x64,
+	0x64, 0x56, 0x69, 0x65, 0x77, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x12, 0x53, 0x0a, 0x0c, 0x55,
+	0x70, 0x64, 0x61, 0x74, 0x65, 0x56, 0x69, 0x65, 0x77, 0x65, 0x72, 0x12, 0x20, 0x2e, 0x73, 0x76,
+	0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x2e, 0x55, 0x70,
+	0x64, 0x61, 0x74, 0x65, 0x56, 0x69, 0x65, 0x77, 0x65, 0x72, 0x52, 0x65, 0x71, 0x1a, 0x21, 0x2e,
+	0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x2e,
+	0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x56, 0x69, 0x65, 0x77, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70,
+	0x12, 0x53, 0x0a, 0x0c, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x56, 0x69, 0x65, 0x77, 0x65, 0x72,
+	0x12, 0x20, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x61, 0x63, 0x63, 0x6f, 0x75,
+	0x6e, 0x74, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x56, 0x69, 0x65, 0x77, 0x65, 0x72, 0x52,
+	0x65, 0x71, 0x1a, 0x21, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x61, 0x63, 0x63,
+	0x6f, 0x75, 0x6e, 0x74, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x56, 0x69, 0x65, 0x77, 0x65,
+	0x72, 0x52, 0x65, 0x73, 0x70, 0x12, 0x50, 0x0a, 0x0b, 0x47, 0x65, 0x74, 0x53, 0x74, 0x72, 0x65,
+	0x61, 0x6d, 0x65, 0x72, 0x12, 0x1f, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x61,
+	0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x2e, 0x47, 0x65, 0x74, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d,
+	0x65, 0x72, 0x52, 0x65, 0x71, 0x1a, 0x20, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e,
+	0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x2e, 0x47, 0x65, 0x74, 0x53, 0x74, 0x72, 0x65, 0x61,
+	0x6d, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x12, 0x56, 0x0a, 0x0d, 0x4c, 0x69, 0x73, 0x74, 0x53,
+	0x74, 0x72, 0x65, 0x61, 0x6d, 0x65, 0x72, 0x73, 0x12, 0x21, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62,
+	0x69, 0x7a, 0x2e, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x53,
+	0x74, 0x72, 0x65, 0x61, 0x6d, 0x65, 0x72, 0x73, 0x52, 0x65, 0x71, 0x1a, 0x22, 0x2e, 0x73, 0x76,
+	0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x2e, 0x4c, 0x69,
+	0x73, 0x74, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x65, 0x72, 0x73, 0x52, 0x65, 0x73, 0x70, 0x12,
+	0x50, 0x0a, 0x0b, 0x41, 0x64, 0x64, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x65, 0x72, 0x12, 0x1f,
+	0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74,
+	0x2e, 0x41, 0x64, 0x64, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x65, 0x72, 0x52, 0x65, 0x71, 0x1a,
+	0x20, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e,
+	0x74, 0x2e, 0x41, 0x64, 0x64, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x65, 0x72, 0x52, 0x65, 0x73,
+	0x70, 0x12, 0x59, 0x0a, 0x0e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x74, 0x72, 0x65, 0x61,
+	0x6d, 0x65, 0x72, 0x12, 0x22, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x61, 0x63,
+	0x63, 0x6f, 0x75, 0x6e, 0x74, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x74, 0x72, 0x65,
+	0x61, 0x6d, 0x65, 0x72, 0x52, 0x65, 0x71, 0x1a, 0x23, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69,
+	0x7a, 0x2e, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65,
+	0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x12, 0x59, 0x0a, 0x0e,
+	0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x65, 0x72, 0x12, 0x22,
+	0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74,
+	0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x65, 0x72, 0x52,
+	0x65, 0x71, 0x1a, 0x23, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x61, 0x63, 0x63,
+	0x6f, 0x75, 0x6e, 0x74, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x53, 0x74, 0x72, 0x65, 0x61,
+	0x6d, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x12, 0x4d, 0x0a, 0x0a, 0x47, 0x65, 0x74, 0x4d, 0x61,
+	0x6e, 0x61, 0x67, 0x65, 0x72, 0x12, 0x1e, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e,
+	0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x2e, 0x47, 0x65, 0x74, 0x4d, 0x61, 0x6e, 0x61, 0x67,
+	0x65, 0x72, 0x52, 0x65, 0x71, 0x1a, 0x1f, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e,
+	0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x2e, 0x47, 0x65, 0x74, 0x4d, 0x61, 0x6e, 0x61, 0x67,
+	0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x12, 0x53, 0x0a, 0x0c, 0x4c, 0x69, 0x73, 0x74, 0x4d, 0x61,
+	0x6e, 0x61, 0x67, 0x65, 0x72, 0x73, 0x12, 0x20, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a,
+	0x2e, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x4d, 0x61, 0x6e,
+	0x61, 0x67, 0x65, 0x72, 0x73, 0x52, 0x65, 0x71, 0x1a, 0x21, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62,
+	0x69, 0x7a, 0x2e, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x4d,
+	0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x73, 0x52, 0x65, 0x73, 0x70, 0x12, 0x4d, 0x0a, 0x0a, 0x41,
+	0x64, 0x64, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x12, 0x1e, 0x2e, 0x73, 0x76, 0x63, 0x2e,
+	0x62, 0x69, 0x7a, 0x2e, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x2e, 0x41, 0x64, 0x64, 0x4d,
+	0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x52, 0x65, 0x71, 0x1a, 0x1f, 0x2e, 0x73, 0x76, 0x63, 0x2e,
+	0x62, 0x69, 0x7a, 0x2e, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x2e, 0x41, 0x64, 0x64, 0x4d,
+	0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x12, 0x56, 0x0a, 0x0d, 0x55, 0x70,
+	0x64, 0x61, 0x74, 0x65, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x12, 0x21, 0x2e, 0x73, 0x76,
+	0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x2e, 0x55, 0x70,
+	0x64, 0x61, 0x74, 0x65, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x52, 0x65, 0x71, 0x1a, 0x22,
+	0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74,
+	0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x52, 0x65,
+	0x73, 0x70, 0x12, 0x56, 0x0a, 0x0d, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x4d, 0x61, 0x6e, 0x61,
+	0x67, 0x65, 0x72, 0x12, 0x21, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x61, 0x63,
+	0x63, 0x6f, 0x75, 0x6e, 0x74, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x4d, 0x61, 0x6e, 0x61,
+	0x67, 0x65, 0x72, 0x52, 0x65, 0x71, 0x1a, 0x22, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a,
+	0x2e, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x4d,
+	0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x42, 0x1b, 0x5a, 0x19, 0x2e, 0x2f,
+	0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x3b,
+	0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
-var file_svc_biz_account_account_proto_goTypes = []interface{}{}
+var (
+	file_svc_biz_account_account_proto_rawDescOnce sync.Once
+	file_svc_biz_account_account_proto_rawDescData = file_svc_biz_account_account_proto_rawDesc
+)
+
+func file_svc_biz_account_account_proto_rawDescGZIP() []byte {
+	file_svc_biz_account_account_proto_rawDescOnce.Do(func() {
+		file_svc_biz_account_account_proto_rawDescData = protoimpl.X.CompressGZIP(file_svc_biz_account_account_proto_rawDescData)
+	})
+	return file_svc_biz_account_account_proto_rawDescData
+}
+
+var file_svc_biz_account_account_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_svc_biz_account_account_proto_msgTypes = make([]protoimpl.MessageInfo, 34)
+var file_svc_biz_account_account_proto_goTypes = []interface{}{
+	(ManagerTypes)(0),             // 0: svc.biz.account.ManagerTypes
+	(*InitDBResp)(nil),            // 1: svc.biz.account.InitDBResp
+	(*Viewer)(nil),                // 2: svc.biz.account.Viewer
+	(*Streamer)(nil),              // 3: svc.biz.account.Streamer
+	(*Manager)(nil),               // 4: svc.biz.account.Manager
+	(*GetViewerReq)(nil),          // 5: svc.biz.account.GetViewerReq
+	(*GetViewerResp)(nil),         // 6: svc.biz.account.GetViewerResp
+	(*ListViewersReq)(nil),        // 7: svc.biz.account.ListViewersReq
+	(*ListViewersResp)(nil),       // 8: svc.biz.account.ListViewersResp
+	(*AddViewerReq)(nil),          // 9: svc.biz.account.AddViewerReq
+	(*AddViewerResp)(nil),         // 10: svc.biz.account.AddViewerResp
+	(*UpdateViewerReq)(nil),       // 11: svc.biz.account.UpdateViewerReq
+	(*UpdateViewerResp)(nil),      // 12: svc.biz.account.UpdateViewerResp
+	(*DeleteViewerReq)(nil),       // 13: svc.biz.account.DeleteViewerReq
+	(*DeleteViewerResp)(nil),      // 14: svc.biz.account.DeleteViewerResp
+	(*GetStreamerReq)(nil),        // 15: svc.biz.account.GetStreamerReq
+	(*GetStreamerResp)(nil),       // 16: svc.biz.account.GetStreamerResp
+	(*ListStreamersReq)(nil),      // 17: svc.biz.account.ListStreamersReq
+	(*ListStreamersResp)(nil),     // 18: svc.biz.account.ListStreamersResp
+	(*AddStreamerReq)(nil),        // 19: svc.biz.account.AddStreamerReq
+	(*AddStreamerResp)(nil),       // 20: svc.biz.account.AddStreamerResp
+	(*UpdateStreamerReq)(nil),     // 21: svc.biz.account.UpdateStreamerReq
+	(*UpdateStreamerResp)(nil),    // 22: svc.biz.account.UpdateStreamerResp
+	(*DeleteStreamerReq)(nil),     // 23: svc.biz.account.DeleteStreamerReq
+	(*DeleteStreamerResp)(nil),    // 24: svc.biz.account.DeleteStreamerResp
+	(*GetManagerReq)(nil),         // 25: svc.biz.account.GetManagerReq
+	(*GetManagerResp)(nil),        // 26: svc.biz.account.GetManagerResp
+	(*ListManagersReq)(nil),       // 27: svc.biz.account.ListManagersReq
+	(*ListManagersResp)(nil),      // 28: svc.biz.account.ListManagersResp
+	(*AddManagerReq)(nil),         // 29: svc.biz.account.AddManagerReq
+	(*AddManagerResp)(nil),        // 30: svc.biz.account.AddManagerResp
+	(*UpdateManagerReq)(nil),      // 31: svc.biz.account.UpdateManagerReq
+	(*UpdateManagerResp)(nil),     // 32: svc.biz.account.UpdateManagerResp
+	(*DeleteManagerReq)(nil),      // 33: svc.biz.account.DeleteManagerReq
+	(*DeleteManagerResp)(nil),     // 34: svc.biz.account.DeleteManagerResp
+	(*timestamppb.Timestamp)(nil), // 35: google.protobuf.Timestamp
+	(*emptypb.Empty)(nil),         // 36: google.protobuf.Empty
+}
 var file_svc_biz_account_account_proto_depIdxs = []int32{
-	0, // [0:0] is the sub-list for method output_type
-	0, // [0:0] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	35, // 0: svc.biz.account.Viewer.created_at:type_name -> google.protobuf.Timestamp
+	35, // 1: svc.biz.account.Streamer.created_at:type_name -> google.protobuf.Timestamp
+	0,  // 2: svc.biz.account.Manager.type:type_name -> svc.biz.account.ManagerTypes
+	35, // 3: svc.biz.account.Manager.created_at:type_name -> google.protobuf.Timestamp
+	2,  // 4: svc.biz.account.GetViewerReq.condition:type_name -> svc.biz.account.Viewer
+	2,  // 5: svc.biz.account.GetViewerResp.viewer:type_name -> svc.biz.account.Viewer
+	2,  // 6: svc.biz.account.ListViewersReq.condition:type_name -> svc.biz.account.Viewer
+	2,  // 7: svc.biz.account.ListViewersResp.viewers:type_name -> svc.biz.account.Viewer
+	2,  // 8: svc.biz.account.AddViewerReq.viewer:type_name -> svc.biz.account.Viewer
+	2,  // 9: svc.biz.account.AddViewerResp.viewer:type_name -> svc.biz.account.Viewer
+	2,  // 10: svc.biz.account.UpdateViewerReq.condition:type_name -> svc.biz.account.Viewer
+	2,  // 11: svc.biz.account.DeleteViewerReq.condition:type_name -> svc.biz.account.Viewer
+	3,  // 12: svc.biz.account.GetStreamerReq.condition:type_name -> svc.biz.account.Streamer
+	3,  // 13: svc.biz.account.GetStreamerResp.streamer:type_name -> svc.biz.account.Streamer
+	3,  // 14: svc.biz.account.ListStreamersReq.condition:type_name -> svc.biz.account.Streamer
+	3,  // 15: svc.biz.account.ListStreamersResp.streamers:type_name -> svc.biz.account.Streamer
+	3,  // 16: svc.biz.account.AddStreamerReq.streamer:type_name -> svc.biz.account.Streamer
+	3,  // 17: svc.biz.account.AddStreamerResp.streamer:type_name -> svc.biz.account.Streamer
+	3,  // 18: svc.biz.account.UpdateStreamerReq.condition:type_name -> svc.biz.account.Streamer
+	3,  // 19: svc.biz.account.DeleteStreamerReq.condition:type_name -> svc.biz.account.Streamer
+	4,  // 20: svc.biz.account.GetManagerReq.condition:type_name -> svc.biz.account.Manager
+	4,  // 21: svc.biz.account.GetManagerResp.manager:type_name -> svc.biz.account.Manager
+	4,  // 22: svc.biz.account.ListManagersReq.condition:type_name -> svc.biz.account.Manager
+	4,  // 23: svc.biz.account.ListManagersResp.managers:type_name -> svc.biz.account.Manager
+	4,  // 24: svc.biz.account.AddManagerReq.manager:type_name -> svc.biz.account.Manager
+	4,  // 25: svc.biz.account.AddManagerResp.manager:type_name -> svc.biz.account.Manager
+	4,  // 26: svc.biz.account.UpdateManagerReq.condition:type_name -> svc.biz.account.Manager
+	4,  // 27: svc.biz.account.DeleteManagerReq.condition:type_name -> svc.biz.account.Manager
+	36, // 28: svc.biz.account.Account.InitDB:input_type -> google.protobuf.Empty
+	5,  // 29: svc.biz.account.Account.GetViewer:input_type -> svc.biz.account.GetViewerReq
+	7,  // 30: svc.biz.account.Account.ListViewers:input_type -> svc.biz.account.ListViewersReq
+	9,  // 31: svc.biz.account.Account.AddViewer:input_type -> svc.biz.account.AddViewerReq
+	11, // 32: svc.biz.account.Account.UpdateViewer:input_type -> svc.biz.account.UpdateViewerReq
+	13, // 33: svc.biz.account.Account.DeleteViewer:input_type -> svc.biz.account.DeleteViewerReq
+	15, // 34: svc.biz.account.Account.GetStreamer:input_type -> svc.biz.account.GetStreamerReq
+	17, // 35: svc.biz.account.Account.ListStreamers:input_type -> svc.biz.account.ListStreamersReq
+	19, // 36: svc.biz.account.Account.AddStreamer:input_type -> svc.biz.account.AddStreamerReq
+	21, // 37: svc.biz.account.Account.UpdateStreamer:input_type -> svc.biz.account.UpdateStreamerReq
+	23, // 38: svc.biz.account.Account.DeleteStreamer:input_type -> svc.biz.account.DeleteStreamerReq
+	25, // 39: svc.biz.account.Account.GetManager:input_type -> svc.biz.account.GetManagerReq
+	27, // 40: svc.biz.account.Account.ListManagers:input_type -> svc.biz.account.ListManagersReq
+	29, // 41: svc.biz.account.Account.AddManager:input_type -> svc.biz.account.AddManagerReq
+	31, // 42: svc.biz.account.Account.UpdateManager:input_type -> svc.biz.account.UpdateManagerReq
+	33, // 43: svc.biz.account.Account.DeleteManager:input_type -> svc.biz.account.DeleteManagerReq
+	1,  // 44: svc.biz.account.Account.InitDB:output_type -> svc.biz.account.InitDBResp
+	6,  // 45: svc.biz.account.Account.GetViewer:output_type -> svc.biz.account.GetViewerResp
+	8,  // 46: svc.biz.account.Account.ListViewers:output_type -> svc.biz.account.ListViewersResp
+	10, // 47: svc.biz.account.Account.AddViewer:output_type -> svc.biz.account.AddViewerResp
+	12, // 48: svc.biz.account.Account.UpdateViewer:output_type -> svc.biz.account.UpdateViewerResp
+	14, // 49: svc.biz.account.Account.DeleteViewer:output_type -> svc.biz.account.DeleteViewerResp
+	16, // 50: svc.biz.account.Account.GetStreamer:output_type -> svc.biz.account.GetStreamerResp
+	18, // 51: svc.biz.account.Account.ListStreamers:output_type -> svc.biz.account.ListStreamersResp
+	20, // 52: svc.biz.account.Account.AddStreamer:output_type -> svc.biz.account.AddStreamerResp
+	22, // 53: svc.biz.account.Account.UpdateStreamer:output_type -> svc.biz.account.UpdateStreamerResp
+	24, // 54: svc.biz.account.Account.DeleteStreamer:output_type -> svc.biz.account.DeleteStreamerResp
+	26, // 55: svc.biz.account.Account.GetManager:output_type -> svc.biz.account.GetManagerResp
+	28, // 56: svc.biz.account.Account.ListManagers:output_type -> svc.biz.account.ListManagersResp
+	30, // 57: svc.biz.account.Account.AddManager:output_type -> svc.biz.account.AddManagerResp
+	32, // 58: svc.biz.account.Account.UpdateManager:output_type -> svc.biz.account.UpdateManagerResp
+	34, // 59: svc.biz.account.Account.DeleteManager:output_type -> svc.biz.account.DeleteManagerResp
+	44, // [44:60] is the sub-list for method output_type
+	28, // [28:44] is the sub-list for method input_type
+	28, // [28:28] is the sub-list for extension type_name
+	28, // [28:28] is the sub-list for extension extendee
+	0,  // [0:28] is the sub-list for field type_name
 }
 
 func init() { file_svc_biz_account_account_proto_init() }
@@ -44,18 +2273,433 @@ func file_svc_biz_account_account_proto_init() {
 	if File_svc_biz_account_account_proto != nil {
 		return
 	}
+	if !protoimpl.UnsafeEnabled {
+		file_svc_biz_account_account_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*InitDBResp); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_biz_account_account_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Viewer); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_biz_account_account_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Streamer); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_biz_account_account_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Manager); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_biz_account_account_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetViewerReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_biz_account_account_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetViewerResp); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_biz_account_account_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListViewersReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_biz_account_account_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListViewersResp); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_biz_account_account_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddViewerReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_biz_account_account_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddViewerResp); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_biz_account_account_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateViewerReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_biz_account_account_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateViewerResp); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_biz_account_account_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeleteViewerReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_biz_account_account_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeleteViewerResp); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_biz_account_account_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetStreamerReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_biz_account_account_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetStreamerResp); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_biz_account_account_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListStreamersReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_biz_account_account_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListStreamersResp); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_biz_account_account_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddStreamerReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_biz_account_account_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddStreamerResp); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_biz_account_account_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateStreamerReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_biz_account_account_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateStreamerResp); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_biz_account_account_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeleteStreamerReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_biz_account_account_proto_msgTypes[23].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeleteStreamerResp); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_biz_account_account_proto_msgTypes[24].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetManagerReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_biz_account_account_proto_msgTypes[25].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetManagerResp); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_biz_account_account_proto_msgTypes[26].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListManagersReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_biz_account_account_proto_msgTypes[27].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListManagersResp); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_biz_account_account_proto_msgTypes[28].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddManagerReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_biz_account_account_proto_msgTypes[29].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddManagerResp); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_biz_account_account_proto_msgTypes[30].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateManagerReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_biz_account_account_proto_msgTypes[31].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateManagerResp); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_biz_account_account_proto_msgTypes[32].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeleteManagerReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_biz_account_account_proto_msgTypes[33].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeleteManagerResp); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+	}
+	file_svc_biz_account_account_proto_msgTypes[1].OneofWrappers = []interface{}{}
+	file_svc_biz_account_account_proto_msgTypes[2].OneofWrappers = []interface{}{}
+	file_svc_biz_account_account_proto_msgTypes[3].OneofWrappers = []interface{}{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_svc_biz_account_account_proto_rawDesc,
-			NumEnums:      0,
-			NumMessages:   0,
+			NumEnums:      1,
+			NumMessages:   34,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
 		GoTypes:           file_svc_biz_account_account_proto_goTypes,
 		DependencyIndexes: file_svc_biz_account_account_proto_depIdxs,
+		EnumInfos:         file_svc_biz_account_account_proto_enumTypes,
+		MessageInfos:      file_svc_biz_account_account_proto_msgTypes,
 	}.Build()
 	File_svc_biz_account_account_proto = out.File
 	file_svc_biz_account_account_proto_rawDesc = nil

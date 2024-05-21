@@ -4,6 +4,43 @@
 ## Table of Contents
 
 - [svc.biz.account/account.proto](#svc-biz-account_account-proto)
+    - [AddManagerReq](#svc-biz-account-AddManagerReq)
+    - [AddManagerResp](#svc-biz-account-AddManagerResp)
+    - [AddStreamerReq](#svc-biz-account-AddStreamerReq)
+    - [AddStreamerResp](#svc-biz-account-AddStreamerResp)
+    - [AddViewerReq](#svc-biz-account-AddViewerReq)
+    - [AddViewerResp](#svc-biz-account-AddViewerResp)
+    - [DeleteManagerReq](#svc-biz-account-DeleteManagerReq)
+    - [DeleteManagerResp](#svc-biz-account-DeleteManagerResp)
+    - [DeleteStreamerReq](#svc-biz-account-DeleteStreamerReq)
+    - [DeleteStreamerResp](#svc-biz-account-DeleteStreamerResp)
+    - [DeleteViewerReq](#svc-biz-account-DeleteViewerReq)
+    - [DeleteViewerResp](#svc-biz-account-DeleteViewerResp)
+    - [GetManagerReq](#svc-biz-account-GetManagerReq)
+    - [GetManagerResp](#svc-biz-account-GetManagerResp)
+    - [GetStreamerReq](#svc-biz-account-GetStreamerReq)
+    - [GetStreamerResp](#svc-biz-account-GetStreamerResp)
+    - [GetViewerReq](#svc-biz-account-GetViewerReq)
+    - [GetViewerResp](#svc-biz-account-GetViewerResp)
+    - [InitDBResp](#svc-biz-account-InitDBResp)
+    - [ListManagersReq](#svc-biz-account-ListManagersReq)
+    - [ListManagersResp](#svc-biz-account-ListManagersResp)
+    - [ListStreamersReq](#svc-biz-account-ListStreamersReq)
+    - [ListStreamersResp](#svc-biz-account-ListStreamersResp)
+    - [ListViewersReq](#svc-biz-account-ListViewersReq)
+    - [ListViewersResp](#svc-biz-account-ListViewersResp)
+    - [Manager](#svc-biz-account-Manager)
+    - [Streamer](#svc-biz-account-Streamer)
+    - [UpdateManagerReq](#svc-biz-account-UpdateManagerReq)
+    - [UpdateManagerResp](#svc-biz-account-UpdateManagerResp)
+    - [UpdateStreamerReq](#svc-biz-account-UpdateStreamerReq)
+    - [UpdateStreamerResp](#svc-biz-account-UpdateStreamerResp)
+    - [UpdateViewerReq](#svc-biz-account-UpdateViewerReq)
+    - [UpdateViewerResp](#svc-biz-account-UpdateViewerResp)
+    - [Viewer](#svc-biz-account-Viewer)
+  
+    - [ManagerTypes](#svc-biz-account-ManagerTypes)
+  
     - [Account](#svc-biz-account-Account)
   
 - [svc.biz.room/category.proto](#svc-biz-room_category-proto)
@@ -75,7 +112,554 @@
 ## svc.biz.account/account.proto
 
 
+
+<a name="svc-biz-account-AddManagerReq"></a>
+
+### AddManagerReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| manager | [Manager](#svc-biz-account-Manager) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-AddManagerResp"></a>
+
+### AddManagerResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| manager | [Manager](#svc-biz-account-Manager) |  |  |
+| result | [bool](#bool) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-AddStreamerReq"></a>
+
+### AddStreamerReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer | [Streamer](#svc-biz-account-Streamer) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-AddStreamerResp"></a>
+
+### AddStreamerResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer | [Streamer](#svc-biz-account-Streamer) |  |  |
+| result | [bool](#bool) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-AddViewerReq"></a>
+
+### AddViewerReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| viewer | [Viewer](#svc-biz-account-Viewer) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-AddViewerResp"></a>
+
+### AddViewerResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| viewer | [Viewer](#svc-biz-account-Viewer) |  |  |
+| result | [bool](#bool) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-DeleteManagerReq"></a>
+
+### DeleteManagerReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Manager](#svc-biz-account-Manager) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-DeleteManagerResp"></a>
+
+### DeleteManagerResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| deleted | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-DeleteStreamerReq"></a>
+
+### DeleteStreamerReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Streamer](#svc-biz-account-Streamer) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-DeleteStreamerResp"></a>
+
+### DeleteStreamerResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| deleted | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-DeleteViewerReq"></a>
+
+### DeleteViewerReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Viewer](#svc-biz-account-Viewer) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-DeleteViewerResp"></a>
+
+### DeleteViewerResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| deleted | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-GetManagerReq"></a>
+
+### GetManagerReq
+{{{ [Manager]
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Manager](#svc-biz-account-Manager) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-GetManagerResp"></a>
+
+### GetManagerResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| manager | [Manager](#svc-biz-account-Manager) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-GetStreamerReq"></a>
+
+### GetStreamerReq
+{{{ [Streamer]
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Streamer](#svc-biz-account-Streamer) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-GetStreamerResp"></a>
+
+### GetStreamerResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer | [Streamer](#svc-biz-account-Streamer) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-GetViewerReq"></a>
+
+### GetViewerReq
+{{{ [Viewer]
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Viewer](#svc-biz-account-Viewer) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-GetViewerResp"></a>
+
+### GetViewerResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| viewer | [Viewer](#svc-biz-account-Viewer) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-InitDBResp"></a>
+
+### InitDBResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| result | [bool](#bool) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-ListManagersReq"></a>
+
+### ListManagersReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Manager](#svc-biz-account-Manager) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-ListManagersResp"></a>
+
+### ListManagersResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| managers | [Manager](#svc-biz-account-Manager) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-account-ListStreamersReq"></a>
+
+### ListStreamersReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Streamer](#svc-biz-account-Streamer) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-ListStreamersResp"></a>
+
+### ListStreamersResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamers | [Streamer](#svc-biz-account-Streamer) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-account-ListViewersReq"></a>
+
+### ListViewersReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Viewer](#svc-biz-account-Viewer) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-ListViewersResp"></a>
+
+### ListViewersResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| viewers | [Viewer](#svc-biz-account-Viewer) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-account-Manager"></a>
+
+### Manager
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  | 内部ID |
+| type | [ManagerTypes](#svc-biz-account-ManagerTypes) |  | 类型：平台 / 商户 / 工会 |
+| name | [string](#string) |  | 用户名 |
+| mobile | [string](#string) |  | 手机 |
+| email | [string](#string) |  | 邮箱 |
+| password | [string](#string) | optional | 密码 |
+| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+
+
+
+
+
+
+<a name="svc-biz-account-Streamer"></a>
+
+### Streamer
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  | 内部ID |
+| display_id | [string](#string) |  | 用于显示和索引的数字ID |
+| name | [string](#string) |  | 用户名 |
+| mobile | [string](#string) |  | 手机 |
+| email | [string](#string) |  | 邮箱 |
+| password | [string](#string) | optional | 密码 |
+| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+
+
+
+
+
+
+<a name="svc-biz-account-UpdateManagerReq"></a>
+
+### UpdateManagerReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Manager](#svc-biz-account-Manager) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-UpdateManagerResp"></a>
+
+### UpdateManagerResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| updated | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-UpdateStreamerReq"></a>
+
+### UpdateStreamerReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Streamer](#svc-biz-account-Streamer) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-UpdateStreamerResp"></a>
+
+### UpdateStreamerResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| updated | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-UpdateViewerReq"></a>
+
+### UpdateViewerReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Viewer](#svc-biz-account-Viewer) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-UpdateViewerResp"></a>
+
+### UpdateViewerResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| updated | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-Viewer"></a>
+
+### Viewer
+Models
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  | 内部ID |
+| display_id | [string](#string) |  | 用于显示和索引的数字ID |
+| name | [string](#string) |  | 用户名 |
+| nickname | [string](#string) |  | 昵称 |
+| mobile | [string](#string) |  | 手机 |
+| email | [string](#string) |  | 邮箱 |
+| device_ident | [string](#string) |  | 设备号 / 指纹 |
+| password | [string](#string) | optional | 密码 |
+| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+
+
+
+
+
  
+
+
+<a name="svc-biz-account-ManagerTypes"></a>
+
+### ManagerTypes
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| ManagerTypeUnknown | 0 | 未知 |
+| ManagerTypePlatform | 1 | 平台管理者 |
+| ManagerTypeMerchant | 2 | 商户管理者 |
+| ManagerTypeUnion | 3 | 工会 |
+
 
  
 
@@ -89,6 +673,22 @@
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
+| InitDB | [.google.protobuf.Empty](#google-protobuf-Empty) | [InitDBResp](#svc-biz-account-InitDBResp) | 初始化数据库 |
+| GetViewer | [GetViewerReq](#svc-biz-account-GetViewerReq) | [GetViewerResp](#svc-biz-account-GetViewerResp) | 获取普通账号 |
+| ListViewers | [ListViewersReq](#svc-biz-account-ListViewersReq) | [ListViewersResp](#svc-biz-account-ListViewersResp) | 获取普通账号列表 |
+| AddViewer | [AddViewerReq](#svc-biz-account-AddViewerReq) | [AddViewerResp](#svc-biz-account-AddViewerResp) | 添加普通账号 |
+| UpdateViewer | [UpdateViewerReq](#svc-biz-account-UpdateViewerReq) | [UpdateViewerResp](#svc-biz-account-UpdateViewerResp) | 更新普通账号 |
+| DeleteViewer | [DeleteViewerReq](#svc-biz-account-DeleteViewerReq) | [DeleteViewerResp](#svc-biz-account-DeleteViewerResp) | 删除普通账号 |
+| GetStreamer | [GetStreamerReq](#svc-biz-account-GetStreamerReq) | [GetStreamerResp](#svc-biz-account-GetStreamerResp) | 获取主播账号 |
+| ListStreamers | [ListStreamersReq](#svc-biz-account-ListStreamersReq) | [ListStreamersResp](#svc-biz-account-ListStreamersResp) | 获取主播账号列表 |
+| AddStreamer | [AddStreamerReq](#svc-biz-account-AddStreamerReq) | [AddStreamerResp](#svc-biz-account-AddStreamerResp) | 添加普通账号 |
+| UpdateStreamer | [UpdateStreamerReq](#svc-biz-account-UpdateStreamerReq) | [UpdateStreamerResp](#svc-biz-account-UpdateStreamerResp) | 更新主播账号 |
+| DeleteStreamer | [DeleteStreamerReq](#svc-biz-account-DeleteStreamerReq) | [DeleteStreamerResp](#svc-biz-account-DeleteStreamerResp) | 删除主播账号 |
+| GetManager | [GetManagerReq](#svc-biz-account-GetManagerReq) | [GetManagerResp](#svc-biz-account-GetManagerResp) | 获取主播账号 |
+| ListManagers | [ListManagersReq](#svc-biz-account-ListManagersReq) | [ListManagersResp](#svc-biz-account-ListManagersResp) | 获取主播账号列表 |
+| AddManager | [AddManagerReq](#svc-biz-account-AddManagerReq) | [AddManagerResp](#svc-biz-account-AddManagerResp) | 添加普通账号 |
+| UpdateManager | [UpdateManagerReq](#svc-biz-account-UpdateManagerReq) | [UpdateManagerResp](#svc-biz-account-UpdateManagerResp) | 更新主播账号 |
+| DeleteManager | [DeleteManagerReq](#svc-biz-account-DeleteManagerReq) | [DeleteManagerResp](#svc-biz-account-DeleteManagerResp) | 删除主播账号 |
 
  
 
