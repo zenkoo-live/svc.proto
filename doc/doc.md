@@ -1058,6 +1058,7 @@
 | mobile | [string](#string) |  | 手机 |
 | email | [string](#string) |  | 邮箱 |
 | password | [string](#string) | optional | 密码 |
+| salt | [string](#string) | optional | 加密混淆 |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
 
 
@@ -1079,6 +1080,7 @@
 | mobile | [string](#string) |  | 手机 |
 | email | [string](#string) |  | 邮箱 |
 | password | [string](#string) | optional | 密码 |
+| salt | [string](#string) | optional | 加密混淆 |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
 
 
@@ -1186,12 +1188,14 @@ Models
 | ----- | ---- | ----- | ----------- |
 | id | [string](#string) |  | 内部ID |
 | display_id | [string](#string) |  | 用于显示和索引的数字ID |
+| merchant_id | [string](#string) |  | 商户ID |
 | name | [string](#string) |  | 用户名 |
 | nickname | [string](#string) |  | 昵称 |
 | mobile | [string](#string) |  | 手机 |
 | email | [string](#string) |  | 邮箱 |
 | device_ident | [string](#string) |  | 设备号 / 指纹 |
 | password | [string](#string) | optional | 密码 |
+| salt | [string](#string) | optional | 加密混淆 |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
 
 

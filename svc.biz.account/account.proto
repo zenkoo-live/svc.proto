@@ -43,12 +43,14 @@ enum ManagerTypes {
 message Viewer {
     string id = 1; // 内部ID
     string display_id = 2; // 用于显示和索引的数字ID
+    string merchant_id = 254; // 商户ID
     string name = 3; // 用户名
     string nickname = 4; // 昵称
     string mobile = 11; // 手机
     string email = 12; // 邮箱
     string device_ident = 13; // 设备号 / 指纹
     optional string password = 21; // 密码
+    optional string salt = 22; // 加密混淆
     google.protobuf.Timestamp created_at = 255; // 创建时间
 };
 message Streamer {
@@ -58,6 +60,7 @@ message Streamer {
     string mobile = 11; // 手机
     string email = 12; // 邮箱
     optional string password = 21; // 密码
+    optional string salt = 22; // 加密混淆
     google.protobuf.Timestamp created_at = 255; // 创建时间
 };
 message Manager {
@@ -67,6 +70,7 @@ message Manager {
     string mobile = 11; // 手机
     string email = 12; // 邮箱
     optional string password = 21; // 密码
+    optional string salt = 22; // 加密混淆
     google.protobuf.Timestamp created_at = 255; // 创建时间
 };
 
