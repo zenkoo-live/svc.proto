@@ -978,7 +978,6 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | managers | [Manager](#svc-biz-account-Manager) | repeated |  |
-| total | [int64](#int64) |  |  |
 
 
 
@@ -1009,7 +1008,6 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | streamers | [Streamer](#svc-biz-account-Streamer) | repeated |  |
-| total | [int64](#int64) |  |  |
 
 
 
@@ -1040,7 +1038,6 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | viewers | [Viewer](#svc-biz-account-Viewer) | repeated |  |
-| total | [int64](#int64) |  |  |
 
 
 
