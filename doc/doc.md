@@ -45,18 +45,25 @@
   
 - [svc.biz.room/category.proto](#svc-biz-room_category-proto)
     - [CategoryInfo](#svc-biz-room-CategoryInfo)
-    - [CreateReq](#svc-biz-room-CreateReq)
-    - [CreateResp](#svc-biz-room-CreateResp)
-    - [DeleteReq](#svc-biz-room-DeleteReq)
-    - [GetReq](#svc-biz-room-GetReq)
-    - [GetResp](#svc-biz-room-GetResp)
-    - [ListReq](#svc-biz-room-ListReq)
-    - [ListResp](#svc-biz-room-ListResp)
-    - [ListTreeReq](#svc-biz-room-ListTreeReq)
-    - [ListTreeResp](#svc-biz-room-ListTreeResp)
-    - [UpdateReq](#svc-biz-room-UpdateReq)
+    - [CreateCategoryReq](#svc-biz-room-CreateCategoryReq)
+    - [CreateCategoryResp](#svc-biz-room-CreateCategoryResp)
+    - [DeleteCategoryReq](#svc-biz-room-DeleteCategoryReq)
+    - [GetCategoryReq](#svc-biz-room-GetCategoryReq)
+    - [GetCategoryResp](#svc-biz-room-GetCategoryResp)
+    - [ListCategoryReq](#svc-biz-room-ListCategoryReq)
+    - [ListCategoryResp](#svc-biz-room-ListCategoryResp)
+    - [ListCategoryTreeReq](#svc-biz-room-ListCategoryTreeReq)
+    - [ListCategoryTreeResp](#svc-biz-room-ListCategoryTreeResp)
+    - [UpdateCategoryReq](#svc-biz-room-UpdateCategoryReq)
   
     - [Category](#svc-biz-room-Category)
+  
+- [svc.biz.room/room.proto](#svc-biz-room_room-proto)
+    - [GetRoomReq](#svc-biz-room-GetRoomReq)
+    - [GetRoomResp](#svc-biz-room-GetRoomResp)
+    - [RoomInfo](#svc-biz-room-RoomInfo)
+  
+    - [Room](#svc-biz-room-Room)
   
 - [svc.infra.setting/setting.proto](#svc-infra-setting_setting-proto)
     - [SettingGreetingReq](#svc-infra-setting-SettingGreetingReq)
@@ -723,24 +730,9 @@ CategoryInfo 分类详情
 
 
 
-<a name="svc-biz-room-CreateReq"></a>
+<a name="svc-biz-room-CreateCategoryReq"></a>
 
-### CreateReq
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| category | [CategoryInfo](#svc-biz-room-CategoryInfo) |  |  |
-
-
-
-
-
-
-<a name="svc-biz-room-CreateResp"></a>
-
-### CreateResp
+### CreateCategoryReq
 
 
 
@@ -753,9 +745,24 @@ CategoryInfo 分类详情
 
 
 
-<a name="svc-biz-room-DeleteReq"></a>
+<a name="svc-biz-room-CreateCategoryResp"></a>
 
-### DeleteReq
+### CreateCategoryResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| category | [CategoryInfo](#svc-biz-room-CategoryInfo) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-room-DeleteCategoryReq"></a>
+
+### DeleteCategoryReq
 
 
 
@@ -768,9 +775,9 @@ CategoryInfo 分类详情
 
 
 
-<a name="svc-biz-room-GetReq"></a>
+<a name="svc-biz-room-GetCategoryReq"></a>
 
-### GetReq
+### GetCategoryReq
 
 
 
@@ -783,9 +790,9 @@ CategoryInfo 分类详情
 
 
 
-<a name="svc-biz-room-GetResp"></a>
+<a name="svc-biz-room-GetCategoryResp"></a>
 
-### GetResp
+### GetCategoryResp
 
 
 
@@ -798,9 +805,9 @@ CategoryInfo 分类详情
 
 
 
-<a name="svc-biz-room-ListReq"></a>
+<a name="svc-biz-room-ListCategoryReq"></a>
 
-### ListReq
+### ListCategoryReq
 
 
 
@@ -814,9 +821,9 @@ CategoryInfo 分类详情
 
 
 
-<a name="svc-biz-room-ListResp"></a>
+<a name="svc-biz-room-ListCategoryResp"></a>
 
-### ListResp
+### ListCategoryResp
 
 
 
@@ -829,9 +836,9 @@ CategoryInfo 分类详情
 
 
 
-<a name="svc-biz-room-ListTreeReq"></a>
+<a name="svc-biz-room-ListCategoryTreeReq"></a>
 
-### ListTreeReq
+### ListCategoryTreeReq
 获取全部板块分类（分类及子分类树结构）
 
 
@@ -839,9 +846,9 @@ CategoryInfo 分类详情
 
 
 
-<a name="svc-biz-room-ListTreeResp"></a>
+<a name="svc-biz-room-ListCategoryTreeResp"></a>
 
-### ListTreeResp
+### ListCategoryTreeResp
 
 
 
@@ -854,9 +861,9 @@ CategoryInfo 分类详情
 
 
 
-<a name="svc-biz-room-UpdateReq"></a>
+<a name="svc-biz-room-UpdateCategoryReq"></a>
 
-### UpdateReq
+### UpdateCategoryReq
 
 
 
@@ -884,12 +891,68 @@ CategoryInfo 分类详情
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| Get | [GetReq](#svc-biz-room-GetReq) | [GetResp](#svc-biz-room-GetResp) | 获取分类 |
-| Create | [CreateReq](#svc-biz-room-CreateReq) | [CreateResp](#svc-biz-room-CreateResp) | 创建分类 |
-| Update | [UpdateReq](#svc-biz-room-UpdateReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | 更新某个分类信息 |
-| Delete | [DeleteReq](#svc-biz-room-DeleteReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | 删除一个分类信息 |
-| List | [ListReq](#svc-biz-room-ListReq) | [ListResp](#svc-biz-room-ListResp) | 获取分类，返回子级集合 |
-| ListTree | [ListTreeReq](#svc-biz-room-ListTreeReq) | [ListTreeResp](#svc-biz-room-ListTreeResp) | 获取全部板块分类（分类及子分类树结构） |
+| GetCategory | [GetCategoryReq](#svc-biz-room-GetCategoryReq) | [GetCategoryResp](#svc-biz-room-GetCategoryResp) | 获取分类 |
+| CreateCategory | [CreateCategoryReq](#svc-biz-room-CreateCategoryReq) | [CreateCategoryResp](#svc-biz-room-CreateCategoryResp) | 创建分类 |
+| UpdateCategory | [UpdateCategoryReq](#svc-biz-room-UpdateCategoryReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | 更新某个分类信息 |
+| DeleteCategory | [DeleteCategoryReq](#svc-biz-room-DeleteCategoryReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | 删除一个分类信息 |
+| ListCategory | [ListCategoryReq](#svc-biz-room-ListCategoryReq) | [ListCategoryResp](#svc-biz-room-ListCategoryResp) | 获取分类，返回子级集合 |
+| ListCategoryTree | [ListCategoryTreeReq](#svc-biz-room-ListCategoryTreeReq) | [ListCategoryTreeResp](#svc-biz-room-ListCategoryTreeResp) | 获取全部板块分类（分类及子分类树结构） |
+
+ 
+
+
+
+<a name="svc-biz-room_room-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.biz.room/room.proto
+
+
+
+<a name="svc-biz-room-GetRoomReq"></a>
+
+### GetRoomReq
+
+
+
+
+
+
+
+<a name="svc-biz-room-GetRoomResp"></a>
+
+### GetRoomResp
+
+
+
+
+
+
+
+<a name="svc-biz-room-RoomInfo"></a>
+
+### RoomInfo
+
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="svc-biz-room-Room"></a>
+
+### Room
+分类
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| GetRoom | [GetRoomReq](#svc-biz-room-GetRoomReq) | [GetRoomResp](#svc-biz-room-GetRoomResp) |  |
 
  
 

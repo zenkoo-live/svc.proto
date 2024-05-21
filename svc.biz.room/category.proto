@@ -6,22 +6,22 @@ import "google/protobuf/field_mask.proto";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/empty.proto";
 
-option go_package="./svc.biz.room;category";
+option go_package="./svc.biz.room;room";
 
 // 分类
 service Category {
   // 获取分类
-  rpc Get(GetReq) returns (GetResp) {}
+  rpc GetCategory(GetCategoryReq) returns (GetCategoryResp) {}
   // 创建分类
-  rpc Create(CreateReq) returns (CreateResp) {}
+  rpc CreateCategory(CreateCategoryReq) returns (CreateCategoryResp) {}
   // 更新某个分类信息
-  rpc Update(UpdateReq) returns (google.protobuf.Empty) {}
+  rpc UpdateCategory(UpdateCategoryReq) returns (google.protobuf.Empty) {}
   // 删除一个分类信息
-  rpc Delete(DeleteReq) returns (google.protobuf.Empty) {}
+  rpc DeleteCategory(DeleteCategoryReq) returns (google.protobuf.Empty) {}
   // 获取分类，返回子级集合
-  rpc List(ListReq) returns (ListResp) {}
+  rpc ListCategory(ListCategoryReq) returns (ListCategoryResp) {}
   // 获取全部板块分类（分类及子分类树结构）
-  rpc ListTree(ListTreeReq) returns (ListTreeResp) {}
+  rpc ListCategoryTree(ListCategoryTreeReq) returns (ListCategoryTreeResp) {}
 }
 
 // CategoryInfo 分类详情
@@ -36,42 +36,42 @@ message CategoryInfo {
   repeated CategoryInfo childrens = 8;
 }
 
-message CreateReq {
+message CreateCategoryReq {
   CategoryInfo category = 1;
 }
-message CreateResp {
+message CreateCategoryResp {
   CategoryInfo category = 1;
 }
 
-message UpdateReq {
+message UpdateCategoryReq {
   int64 category_id = 1; 
   CategoryInfo category = 2;
   google.protobuf.FieldMask update_mask = 3;
 }
 
-message GetReq {
+message GetCategoryReq {
   int64 category_id = 1; 
 }
-message GetResp{
+message GetCategoryResp{
   CategoryInfo category = 1;
 }
 
-message DeleteReq{
+message DeleteCategoryReq{
   int64 category_id = 1; 
 }
 
-message ListReq {
+message ListCategoryReq {
   int64 parent_id = 1; // 父级ID
   bool return_count = 2; // 是否返回总数
 }
-message ListResp {
+message ListCategoryResp {
   repeated CategoryInfo items = 1;
 }
 
 //获取全部板块分类（分类及子分类树结构）
-message ListTreeReq {
+message ListCategoryTreeReq {
 
 }
-message ListTreeResp {
+message ListCategoryTreeResp {
   repeated CategoryInfo items = 1;
 }
