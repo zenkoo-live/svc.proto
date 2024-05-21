@@ -2,22 +2,67 @@ syntax = "proto3";
 
 package svc.biz.room;
 
-// import "google/protobuf/field_mask.proto";
-// import "google/protobuf/timestamp.proto";
-// import "google/protobuf/empty.proto";
+import "google/protobuf/field_mask.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
 
 option go_package="./svc.biz.room;room";
 
-// 分类
+// 房间
 service Room {
-    rpc GetRoom(GetRoomReq) returns (GetRoomResp) {}
+    // 创建房间
+    rpc CreateRoom(CreateRoomReq) returns(CreateRoomResp);
+    // 更新房间
+    rpc UpdateRoom(UpdateRoomReq) returns(google.protobuf.Empty);
+    // 查询房间
+    rpc GetRoom(GetRoomReq) returns(GetRoomResp);
+    // 查询房间列表，直读mysql
+    rpc GetRoomList(GetRoomListReq) returns(GetRoomListResp);
+}
+
+enum RoomStatus {
+    RoomStatusUnknown = 0; // 未知
+    RoomStatusOnline = 1; // 上线
+    RoomStatusOffline = 2; // 下线
 }
 
 message RoomInfo {
-  
+    string id = 1; // id
+    int64 display_id = 2; // 显示id
+    string streamer_id = 3; // 主播id
+    string title = 4; // 标题
+    string intro = 5; // 简介
+    RoomStatus status = 6; // 房间状态：1关播，2开播
+    int64 last_category_id = 7; // 最后一次板块标识
+    google.protobuf.Timestamp created_at = 255; // 创建时间
+    google.protobuf.Timestamp updated_at = 256; // 更新时间
+}
+
+message CreateRoomReq {
+    RoomInfo room = 1; // 房间信息
+}
+message CreateRoomResp {
+    RoomInfo room = 1; // 房间信息
+}
+
+message UpdateRoomReq {
+    string id = 1; // id
+    RoomInfo room = 2; // 房间信息
+    google.protobuf.FieldMask update_mask = 3;
 }
 
 message GetRoomReq {
+    string id = 1; // id
 }
 message GetRoomResp {
+    RoomInfo room = 1; // 房间信息
+}
+
+message GetRoomListReq {
+    int32 page = 1; // 页数
+    int32 limit = 2; // 条数
+    string streamer_id = 3; // 主播id
+}
+message GetRoomListResp {
+    repeated RoomInfo items = 1; // 房间列表
 }
