@@ -136,14 +136,6 @@ func getServices() map[string]*svcSpec {
 
 					ast.Inspect(af, func(n ast.Node) bool {
 						switch t := n.(type) {
-						case *ast.FuncDecl:
-							if strings.HasPrefix(t.Name.Name, "New") && strings.HasSuffix(t.Name.Name, "Service") {
-								subSvcName := strings.TrimSuffix(f.Name(), ".pb.micro.go")
-								if currSpec != nil {
-									currSpec.Services[currSpec.ConstName+
-										cases.Title(language.English, cases.Compact).String(strings.ToLower(subSvcName))] = t.Name.Name
-								}
-							}
 						case *ast.File:
 							if currSpec == nil {
 								svcName = t.Name.Name
@@ -157,6 +149,19 @@ func getServices() map[string]*svcSpec {
 								}
 							}
 
+						}
+						return true
+					})
+					ast.Inspect(af, func(n ast.Node) bool {
+						switch t := n.(type) {
+						case *ast.FuncDecl:
+							if strings.HasPrefix(t.Name.Name, "New") && strings.HasSuffix(t.Name.Name, "Service") {
+								subSvcName := strings.TrimSuffix(f.Name(), ".pb.micro.go")
+								if currSpec != nil {
+									currSpec.Services[currSpec.ConstName+
+										cases.Title(language.English, cases.Compact).String(strings.ToLower(subSvcName))] = t.Name.Name
+								}
+							}
 						}
 						return true
 					})
