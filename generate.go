@@ -123,7 +123,8 @@ func getServices() map[string]*svcSpec {
 			if err != nil {
 				log.Fatal(err)
 			}
-
+			currSpec = nil
+			svcName := ""
 			for _, f := range srcs {
 				if strings.HasSuffix(f.Name(), ".micro.go") {
 					path := pwd + "/" + item.Name() + "/" + f.Name()
@@ -132,30 +133,43 @@ func getServices() map[string]*svcSpec {
 					if err != nil {
 						log.Fatal(err)
 					}
-
+					// 先找到包名
+					ast.Inspect(af, func(n ast.Node) bool {
+						switch t := n.(type) {
+						case *ast.File:
+							if currSpec == nil {
+								svcName = t.Name.Name
+								currSpec = &svcSpec{
+									ConstName: stripDot(item.Name(), true),
+									SvcName:   strings.ToLower(item.Name()),
+									PkgName:   t.Name.Name,
+									PkgAlias:  stripDot(item.Name(), false),
+									PkgPath:   pkgPrefix + "/" + item.Name(),
+									Services:  make(map[string]string),
+								}
+							}
+						}
+						return true
+					})
+					// 再找到服务名
 					ast.Inspect(af, func(n ast.Node) bool {
 						switch t := n.(type) {
 						case *ast.FuncDecl:
 							if strings.HasPrefix(t.Name.Name, "New") && strings.HasSuffix(t.Name.Name, "Service") {
+								subSvcName := strings.TrimSuffix(f.Name(), ".pb.micro.go")
 								if currSpec != nil {
 									currSpec.Services[currSpec.ConstName+
-										cases.Title(language.English, cases.Compact).String(strings.ToLower(currSpec.PkgName))] = t.Name.Name
+										cases.Title(language.English, cases.Compact).String(strings.ToLower(subSvcName))] = t.Name.Name
 								}
 							}
-						case *ast.File:
-							currSpec = &svcSpec{
-								ConstName: stripDot(item.Name(), true),
-								SvcName:   strings.ToLower(item.Name()),
-								PkgName:   t.Name.Name,
-								PkgAlias:  stripDot(item.Name(), false),
-								PkgPath:   pkgPrefix + "/" + item.Name(),
-								Services:  make(map[string]string),
-							}
-							svcs[t.Name.Name] = currSpec
 						}
-
 						return true
 					})
+				}
+			}
+			if svcName != "" {
+				if _, ok := svcs[svcName]; !ok {
+					svcs[svcName] = currSpec
 				}
 			}
 		}

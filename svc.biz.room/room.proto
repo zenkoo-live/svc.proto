@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package svc.biz.room;
+
+// import "google/protobuf/field_mask.proto";
+// import "google/protobuf/timestamp.proto";
+// import "google/protobuf/empty.proto";
+
+option go_package="./svc.biz.room;room";
+
+// 分类
+service Room {
+    rpc GetRoom(GetRoomReq) returns (GetRoomResp) {}
+}
+
+message RoomInfo {
+  
+}
+
+message GetRoomReq {
+}
+message GetRoomResp {
+}
