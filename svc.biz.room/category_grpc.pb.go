@@ -4,7 +4,7 @@
 // - protoc             v5.26.1
 // source: svc.biz.room/category.proto
 
-package room
+package category
 
 import (
 	context "context"

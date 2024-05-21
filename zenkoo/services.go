@@ -19,9 +19,9 @@ const (
 	AppName = "zenkoo"
 
 	SvcBizAccount   = "svc.biz.account"
+	SvcBizRoom      = "svc.biz.room"
 	SvcWebDashboard = "svc.web.dashboard"
 	SvcBizGift      = "svc.biz.gift"
-	SvcBizRoom      = "svc.biz.room"
 	SvcInfraSetting = "svc.infra.setting"
 	SvcWebStreamer  = "svc.web.streamer"
 	SvcWebViewer    = "svc.web.viewer"
@@ -31,9 +31,9 @@ var (
 	clt = cltGrpc.NewClient()
 
 	SvcBizAccountAccount     = svcBizAccount.NewAccountService(AppName+"::"+SvcBizAccount, clt)
+	SvcBizRoomCategory       = svcBizRoom.NewCategoryService(AppName+"::"+SvcBizRoom, clt)
 	SvcWebDashboardDashboard = svcWebDashboard.NewDashboardService(AppName+"::"+SvcWebDashboard, clt)
 	SvcBizGiftGift           = svcBizGift.NewGiftService(AppName+"::"+SvcBizGift, clt)
-	SvcBizRoomRoom           = svcBizRoom.NewCategoryService(AppName+"::"+SvcBizRoom, clt)
 	SvcInfraSettingSetting   = svcInfraSetting.NewSettingService(AppName+"::"+SvcInfraSetting, clt)
 	SvcWebStreamerStreamer   = svcWebStreamer.NewStreamerService(AppName+"::"+SvcWebStreamer, clt)
 	SvcWebViewerViewer       = svcWebViewer.NewViewerService(AppName+"::"+SvcWebViewer, clt)

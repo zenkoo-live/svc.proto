@@ -6,7 +6,7 @@ import "google/protobuf/field_mask.proto";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/empty.proto";
 
-option go_package="./svc.biz.room;room";
+option go_package="./svc.biz.room;category";
 
 // 分类
 service Category {
