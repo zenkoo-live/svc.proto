@@ -3,6 +3,50 @@
 
 ## Table of Contents
 
+- [svc.web.streamer/streamer.proto](#svc-web-streamer_streamer-proto)
+    - [Streamer](#svc-web-streamer-Streamer)
+  
+- [svc.infra.setting/setting.proto](#svc-infra-setting_setting-proto)
+    - [SettingGreetingReq](#svc-infra-setting-SettingGreetingReq)
+    - [SettingGreetingResp](#svc-infra-setting-SettingGreetingResp)
+  
+    - [Setting](#svc-infra-setting-Setting)
+  
+- [svc.web.viewer/viewer.proto](#svc-web-viewer_viewer-proto)
+    - [Viewer](#svc-web-viewer-Viewer)
+  
+- [svc.biz.gift/gift.proto](#svc-biz-gift_gift-proto)
+    - [GiftAddReq](#svc-biz-gift-GiftAddReq)
+    - [GiftAddResp](#svc-biz-gift-GiftAddResp)
+    - [GiftGetRecordReq](#svc-biz-gift-GiftGetRecordReq)
+    - [GiftGetRecordResp](#svc-biz-gift-GiftGetRecordResp)
+    - [GiftGetReq](#svc-biz-gift-GiftGetReq)
+    - [GiftGetResp](#svc-biz-gift-GiftGetResp)
+    - [GiftInfo](#svc-biz-gift-GiftInfo)
+    - [GiftSendRecord](#svc-biz-gift-GiftSendRecord)
+    - [GiftSendRecordReq](#svc-biz-gift-GiftSendRecordReq)
+    - [GiftSendRecordResp](#svc-biz-gift-GiftSendRecordResp)
+    - [GiftSendReq](#svc-biz-gift-GiftSendReq)
+    - [GiftSendResp](#svc-biz-gift-GiftSendResp)
+    - [GiftUpdateReq](#svc-biz-gift-GiftUpdateReq)
+    - [GiftUpdateResp](#svc-biz-gift-GiftUpdateResp)
+    - [ListAdminReq](#svc-biz-gift-ListAdminReq)
+    - [ListAdminResp](#svc-biz-gift-ListAdminResp)
+    - [ListOnlineAllReq](#svc-biz-gift-ListOnlineAllReq)
+    - [ListOnlineByTypeReq](#svc-biz-gift-ListOnlineByTypeReq)
+    - [ListOnlineResp](#svc-biz-gift-ListOnlineResp)
+    - [LiveStatReq](#svc-biz-gift-LiveStatReq)
+    - [LiveStatResp](#svc-biz-gift-LiveStatResp)
+  
+    - [GiftRecommend](#svc-biz-gift-GiftRecommend)
+    - [GiftStatus](#svc-biz-gift-GiftStatus)
+    - [GiftType](#svc-biz-gift-GiftType)
+  
+    - [Gift](#svc-biz-gift-Gift)
+  
+- [svc.web.dashboard/dashboard.proto](#svc-web-dashboard_dashboard-proto)
+    - [Dashboard](#svc-web-dashboard-Dashboard)
+  
 - [svc.biz.account/account.proto](#svc-biz-account_account-proto)
     - [AddManagerReq](#svc-biz-account-AddManagerReq)
     - [AddManagerResp](#svc-biz-account-AddManagerResp)
@@ -39,8 +83,6 @@
     - [UpdateViewerResp](#svc-biz-account-UpdateViewerResp)
     - [Viewer](#svc-biz-account-Viewer)
   
-    - [ManagerTypes](#svc-biz-account-ManagerTypes)
-  
     - [Account](#svc-biz-account-Account)
   
 - [svc.biz.room/category.proto](#svc-biz-room_category-proto)
@@ -65,898 +107,30 @@
   
     - [Room](#svc-biz-room-Room)
   
-- [svc.infra.setting/setting.proto](#svc-infra-setting_setting-proto)
-    - [SettingGreetingReq](#svc-infra-setting-SettingGreetingReq)
-    - [SettingGreetingResp](#svc-infra-setting-SettingGreetingResp)
-  
-    - [Setting](#svc-infra-setting-Setting)
-  
-- [svc.web.viewer/viewer.proto](#svc-web-viewer_viewer-proto)
-    - [Viewer](#svc-web-viewer-Viewer)
-  
-- [svc.web.dashboard/dashboard.proto](#svc-web-dashboard_dashboard-proto)
-    - [Dashboard](#svc-web-dashboard-Dashboard)
-  
-- [svc.web.streamer/streamer.proto](#svc-web-streamer_streamer-proto)
-    - [Streamer](#svc-web-streamer-Streamer)
-  
-- [svc.biz.gift/gift.proto](#svc-biz-gift_gift-proto)
-    - [GiftAddReq](#svc-biz-gift-GiftAddReq)
-    - [GiftAddResp](#svc-biz-gift-GiftAddResp)
-    - [GiftGetRecordReq](#svc-biz-gift-GiftGetRecordReq)
-    - [GiftGetRecordResp](#svc-biz-gift-GiftGetRecordResp)
-    - [GiftGetReq](#svc-biz-gift-GiftGetReq)
-    - [GiftGetResp](#svc-biz-gift-GiftGetResp)
-    - [GiftInfo](#svc-biz-gift-GiftInfo)
-    - [GiftSendRecord](#svc-biz-gift-GiftSendRecord)
-    - [GiftSendRecordReq](#svc-biz-gift-GiftSendRecordReq)
-    - [GiftSendRecordResp](#svc-biz-gift-GiftSendRecordResp)
-    - [GiftSendReq](#svc-biz-gift-GiftSendReq)
-    - [GiftSendResp](#svc-biz-gift-GiftSendResp)
-    - [GiftUpdateReq](#svc-biz-gift-GiftUpdateReq)
-    - [GiftUpdateResp](#svc-biz-gift-GiftUpdateResp)
-    - [ListAdminReq](#svc-biz-gift-ListAdminReq)
-    - [ListAdminResp](#svc-biz-gift-ListAdminResp)
-    - [ListOnlineAllReq](#svc-biz-gift-ListOnlineAllReq)
-    - [ListOnlineByTypeReq](#svc-biz-gift-ListOnlineByTypeReq)
-    - [ListOnlineResp](#svc-biz-gift-ListOnlineResp)
-    - [LiveStatReq](#svc-biz-gift-LiveStatReq)
-    - [LiveStatResp](#svc-biz-gift-LiveStatResp)
-  
-    - [GiftRecommend](#svc-biz-gift-GiftRecommend)
-    - [GiftStatus](#svc-biz-gift-GiftStatus)
-    - [GiftType](#svc-biz-gift-GiftType)
-  
-    - [Gift](#svc-biz-gift-Gift)
-  
 - [Scalar Value Types](#scalar-value-types)
 
 
 
-<a name="svc-biz-account_account-proto"></a>
+<a name="svc-web-streamer_streamer-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## svc.biz.account/account.proto
+## svc.web.streamer/streamer.proto
 
 
+ 
 
-<a name="svc-biz-account-AddManagerReq"></a>
+ 
 
-### AddManagerReq
+ 
 
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| manager | [Manager](#svc-biz-account-Manager) |  |  |
-
-
-
-
-
-
-<a name="svc-biz-account-AddManagerResp"></a>
-
-### AddManagerResp
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| manager | [Manager](#svc-biz-account-Manager) |  |  |
-| result | [bool](#bool) |  |  |
-
-
-
-
-
-
-<a name="svc-biz-account-AddStreamerReq"></a>
-
-### AddStreamerReq
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| streamer | [Streamer](#svc-biz-account-Streamer) |  |  |
-
-
-
-
-
-
-<a name="svc-biz-account-AddStreamerResp"></a>
-
-### AddStreamerResp
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| streamer | [Streamer](#svc-biz-account-Streamer) |  |  |
-| result | [bool](#bool) |  |  |
-
-
-
-
-
-
-<a name="svc-biz-account-AddViewerReq"></a>
-
-### AddViewerReq
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| viewer | [Viewer](#svc-biz-account-Viewer) |  |  |
-
-
-
-
-
-
-<a name="svc-biz-account-AddViewerResp"></a>
-
-### AddViewerResp
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| viewer | [Viewer](#svc-biz-account-Viewer) |  |  |
-| result | [bool](#bool) |  |  |
-
-
-
-
-
-
-<a name="svc-biz-account-DeleteManagerReq"></a>
-
-### DeleteManagerReq
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| condition | [Manager](#svc-biz-account-Manager) |  |  |
-
-
-
-
-
-
-<a name="svc-biz-account-DeleteManagerResp"></a>
-
-### DeleteManagerResp
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| deleted | [int64](#int64) |  |  |
-
-
-
-
-
-
-<a name="svc-biz-account-DeleteStreamerReq"></a>
-
-### DeleteStreamerReq
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| condition | [Streamer](#svc-biz-account-Streamer) |  |  |
-
-
-
-
-
-
-<a name="svc-biz-account-DeleteStreamerResp"></a>
-
-### DeleteStreamerResp
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| deleted | [int64](#int64) |  |  |
-
-
-
-
-
-
-<a name="svc-biz-account-DeleteViewerReq"></a>
-
-### DeleteViewerReq
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| condition | [Viewer](#svc-biz-account-Viewer) |  |  |
-
-
-
-
-
-
-<a name="svc-biz-account-DeleteViewerResp"></a>
-
-### DeleteViewerResp
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| deleted | [int64](#int64) |  |  |
-
-
-
-
-
-
-<a name="svc-biz-account-GetManagerReq"></a>
-
-### GetManagerReq
-{{{ [Manager]
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| condition | [Manager](#svc-biz-account-Manager) |  |  |
-
-
-
-
-
-
-<a name="svc-biz-account-GetManagerResp"></a>
-
-### GetManagerResp
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| manager | [Manager](#svc-biz-account-Manager) |  |  |
-
-
-
-
-
-
-<a name="svc-biz-account-GetStreamerReq"></a>
-
-### GetStreamerReq
-{{{ [Streamer]
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| condition | [Streamer](#svc-biz-account-Streamer) |  |  |
-
-
-
-
-
-
-<a name="svc-biz-account-GetStreamerResp"></a>
-
-### GetStreamerResp
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| streamer | [Streamer](#svc-biz-account-Streamer) |  |  |
-
-
-
-
-
-
-<a name="svc-biz-account-GetViewerReq"></a>
-
-### GetViewerReq
-{{{ [Viewer]
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| condition | [Viewer](#svc-biz-account-Viewer) |  |  |
-
-
-
-
-
-
-<a name="svc-biz-account-GetViewerResp"></a>
-
-### GetViewerResp
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| viewer | [Viewer](#svc-biz-account-Viewer) |  |  |
-
-
-
-
-
-
-<a name="svc-biz-account-InitDBResp"></a>
-
-### InitDBResp
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| result | [bool](#bool) |  |  |
-
-
-
-
-
-
-<a name="svc-biz-account-ListManagersReq"></a>
-
-### ListManagersReq
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| condition | [Manager](#svc-biz-account-Manager) |  |  |
-
-
-
-
-
-
-<a name="svc-biz-account-ListManagersResp"></a>
-
-### ListManagersResp
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| managers | [Manager](#svc-biz-account-Manager) | repeated |  |
-
-
-
-
-
-
-<a name="svc-biz-account-ListStreamersReq"></a>
-
-### ListStreamersReq
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| condition | [Streamer](#svc-biz-account-Streamer) |  |  |
-
-
-
-
-
-
-<a name="svc-biz-account-ListStreamersResp"></a>
-
-### ListStreamersResp
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| streamers | [Streamer](#svc-biz-account-Streamer) | repeated |  |
-
-
-
-
-
-
-<a name="svc-biz-account-ListViewersReq"></a>
-
-### ListViewersReq
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| condition | [Viewer](#svc-biz-account-Viewer) |  |  |
-
-
-
-
-
-
-<a name="svc-biz-account-ListViewersResp"></a>
-
-### ListViewersResp
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| viewers | [Viewer](#svc-biz-account-Viewer) | repeated |  |
-
-
-
-
-
-
-<a name="svc-biz-account-Manager"></a>
-
-### Manager
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| id | [string](#string) |  | 内部ID |
-| type | [ManagerTypes](#svc-biz-account-ManagerTypes) |  | 类型：平台 / 商户 / 工会 |
-| name | [string](#string) |  | 用户名 |
-| mobile | [string](#string) |  | 手机 |
-| email | [string](#string) |  | 邮箱 |
-| password | [string](#string) | optional | 密码 |
-| salt | [string](#string) | optional | 加密混淆 |
-| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
-
-
-
-
-
-
-<a name="svc-biz-account-Streamer"></a>
+<a name="svc-web-streamer-Streamer"></a>
 
 ### Streamer
 
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| id | [string](#string) |  | 内部ID |
-| display_id | [string](#string) |  | 用于显示和索引的数字ID |
-| name | [string](#string) |  | 用户名 |
-| mobile | [string](#string) |  | 手机 |
-| email | [string](#string) |  | 邮箱 |
-| password | [string](#string) | optional | 密码 |
-| salt | [string](#string) | optional | 加密混淆 |
-| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
-
-
-
-
-
-
-<a name="svc-biz-account-UpdateManagerReq"></a>
-
-### UpdateManagerReq
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| condition | [Manager](#svc-biz-account-Manager) |  |  |
-
-
-
-
-
-
-<a name="svc-biz-account-UpdateManagerResp"></a>
-
-### UpdateManagerResp
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| updated | [int64](#int64) |  |  |
-
-
-
-
-
-
-<a name="svc-biz-account-UpdateStreamerReq"></a>
-
-### UpdateStreamerReq
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| condition | [Streamer](#svc-biz-account-Streamer) |  |  |
-
-
-
-
-
-
-<a name="svc-biz-account-UpdateStreamerResp"></a>
-
-### UpdateStreamerResp
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| updated | [int64](#int64) |  |  |
-
-
-
-
-
-
-<a name="svc-biz-account-UpdateViewerReq"></a>
-
-### UpdateViewerReq
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| condition | [Viewer](#svc-biz-account-Viewer) |  |  |
-
-
-
-
-
-
-<a name="svc-biz-account-UpdateViewerResp"></a>
-
-### UpdateViewerResp
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| updated | [int64](#int64) |  |  |
-
-
-
-
-
-
-<a name="svc-biz-account-Viewer"></a>
-
-### Viewer
-Models
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| id | [string](#string) |  | 内部ID |
-| display_id | [string](#string) |  | 用于显示和索引的数字ID |
-| merchant_id | [string](#string) |  | 商户ID |
-| name | [string](#string) |  | 用户名 |
-| nickname | [string](#string) |  | 昵称 |
-| mobile | [string](#string) |  | 手机 |
-| email | [string](#string) |  | 邮箱 |
-| device_ident | [string](#string) |  | 设备号 / 指纹 |
-| password | [string](#string) | optional | 密码 |
-| salt | [string](#string) | optional | 加密混淆 |
-| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
-
-
-
-
-
- 
-
-
-<a name="svc-biz-account-ManagerTypes"></a>
-
-### ManagerTypes
-
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| ManagerTypeUnknown | 0 | 未知 |
-| ManagerTypePlatform | 1 | 平台管理者 |
-| ManagerTypeMerchant | 2 | 商户管理者 |
-| ManagerTypeUnion | 3 | 工会 |
-
-
- 
-
- 
-
-
-<a name="svc-biz-account-Account"></a>
-
-### Account
-
-
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| InitDB | [.google.protobuf.Empty](#google-protobuf-Empty) | [InitDBResp](#svc-biz-account-InitDBResp) | 初始化数据库 |
-| GetViewer | [GetViewerReq](#svc-biz-account-GetViewerReq) | [GetViewerResp](#svc-biz-account-GetViewerResp) | 获取普通账号 |
-| ListViewers | [ListViewersReq](#svc-biz-account-ListViewersReq) | [ListViewersResp](#svc-biz-account-ListViewersResp) | 获取普通账号列表 |
-| AddViewer | [AddViewerReq](#svc-biz-account-AddViewerReq) | [AddViewerResp](#svc-biz-account-AddViewerResp) | 添加普通账号 |
-| UpdateViewer | [UpdateViewerReq](#svc-biz-account-UpdateViewerReq) | [UpdateViewerResp](#svc-biz-account-UpdateViewerResp) | 更新普通账号 |
-| DeleteViewer | [DeleteViewerReq](#svc-biz-account-DeleteViewerReq) | [DeleteViewerResp](#svc-biz-account-DeleteViewerResp) | 删除普通账号 |
-| GetStreamer | [GetStreamerReq](#svc-biz-account-GetStreamerReq) | [GetStreamerResp](#svc-biz-account-GetStreamerResp) | 获取主播账号 |
-| ListStreamers | [ListStreamersReq](#svc-biz-account-ListStreamersReq) | [ListStreamersResp](#svc-biz-account-ListStreamersResp) | 获取主播账号列表 |
-| AddStreamer | [AddStreamerReq](#svc-biz-account-AddStreamerReq) | [AddStreamerResp](#svc-biz-account-AddStreamerResp) | 添加普通账号 |
-| UpdateStreamer | [UpdateStreamerReq](#svc-biz-account-UpdateStreamerReq) | [UpdateStreamerResp](#svc-biz-account-UpdateStreamerResp) | 更新主播账号 |
-| DeleteStreamer | [DeleteStreamerReq](#svc-biz-account-DeleteStreamerReq) | [DeleteStreamerResp](#svc-biz-account-DeleteStreamerResp) | 删除主播账号 |
-| GetManager | [GetManagerReq](#svc-biz-account-GetManagerReq) | [GetManagerResp](#svc-biz-account-GetManagerResp) | 获取主播账号 |
-| ListManagers | [ListManagersReq](#svc-biz-account-ListManagersReq) | [ListManagersResp](#svc-biz-account-ListManagersResp) | 获取主播账号列表 |
-| AddManager | [AddManagerReq](#svc-biz-account-AddManagerReq) | [AddManagerResp](#svc-biz-account-AddManagerResp) | 添加普通账号 |
-| UpdateManager | [UpdateManagerReq](#svc-biz-account-UpdateManagerReq) | [UpdateManagerResp](#svc-biz-account-UpdateManagerResp) | 更新主播账号 |
-| DeleteManager | [DeleteManagerReq](#svc-biz-account-DeleteManagerReq) | [DeleteManagerResp](#svc-biz-account-DeleteManagerResp) | 删除主播账号 |
-
- 
-
-
-
-<a name="svc-biz-room_category-proto"></a>
-<p align="right"><a href="#top">Top</a></p>
-
-## svc.biz.room/category.proto
-
-
-
-<a name="svc-biz-room-CategoryInfo"></a>
-
-### CategoryInfo
-CategoryInfo 分类详情
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| category_id | [int64](#int64) |  |  |
-| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
-| updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
-| parent_id | [int64](#int64) |  | 父级ID |
-| category_code | [string](#string) |  | 代号（唯一，预留） |
-| category_name | [string](#string) |  | 名称 |
-| sort | [int32](#int32) |  | 排序 |
-| childrens | [CategoryInfo](#svc-biz-room-CategoryInfo) | repeated |  |
-
-
-
-
-
-
-<a name="svc-biz-room-CreateCategoryReq"></a>
-
-### CreateCategoryReq
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| category | [CategoryInfo](#svc-biz-room-CategoryInfo) |  |  |
-
-
-
-
-
-
-<a name="svc-biz-room-CreateCategoryResp"></a>
-
-### CreateCategoryResp
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| category | [CategoryInfo](#svc-biz-room-CategoryInfo) |  |  |
-
-
-
-
-
-
-<a name="svc-biz-room-DeleteCategoryReq"></a>
-
-### DeleteCategoryReq
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| category_id | [int64](#int64) |  |  |
-
-
-
-
-
-
-<a name="svc-biz-room-GetCategoryReq"></a>
-
-### GetCategoryReq
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| category_id | [int64](#int64) |  |  |
-
-
-
-
-
-
-<a name="svc-biz-room-GetCategoryResp"></a>
-
-### GetCategoryResp
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| category | [CategoryInfo](#svc-biz-room-CategoryInfo) |  |  |
-
-
-
-
-
-
-<a name="svc-biz-room-ListCategoryReq"></a>
-
-### ListCategoryReq
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| parent_id | [int64](#int64) |  | 父级ID，跟级分类传1 |
-| return_count | [bool](#bool) |  | 是否返回总数 |
-
-
-
-
-
-
-<a name="svc-biz-room-ListCategoryResp"></a>
-
-### ListCategoryResp
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| items | [CategoryInfo](#svc-biz-room-CategoryInfo) | repeated |  |
-
-
-
-
-
-
-<a name="svc-biz-room-ListCategoryTreeReq"></a>
-
-### ListCategoryTreeReq
-获取全部板块分类（分类及子分类树结构）
-
-
-
-
-
-
-<a name="svc-biz-room-ListCategoryTreeResp"></a>
-
-### ListCategoryTreeResp
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| items | [CategoryInfo](#svc-biz-room-CategoryInfo) | repeated |  |
-
-
-
-
-
-
-<a name="svc-biz-room-UpdateCategoryReq"></a>
-
-### UpdateCategoryReq
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| category_id | [int64](#int64) |  |  |
-| category | [CategoryInfo](#svc-biz-room-CategoryInfo) |  |  |
-| update_mask | [google.protobuf.FieldMask](#google-protobuf-FieldMask) |  |  |
-
-
-
-
-
- 
-
- 
-
- 
-
-
-<a name="svc-biz-room-Category"></a>
-
-### Category
-分类
-
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-| GetCategory | [GetCategoryReq](#svc-biz-room-GetCategoryReq) | [GetCategoryResp](#svc-biz-room-GetCategoryResp) | 获取分类 |
-| CreateCategory | [CreateCategoryReq](#svc-biz-room-CreateCategoryReq) | [CreateCategoryResp](#svc-biz-room-CreateCategoryResp) | 创建分类 |
-| UpdateCategory | [UpdateCategoryReq](#svc-biz-room-UpdateCategoryReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | 更新某个分类信息 |
-| DeleteCategory | [DeleteCategoryReq](#svc-biz-room-DeleteCategoryReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | 删除一个分类信息 |
-| ListCategory | [ListCategoryReq](#svc-biz-room-ListCategoryReq) | [ListCategoryResp](#svc-biz-room-ListCategoryResp) | 获取分类，返回子级集合 |
-| ListCategoryTree | [ListCategoryTreeReq](#svc-biz-room-ListCategoryTreeReq) | [ListCategoryTreeResp](#svc-biz-room-ListCategoryTreeResp) | 获取全部板块分类（分类及子分类树结构） |
-
- 
-
-
-
-<a name="svc-biz-room_room-proto"></a>
-<p align="right"><a href="#top">Top</a></p>
-
-## svc.biz.room/room.proto
-
-
-
-<a name="svc-biz-room-GetRoomReq"></a>
-
-### GetRoomReq
-
-
-
-
-
-
-
-<a name="svc-biz-room-GetRoomResp"></a>
-
-### GetRoomResp
-
-
-
-
-
-
-
-<a name="svc-biz-room-RoomInfo"></a>
-
-### RoomInfo
-
-
-
-
-
-
- 
-
- 
-
- 
-
-
-<a name="svc-biz-room-Room"></a>
-
-### Room
-分类
-
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-| GetRoom | [GetRoomReq](#svc-biz-room-GetRoomReq) | [GetRoomResp](#svc-biz-room-GetRoomResp) |  |
 
  
 
@@ -1034,56 +208,6 @@ CategoryInfo 分类详情
 <a name="svc-web-viewer-Viewer"></a>
 
 ### Viewer
-
-
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-
- 
-
-
-
-<a name="svc-web-dashboard_dashboard-proto"></a>
-<p align="right"><a href="#top">Top</a></p>
-
-## svc.web.dashboard/dashboard.proto
-
-
- 
-
- 
-
- 
-
-
-<a name="svc-web-dashboard-Dashboard"></a>
-
-### Dashboard
-
-
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-
- 
-
-
-
-<a name="svc-web-streamer_streamer-proto"></a>
-<p align="right"><a href="#top">Top</a></p>
-
-## svc.web.streamer/streamer.proto
-
-
- 
-
- 
-
- 
-
-
-<a name="svc-web-streamer-Streamer"></a>
-
-### Streamer
 
 
 | Method Name | Request Type | Response Type | Description |
@@ -1514,6 +638,866 @@ CategoryInfo 分类详情
 | SendRecord | [GiftSendRecordReq](#svc-biz-gift-GiftSendRecordReq) | [GiftSendRecordResp](#svc-biz-gift-GiftSendRecordResp) | SendRecord 送礼记录 |
 | GetRecord | [GiftGetRecordReq](#svc-biz-gift-GiftGetRecordReq) | [GiftGetRecordResp](#svc-biz-gift-GiftGetRecordResp) | GetRecord 收礼记录 |
 | LiveStat | [LiveStatReq](#svc-biz-gift-LiveStatReq) | [LiveStatResp](#svc-biz-gift-LiveStatResp) | LiveStat 直播统计 |
+
+ 
+
+
+
+<a name="svc-web-dashboard_dashboard-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.web.dashboard/dashboard.proto
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="svc-web-dashboard-Dashboard"></a>
+
+### Dashboard
+
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+
+ 
+
+
+
+<a name="svc-biz-account_account-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.biz.account/account.proto
+
+
+
+<a name="svc-biz-account-AddManagerReq"></a>
+
+### AddManagerReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| manager | [Manager](#svc-biz-account-Manager) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-AddManagerResp"></a>
+
+### AddManagerResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| manager | [Manager](#svc-biz-account-Manager) |  |  |
+| result | [bool](#bool) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-AddStreamerReq"></a>
+
+### AddStreamerReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer | [Streamer](#svc-biz-account-Streamer) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-AddStreamerResp"></a>
+
+### AddStreamerResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer | [Streamer](#svc-biz-account-Streamer) |  |  |
+| result | [bool](#bool) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-AddViewerReq"></a>
+
+### AddViewerReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| viewer | [Viewer](#svc-biz-account-Viewer) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-AddViewerResp"></a>
+
+### AddViewerResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| viewer | [Viewer](#svc-biz-account-Viewer) |  |  |
+| result | [bool](#bool) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-DeleteManagerReq"></a>
+
+### DeleteManagerReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Manager](#svc-biz-account-Manager) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-DeleteManagerResp"></a>
+
+### DeleteManagerResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| deleted | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-DeleteStreamerReq"></a>
+
+### DeleteStreamerReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Streamer](#svc-biz-account-Streamer) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-DeleteStreamerResp"></a>
+
+### DeleteStreamerResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| deleted | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-DeleteViewerReq"></a>
+
+### DeleteViewerReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Viewer](#svc-biz-account-Viewer) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-DeleteViewerResp"></a>
+
+### DeleteViewerResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| deleted | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-GetManagerReq"></a>
+
+### GetManagerReq
+{{{ [Manager]
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Manager](#svc-biz-account-Manager) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-GetManagerResp"></a>
+
+### GetManagerResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| manager | [Manager](#svc-biz-account-Manager) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-GetStreamerReq"></a>
+
+### GetStreamerReq
+{{{ [Streamer]
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Streamer](#svc-biz-account-Streamer) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-GetStreamerResp"></a>
+
+### GetStreamerResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer | [Streamer](#svc-biz-account-Streamer) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-GetViewerReq"></a>
+
+### GetViewerReq
+{{{ [Viewer]
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Viewer](#svc-biz-account-Viewer) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-GetViewerResp"></a>
+
+### GetViewerResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| viewer | [Viewer](#svc-biz-account-Viewer) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-InitDBResp"></a>
+
+### InitDBResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| result | [bool](#bool) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-ListManagersReq"></a>
+
+### ListManagersReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Manager](#svc-biz-account-Manager) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-ListManagersResp"></a>
+
+### ListManagersResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| managers | [Manager](#svc-biz-account-Manager) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-account-ListStreamersReq"></a>
+
+### ListStreamersReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Streamer](#svc-biz-account-Streamer) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-ListStreamersResp"></a>
+
+### ListStreamersResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamers | [Streamer](#svc-biz-account-Streamer) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-account-ListViewersReq"></a>
+
+### ListViewersReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Viewer](#svc-biz-account-Viewer) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-ListViewersResp"></a>
+
+### ListViewersResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| viewers | [Viewer](#svc-biz-account-Viewer) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-account-Manager"></a>
+
+### Manager
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  | 内部ID |
+| type | [int32](#int32) |  | 类型：平台 / 商户 / 工会 |
+| name | [string](#string) |  | 用户名 |
+| mobile | [string](#string) |  | 手机 |
+| email | [string](#string) |  | 邮箱 |
+| password | [string](#string) | optional | 密码 |
+| salt | [string](#string) | optional | 加密混淆 |
+| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+
+
+
+
+
+
+<a name="svc-biz-account-Streamer"></a>
+
+### Streamer
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  | 内部ID |
+| display_id | [string](#string) |  | 用于显示和索引的数字ID |
+| name | [string](#string) |  | 用户名 |
+| mobile | [string](#string) |  | 手机 |
+| email | [string](#string) |  | 邮箱 |
+| password | [string](#string) | optional | 密码 |
+| salt | [string](#string) | optional | 加密混淆 |
+| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+
+
+
+
+
+
+<a name="svc-biz-account-UpdateManagerReq"></a>
+
+### UpdateManagerReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Manager](#svc-biz-account-Manager) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-UpdateManagerResp"></a>
+
+### UpdateManagerResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| updated | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-UpdateStreamerReq"></a>
+
+### UpdateStreamerReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Streamer](#svc-biz-account-Streamer) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-UpdateStreamerResp"></a>
+
+### UpdateStreamerResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| updated | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-UpdateViewerReq"></a>
+
+### UpdateViewerReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Viewer](#svc-biz-account-Viewer) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-UpdateViewerResp"></a>
+
+### UpdateViewerResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| updated | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-Viewer"></a>
+
+### Viewer
+Models
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  | 内部ID |
+| display_id | [string](#string) |  | 用于显示和索引的数字ID |
+| merchant_id | [string](#string) |  | 商户ID |
+| name | [string](#string) |  | 用户名 |
+| nickname | [string](#string) |  | 昵称 |
+| mobile | [string](#string) |  | 手机 |
+| email | [string](#string) |  | 邮箱 |
+| device_ident | [string](#string) |  | 设备号 / 指纹 |
+| password | [string](#string) | optional | 密码 |
+| salt | [string](#string) | optional | 加密混淆 |
+| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="svc-biz-account-Account"></a>
+
+### Account
+
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| InitDB | [.google.protobuf.Empty](#google-protobuf-Empty) | [InitDBResp](#svc-biz-account-InitDBResp) | 初始化数据库 |
+| GetViewer | [GetViewerReq](#svc-biz-account-GetViewerReq) | [GetViewerResp](#svc-biz-account-GetViewerResp) | 获取普通账号 |
+| ListViewers | [ListViewersReq](#svc-biz-account-ListViewersReq) | [ListViewersResp](#svc-biz-account-ListViewersResp) | 获取普通账号列表 |
+| AddViewer | [AddViewerReq](#svc-biz-account-AddViewerReq) | [AddViewerResp](#svc-biz-account-AddViewerResp) | 添加普通账号 |
+| UpdateViewer | [UpdateViewerReq](#svc-biz-account-UpdateViewerReq) | [UpdateViewerResp](#svc-biz-account-UpdateViewerResp) | 更新普通账号 |
+| DeleteViewer | [DeleteViewerReq](#svc-biz-account-DeleteViewerReq) | [DeleteViewerResp](#svc-biz-account-DeleteViewerResp) | 删除普通账号 |
+| GetStreamer | [GetStreamerReq](#svc-biz-account-GetStreamerReq) | [GetStreamerResp](#svc-biz-account-GetStreamerResp) | 获取主播账号 |
+| ListStreamers | [ListStreamersReq](#svc-biz-account-ListStreamersReq) | [ListStreamersResp](#svc-biz-account-ListStreamersResp) | 获取主播账号列表 |
+| AddStreamer | [AddStreamerReq](#svc-biz-account-AddStreamerReq) | [AddStreamerResp](#svc-biz-account-AddStreamerResp) | 添加普通账号 |
+| UpdateStreamer | [UpdateStreamerReq](#svc-biz-account-UpdateStreamerReq) | [UpdateStreamerResp](#svc-biz-account-UpdateStreamerResp) | 更新主播账号 |
+| DeleteStreamer | [DeleteStreamerReq](#svc-biz-account-DeleteStreamerReq) | [DeleteStreamerResp](#svc-biz-account-DeleteStreamerResp) | 删除主播账号 |
+| GetManager | [GetManagerReq](#svc-biz-account-GetManagerReq) | [GetManagerResp](#svc-biz-account-GetManagerResp) | 获取主播账号 |
+| ListManagers | [ListManagersReq](#svc-biz-account-ListManagersReq) | [ListManagersResp](#svc-biz-account-ListManagersResp) | 获取主播账号列表 |
+| AddManager | [AddManagerReq](#svc-biz-account-AddManagerReq) | [AddManagerResp](#svc-biz-account-AddManagerResp) | 添加普通账号 |
+| UpdateManager | [UpdateManagerReq](#svc-biz-account-UpdateManagerReq) | [UpdateManagerResp](#svc-biz-account-UpdateManagerResp) | 更新主播账号 |
+| DeleteManager | [DeleteManagerReq](#svc-biz-account-DeleteManagerReq) | [DeleteManagerResp](#svc-biz-account-DeleteManagerResp) | 删除主播账号 |
+
+ 
+
+
+
+<a name="svc-biz-room_category-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.biz.room/category.proto
+
+
+
+<a name="svc-biz-room-CategoryInfo"></a>
+
+### CategoryInfo
+CategoryInfo 分类详情
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| category_id | [int64](#int64) |  |  |
+| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+| updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+| parent_id | [int64](#int64) |  | 父级ID |
+| category_code | [string](#string) |  | 代号（唯一，预留） |
+| category_name | [string](#string) |  | 名称 |
+| sort | [int32](#int32) |  | 排序 |
+| childrens | [CategoryInfo](#svc-biz-room-CategoryInfo) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-room-CreateCategoryReq"></a>
+
+### CreateCategoryReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| category | [CategoryInfo](#svc-biz-room-CategoryInfo) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-room-CreateCategoryResp"></a>
+
+### CreateCategoryResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| category | [CategoryInfo](#svc-biz-room-CategoryInfo) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-room-DeleteCategoryReq"></a>
+
+### DeleteCategoryReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| category_id | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-room-GetCategoryReq"></a>
+
+### GetCategoryReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| category_id | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-room-GetCategoryResp"></a>
+
+### GetCategoryResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| category | [CategoryInfo](#svc-biz-room-CategoryInfo) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-room-ListCategoryReq"></a>
+
+### ListCategoryReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent_id | [int64](#int64) |  | 父级ID，跟级分类传1 |
+| return_count | [bool](#bool) |  | 是否返回总数 |
+
+
+
+
+
+
+<a name="svc-biz-room-ListCategoryResp"></a>
+
+### ListCategoryResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [CategoryInfo](#svc-biz-room-CategoryInfo) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-room-ListCategoryTreeReq"></a>
+
+### ListCategoryTreeReq
+获取全部板块分类（分类及子分类树结构）
+
+
+
+
+
+
+<a name="svc-biz-room-ListCategoryTreeResp"></a>
+
+### ListCategoryTreeResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [CategoryInfo](#svc-biz-room-CategoryInfo) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-room-UpdateCategoryReq"></a>
+
+### UpdateCategoryReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| category_id | [int64](#int64) |  |  |
+| category | [CategoryInfo](#svc-biz-room-CategoryInfo) |  |  |
+| update_mask | [google.protobuf.FieldMask](#google-protobuf-FieldMask) |  |  |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="svc-biz-room-Category"></a>
+
+### Category
+分类
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| GetCategory | [GetCategoryReq](#svc-biz-room-GetCategoryReq) | [GetCategoryResp](#svc-biz-room-GetCategoryResp) | 获取分类 |
+| CreateCategory | [CreateCategoryReq](#svc-biz-room-CreateCategoryReq) | [CreateCategoryResp](#svc-biz-room-CreateCategoryResp) | 创建分类 |
+| UpdateCategory | [UpdateCategoryReq](#svc-biz-room-UpdateCategoryReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | 更新某个分类信息 |
+| DeleteCategory | [DeleteCategoryReq](#svc-biz-room-DeleteCategoryReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | 删除一个分类信息 |
+| ListCategory | [ListCategoryReq](#svc-biz-room-ListCategoryReq) | [ListCategoryResp](#svc-biz-room-ListCategoryResp) | 获取分类，返回子级集合 |
+| ListCategoryTree | [ListCategoryTreeReq](#svc-biz-room-ListCategoryTreeReq) | [ListCategoryTreeResp](#svc-biz-room-ListCategoryTreeResp) | 获取全部板块分类（分类及子分类树结构） |
+
+ 
+
+
+
+<a name="svc-biz-room_room-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.biz.room/room.proto
+
+
+
+<a name="svc-biz-room-GetRoomReq"></a>
+
+### GetRoomReq
+
+
+
+
+
+
+
+<a name="svc-biz-room-GetRoomResp"></a>
+
+### GetRoomResp
+
+
+
+
+
+
+
+<a name="svc-biz-room-RoomInfo"></a>
+
+### RoomInfo
+
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="svc-biz-room-Room"></a>
+
+### Room
+分类
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| GetRoom | [GetRoomReq](#svc-biz-room-GetRoomReq) | [GetRoomResp](#svc-biz-room-GetRoomResp) |  |
 
  
 

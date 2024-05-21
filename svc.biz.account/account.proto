@@ -32,13 +32,6 @@ message InitDBResp {
     bool result = 1;
 }
 
-enum ManagerTypes {
-    ManagerTypeUnknown = 0; // 未知
-    ManagerTypePlatform = 1; // 平台管理者
-    ManagerTypeMerchant = 2; // 商户管理者
-    ManagerTypeUnion = 3; // 工会
-}
-
 // Models
 message Viewer {
     string id = 1; // 内部ID
@@ -65,7 +58,7 @@ message Streamer {
 };
 message Manager {
     string id = 1; // 内部ID
-    ManagerTypes type = 2; // 类型：平台 / 商户 / 工会
+    int32 type = 2; // 类型：平台 / 商户 / 工会
     string name = 3; // 用户名
     string mobile = 11; // 手机
     string email = 12; // 邮箱
