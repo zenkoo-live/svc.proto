@@ -1017,7 +1017,7 @@ CategoryInfo 分类详情
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | id | [string](#string) |  | id |
-| display_id | [int64](#int64) |  | 显示id |
+| display_id | [string](#string) |  | 显示id |
 | streamer_id | [string](#string) |  | 主播id |
 | title | [string](#string) |  | 标题 |
 | intro | [string](#string) |  | 简介 |

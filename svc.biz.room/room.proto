@@ -28,7 +28,7 @@ enum RoomStatus {
 
 message RoomInfo {
     string id = 1; // id
-    int64 display_id = 2; // 显示id
+    string display_id = 2; // 显示id
     string streamer_id = 3; // 主播id
     string title = 4; // 标题
     string intro = 5; // 简介
