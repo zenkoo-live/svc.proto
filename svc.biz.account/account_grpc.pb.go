@@ -36,6 +36,11 @@ const (
 	Account_AddManager_FullMethodName     = "/svc.biz.account.Account/AddManager"
 	Account_UpdateManager_FullMethodName  = "/svc.biz.account.Account/UpdateManager"
 	Account_DeleteManager_FullMethodName  = "/svc.biz.account.Account/DeleteManager"
+	Account_GetUnion_FullMethodName       = "/svc.biz.account.Account/GetUnion"
+	Account_ListUnions_FullMethodName     = "/svc.biz.account.Account/ListUnions"
+	Account_AddUnion_FullMethodName       = "/svc.biz.account.Account/AddUnion"
+	Account_UpdateUnion_FullMethodName    = "/svc.biz.account.Account/UpdateUnion"
+	Account_DeleteUnion_FullMethodName    = "/svc.biz.account.Account/DeleteUnion"
 )
 
 // AccountClient is the client API for Account service.
@@ -58,6 +63,11 @@ type AccountClient interface {
 	AddManager(ctx context.Context, in *AddManagerReq, opts ...grpc.CallOption) (*AddManagerResp, error)
 	UpdateManager(ctx context.Context, in *UpdateManagerReq, opts ...grpc.CallOption) (*UpdateManagerResp, error)
 	DeleteManager(ctx context.Context, in *DeleteManagerReq, opts ...grpc.CallOption) (*DeleteManagerResp, error)
+	GetUnion(ctx context.Context, in *GetUnionReq, opts ...grpc.CallOption) (*GetUnionResp, error)
+	ListUnions(ctx context.Context, in *ListUnionsReq, opts ...grpc.CallOption) (*ListUnionsResp, error)
+	AddUnion(ctx context.Context, in *AddUnionReq, opts ...grpc.CallOption) (*AddUnionResp, error)
+	UpdateUnion(ctx context.Context, in *UpdateUnionReq, opts ...grpc.CallOption) (*UpdateUnionResp, error)
+	DeleteUnion(ctx context.Context, in *DeleteUnionReq, opts ...grpc.CallOption) (*DeleteUnionResp, error)
 }
 
 type accountClient struct {
@@ -212,6 +222,51 @@ func (c *accountClient) DeleteManager(ctx context.Context, in *DeleteManagerReq,
 	return out, nil
 }
 
+func (c *accountClient) GetUnion(ctx context.Context, in *GetUnionReq, opts ...grpc.CallOption) (*GetUnionResp, error) {
+	out := new(GetUnionResp)
+	err := c.cc.Invoke(ctx, Account_GetUnion_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *accountClient) ListUnions(ctx context.Context, in *ListUnionsReq, opts ...grpc.CallOption) (*ListUnionsResp, error) {
+	out := new(ListUnionsResp)
+	err := c.cc.Invoke(ctx, Account_ListUnions_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *accountClient) AddUnion(ctx context.Context, in *AddUnionReq, opts ...grpc.CallOption) (*AddUnionResp, error) {
+	out := new(AddUnionResp)
+	err := c.cc.Invoke(ctx, Account_AddUnion_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *accountClient) UpdateUnion(ctx context.Context, in *UpdateUnionReq, opts ...grpc.CallOption) (*UpdateUnionResp, error) {
+	out := new(UpdateUnionResp)
+	err := c.cc.Invoke(ctx, Account_UpdateUnion_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *accountClient) DeleteUnion(ctx context.Context, in *DeleteUnionReq, opts ...grpc.CallOption) (*DeleteUnionResp, error) {
+	out := new(DeleteUnionResp)
+	err := c.cc.Invoke(ctx, Account_DeleteUnion_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AccountServer is the server API for Account service.
 // All implementations must embed UnimplementedAccountServer
 // for forward compatibility
@@ -232,6 +287,11 @@ type AccountServer interface {
 	AddManager(context.Context, *AddManagerReq) (*AddManagerResp, error)
 	UpdateManager(context.Context, *UpdateManagerReq) (*UpdateManagerResp, error)
 	DeleteManager(context.Context, *DeleteManagerReq) (*DeleteManagerResp, error)
+	GetUnion(context.Context, *GetUnionReq) (*GetUnionResp, error)
+	ListUnions(context.Context, *ListUnionsReq) (*ListUnionsResp, error)
+	AddUnion(context.Context, *AddUnionReq) (*AddUnionResp, error)
+	UpdateUnion(context.Context, *UpdateUnionReq) (*UpdateUnionResp, error)
+	DeleteUnion(context.Context, *DeleteUnionReq) (*DeleteUnionResp, error)
 	mustEmbedUnimplementedAccountServer()
 }
 
@@ -286,6 +346,21 @@ func (UnimplementedAccountServer) UpdateManager(context.Context, *UpdateManagerR
 }
 func (UnimplementedAccountServer) DeleteManager(context.Context, *DeleteManagerReq) (*DeleteManagerResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteManager not implemented")
+}
+func (UnimplementedAccountServer) GetUnion(context.Context, *GetUnionReq) (*GetUnionResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUnion not implemented")
+}
+func (UnimplementedAccountServer) ListUnions(context.Context, *ListUnionsReq) (*ListUnionsResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListUnions not implemented")
+}
+func (UnimplementedAccountServer) AddUnion(context.Context, *AddUnionReq) (*AddUnionResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddUnion not implemented")
+}
+func (UnimplementedAccountServer) UpdateUnion(context.Context, *UpdateUnionReq) (*UpdateUnionResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateUnion not implemented")
+}
+func (UnimplementedAccountServer) DeleteUnion(context.Context, *DeleteUnionReq) (*DeleteUnionResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteUnion not implemented")
 }
 func (UnimplementedAccountServer) mustEmbedUnimplementedAccountServer() {}
 
@@ -588,6 +663,96 @@ func _Account_DeleteManager_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Account_GetUnion_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUnionReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AccountServer).GetUnion(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Account_GetUnion_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AccountServer).GetUnion(ctx, req.(*GetUnionReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Account_ListUnions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListUnionsReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AccountServer).ListUnions(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Account_ListUnions_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AccountServer).ListUnions(ctx, req.(*ListUnionsReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Account_AddUnion_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddUnionReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AccountServer).AddUnion(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Account_AddUnion_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AccountServer).AddUnion(ctx, req.(*AddUnionReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Account_UpdateUnion_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateUnionReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AccountServer).UpdateUnion(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Account_UpdateUnion_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AccountServer).UpdateUnion(ctx, req.(*UpdateUnionReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Account_DeleteUnion_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteUnionReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AccountServer).DeleteUnion(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Account_DeleteUnion_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AccountServer).DeleteUnion(ctx, req.(*DeleteUnionReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Account_ServiceDesc is the grpc.ServiceDesc for Account service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -658,6 +823,26 @@ var Account_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteManager",
 			Handler:    _Account_DeleteManager_Handler,
+		},
+		{
+			MethodName: "GetUnion",
+			Handler:    _Account_GetUnion_Handler,
+		},
+		{
+			MethodName: "ListUnions",
+			Handler:    _Account_ListUnions_Handler,
+		},
+		{
+			MethodName: "AddUnion",
+			Handler:    _Account_AddUnion_Handler,
+		},
+		{
+			MethodName: "UpdateUnion",
+			Handler:    _Account_UpdateUnion_Handler,
+		},
+		{
+			MethodName: "DeleteUnion",
+			Handler:    _Account_DeleteUnion_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

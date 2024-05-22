@@ -21,11 +21,17 @@ service Account {
     rpc UpdateStreamer(UpdateStreamerReq) returns (UpdateStreamerResp); // 更新主播账号
     rpc DeleteStreamer(DeleteStreamerReq) returns (DeleteStreamerResp); // 删除主播账号
 
-    rpc GetManager(GetManagerReq) returns (GetManagerResp); // 获取主播账号
-    rpc ListManagers(ListManagersReq) returns (ListManagersResp); // 获取主播账号列表
-    rpc AddManager(AddManagerReq) returns (AddManagerResp); // 添加普通账号
-    rpc UpdateManager(UpdateManagerReq) returns (UpdateManagerResp); // 更新主播账号
-    rpc DeleteManager(DeleteManagerReq) returns (DeleteManagerResp); // 删除主播账号
+    rpc GetManager(GetManagerReq) returns (GetManagerResp); // 获取管理账号
+    rpc ListManagers(ListManagersReq) returns (ListManagersResp); // 获取管理账号列表
+    rpc AddManager(AddManagerReq) returns (AddManagerResp); // 添加管理账号
+    rpc UpdateManager(UpdateManagerReq) returns (UpdateManagerResp); // 更新管理账号
+    rpc DeleteManager(DeleteManagerReq) returns (DeleteManagerResp); // 删除管理账号
+
+    rpc GetUnion(GetUnionReq) returns (GetUnionResp); // 获取工会账号
+    rpc ListUnions(ListUnionsReq) returns (ListUnionsResp); // 获取工会账号列表
+    rpc AddUnion(AddUnionReq) returns (AddUnionResp); // 添加工会账号
+    rpc UpdateUnion(UpdateUnionReq) returns (UpdateUnionResp); // 更新工会账号
+    rpc DeleteUnion(DeleteUnionReq) returns (DeleteUnionResp); // 删除工会账号
 }
 
 message InitDBResp {
@@ -36,7 +42,6 @@ message InitDBResp {
 message Viewer {
     string id = 1; // 内部ID
     string display_id = 2; // 用于显示和索引的数字ID
-    string merchant_id = 254; // 商户ID
     string name = 3; // 用户名
     string nickname = 4; // 昵称
     string mobile = 11; // 手机
@@ -44,28 +49,39 @@ message Viewer {
     string device_ident = 13; // 设备号 / 指纹
     optional string password = 21; // 密码
     optional string salt = 22; // 加密混淆
+    string merchant_id = 254; // 商户ID
     google.protobuf.Timestamp created_at = 255; // 创建时间
 };
 message Streamer {
     string id = 1; // 内部ID
     string display_id = 2; // 用于显示和索引的数字ID
     string name = 3; // 用户名
+    string nickname = 4; // 昵称
     string mobile = 11; // 手机
     string email = 12; // 邮箱
     optional string password = 21; // 密码
     optional string salt = 22; // 加密混淆
+    string merchant_id = 254; // 商户ID
     google.protobuf.Timestamp created_at = 255; // 创建时间
 };
 message Manager {
     string id = 1; // 内部ID
-    int32 type = 2; // 类型：平台 / 商户 / 工会
-    string name = 3; // 用户名
+    string name = 3; // 名字
     string mobile = 11; // 手机
     string email = 12; // 邮箱
     optional string password = 21; // 密码
     optional string salt = 22; // 加密混淆
     google.protobuf.Timestamp created_at = 255; // 创建时间
 };
+message Union {
+    string id = 1; // 内部ID
+    string name = 3; // 名字
+    string mobile = 11; // 手机
+    string email = 12; // 邮箱
+    optional string password = 21; // 密码
+    optional string salt = 22; // 加密混淆
+    google.protobuf.Timestamp created_at = 255; // 创建时间
+}
 
 // Parameters
 /* {{{ [Viewer] */
@@ -180,6 +196,45 @@ message DeleteManagerReq {
     Manager condition = 1;
 };
 message DeleteManagerResp {
+    int64 deleted = 1;
+};
+
+/* }}} */
+
+/* {{{ [Union] */
+message GetUnionReq {
+    Union condition = 1;
+};
+message GetUnionResp {
+    Union union = 1;
+};
+
+message ListUnionsReq {
+    Union condition = 1;
+};
+message ListUnionsResp {
+    repeated Union unions = 1;
+};
+
+message AddUnionReq {
+    Union union = 1;
+};
+message AddUnionResp {
+    Union union = 1;
+    bool result = 255;
+};
+
+message UpdateUnionReq {
+    Union condition = 1;
+};
+message UpdateUnionResp {
+    int64 updated = 1;
+};
+
+message DeleteUnionReq {
+    Union condition = 1;
+};
+message DeleteUnionResp {
     int64 deleted = 1;
 };
 

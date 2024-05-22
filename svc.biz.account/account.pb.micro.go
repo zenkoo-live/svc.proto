@@ -54,6 +54,11 @@ type AccountService interface {
 	AddManager(ctx context.Context, in *AddManagerReq, opts ...client.CallOption) (*AddManagerResp, error)
 	UpdateManager(ctx context.Context, in *UpdateManagerReq, opts ...client.CallOption) (*UpdateManagerResp, error)
 	DeleteManager(ctx context.Context, in *DeleteManagerReq, opts ...client.CallOption) (*DeleteManagerResp, error)
+	GetUnion(ctx context.Context, in *GetUnionReq, opts ...client.CallOption) (*GetUnionResp, error)
+	ListUnions(ctx context.Context, in *ListUnionsReq, opts ...client.CallOption) (*ListUnionsResp, error)
+	AddUnion(ctx context.Context, in *AddUnionReq, opts ...client.CallOption) (*AddUnionResp, error)
+	UpdateUnion(ctx context.Context, in *UpdateUnionReq, opts ...client.CallOption) (*UpdateUnionResp, error)
+	DeleteUnion(ctx context.Context, in *DeleteUnionReq, opts ...client.CallOption) (*DeleteUnionResp, error)
 }
 
 type accountService struct {
@@ -228,6 +233,56 @@ func (c *accountService) DeleteManager(ctx context.Context, in *DeleteManagerReq
 	return out, nil
 }
 
+func (c *accountService) GetUnion(ctx context.Context, in *GetUnionReq, opts ...client.CallOption) (*GetUnionResp, error) {
+	req := c.c.NewRequest(c.name, "Account.GetUnion", in)
+	out := new(GetUnionResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *accountService) ListUnions(ctx context.Context, in *ListUnionsReq, opts ...client.CallOption) (*ListUnionsResp, error) {
+	req := c.c.NewRequest(c.name, "Account.ListUnions", in)
+	out := new(ListUnionsResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *accountService) AddUnion(ctx context.Context, in *AddUnionReq, opts ...client.CallOption) (*AddUnionResp, error) {
+	req := c.c.NewRequest(c.name, "Account.AddUnion", in)
+	out := new(AddUnionResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *accountService) UpdateUnion(ctx context.Context, in *UpdateUnionReq, opts ...client.CallOption) (*UpdateUnionResp, error) {
+	req := c.c.NewRequest(c.name, "Account.UpdateUnion", in)
+	out := new(UpdateUnionResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *accountService) DeleteUnion(ctx context.Context, in *DeleteUnionReq, opts ...client.CallOption) (*DeleteUnionResp, error) {
+	req := c.c.NewRequest(c.name, "Account.DeleteUnion", in)
+	out := new(DeleteUnionResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for Account service
 
 type AccountHandler interface {
@@ -247,6 +302,11 @@ type AccountHandler interface {
 	AddManager(context.Context, *AddManagerReq, *AddManagerResp) error
 	UpdateManager(context.Context, *UpdateManagerReq, *UpdateManagerResp) error
 	DeleteManager(context.Context, *DeleteManagerReq, *DeleteManagerResp) error
+	GetUnion(context.Context, *GetUnionReq, *GetUnionResp) error
+	ListUnions(context.Context, *ListUnionsReq, *ListUnionsResp) error
+	AddUnion(context.Context, *AddUnionReq, *AddUnionResp) error
+	UpdateUnion(context.Context, *UpdateUnionReq, *UpdateUnionResp) error
+	DeleteUnion(context.Context, *DeleteUnionReq, *DeleteUnionResp) error
 }
 
 func RegisterAccountHandler(s server.Server, hdlr AccountHandler, opts ...server.HandlerOption) error {
@@ -267,6 +327,11 @@ func RegisterAccountHandler(s server.Server, hdlr AccountHandler, opts ...server
 		AddManager(ctx context.Context, in *AddManagerReq, out *AddManagerResp) error
 		UpdateManager(ctx context.Context, in *UpdateManagerReq, out *UpdateManagerResp) error
 		DeleteManager(ctx context.Context, in *DeleteManagerReq, out *DeleteManagerResp) error
+		GetUnion(ctx context.Context, in *GetUnionReq, out *GetUnionResp) error
+		ListUnions(ctx context.Context, in *ListUnionsReq, out *ListUnionsResp) error
+		AddUnion(ctx context.Context, in *AddUnionReq, out *AddUnionResp) error
+		UpdateUnion(ctx context.Context, in *UpdateUnionReq, out *UpdateUnionResp) error
+		DeleteUnion(ctx context.Context, in *DeleteUnionReq, out *DeleteUnionResp) error
 	}
 	type Account struct {
 		account
@@ -341,4 +406,24 @@ func (h *accountHandler) UpdateManager(ctx context.Context, in *UpdateManagerReq
 
 func (h *accountHandler) DeleteManager(ctx context.Context, in *DeleteManagerReq, out *DeleteManagerResp) error {
 	return h.AccountHandler.DeleteManager(ctx, in, out)
+}
+
+func (h *accountHandler) GetUnion(ctx context.Context, in *GetUnionReq, out *GetUnionResp) error {
+	return h.AccountHandler.GetUnion(ctx, in, out)
+}
+
+func (h *accountHandler) ListUnions(ctx context.Context, in *ListUnionsReq, out *ListUnionsResp) error {
+	return h.AccountHandler.ListUnions(ctx, in, out)
+}
+
+func (h *accountHandler) AddUnion(ctx context.Context, in *AddUnionReq, out *AddUnionResp) error {
+	return h.AccountHandler.AddUnion(ctx, in, out)
+}
+
+func (h *accountHandler) UpdateUnion(ctx context.Context, in *UpdateUnionReq, out *UpdateUnionResp) error {
+	return h.AccountHandler.UpdateUnion(ctx, in, out)
+}
+
+func (h *accountHandler) DeleteUnion(ctx context.Context, in *DeleteUnionReq, out *DeleteUnionResp) error {
+	return h.AccountHandler.DeleteUnion(ctx, in, out)
 }
