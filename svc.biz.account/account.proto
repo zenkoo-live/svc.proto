@@ -71,6 +71,7 @@ message Manager {
     string email = 12; // 邮箱
     optional string password = 21; // 密码
     optional string salt = 22; // 加密混淆
+    string merchant_id = 254; // 商户ID
     google.protobuf.Timestamp created_at = 255; // 创建时间
 };
 message Union {
@@ -80,6 +81,7 @@ message Union {
     string email = 12; // 邮箱
     optional string password = 21; // 密码
     optional string salt = 22; // 加密混淆
+    string merchant_id = 254; // 商户ID
     google.protobuf.Timestamp created_at = 255; // 创建时间
 }
 
@@ -94,6 +96,8 @@ message GetViewerResp {
 
 message ListViewersReq {
     Viewer condition = 1;
+    int32 limit = 2;
+    int32 offset = 3;
 };
 message ListViewersResp {
     repeated Viewer viewers = 1;

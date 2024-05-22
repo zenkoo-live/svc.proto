@@ -1164,6 +1164,8 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | condition | [Viewer](#svc-biz-account-Viewer) |  |  |
+| limit | [int32](#int32) |  |  |
+| offset | [int32](#int32) |  |  |
 
 
 
@@ -1199,6 +1201,7 @@
 | email | [string](#string) |  | 邮箱 |
 | password | [string](#string) | optional | 密码 |
 | salt | [string](#string) | optional | 加密混淆 |
+| merchant_id | [string](#string) |  | 商户ID |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
 
 
@@ -1244,6 +1247,7 @@
 | email | [string](#string) |  | 邮箱 |
 | password | [string](#string) | optional | 密码 |
 | salt | [string](#string) | optional | 加密混淆 |
+| merchant_id | [string](#string) |  | 商户ID |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
 
 
