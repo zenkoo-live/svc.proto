@@ -1,0 +1,74 @@
+syntax = "proto3";
+
+package svc.biz.room;
+
+// import "google/protobuf/field_mask.proto";
+// import "google/protobuf/timestamp.proto";
+// import "google/protobuf/empty.proto";
+
+option go_package="./svc.biz.room;room";
+
+// 房间
+service Live {
+    // 开始直播
+    rpc StartLive(StartLiveReq) returns(StartLiveResp);
+    // 关闭直播
+    rpc StopLive(StopLiveReq) returns(StopLiveResp);
+    // 更新直播
+    rpc UpdateLive(UpdateLiveReq) returns(UpdateLiveResp);
+    // 查询直播间信息
+    rpc GetLiveInfo(GetLiveInfoReq) returns(GetLiveInfoResp);
+    // 批量获取直播间信息
+    rpc MGetLiveInfo(MGetLiveInfoReq) returns(MGetLiveInfoResp);
+    // 获取在播直播间列表
+    rpc OnlineLiveList(OnlineLiveListReq) returns (OnlineLiveListResp);
+}
+
+message StartLiveReq {
+
+}
+message StartLiveResp {
+
+}
+
+message StopLiveReq {
+
+}
+message StopLiveResp {
+
+}
+
+message UpdateLiveReq {
+
+}
+message UpdateLiveResp {
+
+}
+
+message GetLiveInfoReq {
+
+}
+message GetLiveInfoResp {
+
+}
+
+message MGetLiveInfoReq {
+
+}
+message MGetLiveInfoResp {
+
+}
+
+message OnlineLiveListReq {
+
+}
+message OnlineLiveListResp {
+
+}
+
+
+message LiveInfo {
+    string id = 1; // id
+    string room_id = 2; // 显示id
+    string streamer_id = 3; // 主播id
+}

@@ -58,6 +58,23 @@
   
     - [Category](#svc-biz-room-Category)
   
+- [svc.biz.room/live.proto](#svc-biz-room_live-proto)
+    - [GetLiveInfoReq](#svc-biz-room-GetLiveInfoReq)
+    - [GetLiveInfoResp](#svc-biz-room-GetLiveInfoResp)
+    - [LiveInfo](#svc-biz-room-LiveInfo)
+    - [MGetLiveInfoReq](#svc-biz-room-MGetLiveInfoReq)
+    - [MGetLiveInfoResp](#svc-biz-room-MGetLiveInfoResp)
+    - [OnlineLiveListReq](#svc-biz-room-OnlineLiveListReq)
+    - [OnlineLiveListResp](#svc-biz-room-OnlineLiveListResp)
+    - [StartLiveReq](#svc-biz-room-StartLiveReq)
+    - [StartLiveResp](#svc-biz-room-StartLiveResp)
+    - [StopLiveReq](#svc-biz-room-StopLiveReq)
+    - [StopLiveResp](#svc-biz-room-StopLiveResp)
+    - [UpdateLiveReq](#svc-biz-room-UpdateLiveReq)
+    - [UpdateLiveResp](#svc-biz-room-UpdateLiveResp)
+  
+    - [Live](#svc-biz-room-Live)
+  
 - [svc.biz.room/room.proto](#svc-biz-room_room-proto)
     - [CreateRoomReq](#svc-biz-room-CreateRoomReq)
     - [CreateRoomResp](#svc-biz-room-CreateRoomResp)
@@ -904,6 +921,174 @@ CategoryInfo 分类详情
 | DeleteCategory | [DeleteCategoryReq](#svc-biz-room-DeleteCategoryReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | 删除一个分类信息 |
 | ListCategory | [ListCategoryReq](#svc-biz-room-ListCategoryReq) | [ListCategoryResp](#svc-biz-room-ListCategoryResp) | 获取分类，返回子级集合 |
 | ListCategoryTree | [ListCategoryTreeReq](#svc-biz-room-ListCategoryTreeReq) | [ListCategoryTreeResp](#svc-biz-room-ListCategoryTreeResp) | 获取全部板块分类（分类及子分类树结构） |
+
+ 
+
+
+
+<a name="svc-biz-room_live-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.biz.room/live.proto
+
+
+
+<a name="svc-biz-room-GetLiveInfoReq"></a>
+
+### GetLiveInfoReq
+
+
+
+
+
+
+
+<a name="svc-biz-room-GetLiveInfoResp"></a>
+
+### GetLiveInfoResp
+
+
+
+
+
+
+
+<a name="svc-biz-room-LiveInfo"></a>
+
+### LiveInfo
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  | id |
+| room_id | [string](#string) |  | 显示id |
+| streamer_id | [string](#string) |  | 主播id |
+
+
+
+
+
+
+<a name="svc-biz-room-MGetLiveInfoReq"></a>
+
+### MGetLiveInfoReq
+
+
+
+
+
+
+
+<a name="svc-biz-room-MGetLiveInfoResp"></a>
+
+### MGetLiveInfoResp
+
+
+
+
+
+
+
+<a name="svc-biz-room-OnlineLiveListReq"></a>
+
+### OnlineLiveListReq
+
+
+
+
+
+
+
+<a name="svc-biz-room-OnlineLiveListResp"></a>
+
+### OnlineLiveListResp
+
+
+
+
+
+
+
+<a name="svc-biz-room-StartLiveReq"></a>
+
+### StartLiveReq
+
+
+
+
+
+
+
+<a name="svc-biz-room-StartLiveResp"></a>
+
+### StartLiveResp
+
+
+
+
+
+
+
+<a name="svc-biz-room-StopLiveReq"></a>
+
+### StopLiveReq
+
+
+
+
+
+
+
+<a name="svc-biz-room-StopLiveResp"></a>
+
+### StopLiveResp
+
+
+
+
+
+
+
+<a name="svc-biz-room-UpdateLiveReq"></a>
+
+### UpdateLiveReq
+
+
+
+
+
+
+
+<a name="svc-biz-room-UpdateLiveResp"></a>
+
+### UpdateLiveResp
+
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="svc-biz-room-Live"></a>
+
+### Live
+房间
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| StartLive | [StartLiveReq](#svc-biz-room-StartLiveReq) | [StartLiveResp](#svc-biz-room-StartLiveResp) | 开始直播 |
+| StopLive | [StopLiveReq](#svc-biz-room-StopLiveReq) | [StopLiveResp](#svc-biz-room-StopLiveResp) | 关闭直播 |
+| UpdateLive | [UpdateLiveReq](#svc-biz-room-UpdateLiveReq) | [UpdateLiveResp](#svc-biz-room-UpdateLiveResp) | 更新直播 |
+| GetLiveInfo | [GetLiveInfoReq](#svc-biz-room-GetLiveInfoReq) | [GetLiveInfoResp](#svc-biz-room-GetLiveInfoResp) | 查询直播间信息 |
+| MGetLiveInfo | [MGetLiveInfoReq](#svc-biz-room-MGetLiveInfoReq) | [MGetLiveInfoResp](#svc-biz-room-MGetLiveInfoResp) | 批量获取直播间信息 |
+| OnlineLiveList | [OnlineLiveListReq](#svc-biz-room-OnlineLiveListReq) | [OnlineLiveListResp](#svc-biz-room-OnlineLiveListResp) | 获取在播直播间列表 |
 
  
 

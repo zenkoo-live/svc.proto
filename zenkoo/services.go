@@ -34,6 +34,7 @@ var (
 	SvcWebDashboardDashboard = svcWebDashboard.NewDashboardService(AppName+"::"+SvcWebDashboard, clt)
 	SvcBizGiftGift           = svcBizGift.NewGiftService(AppName+"::"+SvcBizGift, clt)
 	SvcBizRoomCategory       = svcBizRoom.NewCategoryService(AppName+"::"+SvcBizRoom, clt)
+	SvcBizRoomLive           = svcBizRoom.NewLiveService(AppName+"::"+SvcBizRoom, clt)
 	SvcBizRoomRoom           = svcBizRoom.NewRoomService(AppName+"::"+SvcBizRoom, clt)
 	SvcInfraSettingSetting   = svcInfraSetting.NewSettingService(AppName+"::"+SvcInfraSetting, clt)
 	SvcWebStreamerStreamer   = svcWebStreamer.NewStreamerService(AppName+"::"+SvcWebStreamer, clt)
