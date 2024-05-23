@@ -741,10 +741,10 @@ CategoryInfo 分类详情
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| category_id | [int64](#int64) |  |  |
+| category_id | [string](#string) |  |  |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
 | updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
-| parent_id | [int64](#int64) |  | 父级ID |
+| parent_id | [string](#string) |  | 父级ID |
 | category_code | [string](#string) |  | 代号（唯一，预留） |
 | category_name | [string](#string) |  | 名称 |
 | sort | [int32](#int32) |  | 排序 |
@@ -793,7 +793,7 @@ CategoryInfo 分类详情
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| category_id | [int64](#int64) |  |  |
+| category_id | [string](#string) |  |  |
 
 
 
@@ -808,7 +808,7 @@ CategoryInfo 分类详情
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| category_id | [int64](#int64) |  |  |
+| category_id | [string](#string) |  |  |
 
 
 
@@ -838,7 +838,7 @@ CategoryInfo 分类详情
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent_id | [int64](#int64) |  | 父级ID，跟级分类传1 |
+| parent_id | [string](#string) |  | 父级ID，跟级分类传1 |
 | return_count | [bool](#bool) |  | 是否返回总数 |
 
 
@@ -894,7 +894,7 @@ CategoryInfo 分类详情
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| category_id | [int64](#int64) |  |  |
+| category_id | [string](#string) |  |  |
 | category | [CategoryInfo](#svc-biz-room-CategoryInfo) |  |  |
 | update_mask | [google.protobuf.FieldMask](#google-protobuf-FieldMask) |  |  |
 
