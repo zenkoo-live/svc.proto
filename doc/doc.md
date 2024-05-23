@@ -980,12 +980,12 @@ CategoryInfo 分类详情
 | start_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开播时间 |
 | end_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 结束时间 |
 | score_recommend | [int32](#int32) |  | 推荐分数 |
-| score_glamour | [int32](#int32) |  | 魅力分数 |
-| score_online | [int32](#int32) |  | 在线人数 |
-| score_gift | [int32](#int32) |  | 礼物分数 |
 | score_search | [int32](#int32) |  | 搜索分数 |
 | score_subscribe | [int32](#int32) |  | 关注分数 |
 | score_hot | [int32](#int32) |  | 热度分数 |
+| score_glamour | [int32](#int32) |  | 魅力分数 |
+| score_online | [int32](#int32) |  | 在线人数 |
+| score_gift | [int32](#int32) |  | 礼物分数 |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
 | updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 更新时间 |
 
@@ -1309,6 +1309,9 @@ CategoryInfo 分类详情
 | intro | [string](#string) |  | 简介 |
 | status | [LiveStatus](#svc-biz-room-LiveStatus) |  | 房间状态：1关播，2开播 |
 | last_category_id | [int64](#int64) |  | 最后一次板块标识 |
+| score_recommend | [int32](#int32) |  | 推荐分数 |
+| score_search | [int32](#int32) |  | 搜索分数 |
+| score_subscribe | [int32](#int32) |  | 关注分数 |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
 | updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 更新时间 |
 

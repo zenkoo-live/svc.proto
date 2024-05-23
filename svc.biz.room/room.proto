@@ -25,10 +25,13 @@ message RoomInfo {
     string id = 1; // id
     string display_id = 2; // 显示id
     string streamer_id = 3; // 主播id
-    string title = 4; // 标题
-    string intro = 5; // 简介
-    svc.biz.room.LiveStatus status = 6; // 房间状态：1关播，2开播
-    int64 last_category_id = 7; // 最后一次板块标识
+    string category_id = 4; // 最后一次板块标识
+    svc.biz.room.LiveStatus status = 5; // 房间状态：1关播，2开播
+    string title = 6; // 标题
+    string intro = 7; // 简介
+    int32 score_recommend = 101; // 推荐分数
+    int32 score_search = 102; // 搜索分数
+    int32 score_subscribe = 103; // 关注分数
     google.protobuf.Timestamp created_at = 255; // 创建时间
     google.protobuf.Timestamp updated_at = 256; // 更新时间
 }

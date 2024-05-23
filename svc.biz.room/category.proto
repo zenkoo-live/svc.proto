@@ -27,13 +27,13 @@ service Category {
 // CategoryInfo 分类详情
 message CategoryInfo {
   string category_id = 1; 
-  google.protobuf.Timestamp created_at = 2;
-  google.protobuf.Timestamp updated_at = 3;
   string parent_id = 4; // 父级ID
   string category_code = 5; // 代号（唯一，预留）
   string category_name = 6; // 名称
   int32 sort = 7; // 排序
   repeated CategoryInfo childrens = 8;
+  google.protobuf.Timestamp created_at = 255;
+  google.protobuf.Timestamp updated_at = 256;
 }
 
 message CreateCategoryReq {
