@@ -5,6 +5,7 @@ package svc.biz.room;
 import "google/protobuf/field_mask.proto";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/empty.proto";
+import "svc.biz.room/live.proto";
 
 option go_package="./svc.biz.room;room";
 
@@ -20,19 +21,13 @@ service Room {
     rpc GetRoomList(GetRoomListReq) returns(GetRoomListResp);
 }
 
-enum RoomStatus {
-    RoomStatusUnknown = 0; // 未知
-    RoomStatusOnline = 1; // 上线
-    RoomStatusOffline = 2; // 下线
-}
-
 message RoomInfo {
     string id = 1; // id
     string display_id = 2; // 显示id
     string streamer_id = 3; // 主播id
     string title = 4; // 标题
     string intro = 5; // 简介
-    RoomStatus status = 6; // 房间状态：1关播，2开播
+    svc.biz.room.LiveStatus status = 6; // 房间状态：1关播，2开播
     int64 last_category_id = 7; // 最后一次板块标识
     google.protobuf.Timestamp created_at = 255; // 创建时间
     google.protobuf.Timestamp updated_at = 256; // 更新时间

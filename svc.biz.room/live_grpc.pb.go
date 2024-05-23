@@ -11,6 +11,7 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -36,7 +37,7 @@ type LiveClient interface {
 	// 关闭直播
 	StopLive(ctx context.Context, in *StopLiveReq, opts ...grpc.CallOption) (*StopLiveResp, error)
 	// 更新直播
-	UpdateLive(ctx context.Context, in *UpdateLiveReq, opts ...grpc.CallOption) (*UpdateLiveResp, error)
+	UpdateLive(ctx context.Context, in *UpdateLiveReq, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// 查询直播间信息
 	GetLiveInfo(ctx context.Context, in *GetLiveInfoReq, opts ...grpc.CallOption) (*GetLiveInfoResp, error)
 	// 批量获取直播间信息
@@ -71,8 +72,8 @@ func (c *liveClient) StopLive(ctx context.Context, in *StopLiveReq, opts ...grpc
 	return out, nil
 }
 
-func (c *liveClient) UpdateLive(ctx context.Context, in *UpdateLiveReq, opts ...grpc.CallOption) (*UpdateLiveResp, error) {
-	out := new(UpdateLiveResp)
+func (c *liveClient) UpdateLive(ctx context.Context, in *UpdateLiveReq, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, Live_UpdateLive_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -116,7 +117,7 @@ type LiveServer interface {
 	// 关闭直播
 	StopLive(context.Context, *StopLiveReq) (*StopLiveResp, error)
 	// 更新直播
-	UpdateLive(context.Context, *UpdateLiveReq) (*UpdateLiveResp, error)
+	UpdateLive(context.Context, *UpdateLiveReq) (*emptypb.Empty, error)
 	// 查询直播间信息
 	GetLiveInfo(context.Context, *GetLiveInfoReq) (*GetLiveInfoResp, error)
 	// 批量获取直播间信息
@@ -136,7 +137,7 @@ func (UnimplementedLiveServer) StartLive(context.Context, *StartLiveReq) (*Start
 func (UnimplementedLiveServer) StopLive(context.Context, *StopLiveReq) (*StopLiveResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method StopLive not implemented")
 }
-func (UnimplementedLiveServer) UpdateLive(context.Context, *UpdateLiveReq) (*UpdateLiveResp, error) {
+func (UnimplementedLiveServer) UpdateLive(context.Context, *UpdateLiveReq) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateLive not implemented")
 }
 func (UnimplementedLiveServer) GetLiveInfo(context.Context, *GetLiveInfoReq) (*GetLiveInfoResp, error) {

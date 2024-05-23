@@ -6,6 +6,9 @@ package room
 import (
 	fmt "fmt"
 	proto "google.golang.org/protobuf/proto"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
+	_ "google.golang.org/protobuf/types/known/fieldmaskpb"
+	_ "google.golang.org/protobuf/types/known/timestamppb"
 	math "math"
 )
 
@@ -41,7 +44,7 @@ type LiveService interface {
 	// 关闭直播
 	StopLive(ctx context.Context, in *StopLiveReq, opts ...client.CallOption) (*StopLiveResp, error)
 	// 更新直播
-	UpdateLive(ctx context.Context, in *UpdateLiveReq, opts ...client.CallOption) (*UpdateLiveResp, error)
+	UpdateLive(ctx context.Context, in *UpdateLiveReq, opts ...client.CallOption) (*emptypb.Empty, error)
 	// 查询直播间信息
 	GetLiveInfo(ctx context.Context, in *GetLiveInfoReq, opts ...client.CallOption) (*GetLiveInfoResp, error)
 	// 批量获取直播间信息
@@ -82,9 +85,9 @@ func (c *liveService) StopLive(ctx context.Context, in *StopLiveReq, opts ...cli
 	return out, nil
 }
 
-func (c *liveService) UpdateLive(ctx context.Context, in *UpdateLiveReq, opts ...client.CallOption) (*UpdateLiveResp, error) {
+func (c *liveService) UpdateLive(ctx context.Context, in *UpdateLiveReq, opts ...client.CallOption) (*emptypb.Empty, error) {
 	req := c.c.NewRequest(c.name, "Live.UpdateLive", in)
-	out := new(UpdateLiveResp)
+	out := new(emptypb.Empty)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -130,7 +133,7 @@ type LiveHandler interface {
 	// 关闭直播
 	StopLive(context.Context, *StopLiveReq, *StopLiveResp) error
 	// 更新直播
-	UpdateLive(context.Context, *UpdateLiveReq, *UpdateLiveResp) error
+	UpdateLive(context.Context, *UpdateLiveReq, *emptypb.Empty) error
 	// 查询直播间信息
 	GetLiveInfo(context.Context, *GetLiveInfoReq, *GetLiveInfoResp) error
 	// 批量获取直播间信息
@@ -143,7 +146,7 @@ func RegisterLiveHandler(s server.Server, hdlr LiveHandler, opts ...server.Handl
 	type live interface {
 		StartLive(ctx context.Context, in *StartLiveReq, out *StartLiveResp) error
 		StopLive(ctx context.Context, in *StopLiveReq, out *StopLiveResp) error
-		UpdateLive(ctx context.Context, in *UpdateLiveReq, out *UpdateLiveResp) error
+		UpdateLive(ctx context.Context, in *UpdateLiveReq, out *emptypb.Empty) error
 		GetLiveInfo(ctx context.Context, in *GetLiveInfoReq, out *GetLiveInfoResp) error
 		MGetLiveInfo(ctx context.Context, in *MGetLiveInfoReq, out *MGetLiveInfoResp) error
 		OnlineLiveList(ctx context.Context, in *OnlineLiveListReq, out *OnlineLiveListResp) error
@@ -167,7 +170,7 @@ func (h *liveHandler) StopLive(ctx context.Context, in *StopLiveReq, out *StopLi
 	return h.LiveHandler.StopLive(ctx, in, out)
 }
 
-func (h *liveHandler) UpdateLive(ctx context.Context, in *UpdateLiveReq, out *UpdateLiveResp) error {
+func (h *liveHandler) UpdateLive(ctx context.Context, in *UpdateLiveReq, out *emptypb.Empty) error {
 	return h.LiveHandler.UpdateLive(ctx, in, out)
 }
 

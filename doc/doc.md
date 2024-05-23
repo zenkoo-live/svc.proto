@@ -64,6 +64,7 @@
     - [LiveInfo](#svc-biz-room-LiveInfo)
     - [MGetLiveInfoReq](#svc-biz-room-MGetLiveInfoReq)
     - [MGetLiveInfoResp](#svc-biz-room-MGetLiveInfoResp)
+    - [MGetLiveInfoResp.ItemsEntry](#svc-biz-room-MGetLiveInfoResp-ItemsEntry)
     - [OnlineLiveListReq](#svc-biz-room-OnlineLiveListReq)
     - [OnlineLiveListResp](#svc-biz-room-OnlineLiveListResp)
     - [StartLiveReq](#svc-biz-room-StartLiveReq)
@@ -71,7 +72,9 @@
     - [StopLiveReq](#svc-biz-room-StopLiveReq)
     - [StopLiveResp](#svc-biz-room-StopLiveResp)
     - [UpdateLiveReq](#svc-biz-room-UpdateLiveReq)
-    - [UpdateLiveResp](#svc-biz-room-UpdateLiveResp)
+  
+    - [LiveDisplayType](#svc-biz-room-LiveDisplayType)
+    - [LiveStatus](#svc-biz-room-LiveStatus)
   
     - [Live](#svc-biz-room-Live)
   
@@ -84,8 +87,6 @@
     - [GetRoomResp](#svc-biz-room-GetRoomResp)
     - [RoomInfo](#svc-biz-room-RoomInfo)
     - [UpdateRoomReq](#svc-biz-room-UpdateRoomReq)
-  
-    - [RoomStatus](#svc-biz-room-RoomStatus)
   
     - [Room](#svc-biz-room-Room)
   
@@ -939,6 +940,11 @@ CategoryInfo 分类详情
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| live_id | [string](#string) |  | 直播id |
+
+
 
 
 
@@ -947,6 +953,11 @@ CategoryInfo 分类详情
 
 ### GetLiveInfoResp
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| live | [LiveInfo](#svc-biz-room-LiveInfo) |  | 直播信息 |
 
 
 
@@ -962,8 +973,21 @@ CategoryInfo 分类详情
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | id | [string](#string) |  | id |
-| room_id | [string](#string) |  | 显示id |
 | streamer_id | [string](#string) |  | 主播id |
+| category_id | [string](#string) |  | 分类id |
+| status | [LiveStatus](#svc-biz-room-LiveStatus) |  | 状态：1表示开播，2表示关播 |
+| display_type | [LiveDisplayType](#svc-biz-room-LiveDisplayType) |  | 横竖屏类型 |
+| start_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开播时间 |
+| end_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 结束时间 |
+| score_recommend | [int32](#int32) |  | 推荐分数 |
+| score_glamour | [int32](#int32) |  | 魅力分数 |
+| score_online | [int32](#int32) |  | 在线人数 |
+| score_gift | [int32](#int32) |  | 礼物分数 |
+| score_search | [int32](#int32) |  | 搜索分数 |
+| score_subscribe | [int32](#int32) |  | 关注分数 |
+| score_hot | [int32](#int32) |  | 热度分数 |
+| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+| updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 更新时间 |
 
 
 
@@ -976,6 +1000,11 @@ CategoryInfo 分类详情
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| live_ids | [string](#string) | repeated | 直播id列表 |
+
+
 
 
 
@@ -984,6 +1013,27 @@ CategoryInfo 分类详情
 
 ### MGetLiveInfoResp
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [MGetLiveInfoResp.ItemsEntry](#svc-biz-room-MGetLiveInfoResp-ItemsEntry) | repeated | 直播信息 |
+
+
+
+
+
+
+<a name="svc-biz-room-MGetLiveInfoResp-ItemsEntry"></a>
+
+### MGetLiveInfoResp.ItemsEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [LiveInfo](#svc-biz-room-LiveInfo) |  |  |
 
 
 
@@ -996,6 +1046,13 @@ CategoryInfo 分类详情
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| page | [int32](#int32) |  | 页数 |
+| limit | [int32](#int32) |  | 条数 |
+| category_id | [string](#string) |  | 分类id |
+
+
 
 
 
@@ -1004,6 +1061,11 @@ CategoryInfo 分类详情
 
 ### OnlineLiveListResp
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [LiveInfo](#svc-biz-room-LiveInfo) | repeated | 直播信息 |
 
 
 
@@ -1016,6 +1078,12 @@ CategoryInfo 分类详情
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer_id | [string](#string) |  | 主播id |
+| display_type | [LiveDisplayType](#svc-biz-room-LiveDisplayType) |  | 横竖屏类型 |
+
+
 
 
 
@@ -1026,6 +1094,11 @@ CategoryInfo 分类详情
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| live_id | [string](#string) |  | 直播id |
+
+
 
 
 
@@ -1034,6 +1107,11 @@ CategoryInfo 分类详情
 
 ### StopLiveReq
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer_id | [string](#string) |  | 主播id |
 
 
 
@@ -1056,20 +1134,43 @@ CategoryInfo 分类详情
 
 
 
-
-
-
-
-<a name="svc-biz-room-UpdateLiveResp"></a>
-
-### UpdateLiveResp
-
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| live_id | [string](#string) |  | 直播id |
+| live | [LiveInfo](#svc-biz-room-LiveInfo) |  | 直播信息 |
+| update_mask | [google.protobuf.FieldMask](#google-protobuf-FieldMask) |  |  |
 
 
 
 
 
  
+
+
+<a name="svc-biz-room-LiveDisplayType"></a>
+
+### LiveDisplayType
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| LiveDisplayTypeUnknown | 0 | 未知 |
+| LiveDisplayTypeHorizontal | 1 | 横屏 |
+| LiveDisplayTypeVertical | 2 | 竖屏 |
+
+
+
+<a name="svc-biz-room-LiveStatus"></a>
+
+### LiveStatus
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| LiveStatusUnknown | 0 | 未知 |
+| LiveStatusOnline | 1 | 上线 |
+| LiveStatusOffline | 2 | 下线 |
+
 
  
 
@@ -1085,7 +1186,7 @@ CategoryInfo 分类详情
 | ----------- | ------------ | ------------- | ------------|
 | StartLive | [StartLiveReq](#svc-biz-room-StartLiveReq) | [StartLiveResp](#svc-biz-room-StartLiveResp) | 开始直播 |
 | StopLive | [StopLiveReq](#svc-biz-room-StopLiveReq) | [StopLiveResp](#svc-biz-room-StopLiveResp) | 关闭直播 |
-| UpdateLive | [UpdateLiveReq](#svc-biz-room-UpdateLiveReq) | [UpdateLiveResp](#svc-biz-room-UpdateLiveResp) | 更新直播 |
+| UpdateLive | [UpdateLiveReq](#svc-biz-room-UpdateLiveReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | 更新直播 |
 | GetLiveInfo | [GetLiveInfoReq](#svc-biz-room-GetLiveInfoReq) | [GetLiveInfoResp](#svc-biz-room-GetLiveInfoResp) | 查询直播间信息 |
 | MGetLiveInfo | [MGetLiveInfoReq](#svc-biz-room-MGetLiveInfoReq) | [MGetLiveInfoResp](#svc-biz-room-MGetLiveInfoResp) | 批量获取直播间信息 |
 | OnlineLiveList | [OnlineLiveListReq](#svc-biz-room-OnlineLiveListReq) | [OnlineLiveListResp](#svc-biz-room-OnlineLiveListResp) | 获取在播直播间列表 |
@@ -1206,7 +1307,7 @@ CategoryInfo 分类详情
 | streamer_id | [string](#string) |  | 主播id |
 | title | [string](#string) |  | 标题 |
 | intro | [string](#string) |  | 简介 |
-| status | [RoomStatus](#svc-biz-room-RoomStatus) |  | 房间状态：1关播，2开播 |
+| status | [LiveStatus](#svc-biz-room-LiveStatus) |  | 房间状态：1关播，2开播 |
 | last_category_id | [int64](#int64) |  | 最后一次板块标识 |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
 | updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 更新时间 |
@@ -1233,19 +1334,6 @@ CategoryInfo 分类详情
 
 
  
-
-
-<a name="svc-biz-room-RoomStatus"></a>
-
-### RoomStatus
-
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| RoomStatusUnknown | 0 | 未知 |
-| RoomStatusOnline | 1 | 上线 |
-| RoomStatusOffline | 2 | 下线 |
-
 
  
 
