@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package svc.biz.org;
+option go_package="./svc.biz.org;org";
+
+import "google/protobuf/empty.proto";
+
+service Org {
+    rpc InitDB(google.protobuf.Empty) returns (InitDBResp); // 初始化数据库
+}
+
+message InitDBResp {
+    bool result = 1;
+}

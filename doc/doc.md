@@ -12,6 +12,11 @@
   
     - [Setting](#svc-infra-setting-Setting)
   
+- [svc.infra.notifier/notifier.proto](#svc-infra-notifier_notifier-proto)
+    - [InitDBResp](#svc-infra-notifier-InitDBResp)
+  
+    - [Notifier](#svc-infra-notifier-Notifier)
+  
 - [svc.web.viewer/viewer.proto](#svc-web-viewer_viewer-proto)
     - [Viewer](#svc-web-viewer-Viewer)
   
@@ -46,6 +51,11 @@
   
 - [svc.web.dashboard/dashboard.proto](#svc-web-dashboard_dashboard-proto)
     - [Dashboard](#svc-web-dashboard-Dashboard)
+  
+- [svc.infra.static/static.proto](#svc-infra-static_static-proto)
+    - [InitDBResp](#svc-infra-static-InitDBResp)
+  
+    - [Static](#svc-infra-static-Static)
   
 - [svc.biz.account/account.proto](#svc-biz-account_account-proto)
     - [AddManagerReq](#svc-biz-account-AddManagerReq)
@@ -95,6 +105,11 @@
     - [Viewer](#svc-biz-account-Viewer)
   
     - [Account](#svc-biz-account-Account)
+  
+- [svc.biz.org/org.proto](#svc-biz-org_org-proto)
+    - [InitDBResp](#svc-biz-org-InitDBResp)
+  
+    - [Org](#svc-biz-org-Org)
   
 - [svc.biz.room/category.proto](#svc-biz-room_category-proto)
     - [CategoryInfo](#svc-biz-room-CategoryInfo)
@@ -198,6 +213,47 @@
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
 | Greeting | [SettingGreetingReq](#svc-infra-setting-SettingGreetingReq) | [SettingGreetingResp](#svc-infra-setting-SettingGreetingResp) |  |
+
+ 
+
+
+
+<a name="svc-infra-notifier_notifier-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.infra.notifier/notifier.proto
+
+
+
+<a name="svc-infra-notifier-InitDBResp"></a>
+
+### InitDBResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| result | [bool](#bool) |  |  |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="svc-infra-notifier-Notifier"></a>
+
+### Notifier
+
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| InitDB | [.google.protobuf.Empty](#google-protobuf-Empty) | [InitDBResp](#svc-infra-notifier-InitDBResp) | 初始化数据库 |
 
  
 
@@ -674,6 +730,47 @@
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
+
+ 
+
+
+
+<a name="svc-infra-static_static-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.infra.static/static.proto
+
+
+
+<a name="svc-infra-static-InitDBResp"></a>
+
+### InitDBResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| result | [bool](#bool) |  |  |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="svc-infra-static-Static"></a>
+
+### Static
+
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| InitDB | [.google.protobuf.Empty](#google-protobuf-Empty) | [InitDBResp](#svc-infra-static-InitDBResp) | 初始化数据库 |
 
  
 
@@ -1434,6 +1531,47 @@ Models
 | AddUnion | [AddUnionReq](#svc-biz-account-AddUnionReq) | [AddUnionResp](#svc-biz-account-AddUnionResp) | 添加工会账号 |
 | UpdateUnion | [UpdateUnionReq](#svc-biz-account-UpdateUnionReq) | [UpdateUnionResp](#svc-biz-account-UpdateUnionResp) | 更新工会账号 |
 | DeleteUnion | [DeleteUnionReq](#svc-biz-account-DeleteUnionReq) | [DeleteUnionResp](#svc-biz-account-DeleteUnionResp) | 删除工会账号 |
+
+ 
+
+
+
+<a name="svc-biz-org_org-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.biz.org/org.proto
+
+
+
+<a name="svc-biz-org-InitDBResp"></a>
+
+### InitDBResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| result | [bool](#bool) |  |  |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="svc-biz-org-Org"></a>
+
+### Org
+
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| InitDB | [.google.protobuf.Empty](#google-protobuf-Empty) | [InitDBResp](#svc-biz-org-InitDBResp) | 初始化数据库 |
 
  
 
