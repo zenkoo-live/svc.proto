@@ -742,13 +742,13 @@ CategoryInfo 分类详情
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | category_id | [string](#string) |  |  |
-| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
-| updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
 | parent_id | [string](#string) |  | 父级ID |
 | category_code | [string](#string) |  | 代号（唯一，预留） |
 | category_name | [string](#string) |  | 名称 |
 | sort | [int32](#int32) |  | 排序 |
 | childrens | [CategoryInfo](#svc-biz-room-CategoryInfo) | repeated |  |
+| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+| updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
 
 
 
@@ -1305,10 +1305,10 @@ CategoryInfo 分类详情
 | id | [string](#string) |  | id |
 | display_id | [string](#string) |  | 显示id |
 | streamer_id | [string](#string) |  | 主播id |
+| category_id | [string](#string) |  | 最后一次板块标识 |
+| status | [LiveStatus](#svc-biz-room-LiveStatus) |  | 房间状态：1关播，2开播 |
 | title | [string](#string) |  | 标题 |
 | intro | [string](#string) |  | 简介 |
-| status | [LiveStatus](#svc-biz-room-LiveStatus) |  | 房间状态：1关播，2开播 |
-| last_category_id | [int64](#int64) |  | 最后一次板块标识 |
 | score_recommend | [int32](#int32) |  | 推荐分数 |
 | score_search | [int32](#int32) |  | 搜索分数 |
 | score_subscribe | [int32](#int32) |  | 关注分数 |
