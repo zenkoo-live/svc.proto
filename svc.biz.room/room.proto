@@ -37,14 +37,6 @@ enum LiveStatus {
     LiveStatusOffline = 2; // 下线
 }
 
-enum LiveRegion {
-    LiveRegionUnknown = 0; // 未知
-    LiveRegionChinaMainland = 1; // 中国大陆
-    LiveRegionChinaHK = 2; // 中国香港
-    LiveRegionVietnam = 3; // 越南
-    LiveRegionIndonesia = 4; // 印度尼西亚
-}
-
 message RoomInfo {
     string id = 1; // id
     string display_id = 2; // 显示id
@@ -53,7 +45,7 @@ message RoomInfo {
     string title = 5; // 标题
     string intro = 6; // 简介
     
-    LiveRegion live_region = 11; // 直播区域（开播状态时才会有，关播时清空）
+    int32 live_region = 11; // 直播区域（开播状态时才会有，关播时清空）
     LiveStatus live_status = 12; // 房间状态：1关播，2开播
     string live_id = 13; // 直播id（开播状态时才会有，关播时清空）
     LiveDisplayType live_display_type = 14; // 横竖屏类型（开播状态时才会有，关播时清空）

@@ -85,7 +85,6 @@
     - [UpdateRoomReq](#svc-biz-room-UpdateRoomReq)
   
     - [LiveDisplayType](#svc-biz-room-LiveDisplayType)
-    - [LiveRegion](#svc-biz-room-LiveRegion)
     - [LiveStatus](#svc-biz-room-LiveStatus)
   
     - [Room](#svc-biz-room-Room)
@@ -1205,7 +1204,7 @@ CategoryInfo 分类详情
 | category_id | [string](#string) |  | 分类id |
 | title | [string](#string) |  | 标题 |
 | intro | [string](#string) |  | 简介 |
-| live_region | [LiveRegion](#svc-biz-room-LiveRegion) |  | 直播区域（开播状态时才会有，关播时清空） |
+| live_region | [int32](#int32) |  | 直播区域（开播状态时才会有，关播时清空） |
 | live_status | [LiveStatus](#svc-biz-room-LiveStatus) |  | 房间状态：1关播，2开播 |
 | live_id | [string](#string) |  | 直播id（开播状态时才会有，关播时清空） |
 | live_display_type | [LiveDisplayType](#svc-biz-room-LiveDisplayType) |  | 横竖屏类型（开播状态时才会有，关播时清空） |
@@ -1310,21 +1309,6 @@ CategoryInfo 分类详情
 | LiveDisplayTypeUnknown | 0 | 未知 |
 | LiveDisplayTypeHorizontal | 1 | 横屏 |
 | LiveDisplayTypeVertical | 2 | 竖屏 |
-
-
-
-<a name="svc-biz-room-LiveRegion"></a>
-
-### LiveRegion
-
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| LiveRegionUnknown | 0 | 未知 |
-| LiveRegionChinaMainland | 1 | 中国大陆 |
-| LiveRegionChinaHK | 2 | 中国香港 |
-| LiveRegionVietnam | 3 | 越南 |
-| LiveRegionIndonesia | 4 | 印度尼西亚 |
 
 
 
