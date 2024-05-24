@@ -11,7 +11,6 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
-	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -20,30 +19,21 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Live_StartLive_FullMethodName      = "/svc.biz.room.Live/StartLive"
-	Live_StopLive_FullMethodName       = "/svc.biz.room.Live/StopLive"
-	Live_UpdateLive_FullMethodName     = "/svc.biz.room.Live/UpdateLive"
-	Live_GetLiveInfo_FullMethodName    = "/svc.biz.room.Live/GetLiveInfo"
-	Live_MGetLiveInfo_FullMethodName   = "/svc.biz.room.Live/MGetLiveInfo"
-	Live_OnlineLiveList_FullMethodName = "/svc.biz.room.Live/OnlineLiveList"
+	Live_GetLiveInfo_FullMethodName  = "/svc.biz.room.Live/GetLiveInfo"
+	Live_MGetLiveInfo_FullMethodName = "/svc.biz.room.Live/MGetLiveInfo"
+	Live_ListLiveInfo_FullMethodName = "/svc.biz.room.Live/ListLiveInfo"
 )
 
 // LiveClient is the client API for Live service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type LiveClient interface {
-	// 开始直播
-	StartLive(ctx context.Context, in *StartLiveReq, opts ...grpc.CallOption) (*StartLiveResp, error)
-	// 关闭直播
-	StopLive(ctx context.Context, in *StopLiveReq, opts ...grpc.CallOption) (*StopLiveResp, error)
-	// 更新直播
-	UpdateLive(ctx context.Context, in *UpdateLiveReq, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// 查询直播间信息
 	GetLiveInfo(ctx context.Context, in *GetLiveInfoReq, opts ...grpc.CallOption) (*GetLiveInfoResp, error)
 	// 批量获取直播间信息
 	MGetLiveInfo(ctx context.Context, in *MGetLiveInfoReq, opts ...grpc.CallOption) (*MGetLiveInfoResp, error)
 	// 获取在播直播间列表
-	OnlineLiveList(ctx context.Context, in *OnlineLiveListReq, opts ...grpc.CallOption) (*OnlineLiveListResp, error)
+	ListLiveInfo(ctx context.Context, in *ListLiveInfoReq, opts ...grpc.CallOption) (*ListLiveInfoResp, error)
 }
 
 type liveClient struct {
@@ -52,33 +42,6 @@ type liveClient struct {
 
 func NewLiveClient(cc grpc.ClientConnInterface) LiveClient {
 	return &liveClient{cc}
-}
-
-func (c *liveClient) StartLive(ctx context.Context, in *StartLiveReq, opts ...grpc.CallOption) (*StartLiveResp, error) {
-	out := new(StartLiveResp)
-	err := c.cc.Invoke(ctx, Live_StartLive_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *liveClient) StopLive(ctx context.Context, in *StopLiveReq, opts ...grpc.CallOption) (*StopLiveResp, error) {
-	out := new(StopLiveResp)
-	err := c.cc.Invoke(ctx, Live_StopLive_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *liveClient) UpdateLive(ctx context.Context, in *UpdateLiveReq, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, Live_UpdateLive_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *liveClient) GetLiveInfo(ctx context.Context, in *GetLiveInfoReq, opts ...grpc.CallOption) (*GetLiveInfoResp, error) {
@@ -99,9 +62,9 @@ func (c *liveClient) MGetLiveInfo(ctx context.Context, in *MGetLiveInfoReq, opts
 	return out, nil
 }
 
-func (c *liveClient) OnlineLiveList(ctx context.Context, in *OnlineLiveListReq, opts ...grpc.CallOption) (*OnlineLiveListResp, error) {
-	out := new(OnlineLiveListResp)
-	err := c.cc.Invoke(ctx, Live_OnlineLiveList_FullMethodName, in, out, opts...)
+func (c *liveClient) ListLiveInfo(ctx context.Context, in *ListLiveInfoReq, opts ...grpc.CallOption) (*ListLiveInfoResp, error) {
+	out := new(ListLiveInfoResp)
+	err := c.cc.Invoke(ctx, Live_ListLiveInfo_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -112,18 +75,12 @@ func (c *liveClient) OnlineLiveList(ctx context.Context, in *OnlineLiveListReq, 
 // All implementations must embed UnimplementedLiveServer
 // for forward compatibility
 type LiveServer interface {
-	// 开始直播
-	StartLive(context.Context, *StartLiveReq) (*StartLiveResp, error)
-	// 关闭直播
-	StopLive(context.Context, *StopLiveReq) (*StopLiveResp, error)
-	// 更新直播
-	UpdateLive(context.Context, *UpdateLiveReq) (*emptypb.Empty, error)
 	// 查询直播间信息
 	GetLiveInfo(context.Context, *GetLiveInfoReq) (*GetLiveInfoResp, error)
 	// 批量获取直播间信息
 	MGetLiveInfo(context.Context, *MGetLiveInfoReq) (*MGetLiveInfoResp, error)
 	// 获取在播直播间列表
-	OnlineLiveList(context.Context, *OnlineLiveListReq) (*OnlineLiveListResp, error)
+	ListLiveInfo(context.Context, *ListLiveInfoReq) (*ListLiveInfoResp, error)
 	mustEmbedUnimplementedLiveServer()
 }
 
@@ -131,23 +88,14 @@ type LiveServer interface {
 type UnimplementedLiveServer struct {
 }
 
-func (UnimplementedLiveServer) StartLive(context.Context, *StartLiveReq) (*StartLiveResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method StartLive not implemented")
-}
-func (UnimplementedLiveServer) StopLive(context.Context, *StopLiveReq) (*StopLiveResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method StopLive not implemented")
-}
-func (UnimplementedLiveServer) UpdateLive(context.Context, *UpdateLiveReq) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateLive not implemented")
-}
 func (UnimplementedLiveServer) GetLiveInfo(context.Context, *GetLiveInfoReq) (*GetLiveInfoResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetLiveInfo not implemented")
 }
 func (UnimplementedLiveServer) MGetLiveInfo(context.Context, *MGetLiveInfoReq) (*MGetLiveInfoResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method MGetLiveInfo not implemented")
 }
-func (UnimplementedLiveServer) OnlineLiveList(context.Context, *OnlineLiveListReq) (*OnlineLiveListResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method OnlineLiveList not implemented")
+func (UnimplementedLiveServer) ListLiveInfo(context.Context, *ListLiveInfoReq) (*ListLiveInfoResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListLiveInfo not implemented")
 }
 func (UnimplementedLiveServer) mustEmbedUnimplementedLiveServer() {}
 
@@ -160,60 +108,6 @@ type UnsafeLiveServer interface {
 
 func RegisterLiveServer(s grpc.ServiceRegistrar, srv LiveServer) {
 	s.RegisterService(&Live_ServiceDesc, srv)
-}
-
-func _Live_StartLive_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(StartLiveReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(LiveServer).StartLive(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Live_StartLive_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(LiveServer).StartLive(ctx, req.(*StartLiveReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Live_StopLive_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(StopLiveReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(LiveServer).StopLive(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Live_StopLive_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(LiveServer).StopLive(ctx, req.(*StopLiveReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Live_UpdateLive_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateLiveReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(LiveServer).UpdateLive(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Live_UpdateLive_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(LiveServer).UpdateLive(ctx, req.(*UpdateLiveReq))
-	}
-	return interceptor(ctx, in, info, handler)
 }
 
 func _Live_GetLiveInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -252,20 +146,20 @@ func _Live_MGetLiveInfo_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Live_OnlineLiveList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(OnlineLiveListReq)
+func _Live_ListLiveInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListLiveInfoReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(LiveServer).OnlineLiveList(ctx, in)
+		return srv.(LiveServer).ListLiveInfo(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Live_OnlineLiveList_FullMethodName,
+		FullMethod: Live_ListLiveInfo_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(LiveServer).OnlineLiveList(ctx, req.(*OnlineLiveListReq))
+		return srv.(LiveServer).ListLiveInfo(ctx, req.(*ListLiveInfoReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -278,18 +172,6 @@ var Live_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*LiveServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "StartLive",
-			Handler:    _Live_StartLive_Handler,
-		},
-		{
-			MethodName: "StopLive",
-			Handler:    _Live_StopLive_Handler,
-		},
-		{
-			MethodName: "UpdateLive",
-			Handler:    _Live_UpdateLive_Handler,
-		},
-		{
 			MethodName: "GetLiveInfo",
 			Handler:    _Live_GetLiveInfo_Handler,
 		},
@@ -298,8 +180,8 @@ var Live_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Live_MGetLiveInfo_Handler,
 		},
 		{
-			MethodName: "OnlineLiveList",
-			Handler:    _Live_OnlineLiveList_Handler,
+			MethodName: "ListLiveInfo",
+			Handler:    _Live_ListLiveInfo_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

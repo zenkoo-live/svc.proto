@@ -2,59 +2,19 @@ syntax = "proto3";
 
 package svc.biz.room;
 
-import "google/protobuf/field_mask.proto";
 import "google/protobuf/timestamp.proto";
-import "google/protobuf/empty.proto";
+import "svc.biz.room/room.proto";
 
 option go_package="./svc.biz.room;room";
 
-// 房间
+// 直播
 service Live {
-    // 开始直播
-    rpc StartLive(StartLiveReq) returns(StartLiveResp);
-    // 关闭直播
-    rpc StopLive(StopLiveReq) returns(StopLiveResp);
-    // 更新直播
-    rpc UpdateLive(UpdateLiveReq) returns(google.protobuf.Empty);
     // 查询直播间信息
     rpc GetLiveInfo(GetLiveInfoReq) returns(GetLiveInfoResp);
     // 批量获取直播间信息
     rpc MGetLiveInfo(MGetLiveInfoReq) returns(MGetLiveInfoResp);
     // 获取在播直播间列表
-    rpc OnlineLiveList(OnlineLiveListReq) returns (OnlineLiveListResp);
-}
-
-enum LiveDisplayType {
-    LiveDisplayTypeUnknown = 0; // 未知
-    LiveDisplayTypeHorizontal = 1; // 横屏
-    LiveDisplayTypeVertical = 2; // 竖屏
-}
-
-enum LiveStatus {
-    LiveStatusUnknown = 0; // 未知
-    LiveStatusOnline = 1; // 上线
-    LiveStatusOffline = 2; // 下线
-}
-
-message StartLiveReq {
-    string streamer_id = 1; // 主播id
-    LiveDisplayType display_type = 2; // 横竖屏类型
-}
-message StartLiveResp {
-    string live_id = 1; // 直播id
-}
-
-message StopLiveReq {
-    string streamer_id = 1; // 主播id
-}
-message StopLiveResp {
-
-}
-
-message UpdateLiveReq {
-    string live_id = 1; // 直播id
-    LiveInfo live = 2; // 直播信息
-    google.protobuf.FieldMask update_mask = 3;
+    rpc ListLiveInfo(ListLiveInfoReq) returns (ListLiveInfoResp);
 }
 
 message GetLiveInfoReq {
@@ -71,12 +31,11 @@ message MGetLiveInfoResp {
     map<string, LiveInfo> items = 1; // 直播信息
 }
 
-message OnlineLiveListReq {
+message ListLiveInfoReq {
     int32 page = 1; // 页数
     int32 limit = 2; // 条数
-    string category_id = 3; // 分类id
 }
-message OnlineLiveListResp {
+message ListLiveInfoResp {
     repeated LiveInfo items = 1; // 直播信息
 }
 

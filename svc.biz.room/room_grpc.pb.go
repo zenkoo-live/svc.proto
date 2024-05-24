@@ -24,6 +24,8 @@ const (
 	Room_UpdateRoom_FullMethodName  = "/svc.biz.room.Room/UpdateRoom"
 	Room_GetRoom_FullMethodName     = "/svc.biz.room.Room/GetRoom"
 	Room_GetRoomList_FullMethodName = "/svc.biz.room.Room/GetRoomList"
+	Room_StartLive_FullMethodName   = "/svc.biz.room.Room/StartLive"
+	Room_StopLive_FullMethodName    = "/svc.biz.room.Room/StopLive"
 )
 
 // RoomClient is the client API for Room service.
@@ -38,6 +40,10 @@ type RoomClient interface {
 	GetRoom(ctx context.Context, in *GetRoomReq, opts ...grpc.CallOption) (*GetRoomResp, error)
 	// 查询房间列表，直读mysql
 	GetRoomList(ctx context.Context, in *GetRoomListReq, opts ...grpc.CallOption) (*GetRoomListResp, error)
+	// 开始直播
+	StartLive(ctx context.Context, in *StartLiveReq, opts ...grpc.CallOption) (*StartLiveResp, error)
+	// 关闭直播
+	StopLive(ctx context.Context, in *StopLiveReq, opts ...grpc.CallOption) (*StopLiveResp, error)
 }
 
 type roomClient struct {
@@ -84,6 +90,24 @@ func (c *roomClient) GetRoomList(ctx context.Context, in *GetRoomListReq, opts .
 	return out, nil
 }
 
+func (c *roomClient) StartLive(ctx context.Context, in *StartLiveReq, opts ...grpc.CallOption) (*StartLiveResp, error) {
+	out := new(StartLiveResp)
+	err := c.cc.Invoke(ctx, Room_StartLive_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *roomClient) StopLive(ctx context.Context, in *StopLiveReq, opts ...grpc.CallOption) (*StopLiveResp, error) {
+	out := new(StopLiveResp)
+	err := c.cc.Invoke(ctx, Room_StopLive_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // RoomServer is the server API for Room service.
 // All implementations must embed UnimplementedRoomServer
 // for forward compatibility
@@ -96,6 +120,10 @@ type RoomServer interface {
 	GetRoom(context.Context, *GetRoomReq) (*GetRoomResp, error)
 	// 查询房间列表，直读mysql
 	GetRoomList(context.Context, *GetRoomListReq) (*GetRoomListResp, error)
+	// 开始直播
+	StartLive(context.Context, *StartLiveReq) (*StartLiveResp, error)
+	// 关闭直播
+	StopLive(context.Context, *StopLiveReq) (*StopLiveResp, error)
 	mustEmbedUnimplementedRoomServer()
 }
 
@@ -114,6 +142,12 @@ func (UnimplementedRoomServer) GetRoom(context.Context, *GetRoomReq) (*GetRoomRe
 }
 func (UnimplementedRoomServer) GetRoomList(context.Context, *GetRoomListReq) (*GetRoomListResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetRoomList not implemented")
+}
+func (UnimplementedRoomServer) StartLive(context.Context, *StartLiveReq) (*StartLiveResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StartLive not implemented")
+}
+func (UnimplementedRoomServer) StopLive(context.Context, *StopLiveReq) (*StopLiveResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StopLive not implemented")
 }
 func (UnimplementedRoomServer) mustEmbedUnimplementedRoomServer() {}
 
@@ -200,6 +234,42 @@ func _Room_GetRoomList_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Room_StartLive_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(StartLiveReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RoomServer).StartLive(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Room_StartLive_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RoomServer).StartLive(ctx, req.(*StartLiveReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Room_StopLive_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(StopLiveReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RoomServer).StopLive(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Room_StopLive_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RoomServer).StopLive(ctx, req.(*StopLiveReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Room_ServiceDesc is the grpc.ServiceDesc for Room service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -222,6 +292,14 @@ var Room_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetRoomList",
 			Handler:    _Room_GetRoomList_Handler,
+		},
+		{
+			MethodName: "StartLive",
+			Handler:    _Room_StartLive_Handler,
+		},
+		{
+			MethodName: "StopLive",
+			Handler:    _Room_StopLive_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

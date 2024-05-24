@@ -5,33 +5,59 @@ package svc.biz.room;
 import "google/protobuf/field_mask.proto";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/empty.proto";
-import "svc.biz.room/live.proto";
 
 option go_package="./svc.biz.room;room";
 
-// 房间
+// Room 房间
 service Room {
-    // 创建房间
+    // CreateRoom 创建房间
     rpc CreateRoom(CreateRoomReq) returns(CreateRoomResp);
-    // 更新房间
+    // UpdateRoom 更新房间
     rpc UpdateRoom(UpdateRoomReq) returns(google.protobuf.Empty);
-    // 查询房间
+    // GetRoom 查询房间
     rpc GetRoom(GetRoomReq) returns(GetRoomResp);
-    // 查询房间列表，直读mysql
+    // GetRoomList 查询房间列表，直读mysql
     rpc GetRoomList(GetRoomListReq) returns(GetRoomListResp);
+
+    // StartLive 开始直播
+    rpc StartLive(StartLiveReq) returns(StartLiveResp);
+    // StopLive 关闭直播
+    rpc StopLive(StopLiveReq) returns(StopLiveResp);
+}
+
+enum LiveDisplayType {
+    LiveDisplayTypeUnknown = 0; // 未知
+    LiveDisplayTypeHorizontal = 1; // 横屏
+    LiveDisplayTypeVertical = 2; // 竖屏
+}
+
+enum LiveStatus {
+    LiveStatusUnknown = 0; // 未知
+    LiveStatusOnline = 1; // 上线
+    LiveStatusOffline = 2; // 下线
 }
 
 message RoomInfo {
     string id = 1; // id
     string display_id = 2; // 显示id
     string streamer_id = 3; // 主播id
-    string category_id = 4; // 最后一次板块标识
-    svc.biz.room.LiveStatus status = 5; // 房间状态：1关播，2开播
-    string title = 6; // 标题
-    string intro = 7; // 简介
-    int32 score_recommend = 101; // 推荐分数
-    int32 score_search = 102; // 搜索分数
-    int32 score_subscribe = 103; // 关注分数
+    string category_id = 4; // 分类id
+    string title = 5; // 标题
+    string intro = 6; // 简介
+
+    LiveStatus live_status = 11; // 房间状态：1关播，2开播
+    string live_id = 12; // 直播id（开播状态时才会有，关播时清空）
+    LiveDisplayType live_display_type = 13; // 横竖屏类型（开播状态时才会有，关播时清空）
+    google.protobuf.Timestamp live_start_at = 14; // 开播时间（开播状态时才会有，关播时清空）
+
+    int32 score_recommend = 101; // 推荐分数（后台配置）
+    int32 score_search = 102; // 搜索分数（后台配置）
+    int32 score_subscribe = 103; // 关注分数（后台配置）
+    int32 score_hot = 104; // 热度分数（后台配置）
+    int32 score_glamour = 105; // 魅力分数
+    int32 score_online = 106; // 在线人数
+    int32 score_gift = 107; // 礼物分数
+
     google.protobuf.Timestamp created_at = 255; // 创建时间
     google.protobuf.Timestamp updated_at = 256; // 更新时间
 }
@@ -63,4 +89,20 @@ message GetRoomListReq {
 }
 message GetRoomListResp {
     repeated RoomInfo items = 1; // 房间列表
+}
+
+message StartLiveReq {
+    string streamer_id = 1; // 主播id
+    LiveDisplayType display_type = 2; // 横竖屏类型
+}
+message StartLiveResp {
+    string live_id = 1; // 直播id
+}
+
+
+message StopLiveReq {
+    string streamer_id = 1; // 主播id
+}
+message StopLiveResp {
+
 }

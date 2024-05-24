@@ -6,8 +6,6 @@ package room
 import (
 	fmt "fmt"
 	proto "google.golang.org/protobuf/proto"
-	emptypb "google.golang.org/protobuf/types/known/emptypb"
-	_ "google.golang.org/protobuf/types/known/fieldmaskpb"
 	_ "google.golang.org/protobuf/types/known/timestamppb"
 	math "math"
 )
@@ -39,18 +37,12 @@ func NewLiveEndpoints() []*api.Endpoint {
 // Client API for Live service
 
 type LiveService interface {
-	// 开始直播
-	StartLive(ctx context.Context, in *StartLiveReq, opts ...client.CallOption) (*StartLiveResp, error)
-	// 关闭直播
-	StopLive(ctx context.Context, in *StopLiveReq, opts ...client.CallOption) (*StopLiveResp, error)
-	// 更新直播
-	UpdateLive(ctx context.Context, in *UpdateLiveReq, opts ...client.CallOption) (*emptypb.Empty, error)
 	// 查询直播间信息
 	GetLiveInfo(ctx context.Context, in *GetLiveInfoReq, opts ...client.CallOption) (*GetLiveInfoResp, error)
 	// 批量获取直播间信息
 	MGetLiveInfo(ctx context.Context, in *MGetLiveInfoReq, opts ...client.CallOption) (*MGetLiveInfoResp, error)
 	// 获取在播直播间列表
-	OnlineLiveList(ctx context.Context, in *OnlineLiveListReq, opts ...client.CallOption) (*OnlineLiveListResp, error)
+	ListLiveInfo(ctx context.Context, in *ListLiveInfoReq, opts ...client.CallOption) (*ListLiveInfoResp, error)
 }
 
 type liveService struct {
@@ -63,36 +55,6 @@ func NewLiveService(name string, c client.Client) LiveService {
 		c:    c,
 		name: name,
 	}
-}
-
-func (c *liveService) StartLive(ctx context.Context, in *StartLiveReq, opts ...client.CallOption) (*StartLiveResp, error) {
-	req := c.c.NewRequest(c.name, "Live.StartLive", in)
-	out := new(StartLiveResp)
-	err := c.c.Call(ctx, req, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *liveService) StopLive(ctx context.Context, in *StopLiveReq, opts ...client.CallOption) (*StopLiveResp, error) {
-	req := c.c.NewRequest(c.name, "Live.StopLive", in)
-	out := new(StopLiveResp)
-	err := c.c.Call(ctx, req, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *liveService) UpdateLive(ctx context.Context, in *UpdateLiveReq, opts ...client.CallOption) (*emptypb.Empty, error) {
-	req := c.c.NewRequest(c.name, "Live.UpdateLive", in)
-	out := new(emptypb.Empty)
-	err := c.c.Call(ctx, req, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *liveService) GetLiveInfo(ctx context.Context, in *GetLiveInfoReq, opts ...client.CallOption) (*GetLiveInfoResp, error) {
@@ -115,9 +77,9 @@ func (c *liveService) MGetLiveInfo(ctx context.Context, in *MGetLiveInfoReq, opt
 	return out, nil
 }
 
-func (c *liveService) OnlineLiveList(ctx context.Context, in *OnlineLiveListReq, opts ...client.CallOption) (*OnlineLiveListResp, error) {
-	req := c.c.NewRequest(c.name, "Live.OnlineLiveList", in)
-	out := new(OnlineLiveListResp)
+func (c *liveService) ListLiveInfo(ctx context.Context, in *ListLiveInfoReq, opts ...client.CallOption) (*ListLiveInfoResp, error) {
+	req := c.c.NewRequest(c.name, "Live.ListLiveInfo", in)
+	out := new(ListLiveInfoResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -128,28 +90,19 @@ func (c *liveService) OnlineLiveList(ctx context.Context, in *OnlineLiveListReq,
 // Server API for Live service
 
 type LiveHandler interface {
-	// 开始直播
-	StartLive(context.Context, *StartLiveReq, *StartLiveResp) error
-	// 关闭直播
-	StopLive(context.Context, *StopLiveReq, *StopLiveResp) error
-	// 更新直播
-	UpdateLive(context.Context, *UpdateLiveReq, *emptypb.Empty) error
 	// 查询直播间信息
 	GetLiveInfo(context.Context, *GetLiveInfoReq, *GetLiveInfoResp) error
 	// 批量获取直播间信息
 	MGetLiveInfo(context.Context, *MGetLiveInfoReq, *MGetLiveInfoResp) error
 	// 获取在播直播间列表
-	OnlineLiveList(context.Context, *OnlineLiveListReq, *OnlineLiveListResp) error
+	ListLiveInfo(context.Context, *ListLiveInfoReq, *ListLiveInfoResp) error
 }
 
 func RegisterLiveHandler(s server.Server, hdlr LiveHandler, opts ...server.HandlerOption) error {
 	type live interface {
-		StartLive(ctx context.Context, in *StartLiveReq, out *StartLiveResp) error
-		StopLive(ctx context.Context, in *StopLiveReq, out *StopLiveResp) error
-		UpdateLive(ctx context.Context, in *UpdateLiveReq, out *emptypb.Empty) error
 		GetLiveInfo(ctx context.Context, in *GetLiveInfoReq, out *GetLiveInfoResp) error
 		MGetLiveInfo(ctx context.Context, in *MGetLiveInfoReq, out *MGetLiveInfoResp) error
-		OnlineLiveList(ctx context.Context, in *OnlineLiveListReq, out *OnlineLiveListResp) error
+		ListLiveInfo(ctx context.Context, in *ListLiveInfoReq, out *ListLiveInfoResp) error
 	}
 	type Live struct {
 		live
@@ -162,18 +115,6 @@ type liveHandler struct {
 	LiveHandler
 }
 
-func (h *liveHandler) StartLive(ctx context.Context, in *StartLiveReq, out *StartLiveResp) error {
-	return h.LiveHandler.StartLive(ctx, in, out)
-}
-
-func (h *liveHandler) StopLive(ctx context.Context, in *StopLiveReq, out *StopLiveResp) error {
-	return h.LiveHandler.StopLive(ctx, in, out)
-}
-
-func (h *liveHandler) UpdateLive(ctx context.Context, in *UpdateLiveReq, out *emptypb.Empty) error {
-	return h.LiveHandler.UpdateLive(ctx, in, out)
-}
-
 func (h *liveHandler) GetLiveInfo(ctx context.Context, in *GetLiveInfoReq, out *GetLiveInfoResp) error {
 	return h.LiveHandler.GetLiveInfo(ctx, in, out)
 }
@@ -182,6 +123,6 @@ func (h *liveHandler) MGetLiveInfo(ctx context.Context, in *MGetLiveInfoReq, out
 	return h.LiveHandler.MGetLiveInfo(ctx, in, out)
 }
 
-func (h *liveHandler) OnlineLiveList(ctx context.Context, in *OnlineLiveListReq, out *OnlineLiveListResp) error {
-	return h.LiveHandler.OnlineLiveList(ctx, in, out)
+func (h *liveHandler) ListLiveInfo(ctx context.Context, in *ListLiveInfoReq, out *ListLiveInfoResp) error {
+	return h.LiveHandler.ListLiveInfo(ctx, in, out)
 }
