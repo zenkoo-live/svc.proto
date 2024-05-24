@@ -963,6 +963,7 @@
 | trans_type | [int64](#int64) |  | 交易类别 |
 | trade_id | [string](#string) |  | 业务方交易id,业务方保证唯一,支持幂等 |
 | summary | [string](#string) |  | 摘要,json 实际会做格式和核心字段校验 |
+| trans_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 业务时间 |
 
 
 
@@ -983,6 +984,7 @@
 | trans_type | [int64](#int64) |  | 交易类别 |
 | trade_id | [string](#string) |  | 业务方交易id,业务方保证唯一,支持幂等 |
 | summary | [string](#string) |  | 摘要,json 实际会做格式和核心字段校验 |
+| trans_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 业务时间 |
 
 
 
@@ -1003,6 +1005,7 @@
 | trans_type | [int64](#int64) |  | 交易类别 |
 | trade_id | [string](#string) |  | 业务方交易id,业务方保证唯一,支持幂等 |
 | summary | [string](#string) |  | 摘要,json 实际会做格式和核心字段校验 |
+| trans_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 业务时间 |
 
 
 
@@ -1023,6 +1026,7 @@
 | trans_type | [int64](#int64) |  | 交易类别 |
 | trade_id | [string](#string) |  | 业务方交易id,业务方保证唯一,支持幂等 |
 | summary | [string](#string) |  | 摘要,json 实际会做格式和核心字段校验 |
+| trans_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 业务时间 |
 
 
 
@@ -1043,6 +1047,7 @@
 | trans_type | [int64](#int64) |  | 交易类别 |
 | trade_id | [string](#string) |  | 业务方交易id,业务方保证唯一,支持幂等 |
 | summary | [string](#string) |  | 摘要,json 实际会做格式和核心字段校验 |
+| trans_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 业务时间 |
 
 
 
@@ -1445,6 +1450,7 @@
 | trans_type | [int64](#int64) |  | 交易类别,增加普通余额或低权限余额按此字段自动判断 |
 | trade_id | [string](#string) |  | 业务方交易id,业务方保证唯一,支持幂等 |
 | summary | [string](#string) |  | 摘要,json 实际会做格式和核心字段校验 |
+| trans_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 业务时间 |
 
 
 
@@ -1464,6 +1470,7 @@
 | trans_type | [int64](#int64) |  | 交易类别,增加普通余额或低权限余额按此字段自动判断 |
 | trade_id | [string](#string) |  | 业务方交易id,业务方保证唯一,支持幂等 |
 | summary | [string](#string) |  | 摘要,json 实际会做格式和核心字段校验 |
+| trans_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 业务时间 |
 
 
 
@@ -1483,6 +1490,7 @@
 | trans_type | [int64](#int64) |  | 交易类别,增加普通余额或低权限余额按此字段自动判断 |
 | trade_id | [string](#string) |  | 业务方交易id,业务方保证唯一,支持幂等 |
 | summary | [string](#string) |  | 摘要,json 实际会做格式和核心字段校验 |
+| trans_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 业务时间 |
 
 
 
@@ -1502,6 +1510,7 @@
 | trans_type | [int64](#int64) |  | 交易类别,增加普通余额或低权限余额按此字段自动判断 |
 | trade_id | [string](#string) |  | 业务方交易id,业务方保证唯一,支持幂等 |
 | summary | [string](#string) |  | 摘要,json 实际会做格式和核心字段校验 |
+| trans_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 业务时间 |
 
 
 
@@ -1522,6 +1531,7 @@
 | trans_type | [int64](#int64) |  | 交易类别 |
 | trade_id | [string](#string) |  | 业务方交易id,业务方保证唯一,支持幂等 |
 | summary | [string](#string) |  | 摘要,json 实际会做格式和核心字段校验 |
+| trans_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 业务时间 |
 
 
 

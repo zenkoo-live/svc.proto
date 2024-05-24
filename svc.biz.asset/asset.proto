@@ -83,6 +83,7 @@ message IncrUserMoneyReq {
   int64 trans_type = 5; // 交易类别
   string trade_id = 6;// 业务方交易id,业务方保证唯一,支持幂等
   string summary = 7;//摘要,json 实际会做格式和核心字段校验
+  google.protobuf.Timestamp trans_time = 8; // 业务时间
 }
 message DecrUserMoneyReq {
   string merchant_id = 1;
@@ -91,6 +92,7 @@ message DecrUserMoneyReq {
   int64 trans_type = 5; // 交易类别
   string trade_id = 6;// 业务方交易id,业务方保证唯一,支持幂等
   string summary = 7;//摘要,json 实际会做格式和核心字段校验
+  google.protobuf.Timestamp trans_time = 8; // 业务时间
 }
 message ChangeUserMoneyResp {
   string merchant_id = 1;
@@ -154,6 +156,7 @@ message IncrUserCoinReq {
   int64 trans_type = 5; // 交易类别,增加普通余额或低权限余额按此字段自动判断
   string trade_id = 6;// 业务方交易id,业务方保证唯一,支持幂等
   string summary = 7;//摘要,json 实际会做格式和核心字段校验
+  google.protobuf.Timestamp trans_time = 8; // 业务时间
 }
 message DecrUserCoinReq {
   string uid = 3;
@@ -162,6 +165,7 @@ message DecrUserCoinReq {
   int64 trans_type = 6; // 交易类别
   string trade_id = 7;// 业务方交易id,业务方保证唯一,支持幂等
   string summary = 8;//摘要,json 实际会做格式和核心字段校验
+  google.protobuf.Timestamp trans_time = 9; // 业务时间
 }
 message ChangeUserCoinResp {
   string uid = 3;
@@ -225,6 +229,7 @@ message IncrStreamerCoinReq {
   int64 trans_type = 5; // 交易类别,增加普通余额或低权限余额按此字段自动判断
   string trade_id = 6;// 业务方交易id,业务方保证唯一,支持幂等
   string summary = 7;//摘要,json 实际会做格式和核心字段校验
+  google.protobuf.Timestamp trans_time = 8; // 业务时间
 }
 message DecrStreamerCoinReq {
   string streamer_id = 3;
@@ -233,6 +238,7 @@ message DecrStreamerCoinReq {
   int64 trans_type = 6; // 交易类别
   string trade_id = 7;// 业务方交易id,业务方保证唯一,支持幂等
   string summary = 8;//摘要,json 实际会做格式和核心字段校验
+  google.protobuf.Timestamp trans_time = 9; // 业务时间
 }
 message ChangeStreamerCoinResp {
   string streamer_id = 3;
@@ -296,6 +302,7 @@ message IncrUnionCoinReq {
   int64 trans_type = 5; // 交易类别,增加普通余额或低权限余额按此字段自动判断
   string trade_id = 6;// 业务方交易id,业务方保证唯一,支持幂等
   string summary = 7;//摘要,json 实际会做格式和核心字段校验
+  google.protobuf.Timestamp trans_time = 8; // 业务时间
 }
 message DecrUnionCoinReq {
   string union_id = 3;
@@ -304,6 +311,7 @@ message DecrUnionCoinReq {
   int64 trans_type = 6; // 交易类别
   string trade_id = 7;// 业务方交易id,业务方保证唯一,支持幂等
   string summary = 8;//摘要,json 实际会做格式和核心字段校验
+  google.protobuf.Timestamp trans_time = 9; // 业务时间
 }
 message ChangeUnionCoinResp {
   string union_id = 3;
@@ -367,6 +375,7 @@ message IncrMerchantCoinReq {
   int64 trans_type = 5; // 交易类别,增加普通余额或低权限余额按此字段自动判断
   string trade_id = 6;// 业务方交易id,业务方保证唯一,支持幂等
   string summary = 7;//摘要,json 实际会做格式和核心字段校验
+  google.protobuf.Timestamp trans_time = 8; // 业务时间
 }
 message DecrMerchantCoinReq {
   string merchant_id = 1;
@@ -375,6 +384,7 @@ message DecrMerchantCoinReq {
   int64 trans_type = 6; // 交易类别
   string trade_id = 7;// 业务方交易id,业务方保证唯一,支持幂等
   string summary = 8;//摘要,json 实际会做格式和核心字段校验
+  google.protobuf.Timestamp trans_time = 9; // 业务时间
 }
 message ChangeMerchantCoinResp {
   string merchant_id = 1;
