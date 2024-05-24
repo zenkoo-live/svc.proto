@@ -32,17 +32,17 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type RoomClient interface {
-	// 创建房间
+	// CreateRoom 创建房间
 	CreateRoom(ctx context.Context, in *CreateRoomReq, opts ...grpc.CallOption) (*CreateRoomResp, error)
-	// 更新房间
+	// UpdateRoom 更新房间
 	UpdateRoom(ctx context.Context, in *UpdateRoomReq, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// 查询房间
+	// GetRoom 查询房间
 	GetRoom(ctx context.Context, in *GetRoomReq, opts ...grpc.CallOption) (*GetRoomResp, error)
-	// 查询房间列表，直读mysql
+	// GetRoomList 查询房间列表，直读mysql
 	GetRoomList(ctx context.Context, in *GetRoomListReq, opts ...grpc.CallOption) (*GetRoomListResp, error)
-	// 开始直播
+	// StartLive 开始直播
 	StartLive(ctx context.Context, in *StartLiveReq, opts ...grpc.CallOption) (*StartLiveResp, error)
-	// 关闭直播
+	// StopLive 关闭直播
 	StopLive(ctx context.Context, in *StopLiveReq, opts ...grpc.CallOption) (*StopLiveResp, error)
 }
 
@@ -112,17 +112,17 @@ func (c *roomClient) StopLive(ctx context.Context, in *StopLiveReq, opts ...grpc
 // All implementations must embed UnimplementedRoomServer
 // for forward compatibility
 type RoomServer interface {
-	// 创建房间
+	// CreateRoom 创建房间
 	CreateRoom(context.Context, *CreateRoomReq) (*CreateRoomResp, error)
-	// 更新房间
+	// UpdateRoom 更新房间
 	UpdateRoom(context.Context, *UpdateRoomReq) (*emptypb.Empty, error)
-	// 查询房间
+	// GetRoom 查询房间
 	GetRoom(context.Context, *GetRoomReq) (*GetRoomResp, error)
-	// 查询房间列表，直读mysql
+	// GetRoomList 查询房间列表，直读mysql
 	GetRoomList(context.Context, *GetRoomListReq) (*GetRoomListResp, error)
-	// 开始直播
+	// StartLive 开始直播
 	StartLive(context.Context, *StartLiveReq) (*StartLiveResp, error)
-	// 关闭直播
+	// StopLive 关闭直播
 	StopLive(context.Context, *StopLiveReq) (*StopLiveResp, error)
 	mustEmbedUnimplementedRoomServer()
 }

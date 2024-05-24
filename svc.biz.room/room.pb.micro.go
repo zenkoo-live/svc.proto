@@ -39,17 +39,17 @@ func NewRoomEndpoints() []*api.Endpoint {
 // Client API for Room service
 
 type RoomService interface {
-	// 创建房间
+	// CreateRoom 创建房间
 	CreateRoom(ctx context.Context, in *CreateRoomReq, opts ...client.CallOption) (*CreateRoomResp, error)
-	// 更新房间
+	// UpdateRoom 更新房间
 	UpdateRoom(ctx context.Context, in *UpdateRoomReq, opts ...client.CallOption) (*emptypb.Empty, error)
-	// 查询房间
+	// GetRoom 查询房间
 	GetRoom(ctx context.Context, in *GetRoomReq, opts ...client.CallOption) (*GetRoomResp, error)
-	// 查询房间列表，直读mysql
+	// GetRoomList 查询房间列表，直读mysql
 	GetRoomList(ctx context.Context, in *GetRoomListReq, opts ...client.CallOption) (*GetRoomListResp, error)
-	// 开始直播
+	// StartLive 开始直播
 	StartLive(ctx context.Context, in *StartLiveReq, opts ...client.CallOption) (*StartLiveResp, error)
-	// 关闭直播
+	// StopLive 关闭直播
 	StopLive(ctx context.Context, in *StopLiveReq, opts ...client.CallOption) (*StopLiveResp, error)
 }
 
@@ -128,17 +128,17 @@ func (c *roomService) StopLive(ctx context.Context, in *StopLiveReq, opts ...cli
 // Server API for Room service
 
 type RoomHandler interface {
-	// 创建房间
+	// CreateRoom 创建房间
 	CreateRoom(context.Context, *CreateRoomReq, *CreateRoomResp) error
-	// 更新房间
+	// UpdateRoom 更新房间
 	UpdateRoom(context.Context, *UpdateRoomReq, *emptypb.Empty) error
-	// 查询房间
+	// GetRoom 查询房间
 	GetRoom(context.Context, *GetRoomReq, *GetRoomResp) error
-	// 查询房间列表，直读mysql
+	// GetRoomList 查询房间列表，直读mysql
 	GetRoomList(context.Context, *GetRoomListReq, *GetRoomListResp) error
-	// 开始直播
+	// StartLive 开始直播
 	StartLive(context.Context, *StartLiveReq, *StartLiveResp) error
-	// 关闭直播
+	// StopLive 关闭直播
 	StopLive(context.Context, *StopLiveReq, *StopLiveResp) error
 }
 
