@@ -3,39 +3,38 @@ syntax = "proto3";
 package svc.biz.room;
 
 import "google/protobuf/timestamp.proto";
-import "svc.biz.room/room.proto";
 
 option go_package="./svc.biz.room;room";
 
 // 直播
 service Live {
     // 查询直播间信息
-    rpc GetLiveInfo(GetLiveInfoReq) returns(GetLiveInfoResp);
+    rpc GetLive(GetLiveReq) returns(GetLiveResp);
     // 批量获取直播间信息
-    rpc MGetLiveInfo(MGetLiveInfoReq) returns(MGetLiveInfoResp);
+    rpc MGetLive(MGetLiveReq) returns(MGetLiveResp);
     // 获取在播直播间列表
-    rpc ListLiveInfo(ListLiveInfoReq) returns (ListLiveInfoResp);
+    rpc ListLive(ListLiveReq) returns (ListLiveResp);
 }
 
-message GetLiveInfoReq {
+message GetLiveReq {
     string live_id = 1; // 直播id
 }
-message GetLiveInfoResp {
+message GetLiveResp {
     LiveInfo live = 1; // 直播信息
 }
 
-message MGetLiveInfoReq {
+message MGetLiveReq {
     repeated string live_ids = 1; // 直播id列表
 }
-message MGetLiveInfoResp {
+message MGetLiveResp {
     map<string, LiveInfo> items = 1; // 直播信息
 }
 
-message ListLiveInfoReq {
+message ListLiveReq {
     int32 page = 1; // 页数
     int32 limit = 2; // 条数
 }
-message ListLiveInfoResp {
+message ListLiveResp {
     repeated LiveInfo items = 1; // 直播信息
 }
 
@@ -44,17 +43,8 @@ message LiveInfo {
     string id = 1; // id
     string streamer_id = 2; // 主播id
     string category_id = 3; // 分类id
-    LiveStatus status = 4; // 状态：1表示开播，2表示关播
-    LiveDisplayType display_type = 5; // 横竖屏类型
-    google.protobuf.Timestamp start_at = 6; // 开播时间
-    google.protobuf.Timestamp end_at = 7; // 结束时间
-    int32 score_recommend = 101; // 推荐分数
-    int32 score_search = 102; // 搜索分数
-    int32 score_subscribe = 103; // 关注分数
-    int32 score_hot = 104; // 热度分数
-    int32 score_glamour = 105; // 魅力分数
-    int32 score_online = 106; // 在线人数
-    int32 score_gift = 107; // 礼物分数
+    google.protobuf.Timestamp start_at = 4; // 开播时间
+    google.protobuf.Timestamp end_at = 5; // 结束时间
     google.protobuf.Timestamp created_at = 255; // 创建时间
     google.protobuf.Timestamp updated_at = 256; // 更新时间
 }

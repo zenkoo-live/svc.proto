@@ -38,11 +38,11 @@ func NewLiveEndpoints() []*api.Endpoint {
 
 type LiveService interface {
 	// 查询直播间信息
-	GetLiveInfo(ctx context.Context, in *GetLiveInfoReq, opts ...client.CallOption) (*GetLiveInfoResp, error)
+	GetLive(ctx context.Context, in *GetLiveReq, opts ...client.CallOption) (*GetLiveResp, error)
 	// 批量获取直播间信息
-	MGetLiveInfo(ctx context.Context, in *MGetLiveInfoReq, opts ...client.CallOption) (*MGetLiveInfoResp, error)
+	MGetLive(ctx context.Context, in *MGetLiveReq, opts ...client.CallOption) (*MGetLiveResp, error)
 	// 获取在播直播间列表
-	ListLiveInfo(ctx context.Context, in *ListLiveInfoReq, opts ...client.CallOption) (*ListLiveInfoResp, error)
+	ListLive(ctx context.Context, in *ListLiveReq, opts ...client.CallOption) (*ListLiveResp, error)
 }
 
 type liveService struct {
@@ -57,9 +57,9 @@ func NewLiveService(name string, c client.Client) LiveService {
 	}
 }
 
-func (c *liveService) GetLiveInfo(ctx context.Context, in *GetLiveInfoReq, opts ...client.CallOption) (*GetLiveInfoResp, error) {
-	req := c.c.NewRequest(c.name, "Live.GetLiveInfo", in)
-	out := new(GetLiveInfoResp)
+func (c *liveService) GetLive(ctx context.Context, in *GetLiveReq, opts ...client.CallOption) (*GetLiveResp, error) {
+	req := c.c.NewRequest(c.name, "Live.GetLive", in)
+	out := new(GetLiveResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -67,9 +67,9 @@ func (c *liveService) GetLiveInfo(ctx context.Context, in *GetLiveInfoReq, opts 
 	return out, nil
 }
 
-func (c *liveService) MGetLiveInfo(ctx context.Context, in *MGetLiveInfoReq, opts ...client.CallOption) (*MGetLiveInfoResp, error) {
-	req := c.c.NewRequest(c.name, "Live.MGetLiveInfo", in)
-	out := new(MGetLiveInfoResp)
+func (c *liveService) MGetLive(ctx context.Context, in *MGetLiveReq, opts ...client.CallOption) (*MGetLiveResp, error) {
+	req := c.c.NewRequest(c.name, "Live.MGetLive", in)
+	out := new(MGetLiveResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -77,9 +77,9 @@ func (c *liveService) MGetLiveInfo(ctx context.Context, in *MGetLiveInfoReq, opt
 	return out, nil
 }
 
-func (c *liveService) ListLiveInfo(ctx context.Context, in *ListLiveInfoReq, opts ...client.CallOption) (*ListLiveInfoResp, error) {
-	req := c.c.NewRequest(c.name, "Live.ListLiveInfo", in)
-	out := new(ListLiveInfoResp)
+func (c *liveService) ListLive(ctx context.Context, in *ListLiveReq, opts ...client.CallOption) (*ListLiveResp, error) {
+	req := c.c.NewRequest(c.name, "Live.ListLive", in)
+	out := new(ListLiveResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -91,18 +91,18 @@ func (c *liveService) ListLiveInfo(ctx context.Context, in *ListLiveInfoReq, opt
 
 type LiveHandler interface {
 	// 查询直播间信息
-	GetLiveInfo(context.Context, *GetLiveInfoReq, *GetLiveInfoResp) error
+	GetLive(context.Context, *GetLiveReq, *GetLiveResp) error
 	// 批量获取直播间信息
-	MGetLiveInfo(context.Context, *MGetLiveInfoReq, *MGetLiveInfoResp) error
+	MGetLive(context.Context, *MGetLiveReq, *MGetLiveResp) error
 	// 获取在播直播间列表
-	ListLiveInfo(context.Context, *ListLiveInfoReq, *ListLiveInfoResp) error
+	ListLive(context.Context, *ListLiveReq, *ListLiveResp) error
 }
 
 func RegisterLiveHandler(s server.Server, hdlr LiveHandler, opts ...server.HandlerOption) error {
 	type live interface {
-		GetLiveInfo(ctx context.Context, in *GetLiveInfoReq, out *GetLiveInfoResp) error
-		MGetLiveInfo(ctx context.Context, in *MGetLiveInfoReq, out *MGetLiveInfoResp) error
-		ListLiveInfo(ctx context.Context, in *ListLiveInfoReq, out *ListLiveInfoResp) error
+		GetLive(ctx context.Context, in *GetLiveReq, out *GetLiveResp) error
+		MGetLive(ctx context.Context, in *MGetLiveReq, out *MGetLiveResp) error
+		ListLive(ctx context.Context, in *ListLiveReq, out *ListLiveResp) error
 	}
 	type Live struct {
 		live
@@ -115,14 +115,14 @@ type liveHandler struct {
 	LiveHandler
 }
 
-func (h *liveHandler) GetLiveInfo(ctx context.Context, in *GetLiveInfoReq, out *GetLiveInfoResp) error {
-	return h.LiveHandler.GetLiveInfo(ctx, in, out)
+func (h *liveHandler) GetLive(ctx context.Context, in *GetLiveReq, out *GetLiveResp) error {
+	return h.LiveHandler.GetLive(ctx, in, out)
 }
 
-func (h *liveHandler) MGetLiveInfo(ctx context.Context, in *MGetLiveInfoReq, out *MGetLiveInfoResp) error {
-	return h.LiveHandler.MGetLiveInfo(ctx, in, out)
+func (h *liveHandler) MGetLive(ctx context.Context, in *MGetLiveReq, out *MGetLiveResp) error {
+	return h.LiveHandler.MGetLive(ctx, in, out)
 }
 
-func (h *liveHandler) ListLiveInfo(ctx context.Context, in *ListLiveInfoReq, out *ListLiveInfoResp) error {
-	return h.LiveHandler.ListLiveInfo(ctx, in, out)
+func (h *liveHandler) ListLive(ctx context.Context, in *ListLiveReq, out *ListLiveResp) error {
+	return h.LiveHandler.ListLive(ctx, in, out)
 }

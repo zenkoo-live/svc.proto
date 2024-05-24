@@ -59,14 +59,14 @@
     - [Category](#svc-biz-room-Category)
   
 - [svc.biz.room/live.proto](#svc-biz-room_live-proto)
-    - [GetLiveInfoReq](#svc-biz-room-GetLiveInfoReq)
-    - [GetLiveInfoResp](#svc-biz-room-GetLiveInfoResp)
-    - [ListLiveInfoReq](#svc-biz-room-ListLiveInfoReq)
-    - [ListLiveInfoResp](#svc-biz-room-ListLiveInfoResp)
+    - [GetLiveReq](#svc-biz-room-GetLiveReq)
+    - [GetLiveResp](#svc-biz-room-GetLiveResp)
+    - [ListLiveReq](#svc-biz-room-ListLiveReq)
+    - [ListLiveResp](#svc-biz-room-ListLiveResp)
     - [LiveInfo](#svc-biz-room-LiveInfo)
-    - [MGetLiveInfoReq](#svc-biz-room-MGetLiveInfoReq)
-    - [MGetLiveInfoResp](#svc-biz-room-MGetLiveInfoResp)
-    - [MGetLiveInfoResp.ItemsEntry](#svc-biz-room-MGetLiveInfoResp-ItemsEntry)
+    - [MGetLiveReq](#svc-biz-room-MGetLiveReq)
+    - [MGetLiveResp](#svc-biz-room-MGetLiveResp)
+    - [MGetLiveResp.ItemsEntry](#svc-biz-room-MGetLiveResp-ItemsEntry)
   
     - [Live](#svc-biz-room-Live)
   
@@ -933,9 +933,9 @@ CategoryInfo 分类详情
 
 
 
-<a name="svc-biz-room-GetLiveInfoReq"></a>
+<a name="svc-biz-room-GetLiveReq"></a>
 
-### GetLiveInfoReq
+### GetLiveReq
 
 
 
@@ -948,9 +948,9 @@ CategoryInfo 分类详情
 
 
 
-<a name="svc-biz-room-GetLiveInfoResp"></a>
+<a name="svc-biz-room-GetLiveResp"></a>
 
-### GetLiveInfoResp
+### GetLiveResp
 
 
 
@@ -963,9 +963,9 @@ CategoryInfo 分类详情
 
 
 
-<a name="svc-biz-room-ListLiveInfoReq"></a>
+<a name="svc-biz-room-ListLiveReq"></a>
 
-### ListLiveInfoReq
+### ListLiveReq
 
 
 
@@ -979,9 +979,9 @@ CategoryInfo 分类详情
 
 
 
-<a name="svc-biz-room-ListLiveInfoResp"></a>
+<a name="svc-biz-room-ListLiveResp"></a>
 
-### ListLiveInfoResp
+### ListLiveResp
 
 
 
@@ -1005,17 +1005,8 @@ CategoryInfo 分类详情
 | id | [string](#string) |  | id |
 | streamer_id | [string](#string) |  | 主播id |
 | category_id | [string](#string) |  | 分类id |
-| status | [LiveStatus](#svc-biz-room-LiveStatus) |  | 状态：1表示开播，2表示关播 |
-| display_type | [LiveDisplayType](#svc-biz-room-LiveDisplayType) |  | 横竖屏类型 |
 | start_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开播时间 |
 | end_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 结束时间 |
-| score_recommend | [int32](#int32) |  | 推荐分数 |
-| score_search | [int32](#int32) |  | 搜索分数 |
-| score_subscribe | [int32](#int32) |  | 关注分数 |
-| score_hot | [int32](#int32) |  | 热度分数 |
-| score_glamour | [int32](#int32) |  | 魅力分数 |
-| score_online | [int32](#int32) |  | 在线人数 |
-| score_gift | [int32](#int32) |  | 礼物分数 |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
 | updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 更新时间 |
 
@@ -1024,9 +1015,9 @@ CategoryInfo 分类详情
 
 
 
-<a name="svc-biz-room-MGetLiveInfoReq"></a>
+<a name="svc-biz-room-MGetLiveReq"></a>
 
-### MGetLiveInfoReq
+### MGetLiveReq
 
 
 
@@ -1039,24 +1030,24 @@ CategoryInfo 分类详情
 
 
 
-<a name="svc-biz-room-MGetLiveInfoResp"></a>
+<a name="svc-biz-room-MGetLiveResp"></a>
 
-### MGetLiveInfoResp
+### MGetLiveResp
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| items | [MGetLiveInfoResp.ItemsEntry](#svc-biz-room-MGetLiveInfoResp-ItemsEntry) | repeated | 直播信息 |
+| items | [MGetLiveResp.ItemsEntry](#svc-biz-room-MGetLiveResp-ItemsEntry) | repeated | 直播信息 |
 
 
 
 
 
 
-<a name="svc-biz-room-MGetLiveInfoResp-ItemsEntry"></a>
+<a name="svc-biz-room-MGetLiveResp-ItemsEntry"></a>
 
-### MGetLiveInfoResp.ItemsEntry
+### MGetLiveResp.ItemsEntry
 
 
 
@@ -1083,9 +1074,9 @@ CategoryInfo 分类详情
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| GetLiveInfo | [GetLiveInfoReq](#svc-biz-room-GetLiveInfoReq) | [GetLiveInfoResp](#svc-biz-room-GetLiveInfoResp) | 查询直播间信息 |
-| MGetLiveInfo | [MGetLiveInfoReq](#svc-biz-room-MGetLiveInfoReq) | [MGetLiveInfoResp](#svc-biz-room-MGetLiveInfoResp) | 批量获取直播间信息 |
-| ListLiveInfo | [ListLiveInfoReq](#svc-biz-room-ListLiveInfoReq) | [ListLiveInfoResp](#svc-biz-room-ListLiveInfoResp) | 获取在播直播间列表 |
+| GetLive | [GetLiveReq](#svc-biz-room-GetLiveReq) | [GetLiveResp](#svc-biz-room-GetLiveResp) | 查询直播间信息 |
+| MGetLive | [MGetLiveReq](#svc-biz-room-MGetLiveReq) | [MGetLiveResp](#svc-biz-room-MGetLiveResp) | 批量获取直播间信息 |
+| ListLive | [ListLiveReq](#svc-biz-room-ListLiveReq) | [ListLiveResp](#svc-biz-room-ListLiveResp) | 获取在播直播间列表 |
 
  
 
