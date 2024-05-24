@@ -33,6 +33,7 @@ message MGetLiveResp {
 message ListLiveReq {
     int32 page = 1; // 页数
     int32 limit = 2; // 条数
+    string streamer_id = 3; // 主播id
 }
 message ListLiveResp {
     repeated LiveInfo items = 1; // 直播信息
