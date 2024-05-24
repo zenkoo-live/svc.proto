@@ -1004,6 +1004,7 @@ CategoryInfo 分类详情
 | ----- | ---- | ----- | ----------- |
 | id | [string](#string) |  | id |
 | streamer_id | [string](#string) |  | 主播id |
+| room_id | [string](#string) |  | 房间id |
 | category_id | [string](#string) |  | 分类id |
 | start_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开播时间 |
 | end_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 结束时间 |
@@ -1195,9 +1196,9 @@ CategoryInfo 分类详情
 | category_id | [string](#string) |  | 分类id |
 | title | [string](#string) |  | 标题 |
 | intro | [string](#string) |  | 简介 |
+| live_id | [string](#string) |  | 直播id（开播状态时才会有，关播时清空） |
 | live_region | [int32](#int32) |  | 直播区域（开播状态时才会有，关播时清空） |
 | live_status | [LiveStatus](#svc-biz-room-LiveStatus) |  | 房间状态：1关播，2开播 |
-| live_id | [string](#string) |  | 直播id（开播状态时才会有，关播时清空） |
 | live_display_type | [LiveDisplayType](#svc-biz-room-LiveDisplayType) |  | 横竖屏类型（开播状态时才会有，关播时清空） |
 | live_start_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开播时间（开播状态时才会有，关播时清空） |
 | score_recommend | [int32](#int32) |  | 推荐分数（后台配置） |

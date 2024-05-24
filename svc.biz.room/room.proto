@@ -45,9 +45,9 @@ message RoomInfo {
     string title = 5; // 标题
     string intro = 6; // 简介
     
-    int32 live_region = 11; // 直播区域（开播状态时才会有，关播时清空）
-    LiveStatus live_status = 12; // 房间状态：1关播，2开播
-    string live_id = 13; // 直播id（开播状态时才会有，关播时清空）
+    string live_id = 11; // 直播id（开播状态时才会有，关播时清空）
+    int32 live_region = 12; // 直播区域（开播状态时才会有，关播时清空）
+    LiveStatus live_status = 13; // 房间状态：1关播，2开播
     LiveDisplayType live_display_type = 14; // 横竖屏类型（开播状态时才会有，关播时清空）
     google.protobuf.Timestamp live_start_at = 15; // 开播时间（开播状态时才会有，关播时清空）
 

@@ -42,9 +42,10 @@ message ListLiveResp {
 message LiveInfo {
     string id = 1; // id
     string streamer_id = 2; // 主播id
-    string category_id = 3; // 分类id
-    google.protobuf.Timestamp start_at = 4; // 开播时间
-    google.protobuf.Timestamp end_at = 5; // 结束时间
+    string room_id = 3; // 房间id
+    string category_id = 4; // 分类id
+    google.protobuf.Timestamp start_at = 5; // 开播时间
+    google.protobuf.Timestamp end_at = 6; // 结束时间
     google.protobuf.Timestamp created_at = 255; // 创建时间
     google.protobuf.Timestamp updated_at = 256; // 更新时间
 }
