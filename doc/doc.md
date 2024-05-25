@@ -3,60 +3,6 @@
 
 ## Table of Contents
 
-- [svc.web.streamer/streamer.proto](#svc-web-streamer_streamer-proto)
-    - [Streamer](#svc-web-streamer-Streamer)
-  
-- [svc.infra.setting/setting.proto](#svc-infra-setting_setting-proto)
-    - [SettingGreetingReq](#svc-infra-setting-SettingGreetingReq)
-    - [SettingGreetingResp](#svc-infra-setting-SettingGreetingResp)
-  
-    - [Setting](#svc-infra-setting-Setting)
-  
-- [svc.infra.notifier/notifier.proto](#svc-infra-notifier_notifier-proto)
-    - [InitDBResp](#svc-infra-notifier-InitDBResp)
-  
-    - [Notifier](#svc-infra-notifier-Notifier)
-  
-- [svc.web.viewer/viewer.proto](#svc-web-viewer_viewer-proto)
-    - [Viewer](#svc-web-viewer-Viewer)
-  
-- [svc.biz.gift/gift.proto](#svc-biz-gift_gift-proto)
-    - [GiftAddReq](#svc-biz-gift-GiftAddReq)
-    - [GiftAddResp](#svc-biz-gift-GiftAddResp)
-    - [GiftGetRecordReq](#svc-biz-gift-GiftGetRecordReq)
-    - [GiftGetRecordResp](#svc-biz-gift-GiftGetRecordResp)
-    - [GiftGetReq](#svc-biz-gift-GiftGetReq)
-    - [GiftGetResp](#svc-biz-gift-GiftGetResp)
-    - [GiftInfo](#svc-biz-gift-GiftInfo)
-    - [GiftSendRecord](#svc-biz-gift-GiftSendRecord)
-    - [GiftSendRecordReq](#svc-biz-gift-GiftSendRecordReq)
-    - [GiftSendRecordResp](#svc-biz-gift-GiftSendRecordResp)
-    - [GiftSendReq](#svc-biz-gift-GiftSendReq)
-    - [GiftSendResp](#svc-biz-gift-GiftSendResp)
-    - [GiftUpdateReq](#svc-biz-gift-GiftUpdateReq)
-    - [GiftUpdateResp](#svc-biz-gift-GiftUpdateResp)
-    - [ListAdminReq](#svc-biz-gift-ListAdminReq)
-    - [ListAdminResp](#svc-biz-gift-ListAdminResp)
-    - [ListOnlineAllReq](#svc-biz-gift-ListOnlineAllReq)
-    - [ListOnlineByTypeReq](#svc-biz-gift-ListOnlineByTypeReq)
-    - [ListOnlineResp](#svc-biz-gift-ListOnlineResp)
-    - [LiveStatReq](#svc-biz-gift-LiveStatReq)
-    - [LiveStatResp](#svc-biz-gift-LiveStatResp)
-  
-    - [GiftRecommend](#svc-biz-gift-GiftRecommend)
-    - [GiftStatus](#svc-biz-gift-GiftStatus)
-    - [GiftType](#svc-biz-gift-GiftType)
-  
-    - [Gift](#svc-biz-gift-Gift)
-  
-- [svc.web.dashboard/dashboard.proto](#svc-web-dashboard_dashboard-proto)
-    - [Dashboard](#svc-web-dashboard-Dashboard)
-  
-- [svc.infra.static/static.proto](#svc-infra-static_static-proto)
-    - [InitDBResp](#svc-infra-static-InitDBResp)
-  
-    - [Static](#svc-infra-static-Static)
-  
 - [svc.biz.account/account.proto](#svc-biz-account_account-proto)
     - [AddManagerReq](#svc-biz-account-AddManagerReq)
     - [AddManagerResp](#svc-biz-account-AddManagerResp)
@@ -106,10 +52,10 @@
   
     - [Account](#svc-biz-account-Account)
   
-- [svc.biz.org/org.proto](#svc-biz-org_org-proto)
-    - [InitDBResp](#svc-biz-org-InitDBResp)
+- [svc.infra.static/static.proto](#svc-infra-static_static-proto)
+    - [InitDBResp](#svc-infra-static-InitDBResp)
   
-    - [Org](#svc-biz-org-Org)
+    - [Static](#svc-infra-static-Static)
   
 - [svc.biz.room/category.proto](#svc-biz-room_category-proto)
     - [CategoryInfo](#svc-biz-room-CategoryInfo)
@@ -126,653 +72,92 @@
   
     - [Category](#svc-biz-room-Category)
   
+- [svc.biz.room/live.proto](#svc-biz-room_live-proto)
+    - [GetLiveReq](#svc-biz-room-GetLiveReq)
+    - [GetLiveResp](#svc-biz-room-GetLiveResp)
+    - [ListLiveReq](#svc-biz-room-ListLiveReq)
+    - [ListLiveResp](#svc-biz-room-ListLiveResp)
+    - [LiveInfo](#svc-biz-room-LiveInfo)
+    - [MGetLiveReq](#svc-biz-room-MGetLiveReq)
+    - [MGetLiveResp](#svc-biz-room-MGetLiveResp)
+    - [MGetLiveResp.ItemsEntry](#svc-biz-room-MGetLiveResp-ItemsEntry)
+  
+    - [Live](#svc-biz-room-Live)
+  
 - [svc.biz.room/room.proto](#svc-biz-room_room-proto)
+    - [CreateRoomReq](#svc-biz-room-CreateRoomReq)
+    - [CreateRoomResp](#svc-biz-room-CreateRoomResp)
+    - [GetRoomListReq](#svc-biz-room-GetRoomListReq)
+    - [GetRoomListResp](#svc-biz-room-GetRoomListResp)
     - [GetRoomReq](#svc-biz-room-GetRoomReq)
     - [GetRoomResp](#svc-biz-room-GetRoomResp)
     - [RoomInfo](#svc-biz-room-RoomInfo)
+    - [StartLiveReq](#svc-biz-room-StartLiveReq)
+    - [StartLiveResp](#svc-biz-room-StartLiveResp)
+    - [StopLiveReq](#svc-biz-room-StopLiveReq)
+    - [StopLiveResp](#svc-biz-room-StopLiveResp)
+    - [UpdateRoomReq](#svc-biz-room-UpdateRoomReq)
+  
+    - [LiveDisplayType](#svc-biz-room-LiveDisplayType)
+    - [LiveStatus](#svc-biz-room-LiveStatus)
   
     - [Room](#svc-biz-room-Room)
   
+- [svc.infra.setting/setting.proto](#svc-infra-setting_setting-proto)
+    - [SettingGreetingReq](#svc-infra-setting-SettingGreetingReq)
+    - [SettingGreetingResp](#svc-infra-setting-SettingGreetingResp)
+  
+    - [Setting](#svc-infra-setting-Setting)
+  
+- [svc.web.viewer/viewer.proto](#svc-web-viewer_viewer-proto)
+    - [Viewer](#svc-web-viewer-Viewer)
+  
+- [svc.web.dashboard/dashboard.proto](#svc-web-dashboard_dashboard-proto)
+    - [Dashboard](#svc-web-dashboard-Dashboard)
+  
+- [svc.biz.org/org.proto](#svc-biz-org_org-proto)
+    - [InitDBResp](#svc-biz-org-InitDBResp)
+  
+    - [Org](#svc-biz-org-Org)
+  
+- [svc.infra.notifier/notifier.proto](#svc-infra-notifier_notifier-proto)
+    - [InitDBResp](#svc-infra-notifier-InitDBResp)
+  
+    - [Notifier](#svc-infra-notifier-Notifier)
+  
+- [svc.web.streamer/streamer.proto](#svc-web-streamer_streamer-proto)
+    - [Streamer](#svc-web-streamer-Streamer)
+  
+- [svc.biz.gift/gift.proto](#svc-biz-gift_gift-proto)
+    - [GiftAddReq](#svc-biz-gift-GiftAddReq)
+    - [GiftAddResp](#svc-biz-gift-GiftAddResp)
+    - [GiftGetRecordReq](#svc-biz-gift-GiftGetRecordReq)
+    - [GiftGetRecordResp](#svc-biz-gift-GiftGetRecordResp)
+    - [GiftGetReq](#svc-biz-gift-GiftGetReq)
+    - [GiftGetResp](#svc-biz-gift-GiftGetResp)
+    - [GiftInfo](#svc-biz-gift-GiftInfo)
+    - [GiftSendRecord](#svc-biz-gift-GiftSendRecord)
+    - [GiftSendRecordReq](#svc-biz-gift-GiftSendRecordReq)
+    - [GiftSendRecordResp](#svc-biz-gift-GiftSendRecordResp)
+    - [GiftSendReq](#svc-biz-gift-GiftSendReq)
+    - [GiftSendResp](#svc-biz-gift-GiftSendResp)
+    - [GiftUpdateReq](#svc-biz-gift-GiftUpdateReq)
+    - [GiftUpdateResp](#svc-biz-gift-GiftUpdateResp)
+    - [ListAdminReq](#svc-biz-gift-ListAdminReq)
+    - [ListAdminResp](#svc-biz-gift-ListAdminResp)
+    - [ListOnlineAllReq](#svc-biz-gift-ListOnlineAllReq)
+    - [ListOnlineByTypeReq](#svc-biz-gift-ListOnlineByTypeReq)
+    - [ListOnlineResp](#svc-biz-gift-ListOnlineResp)
+    - [LiveStatReq](#svc-biz-gift-LiveStatReq)
+    - [LiveStatResp](#svc-biz-gift-LiveStatResp)
+  
+    - [GiftRecommend](#svc-biz-gift-GiftRecommend)
+    - [GiftStatus](#svc-biz-gift-GiftStatus)
+    - [GiftType](#svc-biz-gift-GiftType)
+  
+    - [Gift](#svc-biz-gift-Gift)
+  
 - [Scalar Value Types](#scalar-value-types)
-
-
-
-<a name="svc-web-streamer_streamer-proto"></a>
-<p align="right"><a href="#top">Top</a></p>
-
-## svc.web.streamer/streamer.proto
-
-
- 
-
- 
-
- 
-
-
-<a name="svc-web-streamer-Streamer"></a>
-
-### Streamer
-
-
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-
- 
-
-
-
-<a name="svc-infra-setting_setting-proto"></a>
-<p align="right"><a href="#top">Top</a></p>
-
-## svc.infra.setting/setting.proto
-
-
-
-<a name="svc-infra-setting-SettingGreetingReq"></a>
-
-### SettingGreetingReq
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="svc-infra-setting-SettingGreetingResp"></a>
-
-### SettingGreetingResp
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  |  |
-
-
-
-
-
- 
-
- 
-
- 
-
-
-<a name="svc-infra-setting-Setting"></a>
-
-### Setting
-
-
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-| Greeting | [SettingGreetingReq](#svc-infra-setting-SettingGreetingReq) | [SettingGreetingResp](#svc-infra-setting-SettingGreetingResp) |  |
-
- 
-
-
-
-<a name="svc-infra-notifier_notifier-proto"></a>
-<p align="right"><a href="#top">Top</a></p>
-
-## svc.infra.notifier/notifier.proto
-
-
-
-<a name="svc-infra-notifier-InitDBResp"></a>
-
-### InitDBResp
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| result | [bool](#bool) |  |  |
-
-
-
-
-
- 
-
- 
-
- 
-
-
-<a name="svc-infra-notifier-Notifier"></a>
-
-### Notifier
-
-
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-| InitDB | [.google.protobuf.Empty](#google-protobuf-Empty) | [InitDBResp](#svc-infra-notifier-InitDBResp) | 初始化数据库 |
-
- 
-
-
-
-<a name="svc-web-viewer_viewer-proto"></a>
-<p align="right"><a href="#top">Top</a></p>
-
-## svc.web.viewer/viewer.proto
-
-
- 
-
- 
-
- 
-
-
-<a name="svc-web-viewer-Viewer"></a>
-
-### Viewer
-
-
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-
- 
-
-
-
-<a name="svc-biz-gift_gift-proto"></a>
-<p align="right"><a href="#top">Top</a></p>
-
-## svc.biz.gift/gift.proto
-
-
-
-<a name="svc-biz-gift-GiftAddReq"></a>
-
-### GiftAddReq
-添加礼物
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| gift | [GiftInfo](#svc-biz-gift-GiftInfo) |  |  |
-
-
-
-
-
-
-<a name="svc-biz-gift-GiftAddResp"></a>
-
-### GiftAddResp
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| gift_id | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="svc-biz-gift-GiftGetRecordReq"></a>
-
-### GiftGetRecordReq
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| pageno | [int64](#int64) |  | 第几页 |
-| pagenum | [int64](#int64) |  | 每页几条数据 |
-| room_id | [string](#string) |  | 房间id |
-| live_id | [string](#string) |  | 直播id |
-| start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开始时间 |
-| end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 结束时间 |
-
-
-
-
-
-
-<a name="svc-biz-gift-GiftGetRecordResp"></a>
-
-### GiftGetRecordResp
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| items | [GiftSendRecord](#svc-biz-gift-GiftSendRecord) | repeated |  |
-
-
-
-
-
-
-<a name="svc-biz-gift-GiftGetReq"></a>
-
-### GiftGetReq
-获取礼物
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| gift_id | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="svc-biz-gift-GiftGetResp"></a>
-
-### GiftGetResp
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| gift | [GiftInfo](#svc-biz-gift-GiftInfo) |  |  |
-
-
-
-
-
-
-<a name="svc-biz-gift-GiftInfo"></a>
-
-### GiftInfo
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| gift_id | [string](#string) |  | 礼物id |
-| gift_name | [string](#string) |  | 礼物名称 |
-| type | [GiftType](#svc-biz-gift-GiftType) |  | 礼物类型 |
-| status | [GiftStatus](#svc-biz-gift-GiftStatus) |  | 礼物状态 |
-| recommend | [GiftRecommend](#svc-biz-gift-GiftRecommend) |  | 礼物推荐状态 |
-| price | [int32](#int32) |  | 价格 |
-| desc | [string](#string) |  | 描述 |
-| combo_timeout | [int32](#int32) |  | combo触发间隔时间 |
-| combo_showtime | [int32](#int32) |  | combo效果展示时间 |
-| prize | [string](#string) |  | 奖励(json字符串:{&#34;user_exp&#34;:100, &#34;anchor_exp&#34;:20}) |
-| pack | [string](#string) |  | 批量包(json字符串:[{pack:&#34;20&#34;,desc:&#34;&#34;},{pack:&#34;99&#34;,desc:&#34;&#34;}]) |
-| pic | [string](#string) |  | 图片资源(json字符串:{&#34;icon&#34;:&#34;&#34;, &#34;icon_gif&#34;:&#34;&#34;, &#34;chat_icon&#34;:&#34;&#34;, &#34;combo_bg&#34;:&#34;&#34;, &#34;combo_icon&#34;:&#34;&#34;}) |
-
-
-
-
-
-
-<a name="svc-biz-gift-GiftSendRecord"></a>
-
-### GiftSendRecord
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| gift_id | [string](#string) |  | 礼物id |
-| gift_name | [string](#string) |  | 礼物名 |
-| num | [int32](#int32) |  | 数量 |
-| total_price | [int32](#int32) |  | 总价 |
-| from_uid | [string](#string) |  | 送礼uid |
-| room_id | [string](#string) |  | 房间id |
-| live_id | [string](#string) |  | 直播id |
-| send_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
-
-
-
-
-
-
-<a name="svc-biz-gift-GiftSendRecordReq"></a>
-
-### GiftSendRecordReq
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| pageno | [int64](#int64) |  | 第几页 |
-| pagenum | [int64](#int64) |  | 每页几条数据 |
-| from_uid | [string](#string) |  | 用户id |
-| start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开始时间 |
-| end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 结束时间 |
-
-
-
-
-
-
-<a name="svc-biz-gift-GiftSendRecordResp"></a>
-
-### GiftSendRecordResp
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| items | [GiftSendRecord](#svc-biz-gift-GiftSendRecord) | repeated |  |
-
-
-
-
-
-
-<a name="svc-biz-gift-GiftSendReq"></a>
-
-### GiftSendReq
-赠送礼物
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| uuid | [string](#string) |  | 唯一标识 |
-| order_id | [string](#string) |  | 支付订单id |
-| gift_id | [string](#string) |  | 礼物id |
-| num | [int32](#int32) |  | 数量 |
-| prize | [int32](#int32) |  | 礼物单价（主要用做验证） |
-| from_uid | [string](#string) |  | 赠送者uid |
-| to_uid | [string](#string) |  | 接收者uid |
-| room_id | [string](#string) |  | 房间id |
-| live_id | [string](#string) |  | 直播id |
-
-
-
-
-
-
-<a name="svc-biz-gift-GiftSendResp"></a>
-
-### GiftSendResp
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| sendret | [bool](#bool) |  | 赠送结果 |
-| combo_num | [int32](#int32) |  | 连击数 |
-| combo_group | [string](#string) |  | 连击组 |
-
-
-
-
-
-
-<a name="svc-biz-gift-GiftUpdateReq"></a>
-
-### GiftUpdateReq
-更新礼物
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| gift_id | [string](#string) |  |  |
-| gift | [GiftInfo](#svc-biz-gift-GiftInfo) |  |  |
-| update_filed | [google.protobuf.FieldMask](#google-protobuf-FieldMask) |  |  |
-
-
-
-
-
-
-<a name="svc-biz-gift-GiftUpdateResp"></a>
-
-### GiftUpdateResp
-
-
-
-
-
-
-
-<a name="svc-biz-gift-ListAdminReq"></a>
-
-### ListAdminReq
-礼物列表（后台使用）
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| return_count | [bool](#bool) |  | 是否返回总数 |
-| pageno | [int64](#int64) |  | 第几页 |
-| pagenum | [int64](#int64) |  | 每页几条数据 |
-| type | [GiftType](#svc-biz-gift-GiftType) |  | 礼物类型 |
-| status | [GiftStatus](#svc-biz-gift-GiftStatus) |  | 礼物状态 |
-| keyword | [string](#string) |  | 关键字 |
-
-
-
-
-
-
-<a name="svc-biz-gift-ListAdminResp"></a>
-
-### ListAdminResp
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| items | [GiftInfo](#svc-biz-gift-GiftInfo) | repeated |  |
-| total | [int64](#int64) |  |  |
-
-
-
-
-
-
-<a name="svc-biz-gift-ListOnlineAllReq"></a>
-
-### ListOnlineAllReq
-
-
-
-
-
-
-
-<a name="svc-biz-gift-ListOnlineByTypeReq"></a>
-
-### ListOnlineByTypeReq
-礼物列表（房间使用）
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| type | [GiftType](#svc-biz-gift-GiftType) |  | 礼物类型 |
-
-
-
-
-
-
-<a name="svc-biz-gift-ListOnlineResp"></a>
-
-### ListOnlineResp
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| items | [GiftInfo](#svc-biz-gift-GiftInfo) | repeated |  |
-
-
-
-
-
-
-<a name="svc-biz-gift-LiveStatReq"></a>
-
-### LiveStatReq
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| room_id | [string](#string) |  |  |
-| live_id | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="svc-biz-gift-LiveStatResp"></a>
-
-### LiveStatResp
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| total_cost | [int32](#int32) |  |  |
-
-
-
-
-
- 
-
-
-<a name="svc-biz-gift-GiftRecommend"></a>
-
-### GiftRecommend
-
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| GiftRecommendUnknown | 0 | 未知 |
-| GiftRecommendYes | 1 | 推荐 |
-| GiftRecommendNo | 2 | 未推荐 |
-
-
-
-<a name="svc-biz-gift-GiftStatus"></a>
-
-### GiftStatus
-
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| GiftStatusUnknown | 0 | 未知 |
-| GiftStatusOnline | 1 | 上线 |
-| GiftStatusOffline | 2 | 下线 |
-
-
-
-<a name="svc-biz-gift-GiftType"></a>
-
-### GiftType
-
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| GiftTypeUnknown | 0 | 未知 |
-| GiftTypeCommon | 1 | 普通礼物 |
-| GiftTypeFan | 2 | 粉丝礼物 |
-| GiftTypeAristocrat | 3 | 贵族礼物 |
-
-
- 
-
- 
-
-
-<a name="svc-biz-gift-Gift"></a>
-
-### Gift
-
-
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-| Add | [GiftAddReq](#svc-biz-gift-GiftAddReq) | [GiftAddResp](#svc-biz-gift-GiftAddResp) | Add 添加礼物 |
-| Get | [GiftGetReq](#svc-biz-gift-GiftGetReq) | [GiftGetResp](#svc-biz-gift-GiftGetResp) | Get 查询礼物 |
-| Update | [GiftUpdateReq](#svc-biz-gift-GiftUpdateReq) | [GiftUpdateResp](#svc-biz-gift-GiftUpdateResp) | Update 更新礼物 |
-| ListAdmin | [ListAdminReq](#svc-biz-gift-ListAdminReq) | [ListAdminResp](#svc-biz-gift-ListAdminResp) | ListAdmin 后台查询礼物列表接口 |
-| ListOnlineByType | [ListOnlineByTypeReq](#svc-biz-gift-ListOnlineByTypeReq) | [ListOnlineResp](#svc-biz-gift-ListOnlineResp) | ListOnlineByType 前台房间礼物查询接口 |
-| ListOnlineAll | [ListOnlineAllReq](#svc-biz-gift-ListOnlineAllReq) | [ListOnlineResp](#svc-biz-gift-ListOnlineResp) | ListOnlineAll 所有礼物的缓存接口 |
-| Send | [GiftSendReq](#svc-biz-gift-GiftSendReq) | [GiftSendResp](#svc-biz-gift-GiftSendResp) | Send 送礼物接口 |
-| SendRecord | [GiftSendRecordReq](#svc-biz-gift-GiftSendRecordReq) | [GiftSendRecordResp](#svc-biz-gift-GiftSendRecordResp) | SendRecord 送礼记录 |
-| GetRecord | [GiftGetRecordReq](#svc-biz-gift-GiftGetRecordReq) | [GiftGetRecordResp](#svc-biz-gift-GiftGetRecordResp) | GetRecord 收礼记录 |
-| LiveStat | [LiveStatReq](#svc-biz-gift-LiveStatReq) | [LiveStatResp](#svc-biz-gift-LiveStatResp) | LiveStat 直播统计 |
-
- 
-
-
-
-<a name="svc-web-dashboard_dashboard-proto"></a>
-<p align="right"><a href="#top">Top</a></p>
-
-## svc.web.dashboard/dashboard.proto
-
-
- 
-
- 
-
- 
-
-
-<a name="svc-web-dashboard-Dashboard"></a>
-
-### Dashboard
-
-
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-
- 
-
-
-
-<a name="svc-infra-static_static-proto"></a>
-<p align="right"><a href="#top">Top</a></p>
-
-## svc.infra.static/static.proto
-
-
-
-<a name="svc-infra-static-InitDBResp"></a>
-
-### InitDBResp
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| result | [bool](#bool) |  |  |
-
-
-
-
-
- 
-
- 
-
- 
-
-
-<a name="svc-infra-static-Static"></a>
-
-### Static
-
-
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-| InitDB | [.google.protobuf.Empty](#google-protobuf-Empty) | [InitDBResp](#svc-infra-static-InitDBResp) | 初始化数据库 |
-
- 
 
 
 
@@ -1536,14 +921,14 @@ Models
 
 
 
-<a name="svc-biz-org_org-proto"></a>
+<a name="svc-infra-static_static-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## svc.biz.org/org.proto
+## svc.infra.static/static.proto
 
 
 
-<a name="svc-biz-org-InitDBResp"></a>
+<a name="svc-infra-static-InitDBResp"></a>
 
 ### InitDBResp
 
@@ -1564,14 +949,14 @@ Models
  
 
 
-<a name="svc-biz-org-Org"></a>
+<a name="svc-infra-static-Static"></a>
 
-### Org
+### Static
 
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| InitDB | [.google.protobuf.Empty](#google-protobuf-Empty) | [InitDBResp](#svc-biz-org-InitDBResp) | 初始化数据库 |
+| InitDB | [.google.protobuf.Empty](#google-protobuf-Empty) | [InitDBResp](#svc-infra-static-InitDBResp) | 初始化数据库 |
 
  
 
@@ -1592,14 +977,14 @@ CategoryInfo 分类详情
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| category_id | [int64](#int64) |  |  |
-| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
-| updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
-| parent_id | [int64](#int64) |  | 父级ID |
+| category_id | [string](#string) |  |  |
+| parent_id | [string](#string) |  | 父级ID |
 | category_code | [string](#string) |  | 代号（唯一，预留） |
 | category_name | [string](#string) |  | 名称 |
 | sort | [int32](#int32) |  | 排序 |
 | childrens | [CategoryInfo](#svc-biz-room-CategoryInfo) | repeated |  |
+| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+| updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
 
 
 
@@ -1644,7 +1029,7 @@ CategoryInfo 分类详情
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| category_id | [int64](#int64) |  |  |
+| category_id | [string](#string) |  |  |
 
 
 
@@ -1659,7 +1044,7 @@ CategoryInfo 分类详情
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| category_id | [int64](#int64) |  |  |
+| category_id | [string](#string) |  |  |
 
 
 
@@ -1689,7 +1074,7 @@ CategoryInfo 分类详情
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent_id | [int64](#int64) |  | 父级ID，跟级分类传1 |
+| parent_id | [string](#string) |  | 父级ID，跟级分类传1 |
 | return_count | [bool](#bool) |  | 是否返回总数 |
 
 
@@ -1745,7 +1130,7 @@ CategoryInfo 分类详情
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| category_id | [int64](#int64) |  |  |
+| category_id | [string](#string) |  |  |
 | category | [CategoryInfo](#svc-biz-room-CategoryInfo) |  |  |
 | update_mask | [google.protobuf.FieldMask](#google-protobuf-FieldMask) |  |  |
 
@@ -1778,6 +1163,164 @@ CategoryInfo 分类详情
 
 
 
+<a name="svc-biz-room_live-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.biz.room/live.proto
+
+
+
+<a name="svc-biz-room-GetLiveReq"></a>
+
+### GetLiveReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| live_id | [string](#string) |  | 直播id |
+
+
+
+
+
+
+<a name="svc-biz-room-GetLiveResp"></a>
+
+### GetLiveResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| live | [LiveInfo](#svc-biz-room-LiveInfo) |  | 直播信息 |
+
+
+
+
+
+
+<a name="svc-biz-room-ListLiveReq"></a>
+
+### ListLiveReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| page | [int32](#int32) |  | 页数 |
+| limit | [int32](#int32) |  | 条数 |
+| streamer_id | [string](#string) |  | 主播id |
+
+
+
+
+
+
+<a name="svc-biz-room-ListLiveResp"></a>
+
+### ListLiveResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [LiveInfo](#svc-biz-room-LiveInfo) | repeated | 直播信息 |
+
+
+
+
+
+
+<a name="svc-biz-room-LiveInfo"></a>
+
+### LiveInfo
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  | id |
+| streamer_id | [string](#string) |  | 主播id |
+| room_id | [string](#string) |  | 房间id |
+| category_id | [string](#string) |  | 分类id |
+| start_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开播时间 |
+| end_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 结束时间 |
+| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+| updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 更新时间 |
+
+
+
+
+
+
+<a name="svc-biz-room-MGetLiveReq"></a>
+
+### MGetLiveReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| live_ids | [string](#string) | repeated | 直播id列表 |
+
+
+
+
+
+
+<a name="svc-biz-room-MGetLiveResp"></a>
+
+### MGetLiveResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [MGetLiveResp.ItemsEntry](#svc-biz-room-MGetLiveResp-ItemsEntry) | repeated | 直播信息 |
+
+
+
+
+
+
+<a name="svc-biz-room-MGetLiveResp-ItemsEntry"></a>
+
+### MGetLiveResp.ItemsEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [LiveInfo](#svc-biz-room-LiveInfo) |  |  |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="svc-biz-room-Live"></a>
+
+### Live
+直播
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| GetLive | [GetLiveReq](#svc-biz-room-GetLiveReq) | [GetLiveResp](#svc-biz-room-GetLiveResp) | 查询直播间信息 |
+| MGetLive | [MGetLiveReq](#svc-biz-room-MGetLiveReq) | [MGetLiveResp](#svc-biz-room-MGetLiveResp) | 批量获取直播间信息 |
+| ListLive | [ListLiveReq](#svc-biz-room-ListLiveReq) | [ListLiveResp](#svc-biz-room-ListLiveResp) | 获取在播直播间列表 |
+
+ 
+
+
+
 <a name="svc-biz-room_room-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
@@ -1785,10 +1328,77 @@ CategoryInfo 分类详情
 
 
 
+<a name="svc-biz-room-CreateRoomReq"></a>
+
+### CreateRoomReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| room | [RoomInfo](#svc-biz-room-RoomInfo) |  | 房间信息 |
+
+
+
+
+
+
+<a name="svc-biz-room-CreateRoomResp"></a>
+
+### CreateRoomResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| room | [RoomInfo](#svc-biz-room-RoomInfo) |  | 房间信息 |
+
+
+
+
+
+
+<a name="svc-biz-room-GetRoomListReq"></a>
+
+### GetRoomListReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| page | [int32](#int32) |  | 页数 |
+| limit | [int32](#int32) |  | 条数 |
+| streamer_id | [string](#string) |  | 主播id |
+
+
+
+
+
+
+<a name="svc-biz-room-GetRoomListResp"></a>
+
+### GetRoomListResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [RoomInfo](#svc-biz-room-RoomInfo) | repeated | 房间列表 |
+
+
+
+
+
+
 <a name="svc-biz-room-GetRoomReq"></a>
 
 ### GetRoomReq
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  | id |
 
 
 
@@ -1801,6 +1411,11 @@ CategoryInfo 分类详情
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| room | [RoomInfo](#svc-biz-room-RoomInfo) |  | 房间信息 |
+
+
 
 
 
@@ -1811,10 +1426,135 @@ CategoryInfo 分类详情
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  | id |
+| display_id | [string](#string) |  | 显示id |
+| streamer_id | [string](#string) |  | 主播id |
+| category_id | [string](#string) |  | 分类id |
+| title | [string](#string) |  | 标题 |
+| intro | [string](#string) |  | 简介 |
+| hidden | [bool](#bool) |  | 是否隐藏 |
+| bind_tags | [string](#string) | repeated | 标签 |
+| live_id | [string](#string) |  | 直播id（开播状态时才会有，关播时清空） |
+| live_region | [int32](#int32) |  | 直播区域（开播状态时才会有，关播时清空） |
+| live_status | [LiveStatus](#svc-biz-room-LiveStatus) |  | 房间状态：1关播，2开播 |
+| live_display_type | [LiveDisplayType](#svc-biz-room-LiveDisplayType) |  | 横竖屏类型（开播状态时才会有，关播时清空） |
+| live_start_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开播时间（开播状态时才会有，关播时清空） |
+| score_recommend | [int32](#int32) |  | 推荐分数（后台配置） |
+| score_search | [int32](#int32) |  | 搜索分数（后台配置） |
+| score_subscribe | [int32](#int32) |  | 关注分数（后台配置） |
+| score_hot | [int32](#int32) |  | 热度分数（后台配置） |
+| score_glamour | [int32](#int32) |  | 魅力分数 |
+| score_online | [int32](#int32) |  | 在线人数 |
+| score_gift | [int32](#int32) |  | 礼物分数 |
+| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+| updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 更新时间 |
+
+
+
+
+
+
+<a name="svc-biz-room-StartLiveReq"></a>
+
+### StartLiveReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer_id | [string](#string) |  | 主播id |
+| display_type | [LiveDisplayType](#svc-biz-room-LiveDisplayType) |  | 横竖屏类型 |
+
+
+
+
+
+
+<a name="svc-biz-room-StartLiveResp"></a>
+
+### StartLiveResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| live_id | [string](#string) |  | 直播id |
+
+
+
+
+
+
+<a name="svc-biz-room-StopLiveReq"></a>
+
+### StopLiveReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer_id | [string](#string) |  | 主播id |
+
+
+
+
+
+
+<a name="svc-biz-room-StopLiveResp"></a>
+
+### StopLiveResp
+
+
+
+
+
+
+
+<a name="svc-biz-room-UpdateRoomReq"></a>
+
+### UpdateRoomReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  | id |
+| room | [RoomInfo](#svc-biz-room-RoomInfo) |  | 房间信息 |
+| update_mask | [google.protobuf.FieldMask](#google-protobuf-FieldMask) |  |  |
+
+
 
 
 
  
+
+
+<a name="svc-biz-room-LiveDisplayType"></a>
+
+### LiveDisplayType
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| LiveDisplayTypeUnknown | 0 | 未知 |
+| LiveDisplayTypeHorizontal | 1 | 横屏 |
+| LiveDisplayTypeVertical | 2 | 竖屏 |
+
+
+
+<a name="svc-biz-room-LiveStatus"></a>
+
+### LiveStatus
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| LiveStatusUnknown | 0 | 未知 |
+| LiveStatusOnline | 1 | 上线 |
+| LiveStatusOffline | 2 | 下线 |
+
 
  
 
@@ -1824,11 +1564,655 @@ CategoryInfo 分类详情
 <a name="svc-biz-room-Room"></a>
 
 ### Room
-分类
+Room 房间
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| GetRoom | [GetRoomReq](#svc-biz-room-GetRoomReq) | [GetRoomResp](#svc-biz-room-GetRoomResp) |  |
+| CreateRoom | [CreateRoomReq](#svc-biz-room-CreateRoomReq) | [CreateRoomResp](#svc-biz-room-CreateRoomResp) | CreateRoom 创建房间 |
+| UpdateRoom | [UpdateRoomReq](#svc-biz-room-UpdateRoomReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | UpdateRoom 更新房间 |
+| GetRoom | [GetRoomReq](#svc-biz-room-GetRoomReq) | [GetRoomResp](#svc-biz-room-GetRoomResp) | GetRoom 查询房间 |
+| GetRoomList | [GetRoomListReq](#svc-biz-room-GetRoomListReq) | [GetRoomListResp](#svc-biz-room-GetRoomListResp) | GetRoomList 查询房间列表，直读mysql |
+| StartLive | [StartLiveReq](#svc-biz-room-StartLiveReq) | [StartLiveResp](#svc-biz-room-StartLiveResp) | StartLive 开始直播 |
+| StopLive | [StopLiveReq](#svc-biz-room-StopLiveReq) | [StopLiveResp](#svc-biz-room-StopLiveResp) | StopLive 关闭直播 |
+
+ 
+
+
+
+<a name="svc-infra-setting_setting-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.infra.setting/setting.proto
+
+
+
+<a name="svc-infra-setting-SettingGreetingReq"></a>
+
+### SettingGreetingReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-setting-SettingGreetingResp"></a>
+
+### SettingGreetingResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  |  |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="svc-infra-setting-Setting"></a>
+
+### Setting
+
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| Greeting | [SettingGreetingReq](#svc-infra-setting-SettingGreetingReq) | [SettingGreetingResp](#svc-infra-setting-SettingGreetingResp) |  |
+
+ 
+
+
+
+<a name="svc-web-viewer_viewer-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.web.viewer/viewer.proto
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="svc-web-viewer-Viewer"></a>
+
+### Viewer
+
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+
+ 
+
+
+
+<a name="svc-web-dashboard_dashboard-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.web.dashboard/dashboard.proto
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="svc-web-dashboard-Dashboard"></a>
+
+### Dashboard
+
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+
+ 
+
+
+
+<a name="svc-biz-org_org-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.biz.org/org.proto
+
+
+
+<a name="svc-biz-org-InitDBResp"></a>
+
+### InitDBResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| result | [bool](#bool) |  |  |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="svc-biz-org-Org"></a>
+
+### Org
+
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| InitDB | [.google.protobuf.Empty](#google-protobuf-Empty) | [InitDBResp](#svc-biz-org-InitDBResp) | 初始化数据库 |
+
+ 
+
+
+
+<a name="svc-infra-notifier_notifier-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.infra.notifier/notifier.proto
+
+
+
+<a name="svc-infra-notifier-InitDBResp"></a>
+
+### InitDBResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| result | [bool](#bool) |  |  |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="svc-infra-notifier-Notifier"></a>
+
+### Notifier
+
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| InitDB | [.google.protobuf.Empty](#google-protobuf-Empty) | [InitDBResp](#svc-infra-notifier-InitDBResp) | 初始化数据库 |
+
+ 
+
+
+
+<a name="svc-web-streamer_streamer-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.web.streamer/streamer.proto
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="svc-web-streamer-Streamer"></a>
+
+### Streamer
+
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+
+ 
+
+
+
+<a name="svc-biz-gift_gift-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.biz.gift/gift.proto
+
+
+
+<a name="svc-biz-gift-GiftAddReq"></a>
+
+### GiftAddReq
+添加礼物
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| gift | [GiftInfo](#svc-biz-gift-GiftInfo) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-gift-GiftAddResp"></a>
+
+### GiftAddResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| gift_id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-gift-GiftGetRecordReq"></a>
+
+### GiftGetRecordReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| pageno | [int64](#int64) |  | 第几页 |
+| pagenum | [int64](#int64) |  | 每页几条数据 |
+| room_id | [string](#string) |  | 房间id |
+| live_id | [string](#string) |  | 直播id |
+| start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开始时间 |
+| end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 结束时间 |
+
+
+
+
+
+
+<a name="svc-biz-gift-GiftGetRecordResp"></a>
+
+### GiftGetRecordResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [GiftSendRecord](#svc-biz-gift-GiftSendRecord) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-gift-GiftGetReq"></a>
+
+### GiftGetReq
+获取礼物
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| gift_id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-gift-GiftGetResp"></a>
+
+### GiftGetResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| gift | [GiftInfo](#svc-biz-gift-GiftInfo) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-gift-GiftInfo"></a>
+
+### GiftInfo
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| gift_id | [string](#string) |  | 礼物id |
+| gift_name | [string](#string) |  | 礼物名称 |
+| type | [GiftType](#svc-biz-gift-GiftType) |  | 礼物类型 |
+| status | [GiftStatus](#svc-biz-gift-GiftStatus) |  | 礼物状态 |
+| recommend | [GiftRecommend](#svc-biz-gift-GiftRecommend) |  | 礼物推荐状态 |
+| price | [int32](#int32) |  | 价格 |
+| desc | [string](#string) |  | 描述 |
+| combo_timeout | [int32](#int32) |  | combo触发间隔时间 |
+| combo_showtime | [int32](#int32) |  | combo效果展示时间 |
+| prize | [string](#string) |  | 奖励(json字符串:{&#34;user_exp&#34;:100, &#34;anchor_exp&#34;:20}) |
+| pack | [string](#string) |  | 批量包(json字符串:[{pack:&#34;20&#34;,desc:&#34;&#34;},{pack:&#34;99&#34;,desc:&#34;&#34;}]) |
+| pic | [string](#string) |  | 图片资源(json字符串:{&#34;icon&#34;:&#34;&#34;, &#34;icon_gif&#34;:&#34;&#34;, &#34;chat_icon&#34;:&#34;&#34;, &#34;combo_bg&#34;:&#34;&#34;, &#34;combo_icon&#34;:&#34;&#34;}) |
+
+
+
+
+
+
+<a name="svc-biz-gift-GiftSendRecord"></a>
+
+### GiftSendRecord
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| gift_id | [string](#string) |  | 礼物id |
+| gift_name | [string](#string) |  | 礼物名 |
+| num | [int32](#int32) |  | 数量 |
+| total_price | [int32](#int32) |  | 总价 |
+| from_uid | [string](#string) |  | 送礼uid |
+| room_id | [string](#string) |  | 房间id |
+| live_id | [string](#string) |  | 直播id |
+| send_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+
+
+
+
+
+
+<a name="svc-biz-gift-GiftSendRecordReq"></a>
+
+### GiftSendRecordReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| pageno | [int64](#int64) |  | 第几页 |
+| pagenum | [int64](#int64) |  | 每页几条数据 |
+| from_uid | [string](#string) |  | 用户id |
+| start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开始时间 |
+| end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 结束时间 |
+
+
+
+
+
+
+<a name="svc-biz-gift-GiftSendRecordResp"></a>
+
+### GiftSendRecordResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [GiftSendRecord](#svc-biz-gift-GiftSendRecord) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-gift-GiftSendReq"></a>
+
+### GiftSendReq
+赠送礼物
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| uuid | [string](#string) |  | 唯一标识 |
+| order_id | [string](#string) |  | 支付订单id |
+| gift_id | [string](#string) |  | 礼物id |
+| num | [int32](#int32) |  | 数量 |
+| prize | [int32](#int32) |  | 礼物单价（主要用做验证） |
+| from_uid | [string](#string) |  | 赠送者uid |
+| to_uid | [string](#string) |  | 接收者uid |
+| room_id | [string](#string) |  | 房间id |
+| live_id | [string](#string) |  | 直播id |
+
+
+
+
+
+
+<a name="svc-biz-gift-GiftSendResp"></a>
+
+### GiftSendResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| sendret | [bool](#bool) |  | 赠送结果 |
+| combo_num | [int32](#int32) |  | 连击数 |
+| combo_group | [string](#string) |  | 连击组 |
+
+
+
+
+
+
+<a name="svc-biz-gift-GiftUpdateReq"></a>
+
+### GiftUpdateReq
+更新礼物
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| gift_id | [string](#string) |  |  |
+| gift | [GiftInfo](#svc-biz-gift-GiftInfo) |  |  |
+| update_filed | [google.protobuf.FieldMask](#google-protobuf-FieldMask) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-gift-GiftUpdateResp"></a>
+
+### GiftUpdateResp
+
+
+
+
+
+
+
+<a name="svc-biz-gift-ListAdminReq"></a>
+
+### ListAdminReq
+礼物列表（后台使用）
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| return_count | [bool](#bool) |  | 是否返回总数 |
+| pageno | [int64](#int64) |  | 第几页 |
+| pagenum | [int64](#int64) |  | 每页几条数据 |
+| type | [GiftType](#svc-biz-gift-GiftType) |  | 礼物类型 |
+| status | [GiftStatus](#svc-biz-gift-GiftStatus) |  | 礼物状态 |
+| keyword | [string](#string) |  | 关键字 |
+
+
+
+
+
+
+<a name="svc-biz-gift-ListAdminResp"></a>
+
+### ListAdminResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [GiftInfo](#svc-biz-gift-GiftInfo) | repeated |  |
+| total | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-gift-ListOnlineAllReq"></a>
+
+### ListOnlineAllReq
+
+
+
+
+
+
+
+<a name="svc-biz-gift-ListOnlineByTypeReq"></a>
+
+### ListOnlineByTypeReq
+礼物列表（房间使用）
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| type | [GiftType](#svc-biz-gift-GiftType) |  | 礼物类型 |
+
+
+
+
+
+
+<a name="svc-biz-gift-ListOnlineResp"></a>
+
+### ListOnlineResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [GiftInfo](#svc-biz-gift-GiftInfo) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-gift-LiveStatReq"></a>
+
+### LiveStatReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| room_id | [string](#string) |  |  |
+| live_id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-gift-LiveStatResp"></a>
+
+### LiveStatResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| total_cost | [int32](#int32) |  |  |
+
+
+
+
+
+ 
+
+
+<a name="svc-biz-gift-GiftRecommend"></a>
+
+### GiftRecommend
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| GiftRecommendUnknown | 0 | 未知 |
+| GiftRecommendYes | 1 | 推荐 |
+| GiftRecommendNo | 2 | 未推荐 |
+
+
+
+<a name="svc-biz-gift-GiftStatus"></a>
+
+### GiftStatus
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| GiftStatusUnknown | 0 | 未知 |
+| GiftStatusOnline | 1 | 上线 |
+| GiftStatusOffline | 2 | 下线 |
+
+
+
+<a name="svc-biz-gift-GiftType"></a>
+
+### GiftType
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| GiftTypeUnknown | 0 | 未知 |
+| GiftTypeCommon | 1 | 普通礼物 |
+| GiftTypeFan | 2 | 粉丝礼物 |
+| GiftTypeAristocrat | 3 | 贵族礼物 |
+
+
+ 
+
+ 
+
+
+<a name="svc-biz-gift-Gift"></a>
+
+### Gift
+
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| Add | [GiftAddReq](#svc-biz-gift-GiftAddReq) | [GiftAddResp](#svc-biz-gift-GiftAddResp) | Add 添加礼物 |
+| Get | [GiftGetReq](#svc-biz-gift-GiftGetReq) | [GiftGetResp](#svc-biz-gift-GiftGetResp) | Get 查询礼物 |
+| Update | [GiftUpdateReq](#svc-biz-gift-GiftUpdateReq) | [GiftUpdateResp](#svc-biz-gift-GiftUpdateResp) | Update 更新礼物 |
+| ListAdmin | [ListAdminReq](#svc-biz-gift-ListAdminReq) | [ListAdminResp](#svc-biz-gift-ListAdminResp) | ListAdmin 后台查询礼物列表接口 |
+| ListOnlineByType | [ListOnlineByTypeReq](#svc-biz-gift-ListOnlineByTypeReq) | [ListOnlineResp](#svc-biz-gift-ListOnlineResp) | ListOnlineByType 前台房间礼物查询接口 |
+| ListOnlineAll | [ListOnlineAllReq](#svc-biz-gift-ListOnlineAllReq) | [ListOnlineResp](#svc-biz-gift-ListOnlineResp) | ListOnlineAll 所有礼物的缓存接口 |
+| Send | [GiftSendReq](#svc-biz-gift-GiftSendReq) | [GiftSendResp](#svc-biz-gift-GiftSendResp) | Send 送礼物接口 |
+| SendRecord | [GiftSendRecordReq](#svc-biz-gift-GiftSendRecordReq) | [GiftSendRecordResp](#svc-biz-gift-GiftSendRecordResp) | SendRecord 送礼记录 |
+| GetRecord | [GiftGetRecordReq](#svc-biz-gift-GiftGetRecordReq) | [GiftGetRecordResp](#svc-biz-gift-GiftGetRecordResp) | GetRecord 收礼记录 |
+| LiveStat | [LiveStatReq](#svc-biz-gift-LiveStatReq) | [LiveStatResp](#svc-biz-gift-LiveStatResp) | LiveStat 直播统计 |
 
  
 

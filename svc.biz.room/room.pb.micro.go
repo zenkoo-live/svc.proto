@@ -6,6 +6,9 @@ package room
 import (
 	fmt "fmt"
 	proto "google.golang.org/protobuf/proto"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
+	_ "google.golang.org/protobuf/types/known/fieldmaskpb"
+	_ "google.golang.org/protobuf/types/known/timestamppb"
 	math "math"
 )
 
@@ -36,7 +39,18 @@ func NewRoomEndpoints() []*api.Endpoint {
 // Client API for Room service
 
 type RoomService interface {
+	// CreateRoom 创建房间
+	CreateRoom(ctx context.Context, in *CreateRoomReq, opts ...client.CallOption) (*CreateRoomResp, error)
+	// UpdateRoom 更新房间
+	UpdateRoom(ctx context.Context, in *UpdateRoomReq, opts ...client.CallOption) (*emptypb.Empty, error)
+	// GetRoom 查询房间
 	GetRoom(ctx context.Context, in *GetRoomReq, opts ...client.CallOption) (*GetRoomResp, error)
+	// GetRoomList 查询房间列表，直读mysql
+	GetRoomList(ctx context.Context, in *GetRoomListReq, opts ...client.CallOption) (*GetRoomListResp, error)
+	// StartLive 开始直播
+	StartLive(ctx context.Context, in *StartLiveReq, opts ...client.CallOption) (*StartLiveResp, error)
+	// StopLive 关闭直播
+	StopLive(ctx context.Context, in *StopLiveReq, opts ...client.CallOption) (*StopLiveResp, error)
 }
 
 type roomService struct {
@@ -51,6 +65,26 @@ func NewRoomService(name string, c client.Client) RoomService {
 	}
 }
 
+func (c *roomService) CreateRoom(ctx context.Context, in *CreateRoomReq, opts ...client.CallOption) (*CreateRoomResp, error) {
+	req := c.c.NewRequest(c.name, "Room.CreateRoom", in)
+	out := new(CreateRoomResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *roomService) UpdateRoom(ctx context.Context, in *UpdateRoomReq, opts ...client.CallOption) (*emptypb.Empty, error) {
+	req := c.c.NewRequest(c.name, "Room.UpdateRoom", in)
+	out := new(emptypb.Empty)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *roomService) GetRoom(ctx context.Context, in *GetRoomReq, opts ...client.CallOption) (*GetRoomResp, error) {
 	req := c.c.NewRequest(c.name, "Room.GetRoom", in)
 	out := new(GetRoomResp)
@@ -61,15 +95,61 @@ func (c *roomService) GetRoom(ctx context.Context, in *GetRoomReq, opts ...clien
 	return out, nil
 }
 
+func (c *roomService) GetRoomList(ctx context.Context, in *GetRoomListReq, opts ...client.CallOption) (*GetRoomListResp, error) {
+	req := c.c.NewRequest(c.name, "Room.GetRoomList", in)
+	out := new(GetRoomListResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *roomService) StartLive(ctx context.Context, in *StartLiveReq, opts ...client.CallOption) (*StartLiveResp, error) {
+	req := c.c.NewRequest(c.name, "Room.StartLive", in)
+	out := new(StartLiveResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *roomService) StopLive(ctx context.Context, in *StopLiveReq, opts ...client.CallOption) (*StopLiveResp, error) {
+	req := c.c.NewRequest(c.name, "Room.StopLive", in)
+	out := new(StopLiveResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for Room service
 
 type RoomHandler interface {
+	// CreateRoom 创建房间
+	CreateRoom(context.Context, *CreateRoomReq, *CreateRoomResp) error
+	// UpdateRoom 更新房间
+	UpdateRoom(context.Context, *UpdateRoomReq, *emptypb.Empty) error
+	// GetRoom 查询房间
 	GetRoom(context.Context, *GetRoomReq, *GetRoomResp) error
+	// GetRoomList 查询房间列表，直读mysql
+	GetRoomList(context.Context, *GetRoomListReq, *GetRoomListResp) error
+	// StartLive 开始直播
+	StartLive(context.Context, *StartLiveReq, *StartLiveResp) error
+	// StopLive 关闭直播
+	StopLive(context.Context, *StopLiveReq, *StopLiveResp) error
 }
 
 func RegisterRoomHandler(s server.Server, hdlr RoomHandler, opts ...server.HandlerOption) error {
 	type room interface {
+		CreateRoom(ctx context.Context, in *CreateRoomReq, out *CreateRoomResp) error
+		UpdateRoom(ctx context.Context, in *UpdateRoomReq, out *emptypb.Empty) error
 		GetRoom(ctx context.Context, in *GetRoomReq, out *GetRoomResp) error
+		GetRoomList(ctx context.Context, in *GetRoomListReq, out *GetRoomListResp) error
+		StartLive(ctx context.Context, in *StartLiveReq, out *StartLiveResp) error
+		StopLive(ctx context.Context, in *StopLiveReq, out *StopLiveResp) error
 	}
 	type Room struct {
 		room
@@ -82,6 +162,26 @@ type roomHandler struct {
 	RoomHandler
 }
 
+func (h *roomHandler) CreateRoom(ctx context.Context, in *CreateRoomReq, out *CreateRoomResp) error {
+	return h.RoomHandler.CreateRoom(ctx, in, out)
+}
+
+func (h *roomHandler) UpdateRoom(ctx context.Context, in *UpdateRoomReq, out *emptypb.Empty) error {
+	return h.RoomHandler.UpdateRoom(ctx, in, out)
+}
+
 func (h *roomHandler) GetRoom(ctx context.Context, in *GetRoomReq, out *GetRoomResp) error {
 	return h.RoomHandler.GetRoom(ctx, in, out)
+}
+
+func (h *roomHandler) GetRoomList(ctx context.Context, in *GetRoomListReq, out *GetRoomListResp) error {
+	return h.RoomHandler.GetRoomList(ctx, in, out)
+}
+
+func (h *roomHandler) StartLive(ctx context.Context, in *StartLiveReq, out *StartLiveResp) error {
+	return h.RoomHandler.StartLive(ctx, in, out)
+}
+
+func (h *roomHandler) StopLive(ctx context.Context, in *StopLiveReq, out *StopLiveResp) error {
+	return h.RoomHandler.StopLive(ctx, in, out)
 }
