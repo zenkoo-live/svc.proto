@@ -19,7 +19,7 @@ service Room {
     // MGetRooms 查询房间
     rpc MGetRooms(MGetRoomsReq) returns(MGetRoomsResp);
     // MGetRoomByStreamerIDs 批量查询房间
-    rpc MGetRoomsByStreamerIDs(MGetRoomByStreamerIDsReq) returns(MGetRoomByStreamerIDsResp);
+    rpc MGetRoomsByStreamerIDs(MGetRoomsByStreamerIDsReq) returns(MGetRoomsByStreamerIDsResp);
     // GetRoomList 查询房间列表，直读mysql
     rpc GetRoomList(GetRoomListReq) returns(GetRoomListResp);
 
@@ -106,10 +106,10 @@ message MGetRoomsResp {
     map<string, RoomInfo> items = 1; // 房间信息 map room_id -> room
 }
 
-message MGetRoomByStreamerIDsReq {
+message MGetRoomsByStreamerIDsReq {
     repeated string streamer_ids = 1; // 主播id
 }
-message MGetRoomByStreamerIDsResp {
+message MGetRoomsByStreamerIDsResp {
     map<string, RoomInfo> items = 1; // 房间信息 map streamer_id -> room
 }
 

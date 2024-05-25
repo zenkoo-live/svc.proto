@@ -91,9 +91,9 @@
     - [GetRoomListResp](#svc-biz-room-GetRoomListResp)
     - [GetRoomReq](#svc-biz-room-GetRoomReq)
     - [GetRoomResp](#svc-biz-room-GetRoomResp)
-    - [MGetRoomByStreamerIDsReq](#svc-biz-room-MGetRoomByStreamerIDsReq)
-    - [MGetRoomByStreamerIDsResp](#svc-biz-room-MGetRoomByStreamerIDsResp)
-    - [MGetRoomByStreamerIDsResp.ItemsEntry](#svc-biz-room-MGetRoomByStreamerIDsResp-ItemsEntry)
+    - [MGetRoomsByStreamerIDsReq](#svc-biz-room-MGetRoomsByStreamerIDsReq)
+    - [MGetRoomsByStreamerIDsResp](#svc-biz-room-MGetRoomsByStreamerIDsResp)
+    - [MGetRoomsByStreamerIDsResp.ItemsEntry](#svc-biz-room-MGetRoomsByStreamerIDsResp-ItemsEntry)
     - [MGetRoomsReq](#svc-biz-room-MGetRoomsReq)
     - [MGetRoomsResp](#svc-biz-room-MGetRoomsResp)
     - [MGetRoomsResp.ItemsEntry](#svc-biz-room-MGetRoomsResp-ItemsEntry)
@@ -1427,9 +1427,9 @@ CategoryInfo 分类详情
 
 
 
-<a name="svc-biz-room-MGetRoomByStreamerIDsReq"></a>
+<a name="svc-biz-room-MGetRoomsByStreamerIDsReq"></a>
 
-### MGetRoomByStreamerIDsReq
+### MGetRoomsByStreamerIDsReq
 
 
 
@@ -1442,24 +1442,24 @@ CategoryInfo 分类详情
 
 
 
-<a name="svc-biz-room-MGetRoomByStreamerIDsResp"></a>
+<a name="svc-biz-room-MGetRoomsByStreamerIDsResp"></a>
 
-### MGetRoomByStreamerIDsResp
+### MGetRoomsByStreamerIDsResp
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| items | [MGetRoomByStreamerIDsResp.ItemsEntry](#svc-biz-room-MGetRoomByStreamerIDsResp-ItemsEntry) | repeated | 房间信息 map streamer_id -&gt; room |
+| items | [MGetRoomsByStreamerIDsResp.ItemsEntry](#svc-biz-room-MGetRoomsByStreamerIDsResp-ItemsEntry) | repeated | 房间信息 map streamer_id -&gt; room |
 
 
 
 
 
 
-<a name="svc-biz-room-MGetRoomByStreamerIDsResp-ItemsEntry"></a>
+<a name="svc-biz-room-MGetRoomsByStreamerIDsResp-ItemsEntry"></a>
 
-### MGetRoomByStreamerIDsResp.ItemsEntry
+### MGetRoomsByStreamerIDsResp.ItemsEntry
 
 
 
@@ -1688,7 +1688,7 @@ Room 房间
 | UpdateRoom | [UpdateRoomReq](#svc-biz-room-UpdateRoomReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | UpdateRoom 更新房间 |
 | GetRoom | [GetRoomReq](#svc-biz-room-GetRoomReq) | [GetRoomResp](#svc-biz-room-GetRoomResp) | GetRoom 查询房间 |
 | MGetRooms | [MGetRoomsReq](#svc-biz-room-MGetRoomsReq) | [MGetRoomsResp](#svc-biz-room-MGetRoomsResp) | MGetRooms 查询房间 |
-| MGetRoomsByStreamerIDs | [MGetRoomByStreamerIDsReq](#svc-biz-room-MGetRoomByStreamerIDsReq) | [MGetRoomByStreamerIDsResp](#svc-biz-room-MGetRoomByStreamerIDsResp) | MGetRoomByStreamerIDs 批量查询房间 |
+| MGetRoomsByStreamerIDs | [MGetRoomsByStreamerIDsReq](#svc-biz-room-MGetRoomsByStreamerIDsReq) | [MGetRoomsByStreamerIDsResp](#svc-biz-room-MGetRoomsByStreamerIDsResp) | MGetRoomByStreamerIDs 批量查询房间 |
 | GetRoomList | [GetRoomListReq](#svc-biz-room-GetRoomListReq) | [GetRoomListResp](#svc-biz-room-GetRoomListResp) | GetRoomList 查询房间列表，直读mysql |
 | StartLive | [StartLiveReq](#svc-biz-room-StartLiveReq) | [StartLiveResp](#svc-biz-room-StartLiveResp) | StartLive 开始直播 |
 | StopLive | [StopLiveReq](#svc-biz-room-StopLiveReq) | [StopLiveResp](#svc-biz-room-StopLiveResp) | StopLive 关闭直播 |

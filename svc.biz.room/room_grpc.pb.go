@@ -43,7 +43,7 @@ type RoomClient interface {
 	// MGetRooms 查询房间
 	MGetRooms(ctx context.Context, in *MGetRoomsReq, opts ...grpc.CallOption) (*MGetRoomsResp, error)
 	// MGetRoomByStreamerIDs 批量查询房间
-	MGetRoomsByStreamerIDs(ctx context.Context, in *MGetRoomByStreamerIDsReq, opts ...grpc.CallOption) (*MGetRoomByStreamerIDsResp, error)
+	MGetRoomsByStreamerIDs(ctx context.Context, in *MGetRoomsByStreamerIDsReq, opts ...grpc.CallOption) (*MGetRoomsByStreamerIDsResp, error)
 	// GetRoomList 查询房间列表，直读mysql
 	GetRoomList(ctx context.Context, in *GetRoomListReq, opts ...grpc.CallOption) (*GetRoomListResp, error)
 	// StartLive 开始直播
@@ -96,8 +96,8 @@ func (c *roomClient) MGetRooms(ctx context.Context, in *MGetRoomsReq, opts ...gr
 	return out, nil
 }
 
-func (c *roomClient) MGetRoomsByStreamerIDs(ctx context.Context, in *MGetRoomByStreamerIDsReq, opts ...grpc.CallOption) (*MGetRoomByStreamerIDsResp, error) {
-	out := new(MGetRoomByStreamerIDsResp)
+func (c *roomClient) MGetRoomsByStreamerIDs(ctx context.Context, in *MGetRoomsByStreamerIDsReq, opts ...grpc.CallOption) (*MGetRoomsByStreamerIDsResp, error) {
+	out := new(MGetRoomsByStreamerIDsResp)
 	err := c.cc.Invoke(ctx, Room_MGetRoomsByStreamerIDs_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -145,7 +145,7 @@ type RoomServer interface {
 	// MGetRooms 查询房间
 	MGetRooms(context.Context, *MGetRoomsReq) (*MGetRoomsResp, error)
 	// MGetRoomByStreamerIDs 批量查询房间
-	MGetRoomsByStreamerIDs(context.Context, *MGetRoomByStreamerIDsReq) (*MGetRoomByStreamerIDsResp, error)
+	MGetRoomsByStreamerIDs(context.Context, *MGetRoomsByStreamerIDsReq) (*MGetRoomsByStreamerIDsResp, error)
 	// GetRoomList 查询房间列表，直读mysql
 	GetRoomList(context.Context, *GetRoomListReq) (*GetRoomListResp, error)
 	// StartLive 开始直播
@@ -171,7 +171,7 @@ func (UnimplementedRoomServer) GetRoom(context.Context, *GetRoomReq) (*GetRoomRe
 func (UnimplementedRoomServer) MGetRooms(context.Context, *MGetRoomsReq) (*MGetRoomsResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method MGetRooms not implemented")
 }
-func (UnimplementedRoomServer) MGetRoomsByStreamerIDs(context.Context, *MGetRoomByStreamerIDsReq) (*MGetRoomByStreamerIDsResp, error) {
+func (UnimplementedRoomServer) MGetRoomsByStreamerIDs(context.Context, *MGetRoomsByStreamerIDsReq) (*MGetRoomsByStreamerIDsResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method MGetRoomsByStreamerIDs not implemented")
 }
 func (UnimplementedRoomServer) GetRoomList(context.Context, *GetRoomListReq) (*GetRoomListResp, error) {
@@ -269,7 +269,7 @@ func _Room_MGetRooms_Handler(srv interface{}, ctx context.Context, dec func(inte
 }
 
 func _Room_MGetRoomsByStreamerIDs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(MGetRoomByStreamerIDsReq)
+	in := new(MGetRoomsByStreamerIDsReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -281,7 +281,7 @@ func _Room_MGetRoomsByStreamerIDs_Handler(srv interface{}, ctx context.Context, 
 		FullMethod: Room_MGetRoomsByStreamerIDs_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RoomServer).MGetRoomsByStreamerIDs(ctx, req.(*MGetRoomByStreamerIDsReq))
+		return srv.(RoomServer).MGetRoomsByStreamerIDs(ctx, req.(*MGetRoomsByStreamerIDsReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }

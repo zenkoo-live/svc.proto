@@ -48,7 +48,7 @@ type RoomService interface {
 	// MGetRooms 查询房间
 	MGetRooms(ctx context.Context, in *MGetRoomsReq, opts ...client.CallOption) (*MGetRoomsResp, error)
 	// MGetRoomByStreamerIDs 批量查询房间
-	MGetRoomsByStreamerIDs(ctx context.Context, in *MGetRoomByStreamerIDsReq, opts ...client.CallOption) (*MGetRoomByStreamerIDsResp, error)
+	MGetRoomsByStreamerIDs(ctx context.Context, in *MGetRoomsByStreamerIDsReq, opts ...client.CallOption) (*MGetRoomsByStreamerIDsResp, error)
 	// GetRoomList 查询房间列表，直读mysql
 	GetRoomList(ctx context.Context, in *GetRoomListReq, opts ...client.CallOption) (*GetRoomListResp, error)
 	// StartLive 开始直播
@@ -109,9 +109,9 @@ func (c *roomService) MGetRooms(ctx context.Context, in *MGetRoomsReq, opts ...c
 	return out, nil
 }
 
-func (c *roomService) MGetRoomsByStreamerIDs(ctx context.Context, in *MGetRoomByStreamerIDsReq, opts ...client.CallOption) (*MGetRoomByStreamerIDsResp, error) {
+func (c *roomService) MGetRoomsByStreamerIDs(ctx context.Context, in *MGetRoomsByStreamerIDsReq, opts ...client.CallOption) (*MGetRoomsByStreamerIDsResp, error) {
 	req := c.c.NewRequest(c.name, "Room.MGetRoomsByStreamerIDs", in)
-	out := new(MGetRoomByStreamerIDsResp)
+	out := new(MGetRoomsByStreamerIDsResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -161,7 +161,7 @@ type RoomHandler interface {
 	// MGetRooms 查询房间
 	MGetRooms(context.Context, *MGetRoomsReq, *MGetRoomsResp) error
 	// MGetRoomByStreamerIDs 批量查询房间
-	MGetRoomsByStreamerIDs(context.Context, *MGetRoomByStreamerIDsReq, *MGetRoomByStreamerIDsResp) error
+	MGetRoomsByStreamerIDs(context.Context, *MGetRoomsByStreamerIDsReq, *MGetRoomsByStreamerIDsResp) error
 	// GetRoomList 查询房间列表，直读mysql
 	GetRoomList(context.Context, *GetRoomListReq, *GetRoomListResp) error
 	// StartLive 开始直播
@@ -176,7 +176,7 @@ func RegisterRoomHandler(s server.Server, hdlr RoomHandler, opts ...server.Handl
 		UpdateRoom(ctx context.Context, in *UpdateRoomReq, out *emptypb.Empty) error
 		GetRoom(ctx context.Context, in *GetRoomReq, out *GetRoomResp) error
 		MGetRooms(ctx context.Context, in *MGetRoomsReq, out *MGetRoomsResp) error
-		MGetRoomsByStreamerIDs(ctx context.Context, in *MGetRoomByStreamerIDsReq, out *MGetRoomByStreamerIDsResp) error
+		MGetRoomsByStreamerIDs(ctx context.Context, in *MGetRoomsByStreamerIDsReq, out *MGetRoomsByStreamerIDsResp) error
 		GetRoomList(ctx context.Context, in *GetRoomListReq, out *GetRoomListResp) error
 		StartLive(ctx context.Context, in *StartLiveReq, out *StartLiveResp) error
 		StopLive(ctx context.Context, in *StopLiveReq, out *StopLiveResp) error
@@ -208,7 +208,7 @@ func (h *roomHandler) MGetRooms(ctx context.Context, in *MGetRoomsReq, out *MGet
 	return h.RoomHandler.MGetRooms(ctx, in, out)
 }
 
-func (h *roomHandler) MGetRoomsByStreamerIDs(ctx context.Context, in *MGetRoomByStreamerIDsReq, out *MGetRoomByStreamerIDsResp) error {
+func (h *roomHandler) MGetRoomsByStreamerIDs(ctx context.Context, in *MGetRoomsByStreamerIDsReq, out *MGetRoomsByStreamerIDsResp) error {
 	return h.RoomHandler.MGetRoomsByStreamerIDs(ctx, in, out)
 }
 
