@@ -8,18 +8,24 @@
     - [AddManagerResp](#svc-biz-account-AddManagerResp)
     - [AddStreamerReq](#svc-biz-account-AddStreamerReq)
     - [AddStreamerResp](#svc-biz-account-AddStreamerResp)
+    - [AddUnionReq](#svc-biz-account-AddUnionReq)
+    - [AddUnionResp](#svc-biz-account-AddUnionResp)
     - [AddViewerReq](#svc-biz-account-AddViewerReq)
     - [AddViewerResp](#svc-biz-account-AddViewerResp)
     - [DeleteManagerReq](#svc-biz-account-DeleteManagerReq)
     - [DeleteManagerResp](#svc-biz-account-DeleteManagerResp)
     - [DeleteStreamerReq](#svc-biz-account-DeleteStreamerReq)
     - [DeleteStreamerResp](#svc-biz-account-DeleteStreamerResp)
+    - [DeleteUnionReq](#svc-biz-account-DeleteUnionReq)
+    - [DeleteUnionResp](#svc-biz-account-DeleteUnionResp)
     - [DeleteViewerReq](#svc-biz-account-DeleteViewerReq)
     - [DeleteViewerResp](#svc-biz-account-DeleteViewerResp)
     - [GetManagerReq](#svc-biz-account-GetManagerReq)
     - [GetManagerResp](#svc-biz-account-GetManagerResp)
     - [GetStreamerReq](#svc-biz-account-GetStreamerReq)
     - [GetStreamerResp](#svc-biz-account-GetStreamerResp)
+    - [GetUnionReq](#svc-biz-account-GetUnionReq)
+    - [GetUnionResp](#svc-biz-account-GetUnionResp)
     - [GetViewerReq](#svc-biz-account-GetViewerReq)
     - [GetViewerResp](#svc-biz-account-GetViewerResp)
     - [InitDBResp](#svc-biz-account-InitDBResp)
@@ -27,21 +33,29 @@
     - [ListManagersResp](#svc-biz-account-ListManagersResp)
     - [ListStreamersReq](#svc-biz-account-ListStreamersReq)
     - [ListStreamersResp](#svc-biz-account-ListStreamersResp)
+    - [ListUnionsReq](#svc-biz-account-ListUnionsReq)
+    - [ListUnionsResp](#svc-biz-account-ListUnionsResp)
     - [ListViewersReq](#svc-biz-account-ListViewersReq)
     - [ListViewersResp](#svc-biz-account-ListViewersResp)
     - [Manager](#svc-biz-account-Manager)
     - [Streamer](#svc-biz-account-Streamer)
+    - [Union](#svc-biz-account-Union)
     - [UpdateManagerReq](#svc-biz-account-UpdateManagerReq)
     - [UpdateManagerResp](#svc-biz-account-UpdateManagerResp)
     - [UpdateStreamerReq](#svc-biz-account-UpdateStreamerReq)
     - [UpdateStreamerResp](#svc-biz-account-UpdateStreamerResp)
+    - [UpdateUnionReq](#svc-biz-account-UpdateUnionReq)
+    - [UpdateUnionResp](#svc-biz-account-UpdateUnionResp)
     - [UpdateViewerReq](#svc-biz-account-UpdateViewerReq)
     - [UpdateViewerResp](#svc-biz-account-UpdateViewerResp)
     - [Viewer](#svc-biz-account-Viewer)
   
-    - [ManagerTypes](#svc-biz-account-ManagerTypes)
-  
     - [Account](#svc-biz-account-Account)
+  
+- [svc.infra.static/static.proto](#svc-infra-static_static-proto)
+    - [InitDBResp](#svc-infra-static-InitDBResp)
+  
+    - [Static](#svc-infra-static-Static)
   
 - [svc.biz.room/category.proto](#svc-biz-room_category-proto)
     - [CategoryInfo](#svc-biz-room-CategoryInfo)
@@ -100,6 +114,16 @@
   
 - [svc.web.dashboard/dashboard.proto](#svc-web-dashboard_dashboard-proto)
     - [Dashboard](#svc-web-dashboard-Dashboard)
+  
+- [svc.biz.org/org.proto](#svc-biz-org_org-proto)
+    - [InitDBResp](#svc-biz-org-InitDBResp)
+  
+    - [Org](#svc-biz-org-Org)
+  
+- [svc.infra.notifier/notifier.proto](#svc-infra-notifier_notifier-proto)
+    - [InitDBResp](#svc-infra-notifier-InitDBResp)
+  
+    - [Notifier](#svc-infra-notifier-Notifier)
   
 - [svc.web.streamer/streamer.proto](#svc-web-streamer_streamer-proto)
     - [Streamer](#svc-web-streamer-Streamer)
@@ -206,6 +230,37 @@
 
 
 
+<a name="svc-biz-account-AddUnionReq"></a>
+
+### AddUnionReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| union | [Union](#svc-biz-account-Union) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-AddUnionResp"></a>
+
+### AddUnionResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| union | [Union](#svc-biz-account-Union) |  |  |
+| result | [bool](#bool) |  |  |
+
+
+
+
+
+
 <a name="svc-biz-account-AddViewerReq"></a>
 
 ### AddViewerReq
@@ -285,6 +340,36 @@
 <a name="svc-biz-account-DeleteStreamerResp"></a>
 
 ### DeleteStreamerResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| deleted | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-DeleteUnionReq"></a>
+
+### DeleteUnionReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Union](#svc-biz-account-Union) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-DeleteUnionResp"></a>
+
+### DeleteUnionResp
 
 
 
@@ -381,6 +466,36 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | streamer | [Streamer](#svc-biz-account-Streamer) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-GetUnionReq"></a>
+
+### GetUnionReq
+{{{ [Union]
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Union](#svc-biz-account-Union) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-GetUnionResp"></a>
+
+### GetUnionResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| union | [Union](#svc-biz-account-Union) |  |  |
 
 
 
@@ -492,6 +607,36 @@
 
 
 
+<a name="svc-biz-account-ListUnionsReq"></a>
+
+### ListUnionsReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Union](#svc-biz-account-Union) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-ListUnionsResp"></a>
+
+### ListUnionsResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| unions | [Union](#svc-biz-account-Union) | repeated |  |
+
+
+
+
+
+
 <a name="svc-biz-account-ListViewersReq"></a>
 
 ### ListViewersReq
@@ -501,6 +646,8 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | condition | [Viewer](#svc-biz-account-Viewer) |  |  |
+| limit | [int32](#int32) |  |  |
+| offset | [int32](#int32) |  |  |
 
 
 
@@ -531,11 +678,12 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | id | [string](#string) |  | 内部ID |
-| type | [ManagerTypes](#svc-biz-account-ManagerTypes) |  | 类型：平台 / 商户 / 工会 |
-| name | [string](#string) |  | 用户名 |
+| name | [string](#string) |  | 名字 |
 | mobile | [string](#string) |  | 手机 |
 | email | [string](#string) |  | 邮箱 |
 | password | [string](#string) | optional | 密码 |
+| salt | [string](#string) | optional | 加密混淆 |
+| merchant_id | [string](#string) |  | 商户ID |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
 
 
@@ -554,9 +702,34 @@
 | id | [string](#string) |  | 内部ID |
 | display_id | [string](#string) |  | 用于显示和索引的数字ID |
 | name | [string](#string) |  | 用户名 |
+| nickname | [string](#string) |  | 昵称 |
 | mobile | [string](#string) |  | 手机 |
 | email | [string](#string) |  | 邮箱 |
 | password | [string](#string) | optional | 密码 |
+| salt | [string](#string) | optional | 加密混淆 |
+| merchant_id | [string](#string) |  | 商户ID |
+| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+
+
+
+
+
+
+<a name="svc-biz-account-Union"></a>
+
+### Union
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  | 内部ID |
+| name | [string](#string) |  | 名字 |
+| mobile | [string](#string) |  | 手机 |
+| email | [string](#string) |  | 邮箱 |
+| password | [string](#string) | optional | 密码 |
+| salt | [string](#string) | optional | 加密混淆 |
+| merchant_id | [string](#string) |  | 商户ID |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
 
 
@@ -624,6 +797,36 @@
 
 
 
+<a name="svc-biz-account-UpdateUnionReq"></a>
+
+### UpdateUnionReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Union](#svc-biz-account-Union) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-UpdateUnionResp"></a>
+
+### UpdateUnionResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| updated | [int64](#int64) |  |  |
+
+
+
+
+
+
 <a name="svc-biz-account-UpdateViewerReq"></a>
 
 ### UpdateViewerReq
@@ -670,6 +873,8 @@ Models
 | email | [string](#string) |  | 邮箱 |
 | device_ident | [string](#string) |  | 设备号 / 指纹 |
 | password | [string](#string) | optional | 密码 |
+| salt | [string](#string) | optional | 加密混淆 |
+| merchant_id | [string](#string) |  | 商户ID |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
 
 
@@ -677,20 +882,6 @@ Models
 
 
  
-
-
-<a name="svc-biz-account-ManagerTypes"></a>
-
-### ManagerTypes
-
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| ManagerTypeUnknown | 0 | 未知 |
-| ManagerTypePlatform | 1 | 平台管理者 |
-| ManagerTypeMerchant | 2 | 商户管理者 |
-| ManagerTypeUnion | 3 | 工会 |
-
 
  
 
@@ -715,11 +906,57 @@ Models
 | AddStreamer | [AddStreamerReq](#svc-biz-account-AddStreamerReq) | [AddStreamerResp](#svc-biz-account-AddStreamerResp) | 添加普通账号 |
 | UpdateStreamer | [UpdateStreamerReq](#svc-biz-account-UpdateStreamerReq) | [UpdateStreamerResp](#svc-biz-account-UpdateStreamerResp) | 更新主播账号 |
 | DeleteStreamer | [DeleteStreamerReq](#svc-biz-account-DeleteStreamerReq) | [DeleteStreamerResp](#svc-biz-account-DeleteStreamerResp) | 删除主播账号 |
-| GetManager | [GetManagerReq](#svc-biz-account-GetManagerReq) | [GetManagerResp](#svc-biz-account-GetManagerResp) | 获取主播账号 |
-| ListManagers | [ListManagersReq](#svc-biz-account-ListManagersReq) | [ListManagersResp](#svc-biz-account-ListManagersResp) | 获取主播账号列表 |
-| AddManager | [AddManagerReq](#svc-biz-account-AddManagerReq) | [AddManagerResp](#svc-biz-account-AddManagerResp) | 添加普通账号 |
-| UpdateManager | [UpdateManagerReq](#svc-biz-account-UpdateManagerReq) | [UpdateManagerResp](#svc-biz-account-UpdateManagerResp) | 更新主播账号 |
-| DeleteManager | [DeleteManagerReq](#svc-biz-account-DeleteManagerReq) | [DeleteManagerResp](#svc-biz-account-DeleteManagerResp) | 删除主播账号 |
+| GetManager | [GetManagerReq](#svc-biz-account-GetManagerReq) | [GetManagerResp](#svc-biz-account-GetManagerResp) | 获取管理账号 |
+| ListManagers | [ListManagersReq](#svc-biz-account-ListManagersReq) | [ListManagersResp](#svc-biz-account-ListManagersResp) | 获取管理账号列表 |
+| AddManager | [AddManagerReq](#svc-biz-account-AddManagerReq) | [AddManagerResp](#svc-biz-account-AddManagerResp) | 添加管理账号 |
+| UpdateManager | [UpdateManagerReq](#svc-biz-account-UpdateManagerReq) | [UpdateManagerResp](#svc-biz-account-UpdateManagerResp) | 更新管理账号 |
+| DeleteManager | [DeleteManagerReq](#svc-biz-account-DeleteManagerReq) | [DeleteManagerResp](#svc-biz-account-DeleteManagerResp) | 删除管理账号 |
+| GetUnion | [GetUnionReq](#svc-biz-account-GetUnionReq) | [GetUnionResp](#svc-biz-account-GetUnionResp) | 获取工会账号 |
+| ListUnions | [ListUnionsReq](#svc-biz-account-ListUnionsReq) | [ListUnionsResp](#svc-biz-account-ListUnionsResp) | 获取工会账号列表 |
+| AddUnion | [AddUnionReq](#svc-biz-account-AddUnionReq) | [AddUnionResp](#svc-biz-account-AddUnionResp) | 添加工会账号 |
+| UpdateUnion | [UpdateUnionReq](#svc-biz-account-UpdateUnionReq) | [UpdateUnionResp](#svc-biz-account-UpdateUnionResp) | 更新工会账号 |
+| DeleteUnion | [DeleteUnionReq](#svc-biz-account-DeleteUnionReq) | [DeleteUnionResp](#svc-biz-account-DeleteUnionResp) | 删除工会账号 |
+
+ 
+
+
+
+<a name="svc-infra-static_static-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.infra.static/static.proto
+
+
+
+<a name="svc-infra-static-InitDBResp"></a>
+
+### InitDBResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| result | [bool](#bool) |  |  |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="svc-infra-static-Static"></a>
+
+### Static
+
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| InitDB | [.google.protobuf.Empty](#google-protobuf-Empty) | [InitDBResp](#svc-infra-static-InitDBResp) | 初始化数据库 |
 
  
 
@@ -1443,6 +1680,88 @@ Room 房间
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
+
+ 
+
+
+
+<a name="svc-biz-org_org-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.biz.org/org.proto
+
+
+
+<a name="svc-biz-org-InitDBResp"></a>
+
+### InitDBResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| result | [bool](#bool) |  |  |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="svc-biz-org-Org"></a>
+
+### Org
+
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| InitDB | [.google.protobuf.Empty](#google-protobuf-Empty) | [InitDBResp](#svc-biz-org-InitDBResp) | 初始化数据库 |
+
+ 
+
+
+
+<a name="svc-infra-notifier_notifier-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.infra.notifier/notifier.proto
+
+
+
+<a name="svc-infra-notifier-InitDBResp"></a>
+
+### InitDBResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| result | [bool](#bool) |  |  |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="svc-infra-notifier-Notifier"></a>
+
+### Notifier
+
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| InitDB | [.google.protobuf.Empty](#google-protobuf-Empty) | [InitDBResp](#svc-infra-notifier-InitDBResp) | 初始化数据库 |
 
  
 
