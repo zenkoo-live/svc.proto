@@ -100,6 +100,7 @@
   
     - [LiveDisplayType](#svc-biz-room-LiveDisplayType)
     - [LiveStatus](#svc-biz-room-LiveStatus)
+    - [SortType](#svc-biz-room-SortType)
   
     - [Room](#svc-biz-room-Room)
   
@@ -1445,9 +1446,10 @@ CategoryInfo 分类详情
 | score_search | [int32](#int32) |  | 搜索分数（后台配置） |
 | score_subscribe | [int32](#int32) |  | 关注分数（后台配置） |
 | score_hot | [int32](#int32) |  | 热度分数（后台配置） |
-| score_glamour | [int32](#int32) |  | 魅力分数 |
+| score_glamour | [int32](#int32) |  | 魅力值 |
 | score_online | [int32](#int32) |  | 在线人数 |
-| score_gift | [int32](#int32) |  | 礼物分数 |
+| score_rgift | [int32](#int32) |  | 豪华礼物最后赠送时间戳 |
+| score_gift | [int32](#int32) |  | 纯礼物收益 |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
 | updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 更新时间 |
 
@@ -1554,6 +1556,22 @@ CategoryInfo 分类详情
 | LiveStatusUnknown | 0 | 未知 |
 | LiveStatusOnline | 1 | 上线 |
 | LiveStatusOffline | 2 | 下线 |
+
+
+
+<a name="svc-biz-room-SortType"></a>
+
+### SortType
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| SortTypeUnknown | 0 | 未知 |
+| SortTypeHot | 1 | 热度值（首页除关注之外排序都是使用热度值；后台热度值 &gt; 魅力值 &gt;在线观众 &gt; 开播时间） |
+| SortTypeSearch | 2 | 搜索（搜索页面的推荐列表排序；后台搜索推荐重 &gt; 魅力值 &gt;在线观众 &gt; 开播时间） |
+| SortTypeSubscribe | 3 | 关注（搜索页面的推荐列表排序；后台关注推荐重 &gt; 魅力值 &gt;在线观众 &gt; 开播时间） |
+| SortTypeRecommend | 4 | 推荐（房间详情页的”更多直播“推荐列表排序；后台推荐重 &gt; 魅力值 &gt;在线观众 &gt; 开播时间） |
+| SortTypeSelected | 5 | 精选（后台豪华礼物最后赠送时间 &gt; 礼物纯收益） |
 
 
  

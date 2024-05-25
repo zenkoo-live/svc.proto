@@ -25,6 +25,15 @@ service Room {
     rpc StopLive(StopLiveReq) returns(StopLiveResp);
 }
 
+enum SortType {
+    SortTypeUnknown = 0; // 未知
+    SortTypeHot = 1; // 热度值（首页除关注之外排序都是使用热度值；后台热度值 > 魅力值 >在线观众 > 开播时间）
+    SortTypeSearch = 2; // 搜索（搜索页面的推荐列表排序；后台搜索推荐重 > 魅力值 >在线观众 > 开播时间）
+    SortTypeSubscribe = 3; // 关注（搜索页面的推荐列表排序；后台关注推荐重 > 魅力值 >在线观众 > 开播时间）
+    SortTypeRecommend = 4; // 推荐（房间详情页的”更多直播“推荐列表排序；后台推荐重 > 魅力值 >在线观众 > 开播时间）
+    SortTypeSelected = 5; // 精选（后台豪华礼物最后赠送时间 > 礼物纯收益）
+}
+
 enum LiveDisplayType {
     LiveDisplayTypeUnknown = 0; // 未知
     LiveDisplayTypeHorizontal = 1; // 横屏
@@ -57,9 +66,10 @@ message RoomInfo {
     int32 score_search = 22; // 搜索分数（后台配置）
     int32 score_subscribe = 23; // 关注分数（后台配置）
     int32 score_hot = 24; // 热度分数（后台配置）
-    int32 score_glamour = 25; // 魅力分数
+    int32 score_glamour = 25; // 魅力值
     int32 score_online = 26; // 在线人数
-    int32 score_gift = 27; // 礼物分数
+    int32 score_rgift = 27; // 豪华礼物最后赠送时间戳
+    int32 score_gift = 28; // 纯礼物收益
 
     google.protobuf.Timestamp created_at = 255; // 创建时间
     google.protobuf.Timestamp updated_at = 256; // 更新时间
