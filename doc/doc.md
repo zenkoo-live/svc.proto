@@ -1582,7 +1582,7 @@ CategoryInfo 分类详情
 | score_hot | [int32](#int32) |  | 热度分数（后台配置） |
 | score_glamour | [int32](#int32) |  | 魅力值 |
 | score_online | [int32](#int32) |  | 在线人数 |
-| score_rgift | [int32](#int32) |  | 豪华礼物最后赠送时间戳 |
+| score_selected_gift | [int32](#int32) |  | 精选礼物最后赠送时间戳 |
 | score_gift | [int32](#int32) |  | 纯礼物收益 |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
 | updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 更新时间 |
@@ -1705,7 +1705,7 @@ CategoryInfo 分类详情
 | SortTypeSearch | 2 | 搜索（搜索页面的推荐列表排序；后台搜索推荐重 &gt; 魅力值 &gt;在线观众 &gt; 开播时间） |
 | SortTypeSubscribe | 3 | 关注（搜索页面的推荐列表排序；后台关注推荐重 &gt; 魅力值 &gt;在线观众 &gt; 开播时间） |
 | SortTypeRecommend | 4 | 推荐（房间详情页的”更多直播“推荐列表排序；后台推荐重 &gt; 魅力值 &gt;在线观众 &gt; 开播时间） |
-| SortTypeSelected | 5 | 精选（后台豪华礼物最后赠送时间 &gt; 礼物纯收益） |
+| SortTypeSelected | 5 | 精选（精选礼物最后赠送时间 &gt; 礼物纯收益） |
 
 
  
