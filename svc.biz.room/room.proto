@@ -16,6 +16,10 @@ service Room {
     rpc UpdateRoom(UpdateRoomReq) returns(google.protobuf.Empty);
     // GetRoom 查询房间
     rpc GetRoom(GetRoomReq) returns(GetRoomResp);
+    // MGetRooms 查询房间
+    rpc MGetRooms(MGetRoomsReq) returns(MGetRoomsResp);
+    // MGetRoomByStreamerIDs 批量查询房间
+    rpc MGetRoomsByStreamerIDs(MGetRoomByStreamerIDsReq) returns(MGetRoomByStreamerIDsResp);
     // GetRoomList 查询房间列表，直读mysql
     rpc GetRoomList(GetRoomListReq) returns(GetRoomListResp);
 
@@ -27,7 +31,7 @@ service Room {
 
 enum SortType {
     SortTypeUnknown = 0; // 未知
-    SortTypeHot = 1; // 热度值（首页除关注之外排序都是使用热度值；后台热度值 > 魅力值 >在线观众 > 开播时间）
+    SortTypeHot = 1; // 热度值（首页除关注之外排序都是使用热度值[推荐tab+分类tab]；后台热度值 > 魅力值 >在线观众 > 开播时间）
     SortTypeSearch = 2; // 搜索（搜索页面的推荐列表排序；后台搜索推荐重 > 魅力值 >在线观众 > 开播时间）
     SortTypeSubscribe = 3; // 关注（搜索页面的推荐列表排序；后台关注推荐重 > 魅力值 >在线观众 > 开播时间）
     SortTypeRecommend = 4; // 推荐（房间详情页的”更多直播“推荐列表排序；后台推荐重 > 魅力值 >在线观众 > 开播时间）
@@ -47,7 +51,7 @@ enum LiveStatus {
 }
 
 message RoomInfo {
-    string id = 1; // id
+    string room_id = 1; // id
     string display_id = 2; // 显示id
     string streamer_id = 3; // 主播id
     string category_id = 4; // 分类id
@@ -83,16 +87,30 @@ message CreateRoomResp {
 }
 
 message UpdateRoomReq {
-    string id = 1; // id
+    string room_id = 1; // id
     RoomInfo room = 2; // 房间信息
     google.protobuf.FieldMask update_mask = 3;
 }
 
 message GetRoomReq {
-    string id = 1; // id
+    string room_id = 1; // id
 }
 message GetRoomResp {
     RoomInfo room = 1; // 房间信息
+}
+
+message MGetRoomsReq {
+    repeated string room_ids = 1; // id
+}
+message MGetRoomsResp {
+    map<string, RoomInfo> items = 1; // 房间信息 map room_id -> room
+}
+
+message MGetRoomByStreamerIDsReq {
+    repeated string streamer_ids = 1; // 主播id
+}
+message MGetRoomByStreamerIDsResp {
+    map<string, RoomInfo> items = 1; // 房间信息 map streamer_id -> room
 }
 
 message GetRoomListReq {
