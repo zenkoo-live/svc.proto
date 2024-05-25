@@ -20,8 +20,10 @@ service Room {
     rpc MGetRooms(MGetRoomsReq) returns(MGetRoomsResp);
     // MGetRoomByStreamerIDs 批量查询房间
     rpc MGetRoomsByStreamerIDs(MGetRoomsByStreamerIDsReq) returns(MGetRoomsByStreamerIDsResp);
-    // GetRoomList 查询房间列表，直读mysql
+    // GetRoomList 查询房间列表（后台使用此接口）
     rpc GetRoomList(GetRoomListReq) returns(GetRoomListResp);
+    // GetOnlineRoomList 查询在线房间列表（用户端列表使用此接口）
+    rpc GetOnlineRoomList (GetOnlineRoomListReq) returns(GetOnlineRoomListResp);
 
     // StartLive 开始直播
     rpc StartLive(StartLiveReq) returns(StartLiveResp);
@@ -119,6 +121,17 @@ message GetRoomListReq {
     string streamer_id = 3; // 主播id
 }
 message GetRoomListResp {
+    repeated RoomInfo items = 1; // 房间列表
+}
+
+message GetOnlineRoomListReq {
+    int32 page = 1; // 页数
+    int32 limit = 2; // 条数（建议固定20）
+    SortType sort_type =3; // 排序类型
+    string category_id = 4; // 分类id
+    repeated string bind_tags = 5; // 标签
+}
+message GetOnlineRoomListResp {
     repeated RoomInfo items = 1; // 房间列表
 }
 

@@ -49,8 +49,10 @@ type RoomService interface {
 	MGetRooms(ctx context.Context, in *MGetRoomsReq, opts ...client.CallOption) (*MGetRoomsResp, error)
 	// MGetRoomByStreamerIDs 批量查询房间
 	MGetRoomsByStreamerIDs(ctx context.Context, in *MGetRoomsByStreamerIDsReq, opts ...client.CallOption) (*MGetRoomsByStreamerIDsResp, error)
-	// GetRoomList 查询房间列表，直读mysql
+	// GetRoomList 查询房间列表（后台使用此接口）
 	GetRoomList(ctx context.Context, in *GetRoomListReq, opts ...client.CallOption) (*GetRoomListResp, error)
+	// GetOnlineRoomList 查询在线房间列表（用户端列表使用此接口）
+	GetOnlineRoomList(ctx context.Context, in *GetOnlineRoomListReq, opts ...client.CallOption) (*GetOnlineRoomListResp, error)
 	// StartLive 开始直播
 	StartLive(ctx context.Context, in *StartLiveReq, opts ...client.CallOption) (*StartLiveResp, error)
 	// StopLive 关闭直播
@@ -129,6 +131,16 @@ func (c *roomService) GetRoomList(ctx context.Context, in *GetRoomListReq, opts 
 	return out, nil
 }
 
+func (c *roomService) GetOnlineRoomList(ctx context.Context, in *GetOnlineRoomListReq, opts ...client.CallOption) (*GetOnlineRoomListResp, error) {
+	req := c.c.NewRequest(c.name, "Room.GetOnlineRoomList", in)
+	out := new(GetOnlineRoomListResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *roomService) StartLive(ctx context.Context, in *StartLiveReq, opts ...client.CallOption) (*StartLiveResp, error) {
 	req := c.c.NewRequest(c.name, "Room.StartLive", in)
 	out := new(StartLiveResp)
@@ -162,8 +174,10 @@ type RoomHandler interface {
 	MGetRooms(context.Context, *MGetRoomsReq, *MGetRoomsResp) error
 	// MGetRoomByStreamerIDs 批量查询房间
 	MGetRoomsByStreamerIDs(context.Context, *MGetRoomsByStreamerIDsReq, *MGetRoomsByStreamerIDsResp) error
-	// GetRoomList 查询房间列表，直读mysql
+	// GetRoomList 查询房间列表（后台使用此接口）
 	GetRoomList(context.Context, *GetRoomListReq, *GetRoomListResp) error
+	// GetOnlineRoomList 查询在线房间列表（用户端列表使用此接口）
+	GetOnlineRoomList(context.Context, *GetOnlineRoomListReq, *GetOnlineRoomListResp) error
 	// StartLive 开始直播
 	StartLive(context.Context, *StartLiveReq, *StartLiveResp) error
 	// StopLive 关闭直播
@@ -178,6 +192,7 @@ func RegisterRoomHandler(s server.Server, hdlr RoomHandler, opts ...server.Handl
 		MGetRooms(ctx context.Context, in *MGetRoomsReq, out *MGetRoomsResp) error
 		MGetRoomsByStreamerIDs(ctx context.Context, in *MGetRoomsByStreamerIDsReq, out *MGetRoomsByStreamerIDsResp) error
 		GetRoomList(ctx context.Context, in *GetRoomListReq, out *GetRoomListResp) error
+		GetOnlineRoomList(ctx context.Context, in *GetOnlineRoomListReq, out *GetOnlineRoomListResp) error
 		StartLive(ctx context.Context, in *StartLiveReq, out *StartLiveResp) error
 		StopLive(ctx context.Context, in *StopLiveReq, out *StopLiveResp) error
 	}
@@ -214,6 +229,10 @@ func (h *roomHandler) MGetRoomsByStreamerIDs(ctx context.Context, in *MGetRoomsB
 
 func (h *roomHandler) GetRoomList(ctx context.Context, in *GetRoomListReq, out *GetRoomListResp) error {
 	return h.RoomHandler.GetRoomList(ctx, in, out)
+}
+
+func (h *roomHandler) GetOnlineRoomList(ctx context.Context, in *GetOnlineRoomListReq, out *GetOnlineRoomListResp) error {
+	return h.RoomHandler.GetOnlineRoomList(ctx, in, out)
 }
 
 func (h *roomHandler) StartLive(ctx context.Context, in *StartLiveReq, out *StartLiveResp) error {
