@@ -1427,6 +1427,7 @@ CategoryInfo 分类详情
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | streamer_id | [string](#string) |  | 主播id |
+| with_stream | [bool](#bool) |  | 是否带流信息 |
 
 
 
