@@ -1622,7 +1622,7 @@ CategoryInfo 分类详情
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| live_id | [string](#string) |  | 直播id |
+| room | [RoomInfo](#svc-biz-room-RoomInfo) |  | 房间信息 |
 
 
 

@@ -162,7 +162,7 @@ message StartLiveReq {
     LiveDisplayType display_type = 2; // 横竖屏类型
 }
 message StartLiveResp {
-    string live_id = 1; // 直播id
+    RoomInfo room = 1; // 房间信息
 }
 
 message StopLiveReq {
