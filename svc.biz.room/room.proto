@@ -1,0 +1,173 @@
+syntax = "proto3";
+
+package svc.biz.room;
+
+import "google/protobuf/field_mask.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+option go_package="./svc.biz.room;room";
+
+// Room 房间
+service Room {
+    // CreateRoom 创建房间
+    rpc CreateRoom(CreateRoomReq) returns(CreateRoomResp);
+    // UpdateRoom 更新房间
+    rpc UpdateRoom(UpdateRoomReq) returns(google.protobuf.Empty);
+    // GetRoom 查询房间
+    rpc GetRoom(GetRoomReq) returns(GetRoomResp);
+    // MGetRooms 查询房间
+    rpc MGetRooms(MGetRoomsReq) returns(MGetRoomsResp);
+    // MGetRoomByStreamerIDs 批量查询房间
+    rpc MGetRoomsByStreamerIDs(MGetRoomsByStreamerIDsReq) returns(MGetRoomsByStreamerIDsResp);
+    // GetRoomList 查询房间列表（后台使用此接口）
+    rpc GetRoomList(GetRoomListReq) returns(GetRoomListResp);
+    // GetOnlineRoomList 查询在线房间列表（用户端列表使用此接口）
+    rpc GetOnlineRoomList (GetOnlineRoomListReq) returns(GetOnlineRoomListResp);
+
+    // StartLive 开始直播
+    rpc StartLive(StartLiveReq) returns(StartLiveResp);
+    // StopLive 关闭直播
+    rpc StopLive(StopLiveReq) returns(StopLiveResp);
+}
+
+enum SortType {
+    SortTypeUnknown = 0; // 未知
+    SortTypeHot = 1; // 热度值（首页除关注之外排序都是使用热度值[推荐tab+分类tab]；后台热度值 > 魅力值 >在线观众 > 开播时间）
+    SortTypeSearch = 2; // 搜索（搜索页面的推荐列表排序；后台搜索推荐重 > 魅力值 >在线观众 > 开播时间）
+    SortTypeSubscribe = 3; // 关注（搜索页面的推荐列表排序；后台关注推荐重 > 魅力值 >在线观众 > 开播时间）
+    SortTypeRecommend = 4; // 推荐（房间详情页的”更多直播“推荐列表排序；后台推荐重 > 魅力值 >在线观众 > 开播时间）
+    SortTypeSelected = 5; // 精选（精选礼物最后赠送时间 > 礼物纯收益）
+}
+
+enum LiveDisplayType {
+    LiveDisplayTypeUnknown = 0; // 未知
+    LiveDisplayTypeHorizontal = 1; // 横屏
+    LiveDisplayTypeVertical = 2; // 竖屏
+}
+
+enum LiveStatus {
+    LiveStatusUnknown = 0; // 未知
+    LiveStatusOnline = 1; // 上线
+    LiveStatusOffline = 2; // 下线
+}
+
+// 拉流地址
+message StreamPull {
+    string flv_url = 1; // FLV 拉流地址
+    string hls_url = 2; // HLS 拉流地址
+    string rtmp_url = 3; // RTMP 拉流地址
+  }
+  
+  // 推流地址
+  message StreamPush {
+    string rtmp_url = 1; // RTMP 推流地址
+  }
+  
+  // 流信息
+  message stream {
+    StreamPull pull = 1; // 推流信息
+    StreamPush push = 2; // 推流信息
+  }
+
+message RoomInfo {
+    string room_id = 1; // id
+    string display_id = 2; // 显示id
+    string streamer_id = 3; // 主播id
+    string category_id = 4; // 分类id
+    string title = 5; // 标题
+    string intro = 6; // 简介
+    bool hidden = 7; // 是否隐藏
+    repeated string merchants = 8; // 商户id
+    repeated string bind_tags = 9; // 标签
+    
+    string live_id = 21; // 直播id（开播状态时才会有，关播时清空）
+    int32 live_region = 22; // 直播区域（开播状态时才会有，关播时清空）
+    LiveStatus live_status = 23; // 房间状态：1关播，2开播
+    LiveDisplayType live_display_type = 24; // 横竖屏类型（开播状态时才会有，关播时清空）
+    google.protobuf.Timestamp live_start_at = 25; // 开播时间（开播状态时才会有，关播时清空）
+
+    int32 score_recommend = 41; // 推荐分数（后台配置）
+    int32 score_search = 42; // 搜索分数（后台配置）
+    int32 score_subscribe = 43; // 关注分数（后台配置）
+    int32 score_hot = 44; // 热度分数（后台配置）
+    int32 score_glamour = 45; // 魅力值
+    int32 score_online = 46; // 在线人数
+    int32 score_selected_gift = 47; // 精选礼物最后赠送时间戳
+    int32 score_gift = 48; // 纯礼物收益
+
+    google.protobuf.Timestamp created_at = 101; // 创建时间
+    google.protobuf.Timestamp updated_at = 102; // 更新时间
+
+    stream stream = 201; // 流信息
+}
+
+message CreateRoomReq {
+    RoomInfo room = 1; // 房间信息
+}
+message CreateRoomResp {
+    RoomInfo room = 1; // 房间信息
+}
+
+message UpdateRoomReq {
+    string room_id = 1; // id
+    RoomInfo room = 2; // 房间信息
+    google.protobuf.FieldMask update_mask = 3;
+}
+
+message GetRoomReq {
+    string room_id = 1; // id
+    bool with_stream = 2; // 是否带流信息
+}
+message GetRoomResp {
+    RoomInfo room = 1; // 房间信息
+}
+
+message MGetRoomsReq {
+    repeated string room_ids = 1; // id
+}
+message MGetRoomsResp {
+    map<string, RoomInfo> items = 1; // 房间信息 map room_id -> room
+}
+
+message MGetRoomsByStreamerIDsReq {
+    repeated string streamer_ids = 1; // 主播id
+}
+message MGetRoomsByStreamerIDsResp {
+    map<string, RoomInfo> items = 1; // 房间信息 map streamer_id -> room
+}
+
+message GetRoomListReq {
+    int32 page = 1; // 页数
+    int32 limit = 2; // 条数
+    string streamer_id = 3; // 主播id
+}
+message GetRoomListResp {
+    repeated RoomInfo items = 1; // 房间列表
+}
+
+message GetOnlineRoomListReq {
+    int32 page = 1; // 页数
+    int32 limit = 2; // 条数（建议固定20）
+    SortType sort_type =3; // 排序类型
+    string category_id = 4; // 分类id
+    repeated string bind_tags = 5; // 标签
+}
+message GetOnlineRoomListResp {
+    repeated RoomInfo items = 1; // 房间列表
+}
+
+message StartLiveReq {
+    string streamer_id = 1; // 主播id
+    LiveDisplayType display_type = 2; // 横竖屏类型
+}
+message StartLiveResp {
+    string live_id = 1; // 直播id
+}
+
+message StopLiveReq {
+    string streamer_id = 1; // 主播id
+}
+message StopLiveResp {
+
+}

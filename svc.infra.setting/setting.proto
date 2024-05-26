@@ -3,8 +3,23 @@ syntax = "proto3";
 package svc.infra.setting;
 option go_package="./svc.infra.setting;setting";
 
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+
 service Setting {
+    rpc InitDB(google.protobuf.Empty) returns (InitDBResp); // 初始化数据库
+    
+    rpc GetConfiguration(GetConfigurationReq) returns (GetConfigurationResp); // 获取配置
+    rpc ListConfigurations(ListConfigurationsReq) returns (ListConfigurationsResp); // 获取配置列表
+    rpc AddConfiguration(AddConfigurationReq) returns (AddConfigurationResp); // 添加配置
+    rpc UpdateConfiguration(UpdateConfigurationReq) returns (UpdateConfigurationResp); // 更新配置
+    rpc DeleteConfiguration(DeleteConfigurationReq) returns (DeleteConfigurationResp); // 删除配置
+
     rpc Greeting(SettingGreetingReq) returns (SettingGreetingResp) {}
+}
+
+message InitDBResp {
+    bool result = 1;
 }
 
 message SettingGreetingReq {
@@ -13,3 +28,49 @@ message SettingGreetingReq {
 message SettingGreetingResp {
     string name = 1;
 }
+
+message Configuration {
+    string id = 1;
+    string type = 2;
+    string data = 3;
+    google.protobuf.Timestamp created_at = 255; // 创建时间
+}
+
+message GetConfigurationReq {
+    Configuration condition = 1;
+};
+message GetConfigurationResp {
+    Configuration configuration = 1;
+};
+
+message ListConfigurationsReq {
+    Configuration condition = 1;
+    int32 limit = 2;
+    int32 offset = 3;
+};
+message ListConfigurationsResp {
+    repeated Configuration configurations = 1;
+};
+
+message AddConfigurationReq {
+    Configuration configuration = 1;
+};
+
+message AddConfigurationResp {
+    Configuration configuration = 1;
+    bool result = 255;
+};
+
+message UpdateConfigurationReq {
+    Configuration condition = 1;
+};
+message UpdateConfigurationResp {
+    int64 updated = 1;
+};
+
+message DeleteConfigurationReq {
+    Configuration condition = 1;
+};
+message DeleteConfigurationResp {
+    int64 deleted = 1;
+};

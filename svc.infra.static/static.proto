@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package svc.infra.static;
+option go_package="./svc.infra.static;static";
+
+import "google/protobuf/empty.proto";
+
+service Static {
+    rpc InitDB(google.protobuf.Empty) returns (InitDBResp); // 初始化数据库
+}
+
+message InitDBResp {
+    bool result = 1;
+}

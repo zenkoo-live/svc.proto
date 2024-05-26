@@ -38,14 +38,25 @@ func NewGiftEndpoints() []*api.Endpoint {
 // Client API for Gift service
 
 type GiftService interface {
+	// Add 添加礼物
 	Add(ctx context.Context, in *GiftAddReq, opts ...client.CallOption) (*GiftAddResp, error)
+	// Get 查询礼物
 	Get(ctx context.Context, in *GiftGetReq, opts ...client.CallOption) (*GiftGetResp, error)
+	// Update 更新礼物
 	Update(ctx context.Context, in *GiftUpdateReq, opts ...client.CallOption) (*GiftUpdateResp, error)
-	ListAdmin(ctx context.Context, in *GiftListAdminReq, opts ...client.CallOption) (*GiftListAdminResp, error)
-	List(ctx context.Context, in *GiftListReq, opts ...client.CallOption) (*GiftListResp, error)
+	// ListAdmin 后台查询礼物列表接口
+	ListAdmin(ctx context.Context, in *ListAdminReq, opts ...client.CallOption) (*ListAdminResp, error)
+	// ListOnlineByType 前台房间礼物查询接口
+	ListOnlineByType(ctx context.Context, in *ListOnlineByTypeReq, opts ...client.CallOption) (*ListOnlineResp, error)
+	// ListOnlineAll 所有礼物的缓存接口
+	ListOnlineAll(ctx context.Context, in *ListOnlineAllReq, opts ...client.CallOption) (*ListOnlineResp, error)
+	// Send 送礼物接口
 	Send(ctx context.Context, in *GiftSendReq, opts ...client.CallOption) (*GiftSendResp, error)
+	// SendRecord 送礼记录
 	SendRecord(ctx context.Context, in *GiftSendRecordReq, opts ...client.CallOption) (*GiftSendRecordResp, error)
+	// GetRecord 收礼记录
 	GetRecord(ctx context.Context, in *GiftGetRecordReq, opts ...client.CallOption) (*GiftGetRecordResp, error)
+	// LiveStat 直播统计
 	LiveStat(ctx context.Context, in *LiveStatReq, opts ...client.CallOption) (*LiveStatResp, error)
 }
 
@@ -91,9 +102,9 @@ func (c *giftService) Update(ctx context.Context, in *GiftUpdateReq, opts ...cli
 	return out, nil
 }
 
-func (c *giftService) ListAdmin(ctx context.Context, in *GiftListAdminReq, opts ...client.CallOption) (*GiftListAdminResp, error) {
+func (c *giftService) ListAdmin(ctx context.Context, in *ListAdminReq, opts ...client.CallOption) (*ListAdminResp, error) {
 	req := c.c.NewRequest(c.name, "Gift.ListAdmin", in)
-	out := new(GiftListAdminResp)
+	out := new(ListAdminResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -101,9 +112,19 @@ func (c *giftService) ListAdmin(ctx context.Context, in *GiftListAdminReq, opts 
 	return out, nil
 }
 
-func (c *giftService) List(ctx context.Context, in *GiftListReq, opts ...client.CallOption) (*GiftListResp, error) {
-	req := c.c.NewRequest(c.name, "Gift.List", in)
-	out := new(GiftListResp)
+func (c *giftService) ListOnlineByType(ctx context.Context, in *ListOnlineByTypeReq, opts ...client.CallOption) (*ListOnlineResp, error) {
+	req := c.c.NewRequest(c.name, "Gift.ListOnlineByType", in)
+	out := new(ListOnlineResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *giftService) ListOnlineAll(ctx context.Context, in *ListOnlineAllReq, opts ...client.CallOption) (*ListOnlineResp, error) {
+	req := c.c.NewRequest(c.name, "Gift.ListOnlineAll", in)
+	out := new(ListOnlineResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -154,14 +175,25 @@ func (c *giftService) LiveStat(ctx context.Context, in *LiveStatReq, opts ...cli
 // Server API for Gift service
 
 type GiftHandler interface {
+	// Add 添加礼物
 	Add(context.Context, *GiftAddReq, *GiftAddResp) error
+	// Get 查询礼物
 	Get(context.Context, *GiftGetReq, *GiftGetResp) error
+	// Update 更新礼物
 	Update(context.Context, *GiftUpdateReq, *GiftUpdateResp) error
-	ListAdmin(context.Context, *GiftListAdminReq, *GiftListAdminResp) error
-	List(context.Context, *GiftListReq, *GiftListResp) error
+	// ListAdmin 后台查询礼物列表接口
+	ListAdmin(context.Context, *ListAdminReq, *ListAdminResp) error
+	// ListOnlineByType 前台房间礼物查询接口
+	ListOnlineByType(context.Context, *ListOnlineByTypeReq, *ListOnlineResp) error
+	// ListOnlineAll 所有礼物的缓存接口
+	ListOnlineAll(context.Context, *ListOnlineAllReq, *ListOnlineResp) error
+	// Send 送礼物接口
 	Send(context.Context, *GiftSendReq, *GiftSendResp) error
+	// SendRecord 送礼记录
 	SendRecord(context.Context, *GiftSendRecordReq, *GiftSendRecordResp) error
+	// GetRecord 收礼记录
 	GetRecord(context.Context, *GiftGetRecordReq, *GiftGetRecordResp) error
+	// LiveStat 直播统计
 	LiveStat(context.Context, *LiveStatReq, *LiveStatResp) error
 }
 
@@ -170,8 +202,9 @@ func RegisterGiftHandler(s server.Server, hdlr GiftHandler, opts ...server.Handl
 		Add(ctx context.Context, in *GiftAddReq, out *GiftAddResp) error
 		Get(ctx context.Context, in *GiftGetReq, out *GiftGetResp) error
 		Update(ctx context.Context, in *GiftUpdateReq, out *GiftUpdateResp) error
-		ListAdmin(ctx context.Context, in *GiftListAdminReq, out *GiftListAdminResp) error
-		List(ctx context.Context, in *GiftListReq, out *GiftListResp) error
+		ListAdmin(ctx context.Context, in *ListAdminReq, out *ListAdminResp) error
+		ListOnlineByType(ctx context.Context, in *ListOnlineByTypeReq, out *ListOnlineResp) error
+		ListOnlineAll(ctx context.Context, in *ListOnlineAllReq, out *ListOnlineResp) error
 		Send(ctx context.Context, in *GiftSendReq, out *GiftSendResp) error
 		SendRecord(ctx context.Context, in *GiftSendRecordReq, out *GiftSendRecordResp) error
 		GetRecord(ctx context.Context, in *GiftGetRecordReq, out *GiftGetRecordResp) error
@@ -200,12 +233,16 @@ func (h *giftHandler) Update(ctx context.Context, in *GiftUpdateReq, out *GiftUp
 	return h.GiftHandler.Update(ctx, in, out)
 }
 
-func (h *giftHandler) ListAdmin(ctx context.Context, in *GiftListAdminReq, out *GiftListAdminResp) error {
+func (h *giftHandler) ListAdmin(ctx context.Context, in *ListAdminReq, out *ListAdminResp) error {
 	return h.GiftHandler.ListAdmin(ctx, in, out)
 }
 
-func (h *giftHandler) List(ctx context.Context, in *GiftListReq, out *GiftListResp) error {
-	return h.GiftHandler.List(ctx, in, out)
+func (h *giftHandler) ListOnlineByType(ctx context.Context, in *ListOnlineByTypeReq, out *ListOnlineResp) error {
+	return h.GiftHandler.ListOnlineByType(ctx, in, out)
+}
+
+func (h *giftHandler) ListOnlineAll(ctx context.Context, in *ListOnlineAllReq, out *ListOnlineResp) error {
+	return h.GiftHandler.ListOnlineAll(ctx, in, out)
 }
 
 func (h *giftHandler) Send(ctx context.Context, in *GiftSendReq, out *GiftSendResp) error {

@@ -6,6 +6,8 @@ package setting
 import (
 	fmt "fmt"
 	proto "google.golang.org/protobuf/proto"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
+	_ "google.golang.org/protobuf/types/known/timestamppb"
 	math "math"
 )
 
@@ -36,6 +38,12 @@ func NewSettingEndpoints() []*api.Endpoint {
 // Client API for Setting service
 
 type SettingService interface {
+	InitDB(ctx context.Context, in *emptypb.Empty, opts ...client.CallOption) (*InitDBResp, error)
+	GetConfiguration(ctx context.Context, in *GetConfigurationReq, opts ...client.CallOption) (*GetConfigurationResp, error)
+	ListConfigurations(ctx context.Context, in *ListConfigurationsReq, opts ...client.CallOption) (*ListConfigurationsResp, error)
+	AddConfiguration(ctx context.Context, in *AddConfigurationReq, opts ...client.CallOption) (*AddConfigurationResp, error)
+	UpdateConfiguration(ctx context.Context, in *UpdateConfigurationReq, opts ...client.CallOption) (*UpdateConfigurationResp, error)
+	DeleteConfiguration(ctx context.Context, in *DeleteConfigurationReq, opts ...client.CallOption) (*DeleteConfigurationResp, error)
 	Greeting(ctx context.Context, in *SettingGreetingReq, opts ...client.CallOption) (*SettingGreetingResp, error)
 }
 
@@ -51,6 +59,66 @@ func NewSettingService(name string, c client.Client) SettingService {
 	}
 }
 
+func (c *settingService) InitDB(ctx context.Context, in *emptypb.Empty, opts ...client.CallOption) (*InitDBResp, error) {
+	req := c.c.NewRequest(c.name, "Setting.InitDB", in)
+	out := new(InitDBResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *settingService) GetConfiguration(ctx context.Context, in *GetConfigurationReq, opts ...client.CallOption) (*GetConfigurationResp, error) {
+	req := c.c.NewRequest(c.name, "Setting.GetConfiguration", in)
+	out := new(GetConfigurationResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *settingService) ListConfigurations(ctx context.Context, in *ListConfigurationsReq, opts ...client.CallOption) (*ListConfigurationsResp, error) {
+	req := c.c.NewRequest(c.name, "Setting.ListConfigurations", in)
+	out := new(ListConfigurationsResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *settingService) AddConfiguration(ctx context.Context, in *AddConfigurationReq, opts ...client.CallOption) (*AddConfigurationResp, error) {
+	req := c.c.NewRequest(c.name, "Setting.AddConfiguration", in)
+	out := new(AddConfigurationResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *settingService) UpdateConfiguration(ctx context.Context, in *UpdateConfigurationReq, opts ...client.CallOption) (*UpdateConfigurationResp, error) {
+	req := c.c.NewRequest(c.name, "Setting.UpdateConfiguration", in)
+	out := new(UpdateConfigurationResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *settingService) DeleteConfiguration(ctx context.Context, in *DeleteConfigurationReq, opts ...client.CallOption) (*DeleteConfigurationResp, error) {
+	req := c.c.NewRequest(c.name, "Setting.DeleteConfiguration", in)
+	out := new(DeleteConfigurationResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *settingService) Greeting(ctx context.Context, in *SettingGreetingReq, opts ...client.CallOption) (*SettingGreetingResp, error) {
 	req := c.c.NewRequest(c.name, "Setting.Greeting", in)
 	out := new(SettingGreetingResp)
@@ -64,11 +132,23 @@ func (c *settingService) Greeting(ctx context.Context, in *SettingGreetingReq, o
 // Server API for Setting service
 
 type SettingHandler interface {
+	InitDB(context.Context, *emptypb.Empty, *InitDBResp) error
+	GetConfiguration(context.Context, *GetConfigurationReq, *GetConfigurationResp) error
+	ListConfigurations(context.Context, *ListConfigurationsReq, *ListConfigurationsResp) error
+	AddConfiguration(context.Context, *AddConfigurationReq, *AddConfigurationResp) error
+	UpdateConfiguration(context.Context, *UpdateConfigurationReq, *UpdateConfigurationResp) error
+	DeleteConfiguration(context.Context, *DeleteConfigurationReq, *DeleteConfigurationResp) error
 	Greeting(context.Context, *SettingGreetingReq, *SettingGreetingResp) error
 }
 
 func RegisterSettingHandler(s server.Server, hdlr SettingHandler, opts ...server.HandlerOption) error {
 	type setting interface {
+		InitDB(ctx context.Context, in *emptypb.Empty, out *InitDBResp) error
+		GetConfiguration(ctx context.Context, in *GetConfigurationReq, out *GetConfigurationResp) error
+		ListConfigurations(ctx context.Context, in *ListConfigurationsReq, out *ListConfigurationsResp) error
+		AddConfiguration(ctx context.Context, in *AddConfigurationReq, out *AddConfigurationResp) error
+		UpdateConfiguration(ctx context.Context, in *UpdateConfigurationReq, out *UpdateConfigurationResp) error
+		DeleteConfiguration(ctx context.Context, in *DeleteConfigurationReq, out *DeleteConfigurationResp) error
 		Greeting(ctx context.Context, in *SettingGreetingReq, out *SettingGreetingResp) error
 	}
 	type Setting struct {
@@ -80,6 +160,30 @@ func RegisterSettingHandler(s server.Server, hdlr SettingHandler, opts ...server
 
 type settingHandler struct {
 	SettingHandler
+}
+
+func (h *settingHandler) InitDB(ctx context.Context, in *emptypb.Empty, out *InitDBResp) error {
+	return h.SettingHandler.InitDB(ctx, in, out)
+}
+
+func (h *settingHandler) GetConfiguration(ctx context.Context, in *GetConfigurationReq, out *GetConfigurationResp) error {
+	return h.SettingHandler.GetConfiguration(ctx, in, out)
+}
+
+func (h *settingHandler) ListConfigurations(ctx context.Context, in *ListConfigurationsReq, out *ListConfigurationsResp) error {
+	return h.SettingHandler.ListConfigurations(ctx, in, out)
+}
+
+func (h *settingHandler) AddConfiguration(ctx context.Context, in *AddConfigurationReq, out *AddConfigurationResp) error {
+	return h.SettingHandler.AddConfiguration(ctx, in, out)
+}
+
+func (h *settingHandler) UpdateConfiguration(ctx context.Context, in *UpdateConfigurationReq, out *UpdateConfigurationResp) error {
+	return h.SettingHandler.UpdateConfiguration(ctx, in, out)
+}
+
+func (h *settingHandler) DeleteConfiguration(ctx context.Context, in *DeleteConfigurationReq, out *DeleteConfigurationResp) error {
+	return h.SettingHandler.DeleteConfiguration(ctx, in, out)
 }
 
 func (h *settingHandler) Greeting(ctx context.Context, in *SettingGreetingReq, out *SettingGreetingResp) error {

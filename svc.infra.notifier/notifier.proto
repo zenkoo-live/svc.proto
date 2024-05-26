@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package svc.infra.notifier;
+option go_package="./svc.infra.notifier;notifier";
+
+import "google/protobuf/empty.proto";
+
+service Notifier {
+    rpc InitDB(google.protobuf.Empty) returns (InitDBResp); // 初始化数据库
+}
+
+message InitDBResp {
+    bool result = 1;
+}

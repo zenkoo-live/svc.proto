@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+package svc.biz.room;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package="./svc.biz.room;room";
+
+// 直播
+service Live {
+    // 查询直播间信息
+    rpc GetLive(GetLiveReq) returns(GetLiveResp);
+    // 批量获取直播间信息
+    rpc MGetLive(MGetLiveReq) returns(MGetLiveResp);
+    // 获取在播直播间列表
+    rpc ListLive(ListLiveReq) returns (ListLiveResp);
+}
+
+message GetLiveReq {
+    string live_id = 1; // 直播id
+}
+message GetLiveResp {
+    LiveInfo live = 1; // 直播信息
+}
+
+message MGetLiveReq {
+    repeated string live_ids = 1; // 直播id列表
+}
+message MGetLiveResp {
+    map<string, LiveInfo> items = 1; // 直播信息
+}
+
+message ListLiveReq {
+    int32 page = 1; // 页数
+    int32 limit = 2; // 条数
+    string streamer_id = 3; // 主播id
+}
+message ListLiveResp {
+    repeated LiveInfo items = 1; // 直播信息
+}
+
+
+message LiveInfo {
+    string live_id = 1; // id
+    string streamer_id = 2; // 主播id
+    string room_id = 3; // 房间id
+    string category_id = 4; // 分类id
+    google.protobuf.Timestamp start_at = 5; // 开播时间
+    google.protobuf.Timestamp end_at = 6; // 结束时间
+    google.protobuf.Timestamp created_at = 255; // 创建时间
+    google.protobuf.Timestamp updated_at = 256; // 更新时间
+}
