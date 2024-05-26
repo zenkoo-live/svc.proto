@@ -8,8 +8,11 @@ import (
 
 	svcBizAccount "github.com/zenkoo-live/svc.proto/svc.biz.account"
 	svcBizGift "github.com/zenkoo-live/svc.proto/svc.biz.gift"
+	svcBizOrg "github.com/zenkoo-live/svc.proto/svc.biz.org"
 	svcBizRoom "github.com/zenkoo-live/svc.proto/svc.biz.room"
+	svcInfraNotifier "github.com/zenkoo-live/svc.proto/svc.infra.notifier"
 	svcInfraSetting "github.com/zenkoo-live/svc.proto/svc.infra.setting"
+	svcInfraStatic "github.com/zenkoo-live/svc.proto/svc.infra.static"
 	svcWebDashboard "github.com/zenkoo-live/svc.proto/svc.web.dashboard"
 	svcWebStreamer "github.com/zenkoo-live/svc.proto/svc.web.streamer"
 	svcWebViewer "github.com/zenkoo-live/svc.proto/svc.web.viewer"
@@ -18,13 +21,16 @@ import (
 const (
 	AppName = "zenkoo"
 
-	SvcBizAccount   = "svc.biz.account"
-	SvcWebDashboard = "svc.web.dashboard"
-	SvcBizGift      = "svc.biz.gift"
-	SvcBizRoom      = "svc.biz.room"
-	SvcInfraSetting = "svc.infra.setting"
-	SvcWebStreamer  = "svc.web.streamer"
-	SvcWebViewer    = "svc.web.viewer"
+	SvcBizAccount    = "svc.biz.account"
+	SvcWebDashboard  = "svc.web.dashboard"
+	SvcBizGift       = "svc.biz.gift"
+	SvcInfraNotifier = "svc.infra.notifier"
+	SvcBizOrg        = "svc.biz.org"
+	SvcBizRoom       = "svc.biz.room"
+	SvcInfraSetting  = "svc.infra.setting"
+	SvcInfraStatic   = "svc.infra.static"
+	SvcWebStreamer   = "svc.web.streamer"
+	SvcWebViewer     = "svc.web.viewer"
 )
 
 var (
@@ -33,9 +39,13 @@ var (
 	SvcBizAccountAccount     = svcBizAccount.NewAccountService(AppName+"::"+SvcBizAccount, clt)
 	SvcWebDashboardDashboard = svcWebDashboard.NewDashboardService(AppName+"::"+SvcWebDashboard, clt)
 	SvcBizGiftGift           = svcBizGift.NewGiftService(AppName+"::"+SvcBizGift, clt)
+	SvcInfraNotifierNotifier = svcInfraNotifier.NewNotifierService(AppName+"::"+SvcInfraNotifier, clt)
+	SvcBizOrgOrg             = svcBizOrg.NewOrgService(AppName+"::"+SvcBizOrg, clt)
 	SvcBizRoomCategory       = svcBizRoom.NewCategoryService(AppName+"::"+SvcBizRoom, clt)
+	SvcBizRoomLive           = svcBizRoom.NewLiveService(AppName+"::"+SvcBizRoom, clt)
 	SvcBizRoomRoom           = svcBizRoom.NewRoomService(AppName+"::"+SvcBizRoom, clt)
 	SvcInfraSettingSetting   = svcInfraSetting.NewSettingService(AppName+"::"+SvcInfraSetting, clt)
+	SvcInfraStaticStatic     = svcInfraStatic.NewStaticService(AppName+"::"+SvcInfraStatic, clt)
 	SvcWebStreamerStreamer   = svcWebStreamer.NewStreamerService(AppName+"::"+SvcWebStreamer, clt)
 	SvcWebViewerViewer       = svcWebViewer.NewViewerService(AppName+"::"+SvcWebViewer, clt)
 )
