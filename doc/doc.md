@@ -1574,6 +1574,7 @@ CategoryInfo 分类详情
 | title | [string](#string) |  | 标题 |
 | intro | [string](#string) |  | 简介 |
 | hidden | [bool](#bool) |  | 是否隐藏 |
+| merchants | [string](#string) | repeated | 商户id |
 | bind_tags | [string](#string) | repeated | 标签 |
 | live_id | [string](#string) |  | 直播id（开播状态时才会有，关播时清空） |
 | live_region | [int32](#int32) |  | 直播区域（开播状态时才会有，关播时清空） |

@@ -78,7 +78,8 @@ message RoomInfo {
     string title = 5; // 标题
     string intro = 6; // 简介
     bool hidden = 7; // 是否隐藏
-    repeated string bind_tags = 8; // 标签
+    repeated string merchants = 8; // 商户id
+    repeated string bind_tags = 9; // 标签
     
     string live_id = 21; // 直播id（开播状态时才会有，关播时清空）
     int32 live_region = 22; // 直播区域（开播状态时才会有，关播时清空）
