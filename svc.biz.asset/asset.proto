@@ -39,7 +39,7 @@ service Asset {
   rpc ListStreamerCoinDetail(ListStreamerCoinDetailReq) returns (ListStreamerCoinDetailResp) {} // 查询明细
 
   // ---------------Union工会资产---------------
-  // 余额 money
+  // 余额 money --
   rpc GetUnionMoney(GetUnionMoneyReq) returns (GetUnionMoneyResp) {} // 查询
   rpc GetUnionMoneyMulti(GetUnionMoneyMultiReq) returns (GetUnionMoneyMultiResp) {} // 批量查询
   rpc IncrUnionMoney(IncrUnionMoneyReq) returns (ChangeUnionMoneyResp) {} // 增

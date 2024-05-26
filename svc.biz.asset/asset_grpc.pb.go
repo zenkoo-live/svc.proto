@@ -86,7 +86,7 @@ type AssetClient interface {
 	DecrStreamerCoin(ctx context.Context, in *DecrStreamerCoinReq, opts ...grpc.CallOption) (*ChangeStreamerCoinResp, error)
 	ListStreamerCoinDetail(ctx context.Context, in *ListStreamerCoinDetailReq, opts ...grpc.CallOption) (*ListStreamerCoinDetailResp, error)
 	// ---------------Union工会资产---------------
-	// 余额 money
+	// 余额 money --
 	GetUnionMoney(ctx context.Context, in *GetUnionMoneyReq, opts ...grpc.CallOption) (*GetUnionMoneyResp, error)
 	GetUnionMoneyMulti(ctx context.Context, in *GetUnionMoneyMultiReq, opts ...grpc.CallOption) (*GetUnionMoneyMultiResp, error)
 	IncrUnionMoney(ctx context.Context, in *IncrUnionMoneyReq, opts ...grpc.CallOption) (*ChangeUnionMoneyResp, error)
@@ -459,7 +459,7 @@ type AssetServer interface {
 	DecrStreamerCoin(context.Context, *DecrStreamerCoinReq) (*ChangeStreamerCoinResp, error)
 	ListStreamerCoinDetail(context.Context, *ListStreamerCoinDetailReq) (*ListStreamerCoinDetailResp, error)
 	// ---------------Union工会资产---------------
-	// 余额 money
+	// 余额 money --
 	GetUnionMoney(context.Context, *GetUnionMoneyReq) (*GetUnionMoneyResp, error)
 	GetUnionMoneyMulti(context.Context, *GetUnionMoneyMultiReq) (*GetUnionMoneyMultiResp, error)
 	IncrUnionMoney(context.Context, *IncrUnionMoneyReq) (*ChangeUnionMoneyResp, error)

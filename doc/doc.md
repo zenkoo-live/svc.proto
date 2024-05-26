@@ -4300,7 +4300,7 @@ Room 房间
 | IncrStreamerCoin | [IncrStreamerCoinReq](#svc-biz-asset-IncrStreamerCoinReq) | [ChangeStreamerCoinResp](#svc-biz-asset-ChangeStreamerCoinResp) |  |
 | DecrStreamerCoin | [DecrStreamerCoinReq](#svc-biz-asset-DecrStreamerCoinReq) | [ChangeStreamerCoinResp](#svc-biz-asset-ChangeStreamerCoinResp) |  |
 | ListStreamerCoinDetail | [ListStreamerCoinDetailReq](#svc-biz-asset-ListStreamerCoinDetailReq) | [ListStreamerCoinDetailResp](#svc-biz-asset-ListStreamerCoinDetailResp) |  |
-| GetUnionMoney | [GetUnionMoneyReq](#svc-biz-asset-GetUnionMoneyReq) | [GetUnionMoneyResp](#svc-biz-asset-GetUnionMoneyResp) | ---------------Union工会资产--------------- 余额 money |
+| GetUnionMoney | [GetUnionMoneyReq](#svc-biz-asset-GetUnionMoneyReq) | [GetUnionMoneyResp](#svc-biz-asset-GetUnionMoneyResp) | ---------------Union工会资产--------------- 余额 money -- |
 | GetUnionMoneyMulti | [GetUnionMoneyMultiReq](#svc-biz-asset-GetUnionMoneyMultiReq) | [GetUnionMoneyMultiResp](#svc-biz-asset-GetUnionMoneyMultiResp) |  |
 | IncrUnionMoney | [IncrUnionMoneyReq](#svc-biz-asset-IncrUnionMoneyReq) | [ChangeUnionMoneyResp](#svc-biz-asset-ChangeUnionMoneyResp) |  |
 | DecrUnionMoney | [DecrUnionMoneyReq](#svc-biz-asset-DecrUnionMoneyReq) | [ChangeUnionMoneyResp](#svc-biz-asset-ChangeUnionMoneyResp) |  |
