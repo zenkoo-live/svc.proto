@@ -52,6 +52,24 @@ enum LiveStatus {
     LiveStatusOffline = 2; // 下线
 }
 
+// 拉流地址
+message StreamPull {
+    string flv_url = 1; // FLV 拉流地址
+    string hls_url = 2; // HLS 拉流地址
+    string rtmp_url = 3; // RTMP 拉流地址
+  }
+  
+  // 推流地址
+  message StreamPush {
+    string rtmp_url = 1; // RTMP 推流地址
+  }
+  
+  // 流信息
+  message stream {
+    StreamPull pull = 1; // 推流信息
+    StreamPush push = 2; // 推流信息
+  }
+
 message RoomInfo {
     string room_id = 1; // id
     string display_id = 2; // 显示id
@@ -62,23 +80,25 @@ message RoomInfo {
     bool hidden = 7; // 是否隐藏
     repeated string bind_tags = 8; // 标签
     
-    string live_id = 11; // 直播id（开播状态时才会有，关播时清空）
-    int32 live_region = 12; // 直播区域（开播状态时才会有，关播时清空）
-    LiveStatus live_status = 13; // 房间状态：1关播，2开播
-    LiveDisplayType live_display_type = 14; // 横竖屏类型（开播状态时才会有，关播时清空）
-    google.protobuf.Timestamp live_start_at = 15; // 开播时间（开播状态时才会有，关播时清空）
+    string live_id = 21; // 直播id（开播状态时才会有，关播时清空）
+    int32 live_region = 22; // 直播区域（开播状态时才会有，关播时清空）
+    LiveStatus live_status = 23; // 房间状态：1关播，2开播
+    LiveDisplayType live_display_type = 24; // 横竖屏类型（开播状态时才会有，关播时清空）
+    google.protobuf.Timestamp live_start_at = 25; // 开播时间（开播状态时才会有，关播时清空）
 
-    int32 score_recommend = 21; // 推荐分数（后台配置）
-    int32 score_search = 22; // 搜索分数（后台配置）
-    int32 score_subscribe = 23; // 关注分数（后台配置）
-    int32 score_hot = 24; // 热度分数（后台配置）
-    int32 score_glamour = 25; // 魅力值
-    int32 score_online = 26; // 在线人数
-    int32 score_selected_gift = 27; // 精选礼物最后赠送时间戳
-    int32 score_gift = 28; // 纯礼物收益
+    int32 score_recommend = 41; // 推荐分数（后台配置）
+    int32 score_search = 42; // 搜索分数（后台配置）
+    int32 score_subscribe = 43; // 关注分数（后台配置）
+    int32 score_hot = 44; // 热度分数（后台配置）
+    int32 score_glamour = 45; // 魅力值
+    int32 score_online = 46; // 在线人数
+    int32 score_selected_gift = 47; // 精选礼物最后赠送时间戳
+    int32 score_gift = 48; // 纯礼物收益
 
-    google.protobuf.Timestamp created_at = 255; // 创建时间
-    google.protobuf.Timestamp updated_at = 256; // 更新时间
+    google.protobuf.Timestamp created_at = 101; // 创建时间
+    google.protobuf.Timestamp updated_at = 102; // 更新时间
+
+    stream stream = 201; // 流信息
 }
 
 message CreateRoomReq {
@@ -96,6 +116,7 @@ message UpdateRoomReq {
 
 message GetRoomReq {
     string room_id = 1; // id
+    bool with_stream = 2; // 是否带流信息
 }
 message GetRoomResp {
     RoomInfo room = 1; // 房间信息
@@ -142,7 +163,6 @@ message StartLiveReq {
 message StartLiveResp {
     string live_id = 1; // 直播id
 }
-
 
 message StopLiveReq {
     string streamer_id = 1; // 主播id

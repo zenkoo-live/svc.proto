@@ -104,7 +104,10 @@
     - [StartLiveResp](#svc-biz-room-StartLiveResp)
     - [StopLiveReq](#svc-biz-room-StopLiveReq)
     - [StopLiveResp](#svc-biz-room-StopLiveResp)
+    - [StreamPull](#svc-biz-room-StreamPull)
+    - [StreamPush](#svc-biz-room-StreamPush)
     - [UpdateRoomReq](#svc-biz-room-UpdateRoomReq)
+    - [stream](#svc-biz-room-stream)
   
     - [LiveDisplayType](#svc-biz-room-LiveDisplayType)
     - [LiveStatus](#svc-biz-room-LiveStatus)
@@ -1442,6 +1445,7 @@ CategoryInfo 分类详情
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | room_id | [string](#string) |  | id |
+| with_stream | [bool](#bool) |  | 是否带流信息 |
 
 
 
@@ -1586,6 +1590,7 @@ CategoryInfo 分类详情
 | score_gift | [int32](#int32) |  | 纯礼物收益 |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
 | updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 更新时间 |
+| stream | [stream](#svc-biz-room-stream) |  | 流信息 |
 
 
 
@@ -1648,6 +1653,38 @@ CategoryInfo 分类详情
 
 
 
+<a name="svc-biz-room-StreamPull"></a>
+
+### StreamPull
+拉流地址
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| flv_url | [string](#string) |  | FLV 拉流地址 |
+| hls_url | [string](#string) |  | HLS 拉流地址 |
+| rtmp_url | [string](#string) |  | RTMP 拉流地址 |
+
+
+
+
+
+
+<a name="svc-biz-room-StreamPush"></a>
+
+### StreamPush
+推流地址
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| rtmp_url | [string](#string) |  | RTMP 推流地址 |
+
+
+
+
+
+
 <a name="svc-biz-room-UpdateRoomReq"></a>
 
 ### UpdateRoomReq
@@ -1659,6 +1696,22 @@ CategoryInfo 分类详情
 | room_id | [string](#string) |  | id |
 | room | [RoomInfo](#svc-biz-room-RoomInfo) |  | 房间信息 |
 | update_mask | [google.protobuf.FieldMask](#google-protobuf-FieldMask) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-room-stream"></a>
+
+### stream
+流信息
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| pull | [StreamPull](#svc-biz-room-StreamPull) |  | 推流信息 |
+| push | [StreamPush](#svc-biz-room-StreamPush) |  | 推流信息 |
 
 
 
