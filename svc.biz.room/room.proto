@@ -56,14 +56,18 @@ enum LiveStatus {
 
 // 拉流地址
 message StreamPull {
-    string flv_url = 1; // FLV 拉流地址
-    string hls_url = 2; // HLS 拉流地址
-    string rtmp_url = 3; // RTMP 拉流地址
+    string rtmp = 1; // RTMP 拉流地址
+    string flv = 2; // FLV 拉流地址
+    string m3u8 = 3; // M3U8 拉流地址
+    string udp = 4; // UDP 拉流地址
   }
   
   // 推流地址
   message StreamPush {
-    string rtmp_url = 1; // RTMP 推流地址
+    string rtmp_ = 1; // RTMP 推流地址
+    string web_rtc = 2; // WebRTC 推流地址
+    string srt = 3; // SRT 推流地址
+    string rmtp_over_srt = 4; // RTMP over SRT 推流地址
   }
   
   // 流信息
