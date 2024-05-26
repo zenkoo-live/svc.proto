@@ -57,12 +57,14 @@
     - [ChangeStreamerCoinResp](#svc-biz-asset-ChangeStreamerCoinResp)
     - [ChangeStreamerMoneyResp](#svc-biz-asset-ChangeStreamerMoneyResp)
     - [ChangeUnionCoinResp](#svc-biz-asset-ChangeUnionCoinResp)
+    - [ChangeUnionMoneyResp](#svc-biz-asset-ChangeUnionMoneyResp)
     - [ChangeUserCoinResp](#svc-biz-asset-ChangeUserCoinResp)
     - [ChangeUserMoneyResp](#svc-biz-asset-ChangeUserMoneyResp)
     - [DecrMerchantCoinReq](#svc-biz-asset-DecrMerchantCoinReq)
     - [DecrStreamerCoinReq](#svc-biz-asset-DecrStreamerCoinReq)
     - [DecrStreamerMoneyReq](#svc-biz-asset-DecrStreamerMoneyReq)
     - [DecrUnionCoinReq](#svc-biz-asset-DecrUnionCoinReq)
+    - [DecrUnionMoneyReq](#svc-biz-asset-DecrUnionMoneyReq)
     - [DecrUserCoinReq](#svc-biz-asset-DecrUserCoinReq)
     - [DecrUserMoneyReq](#svc-biz-asset-DecrUserMoneyReq)
     - [GetMerchantCoinMultiReq](#svc-biz-asset-GetMerchantCoinMultiReq)
@@ -85,6 +87,11 @@
     - [GetUnionCoinMultiResp.ValueMapEntry](#svc-biz-asset-GetUnionCoinMultiResp-ValueMapEntry)
     - [GetUnionCoinReq](#svc-biz-asset-GetUnionCoinReq)
     - [GetUnionCoinResp](#svc-biz-asset-GetUnionCoinResp)
+    - [GetUnionMoneyMultiReq](#svc-biz-asset-GetUnionMoneyMultiReq)
+    - [GetUnionMoneyMultiResp](#svc-biz-asset-GetUnionMoneyMultiResp)
+    - [GetUnionMoneyMultiResp.ValueMapEntry](#svc-biz-asset-GetUnionMoneyMultiResp-ValueMapEntry)
+    - [GetUnionMoneyReq](#svc-biz-asset-GetUnionMoneyReq)
+    - [GetUnionMoneyResp](#svc-biz-asset-GetUnionMoneyResp)
     - [GetUserCoinMultiReq](#svc-biz-asset-GetUserCoinMultiReq)
     - [GetUserCoinMultiResp](#svc-biz-asset-GetUserCoinMultiResp)
     - [GetUserCoinMultiResp.ValueMapEntry](#svc-biz-asset-GetUserCoinMultiResp-ValueMapEntry)
@@ -99,6 +106,7 @@
     - [IncrStreamerCoinReq](#svc-biz-asset-IncrStreamerCoinReq)
     - [IncrStreamerMoneyReq](#svc-biz-asset-IncrStreamerMoneyReq)
     - [IncrUnionCoinReq](#svc-biz-asset-IncrUnionCoinReq)
+    - [IncrUnionMoneyReq](#svc-biz-asset-IncrUnionMoneyReq)
     - [IncrUserCoinReq](#svc-biz-asset-IncrUserCoinReq)
     - [IncrUserMoneyReq](#svc-biz-asset-IncrUserMoneyReq)
     - [ListMerchantCoinDetailReq](#svc-biz-asset-ListMerchantCoinDetailReq)
@@ -109,6 +117,8 @@
     - [ListStreamerMoneyDetailResp](#svc-biz-asset-ListStreamerMoneyDetailResp)
     - [ListUnionCoinDetailReq](#svc-biz-asset-ListUnionCoinDetailReq)
     - [ListUnionCoinDetailResp](#svc-biz-asset-ListUnionCoinDetailResp)
+    - [ListUnionMoneyDetailReq](#svc-biz-asset-ListUnionMoneyDetailReq)
+    - [ListUnionMoneyDetailResp](#svc-biz-asset-ListUnionMoneyDetailResp)
     - [ListUserCoinDetailReq](#svc-biz-asset-ListUserCoinDetailReq)
     - [ListUserCoinDetailResp](#svc-biz-asset-ListUserCoinDetailResp)
     - [ListUserMoneyDetailReq](#svc-biz-asset-ListUserMoneyDetailReq)
@@ -120,6 +130,7 @@
     - [StreamerMoneyDetail](#svc-biz-asset-StreamerMoneyDetail)
     - [UnionCoinDetail](#svc-biz-asset-UnionCoinDetail)
     - [UnionCoinValue](#svc-biz-asset-UnionCoinValue)
+    - [UnionMoneyDetail](#svc-biz-asset-UnionMoneyDetail)
     - [UserCoinDetail](#svc-biz-asset-UserCoinDetail)
     - [UserCoinValue](#svc-biz-asset-UserCoinValue)
     - [UserMoneyDetail](#svc-biz-asset-UserMoneyDetail)
@@ -939,6 +950,26 @@
 
 
 
+<a name="svc-biz-asset-ChangeUnionMoneyResp"></a>
+
+### ChangeUnionMoneyResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| union_id | [string](#string) |  |  |
+| new_value | [int64](#int64) |  |  |
+| trade_id | [string](#string) |  | 业务方交易id |
+| detail_id | [string](#string) |  | 明细id |
+| serial_number | [int64](#int64) |  | 流水号,单账户连续自增 |
+| trans_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 业务时间 |
+
+
+
+
+
+
 <a name="svc-biz-asset-ChangeUserCoinResp"></a>
 
 ### ChangeUserCoinResp
@@ -1053,6 +1084,26 @@
 | union_id | [string](#string) |  |  |
 | value | [int64](#int64) |  |  |
 | rule | [int64](#int64) |  | 扣减规则: 0 仅普通余额 1 仅低权限余额 |
+| trans_type | [int64](#int64) |  | 交易类别 |
+| trade_id | [string](#string) |  | 业务方交易id,业务方保证唯一,支持幂等 |
+| summary | [string](#string) |  | 摘要,json 实际会做格式和核心字段校验 |
+| trans_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 业务时间 |
+
+
+
+
+
+
+<a name="svc-biz-asset-DecrUnionMoneyReq"></a>
+
+### DecrUnionMoneyReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| union_id | [string](#string) |  |  |
+| value | [int64](#int64) |  |  |
 | trans_type | [int64](#int64) |  | 交易类别 |
 | trade_id | [string](#string) |  | 业务方交易id,业务方保证唯一,支持幂等 |
 | summary | [string](#string) |  | 摘要,json 实际会做格式和核心字段校验 |
@@ -1409,6 +1460,82 @@
 
 
 
+<a name="svc-biz-asset-GetUnionMoneyMultiReq"></a>
+
+### GetUnionMoneyMultiReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| union_ids | [string](#string) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-asset-GetUnionMoneyMultiResp"></a>
+
+### GetUnionMoneyMultiResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| value_map | [GetUnionMoneyMultiResp.ValueMapEntry](#svc-biz-asset-GetUnionMoneyMultiResp-ValueMapEntry) | repeated | union_id-&gt;value |
+
+
+
+
+
+
+<a name="svc-biz-asset-GetUnionMoneyMultiResp-ValueMapEntry"></a>
+
+### GetUnionMoneyMultiResp.ValueMapEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-asset-GetUnionMoneyReq"></a>
+
+### GetUnionMoneyReq
+余额 money-----------------
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| union_id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-asset-GetUnionMoneyResp"></a>
+
+### GetUnionMoneyResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| value | [int64](#int64) |  |  |
+
+
+
+
+
+
 <a name="svc-biz-asset-GetUserCoinMultiReq"></a>
 
 ### GetUserCoinMultiReq
@@ -1644,6 +1771,26 @@
 
 
 
+<a name="svc-biz-asset-IncrUnionMoneyReq"></a>
+
+### IncrUnionMoneyReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| union_id | [string](#string) |  |  |
+| value | [int64](#int64) |  |  |
+| trans_type | [int64](#int64) |  | 交易类别 |
+| trade_id | [string](#string) |  | 业务方交易id,业务方保证唯一,支持幂等 |
+| summary | [string](#string) |  | 摘要,json 实际会做格式和核心字段校验 |
+| trans_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 业务时间 |
+
+
+
+
+
+
 <a name="svc-biz-asset-IncrUserCoinReq"></a>
 
 ### IncrUserCoinReq
@@ -1832,6 +1979,45 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | items | [UnionCoinDetail](#svc-biz-asset-UnionCoinDetail) | repeated |  |
+| page | [int64](#int64) |  | 页码 |
+| page_size | [int64](#int64) |  | 单页条数 |
+| total | [int64](#int64) |  | 符合筛选的总条数 |
+
+
+
+
+
+
+<a name="svc-biz-asset-ListUnionMoneyDetailReq"></a>
+
+### ListUnionMoneyDetailReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| union_id | [string](#string) |  |  |
+| trans_direction | [int64](#int64) |  | 交易方向 0 不限 1 增加 2 减少 |
+| trans_type | [int64](#int64) | repeated | 交易类别: 空表示不限 |
+| start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开始时间(含) |
+| end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 结束时间(不含) |
+| page | [int64](#int64) |  | 页码 |
+| page_size | [int64](#int64) |  | 单页条数 |
+
+
+
+
+
+
+<a name="svc-biz-asset-ListUnionMoneyDetailResp"></a>
+
+### ListUnionMoneyDetailResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [UnionMoneyDetail](#svc-biz-asset-UnionMoneyDetail) | repeated |  |
 | page | [int64](#int64) |  | 页码 |
 | page_size | [int64](#int64) |  | 单页条数 |
 | total | [int64](#int64) |  | 符合筛选的总条数 |
@@ -2063,6 +2249,29 @@
 
 
 
+<a name="svc-biz-asset-UnionMoneyDetail"></a>
+
+### UnionMoneyDetail
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| union_id | [string](#string) |  |  |
+| detail_id | [string](#string) |  | 明细id |
+| trade_id | [string](#string) |  | 业务方交易id |
+| serial_number | [int64](#int64) |  | 流水号,单账户连续自增 |
+| trans_direction | [int64](#int64) |  | 交易方向 1 增加 2 减少 |
+| trans_type | [int64](#int64) |  | 交易类别 |
+| value_change | [ValueChange](#svc-biz-asset-ValueChange) |  | 交易类别 |
+| trans_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 业务时间 |
+| summary | [string](#string) |  | 摘要,json 实际会做格式和核心字段校验 |
+
+
+
+
+
+
 <a name="svc-biz-asset-UserCoinDetail"></a>
 
 ### UserCoinDetail
@@ -2177,6 +2386,11 @@
 | IncrStreamerCoin | [IncrStreamerCoinReq](#svc-biz-asset-IncrStreamerCoinReq) | [ChangeStreamerCoinResp](#svc-biz-asset-ChangeStreamerCoinResp) |  |
 | DecrStreamerCoin | [DecrStreamerCoinReq](#svc-biz-asset-DecrStreamerCoinReq) | [ChangeStreamerCoinResp](#svc-biz-asset-ChangeStreamerCoinResp) |  |
 | ListStreamerCoinDetail | [ListStreamerCoinDetailReq](#svc-biz-asset-ListStreamerCoinDetailReq) | [ListStreamerCoinDetailResp](#svc-biz-asset-ListStreamerCoinDetailResp) |  |
+| GetUnionMoney | [GetUnionMoneyReq](#svc-biz-asset-GetUnionMoneyReq) | [GetUnionMoneyResp](#svc-biz-asset-GetUnionMoneyResp) | ---------------Union工会资产--------------- 余额 money |
+| GetUnionMoneyMulti | [GetUnionMoneyMultiReq](#svc-biz-asset-GetUnionMoneyMultiReq) | [GetUnionMoneyMultiResp](#svc-biz-asset-GetUnionMoneyMultiResp) |  |
+| IncrUnionMoney | [IncrUnionMoneyReq](#svc-biz-asset-IncrUnionMoneyReq) | [ChangeUnionMoneyResp](#svc-biz-asset-ChangeUnionMoneyResp) |  |
+| DecrUnionMoney | [DecrUnionMoneyReq](#svc-biz-asset-DecrUnionMoneyReq) | [ChangeUnionMoneyResp](#svc-biz-asset-ChangeUnionMoneyResp) |  |
+| ListUnionMoneyDetail | [ListUnionMoneyDetailReq](#svc-biz-asset-ListUnionMoneyDetailReq) | [ListUnionMoneyDetailResp](#svc-biz-asset-ListUnionMoneyDetailResp) |  |
 | GetUnionCoin | [GetUnionCoinReq](#svc-biz-asset-GetUnionCoinReq) | [GetUnionCoinResp](#svc-biz-asset-GetUnionCoinResp) | 虚拟币coin |
 | GetUnionCoinMulti | [GetUnionCoinMultiReq](#svc-biz-asset-GetUnionCoinMultiReq) | [GetUnionCoinMultiResp](#svc-biz-asset-GetUnionCoinMultiResp) |  |
 | IncrUnionCoin | [IncrUnionCoinReq](#svc-biz-asset-IncrUnionCoinReq) | [ChangeUnionCoinResp](#svc-biz-asset-ChangeUnionCoinResp) |  |

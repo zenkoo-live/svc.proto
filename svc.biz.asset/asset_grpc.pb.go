@@ -39,6 +39,11 @@ const (
 	Asset_IncrStreamerCoin_FullMethodName        = "/svc.biz.asset.Asset/IncrStreamerCoin"
 	Asset_DecrStreamerCoin_FullMethodName        = "/svc.biz.asset.Asset/DecrStreamerCoin"
 	Asset_ListStreamerCoinDetail_FullMethodName  = "/svc.biz.asset.Asset/ListStreamerCoinDetail"
+	Asset_GetUnionMoney_FullMethodName           = "/svc.biz.asset.Asset/GetUnionMoney"
+	Asset_GetUnionMoneyMulti_FullMethodName      = "/svc.biz.asset.Asset/GetUnionMoneyMulti"
+	Asset_IncrUnionMoney_FullMethodName          = "/svc.biz.asset.Asset/IncrUnionMoney"
+	Asset_DecrUnionMoney_FullMethodName          = "/svc.biz.asset.Asset/DecrUnionMoney"
+	Asset_ListUnionMoneyDetail_FullMethodName    = "/svc.biz.asset.Asset/ListUnionMoneyDetail"
 	Asset_GetUnionCoin_FullMethodName            = "/svc.biz.asset.Asset/GetUnionCoin"
 	Asset_GetUnionCoinMulti_FullMethodName       = "/svc.biz.asset.Asset/GetUnionCoinMulti"
 	Asset_IncrUnionCoin_FullMethodName           = "/svc.biz.asset.Asset/IncrUnionCoin"
@@ -80,6 +85,13 @@ type AssetClient interface {
 	IncrStreamerCoin(ctx context.Context, in *IncrStreamerCoinReq, opts ...grpc.CallOption) (*ChangeStreamerCoinResp, error)
 	DecrStreamerCoin(ctx context.Context, in *DecrStreamerCoinReq, opts ...grpc.CallOption) (*ChangeStreamerCoinResp, error)
 	ListStreamerCoinDetail(ctx context.Context, in *ListStreamerCoinDetailReq, opts ...grpc.CallOption) (*ListStreamerCoinDetailResp, error)
+	// ---------------Union工会资产---------------
+	// 余额 money
+	GetUnionMoney(ctx context.Context, in *GetUnionMoneyReq, opts ...grpc.CallOption) (*GetUnionMoneyResp, error)
+	GetUnionMoneyMulti(ctx context.Context, in *GetUnionMoneyMultiReq, opts ...grpc.CallOption) (*GetUnionMoneyMultiResp, error)
+	IncrUnionMoney(ctx context.Context, in *IncrUnionMoneyReq, opts ...grpc.CallOption) (*ChangeUnionMoneyResp, error)
+	DecrUnionMoney(ctx context.Context, in *DecrUnionMoneyReq, opts ...grpc.CallOption) (*ChangeUnionMoneyResp, error)
+	ListUnionMoneyDetail(ctx context.Context, in *ListUnionMoneyDetailReq, opts ...grpc.CallOption) (*ListUnionMoneyDetailResp, error)
 	// 虚拟币coin
 	GetUnionCoin(ctx context.Context, in *GetUnionCoinReq, opts ...grpc.CallOption) (*GetUnionCoinResp, error)
 	GetUnionCoinMulti(ctx context.Context, in *GetUnionCoinMultiReq, opts ...grpc.CallOption) (*GetUnionCoinMultiResp, error)
@@ -282,6 +294,51 @@ func (c *assetClient) ListStreamerCoinDetail(ctx context.Context, in *ListStream
 	return out, nil
 }
 
+func (c *assetClient) GetUnionMoney(ctx context.Context, in *GetUnionMoneyReq, opts ...grpc.CallOption) (*GetUnionMoneyResp, error) {
+	out := new(GetUnionMoneyResp)
+	err := c.cc.Invoke(ctx, Asset_GetUnionMoney_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *assetClient) GetUnionMoneyMulti(ctx context.Context, in *GetUnionMoneyMultiReq, opts ...grpc.CallOption) (*GetUnionMoneyMultiResp, error) {
+	out := new(GetUnionMoneyMultiResp)
+	err := c.cc.Invoke(ctx, Asset_GetUnionMoneyMulti_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *assetClient) IncrUnionMoney(ctx context.Context, in *IncrUnionMoneyReq, opts ...grpc.CallOption) (*ChangeUnionMoneyResp, error) {
+	out := new(ChangeUnionMoneyResp)
+	err := c.cc.Invoke(ctx, Asset_IncrUnionMoney_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *assetClient) DecrUnionMoney(ctx context.Context, in *DecrUnionMoneyReq, opts ...grpc.CallOption) (*ChangeUnionMoneyResp, error) {
+	out := new(ChangeUnionMoneyResp)
+	err := c.cc.Invoke(ctx, Asset_DecrUnionMoney_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *assetClient) ListUnionMoneyDetail(ctx context.Context, in *ListUnionMoneyDetailReq, opts ...grpc.CallOption) (*ListUnionMoneyDetailResp, error) {
+	out := new(ListUnionMoneyDetailResp)
+	err := c.cc.Invoke(ctx, Asset_ListUnionMoneyDetail_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *assetClient) GetUnionCoin(ctx context.Context, in *GetUnionCoinReq, opts ...grpc.CallOption) (*GetUnionCoinResp, error) {
 	out := new(GetUnionCoinResp)
 	err := c.cc.Invoke(ctx, Asset_GetUnionCoin_FullMethodName, in, out, opts...)
@@ -401,6 +458,13 @@ type AssetServer interface {
 	IncrStreamerCoin(context.Context, *IncrStreamerCoinReq) (*ChangeStreamerCoinResp, error)
 	DecrStreamerCoin(context.Context, *DecrStreamerCoinReq) (*ChangeStreamerCoinResp, error)
 	ListStreamerCoinDetail(context.Context, *ListStreamerCoinDetailReq) (*ListStreamerCoinDetailResp, error)
+	// ---------------Union工会资产---------------
+	// 余额 money
+	GetUnionMoney(context.Context, *GetUnionMoneyReq) (*GetUnionMoneyResp, error)
+	GetUnionMoneyMulti(context.Context, *GetUnionMoneyMultiReq) (*GetUnionMoneyMultiResp, error)
+	IncrUnionMoney(context.Context, *IncrUnionMoneyReq) (*ChangeUnionMoneyResp, error)
+	DecrUnionMoney(context.Context, *DecrUnionMoneyReq) (*ChangeUnionMoneyResp, error)
+	ListUnionMoneyDetail(context.Context, *ListUnionMoneyDetailReq) (*ListUnionMoneyDetailResp, error)
 	// 虚拟币coin
 	GetUnionCoin(context.Context, *GetUnionCoinReq) (*GetUnionCoinResp, error)
 	GetUnionCoinMulti(context.Context, *GetUnionCoinMultiReq) (*GetUnionCoinMultiResp, error)
@@ -479,6 +543,21 @@ func (UnimplementedAssetServer) DecrStreamerCoin(context.Context, *DecrStreamerC
 }
 func (UnimplementedAssetServer) ListStreamerCoinDetail(context.Context, *ListStreamerCoinDetailReq) (*ListStreamerCoinDetailResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListStreamerCoinDetail not implemented")
+}
+func (UnimplementedAssetServer) GetUnionMoney(context.Context, *GetUnionMoneyReq) (*GetUnionMoneyResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUnionMoney not implemented")
+}
+func (UnimplementedAssetServer) GetUnionMoneyMulti(context.Context, *GetUnionMoneyMultiReq) (*GetUnionMoneyMultiResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUnionMoneyMulti not implemented")
+}
+func (UnimplementedAssetServer) IncrUnionMoney(context.Context, *IncrUnionMoneyReq) (*ChangeUnionMoneyResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method IncrUnionMoney not implemented")
+}
+func (UnimplementedAssetServer) DecrUnionMoney(context.Context, *DecrUnionMoneyReq) (*ChangeUnionMoneyResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DecrUnionMoney not implemented")
+}
+func (UnimplementedAssetServer) ListUnionMoneyDetail(context.Context, *ListUnionMoneyDetailReq) (*ListUnionMoneyDetailResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListUnionMoneyDetail not implemented")
 }
 func (UnimplementedAssetServer) GetUnionCoin(context.Context, *GetUnionCoinReq) (*GetUnionCoinResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUnionCoin not implemented")
@@ -883,6 +962,96 @@ func _Asset_ListStreamerCoinDetail_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Asset_GetUnionMoney_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUnionMoneyReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AssetServer).GetUnionMoney(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Asset_GetUnionMoney_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AssetServer).GetUnionMoney(ctx, req.(*GetUnionMoneyReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Asset_GetUnionMoneyMulti_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUnionMoneyMultiReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AssetServer).GetUnionMoneyMulti(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Asset_GetUnionMoneyMulti_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AssetServer).GetUnionMoneyMulti(ctx, req.(*GetUnionMoneyMultiReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Asset_IncrUnionMoney_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IncrUnionMoneyReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AssetServer).IncrUnionMoney(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Asset_IncrUnionMoney_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AssetServer).IncrUnionMoney(ctx, req.(*IncrUnionMoneyReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Asset_DecrUnionMoney_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DecrUnionMoneyReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AssetServer).DecrUnionMoney(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Asset_DecrUnionMoney_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AssetServer).DecrUnionMoney(ctx, req.(*DecrUnionMoneyReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Asset_ListUnionMoneyDetail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListUnionMoneyDetailReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AssetServer).ListUnionMoneyDetail(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Asset_ListUnionMoneyDetail_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AssetServer).ListUnionMoneyDetail(ctx, req.(*ListUnionMoneyDetailReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Asset_GetUnionCoin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetUnionCoinReq)
 	if err := dec(in); err != nil {
@@ -1149,6 +1318,26 @@ var Asset_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListStreamerCoinDetail",
 			Handler:    _Asset_ListStreamerCoinDetail_Handler,
+		},
+		{
+			MethodName: "GetUnionMoney",
+			Handler:    _Asset_GetUnionMoney_Handler,
+		},
+		{
+			MethodName: "GetUnionMoneyMulti",
+			Handler:    _Asset_GetUnionMoneyMulti_Handler,
+		},
+		{
+			MethodName: "IncrUnionMoney",
+			Handler:    _Asset_IncrUnionMoney_Handler,
+		},
+		{
+			MethodName: "DecrUnionMoney",
+			Handler:    _Asset_DecrUnionMoney_Handler,
+		},
+		{
+			MethodName: "ListUnionMoneyDetail",
+			Handler:    _Asset_ListUnionMoneyDetail_Handler,
 		},
 		{
 			MethodName: "GetUnionCoin",
