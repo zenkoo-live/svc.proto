@@ -64,7 +64,7 @@ message StreamPull {
   
   // 推流地址
   message StreamPush {
-    string rtmp_ = 1; // RTMP 推流地址
+    string rtmp = 1; // RTMP 推流地址
     string web_rtc = 2; // WebRTC 推流地址
     string srt = 3; // SRT 推流地址
     string rmtp_over_srt = 4; // RTMP over SRT 推流地址

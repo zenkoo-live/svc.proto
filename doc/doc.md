@@ -1743,7 +1743,7 @@ CategoryInfo 分类详情
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| rtmp_ | [string](#string) |  | RTMP 推流地址 |
+| rtmp | [string](#string) |  | RTMP 推流地址 |
 | web_rtc | [string](#string) |  | WebRTC 推流地址 |
 | srt | [string](#string) |  | SRT 推流地址 |
 | rmtp_over_srt | [string](#string) |  | RTMP over SRT 推流地址 |
