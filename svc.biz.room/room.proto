@@ -16,6 +16,8 @@ service Room {
     rpc UpdateRoom(UpdateRoomReq) returns(google.protobuf.Empty);
     // GetRoom 查询房间
     rpc GetRoom(GetRoomReq) returns(GetRoomResp);
+    // GetRoomByStreamerID 查询房间
+    rpc GetRoomByStreamerID(GetRoomByStreamerIDReq) returns(GetRoomByStreamerIDResp);
     // MGetRooms 查询房间
     rpc MGetRooms(MGetRoomsReq) returns(MGetRoomsResp);
     // MGetRoomByStreamerIDs 批量查询房间
@@ -118,6 +120,14 @@ message GetRoomReq {
     bool with_stream = 2; // 是否带流信息
 }
 message GetRoomResp {
+    RoomInfo room = 1; // 房间信息
+    Stream stream = 2; // 流信息
+}
+
+message GetRoomByStreamerIDReq {
+    string streamer_id = 1; // 主播id
+}
+message GetRoomByStreamerIDResp {
     RoomInfo room = 1; // 房间信息
     Stream stream = 2; // 流信息
 }

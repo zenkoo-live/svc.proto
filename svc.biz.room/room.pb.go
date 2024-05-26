@@ -845,6 +845,108 @@ func (x *GetRoomResp) GetStream() *Stream {
 	return nil
 }
 
+type GetRoomByStreamerIDReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	StreamerId string `protobuf:"bytes,1,opt,name=streamer_id,json=streamerId,proto3" json:"streamer_id,omitempty"` // 主播id
+}
+
+func (x *GetRoomByStreamerIDReq) Reset() {
+	*x = GetRoomByStreamerIDReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_biz_room_room_proto_msgTypes[9]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetRoomByStreamerIDReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetRoomByStreamerIDReq) ProtoMessage() {}
+
+func (x *GetRoomByStreamerIDReq) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_biz_room_room_proto_msgTypes[9]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetRoomByStreamerIDReq.ProtoReflect.Descriptor instead.
+func (*GetRoomByStreamerIDReq) Descriptor() ([]byte, []int) {
+	return file_svc_biz_room_room_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *GetRoomByStreamerIDReq) GetStreamerId() string {
+	if x != nil {
+		return x.StreamerId
+	}
+	return ""
+}
+
+type GetRoomByStreamerIDResp struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Room   *RoomInfo `protobuf:"bytes,1,opt,name=room,proto3" json:"room,omitempty"`     // 房间信息
+	Stream *Stream   `protobuf:"bytes,2,opt,name=stream,proto3" json:"stream,omitempty"` // 流信息
+}
+
+func (x *GetRoomByStreamerIDResp) Reset() {
+	*x = GetRoomByStreamerIDResp{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_biz_room_room_proto_msgTypes[10]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetRoomByStreamerIDResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetRoomByStreamerIDResp) ProtoMessage() {}
+
+func (x *GetRoomByStreamerIDResp) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_biz_room_room_proto_msgTypes[10]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetRoomByStreamerIDResp.ProtoReflect.Descriptor instead.
+func (*GetRoomByStreamerIDResp) Descriptor() ([]byte, []int) {
+	return file_svc_biz_room_room_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *GetRoomByStreamerIDResp) GetRoom() *RoomInfo {
+	if x != nil {
+		return x.Room
+	}
+	return nil
+}
+
+func (x *GetRoomByStreamerIDResp) GetStream() *Stream {
+	if x != nil {
+		return x.Stream
+	}
+	return nil
+}
+
 type MGetRoomsReq struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -856,7 +958,7 @@ type MGetRoomsReq struct {
 func (x *MGetRoomsReq) Reset() {
 	*x = MGetRoomsReq{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_svc_biz_room_room_proto_msgTypes[9]
+		mi := &file_svc_biz_room_room_proto_msgTypes[11]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -869,7 +971,7 @@ func (x *MGetRoomsReq) String() string {
 func (*MGetRoomsReq) ProtoMessage() {}
 
 func (x *MGetRoomsReq) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_biz_room_room_proto_msgTypes[9]
+	mi := &file_svc_biz_room_room_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -882,7 +984,7 @@ func (x *MGetRoomsReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MGetRoomsReq.ProtoReflect.Descriptor instead.
 func (*MGetRoomsReq) Descriptor() ([]byte, []int) {
-	return file_svc_biz_room_room_proto_rawDescGZIP(), []int{9}
+	return file_svc_biz_room_room_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *MGetRoomsReq) GetRoomIds() []string {
@@ -903,7 +1005,7 @@ type MGetRoomsResp struct {
 func (x *MGetRoomsResp) Reset() {
 	*x = MGetRoomsResp{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_svc_biz_room_room_proto_msgTypes[10]
+		mi := &file_svc_biz_room_room_proto_msgTypes[12]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -916,7 +1018,7 @@ func (x *MGetRoomsResp) String() string {
 func (*MGetRoomsResp) ProtoMessage() {}
 
 func (x *MGetRoomsResp) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_biz_room_room_proto_msgTypes[10]
+	mi := &file_svc_biz_room_room_proto_msgTypes[12]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -929,7 +1031,7 @@ func (x *MGetRoomsResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MGetRoomsResp.ProtoReflect.Descriptor instead.
 func (*MGetRoomsResp) Descriptor() ([]byte, []int) {
-	return file_svc_biz_room_room_proto_rawDescGZIP(), []int{10}
+	return file_svc_biz_room_room_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *MGetRoomsResp) GetItems() map[string]*RoomInfo {
@@ -950,7 +1052,7 @@ type MGetRoomsByStreamerIDsReq struct {
 func (x *MGetRoomsByStreamerIDsReq) Reset() {
 	*x = MGetRoomsByStreamerIDsReq{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_svc_biz_room_room_proto_msgTypes[11]
+		mi := &file_svc_biz_room_room_proto_msgTypes[13]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -963,7 +1065,7 @@ func (x *MGetRoomsByStreamerIDsReq) String() string {
 func (*MGetRoomsByStreamerIDsReq) ProtoMessage() {}
 
 func (x *MGetRoomsByStreamerIDsReq) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_biz_room_room_proto_msgTypes[11]
+	mi := &file_svc_biz_room_room_proto_msgTypes[13]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -976,7 +1078,7 @@ func (x *MGetRoomsByStreamerIDsReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MGetRoomsByStreamerIDsReq.ProtoReflect.Descriptor instead.
 func (*MGetRoomsByStreamerIDsReq) Descriptor() ([]byte, []int) {
-	return file_svc_biz_room_room_proto_rawDescGZIP(), []int{11}
+	return file_svc_biz_room_room_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *MGetRoomsByStreamerIDsReq) GetStreamerIds() []string {
@@ -997,7 +1099,7 @@ type MGetRoomsByStreamerIDsResp struct {
 func (x *MGetRoomsByStreamerIDsResp) Reset() {
 	*x = MGetRoomsByStreamerIDsResp{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_svc_biz_room_room_proto_msgTypes[12]
+		mi := &file_svc_biz_room_room_proto_msgTypes[14]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1010,7 +1112,7 @@ func (x *MGetRoomsByStreamerIDsResp) String() string {
 func (*MGetRoomsByStreamerIDsResp) ProtoMessage() {}
 
 func (x *MGetRoomsByStreamerIDsResp) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_biz_room_room_proto_msgTypes[12]
+	mi := &file_svc_biz_room_room_proto_msgTypes[14]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1023,7 +1125,7 @@ func (x *MGetRoomsByStreamerIDsResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MGetRoomsByStreamerIDsResp.ProtoReflect.Descriptor instead.
 func (*MGetRoomsByStreamerIDsResp) Descriptor() ([]byte, []int) {
-	return file_svc_biz_room_room_proto_rawDescGZIP(), []int{12}
+	return file_svc_biz_room_room_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *MGetRoomsByStreamerIDsResp) GetItems() map[string]*RoomInfo {
@@ -1046,7 +1148,7 @@ type GetRoomListReq struct {
 func (x *GetRoomListReq) Reset() {
 	*x = GetRoomListReq{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_svc_biz_room_room_proto_msgTypes[13]
+		mi := &file_svc_biz_room_room_proto_msgTypes[15]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1059,7 +1161,7 @@ func (x *GetRoomListReq) String() string {
 func (*GetRoomListReq) ProtoMessage() {}
 
 func (x *GetRoomListReq) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_biz_room_room_proto_msgTypes[13]
+	mi := &file_svc_biz_room_room_proto_msgTypes[15]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1072,7 +1174,7 @@ func (x *GetRoomListReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetRoomListReq.ProtoReflect.Descriptor instead.
 func (*GetRoomListReq) Descriptor() ([]byte, []int) {
-	return file_svc_biz_room_room_proto_rawDescGZIP(), []int{13}
+	return file_svc_biz_room_room_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *GetRoomListReq) GetPage() int32 {
@@ -1107,7 +1209,7 @@ type GetRoomListResp struct {
 func (x *GetRoomListResp) Reset() {
 	*x = GetRoomListResp{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_svc_biz_room_room_proto_msgTypes[14]
+		mi := &file_svc_biz_room_room_proto_msgTypes[16]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1120,7 +1222,7 @@ func (x *GetRoomListResp) String() string {
 func (*GetRoomListResp) ProtoMessage() {}
 
 func (x *GetRoomListResp) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_biz_room_room_proto_msgTypes[14]
+	mi := &file_svc_biz_room_room_proto_msgTypes[16]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1133,7 +1235,7 @@ func (x *GetRoomListResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetRoomListResp.ProtoReflect.Descriptor instead.
 func (*GetRoomListResp) Descriptor() ([]byte, []int) {
-	return file_svc_biz_room_room_proto_rawDescGZIP(), []int{14}
+	return file_svc_biz_room_room_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *GetRoomListResp) GetItems() []*RoomInfo {
@@ -1158,7 +1260,7 @@ type GetOnlineRoomListReq struct {
 func (x *GetOnlineRoomListReq) Reset() {
 	*x = GetOnlineRoomListReq{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_svc_biz_room_room_proto_msgTypes[15]
+		mi := &file_svc_biz_room_room_proto_msgTypes[17]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1171,7 +1273,7 @@ func (x *GetOnlineRoomListReq) String() string {
 func (*GetOnlineRoomListReq) ProtoMessage() {}
 
 func (x *GetOnlineRoomListReq) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_biz_room_room_proto_msgTypes[15]
+	mi := &file_svc_biz_room_room_proto_msgTypes[17]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1184,7 +1286,7 @@ func (x *GetOnlineRoomListReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetOnlineRoomListReq.ProtoReflect.Descriptor instead.
 func (*GetOnlineRoomListReq) Descriptor() ([]byte, []int) {
-	return file_svc_biz_room_room_proto_rawDescGZIP(), []int{15}
+	return file_svc_biz_room_room_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *GetOnlineRoomListReq) GetPage() int32 {
@@ -1233,7 +1335,7 @@ type GetOnlineRoomListResp struct {
 func (x *GetOnlineRoomListResp) Reset() {
 	*x = GetOnlineRoomListResp{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_svc_biz_room_room_proto_msgTypes[16]
+		mi := &file_svc_biz_room_room_proto_msgTypes[18]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1246,7 +1348,7 @@ func (x *GetOnlineRoomListResp) String() string {
 func (*GetOnlineRoomListResp) ProtoMessage() {}
 
 func (x *GetOnlineRoomListResp) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_biz_room_room_proto_msgTypes[16]
+	mi := &file_svc_biz_room_room_proto_msgTypes[18]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1259,7 +1361,7 @@ func (x *GetOnlineRoomListResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetOnlineRoomListResp.ProtoReflect.Descriptor instead.
 func (*GetOnlineRoomListResp) Descriptor() ([]byte, []int) {
-	return file_svc_biz_room_room_proto_rawDescGZIP(), []int{16}
+	return file_svc_biz_room_room_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *GetOnlineRoomListResp) GetItems() []*RoomInfo {
@@ -1281,7 +1383,7 @@ type StartLiveReq struct {
 func (x *StartLiveReq) Reset() {
 	*x = StartLiveReq{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_svc_biz_room_room_proto_msgTypes[17]
+		mi := &file_svc_biz_room_room_proto_msgTypes[19]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1294,7 +1396,7 @@ func (x *StartLiveReq) String() string {
 func (*StartLiveReq) ProtoMessage() {}
 
 func (x *StartLiveReq) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_biz_room_room_proto_msgTypes[17]
+	mi := &file_svc_biz_room_room_proto_msgTypes[19]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1307,7 +1409,7 @@ func (x *StartLiveReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StartLiveReq.ProtoReflect.Descriptor instead.
 func (*StartLiveReq) Descriptor() ([]byte, []int) {
-	return file_svc_biz_room_room_proto_rawDescGZIP(), []int{17}
+	return file_svc_biz_room_room_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *StartLiveReq) GetStreamerId() string {
@@ -1336,7 +1438,7 @@ type StartLiveResp struct {
 func (x *StartLiveResp) Reset() {
 	*x = StartLiveResp{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_svc_biz_room_room_proto_msgTypes[18]
+		mi := &file_svc_biz_room_room_proto_msgTypes[20]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1349,7 +1451,7 @@ func (x *StartLiveResp) String() string {
 func (*StartLiveResp) ProtoMessage() {}
 
 func (x *StartLiveResp) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_biz_room_room_proto_msgTypes[18]
+	mi := &file_svc_biz_room_room_proto_msgTypes[20]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1362,7 +1464,7 @@ func (x *StartLiveResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StartLiveResp.ProtoReflect.Descriptor instead.
 func (*StartLiveResp) Descriptor() ([]byte, []int) {
-	return file_svc_biz_room_room_proto_rawDescGZIP(), []int{18}
+	return file_svc_biz_room_room_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *StartLiveResp) GetRoom() *RoomInfo {
@@ -1390,7 +1492,7 @@ type StopLiveReq struct {
 func (x *StopLiveReq) Reset() {
 	*x = StopLiveReq{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_svc_biz_room_room_proto_msgTypes[19]
+		mi := &file_svc_biz_room_room_proto_msgTypes[21]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1403,7 +1505,7 @@ func (x *StopLiveReq) String() string {
 func (*StopLiveReq) ProtoMessage() {}
 
 func (x *StopLiveReq) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_biz_room_room_proto_msgTypes[19]
+	mi := &file_svc_biz_room_room_proto_msgTypes[21]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1416,7 +1518,7 @@ func (x *StopLiveReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StopLiveReq.ProtoReflect.Descriptor instead.
 func (*StopLiveReq) Descriptor() ([]byte, []int) {
-	return file_svc_biz_room_room_proto_rawDescGZIP(), []int{19}
+	return file_svc_biz_room_room_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *StopLiveReq) GetStreamerId() string {
@@ -1435,7 +1537,7 @@ type StopLiveResp struct {
 func (x *StopLiveResp) Reset() {
 	*x = StopLiveResp{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_svc_biz_room_room_proto_msgTypes[20]
+		mi := &file_svc_biz_room_room_proto_msgTypes[22]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1448,7 +1550,7 @@ func (x *StopLiveResp) String() string {
 func (*StopLiveResp) ProtoMessage() {}
 
 func (x *StopLiveResp) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_biz_room_room_proto_msgTypes[20]
+	mi := &file_svc_biz_room_room_proto_msgTypes[22]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1461,7 +1563,7 @@ func (x *StopLiveResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StopLiveResp.ProtoReflect.Descriptor instead.
 func (*StopLiveResp) Descriptor() ([]byte, []int) {
-	return file_svc_biz_room_room_proto_rawDescGZIP(), []int{20}
+	return file_svc_biz_room_room_proto_rawDescGZIP(), []int{22}
 }
 
 var File_svc_biz_room_room_proto protoreflect.FileDescriptor
@@ -1576,6 +1678,17 @@ var file_svc_biz_room_room_proto_rawDesc = []byte{
 	0x66, 0x6f, 0x52, 0x04, 0x72, 0x6f, 0x6f, 0x6d, 0x12, 0x2c, 0x0a, 0x06, 0x73, 0x74, 0x72, 0x65,
 	0x61, 0x6d, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x14, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62,
 	0x69, 0x7a, 0x2e, 0x72, 0x6f, 0x6f, 0x6d, 0x2e, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x52, 0x06,
+	0x73, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x22, 0x39, 0x0a, 0x16, 0x47, 0x65, 0x74, 0x52, 0x6f, 0x6f,
+	0x6d, 0x42, 0x79, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x65, 0x72, 0x49, 0x44, 0x52, 0x65, 0x71,
+	0x12, 0x1f, 0x0a, 0x0b, 0x73, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x73, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x65, 0x72, 0x49,
+	0x64, 0x22, 0x73, 0x0a, 0x17, 0x47, 0x65, 0x74, 0x52, 0x6f, 0x6f, 0x6d, 0x42, 0x79, 0x53, 0x74,
+	0x72, 0x65, 0x61, 0x6d, 0x65, 0x72, 0x49, 0x44, 0x52, 0x65, 0x73, 0x70, 0x12, 0x2a, 0x0a, 0x04,
+	0x72, 0x6f, 0x6f, 0x6d, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x16, 0x2e, 0x73, 0x76, 0x63,
+	0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x72, 0x6f, 0x6f, 0x6d, 0x2e, 0x52, 0x6f, 0x6f, 0x6d, 0x49, 0x6e,
+	0x66, 0x6f, 0x52, 0x04, 0x72, 0x6f, 0x6f, 0x6d, 0x12, 0x2c, 0x0a, 0x06, 0x73, 0x74, 0x72, 0x65,
+	0x61, 0x6d, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x14, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62,
+	0x69, 0x7a, 0x2e, 0x72, 0x6f, 0x6f, 0x6d, 0x2e, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x52, 0x06,
 	0x73, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x22, 0x29, 0x0a, 0x0c, 0x4d, 0x47, 0x65, 0x74, 0x52, 0x6f,
 	0x6f, 0x6d, 0x73, 0x52, 0x65, 0x71, 0x12, 0x19, 0x0a, 0x08, 0x72, 0x6f, 0x6f, 0x6d, 0x5f, 0x69,
 	0x64, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x09, 0x52, 0x07, 0x72, 0x6f, 0x6f, 0x6d, 0x49, 0x64,
@@ -1669,7 +1782,7 @@ var file_svc_biz_room_room_proto_rawDesc = []byte{
 	0x6e, 0x10, 0x00, 0x12, 0x14, 0x0a, 0x10, 0x4c, 0x69, 0x76, 0x65, 0x53, 0x74, 0x61, 0x74, 0x75,
 	0x73, 0x4f, 0x6e, 0x6c, 0x69, 0x6e, 0x65, 0x10, 0x01, 0x12, 0x15, 0x0a, 0x11, 0x4c, 0x69, 0x76,
 	0x65, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x4f, 0x66, 0x66, 0x6c, 0x69, 0x6e, 0x65, 0x10, 0x02,
-	0x32, 0xb8, 0x05, 0x0a, 0x04, 0x52, 0x6f, 0x6f, 0x6d, 0x12, 0x47, 0x0a, 0x0a, 0x43, 0x72, 0x65,
+	0x32, 0x9c, 0x06, 0x0a, 0x04, 0x52, 0x6f, 0x6f, 0x6d, 0x12, 0x47, 0x0a, 0x0a, 0x43, 0x72, 0x65,
 	0x61, 0x74, 0x65, 0x52, 0x6f, 0x6f, 0x6d, 0x12, 0x1b, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69,
 	0x7a, 0x2e, 0x72, 0x6f, 0x6f, 0x6d, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x52, 0x6f, 0x6f,
 	0x6d, 0x52, 0x65, 0x71, 0x1a, 0x1c, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x72,
@@ -1682,39 +1795,45 @@ var file_svc_biz_room_room_proto_rawDesc = []byte{
 	0x12, 0x18, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x72, 0x6f, 0x6f, 0x6d, 0x2e,
 	0x47, 0x65, 0x74, 0x52, 0x6f, 0x6f, 0x6d, 0x52, 0x65, 0x71, 0x1a, 0x19, 0x2e, 0x73, 0x76, 0x63,
 	0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x72, 0x6f, 0x6f, 0x6d, 0x2e, 0x47, 0x65, 0x74, 0x52, 0x6f, 0x6f,
-	0x6d, 0x52, 0x65, 0x73, 0x70, 0x12, 0x44, 0x0a, 0x09, 0x4d, 0x47, 0x65, 0x74, 0x52, 0x6f, 0x6f,
-	0x6d, 0x73, 0x12, 0x1a, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x72, 0x6f, 0x6f,
-	0x6d, 0x2e, 0x4d, 0x47, 0x65, 0x74, 0x52, 0x6f, 0x6f, 0x6d, 0x73, 0x52, 0x65, 0x71, 0x1a, 0x1b,
-	0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x72, 0x6f, 0x6f, 0x6d, 0x2e, 0x4d, 0x47,
-	0x65, 0x74, 0x52, 0x6f, 0x6f, 0x6d, 0x73, 0x52, 0x65, 0x73, 0x70, 0x12, 0x6b, 0x0a, 0x16, 0x4d,
-	0x47, 0x65, 0x74, 0x52, 0x6f, 0x6f, 0x6d, 0x73, 0x42, 0x79, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d,
-	0x65, 0x72, 0x49, 0x44, 0x73, 0x12, 0x27, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e,
-	0x72, 0x6f, 0x6f, 0x6d, 0x2e, 0x4d, 0x47, 0x65, 0x74, 0x52, 0x6f, 0x6f, 0x6d, 0x73, 0x42, 0x79,
-	0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x65, 0x72, 0x49, 0x44, 0x73, 0x52, 0x65, 0x71, 0x1a, 0x28,
-	0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x72, 0x6f, 0x6f, 0x6d, 0x2e, 0x4d, 0x47,
-	0x65, 0x74, 0x52, 0x6f, 0x6f, 0x6d, 0x73, 0x42, 0x79, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x65,
-	0x72, 0x49, 0x44, 0x73, 0x52, 0x65, 0x73, 0x70, 0x12, 0x4a, 0x0a, 0x0b, 0x47, 0x65, 0x74, 0x52,
-	0x6f, 0x6f, 0x6d, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x1c, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69,
-	0x7a, 0x2e, 0x72, 0x6f, 0x6f, 0x6d, 0x2e, 0x47, 0x65, 0x74, 0x52, 0x6f, 0x6f, 0x6d, 0x4c, 0x69,
-	0x73, 0x74, 0x52, 0x65, 0x71, 0x1a, 0x1d, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e,
-	0x72, 0x6f, 0x6f, 0x6d, 0x2e, 0x47, 0x65, 0x74, 0x52, 0x6f, 0x6f, 0x6d, 0x4c, 0x69, 0x73, 0x74,
-	0x52, 0x65, 0x73, 0x70, 0x12, 0x5c, 0x0a, 0x11, 0x47, 0x65, 0x74, 0x4f, 0x6e, 0x6c, 0x69, 0x6e,
-	0x65, 0x52, 0x6f, 0x6f, 0x6d, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x22, 0x2e, 0x73, 0x76, 0x63, 0x2e,
-	0x62, 0x69, 0x7a, 0x2e, 0x72, 0x6f, 0x6f, 0x6d, 0x2e, 0x47, 0x65, 0x74, 0x4f, 0x6e, 0x6c, 0x69,
-	0x6e, 0x65, 0x52, 0x6f, 0x6f, 0x6d, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x71, 0x1a, 0x23, 0x2e,
+	0x6d, 0x52, 0x65, 0x73, 0x70, 0x12, 0x62, 0x0a, 0x13, 0x47, 0x65, 0x74, 0x52, 0x6f, 0x6f, 0x6d,
+	0x42, 0x79, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x65, 0x72, 0x49, 0x44, 0x12, 0x24, 0x2e, 0x73,
+	0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x72, 0x6f, 0x6f, 0x6d, 0x2e, 0x47, 0x65, 0x74, 0x52,
+	0x6f, 0x6f, 0x6d, 0x42, 0x79, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x65, 0x72, 0x49, 0x44, 0x52,
+	0x65, 0x71, 0x1a, 0x25, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x72, 0x6f, 0x6f,
+	0x6d, 0x2e, 0x47, 0x65, 0x74, 0x52, 0x6f, 0x6f, 0x6d, 0x42, 0x79, 0x53, 0x74, 0x72, 0x65, 0x61,
+	0x6d, 0x65, 0x72, 0x49, 0x44, 0x52, 0x65, 0x73, 0x70, 0x12, 0x44, 0x0a, 0x09, 0x4d, 0x47, 0x65,
+	0x74, 0x52, 0x6f, 0x6f, 0x6d, 0x73, 0x12, 0x1a, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a,
+	0x2e, 0x72, 0x6f, 0x6f, 0x6d, 0x2e, 0x4d, 0x47, 0x65, 0x74, 0x52, 0x6f, 0x6f, 0x6d, 0x73, 0x52,
+	0x65, 0x71, 0x1a, 0x1b, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x72, 0x6f, 0x6f,
+	0x6d, 0x2e, 0x4d, 0x47, 0x65, 0x74, 0x52, 0x6f, 0x6f, 0x6d, 0x73, 0x52, 0x65, 0x73, 0x70, 0x12,
+	0x6b, 0x0a, 0x16, 0x4d, 0x47, 0x65, 0x74, 0x52, 0x6f, 0x6f, 0x6d, 0x73, 0x42, 0x79, 0x53, 0x74,
+	0x72, 0x65, 0x61, 0x6d, 0x65, 0x72, 0x49, 0x44, 0x73, 0x12, 0x27, 0x2e, 0x73, 0x76, 0x63, 0x2e,
+	0x62, 0x69, 0x7a, 0x2e, 0x72, 0x6f, 0x6f, 0x6d, 0x2e, 0x4d, 0x47, 0x65, 0x74, 0x52, 0x6f, 0x6f,
+	0x6d, 0x73, 0x42, 0x79, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x65, 0x72, 0x49, 0x44, 0x73, 0x52,
+	0x65, 0x71, 0x1a, 0x28, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x72, 0x6f, 0x6f,
+	0x6d, 0x2e, 0x4d, 0x47, 0x65, 0x74, 0x52, 0x6f, 0x6f, 0x6d, 0x73, 0x42, 0x79, 0x53, 0x74, 0x72,
+	0x65, 0x61, 0x6d, 0x65, 0x72, 0x49, 0x44, 0x73, 0x52, 0x65, 0x73, 0x70, 0x12, 0x4a, 0x0a, 0x0b,
+	0x47, 0x65, 0x74, 0x52, 0x6f, 0x6f, 0x6d, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x1c, 0x2e, 0x73, 0x76,
+	0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x72, 0x6f, 0x6f, 0x6d, 0x2e, 0x47, 0x65, 0x74, 0x52, 0x6f,
+	0x6f, 0x6d, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x71, 0x1a, 0x1d, 0x2e, 0x73, 0x76, 0x63, 0x2e,
+	0x62, 0x69, 0x7a, 0x2e, 0x72, 0x6f, 0x6f, 0x6d, 0x2e, 0x47, 0x65, 0x74, 0x52, 0x6f, 0x6f, 0x6d,
+	0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x73, 0x70, 0x12, 0x5c, 0x0a, 0x11, 0x47, 0x65, 0x74, 0x4f,
+	0x6e, 0x6c, 0x69, 0x6e, 0x65, 0x52, 0x6f, 0x6f, 0x6d, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x22, 0x2e,
 	0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x72, 0x6f, 0x6f, 0x6d, 0x2e, 0x47, 0x65, 0x74,
 	0x4f, 0x6e, 0x6c, 0x69, 0x6e, 0x65, 0x52, 0x6f, 0x6f, 0x6d, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65,
-	0x73, 0x70, 0x12, 0x44, 0x0a, 0x09, 0x53, 0x74, 0x61, 0x72, 0x74, 0x4c, 0x69, 0x76, 0x65, 0x12,
-	0x1a, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x72, 0x6f, 0x6f, 0x6d, 0x2e, 0x53,
-	0x74, 0x61, 0x72, 0x74, 0x4c, 0x69, 0x76, 0x65, 0x52, 0x65, 0x71, 0x1a, 0x1b, 0x2e, 0x73, 0x76,
-	0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x72, 0x6f, 0x6f, 0x6d, 0x2e, 0x53, 0x74, 0x61, 0x72, 0x74,
-	0x4c, 0x69, 0x76, 0x65, 0x52, 0x65, 0x73, 0x70, 0x12, 0x41, 0x0a, 0x08, 0x53, 0x74, 0x6f, 0x70,
-	0x4c, 0x69, 0x76, 0x65, 0x12, 0x19, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x72,
-	0x6f, 0x6f, 0x6d, 0x2e, 0x53, 0x74, 0x6f, 0x70, 0x4c, 0x69, 0x76, 0x65, 0x52, 0x65, 0x71, 0x1a,
-	0x1a, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x72, 0x6f, 0x6f, 0x6d, 0x2e, 0x53,
-	0x74, 0x6f, 0x70, 0x4c, 0x69, 0x76, 0x65, 0x52, 0x65, 0x73, 0x70, 0x42, 0x15, 0x5a, 0x13, 0x2e,
-	0x2f, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x72, 0x6f, 0x6f, 0x6d, 0x3b, 0x72, 0x6f,
-	0x6f, 0x6d, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x71, 0x1a, 0x23, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x72, 0x6f, 0x6f, 0x6d,
+	0x2e, 0x47, 0x65, 0x74, 0x4f, 0x6e, 0x6c, 0x69, 0x6e, 0x65, 0x52, 0x6f, 0x6f, 0x6d, 0x4c, 0x69,
+	0x73, 0x74, 0x52, 0x65, 0x73, 0x70, 0x12, 0x44, 0x0a, 0x09, 0x53, 0x74, 0x61, 0x72, 0x74, 0x4c,
+	0x69, 0x76, 0x65, 0x12, 0x1a, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x72, 0x6f,
+	0x6f, 0x6d, 0x2e, 0x53, 0x74, 0x61, 0x72, 0x74, 0x4c, 0x69, 0x76, 0x65, 0x52, 0x65, 0x71, 0x1a,
+	0x1b, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x72, 0x6f, 0x6f, 0x6d, 0x2e, 0x53,
+	0x74, 0x61, 0x72, 0x74, 0x4c, 0x69, 0x76, 0x65, 0x52, 0x65, 0x73, 0x70, 0x12, 0x41, 0x0a, 0x08,
+	0x53, 0x74, 0x6f, 0x70, 0x4c, 0x69, 0x76, 0x65, 0x12, 0x19, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62,
+	0x69, 0x7a, 0x2e, 0x72, 0x6f, 0x6f, 0x6d, 0x2e, 0x53, 0x74, 0x6f, 0x70, 0x4c, 0x69, 0x76, 0x65,
+	0x52, 0x65, 0x71, 0x1a, 0x1a, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x72, 0x6f,
+	0x6f, 0x6d, 0x2e, 0x53, 0x74, 0x6f, 0x70, 0x4c, 0x69, 0x76, 0x65, 0x52, 0x65, 0x73, 0x70, 0x42,
+	0x15, 0x5a, 0x13, 0x2e, 0x2f, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x72, 0x6f, 0x6f,
+	0x6d, 0x3b, 0x72, 0x6f, 0x6f, 0x6d, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -1730,7 +1849,7 @@ func file_svc_biz_room_room_proto_rawDescGZIP() []byte {
 }
 
 var file_svc_biz_room_room_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
-var file_svc_biz_room_room_proto_msgTypes = make([]protoimpl.MessageInfo, 23)
+var file_svc_biz_room_room_proto_msgTypes = make([]protoimpl.MessageInfo, 25)
 var file_svc_biz_room_room_proto_goTypes = []interface{}{
 	(SortType)(0),                      // 0: svc.biz.room.SortType
 	(LiveDisplayType)(0),               // 1: svc.biz.room.LiveDisplayType
@@ -1744,71 +1863,77 @@ var file_svc_biz_room_room_proto_goTypes = []interface{}{
 	(*UpdateRoomReq)(nil),              // 9: svc.biz.room.UpdateRoomReq
 	(*GetRoomReq)(nil),                 // 10: svc.biz.room.GetRoomReq
 	(*GetRoomResp)(nil),                // 11: svc.biz.room.GetRoomResp
-	(*MGetRoomsReq)(nil),               // 12: svc.biz.room.MGetRoomsReq
-	(*MGetRoomsResp)(nil),              // 13: svc.biz.room.MGetRoomsResp
-	(*MGetRoomsByStreamerIDsReq)(nil),  // 14: svc.biz.room.MGetRoomsByStreamerIDsReq
-	(*MGetRoomsByStreamerIDsResp)(nil), // 15: svc.biz.room.MGetRoomsByStreamerIDsResp
-	(*GetRoomListReq)(nil),             // 16: svc.biz.room.GetRoomListReq
-	(*GetRoomListResp)(nil),            // 17: svc.biz.room.GetRoomListResp
-	(*GetOnlineRoomListReq)(nil),       // 18: svc.biz.room.GetOnlineRoomListReq
-	(*GetOnlineRoomListResp)(nil),      // 19: svc.biz.room.GetOnlineRoomListResp
-	(*StartLiveReq)(nil),               // 20: svc.biz.room.StartLiveReq
-	(*StartLiveResp)(nil),              // 21: svc.biz.room.StartLiveResp
-	(*StopLiveReq)(nil),                // 22: svc.biz.room.StopLiveReq
-	(*StopLiveResp)(nil),               // 23: svc.biz.room.StopLiveResp
-	nil,                                // 24: svc.biz.room.MGetRoomsResp.ItemsEntry
-	nil,                                // 25: svc.biz.room.MGetRoomsByStreamerIDsResp.ItemsEntry
-	(*timestamppb.Timestamp)(nil),      // 26: google.protobuf.Timestamp
-	(*fieldmaskpb.FieldMask)(nil),      // 27: google.protobuf.FieldMask
-	(*emptypb.Empty)(nil),              // 28: google.protobuf.Empty
+	(*GetRoomByStreamerIDReq)(nil),     // 12: svc.biz.room.GetRoomByStreamerIDReq
+	(*GetRoomByStreamerIDResp)(nil),    // 13: svc.biz.room.GetRoomByStreamerIDResp
+	(*MGetRoomsReq)(nil),               // 14: svc.biz.room.MGetRoomsReq
+	(*MGetRoomsResp)(nil),              // 15: svc.biz.room.MGetRoomsResp
+	(*MGetRoomsByStreamerIDsReq)(nil),  // 16: svc.biz.room.MGetRoomsByStreamerIDsReq
+	(*MGetRoomsByStreamerIDsResp)(nil), // 17: svc.biz.room.MGetRoomsByStreamerIDsResp
+	(*GetRoomListReq)(nil),             // 18: svc.biz.room.GetRoomListReq
+	(*GetRoomListResp)(nil),            // 19: svc.biz.room.GetRoomListResp
+	(*GetOnlineRoomListReq)(nil),       // 20: svc.biz.room.GetOnlineRoomListReq
+	(*GetOnlineRoomListResp)(nil),      // 21: svc.biz.room.GetOnlineRoomListResp
+	(*StartLiveReq)(nil),               // 22: svc.biz.room.StartLiveReq
+	(*StartLiveResp)(nil),              // 23: svc.biz.room.StartLiveResp
+	(*StopLiveReq)(nil),                // 24: svc.biz.room.StopLiveReq
+	(*StopLiveResp)(nil),               // 25: svc.biz.room.StopLiveResp
+	nil,                                // 26: svc.biz.room.MGetRoomsResp.ItemsEntry
+	nil,                                // 27: svc.biz.room.MGetRoomsByStreamerIDsResp.ItemsEntry
+	(*timestamppb.Timestamp)(nil),      // 28: google.protobuf.Timestamp
+	(*fieldmaskpb.FieldMask)(nil),      // 29: google.protobuf.FieldMask
+	(*emptypb.Empty)(nil),              // 30: google.protobuf.Empty
 }
 var file_svc_biz_room_room_proto_depIdxs = []int32{
 	3,  // 0: svc.biz.room.Stream.pull:type_name -> svc.biz.room.StreamPull
 	4,  // 1: svc.biz.room.Stream.push:type_name -> svc.biz.room.StreamPush
 	2,  // 2: svc.biz.room.RoomInfo.live_status:type_name -> svc.biz.room.LiveStatus
 	1,  // 3: svc.biz.room.RoomInfo.live_display_type:type_name -> svc.biz.room.LiveDisplayType
-	26, // 4: svc.biz.room.RoomInfo.live_start_at:type_name -> google.protobuf.Timestamp
-	26, // 5: svc.biz.room.RoomInfo.created_at:type_name -> google.protobuf.Timestamp
-	26, // 6: svc.biz.room.RoomInfo.updated_at:type_name -> google.protobuf.Timestamp
+	28, // 4: svc.biz.room.RoomInfo.live_start_at:type_name -> google.protobuf.Timestamp
+	28, // 5: svc.biz.room.RoomInfo.created_at:type_name -> google.protobuf.Timestamp
+	28, // 6: svc.biz.room.RoomInfo.updated_at:type_name -> google.protobuf.Timestamp
 	6,  // 7: svc.biz.room.CreateRoomReq.room:type_name -> svc.biz.room.RoomInfo
 	6,  // 8: svc.biz.room.CreateRoomResp.room:type_name -> svc.biz.room.RoomInfo
 	6,  // 9: svc.biz.room.UpdateRoomReq.room:type_name -> svc.biz.room.RoomInfo
-	27, // 10: svc.biz.room.UpdateRoomReq.update_mask:type_name -> google.protobuf.FieldMask
+	29, // 10: svc.biz.room.UpdateRoomReq.update_mask:type_name -> google.protobuf.FieldMask
 	6,  // 11: svc.biz.room.GetRoomResp.room:type_name -> svc.biz.room.RoomInfo
 	5,  // 12: svc.biz.room.GetRoomResp.stream:type_name -> svc.biz.room.Stream
-	24, // 13: svc.biz.room.MGetRoomsResp.items:type_name -> svc.biz.room.MGetRoomsResp.ItemsEntry
-	25, // 14: svc.biz.room.MGetRoomsByStreamerIDsResp.items:type_name -> svc.biz.room.MGetRoomsByStreamerIDsResp.ItemsEntry
-	6,  // 15: svc.biz.room.GetRoomListResp.items:type_name -> svc.biz.room.RoomInfo
-	0,  // 16: svc.biz.room.GetOnlineRoomListReq.sort_type:type_name -> svc.biz.room.SortType
-	6,  // 17: svc.biz.room.GetOnlineRoomListResp.items:type_name -> svc.biz.room.RoomInfo
-	1,  // 18: svc.biz.room.StartLiveReq.display_type:type_name -> svc.biz.room.LiveDisplayType
-	6,  // 19: svc.biz.room.StartLiveResp.room:type_name -> svc.biz.room.RoomInfo
-	5,  // 20: svc.biz.room.StartLiveResp.stream:type_name -> svc.biz.room.Stream
-	6,  // 21: svc.biz.room.MGetRoomsResp.ItemsEntry.value:type_name -> svc.biz.room.RoomInfo
-	6,  // 22: svc.biz.room.MGetRoomsByStreamerIDsResp.ItemsEntry.value:type_name -> svc.biz.room.RoomInfo
-	7,  // 23: svc.biz.room.Room.CreateRoom:input_type -> svc.biz.room.CreateRoomReq
-	9,  // 24: svc.biz.room.Room.UpdateRoom:input_type -> svc.biz.room.UpdateRoomReq
-	10, // 25: svc.biz.room.Room.GetRoom:input_type -> svc.biz.room.GetRoomReq
-	12, // 26: svc.biz.room.Room.MGetRooms:input_type -> svc.biz.room.MGetRoomsReq
-	14, // 27: svc.biz.room.Room.MGetRoomsByStreamerIDs:input_type -> svc.biz.room.MGetRoomsByStreamerIDsReq
-	16, // 28: svc.biz.room.Room.GetRoomList:input_type -> svc.biz.room.GetRoomListReq
-	18, // 29: svc.biz.room.Room.GetOnlineRoomList:input_type -> svc.biz.room.GetOnlineRoomListReq
-	20, // 30: svc.biz.room.Room.StartLive:input_type -> svc.biz.room.StartLiveReq
-	22, // 31: svc.biz.room.Room.StopLive:input_type -> svc.biz.room.StopLiveReq
-	8,  // 32: svc.biz.room.Room.CreateRoom:output_type -> svc.biz.room.CreateRoomResp
-	28, // 33: svc.biz.room.Room.UpdateRoom:output_type -> google.protobuf.Empty
-	11, // 34: svc.biz.room.Room.GetRoom:output_type -> svc.biz.room.GetRoomResp
-	13, // 35: svc.biz.room.Room.MGetRooms:output_type -> svc.biz.room.MGetRoomsResp
-	15, // 36: svc.biz.room.Room.MGetRoomsByStreamerIDs:output_type -> svc.biz.room.MGetRoomsByStreamerIDsResp
-	17, // 37: svc.biz.room.Room.GetRoomList:output_type -> svc.biz.room.GetRoomListResp
-	19, // 38: svc.biz.room.Room.GetOnlineRoomList:output_type -> svc.biz.room.GetOnlineRoomListResp
-	21, // 39: svc.biz.room.Room.StartLive:output_type -> svc.biz.room.StartLiveResp
-	23, // 40: svc.biz.room.Room.StopLive:output_type -> svc.biz.room.StopLiveResp
-	32, // [32:41] is the sub-list for method output_type
-	23, // [23:32] is the sub-list for method input_type
-	23, // [23:23] is the sub-list for extension type_name
-	23, // [23:23] is the sub-list for extension extendee
-	0,  // [0:23] is the sub-list for field type_name
+	6,  // 13: svc.biz.room.GetRoomByStreamerIDResp.room:type_name -> svc.biz.room.RoomInfo
+	5,  // 14: svc.biz.room.GetRoomByStreamerIDResp.stream:type_name -> svc.biz.room.Stream
+	26, // 15: svc.biz.room.MGetRoomsResp.items:type_name -> svc.biz.room.MGetRoomsResp.ItemsEntry
+	27, // 16: svc.biz.room.MGetRoomsByStreamerIDsResp.items:type_name -> svc.biz.room.MGetRoomsByStreamerIDsResp.ItemsEntry
+	6,  // 17: svc.biz.room.GetRoomListResp.items:type_name -> svc.biz.room.RoomInfo
+	0,  // 18: svc.biz.room.GetOnlineRoomListReq.sort_type:type_name -> svc.biz.room.SortType
+	6,  // 19: svc.biz.room.GetOnlineRoomListResp.items:type_name -> svc.biz.room.RoomInfo
+	1,  // 20: svc.biz.room.StartLiveReq.display_type:type_name -> svc.biz.room.LiveDisplayType
+	6,  // 21: svc.biz.room.StartLiveResp.room:type_name -> svc.biz.room.RoomInfo
+	5,  // 22: svc.biz.room.StartLiveResp.stream:type_name -> svc.biz.room.Stream
+	6,  // 23: svc.biz.room.MGetRoomsResp.ItemsEntry.value:type_name -> svc.biz.room.RoomInfo
+	6,  // 24: svc.biz.room.MGetRoomsByStreamerIDsResp.ItemsEntry.value:type_name -> svc.biz.room.RoomInfo
+	7,  // 25: svc.biz.room.Room.CreateRoom:input_type -> svc.biz.room.CreateRoomReq
+	9,  // 26: svc.biz.room.Room.UpdateRoom:input_type -> svc.biz.room.UpdateRoomReq
+	10, // 27: svc.biz.room.Room.GetRoom:input_type -> svc.biz.room.GetRoomReq
+	12, // 28: svc.biz.room.Room.GetRoomByStreamerID:input_type -> svc.biz.room.GetRoomByStreamerIDReq
+	14, // 29: svc.biz.room.Room.MGetRooms:input_type -> svc.biz.room.MGetRoomsReq
+	16, // 30: svc.biz.room.Room.MGetRoomsByStreamerIDs:input_type -> svc.biz.room.MGetRoomsByStreamerIDsReq
+	18, // 31: svc.biz.room.Room.GetRoomList:input_type -> svc.biz.room.GetRoomListReq
+	20, // 32: svc.biz.room.Room.GetOnlineRoomList:input_type -> svc.biz.room.GetOnlineRoomListReq
+	22, // 33: svc.biz.room.Room.StartLive:input_type -> svc.biz.room.StartLiveReq
+	24, // 34: svc.biz.room.Room.StopLive:input_type -> svc.biz.room.StopLiveReq
+	8,  // 35: svc.biz.room.Room.CreateRoom:output_type -> svc.biz.room.CreateRoomResp
+	30, // 36: svc.biz.room.Room.UpdateRoom:output_type -> google.protobuf.Empty
+	11, // 37: svc.biz.room.Room.GetRoom:output_type -> svc.biz.room.GetRoomResp
+	13, // 38: svc.biz.room.Room.GetRoomByStreamerID:output_type -> svc.biz.room.GetRoomByStreamerIDResp
+	15, // 39: svc.biz.room.Room.MGetRooms:output_type -> svc.biz.room.MGetRoomsResp
+	17, // 40: svc.biz.room.Room.MGetRoomsByStreamerIDs:output_type -> svc.biz.room.MGetRoomsByStreamerIDsResp
+	19, // 41: svc.biz.room.Room.GetRoomList:output_type -> svc.biz.room.GetRoomListResp
+	21, // 42: svc.biz.room.Room.GetOnlineRoomList:output_type -> svc.biz.room.GetOnlineRoomListResp
+	23, // 43: svc.biz.room.Room.StartLive:output_type -> svc.biz.room.StartLiveResp
+	25, // 44: svc.biz.room.Room.StopLive:output_type -> svc.biz.room.StopLiveResp
+	35, // [35:45] is the sub-list for method output_type
+	25, // [25:35] is the sub-list for method input_type
+	25, // [25:25] is the sub-list for extension type_name
+	25, // [25:25] is the sub-list for extension extendee
+	0,  // [0:25] is the sub-list for field type_name
 }
 
 func init() { file_svc_biz_room_room_proto_init() }
@@ -1926,7 +2051,7 @@ func file_svc_biz_room_room_proto_init() {
 			}
 		}
 		file_svc_biz_room_room_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MGetRoomsReq); i {
+			switch v := v.(*GetRoomByStreamerIDReq); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1938,7 +2063,7 @@ func file_svc_biz_room_room_proto_init() {
 			}
 		}
 		file_svc_biz_room_room_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MGetRoomsResp); i {
+			switch v := v.(*GetRoomByStreamerIDResp); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1950,7 +2075,7 @@ func file_svc_biz_room_room_proto_init() {
 			}
 		}
 		file_svc_biz_room_room_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MGetRoomsByStreamerIDsReq); i {
+			switch v := v.(*MGetRoomsReq); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1962,7 +2087,7 @@ func file_svc_biz_room_room_proto_init() {
 			}
 		}
 		file_svc_biz_room_room_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MGetRoomsByStreamerIDsResp); i {
+			switch v := v.(*MGetRoomsResp); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1974,7 +2099,7 @@ func file_svc_biz_room_room_proto_init() {
 			}
 		}
 		file_svc_biz_room_room_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetRoomListReq); i {
+			switch v := v.(*MGetRoomsByStreamerIDsReq); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1986,7 +2111,7 @@ func file_svc_biz_room_room_proto_init() {
 			}
 		}
 		file_svc_biz_room_room_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetRoomListResp); i {
+			switch v := v.(*MGetRoomsByStreamerIDsResp); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1998,7 +2123,7 @@ func file_svc_biz_room_room_proto_init() {
 			}
 		}
 		file_svc_biz_room_room_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetOnlineRoomListReq); i {
+			switch v := v.(*GetRoomListReq); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2010,7 +2135,7 @@ func file_svc_biz_room_room_proto_init() {
 			}
 		}
 		file_svc_biz_room_room_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetOnlineRoomListResp); i {
+			switch v := v.(*GetRoomListResp); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2022,7 +2147,7 @@ func file_svc_biz_room_room_proto_init() {
 			}
 		}
 		file_svc_biz_room_room_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*StartLiveReq); i {
+			switch v := v.(*GetOnlineRoomListReq); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2034,7 +2159,7 @@ func file_svc_biz_room_room_proto_init() {
 			}
 		}
 		file_svc_biz_room_room_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*StartLiveResp); i {
+			switch v := v.(*GetOnlineRoomListResp); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2046,7 +2171,7 @@ func file_svc_biz_room_room_proto_init() {
 			}
 		}
 		file_svc_biz_room_room_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*StopLiveReq); i {
+			switch v := v.(*StartLiveReq); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2058,6 +2183,30 @@ func file_svc_biz_room_room_proto_init() {
 			}
 		}
 		file_svc_biz_room_room_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*StartLiveResp); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_biz_room_room_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*StopLiveReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_biz_room_room_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*StopLiveResp); i {
 			case 0:
 				return &v.state
@@ -2076,7 +2225,7 @@ func file_svc_biz_room_room_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_svc_biz_room_room_proto_rawDesc,
 			NumEnums:      3,
-			NumMessages:   23,
+			NumMessages:   25,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

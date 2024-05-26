@@ -89,6 +89,8 @@
     - [CreateRoomResp](#svc-biz-room-CreateRoomResp)
     - [GetOnlineRoomListReq](#svc-biz-room-GetOnlineRoomListReq)
     - [GetOnlineRoomListResp](#svc-biz-room-GetOnlineRoomListResp)
+    - [GetRoomByStreamerIDReq](#svc-biz-room-GetRoomByStreamerIDReq)
+    - [GetRoomByStreamerIDResp](#svc-biz-room-GetRoomByStreamerIDResp)
     - [GetRoomListReq](#svc-biz-room-GetRoomListReq)
     - [GetRoomListResp](#svc-biz-room-GetRoomListResp)
     - [GetRoomReq](#svc-biz-room-GetRoomReq)
@@ -1416,6 +1418,37 @@ CategoryInfo 分类详情
 
 
 
+<a name="svc-biz-room-GetRoomByStreamerIDReq"></a>
+
+### GetRoomByStreamerIDReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer_id | [string](#string) |  | 主播id |
+
+
+
+
+
+
+<a name="svc-biz-room-GetRoomByStreamerIDResp"></a>
+
+### GetRoomByStreamerIDResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| room | [RoomInfo](#svc-biz-room-RoomInfo) |  | 房间信息 |
+| stream | [Stream](#svc-biz-room-Stream) |  | 流信息 |
+
+
+
+
+
+
 <a name="svc-biz-room-GetRoomListReq"></a>
 
 ### GetRoomListReq
@@ -1790,6 +1823,7 @@ Room 房间
 | CreateRoom | [CreateRoomReq](#svc-biz-room-CreateRoomReq) | [CreateRoomResp](#svc-biz-room-CreateRoomResp) | CreateRoom 创建房间 |
 | UpdateRoom | [UpdateRoomReq](#svc-biz-room-UpdateRoomReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | UpdateRoom 更新房间 |
 | GetRoom | [GetRoomReq](#svc-biz-room-GetRoomReq) | [GetRoomResp](#svc-biz-room-GetRoomResp) | GetRoom 查询房间 |
+| GetRoomByStreamerID | [GetRoomByStreamerIDReq](#svc-biz-room-GetRoomByStreamerIDReq) | [GetRoomByStreamerIDResp](#svc-biz-room-GetRoomByStreamerIDResp) | GetRoomByStreamerID 查询房间 |
 | MGetRooms | [MGetRoomsReq](#svc-biz-room-MGetRoomsReq) | [MGetRoomsResp](#svc-biz-room-MGetRoomsResp) | MGetRooms 查询房间 |
 | MGetRoomsByStreamerIDs | [MGetRoomsByStreamerIDsReq](#svc-biz-room-MGetRoomsByStreamerIDsReq) | [MGetRoomsByStreamerIDsResp](#svc-biz-room-MGetRoomsByStreamerIDsResp) | MGetRoomByStreamerIDs 批量查询房间 |
 | GetRoomList | [GetRoomListReq](#svc-biz-room-GetRoomListReq) | [GetRoomListResp](#svc-biz-room-GetRoomListResp) | GetRoomList 查询房间列表（后台使用此接口） |
