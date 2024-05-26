@@ -41,7 +41,7 @@ message ListLiveResp {
 
 
 message LiveInfo {
-    string id = 1; // id
+    string live_id = 1; // id
     string streamer_id = 2; // 主播id
     string room_id = 3; // 房间id
     string category_id = 4; // 分类id

@@ -87,19 +87,31 @@
 - [svc.biz.room/room.proto](#svc-biz-room_room-proto)
     - [CreateRoomReq](#svc-biz-room-CreateRoomReq)
     - [CreateRoomResp](#svc-biz-room-CreateRoomResp)
+    - [GetOnlineRoomListReq](#svc-biz-room-GetOnlineRoomListReq)
+    - [GetOnlineRoomListResp](#svc-biz-room-GetOnlineRoomListResp)
     - [GetRoomListReq](#svc-biz-room-GetRoomListReq)
     - [GetRoomListResp](#svc-biz-room-GetRoomListResp)
     - [GetRoomReq](#svc-biz-room-GetRoomReq)
     - [GetRoomResp](#svc-biz-room-GetRoomResp)
+    - [MGetRoomsByStreamerIDsReq](#svc-biz-room-MGetRoomsByStreamerIDsReq)
+    - [MGetRoomsByStreamerIDsResp](#svc-biz-room-MGetRoomsByStreamerIDsResp)
+    - [MGetRoomsByStreamerIDsResp.ItemsEntry](#svc-biz-room-MGetRoomsByStreamerIDsResp-ItemsEntry)
+    - [MGetRoomsReq](#svc-biz-room-MGetRoomsReq)
+    - [MGetRoomsResp](#svc-biz-room-MGetRoomsResp)
+    - [MGetRoomsResp.ItemsEntry](#svc-biz-room-MGetRoomsResp-ItemsEntry)
     - [RoomInfo](#svc-biz-room-RoomInfo)
     - [StartLiveReq](#svc-biz-room-StartLiveReq)
     - [StartLiveResp](#svc-biz-room-StartLiveResp)
     - [StopLiveReq](#svc-biz-room-StopLiveReq)
     - [StopLiveResp](#svc-biz-room-StopLiveResp)
+    - [StreamPull](#svc-biz-room-StreamPull)
+    - [StreamPush](#svc-biz-room-StreamPush)
     - [UpdateRoomReq](#svc-biz-room-UpdateRoomReq)
+    - [stream](#svc-biz-room-stream)
   
     - [LiveDisplayType](#svc-biz-room-LiveDisplayType)
     - [LiveStatus](#svc-biz-room-LiveStatus)
+    - [SortType](#svc-biz-room-SortType)
   
     - [Room](#svc-biz-room-Room)
   
@@ -978,7 +990,7 @@ CategoryInfo 分类详情
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | category_id | [string](#string) |  |  |
-| parent_id | [string](#string) |  | 父级ID |
+| parent_category_id | [string](#string) |  | 父级ID |
 | category_code | [string](#string) |  | 代号（唯一，预留） |
 | category_name | [string](#string) |  | 名称 |
 | sort | [int32](#int32) |  | 排序 |
@@ -1074,7 +1086,7 @@ CategoryInfo 分类详情
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent_id | [string](#string) |  | 父级ID，跟级分类传1 |
+| parent_category_id | [string](#string) |  | 父级ID，跟级分类传1 |
 | return_count | [bool](#bool) |  | 是否返回总数 |
 
 
@@ -1240,7 +1252,7 @@ CategoryInfo 分类详情
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| id | [string](#string) |  | id |
+| live_id | [string](#string) |  | id |
 | streamer_id | [string](#string) |  | 主播id |
 | room_id | [string](#string) |  | 房间id |
 | category_id | [string](#string) |  | 分类id |
@@ -1358,6 +1370,40 @@ CategoryInfo 分类详情
 
 
 
+<a name="svc-biz-room-GetOnlineRoomListReq"></a>
+
+### GetOnlineRoomListReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| page | [int32](#int32) |  | 页数 |
+| limit | [int32](#int32) |  | 条数（建议固定20） |
+| sort_type | [SortType](#svc-biz-room-SortType) |  | 排序类型 |
+| category_id | [string](#string) |  | 分类id |
+| bind_tags | [string](#string) | repeated | 标签 |
+
+
+
+
+
+
+<a name="svc-biz-room-GetOnlineRoomListResp"></a>
+
+### GetOnlineRoomListResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [RoomInfo](#svc-biz-room-RoomInfo) | repeated | 房间列表 |
+
+
+
+
+
+
 <a name="svc-biz-room-GetRoomListReq"></a>
 
 ### GetRoomListReq
@@ -1398,7 +1444,8 @@ CategoryInfo 分类详情
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| id | [string](#string) |  | id |
+| room_id | [string](#string) |  | id |
+| with_stream | [bool](#bool) |  | 是否带流信息 |
 
 
 
@@ -1420,6 +1467,98 @@ CategoryInfo 分类详情
 
 
 
+<a name="svc-biz-room-MGetRoomsByStreamerIDsReq"></a>
+
+### MGetRoomsByStreamerIDsReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer_ids | [string](#string) | repeated | 主播id |
+
+
+
+
+
+
+<a name="svc-biz-room-MGetRoomsByStreamerIDsResp"></a>
+
+### MGetRoomsByStreamerIDsResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [MGetRoomsByStreamerIDsResp.ItemsEntry](#svc-biz-room-MGetRoomsByStreamerIDsResp-ItemsEntry) | repeated | 房间信息 map streamer_id -&gt; room |
+
+
+
+
+
+
+<a name="svc-biz-room-MGetRoomsByStreamerIDsResp-ItemsEntry"></a>
+
+### MGetRoomsByStreamerIDsResp.ItemsEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [RoomInfo](#svc-biz-room-RoomInfo) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-room-MGetRoomsReq"></a>
+
+### MGetRoomsReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| room_ids | [string](#string) | repeated | id |
+
+
+
+
+
+
+<a name="svc-biz-room-MGetRoomsResp"></a>
+
+### MGetRoomsResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [MGetRoomsResp.ItemsEntry](#svc-biz-room-MGetRoomsResp-ItemsEntry) | repeated | 房间信息 map room_id -&gt; room |
+
+
+
+
+
+
+<a name="svc-biz-room-MGetRoomsResp-ItemsEntry"></a>
+
+### MGetRoomsResp.ItemsEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [RoomInfo](#svc-biz-room-RoomInfo) |  |  |
+
+
+
+
+
+
 <a name="svc-biz-room-RoomInfo"></a>
 
 ### RoomInfo
@@ -1428,13 +1567,14 @@ CategoryInfo 分类详情
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| id | [string](#string) |  | id |
+| room_id | [string](#string) |  | id |
 | display_id | [string](#string) |  | 显示id |
 | streamer_id | [string](#string) |  | 主播id |
 | category_id | [string](#string) |  | 分类id |
 | title | [string](#string) |  | 标题 |
 | intro | [string](#string) |  | 简介 |
 | hidden | [bool](#bool) |  | 是否隐藏 |
+| merchants | [string](#string) | repeated | 商户id |
 | bind_tags | [string](#string) | repeated | 标签 |
 | live_id | [string](#string) |  | 直播id（开播状态时才会有，关播时清空） |
 | live_region | [int32](#int32) |  | 直播区域（开播状态时才会有，关播时清空） |
@@ -1445,11 +1585,13 @@ CategoryInfo 分类详情
 | score_search | [int32](#int32) |  | 搜索分数（后台配置） |
 | score_subscribe | [int32](#int32) |  | 关注分数（后台配置） |
 | score_hot | [int32](#int32) |  | 热度分数（后台配置） |
-| score_glamour | [int32](#int32) |  | 魅力分数 |
+| score_glamour | [int32](#int32) |  | 魅力值 |
 | score_online | [int32](#int32) |  | 在线人数 |
-| score_gift | [int32](#int32) |  | 礼物分数 |
+| score_selected_gift | [int32](#int32) |  | 精选礼物最后赠送时间戳 |
+| score_gift | [int32](#int32) |  | 纯礼物收益 |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
 | updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 更新时间 |
+| stream | [stream](#svc-biz-room-stream) |  | 流信息 |
 
 
 
@@ -1512,6 +1654,38 @@ CategoryInfo 分类详情
 
 
 
+<a name="svc-biz-room-StreamPull"></a>
+
+### StreamPull
+拉流地址
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| flv_url | [string](#string) |  | FLV 拉流地址 |
+| hls_url | [string](#string) |  | HLS 拉流地址 |
+| rtmp_url | [string](#string) |  | RTMP 拉流地址 |
+
+
+
+
+
+
+<a name="svc-biz-room-StreamPush"></a>
+
+### StreamPush
+推流地址
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| rtmp_url | [string](#string) |  | RTMP 推流地址 |
+
+
+
+
+
+
 <a name="svc-biz-room-UpdateRoomReq"></a>
 
 ### UpdateRoomReq
@@ -1520,9 +1694,25 @@ CategoryInfo 分类详情
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| id | [string](#string) |  | id |
+| room_id | [string](#string) |  | id |
 | room | [RoomInfo](#svc-biz-room-RoomInfo) |  | 房间信息 |
 | update_mask | [google.protobuf.FieldMask](#google-protobuf-FieldMask) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-room-stream"></a>
+
+### stream
+流信息
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| pull | [StreamPull](#svc-biz-room-StreamPull) |  | 推流信息 |
+| push | [StreamPush](#svc-biz-room-StreamPush) |  | 推流信息 |
 
 
 
@@ -1556,6 +1746,22 @@ CategoryInfo 分类详情
 | LiveStatusOffline | 2 | 下线 |
 
 
+
+<a name="svc-biz-room-SortType"></a>
+
+### SortType
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| SortTypeUnknown | 0 | 未知 |
+| SortTypeHot | 1 | 热度值（首页除关注之外排序都是使用热度值[推荐tab&#43;分类tab]；后台热度值 &gt; 魅力值 &gt;在线观众 &gt; 开播时间） |
+| SortTypeSearch | 2 | 搜索（搜索页面的推荐列表排序；后台搜索推荐重 &gt; 魅力值 &gt;在线观众 &gt; 开播时间） |
+| SortTypeSubscribe | 3 | 关注（搜索页面的推荐列表排序；后台关注推荐重 &gt; 魅力值 &gt;在线观众 &gt; 开播时间） |
+| SortTypeRecommend | 4 | 推荐（房间详情页的”更多直播“推荐列表排序；后台推荐重 &gt; 魅力值 &gt;在线观众 &gt; 开播时间） |
+| SortTypeSelected | 5 | 精选（精选礼物最后赠送时间 &gt; 礼物纯收益） |
+
+
  
 
  
@@ -1571,7 +1777,10 @@ Room 房间
 | CreateRoom | [CreateRoomReq](#svc-biz-room-CreateRoomReq) | [CreateRoomResp](#svc-biz-room-CreateRoomResp) | CreateRoom 创建房间 |
 | UpdateRoom | [UpdateRoomReq](#svc-biz-room-UpdateRoomReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | UpdateRoom 更新房间 |
 | GetRoom | [GetRoomReq](#svc-biz-room-GetRoomReq) | [GetRoomResp](#svc-biz-room-GetRoomResp) | GetRoom 查询房间 |
-| GetRoomList | [GetRoomListReq](#svc-biz-room-GetRoomListReq) | [GetRoomListResp](#svc-biz-room-GetRoomListResp) | GetRoomList 查询房间列表，直读mysql |
+| MGetRooms | [MGetRoomsReq](#svc-biz-room-MGetRoomsReq) | [MGetRoomsResp](#svc-biz-room-MGetRoomsResp) | MGetRooms 查询房间 |
+| MGetRoomsByStreamerIDs | [MGetRoomsByStreamerIDsReq](#svc-biz-room-MGetRoomsByStreamerIDsReq) | [MGetRoomsByStreamerIDsResp](#svc-biz-room-MGetRoomsByStreamerIDsResp) | MGetRoomByStreamerIDs 批量查询房间 |
+| GetRoomList | [GetRoomListReq](#svc-biz-room-GetRoomListReq) | [GetRoomListResp](#svc-biz-room-GetRoomListResp) | GetRoomList 查询房间列表（后台使用此接口） |
+| GetOnlineRoomList | [GetOnlineRoomListReq](#svc-biz-room-GetOnlineRoomListReq) | [GetOnlineRoomListResp](#svc-biz-room-GetOnlineRoomListResp) | GetOnlineRoomList 查询在线房间列表（用户端列表使用此接口） |
 | StartLive | [StartLiveReq](#svc-biz-room-StartLiveReq) | [StartLiveResp](#svc-biz-room-StartLiveResp) | StartLive 开始直播 |
 | StopLive | [StopLiveReq](#svc-biz-room-StopLiveReq) | [StopLiveResp](#svc-biz-room-StopLiveResp) | StopLive 关闭直播 |
 

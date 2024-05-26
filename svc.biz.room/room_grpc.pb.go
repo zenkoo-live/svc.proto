@@ -20,12 +20,15 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Room_CreateRoom_FullMethodName  = "/svc.biz.room.Room/CreateRoom"
-	Room_UpdateRoom_FullMethodName  = "/svc.biz.room.Room/UpdateRoom"
-	Room_GetRoom_FullMethodName     = "/svc.biz.room.Room/GetRoom"
-	Room_GetRoomList_FullMethodName = "/svc.biz.room.Room/GetRoomList"
-	Room_StartLive_FullMethodName   = "/svc.biz.room.Room/StartLive"
-	Room_StopLive_FullMethodName    = "/svc.biz.room.Room/StopLive"
+	Room_CreateRoom_FullMethodName             = "/svc.biz.room.Room/CreateRoom"
+	Room_UpdateRoom_FullMethodName             = "/svc.biz.room.Room/UpdateRoom"
+	Room_GetRoom_FullMethodName                = "/svc.biz.room.Room/GetRoom"
+	Room_MGetRooms_FullMethodName              = "/svc.biz.room.Room/MGetRooms"
+	Room_MGetRoomsByStreamerIDs_FullMethodName = "/svc.biz.room.Room/MGetRoomsByStreamerIDs"
+	Room_GetRoomList_FullMethodName            = "/svc.biz.room.Room/GetRoomList"
+	Room_GetOnlineRoomList_FullMethodName      = "/svc.biz.room.Room/GetOnlineRoomList"
+	Room_StartLive_FullMethodName              = "/svc.biz.room.Room/StartLive"
+	Room_StopLive_FullMethodName               = "/svc.biz.room.Room/StopLive"
 )
 
 // RoomClient is the client API for Room service.
@@ -38,8 +41,14 @@ type RoomClient interface {
 	UpdateRoom(ctx context.Context, in *UpdateRoomReq, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// GetRoom 查询房间
 	GetRoom(ctx context.Context, in *GetRoomReq, opts ...grpc.CallOption) (*GetRoomResp, error)
-	// GetRoomList 查询房间列表，直读mysql
+	// MGetRooms 查询房间
+	MGetRooms(ctx context.Context, in *MGetRoomsReq, opts ...grpc.CallOption) (*MGetRoomsResp, error)
+	// MGetRoomByStreamerIDs 批量查询房间
+	MGetRoomsByStreamerIDs(ctx context.Context, in *MGetRoomsByStreamerIDsReq, opts ...grpc.CallOption) (*MGetRoomsByStreamerIDsResp, error)
+	// GetRoomList 查询房间列表（后台使用此接口）
 	GetRoomList(ctx context.Context, in *GetRoomListReq, opts ...grpc.CallOption) (*GetRoomListResp, error)
+	// GetOnlineRoomList 查询在线房间列表（用户端列表使用此接口）
+	GetOnlineRoomList(ctx context.Context, in *GetOnlineRoomListReq, opts ...grpc.CallOption) (*GetOnlineRoomListResp, error)
 	// StartLive 开始直播
 	StartLive(ctx context.Context, in *StartLiveReq, opts ...grpc.CallOption) (*StartLiveResp, error)
 	// StopLive 关闭直播
@@ -81,9 +90,36 @@ func (c *roomClient) GetRoom(ctx context.Context, in *GetRoomReq, opts ...grpc.C
 	return out, nil
 }
 
+func (c *roomClient) MGetRooms(ctx context.Context, in *MGetRoomsReq, opts ...grpc.CallOption) (*MGetRoomsResp, error) {
+	out := new(MGetRoomsResp)
+	err := c.cc.Invoke(ctx, Room_MGetRooms_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *roomClient) MGetRoomsByStreamerIDs(ctx context.Context, in *MGetRoomsByStreamerIDsReq, opts ...grpc.CallOption) (*MGetRoomsByStreamerIDsResp, error) {
+	out := new(MGetRoomsByStreamerIDsResp)
+	err := c.cc.Invoke(ctx, Room_MGetRoomsByStreamerIDs_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *roomClient) GetRoomList(ctx context.Context, in *GetRoomListReq, opts ...grpc.CallOption) (*GetRoomListResp, error) {
 	out := new(GetRoomListResp)
 	err := c.cc.Invoke(ctx, Room_GetRoomList_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *roomClient) GetOnlineRoomList(ctx context.Context, in *GetOnlineRoomListReq, opts ...grpc.CallOption) (*GetOnlineRoomListResp, error) {
+	out := new(GetOnlineRoomListResp)
+	err := c.cc.Invoke(ctx, Room_GetOnlineRoomList_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -118,8 +154,14 @@ type RoomServer interface {
 	UpdateRoom(context.Context, *UpdateRoomReq) (*emptypb.Empty, error)
 	// GetRoom 查询房间
 	GetRoom(context.Context, *GetRoomReq) (*GetRoomResp, error)
-	// GetRoomList 查询房间列表，直读mysql
+	// MGetRooms 查询房间
+	MGetRooms(context.Context, *MGetRoomsReq) (*MGetRoomsResp, error)
+	// MGetRoomByStreamerIDs 批量查询房间
+	MGetRoomsByStreamerIDs(context.Context, *MGetRoomsByStreamerIDsReq) (*MGetRoomsByStreamerIDsResp, error)
+	// GetRoomList 查询房间列表（后台使用此接口）
 	GetRoomList(context.Context, *GetRoomListReq) (*GetRoomListResp, error)
+	// GetOnlineRoomList 查询在线房间列表（用户端列表使用此接口）
+	GetOnlineRoomList(context.Context, *GetOnlineRoomListReq) (*GetOnlineRoomListResp, error)
 	// StartLive 开始直播
 	StartLive(context.Context, *StartLiveReq) (*StartLiveResp, error)
 	// StopLive 关闭直播
@@ -140,8 +182,17 @@ func (UnimplementedRoomServer) UpdateRoom(context.Context, *UpdateRoomReq) (*emp
 func (UnimplementedRoomServer) GetRoom(context.Context, *GetRoomReq) (*GetRoomResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetRoom not implemented")
 }
+func (UnimplementedRoomServer) MGetRooms(context.Context, *MGetRoomsReq) (*MGetRoomsResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method MGetRooms not implemented")
+}
+func (UnimplementedRoomServer) MGetRoomsByStreamerIDs(context.Context, *MGetRoomsByStreamerIDsReq) (*MGetRoomsByStreamerIDsResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method MGetRoomsByStreamerIDs not implemented")
+}
 func (UnimplementedRoomServer) GetRoomList(context.Context, *GetRoomListReq) (*GetRoomListResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetRoomList not implemented")
+}
+func (UnimplementedRoomServer) GetOnlineRoomList(context.Context, *GetOnlineRoomListReq) (*GetOnlineRoomListResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetOnlineRoomList not implemented")
 }
 func (UnimplementedRoomServer) StartLive(context.Context, *StartLiveReq) (*StartLiveResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method StartLive not implemented")
@@ -216,6 +267,42 @@ func _Room_GetRoom_Handler(srv interface{}, ctx context.Context, dec func(interf
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Room_MGetRooms_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MGetRoomsReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RoomServer).MGetRooms(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Room_MGetRooms_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RoomServer).MGetRooms(ctx, req.(*MGetRoomsReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Room_MGetRoomsByStreamerIDs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MGetRoomsByStreamerIDsReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RoomServer).MGetRoomsByStreamerIDs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Room_MGetRoomsByStreamerIDs_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RoomServer).MGetRoomsByStreamerIDs(ctx, req.(*MGetRoomsByStreamerIDsReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Room_GetRoomList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetRoomListReq)
 	if err := dec(in); err != nil {
@@ -230,6 +317,24 @@ func _Room_GetRoomList_Handler(srv interface{}, ctx context.Context, dec func(in
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(RoomServer).GetRoomList(ctx, req.(*GetRoomListReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Room_GetOnlineRoomList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetOnlineRoomListReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RoomServer).GetOnlineRoomList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Room_GetOnlineRoomList_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RoomServer).GetOnlineRoomList(ctx, req.(*GetOnlineRoomListReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -290,8 +395,20 @@ var Room_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Room_GetRoom_Handler,
 		},
 		{
+			MethodName: "MGetRooms",
+			Handler:    _Room_MGetRooms_Handler,
+		},
+		{
+			MethodName: "MGetRoomsByStreamerIDs",
+			Handler:    _Room_MGetRoomsByStreamerIDs_Handler,
+		},
+		{
 			MethodName: "GetRoomList",
 			Handler:    _Room_GetRoomList_Handler,
+		},
+		{
+			MethodName: "GetOnlineRoomList",
+			Handler:    _Room_GetOnlineRoomList_Handler,
 		},
 		{
 			MethodName: "StartLive",
