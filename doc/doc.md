@@ -55,11 +55,13 @@
 - [svc.biz.asset/asset.proto](#svc-biz-asset_asset-proto)
     - [ChangeMerchantCoinResp](#svc-biz-asset-ChangeMerchantCoinResp)
     - [ChangeStreamerCoinResp](#svc-biz-asset-ChangeStreamerCoinResp)
+    - [ChangeStreamerMoneyResp](#svc-biz-asset-ChangeStreamerMoneyResp)
     - [ChangeUnionCoinResp](#svc-biz-asset-ChangeUnionCoinResp)
     - [ChangeUserCoinResp](#svc-biz-asset-ChangeUserCoinResp)
     - [ChangeUserMoneyResp](#svc-biz-asset-ChangeUserMoneyResp)
     - [DecrMerchantCoinReq](#svc-biz-asset-DecrMerchantCoinReq)
     - [DecrStreamerCoinReq](#svc-biz-asset-DecrStreamerCoinReq)
+    - [DecrStreamerMoneyReq](#svc-biz-asset-DecrStreamerMoneyReq)
     - [DecrUnionCoinReq](#svc-biz-asset-DecrUnionCoinReq)
     - [DecrUserCoinReq](#svc-biz-asset-DecrUserCoinReq)
     - [DecrUserMoneyReq](#svc-biz-asset-DecrUserMoneyReq)
@@ -73,6 +75,11 @@
     - [GetStreamerCoinMultiResp.ValueMapEntry](#svc-biz-asset-GetStreamerCoinMultiResp-ValueMapEntry)
     - [GetStreamerCoinReq](#svc-biz-asset-GetStreamerCoinReq)
     - [GetStreamerCoinResp](#svc-biz-asset-GetStreamerCoinResp)
+    - [GetStreamerMoneyMultiReq](#svc-biz-asset-GetStreamerMoneyMultiReq)
+    - [GetStreamerMoneyMultiResp](#svc-biz-asset-GetStreamerMoneyMultiResp)
+    - [GetStreamerMoneyMultiResp.ValueMapEntry](#svc-biz-asset-GetStreamerMoneyMultiResp-ValueMapEntry)
+    - [GetStreamerMoneyReq](#svc-biz-asset-GetStreamerMoneyReq)
+    - [GetStreamerMoneyResp](#svc-biz-asset-GetStreamerMoneyResp)
     - [GetUnionCoinMultiReq](#svc-biz-asset-GetUnionCoinMultiReq)
     - [GetUnionCoinMultiResp](#svc-biz-asset-GetUnionCoinMultiResp)
     - [GetUnionCoinMultiResp.ValueMapEntry](#svc-biz-asset-GetUnionCoinMultiResp-ValueMapEntry)
@@ -90,6 +97,7 @@
     - [GetUserMoneyResp](#svc-biz-asset-GetUserMoneyResp)
     - [IncrMerchantCoinReq](#svc-biz-asset-IncrMerchantCoinReq)
     - [IncrStreamerCoinReq](#svc-biz-asset-IncrStreamerCoinReq)
+    - [IncrStreamerMoneyReq](#svc-biz-asset-IncrStreamerMoneyReq)
     - [IncrUnionCoinReq](#svc-biz-asset-IncrUnionCoinReq)
     - [IncrUserCoinReq](#svc-biz-asset-IncrUserCoinReq)
     - [IncrUserMoneyReq](#svc-biz-asset-IncrUserMoneyReq)
@@ -97,6 +105,8 @@
     - [ListMerchantCoinDetailResp](#svc-biz-asset-ListMerchantCoinDetailResp)
     - [ListStreamerCoinDetailReq](#svc-biz-asset-ListStreamerCoinDetailReq)
     - [ListStreamerCoinDetailResp](#svc-biz-asset-ListStreamerCoinDetailResp)
+    - [ListStreamerMoneyDetailReq](#svc-biz-asset-ListStreamerMoneyDetailReq)
+    - [ListStreamerMoneyDetailResp](#svc-biz-asset-ListStreamerMoneyDetailResp)
     - [ListUnionCoinDetailReq](#svc-biz-asset-ListUnionCoinDetailReq)
     - [ListUnionCoinDetailResp](#svc-biz-asset-ListUnionCoinDetailResp)
     - [ListUserCoinDetailReq](#svc-biz-asset-ListUserCoinDetailReq)
@@ -107,6 +117,7 @@
     - [MerchantCoinValue](#svc-biz-asset-MerchantCoinValue)
     - [StreamerCoinDetail](#svc-biz-asset-StreamerCoinDetail)
     - [StreamerCoinValue](#svc-biz-asset-StreamerCoinValue)
+    - [StreamerMoneyDetail](#svc-biz-asset-StreamerMoneyDetail)
     - [UnionCoinDetail](#svc-biz-asset-UnionCoinDetail)
     - [UnionCoinValue](#svc-biz-asset-UnionCoinValue)
     - [UserCoinDetail](#svc-biz-asset-UserCoinDetail)
@@ -888,6 +899,26 @@
 
 
 
+<a name="svc-biz-asset-ChangeStreamerMoneyResp"></a>
+
+### ChangeStreamerMoneyResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer_id | [string](#string) |  |  |
+| new_value | [int64](#int64) |  |  |
+| trade_id | [string](#string) |  | 业务方交易id |
+| detail_id | [string](#string) |  | 明细id |
+| serial_number | [int64](#int64) |  | 流水号,单账户连续自增 |
+| trans_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 业务时间 |
+
+
+
+
+
+
 <a name="svc-biz-asset-ChangeUnionCoinResp"></a>
 
 ### ChangeUnionCoinResp
@@ -981,6 +1012,26 @@
 | streamer_id | [string](#string) |  |  |
 | value | [int64](#int64) |  |  |
 | rule | [int64](#int64) |  | 扣减规则: 0 仅普通余额 1 仅低权限余额 |
+| trans_type | [int64](#int64) |  | 交易类别 |
+| trade_id | [string](#string) |  | 业务方交易id,业务方保证唯一,支持幂等 |
+| summary | [string](#string) |  | 摘要,json 实际会做格式和核心字段校验 |
+| trans_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 业务时间 |
+
+
+
+
+
+
+<a name="svc-biz-asset-DecrStreamerMoneyReq"></a>
+
+### DecrStreamerMoneyReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer_id | [string](#string) |  |  |
+| value | [int64](#int64) |  |  |
 | trans_type | [int64](#int64) |  | 交易类别 |
 | trade_id | [string](#string) |  | 业务方交易id,业务方保证唯一,支持幂等 |
 | summary | [string](#string) |  | 摘要,json 实际会做格式和核心字段校验 |
@@ -1200,6 +1251,82 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | value | [StreamerCoinValue](#svc-biz-asset-StreamerCoinValue) |  | 余额 |
+
+
+
+
+
+
+<a name="svc-biz-asset-GetStreamerMoneyMultiReq"></a>
+
+### GetStreamerMoneyMultiReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer_ids | [string](#string) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-asset-GetStreamerMoneyMultiResp"></a>
+
+### GetStreamerMoneyMultiResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| value_map | [GetStreamerMoneyMultiResp.ValueMapEntry](#svc-biz-asset-GetStreamerMoneyMultiResp-ValueMapEntry) | repeated | streamer_id-&gt;value |
+
+
+
+
+
+
+<a name="svc-biz-asset-GetStreamerMoneyMultiResp-ValueMapEntry"></a>
+
+### GetStreamerMoneyMultiResp.ValueMapEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-asset-GetStreamerMoneyReq"></a>
+
+### GetStreamerMoneyReq
+余额 money-----------------
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer_id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-asset-GetStreamerMoneyResp"></a>
+
+### GetStreamerMoneyResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| value | [int64](#int64) |  |  |
 
 
 
@@ -1477,6 +1604,26 @@
 
 
 
+<a name="svc-biz-asset-IncrStreamerMoneyReq"></a>
+
+### IncrStreamerMoneyReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer_id | [string](#string) |  |  |
+| value | [int64](#int64) |  |  |
+| trans_type | [int64](#int64) |  | 交易类别 |
+| trade_id | [string](#string) |  | 业务方交易id,业务方保证唯一,支持幂等 |
+| summary | [string](#string) |  | 摘要,json 实际会做格式和核心字段校验 |
+| trans_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 业务时间 |
+
+
+
+
+
+
 <a name="svc-biz-asset-IncrUnionCoinReq"></a>
 
 ### IncrUnionCoinReq
@@ -1607,6 +1754,45 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | items | [StreamerCoinDetail](#svc-biz-asset-StreamerCoinDetail) | repeated |  |
+| page | [int64](#int64) |  | 页码 |
+| page_size | [int64](#int64) |  | 单页条数 |
+| total | [int64](#int64) |  | 符合筛选的总条数 |
+
+
+
+
+
+
+<a name="svc-biz-asset-ListStreamerMoneyDetailReq"></a>
+
+### ListStreamerMoneyDetailReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer_id | [string](#string) |  |  |
+| trans_direction | [int64](#int64) |  | 交易方向 0 不限 1 增加 2 减少 |
+| trans_type | [int64](#int64) | repeated | 交易类别: 空表示不限 |
+| start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开始时间(含) |
+| end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 结束时间(不含) |
+| page | [int64](#int64) |  | 页码 |
+| page_size | [int64](#int64) |  | 单页条数 |
+
+
+
+
+
+
+<a name="svc-biz-asset-ListStreamerMoneyDetailResp"></a>
+
+### ListStreamerMoneyDetailResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [StreamerMoneyDetail](#svc-biz-asset-StreamerMoneyDetail) | repeated |  |
 | page | [int64](#int64) |  | 页码 |
 | page_size | [int64](#int64) |  | 单页条数 |
 | total | [int64](#int64) |  | 符合筛选的总条数 |
@@ -1814,6 +2000,29 @@
 
 
 
+<a name="svc-biz-asset-StreamerMoneyDetail"></a>
+
+### StreamerMoneyDetail
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer_id | [string](#string) |  |  |
+| detail_id | [string](#string) |  | 明细id |
+| trade_id | [string](#string) |  | 业务方交易id |
+| serial_number | [int64](#int64) |  | 流水号,单账户连续自增 |
+| trans_direction | [int64](#int64) |  | 交易方向 1 增加 2 减少 |
+| trans_type | [int64](#int64) |  | 交易类别 |
+| value_change | [ValueChange](#svc-biz-asset-ValueChange) |  | 交易类别 |
+| trans_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 业务时间 |
+| summary | [string](#string) |  | 摘要,json 实际会做格式和核心字段校验 |
+
+
+
+
+
+
 <a name="svc-biz-asset-UnionCoinDetail"></a>
 
 ### UnionCoinDetail
@@ -1958,6 +2167,11 @@
 | IncrUserCoin | [IncrUserCoinReq](#svc-biz-asset-IncrUserCoinReq) | [ChangeUserCoinResp](#svc-biz-asset-ChangeUserCoinResp) |  |
 | DecrUserCoin | [DecrUserCoinReq](#svc-biz-asset-DecrUserCoinReq) | [ChangeUserCoinResp](#svc-biz-asset-ChangeUserCoinResp) |  |
 | ListUserCoinDetail | [ListUserCoinDetailReq](#svc-biz-asset-ListUserCoinDetailReq) | [ListUserCoinDetailResp](#svc-biz-asset-ListUserCoinDetailResp) |  |
+| GetStreamerMoney | [GetStreamerMoneyReq](#svc-biz-asset-GetStreamerMoneyReq) | [GetStreamerMoneyResp](#svc-biz-asset-GetStreamerMoneyResp) | ---------------Streamer主播资产--------------- 余额 money |
+| GetStreamerMoneyMulti | [GetStreamerMoneyMultiReq](#svc-biz-asset-GetStreamerMoneyMultiReq) | [GetStreamerMoneyMultiResp](#svc-biz-asset-GetStreamerMoneyMultiResp) |  |
+| IncrStreamerMoney | [IncrStreamerMoneyReq](#svc-biz-asset-IncrStreamerMoneyReq) | [ChangeStreamerMoneyResp](#svc-biz-asset-ChangeStreamerMoneyResp) |  |
+| DecrStreamerMoney | [DecrStreamerMoneyReq](#svc-biz-asset-DecrStreamerMoneyReq) | [ChangeStreamerMoneyResp](#svc-biz-asset-ChangeStreamerMoneyResp) |  |
+| ListStreamerMoneyDetail | [ListStreamerMoneyDetailReq](#svc-biz-asset-ListStreamerMoneyDetailReq) | [ListStreamerMoneyDetailResp](#svc-biz-asset-ListStreamerMoneyDetailResp) |  |
 | GetStreamerCoin | [GetStreamerCoinReq](#svc-biz-asset-GetStreamerCoinReq) | [GetStreamerCoinResp](#svc-biz-asset-GetStreamerCoinResp) | 虚拟币coin |
 | GetStreamerCoinMulti | [GetStreamerCoinMultiReq](#svc-biz-asset-GetStreamerCoinMultiReq) | [GetStreamerCoinMultiResp](#svc-biz-asset-GetStreamerCoinMultiResp) |  |
 | IncrStreamerCoin | [IncrStreamerCoinReq](#svc-biz-asset-IncrStreamerCoinReq) | [ChangeStreamerCoinResp](#svc-biz-asset-ChangeStreamerCoinResp) |  |

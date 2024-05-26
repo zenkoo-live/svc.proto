@@ -50,6 +50,13 @@ type AssetService interface {
 	IncrUserCoin(ctx context.Context, in *IncrUserCoinReq, opts ...client.CallOption) (*ChangeUserCoinResp, error)
 	DecrUserCoin(ctx context.Context, in *DecrUserCoinReq, opts ...client.CallOption) (*ChangeUserCoinResp, error)
 	ListUserCoinDetail(ctx context.Context, in *ListUserCoinDetailReq, opts ...client.CallOption) (*ListUserCoinDetailResp, error)
+	// ---------------Streamer主播资产---------------
+	// 余额 money
+	GetStreamerMoney(ctx context.Context, in *GetStreamerMoneyReq, opts ...client.CallOption) (*GetStreamerMoneyResp, error)
+	GetStreamerMoneyMulti(ctx context.Context, in *GetStreamerMoneyMultiReq, opts ...client.CallOption) (*GetStreamerMoneyMultiResp, error)
+	IncrStreamerMoney(ctx context.Context, in *IncrStreamerMoneyReq, opts ...client.CallOption) (*ChangeStreamerMoneyResp, error)
+	DecrStreamerMoney(ctx context.Context, in *DecrStreamerMoneyReq, opts ...client.CallOption) (*ChangeStreamerMoneyResp, error)
+	ListStreamerMoneyDetail(ctx context.Context, in *ListStreamerMoneyDetailReq, opts ...client.CallOption) (*ListStreamerMoneyDetailResp, error)
 	// 虚拟币coin
 	GetStreamerCoin(ctx context.Context, in *GetStreamerCoinReq, opts ...client.CallOption) (*GetStreamerCoinResp, error)
 	GetStreamerCoinMulti(ctx context.Context, in *GetStreamerCoinMultiReq, opts ...client.CallOption) (*GetStreamerCoinMultiResp, error)
@@ -175,6 +182,56 @@ func (c *assetService) DecrUserCoin(ctx context.Context, in *DecrUserCoinReq, op
 func (c *assetService) ListUserCoinDetail(ctx context.Context, in *ListUserCoinDetailReq, opts ...client.CallOption) (*ListUserCoinDetailResp, error) {
 	req := c.c.NewRequest(c.name, "Asset.ListUserCoinDetail", in)
 	out := new(ListUserCoinDetailResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *assetService) GetStreamerMoney(ctx context.Context, in *GetStreamerMoneyReq, opts ...client.CallOption) (*GetStreamerMoneyResp, error) {
+	req := c.c.NewRequest(c.name, "Asset.GetStreamerMoney", in)
+	out := new(GetStreamerMoneyResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *assetService) GetStreamerMoneyMulti(ctx context.Context, in *GetStreamerMoneyMultiReq, opts ...client.CallOption) (*GetStreamerMoneyMultiResp, error) {
+	req := c.c.NewRequest(c.name, "Asset.GetStreamerMoneyMulti", in)
+	out := new(GetStreamerMoneyMultiResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *assetService) IncrStreamerMoney(ctx context.Context, in *IncrStreamerMoneyReq, opts ...client.CallOption) (*ChangeStreamerMoneyResp, error) {
+	req := c.c.NewRequest(c.name, "Asset.IncrStreamerMoney", in)
+	out := new(ChangeStreamerMoneyResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *assetService) DecrStreamerMoney(ctx context.Context, in *DecrStreamerMoneyReq, opts ...client.CallOption) (*ChangeStreamerMoneyResp, error) {
+	req := c.c.NewRequest(c.name, "Asset.DecrStreamerMoney", in)
+	out := new(ChangeStreamerMoneyResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *assetService) ListStreamerMoneyDetail(ctx context.Context, in *ListStreamerMoneyDetailReq, opts ...client.CallOption) (*ListStreamerMoneyDetailResp, error) {
+	req := c.c.NewRequest(c.name, "Asset.ListStreamerMoneyDetail", in)
+	out := new(ListStreamerMoneyDetailResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -347,6 +404,13 @@ type AssetHandler interface {
 	IncrUserCoin(context.Context, *IncrUserCoinReq, *ChangeUserCoinResp) error
 	DecrUserCoin(context.Context, *DecrUserCoinReq, *ChangeUserCoinResp) error
 	ListUserCoinDetail(context.Context, *ListUserCoinDetailReq, *ListUserCoinDetailResp) error
+	// ---------------Streamer主播资产---------------
+	// 余额 money
+	GetStreamerMoney(context.Context, *GetStreamerMoneyReq, *GetStreamerMoneyResp) error
+	GetStreamerMoneyMulti(context.Context, *GetStreamerMoneyMultiReq, *GetStreamerMoneyMultiResp) error
+	IncrStreamerMoney(context.Context, *IncrStreamerMoneyReq, *ChangeStreamerMoneyResp) error
+	DecrStreamerMoney(context.Context, *DecrStreamerMoneyReq, *ChangeStreamerMoneyResp) error
+	ListStreamerMoneyDetail(context.Context, *ListStreamerMoneyDetailReq, *ListStreamerMoneyDetailResp) error
 	// 虚拟币coin
 	GetStreamerCoin(context.Context, *GetStreamerCoinReq, *GetStreamerCoinResp) error
 	GetStreamerCoinMulti(context.Context, *GetStreamerCoinMultiReq, *GetStreamerCoinMultiResp) error
@@ -379,6 +443,11 @@ func RegisterAssetHandler(s server.Server, hdlr AssetHandler, opts ...server.Han
 		IncrUserCoin(ctx context.Context, in *IncrUserCoinReq, out *ChangeUserCoinResp) error
 		DecrUserCoin(ctx context.Context, in *DecrUserCoinReq, out *ChangeUserCoinResp) error
 		ListUserCoinDetail(ctx context.Context, in *ListUserCoinDetailReq, out *ListUserCoinDetailResp) error
+		GetStreamerMoney(ctx context.Context, in *GetStreamerMoneyReq, out *GetStreamerMoneyResp) error
+		GetStreamerMoneyMulti(ctx context.Context, in *GetStreamerMoneyMultiReq, out *GetStreamerMoneyMultiResp) error
+		IncrStreamerMoney(ctx context.Context, in *IncrStreamerMoneyReq, out *ChangeStreamerMoneyResp) error
+		DecrStreamerMoney(ctx context.Context, in *DecrStreamerMoneyReq, out *ChangeStreamerMoneyResp) error
+		ListStreamerMoneyDetail(ctx context.Context, in *ListStreamerMoneyDetailReq, out *ListStreamerMoneyDetailResp) error
 		GetStreamerCoin(ctx context.Context, in *GetStreamerCoinReq, out *GetStreamerCoinResp) error
 		GetStreamerCoinMulti(ctx context.Context, in *GetStreamerCoinMultiReq, out *GetStreamerCoinMultiResp) error
 		IncrStreamerCoin(ctx context.Context, in *IncrStreamerCoinReq, out *ChangeStreamerCoinResp) error
@@ -444,6 +513,26 @@ func (h *assetHandler) DecrUserCoin(ctx context.Context, in *DecrUserCoinReq, ou
 
 func (h *assetHandler) ListUserCoinDetail(ctx context.Context, in *ListUserCoinDetailReq, out *ListUserCoinDetailResp) error {
 	return h.AssetHandler.ListUserCoinDetail(ctx, in, out)
+}
+
+func (h *assetHandler) GetStreamerMoney(ctx context.Context, in *GetStreamerMoneyReq, out *GetStreamerMoneyResp) error {
+	return h.AssetHandler.GetStreamerMoney(ctx, in, out)
+}
+
+func (h *assetHandler) GetStreamerMoneyMulti(ctx context.Context, in *GetStreamerMoneyMultiReq, out *GetStreamerMoneyMultiResp) error {
+	return h.AssetHandler.GetStreamerMoneyMulti(ctx, in, out)
+}
+
+func (h *assetHandler) IncrStreamerMoney(ctx context.Context, in *IncrStreamerMoneyReq, out *ChangeStreamerMoneyResp) error {
+	return h.AssetHandler.IncrStreamerMoney(ctx, in, out)
+}
+
+func (h *assetHandler) DecrStreamerMoney(ctx context.Context, in *DecrStreamerMoneyReq, out *ChangeStreamerMoneyResp) error {
+	return h.AssetHandler.DecrStreamerMoney(ctx, in, out)
+}
+
+func (h *assetHandler) ListStreamerMoneyDetail(ctx context.Context, in *ListStreamerMoneyDetailReq, out *ListStreamerMoneyDetailResp) error {
+	return h.AssetHandler.ListStreamerMoneyDetail(ctx, in, out)
 }
 
 func (h *assetHandler) GetStreamerCoin(ctx context.Context, in *GetStreamerCoinReq, out *GetStreamerCoinResp) error {
