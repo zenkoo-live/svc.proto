@@ -27,7 +27,7 @@ service Category {
 // CategoryInfo 分类详情
 message CategoryInfo {
   string category_id = 1; 
-  string parent_id = 4; // 父级ID
+  string parent_category_id = 4; // 父级ID
   string category_code = 5; // 代号（唯一，预留）
   string category_name = 6; // 名称
   int32 sort = 7; // 排序
@@ -61,7 +61,7 @@ message DeleteCategoryReq{
 }
 
 message ListCategoryReq {
-  string parent_id = 1; // 父级ID，跟级分类传1
+  string parent_category_id = 1; // 父级ID，跟级分类传1
   bool return_count = 2; // 是否返回总数
 }
 message ListCategoryResp {
