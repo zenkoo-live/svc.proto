@@ -89,9 +89,10 @@ message RoomInfo {
     string title = 5; // 标题
     string intro = 6; // 简介
     google.protobuf.Timestamp forbid_expire = 7; // 封禁到期时间
-    bool hidden = 8; // 是否隐藏
-    repeated string merchants = 9; // 商户id
-    repeated string bind_tags = 10; // 标签
+    string forbid_reason = 8; // 封禁原因
+    bool hidden = 9; // 是否隐藏
+    repeated string merchants = 10; // 商户id
+    repeated string bind_tags = 11; // 标签
     
     string live_id = 21; // 直播id（开播状态时才会有，关播时清空）
     int32 live_region = 22; // 直播区域（开播状态时才会有，关播时清空）

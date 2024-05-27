@@ -1681,6 +1681,7 @@ CategoryInfo 分类详情
 | title | [string](#string) |  | 标题 |
 | intro | [string](#string) |  | 简介 |
 | forbid_expire | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 封禁到期时间 |
+| forbid_reason | [string](#string) |  | 封禁原因 |
 | hidden | [bool](#bool) |  | 是否隐藏 |
 | merchants | [string](#string) | repeated | 商户id |
 | bind_tags | [string](#string) | repeated | 标签 |
