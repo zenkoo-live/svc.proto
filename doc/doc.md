@@ -89,6 +89,8 @@
     - [CreateRoomResp](#svc-biz-room-CreateRoomResp)
     - [GetOnlineRoomListReq](#svc-biz-room-GetOnlineRoomListReq)
     - [GetOnlineRoomListResp](#svc-biz-room-GetOnlineRoomListResp)
+    - [GetRoomByStreamerIDReq](#svc-biz-room-GetRoomByStreamerIDReq)
+    - [GetRoomByStreamerIDResp](#svc-biz-room-GetRoomByStreamerIDResp)
     - [GetRoomListReq](#svc-biz-room-GetRoomListReq)
     - [GetRoomListResp](#svc-biz-room-GetRoomListResp)
     - [GetRoomReq](#svc-biz-room-GetRoomReq)
@@ -104,10 +106,10 @@
     - [StartLiveResp](#svc-biz-room-StartLiveResp)
     - [StopLiveReq](#svc-biz-room-StopLiveReq)
     - [StopLiveResp](#svc-biz-room-StopLiveResp)
+    - [Stream](#svc-biz-room-Stream)
     - [StreamPull](#svc-biz-room-StreamPull)
     - [StreamPush](#svc-biz-room-StreamPush)
     - [UpdateRoomReq](#svc-biz-room-UpdateRoomReq)
-    - [stream](#svc-biz-room-stream)
   
     - [LiveDisplayType](#svc-biz-room-LiveDisplayType)
     - [LiveStatus](#svc-biz-room-LiveStatus)
@@ -116,8 +118,20 @@
     - [Room](#svc-biz-room-Room)
   
 - [svc.infra.setting/setting.proto](#svc-infra-setting_setting-proto)
+    - [AddConfigurationReq](#svc-infra-setting-AddConfigurationReq)
+    - [AddConfigurationResp](#svc-infra-setting-AddConfigurationResp)
+    - [Configuration](#svc-infra-setting-Configuration)
+    - [DeleteConfigurationReq](#svc-infra-setting-DeleteConfigurationReq)
+    - [DeleteConfigurationResp](#svc-infra-setting-DeleteConfigurationResp)
+    - [GetConfigurationReq](#svc-infra-setting-GetConfigurationReq)
+    - [GetConfigurationResp](#svc-infra-setting-GetConfigurationResp)
+    - [InitDBResp](#svc-infra-setting-InitDBResp)
+    - [ListConfigurationsReq](#svc-infra-setting-ListConfigurationsReq)
+    - [ListConfigurationsResp](#svc-infra-setting-ListConfigurationsResp)
     - [SettingGreetingReq](#svc-infra-setting-SettingGreetingReq)
     - [SettingGreetingResp](#svc-infra-setting-SettingGreetingResp)
+    - [UpdateConfigurationReq](#svc-infra-setting-UpdateConfigurationReq)
+    - [UpdateConfigurationResp](#svc-infra-setting-UpdateConfigurationResp)
   
     - [Setting](#svc-infra-setting-Setting)
   
@@ -1086,8 +1100,10 @@ CategoryInfo 分类详情
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent_category_id | [string](#string) |  | 父级ID，跟级分类传1 |
 | return_count | [bool](#bool) |  | 是否返回总数 |
+| level | [int32](#int32) |  | 查询标识（0查询所有，1=查询一级分类；2=查询二级分类） |
+| parent_category_id | [string](#string) |  | 父级ID |
+| category_name | [string](#string) |  | 分类名 |
 
 
 
@@ -1103,6 +1119,7 @@ CategoryInfo 分类详情
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | items | [CategoryInfo](#svc-biz-room-CategoryInfo) | repeated |  |
+| total | [int64](#int64) |  |  |
 
 
 
@@ -1383,6 +1400,7 @@ CategoryInfo 分类详情
 | sort_type | [SortType](#svc-biz-room-SortType) |  | 排序类型 |
 | category_id | [string](#string) |  | 分类id |
 | bind_tags | [string](#string) | repeated | 标签 |
+| merchants | [string](#string) | repeated | 商户id |
 
 
 
@@ -1398,6 +1416,38 @@ CategoryInfo 分类详情
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | items | [RoomInfo](#svc-biz-room-RoomInfo) | repeated | 房间列表 |
+
+
+
+
+
+
+<a name="svc-biz-room-GetRoomByStreamerIDReq"></a>
+
+### GetRoomByStreamerIDReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer_id | [string](#string) |  | 主播id |
+| with_stream | [bool](#bool) |  | 是否带流信息 |
+
+
+
+
+
+
+<a name="svc-biz-room-GetRoomByStreamerIDResp"></a>
+
+### GetRoomByStreamerIDResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| room | [RoomInfo](#svc-biz-room-RoomInfo) |  | 房间信息 |
+| stream | [Stream](#svc-biz-room-Stream) |  | 流信息 |
 
 
 
@@ -1461,6 +1511,7 @@ CategoryInfo 分类详情
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | room | [RoomInfo](#svc-biz-room-RoomInfo) |  | 房间信息 |
+| stream | [Stream](#svc-biz-room-Stream) |  | 流信息 |
 
 
 
@@ -1573,6 +1624,7 @@ CategoryInfo 分类详情
 | category_id | [string](#string) |  | 分类id |
 | title | [string](#string) |  | 标题 |
 | intro | [string](#string) |  | 简介 |
+| ban_expire | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 封禁到期时间 |
 | hidden | [bool](#bool) |  | 是否隐藏 |
 | merchants | [string](#string) | repeated | 商户id |
 | bind_tags | [string](#string) | repeated | 标签 |
@@ -1591,7 +1643,6 @@ CategoryInfo 分类详情
 | score_gift | [int32](#int32) |  | 纯礼物收益 |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
 | updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 更新时间 |
-| stream | [stream](#svc-biz-room-stream) |  | 流信息 |
 
 
 
@@ -1622,7 +1673,8 @@ CategoryInfo 分类详情
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| live_id | [string](#string) |  | 直播id |
+| room | [RoomInfo](#svc-biz-room-RoomInfo) |  | 房间信息 |
+| stream | [Stream](#svc-biz-room-Stream) |  | 流信息 |
 
 
 
@@ -1654,6 +1706,22 @@ CategoryInfo 分类详情
 
 
 
+<a name="svc-biz-room-Stream"></a>
+
+### Stream
+流信息
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| pull | [StreamPull](#svc-biz-room-StreamPull) |  | 推流信息 |
+| push | [StreamPush](#svc-biz-room-StreamPush) |  | 推流信息 |
+
+
+
+
+
+
 <a name="svc-biz-room-StreamPull"></a>
 
 ### StreamPull
@@ -1662,9 +1730,10 @@ CategoryInfo 分类详情
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| flv_url | [string](#string) |  | FLV 拉流地址 |
-| hls_url | [string](#string) |  | HLS 拉流地址 |
-| rtmp_url | [string](#string) |  | RTMP 拉流地址 |
+| rtmp | [string](#string) |  | RTMP 拉流地址 |
+| flv | [string](#string) |  | FLV 拉流地址 |
+| m3u8 | [string](#string) |  | M3U8 拉流地址 |
+| udp | [string](#string) |  | UDP 拉流地址 |
 
 
 
@@ -1679,7 +1748,10 @@ CategoryInfo 分类详情
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| rtmp_url | [string](#string) |  | RTMP 推流地址 |
+| rtmp | [string](#string) |  | RTMP 推流地址 |
+| web_rtc | [string](#string) |  | WebRTC 推流地址 |
+| srt | [string](#string) |  | SRT 推流地址 |
+| rmtp_over_srt | [string](#string) |  | RTMP over SRT 推流地址 |
 
 
 
@@ -1697,22 +1769,6 @@ CategoryInfo 分类详情
 | room_id | [string](#string) |  | id |
 | room | [RoomInfo](#svc-biz-room-RoomInfo) |  | 房间信息 |
 | update_mask | [google.protobuf.FieldMask](#google-protobuf-FieldMask) |  |  |
-
-
-
-
-
-
-<a name="svc-biz-room-stream"></a>
-
-### stream
-流信息
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| pull | [StreamPull](#svc-biz-room-StreamPull) |  | 推流信息 |
-| push | [StreamPush](#svc-biz-room-StreamPush) |  | 推流信息 |
 
 
 
@@ -1777,6 +1833,7 @@ Room 房间
 | CreateRoom | [CreateRoomReq](#svc-biz-room-CreateRoomReq) | [CreateRoomResp](#svc-biz-room-CreateRoomResp) | CreateRoom 创建房间 |
 | UpdateRoom | [UpdateRoomReq](#svc-biz-room-UpdateRoomReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | UpdateRoom 更新房间 |
 | GetRoom | [GetRoomReq](#svc-biz-room-GetRoomReq) | [GetRoomResp](#svc-biz-room-GetRoomResp) | GetRoom 查询房间 |
+| GetRoomByStreamerID | [GetRoomByStreamerIDReq](#svc-biz-room-GetRoomByStreamerIDReq) | [GetRoomByStreamerIDResp](#svc-biz-room-GetRoomByStreamerIDResp) | GetRoomByStreamerID 查询房间 |
 | MGetRooms | [MGetRoomsReq](#svc-biz-room-MGetRoomsReq) | [MGetRoomsResp](#svc-biz-room-MGetRoomsResp) | MGetRooms 查询房间 |
 | MGetRoomsByStreamerIDs | [MGetRoomsByStreamerIDsReq](#svc-biz-room-MGetRoomsByStreamerIDsReq) | [MGetRoomsByStreamerIDsResp](#svc-biz-room-MGetRoomsByStreamerIDsResp) | MGetRoomByStreamerIDs 批量查询房间 |
 | GetRoomList | [GetRoomListReq](#svc-biz-room-GetRoomListReq) | [GetRoomListResp](#svc-biz-room-GetRoomListResp) | GetRoomList 查询房间列表（后台使用此接口） |
@@ -1792,6 +1849,162 @@ Room 房间
 <p align="right"><a href="#top">Top</a></p>
 
 ## svc.infra.setting/setting.proto
+
+
+
+<a name="svc-infra-setting-AddConfigurationReq"></a>
+
+### AddConfigurationReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| configuration | [Configuration](#svc-infra-setting-Configuration) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-setting-AddConfigurationResp"></a>
+
+### AddConfigurationResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| configuration | [Configuration](#svc-infra-setting-Configuration) |  |  |
+| result | [bool](#bool) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-setting-Configuration"></a>
+
+### Configuration
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+| type | [string](#string) |  |  |
+| data | [string](#string) |  |  |
+| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+
+
+
+
+
+
+<a name="svc-infra-setting-DeleteConfigurationReq"></a>
+
+### DeleteConfigurationReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Configuration](#svc-infra-setting-Configuration) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-setting-DeleteConfigurationResp"></a>
+
+### DeleteConfigurationResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| deleted | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-setting-GetConfigurationReq"></a>
+
+### GetConfigurationReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Configuration](#svc-infra-setting-Configuration) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-setting-GetConfigurationResp"></a>
+
+### GetConfigurationResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| configuration | [Configuration](#svc-infra-setting-Configuration) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-setting-InitDBResp"></a>
+
+### InitDBResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| result | [bool](#bool) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-setting-ListConfigurationsReq"></a>
+
+### ListConfigurationsReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Configuration](#svc-infra-setting-Configuration) |  |  |
+| limit | [int32](#int32) |  |  |
+| offset | [int32](#int32) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-setting-ListConfigurationsResp"></a>
+
+### ListConfigurationsResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| configurations | [Configuration](#svc-infra-setting-Configuration) | repeated |  |
+
+
+
 
 
 
@@ -1824,6 +2037,36 @@ Room 房间
 
 
 
+
+<a name="svc-infra-setting-UpdateConfigurationReq"></a>
+
+### UpdateConfigurationReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Configuration](#svc-infra-setting-Configuration) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-setting-UpdateConfigurationResp"></a>
+
+### UpdateConfigurationResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| updated | [int64](#int64) |  |  |
+
+
+
+
+
  
 
  
@@ -1838,6 +2081,12 @@ Room 房间
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
+| InitDB | [.google.protobuf.Empty](#google-protobuf-Empty) | [InitDBResp](#svc-infra-setting-InitDBResp) | 初始化数据库 |
+| GetConfiguration | [GetConfigurationReq](#svc-infra-setting-GetConfigurationReq) | [GetConfigurationResp](#svc-infra-setting-GetConfigurationResp) | 获取配置 |
+| ListConfigurations | [ListConfigurationsReq](#svc-infra-setting-ListConfigurationsReq) | [ListConfigurationsResp](#svc-infra-setting-ListConfigurationsResp) | 获取配置列表 |
+| AddConfiguration | [AddConfigurationReq](#svc-infra-setting-AddConfigurationReq) | [AddConfigurationResp](#svc-infra-setting-AddConfigurationResp) | 添加配置 |
+| UpdateConfiguration | [UpdateConfigurationReq](#svc-infra-setting-UpdateConfigurationReq) | [UpdateConfigurationResp](#svc-infra-setting-UpdateConfigurationResp) | 更新配置 |
+| DeleteConfiguration | [DeleteConfigurationReq](#svc-infra-setting-DeleteConfigurationReq) | [DeleteConfigurationResp](#svc-infra-setting-DeleteConfigurationResp) | 删除配置 |
 | Greeting | [SettingGreetingReq](#svc-infra-setting-SettingGreetingReq) | [SettingGreetingResp](#svc-infra-setting-SettingGreetingResp) |  |
 
  

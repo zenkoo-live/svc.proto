@@ -16,6 +16,8 @@ service Room {
     rpc UpdateRoom(UpdateRoomReq) returns(google.protobuf.Empty);
     // GetRoom 查询房间
     rpc GetRoom(GetRoomReq) returns(GetRoomResp);
+    // GetRoomByStreamerID 查询房间
+    rpc GetRoomByStreamerID(GetRoomByStreamerIDReq) returns(GetRoomByStreamerIDResp);
     // MGetRooms 查询房间
     rpc MGetRooms(MGetRoomsReq) returns(MGetRoomsResp);
     // MGetRoomByStreamerIDs 批量查询房间
@@ -54,18 +56,22 @@ enum LiveStatus {
 
 // 拉流地址
 message StreamPull {
-    string flv_url = 1; // FLV 拉流地址
-    string hls_url = 2; // HLS 拉流地址
-    string rtmp_url = 3; // RTMP 拉流地址
+    string rtmp = 1; // RTMP 拉流地址
+    string flv = 2; // FLV 拉流地址
+    string m3u8 = 3; // M3U8 拉流地址
+    string udp = 4; // UDP 拉流地址
   }
   
   // 推流地址
   message StreamPush {
-    string rtmp_url = 1; // RTMP 推流地址
+    string rtmp = 1; // RTMP 推流地址
+    string web_rtc = 2; // WebRTC 推流地址
+    string srt = 3; // SRT 推流地址
+    string rmtp_over_srt = 4; // RTMP over SRT 推流地址
   }
   
   // 流信息
-  message stream {
+  message Stream {
     StreamPull pull = 1; // 推流信息
     StreamPush push = 2; // 推流信息
   }
@@ -77,9 +83,10 @@ message RoomInfo {
     string category_id = 4; // 分类id
     string title = 5; // 标题
     string intro = 6; // 简介
-    bool hidden = 7; // 是否隐藏
-    repeated string merchants = 8; // 商户id
-    repeated string bind_tags = 9; // 标签
+    google.protobuf.Timestamp ban_expire = 7; // 封禁到期时间
+    bool hidden = 8; // 是否隐藏
+    repeated string merchants = 9; // 商户id
+    repeated string bind_tags = 10; // 标签
     
     string live_id = 21; // 直播id（开播状态时才会有，关播时清空）
     int32 live_region = 22; // 直播区域（开播状态时才会有，关播时清空）
@@ -98,8 +105,6 @@ message RoomInfo {
 
     google.protobuf.Timestamp created_at = 101; // 创建时间
     google.protobuf.Timestamp updated_at = 102; // 更新时间
-
-    stream stream = 201; // 流信息
 }
 
 message CreateRoomReq {
@@ -121,6 +126,16 @@ message GetRoomReq {
 }
 message GetRoomResp {
     RoomInfo room = 1; // 房间信息
+    Stream stream = 2; // 流信息
+}
+
+message GetRoomByStreamerIDReq {
+    string streamer_id = 1; // 主播id
+    bool with_stream = 2; // 是否带流信息
+}
+message GetRoomByStreamerIDResp {
+    RoomInfo room = 1; // 房间信息
+    Stream stream = 2; // 流信息
 }
 
 message MGetRoomsReq {
@@ -152,6 +167,7 @@ message GetOnlineRoomListReq {
     SortType sort_type =3; // 排序类型
     string category_id = 4; // 分类id
     repeated string bind_tags = 5; // 标签
+    repeated string merchants = 6; // 商户id
 }
 message GetOnlineRoomListResp {
     repeated RoomInfo items = 1; // 房间列表
@@ -162,7 +178,8 @@ message StartLiveReq {
     LiveDisplayType display_type = 2; // 横竖屏类型
 }
 message StartLiveResp {
-    string live_id = 1; // 直播id
+    RoomInfo room = 1; // 房间信息
+    Stream stream = 2; // 流信息
 }
 
 message StopLiveReq {
