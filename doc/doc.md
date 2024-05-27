@@ -1100,8 +1100,10 @@ CategoryInfo 分类详情
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent_category_id | [string](#string) |  | 父级ID，跟级分类传1 |
 | return_count | [bool](#bool) |  | 是否返回总数 |
+| level | [int32](#int32) |  | 查询标识（0查询所有，1=查询一级分类；2=查询二级分类） |
+| parent_category_id | [string](#string) |  | 父级ID |
+| category_name | [string](#string) |  | 分类名 |
 
 
 
@@ -1117,6 +1119,7 @@ CategoryInfo 分类详情
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | items | [CategoryInfo](#svc-biz-room-CategoryInfo) | repeated |  |
+| total | [int64](#int64) |  |  |
 
 
 
@@ -1397,6 +1400,7 @@ CategoryInfo 分类详情
 | sort_type | [SortType](#svc-biz-room-SortType) |  | 排序类型 |
 | category_id | [string](#string) |  | 分类id |
 | bind_tags | [string](#string) | repeated | 标签 |
+| merchants | [string](#string) | repeated | 商户id |
 
 
 
@@ -1620,6 +1624,7 @@ CategoryInfo 分类详情
 | category_id | [string](#string) |  | 分类id |
 | title | [string](#string) |  | 标题 |
 | intro | [string](#string) |  | 简介 |
+| ban_expire | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 封禁到期时间 |
 | hidden | [bool](#bool) |  | 是否隐藏 |
 | merchants | [string](#string) | repeated | 商户id |
 | bind_tags | [string](#string) | repeated | 标签 |

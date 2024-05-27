@@ -83,9 +83,10 @@ message RoomInfo {
     string category_id = 4; // 分类id
     string title = 5; // 标题
     string intro = 6; // 简介
-    bool hidden = 7; // 是否隐藏
-    repeated string merchants = 8; // 商户id
-    repeated string bind_tags = 9; // 标签
+    google.protobuf.Timestamp ban_expire = 7; // 封禁到期时间
+    bool hidden = 8; // 是否隐藏
+    repeated string merchants = 9; // 商户id
+    repeated string bind_tags = 10; // 标签
     
     string live_id = 21; // 直播id（开播状态时才会有，关播时清空）
     int32 live_region = 22; // 直播区域（开播状态时才会有，关播时清空）
@@ -166,6 +167,7 @@ message GetOnlineRoomListReq {
     SortType sort_type =3; // 排序类型
     string category_id = 4; // 分类id
     repeated string bind_tags = 5; // 标签
+    repeated string merchants = 6; // 商户id
 }
 message GetOnlineRoomListResp {
     repeated RoomInfo items = 1; // 房间列表
