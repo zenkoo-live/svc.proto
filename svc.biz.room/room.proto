@@ -27,6 +27,11 @@ service Room {
     // GetOnlineRoomList 查询在线房间列表（用户端列表使用此接口）
     rpc GetOnlineRoomList (GetOnlineRoomListReq) returns(GetOnlineRoomListResp);
 
+    // ForbidRoom 封禁直播间
+    rpc ForbidRoom(ForbidRoomReq) returns(ForbidRoomResp);
+    // ResumeRoom 解封直播间
+    rpc ResumeRoom(ResumeRoomReq) returns(ResumeRoomResp);
+
     // StartLive 开始直播
     rpc StartLive(StartLiveReq) returns(StartLiveResp);
     // StopLive 关闭直播
@@ -83,7 +88,7 @@ message RoomInfo {
     string category_id = 4; // 分类id
     string title = 5; // 标题
     string intro = 6; // 简介
-    google.protobuf.Timestamp ban_expire = 7; // 封禁到期时间
+    google.protobuf.Timestamp forbid_expire = 7; // 封禁到期时间
     bool hidden = 8; // 是否隐藏
     repeated string merchants = 9; // 商户id
     repeated string bind_tags = 10; // 标签
@@ -171,6 +176,22 @@ message GetOnlineRoomListReq {
 }
 message GetOnlineRoomListResp {
     repeated RoomInfo items = 1; // 房间列表
+}
+
+message ForbidRoomReq {
+    string streamer_id = 1; // 主播id
+    google.protobuf.Timestamp forbid_expire = 2; // 封禁过期时间
+    string reason = 3; // 封禁原因
+}
+message ForbidRoomResp {
+
+}
+
+message ResumeRoomReq {
+    string streamer_id = 1; // 主播id
+}
+message ResumeRoomResp {
+
 }
 
 message StartLiveReq {
