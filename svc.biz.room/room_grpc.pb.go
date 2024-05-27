@@ -23,6 +23,7 @@ const (
 	Room_CreateRoom_FullMethodName             = "/svc.biz.room.Room/CreateRoom"
 	Room_UpdateRoom_FullMethodName             = "/svc.biz.room.Room/UpdateRoom"
 	Room_GetRoom_FullMethodName                = "/svc.biz.room.Room/GetRoom"
+	Room_GetRoomByStreamerID_FullMethodName    = "/svc.biz.room.Room/GetRoomByStreamerID"
 	Room_MGetRooms_FullMethodName              = "/svc.biz.room.Room/MGetRooms"
 	Room_MGetRoomsByStreamerIDs_FullMethodName = "/svc.biz.room.Room/MGetRoomsByStreamerIDs"
 	Room_GetRoomList_FullMethodName            = "/svc.biz.room.Room/GetRoomList"
@@ -41,6 +42,8 @@ type RoomClient interface {
 	UpdateRoom(ctx context.Context, in *UpdateRoomReq, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// GetRoom 查询房间
 	GetRoom(ctx context.Context, in *GetRoomReq, opts ...grpc.CallOption) (*GetRoomResp, error)
+	// GetRoomByStreamerID 查询房间
+	GetRoomByStreamerID(ctx context.Context, in *GetRoomByStreamerIDReq, opts ...grpc.CallOption) (*GetRoomByStreamerIDResp, error)
 	// MGetRooms 查询房间
 	MGetRooms(ctx context.Context, in *MGetRoomsReq, opts ...grpc.CallOption) (*MGetRoomsResp, error)
 	// MGetRoomByStreamerIDs 批量查询房间
@@ -84,6 +87,15 @@ func (c *roomClient) UpdateRoom(ctx context.Context, in *UpdateRoomReq, opts ...
 func (c *roomClient) GetRoom(ctx context.Context, in *GetRoomReq, opts ...grpc.CallOption) (*GetRoomResp, error) {
 	out := new(GetRoomResp)
 	err := c.cc.Invoke(ctx, Room_GetRoom_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *roomClient) GetRoomByStreamerID(ctx context.Context, in *GetRoomByStreamerIDReq, opts ...grpc.CallOption) (*GetRoomByStreamerIDResp, error) {
+	out := new(GetRoomByStreamerIDResp)
+	err := c.cc.Invoke(ctx, Room_GetRoomByStreamerID_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -154,6 +166,8 @@ type RoomServer interface {
 	UpdateRoom(context.Context, *UpdateRoomReq) (*emptypb.Empty, error)
 	// GetRoom 查询房间
 	GetRoom(context.Context, *GetRoomReq) (*GetRoomResp, error)
+	// GetRoomByStreamerID 查询房间
+	GetRoomByStreamerID(context.Context, *GetRoomByStreamerIDReq) (*GetRoomByStreamerIDResp, error)
 	// MGetRooms 查询房间
 	MGetRooms(context.Context, *MGetRoomsReq) (*MGetRoomsResp, error)
 	// MGetRoomByStreamerIDs 批量查询房间
@@ -181,6 +195,9 @@ func (UnimplementedRoomServer) UpdateRoom(context.Context, *UpdateRoomReq) (*emp
 }
 func (UnimplementedRoomServer) GetRoom(context.Context, *GetRoomReq) (*GetRoomResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetRoom not implemented")
+}
+func (UnimplementedRoomServer) GetRoomByStreamerID(context.Context, *GetRoomByStreamerIDReq) (*GetRoomByStreamerIDResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetRoomByStreamerID not implemented")
 }
 func (UnimplementedRoomServer) MGetRooms(context.Context, *MGetRoomsReq) (*MGetRoomsResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method MGetRooms not implemented")
@@ -263,6 +280,24 @@ func _Room_GetRoom_Handler(srv interface{}, ctx context.Context, dec func(interf
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(RoomServer).GetRoom(ctx, req.(*GetRoomReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Room_GetRoomByStreamerID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetRoomByStreamerIDReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RoomServer).GetRoomByStreamerID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Room_GetRoomByStreamerID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RoomServer).GetRoomByStreamerID(ctx, req.(*GetRoomByStreamerIDReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -393,6 +428,10 @@ var Room_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetRoom",
 			Handler:    _Room_GetRoom_Handler,
+		},
+		{
+			MethodName: "GetRoomByStreamerID",
+			Handler:    _Room_GetRoomByStreamerID_Handler,
 		},
 		{
 			MethodName: "MGetRooms",

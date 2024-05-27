@@ -61,11 +61,14 @@ message DeleteCategoryReq{
 }
 
 message ListCategoryReq {
-  string parent_category_id = 1; // 父级ID，跟级分类传1
-  bool return_count = 2; // 是否返回总数
+  bool return_count = 1; // 是否返回总数
+  int32 level = 2; // 查询标识（0查询所有，1=查询一级分类；2=查询二级分类）
+  string parent_category_id = 3; // 父级ID
+  string category_name = 4; // 分类名
 }
 message ListCategoryResp {
   repeated CategoryInfo items = 1;
+  int64 total = 2;
 }
 
 //获取全部板块分类（分类及子分类树结构）
