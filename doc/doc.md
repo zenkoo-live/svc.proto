@@ -2595,9 +2595,10 @@ Room 房间
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| id | [string](#string) |  |  |
-| type | [string](#string) |  |  |
-| data | [string](#string) |  |  |
+| id | [string](#string) |  | 内部ID |
+| type | [string](#string) |  | 配置类型 |
+| data | [string](#string) |  | 配置数据 |
+| merchant_id | [string](#string) |  | 商户ID |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
 
 
