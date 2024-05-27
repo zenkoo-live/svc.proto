@@ -30,9 +30,10 @@ message SettingGreetingResp {
 }
 
 message Configuration {
-    string id = 1;
-    string type = 2;
-    string data = 3;
+    string id = 1; // 内部ID
+    string type = 2; //配置类型
+    string data = 3; // 配置数据
+    string merchant_id = 254; // 商户ID
     google.protobuf.Timestamp created_at = 255; // 创建时间
 }
 
