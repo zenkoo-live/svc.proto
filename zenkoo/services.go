@@ -7,9 +7,11 @@ import (
 	cltGrpc "github.com/go-micro/plugins/v4/client/grpc"
 
 	svcBizAccount "github.com/zenkoo-live/svc.proto/svc.biz.account"
+	svcBizAsset "github.com/zenkoo-live/svc.proto/svc.biz.asset"
 	svcBizGift "github.com/zenkoo-live/svc.proto/svc.biz.gift"
 	svcBizOrg "github.com/zenkoo-live/svc.proto/svc.biz.org"
 	svcBizRoom "github.com/zenkoo-live/svc.proto/svc.biz.room"
+	svcBizTrade "github.com/zenkoo-live/svc.proto/svc.biz.trade"
 	svcInfraNotifier "github.com/zenkoo-live/svc.proto/svc.infra.notifier"
 	svcInfraSetting "github.com/zenkoo-live/svc.proto/svc.infra.setting"
 	svcInfraStatic "github.com/zenkoo-live/svc.proto/svc.infra.static"
@@ -22,6 +24,7 @@ const (
 	AppName = "zenkoo"
 
 	SvcBizAccount    = "svc.biz.account"
+	SvcBizAsset      = "svc.biz.asset"
 	SvcWebDashboard  = "svc.web.dashboard"
 	SvcBizGift       = "svc.biz.gift"
 	SvcInfraNotifier = "svc.infra.notifier"
@@ -30,6 +33,7 @@ const (
 	SvcInfraSetting  = "svc.infra.setting"
 	SvcInfraStatic   = "svc.infra.static"
 	SvcWebStreamer   = "svc.web.streamer"
+	SvcBizTrade      = "svc.biz.trade"
 	SvcWebViewer     = "svc.web.viewer"
 )
 
@@ -37,6 +41,7 @@ var (
 	clt = cltGrpc.NewClient()
 
 	SvcBizAccountAccount     = svcBizAccount.NewAccountService(AppName+"::"+SvcBizAccount, clt)
+	SvcBizAssetAsset         = svcBizAsset.NewAssetService(AppName+"::"+SvcBizAsset, clt)
 	SvcWebDashboardDashboard = svcWebDashboard.NewDashboardService(AppName+"::"+SvcWebDashboard, clt)
 	SvcBizGiftGift           = svcBizGift.NewGiftService(AppName+"::"+SvcBizGift, clt)
 	SvcInfraNotifierNotifier = svcInfraNotifier.NewNotifierService(AppName+"::"+SvcInfraNotifier, clt)
@@ -47,5 +52,6 @@ var (
 	SvcInfraSettingSetting   = svcInfraSetting.NewSettingService(AppName+"::"+SvcInfraSetting, clt)
 	SvcInfraStaticStatic     = svcInfraStatic.NewStaticService(AppName+"::"+SvcInfraStatic, clt)
 	SvcWebStreamerStreamer   = svcWebStreamer.NewStreamerService(AppName+"::"+SvcWebStreamer, clt)
+	SvcBizTradeTrade         = svcBizTrade.NewTradeService(AppName+"::"+SvcBizTrade, clt)
 	SvcWebViewerViewer       = svcWebViewer.NewViewerService(AppName+"::"+SvcWebViewer, clt)
 )
