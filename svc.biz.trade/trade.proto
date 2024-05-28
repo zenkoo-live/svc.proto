@@ -1,0 +1,184 @@
+syntax = "proto3";
+
+package svc.biz.trade;
+
+import "google/protobuf/field_mask.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package="./svc.biz.trade;trade";
+
+service Trade {
+
+  // 用户消费行为交易
+
+  rpc SendGiftInLive(SendGiftInLiveReq) returns (SendGiftInLiveResp) {} // 送礼物(直播间)
+  rpc BuyLiveTicket(BuyLiveTicketReq) returns (BuyLiveTicketResp) {} // 直播间门票
+  rpc PayLiveDurationFee(PayLiveDurationFeeReq) returns (PayLiveDurationFeeResp) {} // 直播间计时费
+  rpc JoinAnchorFansGroup(JoinAnchorFansGroupReq) returns (JoinAnchorFansGroupResp) {} // 加入粉丝团
+  rpc PayBulletChat(PayBulletChatReq) returns (PayBulletChatResp) {} // 付费弹幕
+  rpc VipActivate(VipActivateReq) returns (VipActivateResp) {} // vip激活
+  rpc VipExtend(VipExtendReq) returns (VipExtendResp) {} // vip续费
+  rpc VipUpgrade(VipUpgradeReq) returns (VipUpgradeResp) {} // vip升级
+  rpc BuyRide(BuyRideReq) returns (BuyRideResp) {} // 购买座驾,待定,理论上应该有商城
+  rpc BuyLuckyId(BuyLuckyIdReq) returns (BuyLuckyIdResp) {} // 购买靓号,待定,理论上应该有商城
+
+  // 余额
+
+  rpc MoneyRecharge(MoneyRechargeReq) returns (MoneyRechargeResp) {} // 余额充值
+  rpc MoneyWithdraw(MoneyWithdrawReq) returns (MoneyWithdrawResp) {} // 余额提现,待定,一期可能不做
+  rpc MoneyExchangeCoin(MoneyExchangeCoinReq) returns (MoneyExchangeCoinResp) {} // 余额兑换虚拟币
+
+}
+
+// ------------公共参数--------------
+
+message TradeInfo {
+  string merchant_id = 2; // 交易发生的商户
+  string app_id = 3; // 交易发生的app
+  string trade_id = 1; // 业务方交易id,业务方保证唯一,支持幂等
+  google.protobuf.Timestamp trans_time = 8; // 业务时间
+}
+message TradeResult {
+  UserCoinValue value = 1;
+  int64 serial_number = 2;
+}
+message UserInfo {
+  string merchant_id = 1;
+  string app_id = 2;
+  string uid = 3;
+  string nickname = 4;
+  string avatar = 5;
+  string union_id = 6;
+}
+message LiveInfo {
+  string merchant_id = 1;
+  string app_id = 2;
+  string room_id = 3;
+  string anchor_id = 4;
+  string live_id = 5;
+  int64 live_type = 6;// 直播类型
+  int64 live_category = 7;// 直播分类
+}
+message GiftInfo {
+  string gift_id = 1;
+  string gift_name = 2;
+  int64 gift_type = 3;
+  int32 price = 6;
+  string num = 7;
+  string icon = 8;
+}
+message UserCoinValue {// 总余额=value+limited_value
+  int64 value = 1;// 余额
+  int64 limited_value = 2;// 低权限余额
+}
+
+// end ------------公共参数--------------
+
+message SendGiftInLiveReq {
+  TradeInfo trade_info = 1;
+  UserInfo sender = 2;
+  UserInfo receiver = 3;
+  GiftInfo gift = 4;
+  LiveInfo live_info = 5;
+}
+message SendGiftInLiveResp {
+  TradeResult trade_result = 1;
+}
+message BuyLiveTicketReq {
+  TradeInfo trade_info = 1;
+  UserInfo buyer = 2;
+  LiveInfo live_info = 4;
+}
+message BuyLiveTicketResp {
+  TradeResult trade_result = 1;
+}
+message PayLiveDurationFeeReq {
+  TradeInfo trade_info = 1;
+  UserInfo buyer = 2;
+  LiveInfo live_info = 4;
+}
+message PayLiveDurationFeeResp {
+  TradeResult trade_result = 1;
+}
+message JoinAnchorFansGroupReq {
+  TradeInfo trade_info = 1;
+  UserInfo buyer = 2;
+  LiveInfo live_info = 4;
+}
+message JoinAnchorFansGroupResp {
+  TradeResult trade_result = 1;
+}
+message PayBulletChatReq {
+  TradeInfo trade_info = 1;
+  UserInfo buyer = 2;
+  LiveInfo live_info = 4;
+}
+message PayBulletChatResp {
+  TradeResult trade_result = 1;
+}
+message VipActivateReq {
+  TradeInfo trade_info = 1;
+  UserInfo buyer = 2;
+}
+message VipActivateResp {
+  TradeResult trade_result = 1;
+}
+message VipExtendReq {
+  TradeInfo trade_info = 1;
+  UserInfo buyer = 2;
+}
+message VipExtendResp {
+  TradeResult trade_result = 1;
+}
+message VipUpgradeReq {
+  TradeInfo trade_info = 1;
+  UserInfo buyer = 2;
+}
+message VipUpgradeResp {
+  TradeResult trade_result = 1;
+}
+message BuyRideReq {
+  TradeInfo trade_info = 1;
+  UserInfo buyer = 2;
+}
+message BuyRideResp {
+  TradeResult trade_result = 1;
+}
+message BuyLuckyIdReq {
+  TradeInfo trade_info = 1;
+  UserInfo buyer = 2;
+}
+message BuyLuckyIdResp {
+  TradeResult trade_result = 1;
+}
+message MoneyRechargeReq { // 待讨论
+  message PayInfo {
+    string pay_channel = 1;
+    string pay_method = 2;
+    string currency_code = 3; // 币种代码 CNY
+    string amount = 4; // 币种金额
+  }
+  TradeInfo trade_info = 1;
+  UserInfo user = 2;
+  PayInfo pay_info = 3;
+  int64 recharge_amount = 4; // 充值余额金额
+  string attach = 5; // 透传的附加信息,等待约定
+}
+message MoneyRechargeResp {
+  TradeResult trade_result = 1;
+}
+message MoneyWithdrawReq {
+  TradeInfo trade_info = 1;
+  UserInfo user = 2;
+  int64 withdraw_amount = 3; // 提现金额
+}
+message MoneyWithdrawResp {
+  TradeResult trade_result = 1;
+}
+message MoneyExchangeCoinReq {
+  TradeInfo trade_info = 1;
+  UserInfo user = 2;
+}
+message MoneyExchangeCoinResp {
+  TradeResult trade_result = 1;
+}
