@@ -2,7 +2,6 @@ syntax = "proto3";
 
 package svc.biz.asset;
 
-import "google/protobuf/field_mask.proto";
 import "google/protobuf/timestamp.proto";
 
 option go_package="./svc.biz.asset;asset";
