@@ -1719,6 +1719,7 @@ CategoryInfo 分类详情
 | category_code | [string](#string) |  | 代号（唯一，预留） |
 | category_name | [string](#string) |  | 名称 |
 | sort | [int32](#int32) |  | 排序 |
+| manager_id | [string](#string) |  | 操作人 |
 | childrens | [CategoryInfo](#svc-biz-room-CategoryInfo) | repeated |  |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
 | updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
@@ -1736,6 +1737,7 @@ CategoryInfo 分类详情
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| manager_id | [string](#string) |  |  |
 | category | [CategoryInfo](#svc-biz-room-CategoryInfo) |  |  |
 
 
@@ -1766,6 +1768,7 @@ CategoryInfo 分类详情
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| manager_id | [string](#string) |  |  |
 | category_id | [string](#string) |  |  |
 
 
@@ -1918,6 +1921,7 @@ CategoryInfo 分类详情
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| manager_id | [string](#string) |  |  |
 | category_id | [string](#string) |  |  |
 | category | [CategoryInfo](#svc-biz-room-CategoryInfo) |  |  |
 | update_mask | [google.protobuf.FieldMask](#google-protobuf-FieldMask) |  |  |
@@ -2709,6 +2713,8 @@ Room 房间
 | id | [string](#string) |  | 内部ID |
 | type | [string](#string) |  | 配置类型 |
 | data | [string](#string) |  | 配置数据 |
+| status | [string](#string) |  | 状态 |
+| manager_id | [string](#string) |  | 操作账号 |
 | merchant_id | [string](#string) |  | 商户ID |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
 
