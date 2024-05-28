@@ -21,6 +21,7 @@ const _ = grpc.SupportPackageIsVersion7
 
 const (
 	Category_GetCategory_FullMethodName      = "/svc.biz.room.Category/GetCategory"
+	Category_MGetCategory_FullMethodName     = "/svc.biz.room.Category/MGetCategory"
 	Category_CreateCategory_FullMethodName   = "/svc.biz.room.Category/CreateCategory"
 	Category_UpdateCategory_FullMethodName   = "/svc.biz.room.Category/UpdateCategory"
 	Category_DeleteCategory_FullMethodName   = "/svc.biz.room.Category/DeleteCategory"
@@ -34,6 +35,8 @@ const (
 type CategoryClient interface {
 	// 获取分类
 	GetCategory(ctx context.Context, in *GetCategoryReq, opts ...grpc.CallOption) (*GetCategoryResp, error)
+	// 获取分类
+	MGetCategory(ctx context.Context, in *MGetCategoryReq, opts ...grpc.CallOption) (*MGetCategoryResp, error)
 	// 创建分类
 	CreateCategory(ctx context.Context, in *CreateCategoryReq, opts ...grpc.CallOption) (*CreateCategoryResp, error)
 	// 更新某个分类信息
@@ -57,6 +60,15 @@ func NewCategoryClient(cc grpc.ClientConnInterface) CategoryClient {
 func (c *categoryClient) GetCategory(ctx context.Context, in *GetCategoryReq, opts ...grpc.CallOption) (*GetCategoryResp, error) {
 	out := new(GetCategoryResp)
 	err := c.cc.Invoke(ctx, Category_GetCategory_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *categoryClient) MGetCategory(ctx context.Context, in *MGetCategoryReq, opts ...grpc.CallOption) (*MGetCategoryResp, error) {
+	out := new(MGetCategoryResp)
+	err := c.cc.Invoke(ctx, Category_MGetCategory_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -114,6 +126,8 @@ func (c *categoryClient) ListCategoryTree(ctx context.Context, in *ListCategoryT
 type CategoryServer interface {
 	// 获取分类
 	GetCategory(context.Context, *GetCategoryReq) (*GetCategoryResp, error)
+	// 获取分类
+	MGetCategory(context.Context, *MGetCategoryReq) (*MGetCategoryResp, error)
 	// 创建分类
 	CreateCategory(context.Context, *CreateCategoryReq) (*CreateCategoryResp, error)
 	// 更新某个分类信息
@@ -133,6 +147,9 @@ type UnimplementedCategoryServer struct {
 
 func (UnimplementedCategoryServer) GetCategory(context.Context, *GetCategoryReq) (*GetCategoryResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCategory not implemented")
+}
+func (UnimplementedCategoryServer) MGetCategory(context.Context, *MGetCategoryReq) (*MGetCategoryResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method MGetCategory not implemented")
 }
 func (UnimplementedCategoryServer) CreateCategory(context.Context, *CreateCategoryReq) (*CreateCategoryResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateCategory not implemented")
@@ -176,6 +193,24 @@ func _Category_GetCategory_Handler(srv interface{}, ctx context.Context, dec fun
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(CategoryServer).GetCategory(ctx, req.(*GetCategoryReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Category_MGetCategory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MGetCategoryReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CategoryServer).MGetCategory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Category_MGetCategory_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CategoryServer).MGetCategory(ctx, req.(*MGetCategoryReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -280,6 +315,10 @@ var Category_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetCategory",
 			Handler:    _Category_GetCategory_Handler,
+		},
+		{
+			MethodName: "MGetCategory",
+			Handler:    _Category_MGetCategory_Handler,
 		},
 		{
 			MethodName: "CreateCategory",

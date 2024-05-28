@@ -68,6 +68,9 @@
     - [ListCategoryResp](#svc-biz-room-ListCategoryResp)
     - [ListCategoryTreeReq](#svc-biz-room-ListCategoryTreeReq)
     - [ListCategoryTreeResp](#svc-biz-room-ListCategoryTreeResp)
+    - [MGetCategoryReq](#svc-biz-room-MGetCategoryReq)
+    - [MGetCategoryResp](#svc-biz-room-MGetCategoryResp)
+    - [MGetCategoryResp.ItemsEntry](#svc-biz-room-MGetCategoryResp-ItemsEntry)
     - [UpdateCategoryReq](#svc-biz-room-UpdateCategoryReq)
   
     - [Category](#svc-biz-room-Category)
@@ -1104,6 +1107,8 @@ CategoryInfo 分类详情
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| page | [int32](#int32) |  | 页数 |
+| limit | [int32](#int32) |  | 条数 |
 | return_count | [bool](#bool) |  | 是否返回总数 |
 | level | [int32](#int32) |  | 查询标识（0查询所有，1=查询一级分类；2=查询二级分类） |
 | parent_category_id | [string](#string) |  | 父级ID |
@@ -1155,6 +1160,52 @@ CategoryInfo 分类详情
 
 
 
+<a name="svc-biz-room-MGetCategoryReq"></a>
+
+### MGetCategoryReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| category_ids | [string](#string) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-room-MGetCategoryResp"></a>
+
+### MGetCategoryResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [MGetCategoryResp.ItemsEntry](#svc-biz-room-MGetCategoryResp-ItemsEntry) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-room-MGetCategoryResp-ItemsEntry"></a>
+
+### MGetCategoryResp.ItemsEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [CategoryInfo](#svc-biz-room-CategoryInfo) |  |  |
+
+
+
+
+
+
 <a name="svc-biz-room-UpdateCategoryReq"></a>
 
 ### UpdateCategoryReq
@@ -1186,6 +1237,7 @@ CategoryInfo 分类详情
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
 | GetCategory | [GetCategoryReq](#svc-biz-room-GetCategoryReq) | [GetCategoryResp](#svc-biz-room-GetCategoryResp) | 获取分类 |
+| MGetCategory | [MGetCategoryReq](#svc-biz-room-MGetCategoryReq) | [MGetCategoryResp](#svc-biz-room-MGetCategoryResp) | 获取分类 |
 | CreateCategory | [CreateCategoryReq](#svc-biz-room-CreateCategoryReq) | [CreateCategoryResp](#svc-biz-room-CreateCategoryResp) | 创建分类 |
 | UpdateCategory | [UpdateCategoryReq](#svc-biz-room-UpdateCategoryReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | 更新某个分类信息 |
 | DeleteCategory | [DeleteCategoryReq](#svc-biz-room-DeleteCategoryReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | 删除一个分类信息 |
