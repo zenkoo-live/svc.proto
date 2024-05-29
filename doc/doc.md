@@ -115,6 +115,9 @@
     - [ListCategoryResp](#svc-biz-room-ListCategoryResp)
     - [ListCategoryTreeReq](#svc-biz-room-ListCategoryTreeReq)
     - [ListCategoryTreeResp](#svc-biz-room-ListCategoryTreeResp)
+    - [MGetCategoryReq](#svc-biz-room-MGetCategoryReq)
+    - [MGetCategoryResp](#svc-biz-room-MGetCategoryResp)
+    - [MGetCategoryResp.ItemsEntry](#svc-biz-room-MGetCategoryResp-ItemsEntry)
     - [UpdateCategoryReq](#svc-biz-room-UpdateCategoryReq)
   
     - [Category](#svc-biz-room-Category)
@@ -134,6 +137,8 @@
 - [svc.biz.room/room.proto](#svc-biz-room_room-proto)
     - [CreateRoomReq](#svc-biz-room-CreateRoomReq)
     - [CreateRoomResp](#svc-biz-room-CreateRoomResp)
+    - [ForbidRoomReq](#svc-biz-room-ForbidRoomReq)
+    - [ForbidRoomResp](#svc-biz-room-ForbidRoomResp)
     - [GetOnlineRoomListReq](#svc-biz-room-GetOnlineRoomListReq)
     - [GetOnlineRoomListResp](#svc-biz-room-GetOnlineRoomListResp)
     - [GetRoomByStreamerIDReq](#svc-biz-room-GetRoomByStreamerIDReq)
@@ -148,6 +153,8 @@
     - [MGetRoomsReq](#svc-biz-room-MGetRoomsReq)
     - [MGetRoomsResp](#svc-biz-room-MGetRoomsResp)
     - [MGetRoomsResp.ItemsEntry](#svc-biz-room-MGetRoomsResp-ItemsEntry)
+    - [ResumeRoomReq](#svc-biz-room-ResumeRoomReq)
+    - [ResumeRoomResp](#svc-biz-room-ResumeRoomResp)
     - [RoomInfo](#svc-biz-room-RoomInfo)
     - [StartLiveReq](#svc-biz-room-StartLiveReq)
     - [StartLiveResp](#svc-biz-room-StartLiveResp)
@@ -1841,6 +1848,7 @@ CategoryInfo 分类详情
 | category_code | [string](#string) |  | 代号（唯一，预留） |
 | category_name | [string](#string) |  | 名称 |
 | sort | [int32](#int32) |  | 排序 |
+| manager_id | [string](#string) |  | 操作人 |
 | childrens | [CategoryInfo](#svc-biz-room-CategoryInfo) | repeated |  |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
 | updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
@@ -1858,6 +1866,7 @@ CategoryInfo 分类详情
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| manager_id | [string](#string) |  |  |
 | category | [CategoryInfo](#svc-biz-room-CategoryInfo) |  |  |
 
 
@@ -1888,6 +1897,7 @@ CategoryInfo 分类详情
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| manager_id | [string](#string) |  |  |
 | category_id | [string](#string) |  |  |
 
 
@@ -1933,6 +1943,8 @@ CategoryInfo 分类详情
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| page | [int32](#int32) |  | 页数 |
+| limit | [int32](#int32) |  | 条数 |
 | return_count | [bool](#bool) |  | 是否返回总数 |
 | level | [int32](#int32) |  | 查询标识（0查询所有，1=查询一级分类；2=查询二级分类） |
 | parent_category_id | [string](#string) |  | 父级ID |
@@ -1984,6 +1996,52 @@ CategoryInfo 分类详情
 
 
 
+<a name="svc-biz-room-MGetCategoryReq"></a>
+
+### MGetCategoryReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| category_ids | [string](#string) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-room-MGetCategoryResp"></a>
+
+### MGetCategoryResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [MGetCategoryResp.ItemsEntry](#svc-biz-room-MGetCategoryResp-ItemsEntry) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-room-MGetCategoryResp-ItemsEntry"></a>
+
+### MGetCategoryResp.ItemsEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [CategoryInfo](#svc-biz-room-CategoryInfo) |  |  |
+
+
+
+
+
+
 <a name="svc-biz-room-UpdateCategoryReq"></a>
 
 ### UpdateCategoryReq
@@ -1992,6 +2050,7 @@ CategoryInfo 分类详情
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| manager_id | [string](#string) |  |  |
 | category_id | [string](#string) |  |  |
 | category | [CategoryInfo](#svc-biz-room-CategoryInfo) |  |  |
 | update_mask | [google.protobuf.FieldMask](#google-protobuf-FieldMask) |  |  |
@@ -2015,6 +2074,7 @@ CategoryInfo 分类详情
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
 | GetCategory | [GetCategoryReq](#svc-biz-room-GetCategoryReq) | [GetCategoryResp](#svc-biz-room-GetCategoryResp) | 获取分类 |
+| MGetCategory | [MGetCategoryReq](#svc-biz-room-MGetCategoryReq) | [MGetCategoryResp](#svc-biz-room-MGetCategoryResp) | 获取分类 |
 | CreateCategory | [CreateCategoryReq](#svc-biz-room-CreateCategoryReq) | [CreateCategoryResp](#svc-biz-room-CreateCategoryResp) | 创建分类 |
 | UpdateCategory | [UpdateCategoryReq](#svc-biz-room-UpdateCategoryReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | 更新某个分类信息 |
 | DeleteCategory | [DeleteCategoryReq](#svc-biz-room-DeleteCategoryReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | 删除一个分类信息 |
@@ -2214,6 +2274,33 @@ CategoryInfo 分类详情
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | room | [RoomInfo](#svc-biz-room-RoomInfo) |  | 房间信息 |
+
+
+
+
+
+
+<a name="svc-biz-room-ForbidRoomReq"></a>
+
+### ForbidRoomReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer_id | [string](#string) |  | 主播id |
+| forbid_expire | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 封禁过期时间 |
+| reason | [string](#string) |  | 封禁原因 |
+
+
+
+
+
+
+<a name="svc-biz-room-ForbidRoomResp"></a>
+
+### ForbidRoomResp
+
 
 
 
@@ -2443,6 +2530,31 @@ CategoryInfo 分类详情
 
 
 
+<a name="svc-biz-room-ResumeRoomReq"></a>
+
+### ResumeRoomReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer_id | [string](#string) |  | 主播id |
+
+
+
+
+
+
+<a name="svc-biz-room-ResumeRoomResp"></a>
+
+### ResumeRoomResp
+
+
+
+
+
+
+
 <a name="svc-biz-room-RoomInfo"></a>
 
 ### RoomInfo
@@ -2457,7 +2569,8 @@ CategoryInfo 分类详情
 | category_id | [string](#string) |  | 分类id |
 | title | [string](#string) |  | 标题 |
 | intro | [string](#string) |  | 简介 |
-| ban_expire | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 封禁到期时间 |
+| forbid_expire | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 封禁到期时间 |
+| forbid_reason | [string](#string) |  | 封禁原因 |
 | hidden | [bool](#bool) |  | 是否隐藏 |
 | merchants | [string](#string) | repeated | 商户id |
 | bind_tags | [string](#string) | repeated | 标签 |
@@ -2671,6 +2784,8 @@ Room 房间
 | MGetRoomsByStreamerIDs | [MGetRoomsByStreamerIDsReq](#svc-biz-room-MGetRoomsByStreamerIDsReq) | [MGetRoomsByStreamerIDsResp](#svc-biz-room-MGetRoomsByStreamerIDsResp) | MGetRoomByStreamerIDs 批量查询房间 |
 | GetRoomList | [GetRoomListReq](#svc-biz-room-GetRoomListReq) | [GetRoomListResp](#svc-biz-room-GetRoomListResp) | GetRoomList 查询房间列表（后台使用此接口） |
 | GetOnlineRoomList | [GetOnlineRoomListReq](#svc-biz-room-GetOnlineRoomListReq) | [GetOnlineRoomListResp](#svc-biz-room-GetOnlineRoomListResp) | GetOnlineRoomList 查询在线房间列表（用户端列表使用此接口） |
+| ForbidRoom | [ForbidRoomReq](#svc-biz-room-ForbidRoomReq) | [ForbidRoomResp](#svc-biz-room-ForbidRoomResp) | ForbidRoom 封禁直播间 |
+| ResumeRoom | [ResumeRoomReq](#svc-biz-room-ResumeRoomReq) | [ResumeRoomResp](#svc-biz-room-ResumeRoomResp) | ResumeRoom 解封直播间 |
 | StartLive | [StartLiveReq](#svc-biz-room-StartLiveReq) | [StartLiveResp](#svc-biz-room-StartLiveResp) | StartLive 开始直播 |
 | StopLive | [StopLiveReq](#svc-biz-room-StopLiveReq) | [StopLiveResp](#svc-biz-room-StopLiveResp) | StopLive 关闭直播 |
 

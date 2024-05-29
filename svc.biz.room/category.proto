@@ -12,6 +12,8 @@ option go_package="./svc.biz.room;room";
 service Category {
   // 获取分类
   rpc GetCategory(GetCategoryReq) returns (GetCategoryResp) {}
+  // 获取分类
+  rpc MGetCategory(MGetCategoryReq) returns (MGetCategoryResp) {}
   // 创建分类
   rpc CreateCategory(CreateCategoryReq) returns (CreateCategoryResp) {}
   // 更新某个分类信息
@@ -31,22 +33,25 @@ message CategoryInfo {
   string category_code = 5; // 代号（唯一，预留）
   string category_name = 6; // 名称
   int32 sort = 7; // 排序
-  repeated CategoryInfo childrens = 8;
+  string manager_id = 8; // 操作人
+  repeated CategoryInfo childrens = 20;
   google.protobuf.Timestamp created_at = 255;
   google.protobuf.Timestamp updated_at = 256;
 }
 
 message CreateCategoryReq {
-  CategoryInfo category = 1;
+  string manager_id = 1;
+  CategoryInfo category = 2;
 }
 message CreateCategoryResp {
   CategoryInfo category = 1;
 }
 
 message UpdateCategoryReq {
-  string category_id = 1; 
-  CategoryInfo category = 2;
-  google.protobuf.FieldMask update_mask = 3;
+  string manager_id = 1;
+  string category_id = 2; 
+  CategoryInfo category = 3;
+  google.protobuf.FieldMask update_mask = 4;
 }
 
 message GetCategoryReq {
@@ -56,15 +61,25 @@ message GetCategoryResp{
   CategoryInfo category = 1;
 }
 
+message MGetCategoryReq {
+  repeated string category_ids = 1; 
+}
+message MGetCategoryResp {
+  map<string, CategoryInfo> items = 1; 
+}
+
 message DeleteCategoryReq{
-  string category_id = 1; 
+  string manager_id = 1;
+  string category_id = 2; 
 }
 
 message ListCategoryReq {
-  bool return_count = 1; // 是否返回总数
-  int32 level = 2; // 查询标识（0查询所有，1=查询一级分类；2=查询二级分类）
-  string parent_category_id = 3; // 父级ID
-  string category_name = 4; // 分类名
+  int32 page = 1; // 页数
+  int32 limit = 2; // 条数
+  bool return_count = 3; // 是否返回总数
+  int32 level = 4; // 查询标识（0查询所有，1=查询一级分类；2=查询二级分类）
+  string parent_category_id = 5; // 父级ID
+  string category_name = 6; // 分类名
 }
 message ListCategoryResp {
   repeated CategoryInfo items = 1;

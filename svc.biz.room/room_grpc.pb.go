@@ -28,6 +28,8 @@ const (
 	Room_MGetRoomsByStreamerIDs_FullMethodName = "/svc.biz.room.Room/MGetRoomsByStreamerIDs"
 	Room_GetRoomList_FullMethodName            = "/svc.biz.room.Room/GetRoomList"
 	Room_GetOnlineRoomList_FullMethodName      = "/svc.biz.room.Room/GetOnlineRoomList"
+	Room_ForbidRoom_FullMethodName             = "/svc.biz.room.Room/ForbidRoom"
+	Room_ResumeRoom_FullMethodName             = "/svc.biz.room.Room/ResumeRoom"
 	Room_StartLive_FullMethodName              = "/svc.biz.room.Room/StartLive"
 	Room_StopLive_FullMethodName               = "/svc.biz.room.Room/StopLive"
 )
@@ -52,6 +54,10 @@ type RoomClient interface {
 	GetRoomList(ctx context.Context, in *GetRoomListReq, opts ...grpc.CallOption) (*GetRoomListResp, error)
 	// GetOnlineRoomList 查询在线房间列表（用户端列表使用此接口）
 	GetOnlineRoomList(ctx context.Context, in *GetOnlineRoomListReq, opts ...grpc.CallOption) (*GetOnlineRoomListResp, error)
+	// ForbidRoom 封禁直播间
+	ForbidRoom(ctx context.Context, in *ForbidRoomReq, opts ...grpc.CallOption) (*ForbidRoomResp, error)
+	// ResumeRoom 解封直播间
+	ResumeRoom(ctx context.Context, in *ResumeRoomReq, opts ...grpc.CallOption) (*ResumeRoomResp, error)
 	// StartLive 开始直播
 	StartLive(ctx context.Context, in *StartLiveReq, opts ...grpc.CallOption) (*StartLiveResp, error)
 	// StopLive 关闭直播
@@ -138,6 +144,24 @@ func (c *roomClient) GetOnlineRoomList(ctx context.Context, in *GetOnlineRoomLis
 	return out, nil
 }
 
+func (c *roomClient) ForbidRoom(ctx context.Context, in *ForbidRoomReq, opts ...grpc.CallOption) (*ForbidRoomResp, error) {
+	out := new(ForbidRoomResp)
+	err := c.cc.Invoke(ctx, Room_ForbidRoom_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *roomClient) ResumeRoom(ctx context.Context, in *ResumeRoomReq, opts ...grpc.CallOption) (*ResumeRoomResp, error) {
+	out := new(ResumeRoomResp)
+	err := c.cc.Invoke(ctx, Room_ResumeRoom_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *roomClient) StartLive(ctx context.Context, in *StartLiveReq, opts ...grpc.CallOption) (*StartLiveResp, error) {
 	out := new(StartLiveResp)
 	err := c.cc.Invoke(ctx, Room_StartLive_FullMethodName, in, out, opts...)
@@ -176,6 +200,10 @@ type RoomServer interface {
 	GetRoomList(context.Context, *GetRoomListReq) (*GetRoomListResp, error)
 	// GetOnlineRoomList 查询在线房间列表（用户端列表使用此接口）
 	GetOnlineRoomList(context.Context, *GetOnlineRoomListReq) (*GetOnlineRoomListResp, error)
+	// ForbidRoom 封禁直播间
+	ForbidRoom(context.Context, *ForbidRoomReq) (*ForbidRoomResp, error)
+	// ResumeRoom 解封直播间
+	ResumeRoom(context.Context, *ResumeRoomReq) (*ResumeRoomResp, error)
 	// StartLive 开始直播
 	StartLive(context.Context, *StartLiveReq) (*StartLiveResp, error)
 	// StopLive 关闭直播
@@ -210,6 +238,12 @@ func (UnimplementedRoomServer) GetRoomList(context.Context, *GetRoomListReq) (*G
 }
 func (UnimplementedRoomServer) GetOnlineRoomList(context.Context, *GetOnlineRoomListReq) (*GetOnlineRoomListResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetOnlineRoomList not implemented")
+}
+func (UnimplementedRoomServer) ForbidRoom(context.Context, *ForbidRoomReq) (*ForbidRoomResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ForbidRoom not implemented")
+}
+func (UnimplementedRoomServer) ResumeRoom(context.Context, *ResumeRoomReq) (*ResumeRoomResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ResumeRoom not implemented")
 }
 func (UnimplementedRoomServer) StartLive(context.Context, *StartLiveReq) (*StartLiveResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method StartLive not implemented")
@@ -374,6 +408,42 @@ func _Room_GetOnlineRoomList_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Room_ForbidRoom_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ForbidRoomReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RoomServer).ForbidRoom(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Room_ForbidRoom_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RoomServer).ForbidRoom(ctx, req.(*ForbidRoomReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Room_ResumeRoom_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ResumeRoomReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RoomServer).ResumeRoom(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Room_ResumeRoom_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RoomServer).ResumeRoom(ctx, req.(*ResumeRoomReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Room_StartLive_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(StartLiveReq)
 	if err := dec(in); err != nil {
@@ -448,6 +518,14 @@ var Room_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetOnlineRoomList",
 			Handler:    _Room_GetOnlineRoomList_Handler,
+		},
+		{
+			MethodName: "ForbidRoom",
+			Handler:    _Room_ForbidRoom_Handler,
+		},
+		{
+			MethodName: "ResumeRoom",
+			Handler:    _Room_ResumeRoom_Handler,
 		},
 		{
 			MethodName: "StartLive",
