@@ -9,6 +9,7 @@ import (
 	svcBizAccount "github.com/zenkoo-live/svc.proto/svc.biz.account"
 	svcBizAsset "github.com/zenkoo-live/svc.proto/svc.biz.asset"
 	svcBizGift "github.com/zenkoo-live/svc.proto/svc.biz.gift"
+	svcBizLog "github.com/zenkoo-live/svc.proto/svc.biz.log"
 	svcBizOrg "github.com/zenkoo-live/svc.proto/svc.biz.org"
 	svcBizRoom "github.com/zenkoo-live/svc.proto/svc.biz.room"
 	svcBizTrade "github.com/zenkoo-live/svc.proto/svc.biz.trade"
@@ -27,6 +28,7 @@ const (
 	SvcBizAsset      = "svc.biz.asset"
 	SvcWebDashboard  = "svc.web.dashboard"
 	SvcBizGift       = "svc.biz.gift"
+	SvcBizLog        = "svc.biz.log"
 	SvcInfraNotifier = "svc.infra.notifier"
 	SvcBizOrg        = "svc.biz.org"
 	SvcBizRoom       = "svc.biz.room"
@@ -44,6 +46,7 @@ var (
 	SvcBizAssetAsset         = svcBizAsset.NewAssetService(AppName+"::"+SvcBizAsset, clt)
 	SvcWebDashboardDashboard = svcWebDashboard.NewDashboardService(AppName+"::"+SvcWebDashboard, clt)
 	SvcBizGiftGift           = svcBizGift.NewGiftService(AppName+"::"+SvcBizGift, clt)
+	SvcBizLogLog             = svcBizLog.NewLogService(AppName+"::"+SvcBizLog, clt)
 	SvcInfraNotifierNotifier = svcInfraNotifier.NewNotifierService(AppName+"::"+SvcInfraNotifier, clt)
 	SvcBizOrgOrg             = svcBizOrg.NewOrgService(AppName+"::"+SvcBizOrg, clt)
 	SvcBizRoomCategory       = svcBizRoom.NewCategoryService(AppName+"::"+SvcBizRoom, clt)

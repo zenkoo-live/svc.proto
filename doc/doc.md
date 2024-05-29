@@ -94,6 +94,16 @@
   
     - [Static](#svc-infra-static-Static)
   
+- [svc.biz.log/log.proto](#svc-biz-log_log-proto)
+    - [AddLogReq](#svc-biz-log-AddLogReq)
+    - [AddLogResp](#svc-biz-log-AddLogResp)
+    - [LogInfo](#svc-biz-log-LogInfo)
+    - [MGetLastLogReq](#svc-biz-log-MGetLastLogReq)
+    - [MGetLastLogResp](#svc-biz-log-MGetLastLogResp)
+    - [MGetLastLogResp.ItemsEntry](#svc-biz-log-MGetLastLogResp-ItemsEntry)
+  
+    - [Log](#svc-biz-log-Log)
+  
 - [svc.biz.room/category.proto](#svc-biz-room_category-proto)
     - [CategoryInfo](#svc-biz-room-CategoryInfo)
     - [CreateCategoryReq](#svc-biz-room-CreateCategoryReq)
@@ -1694,6 +1704,125 @@ Models
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
 | InitDB | [.google.protobuf.Empty](#google-protobuf-Empty) | [InitDBResp](#svc-infra-static-InitDBResp) | 初始化数据库 |
+
+ 
+
+
+
+<a name="svc-biz-log_log-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.biz.log/log.proto
+
+
+
+<a name="svc-biz-log-AddLogReq"></a>
+
+### AddLogReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| log_info | [LogInfo](#svc-biz-log-LogInfo) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-log-AddLogResp"></a>
+
+### AddLogResp
+
+
+
+
+
+
+
+<a name="svc-biz-log-LogInfo"></a>
+
+### LogInfo
+LogInfo 日志详情
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| object | [string](#string) |  | 操作对象 |
+| object_uuid | [string](#string) |  | 操作对象uuid |
+| action | [string](#string) |  | 操作行为 |
+| operator | [string](#string) |  | 操作人 |
+| operate_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 操作时间 |
+| extra | [string](#string) |  | 扩展信息,爱存啥存啥 |
+
+
+
+
+
+
+<a name="svc-biz-log-MGetLastLogReq"></a>
+
+### MGetLastLogReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| object | [string](#string) |  | 操作对象 |
+| object_uuids | [string](#string) | repeated | 操作对象uuid |
+
+
+
+
+
+
+<a name="svc-biz-log-MGetLastLogResp"></a>
+
+### MGetLastLogResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [MGetLastLogResp.ItemsEntry](#svc-biz-log-MGetLastLogResp-ItemsEntry) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-log-MGetLastLogResp-ItemsEntry"></a>
+
+### MGetLastLogResp.ItemsEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [LogInfo](#svc-biz-log-LogInfo) |  |  |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="svc-biz-log-Log"></a>
+
+### Log
+分类
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| AddLog | [AddLogReq](#svc-biz-log-AddLogReq) | [AddLogResp](#svc-biz-log-AddLogResp) | AddLog 记录日志 |
+| MGetLastLog | [MGetLastLogReq](#svc-biz-log-MGetLastLogReq) | [MGetLastLogResp](#svc-biz-log-MGetLastLogResp) | MGetLastLog 批量获取最近一次操作 |
 
  
 
