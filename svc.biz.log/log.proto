@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package svc.biz.log;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package="./svc.biz.log;log";
+
+// 分类
+service Log {
+  // AddLog 记录日志
+  rpc AddLog(AddLogReq) returns (AddLogResp) {}
+  // MGetLastLog 批量获取最近一次操作
+  rpc MGetLastLog(MGetLastLogReq) returns (MGetLastLogResp) {}
+}
+
+// LogInfo 日志详情
+message LogInfo {
+  string object = 1; // 操作对象
+  string object_uuid = 2; // 操作对象uuid
+  string action = 3; // 操作行为
+  string operator = 4; // 操作人
+  google.protobuf.Timestamp operate_time = 5; // 操作时间
+  string extra = 6; // 扩展信息,爱存啥存啥
+}
+message MGetLastLogResp {
+    map<string, LogInfo> items = 1;
+}
+
+message AddLogReq {
+    LogInfo log_info = 1;
+}
+message AddLogResp {
+
+}
+
+message MGetLastLogReq {
+  string object = 1; // 操作对象
+  repeated string object_uuids = 2; // 操作对象uuid
+}
