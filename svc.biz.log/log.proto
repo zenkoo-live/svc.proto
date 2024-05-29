@@ -16,12 +16,14 @@ service Log {
 
 // LogInfo 日志详情
 message LogInfo {
-  string object = 1; // 操作对象
-  string object_uuid = 2; // 操作对象uuid
-  string action = 3; // 操作行为
-  string operator = 4; // 操作人
-  google.protobuf.Timestamp operate_time = 5; // 操作时间
-  string extra = 6; // 扩展信息,爱存啥存啥
+  string log_id = 1;
+  string object = 2; // 操作对象
+  string object_uuid = 3; // 操作对象uuid
+  string action = 4; // 操作行为
+  string operator = 5; // 操作人
+  google.protobuf.Timestamp operate_time = 6; // 操作时间
+  string extra = 7; // 扩展信息,爱存啥存啥
+  google.protobuf.Timestamp created_at = 255;
 }
 message MGetLastLogResp {
     map<string, LogInfo> items = 1;

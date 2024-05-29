@@ -1749,12 +1749,14 @@ LogInfo 日志详情
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| log_id | [string](#string) |  |  |
 | object | [string](#string) |  | 操作对象 |
 | object_uuid | [string](#string) |  | 操作对象uuid |
 | action | [string](#string) |  | 操作行为 |
 | operator | [string](#string) |  | 操作人 |
 | operate_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 操作时间 |
 | extra | [string](#string) |  | 扩展信息,爱存啥存啥 |
+| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
 
 
 
