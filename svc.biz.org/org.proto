@@ -7,8 +7,83 @@ import "google/protobuf/empty.proto";
 
 service Org {
     rpc InitDB(google.protobuf.Empty) returns (InitDBResp); // 初始化数据库
+
+    rpc GetDepartment(GetDepartmentReq) returns (GetDepartmentResp); // 获取部门
+    rpc ListDepartments(ListDepartmentsReq) returns (ListDepartmentsResp); // 获取部门列表
+    rpc AddDepartment(AddDepartmentReq) returns (AddDepartmentResp); // 添加部门
+    rpc UpdateDepartment(UpdateDepartmentReq) returns (UpdateDepartmentResp); // 更新部门
+    rpc DeleteDepartment(DeleteDepartmentReq) returns (DeleteDepartmentResp); // 删除部门
+
+    rpc GetMerchant(GetMerchantReq) returns (GetMerchantResp); // 获取商户
+    rpc ListMerchants(ListMerchantsReq) returns (ListMerchantsResp); // 获取商户列表
+    rpc AddMerchant(AddMerchantReq) returns (AddMerchantResp); // 添加商户
+    rpc UpdateMerchant(UpdateMerchantReq) returns (UpdateMerchantResp); // 更新商户
+    rpc DeleteMerchant(DeleteMerchantReq) returns (DeleteMerchantResp); // 删除商户
+
+    rpc GetUnion(GetUnionReq) returns (GetUnionResp); // 获取工会
+    rpc ListUnions(ListUnionsReq) returns (ListUnionsResp); // 获取工会列表
+    rpc AddUnion(AddUnionReq) returns (AddUnionResp); // 添加工会
+    rpc UpdateUnion(UpdateUnionReq) returns (UpdateUnionResp); // 更新工会
+    rpc DeleteUnion(DeleteUnionReq) returns (DeleteUnionResp); // 删除工会
 }
 
 message InitDBResp {
     bool result = 1;
 }
+
+// Models
+message Department {};
+message Merchant {};
+message Union {};
+
+// Parameters
+/* {{{ [Department] */
+message GetDepartmentReq {};
+message GetDepartmentResp {};
+
+message ListDepartmentsReq {};
+message ListDepartmentsResp {};
+
+message AddDepartmentReq {};
+message AddDepartmentResp {};
+
+message UpdateDepartmentReq {};
+message UpdateDepartmentResp {};
+
+message DeleteDepartmentReq {};
+message DeleteDepartmentResp {};
+/* }}} */
+
+/* {{{ [Merchant] */
+message GetMerchantReq {};
+message GetMerchantResp {};
+
+message ListMerchantsReq {};
+message ListMerchantsResp {};
+
+message AddMerchantReq {};
+message AddMerchantResp {};
+
+message UpdateMerchantReq {};
+message UpdateMerchantResp {};
+
+message DeleteMerchantReq {};
+message DeleteMerchantResp {};
+/* }}} */
+
+/* {{{ [Union] */
+message GetUnionReq {};
+message GetUnionResp {};
+
+message ListUnionsReq {};
+message ListUnionsResp {};
+
+message AddUnionReq {};
+message AddUnionResp {};
+
+message UpdateUnionReq {};
+message UpdateUnionResp {};
+
+message DeleteUnionReq {};
+message DeleteUnionResp {};
+/* }}} */

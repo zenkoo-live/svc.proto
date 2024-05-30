@@ -38,6 +38,21 @@ func NewOrgEndpoints() []*api.Endpoint {
 
 type OrgService interface {
 	InitDB(ctx context.Context, in *emptypb.Empty, opts ...client.CallOption) (*InitDBResp, error)
+	GetDepartment(ctx context.Context, in *GetDepartmentReq, opts ...client.CallOption) (*GetDepartmentResp, error)
+	ListDepartments(ctx context.Context, in *ListDepartmentsReq, opts ...client.CallOption) (*ListDepartmentsResp, error)
+	AddDepartment(ctx context.Context, in *AddDepartmentReq, opts ...client.CallOption) (*AddDepartmentResp, error)
+	UpdateDepartment(ctx context.Context, in *UpdateDepartmentReq, opts ...client.CallOption) (*UpdateDepartmentResp, error)
+	DeleteDepartment(ctx context.Context, in *DeleteDepartmentReq, opts ...client.CallOption) (*DeleteDepartmentResp, error)
+	GetMerchant(ctx context.Context, in *GetMerchantReq, opts ...client.CallOption) (*GetMerchantResp, error)
+	ListMerchants(ctx context.Context, in *ListMerchantsReq, opts ...client.CallOption) (*ListMerchantsResp, error)
+	AddMerchant(ctx context.Context, in *AddMerchantReq, opts ...client.CallOption) (*AddMerchantResp, error)
+	UpdateMerchant(ctx context.Context, in *UpdateMerchantReq, opts ...client.CallOption) (*UpdateMerchantResp, error)
+	DeleteMerchant(ctx context.Context, in *DeleteMerchantReq, opts ...client.CallOption) (*DeleteMerchantResp, error)
+	GetUnion(ctx context.Context, in *GetUnionReq, opts ...client.CallOption) (*GetUnionResp, error)
+	ListUnions(ctx context.Context, in *ListUnionsReq, opts ...client.CallOption) (*ListUnionsResp, error)
+	AddUnion(ctx context.Context, in *AddUnionReq, opts ...client.CallOption) (*AddUnionResp, error)
+	UpdateUnion(ctx context.Context, in *UpdateUnionReq, opts ...client.CallOption) (*UpdateUnionResp, error)
+	DeleteUnion(ctx context.Context, in *DeleteUnionReq, opts ...client.CallOption) (*DeleteUnionResp, error)
 }
 
 type orgService struct {
@@ -62,15 +77,195 @@ func (c *orgService) InitDB(ctx context.Context, in *emptypb.Empty, opts ...clie
 	return out, nil
 }
 
+func (c *orgService) GetDepartment(ctx context.Context, in *GetDepartmentReq, opts ...client.CallOption) (*GetDepartmentResp, error) {
+	req := c.c.NewRequest(c.name, "Org.GetDepartment", in)
+	out := new(GetDepartmentResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *orgService) ListDepartments(ctx context.Context, in *ListDepartmentsReq, opts ...client.CallOption) (*ListDepartmentsResp, error) {
+	req := c.c.NewRequest(c.name, "Org.ListDepartments", in)
+	out := new(ListDepartmentsResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *orgService) AddDepartment(ctx context.Context, in *AddDepartmentReq, opts ...client.CallOption) (*AddDepartmentResp, error) {
+	req := c.c.NewRequest(c.name, "Org.AddDepartment", in)
+	out := new(AddDepartmentResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *orgService) UpdateDepartment(ctx context.Context, in *UpdateDepartmentReq, opts ...client.CallOption) (*UpdateDepartmentResp, error) {
+	req := c.c.NewRequest(c.name, "Org.UpdateDepartment", in)
+	out := new(UpdateDepartmentResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *orgService) DeleteDepartment(ctx context.Context, in *DeleteDepartmentReq, opts ...client.CallOption) (*DeleteDepartmentResp, error) {
+	req := c.c.NewRequest(c.name, "Org.DeleteDepartment", in)
+	out := new(DeleteDepartmentResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *orgService) GetMerchant(ctx context.Context, in *GetMerchantReq, opts ...client.CallOption) (*GetMerchantResp, error) {
+	req := c.c.NewRequest(c.name, "Org.GetMerchant", in)
+	out := new(GetMerchantResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *orgService) ListMerchants(ctx context.Context, in *ListMerchantsReq, opts ...client.CallOption) (*ListMerchantsResp, error) {
+	req := c.c.NewRequest(c.name, "Org.ListMerchants", in)
+	out := new(ListMerchantsResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *orgService) AddMerchant(ctx context.Context, in *AddMerchantReq, opts ...client.CallOption) (*AddMerchantResp, error) {
+	req := c.c.NewRequest(c.name, "Org.AddMerchant", in)
+	out := new(AddMerchantResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *orgService) UpdateMerchant(ctx context.Context, in *UpdateMerchantReq, opts ...client.CallOption) (*UpdateMerchantResp, error) {
+	req := c.c.NewRequest(c.name, "Org.UpdateMerchant", in)
+	out := new(UpdateMerchantResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *orgService) DeleteMerchant(ctx context.Context, in *DeleteMerchantReq, opts ...client.CallOption) (*DeleteMerchantResp, error) {
+	req := c.c.NewRequest(c.name, "Org.DeleteMerchant", in)
+	out := new(DeleteMerchantResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *orgService) GetUnion(ctx context.Context, in *GetUnionReq, opts ...client.CallOption) (*GetUnionResp, error) {
+	req := c.c.NewRequest(c.name, "Org.GetUnion", in)
+	out := new(GetUnionResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *orgService) ListUnions(ctx context.Context, in *ListUnionsReq, opts ...client.CallOption) (*ListUnionsResp, error) {
+	req := c.c.NewRequest(c.name, "Org.ListUnions", in)
+	out := new(ListUnionsResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *orgService) AddUnion(ctx context.Context, in *AddUnionReq, opts ...client.CallOption) (*AddUnionResp, error) {
+	req := c.c.NewRequest(c.name, "Org.AddUnion", in)
+	out := new(AddUnionResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *orgService) UpdateUnion(ctx context.Context, in *UpdateUnionReq, opts ...client.CallOption) (*UpdateUnionResp, error) {
+	req := c.c.NewRequest(c.name, "Org.UpdateUnion", in)
+	out := new(UpdateUnionResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *orgService) DeleteUnion(ctx context.Context, in *DeleteUnionReq, opts ...client.CallOption) (*DeleteUnionResp, error) {
+	req := c.c.NewRequest(c.name, "Org.DeleteUnion", in)
+	out := new(DeleteUnionResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for Org service
 
 type OrgHandler interface {
 	InitDB(context.Context, *emptypb.Empty, *InitDBResp) error
+	GetDepartment(context.Context, *GetDepartmentReq, *GetDepartmentResp) error
+	ListDepartments(context.Context, *ListDepartmentsReq, *ListDepartmentsResp) error
+	AddDepartment(context.Context, *AddDepartmentReq, *AddDepartmentResp) error
+	UpdateDepartment(context.Context, *UpdateDepartmentReq, *UpdateDepartmentResp) error
+	DeleteDepartment(context.Context, *DeleteDepartmentReq, *DeleteDepartmentResp) error
+	GetMerchant(context.Context, *GetMerchantReq, *GetMerchantResp) error
+	ListMerchants(context.Context, *ListMerchantsReq, *ListMerchantsResp) error
+	AddMerchant(context.Context, *AddMerchantReq, *AddMerchantResp) error
+	UpdateMerchant(context.Context, *UpdateMerchantReq, *UpdateMerchantResp) error
+	DeleteMerchant(context.Context, *DeleteMerchantReq, *DeleteMerchantResp) error
+	GetUnion(context.Context, *GetUnionReq, *GetUnionResp) error
+	ListUnions(context.Context, *ListUnionsReq, *ListUnionsResp) error
+	AddUnion(context.Context, *AddUnionReq, *AddUnionResp) error
+	UpdateUnion(context.Context, *UpdateUnionReq, *UpdateUnionResp) error
+	DeleteUnion(context.Context, *DeleteUnionReq, *DeleteUnionResp) error
 }
 
 func RegisterOrgHandler(s server.Server, hdlr OrgHandler, opts ...server.HandlerOption) error {
 	type org interface {
 		InitDB(ctx context.Context, in *emptypb.Empty, out *InitDBResp) error
+		GetDepartment(ctx context.Context, in *GetDepartmentReq, out *GetDepartmentResp) error
+		ListDepartments(ctx context.Context, in *ListDepartmentsReq, out *ListDepartmentsResp) error
+		AddDepartment(ctx context.Context, in *AddDepartmentReq, out *AddDepartmentResp) error
+		UpdateDepartment(ctx context.Context, in *UpdateDepartmentReq, out *UpdateDepartmentResp) error
+		DeleteDepartment(ctx context.Context, in *DeleteDepartmentReq, out *DeleteDepartmentResp) error
+		GetMerchant(ctx context.Context, in *GetMerchantReq, out *GetMerchantResp) error
+		ListMerchants(ctx context.Context, in *ListMerchantsReq, out *ListMerchantsResp) error
+		AddMerchant(ctx context.Context, in *AddMerchantReq, out *AddMerchantResp) error
+		UpdateMerchant(ctx context.Context, in *UpdateMerchantReq, out *UpdateMerchantResp) error
+		DeleteMerchant(ctx context.Context, in *DeleteMerchantReq, out *DeleteMerchantResp) error
+		GetUnion(ctx context.Context, in *GetUnionReq, out *GetUnionResp) error
+		ListUnions(ctx context.Context, in *ListUnionsReq, out *ListUnionsResp) error
+		AddUnion(ctx context.Context, in *AddUnionReq, out *AddUnionResp) error
+		UpdateUnion(ctx context.Context, in *UpdateUnionReq, out *UpdateUnionResp) error
+		DeleteUnion(ctx context.Context, in *DeleteUnionReq, out *DeleteUnionResp) error
 	}
 	type Org struct {
 		org
@@ -85,4 +280,64 @@ type orgHandler struct {
 
 func (h *orgHandler) InitDB(ctx context.Context, in *emptypb.Empty, out *InitDBResp) error {
 	return h.OrgHandler.InitDB(ctx, in, out)
+}
+
+func (h *orgHandler) GetDepartment(ctx context.Context, in *GetDepartmentReq, out *GetDepartmentResp) error {
+	return h.OrgHandler.GetDepartment(ctx, in, out)
+}
+
+func (h *orgHandler) ListDepartments(ctx context.Context, in *ListDepartmentsReq, out *ListDepartmentsResp) error {
+	return h.OrgHandler.ListDepartments(ctx, in, out)
+}
+
+func (h *orgHandler) AddDepartment(ctx context.Context, in *AddDepartmentReq, out *AddDepartmentResp) error {
+	return h.OrgHandler.AddDepartment(ctx, in, out)
+}
+
+func (h *orgHandler) UpdateDepartment(ctx context.Context, in *UpdateDepartmentReq, out *UpdateDepartmentResp) error {
+	return h.OrgHandler.UpdateDepartment(ctx, in, out)
+}
+
+func (h *orgHandler) DeleteDepartment(ctx context.Context, in *DeleteDepartmentReq, out *DeleteDepartmentResp) error {
+	return h.OrgHandler.DeleteDepartment(ctx, in, out)
+}
+
+func (h *orgHandler) GetMerchant(ctx context.Context, in *GetMerchantReq, out *GetMerchantResp) error {
+	return h.OrgHandler.GetMerchant(ctx, in, out)
+}
+
+func (h *orgHandler) ListMerchants(ctx context.Context, in *ListMerchantsReq, out *ListMerchantsResp) error {
+	return h.OrgHandler.ListMerchants(ctx, in, out)
+}
+
+func (h *orgHandler) AddMerchant(ctx context.Context, in *AddMerchantReq, out *AddMerchantResp) error {
+	return h.OrgHandler.AddMerchant(ctx, in, out)
+}
+
+func (h *orgHandler) UpdateMerchant(ctx context.Context, in *UpdateMerchantReq, out *UpdateMerchantResp) error {
+	return h.OrgHandler.UpdateMerchant(ctx, in, out)
+}
+
+func (h *orgHandler) DeleteMerchant(ctx context.Context, in *DeleteMerchantReq, out *DeleteMerchantResp) error {
+	return h.OrgHandler.DeleteMerchant(ctx, in, out)
+}
+
+func (h *orgHandler) GetUnion(ctx context.Context, in *GetUnionReq, out *GetUnionResp) error {
+	return h.OrgHandler.GetUnion(ctx, in, out)
+}
+
+func (h *orgHandler) ListUnions(ctx context.Context, in *ListUnionsReq, out *ListUnionsResp) error {
+	return h.OrgHandler.ListUnions(ctx, in, out)
+}
+
+func (h *orgHandler) AddUnion(ctx context.Context, in *AddUnionReq, out *AddUnionResp) error {
+	return h.OrgHandler.AddUnion(ctx, in, out)
+}
+
+func (h *orgHandler) UpdateUnion(ctx context.Context, in *UpdateUnionReq, out *UpdateUnionResp) error {
+	return h.OrgHandler.UpdateUnion(ctx, in, out)
+}
+
+func (h *orgHandler) DeleteUnion(ctx context.Context, in *DeleteUnionReq, out *DeleteUnionResp) error {
+	return h.OrgHandler.DeleteUnion(ctx, in, out)
 }
