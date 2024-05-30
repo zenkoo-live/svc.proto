@@ -5,6 +5,7 @@ package zenkoo
 
 import (
 	cltGrpc "github.com/go-micro/plugins/v4/client/grpc"
+	"github.com/zenkoo-live/svc.base/runtime"
 
 	svcBizAccount "github.com/zenkoo-live/svc.proto/svc.biz.account"
 	svcBizAsset "github.com/zenkoo-live/svc.proto/svc.biz.asset"
@@ -42,19 +43,19 @@ const (
 var (
 	clt = cltGrpc.NewClient()
 
-	SvcBizAccountAccount     = svcBizAccount.NewAccountService(AppName+"::"+SvcBizAccount, clt)
-	SvcBizAssetAsset         = svcBizAsset.NewAssetService(AppName+"::"+SvcBizAsset, clt)
-	SvcWebDashboardDashboard = svcWebDashboard.NewDashboardService(AppName+"::"+SvcWebDashboard, clt)
-	SvcBizGiftGift           = svcBizGift.NewGiftService(AppName+"::"+SvcBizGift, clt)
-	SvcBizLogLog             = svcBizLog.NewLogService(AppName+"::"+SvcBizLog, clt)
-	SvcInfraNotifierNotifier = svcInfraNotifier.NewNotifierService(AppName+"::"+SvcInfraNotifier, clt)
-	SvcBizOrgOrg             = svcBizOrg.NewOrgService(AppName+"::"+SvcBizOrg, clt)
-	SvcBizRoomCategory       = svcBizRoom.NewCategoryService(AppName+"::"+SvcBizRoom, clt)
-	SvcBizRoomLive           = svcBizRoom.NewLiveService(AppName+"::"+SvcBizRoom, clt)
-	SvcBizRoomRoom           = svcBizRoom.NewRoomService(AppName+"::"+SvcBizRoom, clt)
-	SvcInfraSettingSetting   = svcInfraSetting.NewSettingService(AppName+"::"+SvcInfraSetting, clt)
-	SvcInfraStaticStatic     = svcInfraStatic.NewStaticService(AppName+"::"+SvcInfraStatic, clt)
-	SvcWebStreamerStreamer   = svcWebStreamer.NewStreamerService(AppName+"::"+SvcWebStreamer, clt)
-	SvcBizTradeTrade         = svcBizTrade.NewTradeService(AppName+"::"+SvcBizTrade, clt)
-	SvcWebViewerViewer       = svcWebViewer.NewViewerService(AppName+"::"+SvcWebViewer, clt)
+	SvcBizAccountAccount     = svcBizAccount.NewAccountService(AppName+"::"+SvcBizAccount+runtime.AppendEnv(), clt)
+	SvcBizAssetAsset         = svcBizAsset.NewAssetService(AppName+"::"+SvcBizAsset+runtime.AppendEnv(), clt)
+	SvcWebDashboardDashboard = svcWebDashboard.NewDashboardService(AppName+"::"+SvcWebDashboard+runtime.AppendEnv(), clt)
+	SvcBizGiftGift           = svcBizGift.NewGiftService(AppName+"::"+SvcBizGift+runtime.AppendEnv(), clt)
+	SvcBizLogLog             = svcBizLog.NewLogService(AppName+"::"+SvcBizLog+runtime.AppendEnv(), clt)
+	SvcInfraNotifierNotifier = svcInfraNotifier.NewNotifierService(AppName+"::"+SvcInfraNotifier+runtime.AppendEnv(), clt)
+	SvcBizOrgOrg             = svcBizOrg.NewOrgService(AppName+"::"+SvcBizOrg+runtime.AppendEnv(), clt)
+	SvcBizRoomCategory       = svcBizRoom.NewCategoryService(AppName+"::"+SvcBizRoom+runtime.AppendEnv(), clt)
+	SvcBizRoomLive           = svcBizRoom.NewLiveService(AppName+"::"+SvcBizRoom+runtime.AppendEnv(), clt)
+	SvcBizRoomRoom           = svcBizRoom.NewRoomService(AppName+"::"+SvcBizRoom+runtime.AppendEnv(), clt)
+	SvcInfraSettingSetting   = svcInfraSetting.NewSettingService(AppName+"::"+SvcInfraSetting+runtime.AppendEnv(), clt)
+	SvcInfraStaticStatic     = svcInfraStatic.NewStaticService(AppName+"::"+SvcInfraStatic+runtime.AppendEnv(), clt)
+	SvcWebStreamerStreamer   = svcWebStreamer.NewStreamerService(AppName+"::"+SvcWebStreamer+runtime.AppendEnv(), clt)
+	SvcBizTradeTrade         = svcBizTrade.NewTradeService(AppName+"::"+SvcBizTrade+runtime.AppendEnv(), clt)
+	SvcWebViewerViewer       = svcWebViewer.NewViewerService(AppName+"::"+SvcWebViewer+runtime.AppendEnv(), clt)
 )

@@ -3382,6 +3382,7 @@ LogInfo 日志详情
 | salt | [string](#string) | optional | 加密混淆 |
 | merchant_id | [string](#string) |  | 商户ID |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+| additions | [string](#string) |  | 扩展属性 |
 
 
 
@@ -3400,12 +3401,14 @@ LogInfo 日志详情
 | display_id | [string](#string) |  | 用于显示和索引的数字ID |
 | name | [string](#string) |  | 用户名 |
 | nickname | [string](#string) |  | 昵称 |
+| avatar | [string](#string) |  | 头像 |
 | mobile | [string](#string) |  | 手机 |
 | email | [string](#string) |  | 邮箱 |
 | password | [string](#string) | optional | 密码 |
 | salt | [string](#string) | optional | 加密混淆 |
 | merchant_id | [string](#string) |  | 商户ID |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+| additions | [string](#string) |  | 扩展属性 |
 
 
 
@@ -3428,6 +3431,7 @@ LogInfo 日志详情
 | salt | [string](#string) | optional | 加密混淆 |
 | merchant_id | [string](#string) |  | 商户ID |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+| additions | [string](#string) |  | 扩展属性 |
 
 
 
@@ -3566,6 +3570,7 @@ Models
 | display_id | [string](#string) |  | 用于显示和索引的数字ID |
 | name | [string](#string) |  | 用户名 |
 | nickname | [string](#string) |  | 昵称 |
+| avatar | [string](#string) |  | 头像 |
 | mobile | [string](#string) |  | 手机 |
 | email | [string](#string) |  | 邮箱 |
 | device_ident | [string](#string) |  | 设备号 / 指纹 |
@@ -3573,6 +3578,7 @@ Models
 | salt | [string](#string) | optional | 加密混淆 |
 | merchant_id | [string](#string) |  | 商户ID |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+| additions | [string](#string) |  | 扩展属性 |
 
 
 

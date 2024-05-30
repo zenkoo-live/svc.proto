@@ -63,6 +63,7 @@ func genString(data map[string]*svcSpec) []byte {
 package zenkoo
 
 import (
+	"github.com/zenkoo-live/svc.base/runtime"
 	cltGrpc "github.com/go-micro/plugins/v4/client/grpc"
 	{{range $item  :=  .}}
 	{{.PkgAlias}} "{{.PkgPath}}"{{end}}
@@ -77,7 +78,7 @@ const (
 var (
 	clt = cltGrpc.NewClient()
 	{{range $item := .}}{{range $k, $v := .Services}}
-	{{$k}} = {{$item.PkgAlias}}.{{$v}}(AppName+"::"+{{$item.ConstName}}, clt){{end}}{{end}}
+	{{$k}} = {{$item.PkgAlias}}.{{$v}}(AppName+"::"+{{$item.ConstName}}+runtime.AppendEnv(), clt){{end}}{{end}}
 )
 	`
 
@@ -167,6 +168,7 @@ func getServices() map[string]*svcSpec {
 					})
 				}
 			}
+
 			if svcName != "" {
 				if _, ok := svcs[svcName]; !ok {
 					svcs[svcName] = currSpec
