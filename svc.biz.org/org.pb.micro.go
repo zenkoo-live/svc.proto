@@ -7,6 +7,7 @@ import (
 	fmt "fmt"
 	proto "google.golang.org/protobuf/proto"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
+	_ "google.golang.org/protobuf/types/known/timestamppb"
 	math "math"
 )
 
