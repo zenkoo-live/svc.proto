@@ -282,9 +282,9 @@
     - [GetRelationListReq](#svc-biz-relation-GetRelationListReq)
     - [GetRelationListResp](#svc-biz-relation-GetRelationListResp)
     - [RelationAddReq](#svc-biz-relation-RelationAddReq)
+    - [RelationCheckReq](#svc-biz-relation-RelationCheckReq)
+    - [RelationCheckResp](#svc-biz-relation-RelationCheckResp)
     - [RelationDelReq](#svc-biz-relation-RelationDelReq)
-    - [RelationHasReq](#svc-biz-relation-RelationHasReq)
-    - [RelationHasResp](#svc-biz-relation-RelationHasResp)
     - [RelationInfo](#svc-biz-relation-RelationInfo)
   
     - [RelationType](#svc-biz-relation-RelationType)
@@ -4717,6 +4717,38 @@ Room 房间
 
 
 
+<a name="svc-biz-relation-RelationCheckReq"></a>
+
+### RelationCheckReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| relation_type | [RelationType](#svc-biz-relation-RelationType) |  |  |
+| member | [string](#string) |  | 成员 |
+| relation_member | [string](#string) |  | 产生关系的成员 |
+
+
+
+
+
+
+<a name="svc-biz-relation-RelationCheckResp"></a>
+
+### RelationCheckResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| result | [bool](#bool) |  |  |
+
+
+
+
+
+
 <a name="svc-biz-relation-RelationDelReq"></a>
 
 ### RelationDelReq
@@ -4728,38 +4760,6 @@ Room 房间
 | relation_type | [RelationType](#svc-biz-relation-RelationType) |  |  |
 | member | [string](#string) |  | 成员 |
 | relation_member | [string](#string) |  | 产生关系的成员 |
-
-
-
-
-
-
-<a name="svc-biz-relation-RelationHasReq"></a>
-
-### RelationHasReq
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| relation_type | [RelationType](#svc-biz-relation-RelationType) |  |  |
-| member | [string](#string) |  | 成员 |
-| relation_member | [string](#string) |  | 产生关系的成员 |
-
-
-
-
-
-
-<a name="svc-biz-relation-RelationHasResp"></a>
-
-### RelationHasResp
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| result | [bool](#bool) |  |  |
 
 
 
@@ -4817,7 +4817,7 @@ Room 房间
 | ----------- | ------------ | ------------- | ------------|
 | RelationAdd | [RelationAddReq](#svc-biz-relation-RelationAddReq) | [.google.protobuf.Empty](#google-protobuf-Empty) |  |
 | RelationDel | [RelationDelReq](#svc-biz-relation-RelationDelReq) | [.google.protobuf.Empty](#google-protobuf-Empty) |  |
-| RelationHas | [RelationHasReq](#svc-biz-relation-RelationHasReq) | [RelationHasResp](#svc-biz-relation-RelationHasResp) |  |
+| RelationCheck | [RelationCheckReq](#svc-biz-relation-RelationCheckReq) | [RelationCheckResp](#svc-biz-relation-RelationCheckResp) |  |
 | GetRelationList | [GetRelationListReq](#svc-biz-relation-GetRelationListReq) | [GetRelationListResp](#svc-biz-relation-GetRelationListResp) |  |
 
  

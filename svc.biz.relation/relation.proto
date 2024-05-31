@@ -10,7 +10,7 @@ option go_package="./svc.biz.relation;relation";
 service Relation {
     rpc RelationAdd (RelationAddReq) returns (google.protobuf.Empty);
     rpc RelationDel (RelationDelReq) returns (google.protobuf.Empty);
-    rpc RelationHas (RelationHasReq) returns (RelationHasResp);
+    rpc RelationCheck (RelationCheckReq) returns (RelationCheckResp);
     rpc GetRelationList (GetRelationListReq) returns (GetRelationListResp);
 }
 
@@ -43,12 +43,12 @@ message RelationDelReq {
 }
 
 
-message RelationHasReq {
+message RelationCheckReq {
     RelationType relation_type = 1;
     string member = 2; // 成员
     string relation_member = 3; // 产生关系的成员
 }
-message RelationHasResp {
+message RelationCheckResp {
     bool result = 1;
 }
 
