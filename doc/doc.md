@@ -4218,6 +4218,11 @@ Models
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| department | [Department](#svc-biz-org-Department) |  |  |
+
+
 
 
 
@@ -4226,6 +4231,12 @@ Models
 
 ### AddDepartmentResp
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| department | [Department](#svc-biz-org-Department) |  |  |
+| result | [bool](#bool) |  |  |
 
 
 
@@ -4238,6 +4249,11 @@ Models
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| merchant | [Merchant](#svc-biz-org-Merchant) |  |  |
+
+
 
 
 
@@ -4246,6 +4262,12 @@ Models
 
 ### AddMerchantResp
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| merchant | [Merchant](#svc-biz-org-Merchant) |  |  |
+| result | [bool](#bool) |  |  |
 
 
 
@@ -4258,6 +4280,11 @@ Models
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| union | [Union](#svc-biz-org-Union) |  |  |
+
+
 
 
 
@@ -4266,6 +4293,12 @@ Models
 
 ### AddUnionResp
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| union | [Union](#svc-biz-org-Union) |  |  |
+| result | [bool](#bool) |  |  |
 
 
 
@@ -4278,6 +4311,11 @@ Models
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Department](#svc-biz-org-Department) |  |  |
+
+
 
 
 
@@ -4286,6 +4324,11 @@ Models
 
 ### DeleteDepartmentResp
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| deleted | [int64](#int64) |  |  |
 
 
 
@@ -4298,6 +4341,11 @@ Models
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Merchant](#svc-biz-org-Merchant) |  |  |
+
+
 
 
 
@@ -4306,6 +4354,11 @@ Models
 
 ### DeleteMerchantResp
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| deleted | [int64](#int64) |  |  |
 
 
 
@@ -4318,6 +4371,11 @@ Models
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Union](#svc-biz-org-Union) |  |  |
+
+
 
 
 
@@ -4326,6 +4384,11 @@ Models
 
 ### DeleteUnionResp
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| deleted | [int64](#int64) |  |  |
 
 
 
@@ -4338,6 +4401,15 @@ Models
 Models
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  | 内部ID |
+| name | [string](#string) |  | 名字 |
+| merchant_id | [string](#string) |  | 商户ID |
+| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+| additions | [string](#string) |  | 扩展属性 |
+
+
 
 
 
@@ -4346,6 +4418,11 @@ Models
 
 ### GetDepartmentReq
 {{{ [Department]
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Department](#svc-biz-org-Department) |  |  |
 
 
 
@@ -4358,6 +4435,11 @@ Models
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| department | [Department](#svc-biz-org-Department) |  |  |
+
+
 
 
 
@@ -4366,6 +4448,11 @@ Models
 
 ### GetMerchantReq
 {{{ [Merchant]
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Merchant](#svc-biz-org-Merchant) |  |  |
 
 
 
@@ -4378,6 +4465,11 @@ Models
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| merchant | [Merchant](#svc-biz-org-Merchant) |  |  |
+
+
 
 
 
@@ -4388,6 +4480,11 @@ Models
 {{{ [Union]
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Union](#svc-biz-org-Union) |  |  |
+
+
 
 
 
@@ -4396,6 +4493,11 @@ Models
 
 ### GetUnionResp
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| union | [Union](#svc-biz-org-Union) |  |  |
 
 
 
@@ -4423,6 +4525,13 @@ Models
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Department](#svc-biz-org-Department) |  |  |
+| limit | [int32](#int32) |  |  |
+| offset | [int32](#int32) |  |  |
+
+
 
 
 
@@ -4431,6 +4540,11 @@ Models
 
 ### ListDepartmentsResp
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| departments | [Department](#svc-biz-org-Department) | repeated |  |
 
 
 
@@ -4443,6 +4557,13 @@ Models
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Merchant](#svc-biz-org-Merchant) |  |  |
+| limit | [int32](#int32) |  |  |
+| offset | [int32](#int32) |  |  |
+
+
 
 
 
@@ -4451,6 +4572,11 @@ Models
 
 ### ListMerchantsResp
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| merchants | [Merchant](#svc-biz-org-Merchant) | repeated |  |
 
 
 
@@ -4463,6 +4589,13 @@ Models
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Union](#svc-biz-org-Union) |  |  |
+| limit | [int32](#int32) |  |  |
+| offset | [int32](#int32) |  |  |
+
+
 
 
 
@@ -4471,6 +4604,11 @@ Models
 
 ### ListUnionsResp
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| unions | [Union](#svc-biz-org-Union) | repeated |  |
 
 
 
@@ -4483,6 +4621,14 @@ Models
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  | 内部ID |
+| name | [string](#string) |  | 名字 |
+| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+| additions | [string](#string) |  | 扩展属性 |
+
+
 
 
 
@@ -4491,6 +4637,15 @@ Models
 
 ### Union
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  | 内部ID |
+| name | [string](#string) |  | 名字 |
+| merchant_id | [string](#string) |  | 商户ID |
+| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+| additions | [string](#string) |  | 扩展属性 |
 
 
 
@@ -4503,6 +4658,11 @@ Models
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Department](#svc-biz-org-Department) |  |  |
+
+
 
 
 
@@ -4511,6 +4671,11 @@ Models
 
 ### UpdateDepartmentResp
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| updated | [int64](#int64) |  |  |
 
 
 
@@ -4523,6 +4688,11 @@ Models
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Merchant](#svc-biz-org-Merchant) |  |  |
+
+
 
 
 
@@ -4531,6 +4701,11 @@ Models
 
 ### UpdateMerchantResp
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| updated | [int64](#int64) |  |  |
 
 
 
@@ -4543,6 +4718,11 @@ Models
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Union](#svc-biz-org-Union) |  |  |
+
+
 
 
 
@@ -4551,6 +4731,11 @@ Models
 
 ### UpdateUnionResp
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| updated | [int64](#int64) |  |  |
 
 
 
