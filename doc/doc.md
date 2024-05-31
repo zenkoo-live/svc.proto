@@ -3253,6 +3253,8 @@ LogInfo 日志详情
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | condition | [Manager](#svc-biz-account-Manager) |  |  |
+| limit | [int32](#int32) |  |  |
+| offset | [int32](#int32) |  |  |
 
 
 
@@ -3283,6 +3285,8 @@ LogInfo 日志详情
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | condition | [Streamer](#svc-biz-account-Streamer) |  |  |
+| limit | [int32](#int32) |  |  |
+| offset | [int32](#int32) |  |  |
 
 
 
@@ -3313,6 +3317,8 @@ LogInfo 日志详情
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | condition | [Union](#svc-biz-account-Union) |  |  |
+| limit | [int32](#int32) |  |  |
+| offset | [int32](#int32) |  |  |
 
 
 
