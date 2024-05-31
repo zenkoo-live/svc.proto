@@ -39,6 +39,7 @@ func NewRelationEndpoints() []*api.Endpoint {
 
 type RelationService interface {
 	RelationAdd(ctx context.Context, in *RelationAddReq, opts ...client.CallOption) (*emptypb.Empty, error)
+	RelationGet(ctx context.Context, in *RelationGetReq, opts ...client.CallOption) (*RelationGetResp, error)
 	RelationDel(ctx context.Context, in *RelationDelReq, opts ...client.CallOption) (*emptypb.Empty, error)
 	RelationCheck(ctx context.Context, in *RelationCheckReq, opts ...client.CallOption) (*RelationCheckResp, error)
 	GetRelationList(ctx context.Context, in *GetRelationListReq, opts ...client.CallOption) (*GetRelationListResp, error)
@@ -59,6 +60,16 @@ func NewRelationService(name string, c client.Client) RelationService {
 func (c *relationService) RelationAdd(ctx context.Context, in *RelationAddReq, opts ...client.CallOption) (*emptypb.Empty, error) {
 	req := c.c.NewRequest(c.name, "Relation.RelationAdd", in)
 	out := new(emptypb.Empty)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *relationService) RelationGet(ctx context.Context, in *RelationGetReq, opts ...client.CallOption) (*RelationGetResp, error) {
+	req := c.c.NewRequest(c.name, "Relation.RelationGet", in)
+	out := new(RelationGetResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -100,6 +111,7 @@ func (c *relationService) GetRelationList(ctx context.Context, in *GetRelationLi
 
 type RelationHandler interface {
 	RelationAdd(context.Context, *RelationAddReq, *emptypb.Empty) error
+	RelationGet(context.Context, *RelationGetReq, *RelationGetResp) error
 	RelationDel(context.Context, *RelationDelReq, *emptypb.Empty) error
 	RelationCheck(context.Context, *RelationCheckReq, *RelationCheckResp) error
 	GetRelationList(context.Context, *GetRelationListReq, *GetRelationListResp) error
@@ -108,6 +120,7 @@ type RelationHandler interface {
 func RegisterRelationHandler(s server.Server, hdlr RelationHandler, opts ...server.HandlerOption) error {
 	type relation interface {
 		RelationAdd(ctx context.Context, in *RelationAddReq, out *emptypb.Empty) error
+		RelationGet(ctx context.Context, in *RelationGetReq, out *RelationGetResp) error
 		RelationDel(ctx context.Context, in *RelationDelReq, out *emptypb.Empty) error
 		RelationCheck(ctx context.Context, in *RelationCheckReq, out *RelationCheckResp) error
 		GetRelationList(ctx context.Context, in *GetRelationListReq, out *GetRelationListResp) error
@@ -125,6 +138,10 @@ type relationHandler struct {
 
 func (h *relationHandler) RelationAdd(ctx context.Context, in *RelationAddReq, out *emptypb.Empty) error {
 	return h.RelationHandler.RelationAdd(ctx, in, out)
+}
+
+func (h *relationHandler) RelationGet(ctx context.Context, in *RelationGetReq, out *RelationGetResp) error {
+	return h.RelationHandler.RelationGet(ctx, in, out)
 }
 
 func (h *relationHandler) RelationDel(ctx context.Context, in *RelationDelReq, out *emptypb.Empty) error {
