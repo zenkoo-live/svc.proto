@@ -25,8 +25,8 @@ enum RelationType {
 
 message RelationInfo {
     RelationType relation_type = 1; // 关系类型
-    string member = 2; // 成员（名单属于谁）
-    string r_member = 3; // 产生关系的成员（名单内有谁）
+    string member_id = 2; // 成员（名单属于谁）
+    string r_member_id = 3; // 产生关系的成员（名单内有谁）
     google.protobuf.Timestamp expire_time = 4; // 过期时间（可无，为空则永久有效）
     string operator = 5; // 操作人
     string remark = 6; // 备注
@@ -39,15 +39,15 @@ message RelationAddReq {
 
 message RelationDelReq {
     RelationType relation_type = 1;
-    string member = 2; // 成员
-    string r_member = 3; // 产生关系的成员
+    string member_id = 2; // 成员
+    string r_member_id = 3; // 产生关系的成员
 }
 
 
 message RelationCheckReq {
     RelationType relation_type = 1;
-    string member = 2; // 成员
-    string r_member = 3; // 产生关系的成员
+    string member_id = 2; // 成员
+    string r_member_id = 3; // 产生关系的成员
 }
 message RelationCheckResp {
     bool result = 1;
@@ -55,7 +55,7 @@ message RelationCheckResp {
 
 message GetRelationListReq {
     RelationType relation_type = 1;
-    string member = 2; 
+    string member_id = 2; 
     int64 page = 3;
     int64 limit = 4;
 }

@@ -4725,7 +4725,7 @@ Room 房间
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | relation_type | [RelationType](#svc-biz-relation-RelationType) |  |  |
-| member | [string](#string) |  |  |
+| member_id | [string](#string) |  |  |
 | page | [int64](#int64) |  |  |
 | limit | [int64](#int64) |  |  |
 
@@ -4773,8 +4773,8 @@ Room 房间
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | relation_type | [RelationType](#svc-biz-relation-RelationType) |  |  |
-| member | [string](#string) |  | 成员 |
-| r_member | [string](#string) |  | 产生关系的成员 |
+| member_id | [string](#string) |  | 成员 |
+| r_member_id | [string](#string) |  | 产生关系的成员 |
 
 
 
@@ -4805,8 +4805,8 @@ Room 房间
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | relation_type | [RelationType](#svc-biz-relation-RelationType) |  |  |
-| member | [string](#string) |  | 成员 |
-| r_member | [string](#string) |  | 产生关系的成员 |
+| member_id | [string](#string) |  | 成员 |
+| r_member_id | [string](#string) |  | 产生关系的成员 |
 
 
 
@@ -4822,8 +4822,8 @@ Room 房间
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | relation_type | [RelationType](#svc-biz-relation-RelationType) |  | 关系类型 |
-| member | [string](#string) |  | 成员（名单属于谁） |
-| r_member | [string](#string) |  | 产生关系的成员（名单内有谁） |
+| member_id | [string](#string) |  | 成员（名单属于谁） |
+| r_member_id | [string](#string) |  | 产生关系的成员（名单内有谁） |
 | expire_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 过期时间（可无，为空则永久有效） |
 | operator | [string](#string) |  | 操作人 |
 | remark | [string](#string) |  | 备注 |
