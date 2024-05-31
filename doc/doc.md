@@ -4777,7 +4777,8 @@ Room 房间
 | relation_type | [RelationType](#svc-biz-relation-RelationType) |  | 关系类型 |
 | member | [string](#string) |  | 成员（名单属于谁） |
 | r_member | [string](#string) |  | 产生关系的成员（名单内有谁） |
-| expire_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 过期时间（可无，为空则永久有效） |
+| expire_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 过期时间（可无，为空则永久有效） |
+| operator | [string](#string) |  | 操作人 |
 | remark | [string](#string) |  | 备注 |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
 
