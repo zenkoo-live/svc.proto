@@ -21,6 +21,7 @@ const _ = grpc.SupportPackageIsVersion7
 
 const (
 	Relation_RelationAdd_FullMethodName     = "/svc.biz.relation.Relation/RelationAdd"
+	Relation_RelationGet_FullMethodName     = "/svc.biz.relation.Relation/RelationGet"
 	Relation_RelationDel_FullMethodName     = "/svc.biz.relation.Relation/RelationDel"
 	Relation_RelationCheck_FullMethodName   = "/svc.biz.relation.Relation/RelationCheck"
 	Relation_GetRelationList_FullMethodName = "/svc.biz.relation.Relation/GetRelationList"
@@ -31,6 +32,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type RelationClient interface {
 	RelationAdd(ctx context.Context, in *RelationAddReq, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	RelationGet(ctx context.Context, in *RelationGetReq, opts ...grpc.CallOption) (*RelationGetResp, error)
 	RelationDel(ctx context.Context, in *RelationDelReq, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	RelationCheck(ctx context.Context, in *RelationCheckReq, opts ...grpc.CallOption) (*RelationCheckResp, error)
 	GetRelationList(ctx context.Context, in *GetRelationListReq, opts ...grpc.CallOption) (*GetRelationListResp, error)
@@ -47,6 +49,15 @@ func NewRelationClient(cc grpc.ClientConnInterface) RelationClient {
 func (c *relationClient) RelationAdd(ctx context.Context, in *RelationAddReq, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, Relation_RelationAdd_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *relationClient) RelationGet(ctx context.Context, in *RelationGetReq, opts ...grpc.CallOption) (*RelationGetResp, error) {
+	out := new(RelationGetResp)
+	err := c.cc.Invoke(ctx, Relation_RelationGet_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -85,6 +96,7 @@ func (c *relationClient) GetRelationList(ctx context.Context, in *GetRelationLis
 // for forward compatibility
 type RelationServer interface {
 	RelationAdd(context.Context, *RelationAddReq) (*emptypb.Empty, error)
+	RelationGet(context.Context, *RelationGetReq) (*RelationGetResp, error)
 	RelationDel(context.Context, *RelationDelReq) (*emptypb.Empty, error)
 	RelationCheck(context.Context, *RelationCheckReq) (*RelationCheckResp, error)
 	GetRelationList(context.Context, *GetRelationListReq) (*GetRelationListResp, error)
@@ -97,6 +109,9 @@ type UnimplementedRelationServer struct {
 
 func (UnimplementedRelationServer) RelationAdd(context.Context, *RelationAddReq) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RelationAdd not implemented")
+}
+func (UnimplementedRelationServer) RelationGet(context.Context, *RelationGetReq) (*RelationGetResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RelationGet not implemented")
 }
 func (UnimplementedRelationServer) RelationDel(context.Context, *RelationDelReq) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RelationDel not implemented")
@@ -134,6 +149,24 @@ func _Relation_RelationAdd_Handler(srv interface{}, ctx context.Context, dec fun
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(RelationServer).RelationAdd(ctx, req.(*RelationAddReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Relation_RelationGet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RelationGetReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RelationServer).RelationGet(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Relation_RelationGet_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RelationServer).RelationGet(ctx, req.(*RelationGetReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -202,6 +235,10 @@ var Relation_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RelationAdd",
 			Handler:    _Relation_RelationAdd_Handler,
+		},
+		{
+			MethodName: "RelationGet",
+			Handler:    _Relation_RelationGet_Handler,
 		},
 		{
 			MethodName: "RelationDel",
