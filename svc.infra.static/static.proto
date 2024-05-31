@@ -7,8 +7,26 @@ import "google/protobuf/empty.proto";
 
 service Static {
     rpc InitDB(google.protobuf.Empty) returns (InitDBResp); // 初始化数据库
+
+    rpc UploadAvatar(UploadRequestMessage) returns (UploadResponseMessage); // 上传头像
+    rpc UploadCover(UploadRequestMessage) returns (UploadResponseMessage); // 上传封面
+    rpc UploadVideo(UploadRequestMessage) returns (UploadResponseMessage); // 上传视频
+    rpc UploadImage(UploadRequestMessage) returns (UploadResponseMessage); // 上传图片
 }
 
 message InitDBResp {
     bool result = 1;
+}
+
+message UploadRequestMessage {
+    string name = 1;
+    bytes binary = 2;
+    bool   pre_token = 3;
+    string bucket = 4;
+    string user_id = 5;
+}
+
+message UploadResponseMessage {
+    string path = 1;
+    string domain = 2;
 }
