@@ -4726,8 +4726,8 @@ Room 房间
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | relation_type | [RelationType](#svc-biz-relation-RelationType) |  |  |
-| member | [string](#string) |  | 成员uuid |
-| relation_member | [string](#string) |  | 产生关系的成员uuid |
+| member | [string](#string) |  | 成员 |
+| relation_member | [string](#string) |  | 产生关系的成员 |
 
 
 
@@ -4743,8 +4743,8 @@ Room 房间
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | relation_type | [RelationType](#svc-biz-relation-RelationType) |  |  |
-| member | [string](#string) |  | 成员uuid |
-| relation_member | [string](#string) |  | 产生关系的成员uuid |
+| member | [string](#string) |  | 成员 |
+| relation_member | [string](#string) |  | 产生关系的成员 |
 
 
 
@@ -4775,11 +4775,11 @@ Room 房间
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | relation_type | [RelationType](#svc-biz-relation-RelationType) |  | 关系类型 |
-| member | [string](#string) |  | 成员uuid |
-| relation_member | [string](#string) |  | 产生关系的成员uuid |
-| expire_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 过期时间 |
+| member | [string](#string) |  | 成员（名单属于谁） |
+| relation_member | [string](#string) |  | 产生关系的成员（名单内有谁） |
+| expire_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 过期时间（可无，为空则永久有效） |
 | remark | [string](#string) |  | 备注 |
-| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
 
 
 
@@ -4798,7 +4798,9 @@ Room 房间
 | RelationTypeUnknown | 0 | 未知 |
 | RelationTypeFollow | 1 | 关注主播 |
 | RelationTypeHistory | 2 | 观看历史 |
-| RelationMuzzle | 3 | 禁言（当禁言为全平台禁言时，member传uuid.Nil.String()） |
+| RelationTypeMuzzle | 3 | 禁言 |
+| RelationTypeBlacklistIP | 4 | ip黑名单 |
+| RelationTypeBlacklistDevice | 5 | 设备黑名单 |
 
 
  

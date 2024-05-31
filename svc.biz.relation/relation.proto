@@ -18,16 +18,18 @@ enum RelationType {
     RelationTypeUnknown = 0; // 未知
     RelationTypeFollow = 1; // 关注主播
     RelationTypeHistory = 2; // 观看历史
-    RelationMuzzle = 3; // 禁言（当禁言为全平台禁言时，member传uuid.Nil.String()）
+    RelationTypeMuzzle = 3; // 禁言
+    RelationTypeBlacklistIP = 4; // ip黑名单
+    RelationTypeBlacklistDevice = 5; // 设备黑名单
 }
 
 message RelationInfo {
     RelationType relation_type = 1; // 关系类型
-    string member = 2; // 成员uuid
-    string relation_member = 3; // 产生关系的成员uuid
-    google.protobuf.Timestamp expire_at = 5; // 过期时间
+    string member = 2; // 成员（名单属于谁）
+    string relation_member = 3; // 产生关系的成员（名单内有谁）
+    google.protobuf.Timestamp expire_at = 5; // 过期时间（可无，为空则永久有效）
     string remark = 4; // 备注
-    google.protobuf.Timestamp created_at = 10;
+    google.protobuf.Timestamp created_at = 101; // 创建时间
 }
 
 message RelationAddReq {
@@ -36,15 +38,15 @@ message RelationAddReq {
 
 message RelationDelReq {
     RelationType relation_type = 1;
-    string member = 2; // 成员uuid
-    string relation_member = 3; // 产生关系的成员uuid
+    string member = 2; // 成员
+    string relation_member = 3; // 产生关系的成员
 }
 
 
 message RelationHasReq {
     RelationType relation_type = 1;
-    string member = 2; // 成员uuid
-    string relation_member = 3; // 产生关系的成员uuid
+    string member = 2; // 成员
+    string relation_member = 3; // 产生关系的成员
 }
 message RelationHasResp {
     bool result = 1;
