@@ -29,7 +29,7 @@ message RelationInfo {
     string member_id = 2; // 成员（名单属于谁）
     string r_member_id = 3; // 产生关系的成员（名单内有谁）
     google.protobuf.Timestamp expire_time = 4; // 过期时间（可无，为空则永久有效）
-    string operator = 5; // 操作人
+    string operator_id = 5; // 操作人
     string remark = 6; // 备注
     google.protobuf.Timestamp created_at = 101; // 创建时间
 }

@@ -4859,7 +4859,7 @@ Room 房间
 | member_id | [string](#string) |  | 成员（名单属于谁） |
 | r_member_id | [string](#string) |  | 产生关系的成员（名单内有谁） |
 | expire_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 过期时间（可无，为空则永久有效） |
-| operator | [string](#string) |  | 操作人 |
+| operator_id | [string](#string) |  | 操作人 |
 | remark | [string](#string) |  | 备注 |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
 
