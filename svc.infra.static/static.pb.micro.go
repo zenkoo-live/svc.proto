@@ -38,6 +38,10 @@ func NewStaticEndpoints() []*api.Endpoint {
 
 type StaticService interface {
 	InitDB(ctx context.Context, in *emptypb.Empty, opts ...client.CallOption) (*InitDBResp, error)
+	UploadAvatar(ctx context.Context, in *UploadRequestMessage, opts ...client.CallOption) (*UploadResponseMessage, error)
+	UploadCover(ctx context.Context, in *UploadRequestMessage, opts ...client.CallOption) (*UploadResponseMessage, error)
+	UploadVideo(ctx context.Context, in *UploadRequestMessage, opts ...client.CallOption) (*UploadResponseMessage, error)
+	UploadImage(ctx context.Context, in *UploadRequestMessage, opts ...client.CallOption) (*UploadResponseMessage, error)
 }
 
 type staticService struct {
@@ -62,15 +66,63 @@ func (c *staticService) InitDB(ctx context.Context, in *emptypb.Empty, opts ...c
 	return out, nil
 }
 
+func (c *staticService) UploadAvatar(ctx context.Context, in *UploadRequestMessage, opts ...client.CallOption) (*UploadResponseMessage, error) {
+	req := c.c.NewRequest(c.name, "Static.UploadAvatar", in)
+	out := new(UploadResponseMessage)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *staticService) UploadCover(ctx context.Context, in *UploadRequestMessage, opts ...client.CallOption) (*UploadResponseMessage, error) {
+	req := c.c.NewRequest(c.name, "Static.UploadCover", in)
+	out := new(UploadResponseMessage)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *staticService) UploadVideo(ctx context.Context, in *UploadRequestMessage, opts ...client.CallOption) (*UploadResponseMessage, error) {
+	req := c.c.NewRequest(c.name, "Static.UploadVideo", in)
+	out := new(UploadResponseMessage)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *staticService) UploadImage(ctx context.Context, in *UploadRequestMessage, opts ...client.CallOption) (*UploadResponseMessage, error) {
+	req := c.c.NewRequest(c.name, "Static.UploadImage", in)
+	out := new(UploadResponseMessage)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for Static service
 
 type StaticHandler interface {
 	InitDB(context.Context, *emptypb.Empty, *InitDBResp) error
+	UploadAvatar(context.Context, *UploadRequestMessage, *UploadResponseMessage) error
+	UploadCover(context.Context, *UploadRequestMessage, *UploadResponseMessage) error
+	UploadVideo(context.Context, *UploadRequestMessage, *UploadResponseMessage) error
+	UploadImage(context.Context, *UploadRequestMessage, *UploadResponseMessage) error
 }
 
 func RegisterStaticHandler(s server.Server, hdlr StaticHandler, opts ...server.HandlerOption) error {
 	type static interface {
 		InitDB(ctx context.Context, in *emptypb.Empty, out *InitDBResp) error
+		UploadAvatar(ctx context.Context, in *UploadRequestMessage, out *UploadResponseMessage) error
+		UploadCover(ctx context.Context, in *UploadRequestMessage, out *UploadResponseMessage) error
+		UploadVideo(ctx context.Context, in *UploadRequestMessage, out *UploadResponseMessage) error
+		UploadImage(ctx context.Context, in *UploadRequestMessage, out *UploadResponseMessage) error
 	}
 	type Static struct {
 		static
@@ -85,4 +137,20 @@ type staticHandler struct {
 
 func (h *staticHandler) InitDB(ctx context.Context, in *emptypb.Empty, out *InitDBResp) error {
 	return h.StaticHandler.InitDB(ctx, in, out)
+}
+
+func (h *staticHandler) UploadAvatar(ctx context.Context, in *UploadRequestMessage, out *UploadResponseMessage) error {
+	return h.StaticHandler.UploadAvatar(ctx, in, out)
+}
+
+func (h *staticHandler) UploadCover(ctx context.Context, in *UploadRequestMessage, out *UploadResponseMessage) error {
+	return h.StaticHandler.UploadCover(ctx, in, out)
+}
+
+func (h *staticHandler) UploadVideo(ctx context.Context, in *UploadRequestMessage, out *UploadResponseMessage) error {
+	return h.StaticHandler.UploadVideo(ctx, in, out)
+}
+
+func (h *staticHandler) UploadImage(ctx context.Context, in *UploadRequestMessage, out *UploadResponseMessage) error {
+	return h.StaticHandler.UploadImage(ctx, in, out)
 }

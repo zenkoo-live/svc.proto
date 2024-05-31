@@ -91,6 +91,8 @@
   
 - [svc.infra.static/static.proto](#svc-infra-static_static-proto)
     - [InitDBResp](#svc-infra-static-InitDBResp)
+    - [UploadRequestMessage](#svc-infra-static-UploadRequestMessage)
+    - [UploadResponseMessage](#svc-infra-static-UploadResponseMessage)
   
     - [Static](#svc-infra-static-Static)
   
@@ -768,6 +770,8 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | condition | [Manager](#svc-biz-account-Manager) |  |  |
+| limit | [int32](#int32) |  |  |
+| offset | [int32](#int32) |  |  |
 
 
 
@@ -798,6 +802,8 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | condition | [Streamer](#svc-biz-account-Streamer) |  |  |
+| limit | [int32](#int32) |  |  |
+| offset | [int32](#int32) |  |  |
 
 
 
@@ -828,6 +834,8 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | condition | [Union](#svc-biz-account-Union) |  |  |
+| limit | [int32](#int32) |  |  |
+| offset | [int32](#int32) |  |  |
 
 
 
@@ -1741,6 +1749,41 @@ Models
 
 
 
+
+<a name="svc-infra-static-UploadRequestMessage"></a>
+
+### UploadRequestMessage
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  |  |
+| binary | [bytes](#bytes) |  |  |
+| pre_token | [bool](#bool) |  |  |
+| bucket | [string](#string) |  |  |
+| user_id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-static-UploadResponseMessage"></a>
+
+### UploadResponseMessage
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| path | [string](#string) |  |  |
+| domain | [string](#string) |  |  |
+
+
+
+
+
  
 
  
@@ -1756,6 +1799,10 @@ Models
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
 | InitDB | [.google.protobuf.Empty](#google-protobuf-Empty) | [InitDBResp](#svc-infra-static-InitDBResp) | 初始化数据库 |
+| UploadAvatar | [UploadRequestMessage](#svc-infra-static-UploadRequestMessage) | [UploadResponseMessage](#svc-infra-static-UploadResponseMessage) | 上传头像 |
+| UploadCover | [UploadRequestMessage](#svc-infra-static-UploadRequestMessage) | [UploadResponseMessage](#svc-infra-static-UploadResponseMessage) | 上传封面 |
+| UploadVideo | [UploadRequestMessage](#svc-infra-static-UploadRequestMessage) | [UploadResponseMessage](#svc-infra-static-UploadResponseMessage) | 上传视频 |
+| UploadImage | [UploadRequestMessage](#svc-infra-static-UploadRequestMessage) | [UploadResponseMessage](#svc-infra-static-UploadResponseMessage) | 上传图片 |
 
  
 
@@ -4863,6 +4910,11 @@ Room 房间
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| department | [Department](#svc-biz-org-Department) |  |  |
+
+
 
 
 
@@ -4871,6 +4923,12 @@ Room 房间
 
 ### AddDepartmentResp
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| department | [Department](#svc-biz-org-Department) |  |  |
+| result | [bool](#bool) |  |  |
 
 
 
@@ -4883,6 +4941,11 @@ Room 房间
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| merchant | [Merchant](#svc-biz-org-Merchant) |  |  |
+
+
 
 
 
@@ -4891,6 +4954,12 @@ Room 房间
 
 ### AddMerchantResp
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| merchant | [Merchant](#svc-biz-org-Merchant) |  |  |
+| result | [bool](#bool) |  |  |
 
 
 
@@ -4903,6 +4972,11 @@ Room 房间
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| union | [Union](#svc-biz-org-Union) |  |  |
+
+
 
 
 
@@ -4911,6 +4985,12 @@ Room 房间
 
 ### AddUnionResp
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| union | [Union](#svc-biz-org-Union) |  |  |
+| result | [bool](#bool) |  |  |
 
 
 
@@ -4923,6 +5003,11 @@ Room 房间
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Department](#svc-biz-org-Department) |  |  |
+
+
 
 
 
@@ -4931,6 +5016,11 @@ Room 房间
 
 ### DeleteDepartmentResp
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| deleted | [int64](#int64) |  |  |
 
 
 
@@ -4943,6 +5033,11 @@ Room 房间
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Merchant](#svc-biz-org-Merchant) |  |  |
+
+
 
 
 
@@ -4951,6 +5046,11 @@ Room 房间
 
 ### DeleteMerchantResp
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| deleted | [int64](#int64) |  |  |
 
 
 
@@ -4963,6 +5063,11 @@ Room 房间
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Union](#svc-biz-org-Union) |  |  |
+
+
 
 
 
@@ -4971,6 +5076,11 @@ Room 房间
 
 ### DeleteUnionResp
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| deleted | [int64](#int64) |  |  |
 
 
 
@@ -4983,6 +5093,15 @@ Room 房间
 Models
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  | 内部ID |
+| name | [string](#string) |  | 名字 |
+| merchant_id | [string](#string) |  | 商户ID |
+| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+| additions | [string](#string) |  | 扩展属性 |
+
+
 
 
 
@@ -4991,6 +5110,11 @@ Models
 
 ### GetDepartmentReq
 {{{ [Department]
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Department](#svc-biz-org-Department) |  |  |
 
 
 
@@ -5003,6 +5127,11 @@ Models
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| department | [Department](#svc-biz-org-Department) |  |  |
+
+
 
 
 
@@ -5011,6 +5140,11 @@ Models
 
 ### GetMerchantReq
 {{{ [Merchant]
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Merchant](#svc-biz-org-Merchant) |  |  |
 
 
 
@@ -5023,6 +5157,11 @@ Models
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| merchant | [Merchant](#svc-biz-org-Merchant) |  |  |
+
+
 
 
 
@@ -5033,6 +5172,11 @@ Models
 {{{ [Union]
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Union](#svc-biz-org-Union) |  |  |
+
+
 
 
 
@@ -5041,6 +5185,11 @@ Models
 
 ### GetUnionResp
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| union | [Union](#svc-biz-org-Union) |  |  |
 
 
 
@@ -5068,6 +5217,13 @@ Models
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Department](#svc-biz-org-Department) |  |  |
+| limit | [int32](#int32) |  |  |
+| offset | [int32](#int32) |  |  |
+
+
 
 
 
@@ -5076,6 +5232,11 @@ Models
 
 ### ListDepartmentsResp
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| departments | [Department](#svc-biz-org-Department) | repeated |  |
 
 
 
@@ -5088,6 +5249,13 @@ Models
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Merchant](#svc-biz-org-Merchant) |  |  |
+| limit | [int32](#int32) |  |  |
+| offset | [int32](#int32) |  |  |
+
+
 
 
 
@@ -5096,6 +5264,11 @@ Models
 
 ### ListMerchantsResp
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| merchants | [Merchant](#svc-biz-org-Merchant) | repeated |  |
 
 
 
@@ -5108,6 +5281,13 @@ Models
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Union](#svc-biz-org-Union) |  |  |
+| limit | [int32](#int32) |  |  |
+| offset | [int32](#int32) |  |  |
+
+
 
 
 
@@ -5116,6 +5296,11 @@ Models
 
 ### ListUnionsResp
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| unions | [Union](#svc-biz-org-Union) | repeated |  |
 
 
 
@@ -5128,6 +5313,14 @@ Models
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  | 内部ID |
+| name | [string](#string) |  | 名字 |
+| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+| additions | [string](#string) |  | 扩展属性 |
+
+
 
 
 
@@ -5136,6 +5329,15 @@ Models
 
 ### Union
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  | 内部ID |
+| name | [string](#string) |  | 名字 |
+| merchant_id | [string](#string) |  | 商户ID |
+| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+| additions | [string](#string) |  | 扩展属性 |
 
 
 
@@ -5148,6 +5350,11 @@ Models
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Department](#svc-biz-org-Department) |  |  |
+
+
 
 
 
@@ -5156,6 +5363,11 @@ Models
 
 ### UpdateDepartmentResp
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| updated | [int64](#int64) |  |  |
 
 
 
@@ -5168,6 +5380,11 @@ Models
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Merchant](#svc-biz-org-Merchant) |  |  |
+
+
 
 
 
@@ -5176,6 +5393,11 @@ Models
 
 ### UpdateMerchantResp
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| updated | [int64](#int64) |  |  |
 
 
 
@@ -5188,6 +5410,11 @@ Models
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Union](#svc-biz-org-Union) |  |  |
+
+
 
 
 
@@ -5196,6 +5423,11 @@ Models
 
 ### UpdateUnionResp
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| updated | [int64](#int64) |  |  |
 
 
 

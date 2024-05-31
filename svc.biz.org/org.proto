@@ -4,6 +4,7 @@ package svc.biz.org;
 option go_package="./svc.biz.org;org";
 
 import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
 
 service Org {
     rpc InitDB(google.protobuf.Empty) returns (InitDBResp); // 初始化数据库
@@ -32,58 +33,144 @@ message InitDBResp {
 }
 
 // Models
-message Department {};
-message Merchant {};
-message Union {};
+message Department {
+    string id = 1; // 内部ID
+    string name = 3; // 名字
+    string merchant_id = 254; // 商户ID
+    google.protobuf.Timestamp created_at = 255; // 创建时间
+    string additions = 256; // 扩展属性
+};
+message Merchant {
+    string id = 1; // 内部ID
+    string name = 3; // 名字
+    google.protobuf.Timestamp created_at = 255; // 创建时间
+    string additions = 256; // 扩展属性
+};
+message Union {
+    string id = 1; // 内部ID
+    string name = 3; // 名字
+    string merchant_id = 254; // 商户ID
+    google.protobuf.Timestamp created_at = 255; // 创建时间
+    string additions = 256; // 扩展属性
+};
 
 // Parameters
 /* {{{ [Department] */
-message GetDepartmentReq {};
-message GetDepartmentResp {};
+message GetDepartmentReq {
+    Department condition = 1;
+};
+message GetDepartmentResp {
+    Department department = 1;
+};
 
-message ListDepartmentsReq {};
-message ListDepartmentsResp {};
+message ListDepartmentsReq {
+    Department condition = 1;
+    int32 limit = 2;
+    int32 offset = 3;
+};
+message ListDepartmentsResp {
+    repeated Department departments = 1;
+};
 
-message AddDepartmentReq {};
-message AddDepartmentResp {};
+message AddDepartmentReq {
+    Department department = 1;
+};
+message AddDepartmentResp {
+    Department department = 1;
+    bool result = 255;
+};
 
-message UpdateDepartmentReq {};
-message UpdateDepartmentResp {};
+message UpdateDepartmentReq {
+    Department condition = 1;
+};
+message UpdateDepartmentResp {
+    int64 updated = 1;
+};
 
-message DeleteDepartmentReq {};
-message DeleteDepartmentResp {};
+message DeleteDepartmentReq {
+    Department condition = 1;
+};
+message DeleteDepartmentResp {
+    int64 deleted = 1;
+};
 /* }}} */
 
 /* {{{ [Merchant] */
-message GetMerchantReq {};
-message GetMerchantResp {};
+message GetMerchantReq {
+    Merchant condition = 1;
+};
+message GetMerchantResp {
+    Merchant merchant = 1;
+};
 
-message ListMerchantsReq {};
-message ListMerchantsResp {};
+message ListMerchantsReq {
+    Merchant condition = 1;
+    int32 limit = 2;
+    int32 offset = 3;
+};
+message ListMerchantsResp {
+    repeated Merchant merchants = 1;
+};
 
-message AddMerchantReq {};
-message AddMerchantResp {};
+message AddMerchantReq {
+    Merchant merchant = 1;
+};
+message AddMerchantResp {
+    Merchant merchant = 1;
+    bool result = 255;
+};
 
-message UpdateMerchantReq {};
-message UpdateMerchantResp {};
+message UpdateMerchantReq {
+    Merchant condition = 1;
+};
+message UpdateMerchantResp {
+    int64 updated = 1;
+};
 
-message DeleteMerchantReq {};
-message DeleteMerchantResp {};
+message DeleteMerchantReq {
+    Merchant condition = 1;
+};
+message DeleteMerchantResp {
+    int64 deleted = 1;
+};
 /* }}} */
 
 /* {{{ [Union] */
-message GetUnionReq {};
-message GetUnionResp {};
+message GetUnionReq {
+    Union condition = 1;
+};
+message GetUnionResp {
+    Union union = 1;
+};
 
-message ListUnionsReq {};
-message ListUnionsResp {};
+message ListUnionsReq {
+    Union condition = 1;
+    int32 limit = 2;
+    int32 offset = 3;
+};
+message ListUnionsResp {
+    repeated Union unions = 1;
+};
 
-message AddUnionReq {};
-message AddUnionResp {};
+message AddUnionReq {
+    Union union = 1;
+};
+message AddUnionResp {
+    Union union = 1;
+    bool result = 255;
+};
 
-message UpdateUnionReq {};
-message UpdateUnionResp {};
+message UpdateUnionReq {
+    Union condition = 1;
+};
+message UpdateUnionResp {
+    int64 updated = 1;
+};
 
-message DeleteUnionReq {};
-message DeleteUnionResp {};
+message DeleteUnionReq {
+    Union condition = 1;
+};
+message DeleteUnionResp {
+    int64 deleted = 1;
+};
 /* }}} */

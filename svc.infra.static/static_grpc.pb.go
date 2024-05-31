@@ -20,7 +20,11 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Static_InitDB_FullMethodName = "/svc.infra.static.Static/InitDB"
+	Static_InitDB_FullMethodName       = "/svc.infra.static.Static/InitDB"
+	Static_UploadAvatar_FullMethodName = "/svc.infra.static.Static/UploadAvatar"
+	Static_UploadCover_FullMethodName  = "/svc.infra.static.Static/UploadCover"
+	Static_UploadVideo_FullMethodName  = "/svc.infra.static.Static/UploadVideo"
+	Static_UploadImage_FullMethodName  = "/svc.infra.static.Static/UploadImage"
 )
 
 // StaticClient is the client API for Static service.
@@ -28,6 +32,10 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type StaticClient interface {
 	InitDB(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*InitDBResp, error)
+	UploadAvatar(ctx context.Context, in *UploadRequestMessage, opts ...grpc.CallOption) (*UploadResponseMessage, error)
+	UploadCover(ctx context.Context, in *UploadRequestMessage, opts ...grpc.CallOption) (*UploadResponseMessage, error)
+	UploadVideo(ctx context.Context, in *UploadRequestMessage, opts ...grpc.CallOption) (*UploadResponseMessage, error)
+	UploadImage(ctx context.Context, in *UploadRequestMessage, opts ...grpc.CallOption) (*UploadResponseMessage, error)
 }
 
 type staticClient struct {
@@ -47,11 +55,51 @@ func (c *staticClient) InitDB(ctx context.Context, in *emptypb.Empty, opts ...gr
 	return out, nil
 }
 
+func (c *staticClient) UploadAvatar(ctx context.Context, in *UploadRequestMessage, opts ...grpc.CallOption) (*UploadResponseMessage, error) {
+	out := new(UploadResponseMessage)
+	err := c.cc.Invoke(ctx, Static_UploadAvatar_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *staticClient) UploadCover(ctx context.Context, in *UploadRequestMessage, opts ...grpc.CallOption) (*UploadResponseMessage, error) {
+	out := new(UploadResponseMessage)
+	err := c.cc.Invoke(ctx, Static_UploadCover_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *staticClient) UploadVideo(ctx context.Context, in *UploadRequestMessage, opts ...grpc.CallOption) (*UploadResponseMessage, error) {
+	out := new(UploadResponseMessage)
+	err := c.cc.Invoke(ctx, Static_UploadVideo_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *staticClient) UploadImage(ctx context.Context, in *UploadRequestMessage, opts ...grpc.CallOption) (*UploadResponseMessage, error) {
+	out := new(UploadResponseMessage)
+	err := c.cc.Invoke(ctx, Static_UploadImage_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // StaticServer is the server API for Static service.
 // All implementations must embed UnimplementedStaticServer
 // for forward compatibility
 type StaticServer interface {
 	InitDB(context.Context, *emptypb.Empty) (*InitDBResp, error)
+	UploadAvatar(context.Context, *UploadRequestMessage) (*UploadResponseMessage, error)
+	UploadCover(context.Context, *UploadRequestMessage) (*UploadResponseMessage, error)
+	UploadVideo(context.Context, *UploadRequestMessage) (*UploadResponseMessage, error)
+	UploadImage(context.Context, *UploadRequestMessage) (*UploadResponseMessage, error)
 	mustEmbedUnimplementedStaticServer()
 }
 
@@ -61,6 +109,18 @@ type UnimplementedStaticServer struct {
 
 func (UnimplementedStaticServer) InitDB(context.Context, *emptypb.Empty) (*InitDBResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method InitDB not implemented")
+}
+func (UnimplementedStaticServer) UploadAvatar(context.Context, *UploadRequestMessage) (*UploadResponseMessage, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UploadAvatar not implemented")
+}
+func (UnimplementedStaticServer) UploadCover(context.Context, *UploadRequestMessage) (*UploadResponseMessage, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UploadCover not implemented")
+}
+func (UnimplementedStaticServer) UploadVideo(context.Context, *UploadRequestMessage) (*UploadResponseMessage, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UploadVideo not implemented")
+}
+func (UnimplementedStaticServer) UploadImage(context.Context, *UploadRequestMessage) (*UploadResponseMessage, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UploadImage not implemented")
 }
 func (UnimplementedStaticServer) mustEmbedUnimplementedStaticServer() {}
 
@@ -93,6 +153,78 @@ func _Static_InitDB_Handler(srv interface{}, ctx context.Context, dec func(inter
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Static_UploadAvatar_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UploadRequestMessage)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StaticServer).UploadAvatar(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Static_UploadAvatar_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StaticServer).UploadAvatar(ctx, req.(*UploadRequestMessage))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Static_UploadCover_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UploadRequestMessage)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StaticServer).UploadCover(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Static_UploadCover_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StaticServer).UploadCover(ctx, req.(*UploadRequestMessage))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Static_UploadVideo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UploadRequestMessage)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StaticServer).UploadVideo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Static_UploadVideo_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StaticServer).UploadVideo(ctx, req.(*UploadRequestMessage))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Static_UploadImage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UploadRequestMessage)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StaticServer).UploadImage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Static_UploadImage_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StaticServer).UploadImage(ctx, req.(*UploadRequestMessage))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Static_ServiceDesc is the grpc.ServiceDesc for Static service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -103,6 +235,22 @@ var Static_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "InitDB",
 			Handler:    _Static_InitDB_Handler,
+		},
+		{
+			MethodName: "UploadAvatar",
+			Handler:    _Static_UploadAvatar_Handler,
+		},
+		{
+			MethodName: "UploadCover",
+			Handler:    _Static_UploadCover_Handler,
+		},
+		{
+			MethodName: "UploadVideo",
+			Handler:    _Static_UploadVideo_Handler,
+		},
+		{
+			MethodName: "UploadImage",
+			Handler:    _Static_UploadImage_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

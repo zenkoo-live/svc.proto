@@ -143,6 +143,8 @@ message GetStreamerResp {
 
 message ListStreamersReq {
     Streamer condition = 1;
+    int32 limit = 2;
+    int32 offset = 3;
 };
 message ListStreamersResp {
     repeated Streamer streamers = 1;
@@ -182,6 +184,8 @@ message GetManagerResp {
 
 message ListManagersReq {
     Manager condition = 1;
+    int32 limit = 2;
+    int32 offset = 3;
 };
 message ListManagersResp {
     repeated Manager managers = 1;
@@ -221,6 +225,8 @@ message GetUnionResp {
 
 message ListUnionsReq {
     Union condition = 1;
+    int32 limit = 2;
+    int32 offset = 3;
 };
 message ListUnionsResp {
     repeated Union unions = 1;
