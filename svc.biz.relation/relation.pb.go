@@ -87,7 +87,7 @@ type RelationInfo struct {
 
 	RelationType RelationType           `protobuf:"varint,1,opt,name=relation_type,json=relationType,proto3,enum=svc.biz.relation.RelationType" json:"relation_type,omitempty"` // 关系类型
 	MemberId     string                 `protobuf:"bytes,2,opt,name=member_id,json=memberId,proto3" json:"member_id,omitempty"`                                                 // 成员（名单属于谁）
-	RMemberId    string                 `protobuf:"bytes,3,opt,name=r_member_id,json=rMemberId,proto3" json:"r_member_id,omitempty"`                                            // 产生关系的成员（名单内有谁）
+	RMemberId    string                 `protobuf:"bytes,3,opt,name=r_member_id,json=rMemberId,proto3" json:"r_member_id,omitempty"`                                            // 产生关系的成员（名单内有谁；当为ip或者设备号时不是uuid格式）
 	ExpireTime   *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=expire_time,json=expireTime,proto3" json:"expire_time,omitempty"`                                           // 过期时间（可无，为空则永久有效）
 	OperatorId   string                 `protobuf:"bytes,5,opt,name=operator_id,json=operatorId,proto3" json:"operator_id,omitempty"`                                           // 操作人
 	Remark       string                 `protobuf:"bytes,6,opt,name=remark,proto3" json:"remark,omitempty"`                                                                     // 备注
