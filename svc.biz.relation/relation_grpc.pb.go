@@ -20,11 +20,12 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Relation_RelationAdd_FullMethodName     = "/svc.biz.relation.Relation/RelationAdd"
-	Relation_RelationGet_FullMethodName     = "/svc.biz.relation.Relation/RelationGet"
-	Relation_RelationDel_FullMethodName     = "/svc.biz.relation.Relation/RelationDel"
-	Relation_RelationCheck_FullMethodName   = "/svc.biz.relation.Relation/RelationCheck"
-	Relation_GetRelationList_FullMethodName = "/svc.biz.relation.Relation/GetRelationList"
+	Relation_RelationAdd_FullMethodName      = "/svc.biz.relation.Relation/RelationAdd"
+	Relation_RelationGet_FullMethodName      = "/svc.biz.relation.Relation/RelationGet"
+	Relation_RelationDel_FullMethodName      = "/svc.biz.relation.Relation/RelationDel"
+	Relation_RelationCheck_FullMethodName    = "/svc.biz.relation.Relation/RelationCheck"
+	Relation_GetRelationCount_FullMethodName = "/svc.biz.relation.Relation/GetRelationCount"
+	Relation_GetRelationList_FullMethodName  = "/svc.biz.relation.Relation/GetRelationList"
 )
 
 // RelationClient is the client API for Relation service.
@@ -35,6 +36,7 @@ type RelationClient interface {
 	RelationGet(ctx context.Context, in *RelationGetReq, opts ...grpc.CallOption) (*RelationGetResp, error)
 	RelationDel(ctx context.Context, in *RelationDelReq, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	RelationCheck(ctx context.Context, in *RelationCheckReq, opts ...grpc.CallOption) (*RelationCheckResp, error)
+	GetRelationCount(ctx context.Context, in *GetRelationCountReq, opts ...grpc.CallOption) (*GetRelationCountResp, error)
 	GetRelationList(ctx context.Context, in *GetRelationListReq, opts ...grpc.CallOption) (*GetRelationListResp, error)
 }
 
@@ -82,6 +84,15 @@ func (c *relationClient) RelationCheck(ctx context.Context, in *RelationCheckReq
 	return out, nil
 }
 
+func (c *relationClient) GetRelationCount(ctx context.Context, in *GetRelationCountReq, opts ...grpc.CallOption) (*GetRelationCountResp, error) {
+	out := new(GetRelationCountResp)
+	err := c.cc.Invoke(ctx, Relation_GetRelationCount_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *relationClient) GetRelationList(ctx context.Context, in *GetRelationListReq, opts ...grpc.CallOption) (*GetRelationListResp, error) {
 	out := new(GetRelationListResp)
 	err := c.cc.Invoke(ctx, Relation_GetRelationList_FullMethodName, in, out, opts...)
@@ -99,6 +110,7 @@ type RelationServer interface {
 	RelationGet(context.Context, *RelationGetReq) (*RelationGetResp, error)
 	RelationDel(context.Context, *RelationDelReq) (*emptypb.Empty, error)
 	RelationCheck(context.Context, *RelationCheckReq) (*RelationCheckResp, error)
+	GetRelationCount(context.Context, *GetRelationCountReq) (*GetRelationCountResp, error)
 	GetRelationList(context.Context, *GetRelationListReq) (*GetRelationListResp, error)
 	mustEmbedUnimplementedRelationServer()
 }
@@ -118,6 +130,9 @@ func (UnimplementedRelationServer) RelationDel(context.Context, *RelationDelReq)
 }
 func (UnimplementedRelationServer) RelationCheck(context.Context, *RelationCheckReq) (*RelationCheckResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RelationCheck not implemented")
+}
+func (UnimplementedRelationServer) GetRelationCount(context.Context, *GetRelationCountReq) (*GetRelationCountResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetRelationCount not implemented")
 }
 func (UnimplementedRelationServer) GetRelationList(context.Context, *GetRelationListReq) (*GetRelationListResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetRelationList not implemented")
@@ -207,6 +222,24 @@ func _Relation_RelationCheck_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Relation_GetRelationCount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetRelationCountReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RelationServer).GetRelationCount(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Relation_GetRelationCount_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RelationServer).GetRelationCount(ctx, req.(*GetRelationCountReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Relation_GetRelationList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetRelationListReq)
 	if err := dec(in); err != nil {
@@ -247,6 +280,10 @@ var Relation_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RelationCheck",
 			Handler:    _Relation_RelationCheck_Handler,
+		},
+		{
+			MethodName: "GetRelationCount",
+			Handler:    _Relation_GetRelationCount_Handler,
 		},
 		{
 			MethodName: "GetRelationList",

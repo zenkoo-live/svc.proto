@@ -283,6 +283,8 @@
     - [Asset](#svc-biz-asset-Asset)
   
 - [svc.biz.relation/relation.proto](#svc-biz-relation_relation-proto)
+    - [GetRelationCountReq](#svc-biz-relation-GetRelationCountReq)
+    - [GetRelationCountResp](#svc-biz-relation-GetRelationCountResp)
     - [GetRelationListReq](#svc-biz-relation-GetRelationListReq)
     - [GetRelationListResp](#svc-biz-relation-GetRelationListResp)
     - [RelationAddReq](#svc-biz-relation-RelationAddReq)
@@ -4758,6 +4760,37 @@ Room 房间
 
 
 
+<a name="svc-biz-relation-GetRelationCountReq"></a>
+
+### GetRelationCountReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| relation_type | [RelationType](#svc-biz-relation-RelationType) |  |  |
+| member_id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-relation-GetRelationCountResp"></a>
+
+### GetRelationCountResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| count | [int64](#int64) |  |  |
+
+
+
+
+
+
 <a name="svc-biz-relation-GetRelationListReq"></a>
 
 ### GetRelationListReq
@@ -4943,6 +4976,7 @@ Room 房间
 | RelationGet | [RelationGetReq](#svc-biz-relation-RelationGetReq) | [RelationGetResp](#svc-biz-relation-RelationGetResp) |  |
 | RelationDel | [RelationDelReq](#svc-biz-relation-RelationDelReq) | [.google.protobuf.Empty](#google-protobuf-Empty) |  |
 | RelationCheck | [RelationCheckReq](#svc-biz-relation-RelationCheckReq) | [RelationCheckResp](#svc-biz-relation-RelationCheckResp) |  |
+| GetRelationCount | [GetRelationCountReq](#svc-biz-relation-GetRelationCountReq) | [GetRelationCountResp](#svc-biz-relation-GetRelationCountResp) |  |
 | GetRelationList | [GetRelationListReq](#svc-biz-relation-GetRelationListReq) | [GetRelationListResp](#svc-biz-relation-GetRelationListResp) |  |
 
  

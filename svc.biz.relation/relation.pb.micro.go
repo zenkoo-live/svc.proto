@@ -42,6 +42,7 @@ type RelationService interface {
 	RelationGet(ctx context.Context, in *RelationGetReq, opts ...client.CallOption) (*RelationGetResp, error)
 	RelationDel(ctx context.Context, in *RelationDelReq, opts ...client.CallOption) (*emptypb.Empty, error)
 	RelationCheck(ctx context.Context, in *RelationCheckReq, opts ...client.CallOption) (*RelationCheckResp, error)
+	GetRelationCount(ctx context.Context, in *GetRelationCountReq, opts ...client.CallOption) (*GetRelationCountResp, error)
 	GetRelationList(ctx context.Context, in *GetRelationListReq, opts ...client.CallOption) (*GetRelationListResp, error)
 }
 
@@ -97,6 +98,16 @@ func (c *relationService) RelationCheck(ctx context.Context, in *RelationCheckRe
 	return out, nil
 }
 
+func (c *relationService) GetRelationCount(ctx context.Context, in *GetRelationCountReq, opts ...client.CallOption) (*GetRelationCountResp, error) {
+	req := c.c.NewRequest(c.name, "Relation.GetRelationCount", in)
+	out := new(GetRelationCountResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *relationService) GetRelationList(ctx context.Context, in *GetRelationListReq, opts ...client.CallOption) (*GetRelationListResp, error) {
 	req := c.c.NewRequest(c.name, "Relation.GetRelationList", in)
 	out := new(GetRelationListResp)
@@ -114,6 +125,7 @@ type RelationHandler interface {
 	RelationGet(context.Context, *RelationGetReq, *RelationGetResp) error
 	RelationDel(context.Context, *RelationDelReq, *emptypb.Empty) error
 	RelationCheck(context.Context, *RelationCheckReq, *RelationCheckResp) error
+	GetRelationCount(context.Context, *GetRelationCountReq, *GetRelationCountResp) error
 	GetRelationList(context.Context, *GetRelationListReq, *GetRelationListResp) error
 }
 
@@ -123,6 +135,7 @@ func RegisterRelationHandler(s server.Server, hdlr RelationHandler, opts ...serv
 		RelationGet(ctx context.Context, in *RelationGetReq, out *RelationGetResp) error
 		RelationDel(ctx context.Context, in *RelationDelReq, out *emptypb.Empty) error
 		RelationCheck(ctx context.Context, in *RelationCheckReq, out *RelationCheckResp) error
+		GetRelationCount(ctx context.Context, in *GetRelationCountReq, out *GetRelationCountResp) error
 		GetRelationList(ctx context.Context, in *GetRelationListReq, out *GetRelationListResp) error
 	}
 	type Relation struct {
@@ -150,6 +163,10 @@ func (h *relationHandler) RelationDel(ctx context.Context, in *RelationDelReq, o
 
 func (h *relationHandler) RelationCheck(ctx context.Context, in *RelationCheckReq, out *RelationCheckResp) error {
 	return h.RelationHandler.RelationCheck(ctx, in, out)
+}
+
+func (h *relationHandler) GetRelationCount(ctx context.Context, in *GetRelationCountReq, out *GetRelationCountResp) error {
+	return h.RelationHandler.GetRelationCount(ctx, in, out)
 }
 
 func (h *relationHandler) GetRelationList(ctx context.Context, in *GetRelationListReq, out *GetRelationListResp) error {

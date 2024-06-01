@@ -12,6 +12,7 @@ service Relation {
     rpc RelationGet (RelationGetReq) returns (RelationGetResp);
     rpc RelationDel (RelationDelReq) returns (google.protobuf.Empty);
     rpc RelationCheck (RelationCheckReq) returns (RelationCheckResp);
+    rpc GetRelationCount (GetRelationCountReq) returns (GetRelationCountResp);
     rpc GetRelationList (GetRelationListReq) returns (GetRelationListResp);
 }
 
@@ -64,6 +65,14 @@ message RelationCheckReq {
 }
 message RelationCheckResp {
     bool result = 1;
+}
+
+message GetRelationCountReq  {
+    RelationType relation_type = 1;
+    string member_id = 2; 
+}
+message GetRelationCountResp {
+    int64 count = 1;
 }
 
 message GetRelationListReq {
