@@ -1,0 +1,74 @@
+syntax = "proto3";
+
+package svc.biz.relation;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package="./svc.biz.relation;relation";
+
+service Relation {
+    rpc RelationAdd (RelationAddReq) returns (google.protobuf.Empty);
+    rpc RelationGet (RelationGetReq) returns (RelationGetResp);
+    rpc RelationDel (RelationDelReq) returns (google.protobuf.Empty);
+    rpc RelationCheck (RelationCheckReq) returns (RelationCheckResp);
+    rpc GetRelationList (GetRelationListReq) returns (GetRelationListResp);
+}
+
+enum RelationType {
+    RelationTypeUnknown = 0; // 未知
+    RelationTypeFollow = 1; // 关注主播
+    RelationTypeHistory = 2; // 观看历史
+    RelationTypeMuzzle = 3; // 禁言
+    RelationTypeBlacklistIP = 4; // ip黑名单
+    RelationTypeBlacklistDevice = 5; // 设备黑名单
+}
+
+message RelationInfo {
+    RelationType relation_type = 1; // 关系类型
+    string member_id = 2; // 成员（名单属于谁）
+    string r_member_id = 3; // 产生关系的成员（名单内有谁）
+    google.protobuf.Timestamp expire_time = 4; // 过期时间（可无，为空则永久有效）
+    string operator_id = 5; // 操作人
+    string remark = 6; // 备注
+    google.protobuf.Timestamp created_at = 101; // 创建时间
+}
+
+message RelationAddReq {
+    RelationInfo relation_info = 1;
+}
+
+message RelationGetReq {
+    RelationType relation_type = 1;
+    string member_id = 2; // 成员
+    string r_member_id = 3; // 产生关系的成员
+}
+message RelationGetResp {
+    RelationInfo relation_info = 1;
+}
+
+message RelationDelReq {
+    RelationType relation_type = 1;
+    string member_id = 2; // 成员
+    string r_member_id = 3; // 产生关系的成员
+}
+
+
+message RelationCheckReq {
+    RelationType relation_type = 1;
+    string member_id = 2; // 成员
+    string r_member_id = 3; // 产生关系的成员
+}
+message RelationCheckResp {
+    bool result = 1;
+}
+
+message GetRelationListReq {
+    RelationType relation_type = 1;
+    string member_id = 2; 
+    int64 page = 3;
+    int64 limit = 4;
+}
+message GetRelationListResp {
+    repeated RelationInfo items = 1;
+}

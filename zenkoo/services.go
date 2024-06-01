@@ -12,6 +12,7 @@ import (
 	svcBizGift "github.com/zenkoo-live/svc.proto/svc.biz.gift"
 	svcBizLog "github.com/zenkoo-live/svc.proto/svc.biz.log"
 	svcBizOrg "github.com/zenkoo-live/svc.proto/svc.biz.org"
+	svcBizRelation "github.com/zenkoo-live/svc.proto/svc.biz.relation"
 	svcBizRoom "github.com/zenkoo-live/svc.proto/svc.biz.room"
 	svcBizTrade "github.com/zenkoo-live/svc.proto/svc.biz.trade"
 	svcInfraNotifier "github.com/zenkoo-live/svc.proto/svc.infra.notifier"
@@ -32,6 +33,7 @@ const (
 	SvcBizLog        = "svc.biz.log"
 	SvcInfraNotifier = "svc.infra.notifier"
 	SvcBizOrg        = "svc.biz.org"
+	SvcBizRelation   = "svc.biz.relation"
 	SvcBizRoom       = "svc.biz.room"
 	SvcInfraSetting  = "svc.infra.setting"
 	SvcInfraStatic   = "svc.infra.static"
@@ -50,6 +52,7 @@ var (
 	SvcBizLogLog             = svcBizLog.NewLogService(AppName+"::"+SvcBizLog+runtime.AppendEnv(), clt)
 	SvcInfraNotifierNotifier = svcInfraNotifier.NewNotifierService(AppName+"::"+SvcInfraNotifier+runtime.AppendEnv(), clt)
 	SvcBizOrgOrg             = svcBizOrg.NewOrgService(AppName+"::"+SvcBizOrg+runtime.AppendEnv(), clt)
+	SvcBizRelationRelation   = svcBizRelation.NewRelationService(AppName+"::"+SvcBizRelation+runtime.AppendEnv(), clt)
 	SvcBizRoomCategory       = svcBizRoom.NewCategoryService(AppName+"::"+SvcBizRoom+runtime.AppendEnv(), clt)
 	SvcBizRoomLive           = svcBizRoom.NewLiveService(AppName+"::"+SvcBizRoom+runtime.AppendEnv(), clt)
 	SvcBizRoomRoom           = svcBizRoom.NewRoomService(AppName+"::"+SvcBizRoom+runtime.AppendEnv(), clt)
