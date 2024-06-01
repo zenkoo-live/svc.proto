@@ -16,7 +16,7 @@ func example() {
 			RelationType: RelationType_RelationTypeFollow,
 			MemberId:     "用户id",
 			RMemberId:    "被关注的主播id",
-			BuildAt:      timestamppb.Now(),
+			BuildTime:    timestamppb.Now(),
 		},
 	})
 
@@ -26,7 +26,7 @@ func example() {
 			RelationType: RelationType_RelationTypeHistory,
 			MemberId:     "用户id",
 			RMemberId:    "观看的主播id",
-			BuildAt:      timestamppb.Now(),
+			BuildTime:    timestamppb.Now(),
 		},
 	})
 
@@ -38,7 +38,7 @@ func example() {
 			RMemberId:    "被禁言的用户id",
 			ExpireTime:   timestamppb.New(time.Now().Add(24 * time.Hour)), // 禁言24小时
 			// ExpireTime:   nil, // 永久禁言
-			BuildAt: timestamppb.Now(),
+			BuildTime: timestamppb.Now(),
 		},
 	})
 
@@ -50,7 +50,7 @@ func example() {
 			RMemberId:    "被禁言的用户id",
 			ExpireTime:   timestamppb.New(time.Now().Add(24 * time.Hour)), // 禁言24小时
 			// ExpireTime:   nil, // 永久禁言
-			BuildAt: timestamppb.Now(),
+			BuildTime: timestamppb.Now(),
 		},
 	})
 
@@ -62,7 +62,7 @@ func example() {
 			RMemberId:    "被禁言的用户id",
 			ExpireTime:   timestamppb.New(time.Now().Add(24 * time.Hour)), // 禁言24小时
 			// ExpireTime:   nil, // 永久禁言
-			BuildAt: timestamppb.Now(),
+			BuildTime: timestamppb.Now(),
 		},
 	})
 
@@ -74,7 +74,7 @@ func example() {
 			RMemberId:    "被封禁的ip",
 			ExpireTime:   timestamppb.New(time.Now().Add(24 * time.Hour)), // 封禁24小时
 			// ExpireTime:   nil, // 永久封禁
-			BuildAt: timestamppb.Now(),
+			BuildTime: timestamppb.Now(),
 		},
 	})
 
@@ -86,7 +86,7 @@ func example() {
 			RMemberId:    "被封禁的设备标识",
 			ExpireTime:   timestamppb.New(time.Now().Add(24 * time.Hour)), // 封禁24小时
 			// ExpireTime:   nil, // 永久封禁
-			BuildAt: timestamppb.Now(),
+			BuildTime: timestamppb.Now(),
 		},
 	})
 }
