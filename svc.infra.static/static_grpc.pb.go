@@ -28,6 +28,7 @@ type StaticClient interface {
 	UploadCover(ctx context.Context, in *UploadRequestMessage, opts ...grpc.CallOption) (*UploadResponseMessage, error)
 	UploadVideo(ctx context.Context, in *UploadRequestMessage, opts ...grpc.CallOption) (*UploadResponseMessage, error)
 	UploadImage(ctx context.Context, in *UploadRequestMessage, opts ...grpc.CallOption) (*UploadResponseMessage, error)
+	UploadFile(ctx context.Context, in *UploadRequestMessage, opts ...grpc.CallOption) (*UploadResponseMessage, error)
 }
 
 type staticClient struct {
@@ -83,6 +84,15 @@ func (c *staticClient) UploadImage(ctx context.Context, in *UploadRequestMessage
 	return out, nil
 }
 
+func (c *staticClient) UploadFile(ctx context.Context, in *UploadRequestMessage, opts ...grpc.CallOption) (*UploadResponseMessage, error) {
+	out := new(UploadResponseMessage)
+	err := c.cc.Invoke(ctx, "/svc.infra.static.Static/UploadFile", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // StaticServer is the server API for Static service.
 // All implementations must embed UnimplementedStaticServer
 // for forward compatibility
@@ -92,6 +102,7 @@ type StaticServer interface {
 	UploadCover(context.Context, *UploadRequestMessage) (*UploadResponseMessage, error)
 	UploadVideo(context.Context, *UploadRequestMessage) (*UploadResponseMessage, error)
 	UploadImage(context.Context, *UploadRequestMessage) (*UploadResponseMessage, error)
+	UploadFile(context.Context, *UploadRequestMessage) (*UploadResponseMessage, error)
 	mustEmbedUnimplementedStaticServer()
 }
 
@@ -113,6 +124,9 @@ func (UnimplementedStaticServer) UploadVideo(context.Context, *UploadRequestMess
 }
 func (UnimplementedStaticServer) UploadImage(context.Context, *UploadRequestMessage) (*UploadResponseMessage, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UploadImage not implemented")
+}
+func (UnimplementedStaticServer) UploadFile(context.Context, *UploadRequestMessage) (*UploadResponseMessage, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UploadFile not implemented")
 }
 func (UnimplementedStaticServer) mustEmbedUnimplementedStaticServer() {}
 
@@ -217,6 +231,24 @@ func _Static_UploadImage_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Static_UploadFile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UploadRequestMessage)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StaticServer).UploadFile(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/svc.infra.static.Static/UploadFile",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StaticServer).UploadFile(ctx, req.(*UploadRequestMessage))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Static_ServiceDesc is the grpc.ServiceDesc for Static service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -243,6 +275,10 @@ var Static_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UploadImage",
 			Handler:    _Static_UploadImage_Handler,
+		},
+		{
+			MethodName: "UploadFile",
+			Handler:    _Static_UploadFile_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

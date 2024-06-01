@@ -42,6 +42,7 @@ type StaticService interface {
 	UploadCover(ctx context.Context, in *UploadRequestMessage, opts ...client.CallOption) (*UploadResponseMessage, error)
 	UploadVideo(ctx context.Context, in *UploadRequestMessage, opts ...client.CallOption) (*UploadResponseMessage, error)
 	UploadImage(ctx context.Context, in *UploadRequestMessage, opts ...client.CallOption) (*UploadResponseMessage, error)
+	UploadFile(ctx context.Context, in *UploadRequestMessage, opts ...client.CallOption) (*UploadResponseMessage, error)
 }
 
 type staticService struct {
@@ -106,6 +107,16 @@ func (c *staticService) UploadImage(ctx context.Context, in *UploadRequestMessag
 	return out, nil
 }
 
+func (c *staticService) UploadFile(ctx context.Context, in *UploadRequestMessage, opts ...client.CallOption) (*UploadResponseMessage, error) {
+	req := c.c.NewRequest(c.name, "Static.UploadFile", in)
+	out := new(UploadResponseMessage)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for Static service
 
 type StaticHandler interface {
@@ -114,6 +125,7 @@ type StaticHandler interface {
 	UploadCover(context.Context, *UploadRequestMessage, *UploadResponseMessage) error
 	UploadVideo(context.Context, *UploadRequestMessage, *UploadResponseMessage) error
 	UploadImage(context.Context, *UploadRequestMessage, *UploadResponseMessage) error
+	UploadFile(context.Context, *UploadRequestMessage, *UploadResponseMessage) error
 }
 
 func RegisterStaticHandler(s server.Server, hdlr StaticHandler, opts ...server.HandlerOption) error {
@@ -123,6 +135,7 @@ func RegisterStaticHandler(s server.Server, hdlr StaticHandler, opts ...server.H
 		UploadCover(ctx context.Context, in *UploadRequestMessage, out *UploadResponseMessage) error
 		UploadVideo(ctx context.Context, in *UploadRequestMessage, out *UploadResponseMessage) error
 		UploadImage(ctx context.Context, in *UploadRequestMessage, out *UploadResponseMessage) error
+		UploadFile(ctx context.Context, in *UploadRequestMessage, out *UploadResponseMessage) error
 	}
 	type Static struct {
 		static
@@ -153,4 +166,8 @@ func (h *staticHandler) UploadVideo(ctx context.Context, in *UploadRequestMessag
 
 func (h *staticHandler) UploadImage(ctx context.Context, in *UploadRequestMessage, out *UploadResponseMessage) error {
 	return h.StaticHandler.UploadImage(ctx, in, out)
+}
+
+func (h *staticHandler) UploadFile(ctx context.Context, in *UploadRequestMessage, out *UploadResponseMessage) error {
+	return h.StaticHandler.UploadFile(ctx, in, out)
 }

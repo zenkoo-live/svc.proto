@@ -12,6 +12,7 @@ service Static {
     rpc UploadCover(UploadRequestMessage) returns (UploadResponseMessage); // 上传封面
     rpc UploadVideo(UploadRequestMessage) returns (UploadResponseMessage); // 上传视频
     rpc UploadImage(UploadRequestMessage) returns (UploadResponseMessage); // 上传图片
+    rpc UploadFile(UploadRequestMessage) returns (UploadResponseMessage); // 上传文件
 }
 
 message InitDBResp {
@@ -19,14 +20,16 @@ message InitDBResp {
 }
 
 message UploadRequestMessage {
-    string name = 1;
-    bytes binary = 2;
-    bool   pre_token = 3;
-    string bucket = 4;
-    string user_id = 5;
+    string name = 1; // 为空将会自动生成
+    bytes binary = 2; // 文件内容
+    bool   is_pre_mode = 3; // 预写模式, 返回token客户端根据这个直接上传
+    string bucket = 4; // 自定义桶
+    string user_id = 5; // 用户id
+    string merchant_id = 6; // 商户id
 }
 
 message UploadResponseMessage {
-    string path = 1;
-    string domain = 2;
+    string path     = 1; // 返回文件路径 ，如果是预写模式该值就是token 或者地址
+    string domain   = 2; // 域
+    string provider = 3; // oss 提供商
 }
