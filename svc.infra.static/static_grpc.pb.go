@@ -104,7 +104,7 @@ func (c *staticClient) UploadStreamFile(ctx context.Context, opts ...grpc.CallOp
 }
 
 type Static_UploadStreamFileClient interface {
-	Send(*UploadRequestMessage) error
+	Send(*UploadStreamRequestMessage) error
 	CloseAndRecv() (*UploadResponseMessage, error)
 	grpc.ClientStream
 }
@@ -113,7 +113,7 @@ type staticUploadStreamFileClient struct {
 	grpc.ClientStream
 }
 
-func (x *staticUploadStreamFileClient) Send(m *UploadRequestMessage) error {
+func (x *staticUploadStreamFileClient) Send(m *UploadStreamRequestMessage) error {
 	return x.ClientStream.SendMsg(m)
 }
 
@@ -294,7 +294,7 @@ func _Static_UploadStreamFile_Handler(srv interface{}, stream grpc.ServerStream)
 
 type Static_UploadStreamFileServer interface {
 	SendAndClose(*UploadResponseMessage) error
-	Recv() (*UploadRequestMessage, error)
+	Recv() (*UploadStreamRequestMessage, error)
 	grpc.ServerStream
 }
 
@@ -306,8 +306,8 @@ func (x *staticUploadStreamFileServer) SendAndClose(m *UploadResponseMessage) er
 	return x.ServerStream.SendMsg(m)
 }
 
-func (x *staticUploadStreamFileServer) Recv() (*UploadRequestMessage, error) {
-	m := new(UploadRequestMessage)
+func (x *staticUploadStreamFileServer) Recv() (*UploadStreamRequestMessage, error) {
+	m := new(UploadStreamRequestMessage)
 	if err := x.ServerStream.RecvMsg(m); err != nil {
 		return nil, err
 	}

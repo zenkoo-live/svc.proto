@@ -13,7 +13,7 @@ service Static {
     rpc UploadVideo(UploadRequestMessage) returns (UploadResponseMessage); // 上传视频
     rpc UploadImage(UploadRequestMessage) returns (UploadResponseMessage); // 上传图片
     rpc UploadFile(UploadRequestMessage) returns (UploadResponseMessage); // 上传文件
-    rpc UploadStreamFile(stream UploadRequestMessage) returns (UploadResponseMessage); // 流式上传文件
+    rpc UploadStreamFile(stream UploadStreamRequestMessage) returns (UploadResponseMessage); // 流式上传文件
 }
 
 message InitDBResp {

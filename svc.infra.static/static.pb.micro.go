@@ -119,7 +119,7 @@ func (c *staticService) UploadFile(ctx context.Context, in *UploadRequestMessage
 }
 
 func (c *staticService) UploadStreamFile(ctx context.Context, opts ...client.CallOption) (Static_UploadStreamFileService, error) {
-	req := c.c.NewRequest(c.name, "Static.UploadStreamFile", &UploadRequestMessage{})
+	req := c.c.NewRequest(c.name, "Static.UploadStreamFile", &UploadStreamRequestMessage{})
 	stream, err := c.c.Stream(ctx, req, opts...)
 	if err != nil {
 		return nil, err
@@ -133,7 +133,7 @@ type Static_UploadStreamFileService interface {
 	RecvMsg(interface{}) error
 	CloseSend() error
 	Close() error
-	Send(*UploadRequestMessage) error
+	Send(*UploadStreamRequestMessage) error
 }
 
 type staticServiceUploadStreamFile struct {
@@ -160,7 +160,7 @@ func (x *staticServiceUploadStreamFile) RecvMsg(m interface{}) error {
 	return x.stream.Recv(m)
 }
 
-func (x *staticServiceUploadStreamFile) Send(m *UploadRequestMessage) error {
+func (x *staticServiceUploadStreamFile) Send(m *UploadStreamRequestMessage) error {
 	return x.stream.Send(m)
 }
 
@@ -230,7 +230,7 @@ type Static_UploadStreamFileStream interface {
 	SendMsg(interface{}) error
 	RecvMsg(interface{}) error
 	Close() error
-	Recv() (*UploadRequestMessage, error)
+	Recv() (*UploadStreamRequestMessage, error)
 }
 
 type staticUploadStreamFileStream struct {
@@ -253,8 +253,8 @@ func (x *staticUploadStreamFileStream) RecvMsg(m interface{}) error {
 	return x.stream.Recv(m)
 }
 
-func (x *staticUploadStreamFileStream) Recv() (*UploadRequestMessage, error) {
-	m := new(UploadRequestMessage)
+func (x *staticUploadStreamFileStream) Recv() (*UploadStreamRequestMessage, error) {
+	m := new(UploadStreamRequestMessage)
 	if err := x.stream.Recv(m); err != nil {
 		return nil, err
 	}
