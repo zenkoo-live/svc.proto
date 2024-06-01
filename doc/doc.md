@@ -91,8 +91,10 @@
   
 - [svc.infra.static/static.proto](#svc-infra-static_static-proto)
     - [InitDBResp](#svc-infra-static-InitDBResp)
+    - [StreamRequestInfo](#svc-infra-static-StreamRequestInfo)
     - [UploadRequestMessage](#svc-infra-static-UploadRequestMessage)
     - [UploadResponseMessage](#svc-infra-static-UploadResponseMessage)
+    - [UploadStreamRequestMessage](#svc-infra-static-UploadStreamRequestMessage)
   
     - [Static](#svc-infra-static-Static)
   
@@ -1752,6 +1754,24 @@ Models
 
 
 
+<a name="svc-infra-static-StreamRequestInfo"></a>
+
+### StreamRequestInfo
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | 为空将会自动生成 |
+| bucket | [string](#string) |  | 自定义桶 |
+| user_id | [string](#string) |  | 用户id |
+| merchant_id | [string](#string) |  | 商户id |
+
+
+
+
+
+
 <a name="svc-infra-static-UploadRequestMessage"></a>
 
 ### UploadRequestMessage
@@ -1760,11 +1780,12 @@ Models
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  |  |
-| binary | [bytes](#bytes) |  |  |
-| pre_token | [bool](#bool) |  |  |
-| bucket | [string](#string) |  |  |
-| user_id | [string](#string) |  |  |
+| name | [string](#string) |  | 为空将会自动生成 |
+| binary | [bytes](#bytes) |  | 文件内容 |
+| is_pre_mode | [bool](#bool) |  | 预写模式, 返回token客户端根据这个直接上传 |
+| bucket | [string](#string) |  | 自定义桶 |
+| user_id | [string](#string) |  | 用户id |
+| merchant_id | [string](#string) |  | 商户id |
 
 
 
@@ -1779,8 +1800,25 @@ Models
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| path | [string](#string) |  |  |
-| domain | [string](#string) |  |  |
+| path | [string](#string) |  | 返回文件路径 ，如果是预写模式该值就是token 或者地址 |
+| domain | [string](#string) |  | 域 |
+| provider | [string](#string) |  | oss 提供商 |
+
+
+
+
+
+
+<a name="svc-infra-static-UploadStreamRequestMessage"></a>
+
+### UploadStreamRequestMessage
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| info | [StreamRequestInfo](#svc-infra-static-StreamRequestInfo) |  |  |
+| binary | [bytes](#bytes) |  |  |
 
 
 
@@ -1805,6 +1843,8 @@ Models
 | UploadCover | [UploadRequestMessage](#svc-infra-static-UploadRequestMessage) | [UploadResponseMessage](#svc-infra-static-UploadResponseMessage) | 上传封面 |
 | UploadVideo | [UploadRequestMessage](#svc-infra-static-UploadRequestMessage) | [UploadResponseMessage](#svc-infra-static-UploadResponseMessage) | 上传视频 |
 | UploadImage | [UploadRequestMessage](#svc-infra-static-UploadRequestMessage) | [UploadResponseMessage](#svc-infra-static-UploadResponseMessage) | 上传图片 |
+| UploadFile | [UploadRequestMessage](#svc-infra-static-UploadRequestMessage) | [UploadResponseMessage](#svc-infra-static-UploadResponseMessage) | 上传文件 |
+| UploadStreamFile | [UploadStreamRequestMessage](#svc-infra-static-UploadStreamRequestMessage) stream | [UploadResponseMessage](#svc-infra-static-UploadResponseMessage) | 流式上传文件 |
 
  
 
@@ -4858,10 +4898,12 @@ Room 房间
 | relation_type | [RelationType](#svc-biz-relation-RelationType) |  | 关系类型 |
 | member_id | [string](#string) |  | 成员（名单属于谁） |
 | r_member_id | [string](#string) |  | 产生关系的成员（名单内有谁；当为ip或者设备号时不是uuid格式） |
+| build_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 建立关系时间 |
 | expire_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 过期时间（可无，为空则永久有效） |
 | operator_id | [string](#string) |  | 操作人 |
 | remark | [string](#string) |  | 备注 |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+| updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 更新时间 |
 
 
 

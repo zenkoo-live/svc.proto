@@ -4,6 +4,7 @@ go 1.22.3
 
 require (
 	github.com/go-micro/plugins/v4/client/grpc v1.2.1
+	github.com/google/uuid v1.5.0
 	github.com/zenkoo-live/svc.base v0.0.0-20240522172942-8d2cd7e3ad61
 	go-micro.dev/v4 v4.10.2
 	golang.org/x/text v0.14.0
@@ -66,7 +67,6 @@ require (
 	github.com/golang-sql/sqlexp v0.1.0 // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/golang/snappy v0.0.4 // indirect
-	github.com/google/uuid v1.5.0 // indirect
 	github.com/gorilla/handlers v1.5.1 // indirect
 	github.com/hashicorp/consul/api v1.9.0 // indirect
 	github.com/hashicorp/go-cleanhttp v0.5.1 // indirect

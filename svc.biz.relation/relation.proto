@@ -28,10 +28,13 @@ message RelationInfo {
     RelationType relation_type = 1; // 关系类型
     string member_id = 2; // 成员（名单属于谁）
     string r_member_id = 3; // 产生关系的成员（名单内有谁；当为ip或者设备号时不是uuid格式）
-    google.protobuf.Timestamp expire_time = 4; // 过期时间（可无，为空则永久有效）
-    string operator_id = 5; // 操作人
-    string remark = 6; // 备注
+    google.protobuf.Timestamp build_at = 4; // 建立关系时间（默认会按照此字段排序）
+    google.protobuf.Timestamp expire_time = 5; // 过期时间（可无，为空则永久有效）
+    string operator_id = 6; // 操作人
+    string remark = 7; // 备注
+
     google.protobuf.Timestamp created_at = 101; // 创建时间
+    google.protobuf.Timestamp updated_at = 102; // 更新时间
 }
 
 message RelationAddReq {
