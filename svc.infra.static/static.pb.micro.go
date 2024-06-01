@@ -43,6 +43,7 @@ type StaticService interface {
 	UploadVideo(ctx context.Context, in *UploadRequestMessage, opts ...client.CallOption) (*UploadResponseMessage, error)
 	UploadImage(ctx context.Context, in *UploadRequestMessage, opts ...client.CallOption) (*UploadResponseMessage, error)
 	UploadFile(ctx context.Context, in *UploadRequestMessage, opts ...client.CallOption) (*UploadResponseMessage, error)
+	UploadStreamFile(ctx context.Context, opts ...client.CallOption) (Static_UploadStreamFileService, error)
 }
 
 type staticService struct {
@@ -117,6 +118,52 @@ func (c *staticService) UploadFile(ctx context.Context, in *UploadRequestMessage
 	return out, nil
 }
 
+func (c *staticService) UploadStreamFile(ctx context.Context, opts ...client.CallOption) (Static_UploadStreamFileService, error) {
+	req := c.c.NewRequest(c.name, "Static.UploadStreamFile", &UploadRequestMessage{})
+	stream, err := c.c.Stream(ctx, req, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return &staticServiceUploadStreamFile{stream}, nil
+}
+
+type Static_UploadStreamFileService interface {
+	Context() context.Context
+	SendMsg(interface{}) error
+	RecvMsg(interface{}) error
+	CloseSend() error
+	Close() error
+	Send(*UploadRequestMessage) error
+}
+
+type staticServiceUploadStreamFile struct {
+	stream client.Stream
+}
+
+func (x *staticServiceUploadStreamFile) CloseSend() error {
+	return x.stream.CloseSend()
+}
+
+func (x *staticServiceUploadStreamFile) Close() error {
+	return x.stream.Close()
+}
+
+func (x *staticServiceUploadStreamFile) Context() context.Context {
+	return x.stream.Context()
+}
+
+func (x *staticServiceUploadStreamFile) SendMsg(m interface{}) error {
+	return x.stream.Send(m)
+}
+
+func (x *staticServiceUploadStreamFile) RecvMsg(m interface{}) error {
+	return x.stream.Recv(m)
+}
+
+func (x *staticServiceUploadStreamFile) Send(m *UploadRequestMessage) error {
+	return x.stream.Send(m)
+}
+
 // Server API for Static service
 
 type StaticHandler interface {
@@ -126,6 +173,7 @@ type StaticHandler interface {
 	UploadVideo(context.Context, *UploadRequestMessage, *UploadResponseMessage) error
 	UploadImage(context.Context, *UploadRequestMessage, *UploadResponseMessage) error
 	UploadFile(context.Context, *UploadRequestMessage, *UploadResponseMessage) error
+	UploadStreamFile(context.Context, Static_UploadStreamFileStream) error
 }
 
 func RegisterStaticHandler(s server.Server, hdlr StaticHandler, opts ...server.HandlerOption) error {
@@ -136,6 +184,7 @@ func RegisterStaticHandler(s server.Server, hdlr StaticHandler, opts ...server.H
 		UploadVideo(ctx context.Context, in *UploadRequestMessage, out *UploadResponseMessage) error
 		UploadImage(ctx context.Context, in *UploadRequestMessage, out *UploadResponseMessage) error
 		UploadFile(ctx context.Context, in *UploadRequestMessage, out *UploadResponseMessage) error
+		UploadStreamFile(ctx context.Context, stream server.Stream) error
 	}
 	type Static struct {
 		static
@@ -170,4 +219,44 @@ func (h *staticHandler) UploadImage(ctx context.Context, in *UploadRequestMessag
 
 func (h *staticHandler) UploadFile(ctx context.Context, in *UploadRequestMessage, out *UploadResponseMessage) error {
 	return h.StaticHandler.UploadFile(ctx, in, out)
+}
+
+func (h *staticHandler) UploadStreamFile(ctx context.Context, stream server.Stream) error {
+	return h.StaticHandler.UploadStreamFile(ctx, &staticUploadStreamFileStream{stream})
+}
+
+type Static_UploadStreamFileStream interface {
+	Context() context.Context
+	SendMsg(interface{}) error
+	RecvMsg(interface{}) error
+	Close() error
+	Recv() (*UploadRequestMessage, error)
+}
+
+type staticUploadStreamFileStream struct {
+	stream server.Stream
+}
+
+func (x *staticUploadStreamFileStream) Close() error {
+	return x.stream.Close()
+}
+
+func (x *staticUploadStreamFileStream) Context() context.Context {
+	return x.stream.Context()
+}
+
+func (x *staticUploadStreamFileStream) SendMsg(m interface{}) error {
+	return x.stream.Send(m)
+}
+
+func (x *staticUploadStreamFileStream) RecvMsg(m interface{}) error {
+	return x.stream.Recv(m)
+}
+
+func (x *staticUploadStreamFileStream) Recv() (*UploadRequestMessage, error) {
+	m := new(UploadRequestMessage)
+	if err := x.stream.Recv(m); err != nil {
+		return nil, err
+	}
+	return m, nil
 }

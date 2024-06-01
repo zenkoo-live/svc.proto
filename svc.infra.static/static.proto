@@ -13,6 +13,7 @@ service Static {
     rpc UploadVideo(UploadRequestMessage) returns (UploadResponseMessage); // 上传视频
     rpc UploadImage(UploadRequestMessage) returns (UploadResponseMessage); // 上传图片
     rpc UploadFile(UploadRequestMessage) returns (UploadResponseMessage); // 上传文件
+    rpc UploadStreamFile(stream UploadRequestMessage) returns (UploadResponseMessage); // 流式上传文件
 }
 
 message InitDBResp {
@@ -27,6 +28,21 @@ message UploadRequestMessage {
     string user_id = 5; // 用户id
     string merchant_id = 6; // 商户id
 }
+
+message StreamRequestInfo {
+    string name = 1; // 为空将会自动生成
+    string bucket = 2; // 自定义桶
+    string user_id = 3; // 用户id
+    string merchant_id = 4; // 商户id
+}
+
+message UploadStreamRequestMessage {
+    oneof data {
+        StreamRequestInfo info = 1;
+        bytes binary = 2;
+    };
+}
+
 
 message UploadResponseMessage {
     string path     = 1; // 返回文件路径 ，如果是预写模式该值就是token 或者地址
