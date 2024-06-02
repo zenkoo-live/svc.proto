@@ -2,8 +2,8 @@ syntax = "proto3";
 
 package svc.biz.asset;
 
-import "google/protobuf/field_mask.proto";
 import "google/protobuf/timestamp.proto";
+import "third_party/buf/validate/validate.proto";
 
 option go_package="./svc.biz.asset;asset";
 
@@ -72,28 +72,28 @@ message ValueChange {
 
 // 余额 money-----------------
 message GetUserMoneyReq {
-  string merchant_id = 1;
-  string uid = 3;
+  string merchant_id = 1 [(buf.validate.field) = {string: {uuid: true}}];
+  string uid = 3 [(buf.validate.field) = {string: {uuid: true}}];
 }
 message GetUserMoneyResp {
   int64 value = 1;
 }
 message GetUserMoneyMultiReq {
-  string merchant_id = 1;
-  repeated string uids = 3;
+  string merchant_id = 1 [(buf.validate.field) = {string: {uuid: true}}];
+  repeated string uids = 3 [(buf.validate.field).repeated = {unique:true,items:{string: {uuid: true}}}];
 }
 message GetUserMoneyMultiResp {
   string merchant_id = 1;
   map<string,int64> value_map  = 3; // uid->value
 }
 message IncrUserMoneyReq {
-  string merchant_id = 1;
-  string uid = 3;
-  int64 value = 4;
-  int64 trans_type = 5; // 交易类别
-  string trade_id = 6;// 业务方交易id,业务方保证唯一,支持幂等
-  string summary = 7;//摘要,json 实际会做格式和核心字段校验
-  google.protobuf.Timestamp trans_time = 8; // 业务时间
+  string merchant_id = 1 [(buf.validate.field) = {string: {uuid: true}}];
+  string uid = 3 [(buf.validate.field) = {string: {uuid: true}}];
+  int64 value = 4 [(buf.validate.field).int64 = {gte:0}];
+  int64 trans_type = 5 ; // 交易类别
+  string trade_id = 6 [(buf.validate.field) = {string: {uuid: true}}];// 业务方交易id,业务方保证唯一,支持幂等
+  string summary = 7 ;//摘要,json 实际会做格式和核心字段校验
+  google.protobuf.Timestamp trans_time = 8 [(buf.validate.field)= {required: true}]; // 业务时间
 }
 message DecrUserMoneyReq {
   string merchant_id = 1;
@@ -149,7 +149,7 @@ message UserCoinValue {
   int64 limited_value = 2;// 低权限余额
 }
 message GetUserCoinReq {
-  string uid = 3;
+  string uid = 3 [(buf.validate.field) = {string: {uuid: true}}];
 }
 message GetUserCoinResp {
   UserCoinValue value = 1;// 余额
@@ -180,10 +180,12 @@ message DecrUserCoinReq {
 message ChangeUserCoinResp {
   string uid = 3;
   UserCoinValue new_value = 4;
+  UserCoinValue change_value = 9;
   string trade_id = 5;// 业务方交易id
   string detail_id = 6;// 明细id
   int64 serial_number = 7;// 流水号,单账户连续自增
   google.protobuf.Timestamp trans_time = 8; // 业务时间
+  int64 trans_direction = 10; // 交易方向 1 增加 2 减少
 }
 message ListUserCoinDetailReq {
   string uid = 3;
@@ -318,10 +320,12 @@ message DecrStreamerCoinReq {
 message ChangeStreamerCoinResp {
   string streamer_id = 3;
   StreamerCoinValue new_value = 4;
+  StreamerCoinValue change_value = 9;
   string trade_id = 5;// 业务方交易id
   string detail_id = 6;// 明细id
   int64 serial_number = 7;// 流水号,单账户连续自增
   google.protobuf.Timestamp trans_time = 8; // 业务时间
+  int64 trans_direction = 10; // 交易方向 1 增加 2 减少
 }
 message ListStreamerCoinDetailReq {
   string streamer_id = 3;
@@ -456,10 +460,12 @@ message DecrUnionCoinReq {
 message ChangeUnionCoinResp {
   string union_id = 3;
   UnionCoinValue new_value = 4;
+  UnionCoinValue change_value = 9;
   string trade_id = 5;// 业务方交易id
   string detail_id = 6;// 明细id
   int64 serial_number = 7;// 流水号,单账户连续自增
   google.protobuf.Timestamp trans_time = 8; // 业务时间
+  int64 trans_direction = 10; // 交易方向 1 增加 2 减少
 }
 message ListUnionCoinDetailReq {
   string union_id = 3;
@@ -529,10 +535,12 @@ message DecrMerchantCoinReq {
 message ChangeMerchantCoinResp {
   string merchant_id = 1;
   MerchantCoinValue new_value = 4;
+  MerchantCoinValue change_value = 9;
   string trade_id = 5;// 业务方交易id
   string detail_id = 6;// 明细id
   int64 serial_number = 7;// 流水号,单账户连续自增
   google.protobuf.Timestamp trans_time = 8; // 业务时间
+  int64 trans_direction = 10; // 交易方向 1 增加 2 减少
 }
 message ListMerchantCoinDetailReq {
   string merchant_id = 1;

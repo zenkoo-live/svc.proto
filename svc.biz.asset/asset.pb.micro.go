@@ -4,9 +4,9 @@
 package asset
 
 import (
+	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	fmt "fmt"
 	proto "google.golang.org/protobuf/proto"
-	_ "google.golang.org/protobuf/types/known/fieldmaskpb"
 	_ "google.golang.org/protobuf/types/known/timestamppb"
 	math "math"
 )

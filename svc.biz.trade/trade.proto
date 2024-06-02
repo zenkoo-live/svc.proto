@@ -2,7 +2,6 @@ syntax = "proto3";
 
 package svc.biz.trade;
 
-import "google/protobuf/field_mask.proto";
 import "google/protobuf/timestamp.proto";
 
 option go_package="./svc.biz.trade;trade";
@@ -42,6 +41,11 @@ message TradeResult {
   UserCoinValue value = 1;
   int64 serial_number = 2;
 }
+
+message MoneyResult {
+  int64 value = 1;
+  int64 serial_number = 2;
+}
 message UserInfo {
   string merchant_id = 1;
   string app_id = 2;
@@ -63,9 +67,41 @@ message GiftInfo {
   string gift_id = 1;
   string gift_name = 2;
   int64 gift_type = 3;
-  int32 price = 6;
-  string num = 7;
+  int64 price = 6;
+  int64 num = 7;
   string icon = 8;
+}
+message LiveTicketInfo {
+  int64 price = 6;
+}
+message LiveDurationFeeInfo {
+  int64 price = 6;
+}
+message JoinAnchorFansGroupInfo {
+  int64 price = 6;
+}
+message PayBulletChatInfo {
+  int64 price = 6;
+}
+message VipActivateInfo {
+  int64 price = 6;
+}
+message VipExtendInfo {
+  int64 price = 6;
+}
+message VipUpgradeInfo {
+  int64 price = 6;
+}
+message BuyRideInfo {
+  int64 price = 6;
+}
+message BuyLuckyIdInfo {
+  int64 price = 6;
+}
+message MoneyExchangeCoinInfo {
+  int64 money_amount = 1;
+  int64 coin_amount = 2;
+  int64 exchange_rate = 3;
 }
 message UserCoinValue {// 总余额=value+limited_value
   int64 value = 1;// 余额
@@ -75,7 +111,7 @@ message UserCoinValue {// 总余额=value+limited_value
 // end ------------公共参数--------------
 
 message SendGiftInLiveReq {
-  TradeInfo trade_info = 1;
+  TradeInfo trade_info = 1 ;
   UserInfo sender = 2;
   UserInfo receiver = 3;
   GiftInfo gift = 4;
@@ -88,6 +124,7 @@ message BuyLiveTicketReq {
   TradeInfo trade_info = 1;
   UserInfo buyer = 2;
   LiveInfo live_info = 4;
+  LiveTicketInfo ticket = 5;
 }
 message BuyLiveTicketResp {
   TradeResult trade_result = 1;
@@ -96,6 +133,7 @@ message PayLiveDurationFeeReq {
   TradeInfo trade_info = 1;
   UserInfo buyer = 2;
   LiveInfo live_info = 4;
+  LiveDurationFeeInfo duration_fee = 5;
 }
 message PayLiveDurationFeeResp {
   TradeResult trade_result = 1;
@@ -104,6 +142,7 @@ message JoinAnchorFansGroupReq {
   TradeInfo trade_info = 1;
   UserInfo buyer = 2;
   LiveInfo live_info = 4;
+  JoinAnchorFansGroupInfo fans_group = 5;
 }
 message JoinAnchorFansGroupResp {
   TradeResult trade_result = 1;
@@ -112,6 +151,7 @@ message PayBulletChatReq {
   TradeInfo trade_info = 1;
   UserInfo buyer = 2;
   LiveInfo live_info = 4;
+  PayBulletChatInfo bullet_chat = 5;
 }
 message PayBulletChatResp {
   TradeResult trade_result = 1;
@@ -119,6 +159,7 @@ message PayBulletChatResp {
 message VipActivateReq {
   TradeInfo trade_info = 1;
   UserInfo buyer = 2;
+  VipActivateInfo vip = 4;
 }
 message VipActivateResp {
   TradeResult trade_result = 1;
@@ -126,6 +167,7 @@ message VipActivateResp {
 message VipExtendReq {
   TradeInfo trade_info = 1;
   UserInfo buyer = 2;
+  VipExtendInfo vip = 4;
 }
 message VipExtendResp {
   TradeResult trade_result = 1;
@@ -133,6 +175,7 @@ message VipExtendResp {
 message VipUpgradeReq {
   TradeInfo trade_info = 1;
   UserInfo buyer = 2;
+  VipUpgradeInfo vip = 4;
 }
 message VipUpgradeResp {
   TradeResult trade_result = 1;
@@ -140,6 +183,7 @@ message VipUpgradeResp {
 message BuyRideReq {
   TradeInfo trade_info = 1;
   UserInfo buyer = 2;
+  BuyRideInfo ride = 4;
 }
 message BuyRideResp {
   TradeResult trade_result = 1;
@@ -147,6 +191,7 @@ message BuyRideResp {
 message BuyLuckyIdReq {
   TradeInfo trade_info = 1;
   UserInfo buyer = 2;
+  BuyLuckyIdInfo lucky_id = 4;
 }
 message BuyLuckyIdResp {
   TradeResult trade_result = 1;
@@ -156,7 +201,7 @@ message MoneyRechargeReq { // 待讨论
     string pay_channel = 1;
     string pay_method = 2;
     string currency_code = 3; // 币种代码 CNY
-    string amount = 4; // 币种金额
+    int64 amount = 5; // 币种金额
   }
   TradeInfo trade_info = 1;
   UserInfo user = 2;
@@ -165,7 +210,7 @@ message MoneyRechargeReq { // 待讨论
   string attach = 5; // 透传的附加信息,等待约定
 }
 message MoneyRechargeResp {
-  TradeResult trade_result = 1;
+  MoneyResult money_result = 1;
 }
 message MoneyWithdrawReq {
   TradeInfo trade_info = 1;
@@ -173,12 +218,13 @@ message MoneyWithdrawReq {
   int64 withdraw_amount = 3; // 提现金额
 }
 message MoneyWithdrawResp {
-  TradeResult trade_result = 1;
+  MoneyResult money_result = 1;
 }
 message MoneyExchangeCoinReq {
   TradeInfo trade_info = 1;
   UserInfo user = 2;
+  MoneyExchangeCoinInfo exchange_info = 3;
 }
 message MoneyExchangeCoinResp {
-  TradeResult trade_result = 1;
+  MoneyResult money_result = 1;
 }
