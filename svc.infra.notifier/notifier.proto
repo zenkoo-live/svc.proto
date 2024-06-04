@@ -86,7 +86,7 @@ message SmsTemplateListRequest {
 message SmsTemplate {
   int64 id = 1;
   string merchant_id = 2;
-  string channel_config_id = 3;
+  string channel_id = 3;
   SmsChannel sms_channel = 4;
   string sign_name = 5;
   string code_key = 6;
@@ -108,7 +108,7 @@ message SmsTemplateListResponse {
 
 message CreatedSmsTemplateRequest {
   string merchant_id = 1;
-  string channel_config_id = 2;
+  string channel_id = 2;
   string sign_name = 3;
   string code_key = 4;
   // 没有绑定，需要绑定外部发送
@@ -125,7 +125,7 @@ message CreatedSmsTemplateRequest {
 // UpdatedSmsTemplateRequest 绑定操作
 message UpdatedSmsTemplateRequest {
   int64 id = 1;
-  string channel_config_id = 2;
+  string channel_id = 2;
   string external_code_key = 3;
   string  remark = 4;
   string template_name = 6;
