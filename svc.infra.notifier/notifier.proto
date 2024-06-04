@@ -78,7 +78,7 @@ message SmsChannelDeletedRequest {
 message SmsTemplateListRequest {
   int64 page = 1;
   int64 size = 2;
-  string channel_config_id = 3;
+  string channel_id = 3;
   google.protobuf.Timestamp start_time = 4;
   google.protobuf.Timestamp end_time = 5;
 }
