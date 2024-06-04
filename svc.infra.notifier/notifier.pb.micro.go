@@ -41,14 +41,14 @@ type NotifierService interface {
 	InitDB(ctx context.Context, in *emptypb.Empty, opts ...client.CallOption) (*InitDBResp, error)
 	// sms channel
 	GetSmsChannelList(ctx context.Context, in *SmsChannelListRequest, opts ...client.CallOption) (*SmsChannelListResponse, error)
-	CreatedSmsChannel(ctx context.Context, in *SmsChannelCreatedRequest, opts ...client.CallOption) (*CommonResponse, error)
-	UpdatedSmsChannel(ctx context.Context, in *SmsChannelUpdatedRequest, opts ...client.CallOption) (*CommonResponse, error)
-	DeletedSmsChannel(ctx context.Context, in *SmsChannelDeletedRequest, opts ...client.CallOption) (*CommonResponse, error)
+	CreatedSmsChannel(ctx context.Context, in *CreatedSmsChannelRequest, opts ...client.CallOption) (*CommonResponse, error)
+	UpdatedSmsChannel(ctx context.Context, in *UpdatedSmsChannelRequest, opts ...client.CallOption) (*CommonResponse, error)
+	DeletedSmsChannel(ctx context.Context, in *DeletedSmsChannelRequest, opts ...client.CallOption) (*CommonResponse, error)
 	// sms template
 	GetSmsTemplateList(ctx context.Context, in *SmsTemplateListRequest, opts ...client.CallOption) (*SmsTemplateListResponse, error)
-	CreatedSmsTemplate(ctx context.Context, in *SmsChannelCreatedRequest, opts ...client.CallOption) (*CommonResponse, error)
-	UpdateSmsTemplate(ctx context.Context, in *SmsChannelUpdatedRequest, opts ...client.CallOption) (*CommonResponse, error)
-	DeletedSmsTemplate(ctx context.Context, in *SmsChannelDeletedRequest, opts ...client.CallOption) (*CommonResponse, error)
+	CreatedSmsTemplate(ctx context.Context, in *CreatedSmsTemplateRequest, opts ...client.CallOption) (*CommonResponse, error)
+	UpdateSmsTemplate(ctx context.Context, in *UpdatedSmsTemplateRequest, opts ...client.CallOption) (*CommonResponse, error)
+	DeletedSmsTemplate(ctx context.Context, in *DeletedSmsTemplateRequest, opts ...client.CallOption) (*CommonResponse, error)
 	// sms biz send
 	GetSmsBizLogList(ctx context.Context, in *SmsBizSendLogListRequest, opts ...client.CallOption) (*SmsBizSendLogListResponse, error)
 	CreatedSmsBizLog(ctx context.Context, in *CreatedSmsBizSendLogRequest, opts ...client.CallOption) (*CommonResponse, error)
@@ -86,7 +86,7 @@ func (c *notifierService) GetSmsChannelList(ctx context.Context, in *SmsChannelL
 	return out, nil
 }
 
-func (c *notifierService) CreatedSmsChannel(ctx context.Context, in *SmsChannelCreatedRequest, opts ...client.CallOption) (*CommonResponse, error) {
+func (c *notifierService) CreatedSmsChannel(ctx context.Context, in *CreatedSmsChannelRequest, opts ...client.CallOption) (*CommonResponse, error) {
 	req := c.c.NewRequest(c.name, "Notifier.CreatedSmsChannel", in)
 	out := new(CommonResponse)
 	err := c.c.Call(ctx, req, out, opts...)
@@ -96,7 +96,7 @@ func (c *notifierService) CreatedSmsChannel(ctx context.Context, in *SmsChannelC
 	return out, nil
 }
 
-func (c *notifierService) UpdatedSmsChannel(ctx context.Context, in *SmsChannelUpdatedRequest, opts ...client.CallOption) (*CommonResponse, error) {
+func (c *notifierService) UpdatedSmsChannel(ctx context.Context, in *UpdatedSmsChannelRequest, opts ...client.CallOption) (*CommonResponse, error) {
 	req := c.c.NewRequest(c.name, "Notifier.UpdatedSmsChannel", in)
 	out := new(CommonResponse)
 	err := c.c.Call(ctx, req, out, opts...)
@@ -106,7 +106,7 @@ func (c *notifierService) UpdatedSmsChannel(ctx context.Context, in *SmsChannelU
 	return out, nil
 }
 
-func (c *notifierService) DeletedSmsChannel(ctx context.Context, in *SmsChannelDeletedRequest, opts ...client.CallOption) (*CommonResponse, error) {
+func (c *notifierService) DeletedSmsChannel(ctx context.Context, in *DeletedSmsChannelRequest, opts ...client.CallOption) (*CommonResponse, error) {
 	req := c.c.NewRequest(c.name, "Notifier.DeletedSmsChannel", in)
 	out := new(CommonResponse)
 	err := c.c.Call(ctx, req, out, opts...)
@@ -126,7 +126,7 @@ func (c *notifierService) GetSmsTemplateList(ctx context.Context, in *SmsTemplat
 	return out, nil
 }
 
-func (c *notifierService) CreatedSmsTemplate(ctx context.Context, in *SmsChannelCreatedRequest, opts ...client.CallOption) (*CommonResponse, error) {
+func (c *notifierService) CreatedSmsTemplate(ctx context.Context, in *CreatedSmsTemplateRequest, opts ...client.CallOption) (*CommonResponse, error) {
 	req := c.c.NewRequest(c.name, "Notifier.CreatedSmsTemplate", in)
 	out := new(CommonResponse)
 	err := c.c.Call(ctx, req, out, opts...)
@@ -136,7 +136,7 @@ func (c *notifierService) CreatedSmsTemplate(ctx context.Context, in *SmsChannel
 	return out, nil
 }
 
-func (c *notifierService) UpdateSmsTemplate(ctx context.Context, in *SmsChannelUpdatedRequest, opts ...client.CallOption) (*CommonResponse, error) {
+func (c *notifierService) UpdateSmsTemplate(ctx context.Context, in *UpdatedSmsTemplateRequest, opts ...client.CallOption) (*CommonResponse, error) {
 	req := c.c.NewRequest(c.name, "Notifier.UpdateSmsTemplate", in)
 	out := new(CommonResponse)
 	err := c.c.Call(ctx, req, out, opts...)
@@ -146,7 +146,7 @@ func (c *notifierService) UpdateSmsTemplate(ctx context.Context, in *SmsChannelU
 	return out, nil
 }
 
-func (c *notifierService) DeletedSmsTemplate(ctx context.Context, in *SmsChannelDeletedRequest, opts ...client.CallOption) (*CommonResponse, error) {
+func (c *notifierService) DeletedSmsTemplate(ctx context.Context, in *DeletedSmsTemplateRequest, opts ...client.CallOption) (*CommonResponse, error) {
 	req := c.c.NewRequest(c.name, "Notifier.DeletedSmsTemplate", in)
 	out := new(CommonResponse)
 	err := c.c.Call(ctx, req, out, opts...)
@@ -182,14 +182,14 @@ type NotifierHandler interface {
 	InitDB(context.Context, *emptypb.Empty, *InitDBResp) error
 	// sms channel
 	GetSmsChannelList(context.Context, *SmsChannelListRequest, *SmsChannelListResponse) error
-	CreatedSmsChannel(context.Context, *SmsChannelCreatedRequest, *CommonResponse) error
-	UpdatedSmsChannel(context.Context, *SmsChannelUpdatedRequest, *CommonResponse) error
-	DeletedSmsChannel(context.Context, *SmsChannelDeletedRequest, *CommonResponse) error
+	CreatedSmsChannel(context.Context, *CreatedSmsChannelRequest, *CommonResponse) error
+	UpdatedSmsChannel(context.Context, *UpdatedSmsChannelRequest, *CommonResponse) error
+	DeletedSmsChannel(context.Context, *DeletedSmsChannelRequest, *CommonResponse) error
 	// sms template
 	GetSmsTemplateList(context.Context, *SmsTemplateListRequest, *SmsTemplateListResponse) error
-	CreatedSmsTemplate(context.Context, *SmsChannelCreatedRequest, *CommonResponse) error
-	UpdateSmsTemplate(context.Context, *SmsChannelUpdatedRequest, *CommonResponse) error
-	DeletedSmsTemplate(context.Context, *SmsChannelDeletedRequest, *CommonResponse) error
+	CreatedSmsTemplate(context.Context, *CreatedSmsTemplateRequest, *CommonResponse) error
+	UpdateSmsTemplate(context.Context, *UpdatedSmsTemplateRequest, *CommonResponse) error
+	DeletedSmsTemplate(context.Context, *DeletedSmsTemplateRequest, *CommonResponse) error
 	// sms biz send
 	GetSmsBizLogList(context.Context, *SmsBizSendLogListRequest, *SmsBizSendLogListResponse) error
 	CreatedSmsBizLog(context.Context, *CreatedSmsBizSendLogRequest, *CommonResponse) error
@@ -199,13 +199,13 @@ func RegisterNotifierHandler(s server.Server, hdlr NotifierHandler, opts ...serv
 	type notifier interface {
 		InitDB(ctx context.Context, in *emptypb.Empty, out *InitDBResp) error
 		GetSmsChannelList(ctx context.Context, in *SmsChannelListRequest, out *SmsChannelListResponse) error
-		CreatedSmsChannel(ctx context.Context, in *SmsChannelCreatedRequest, out *CommonResponse) error
-		UpdatedSmsChannel(ctx context.Context, in *SmsChannelUpdatedRequest, out *CommonResponse) error
-		DeletedSmsChannel(ctx context.Context, in *SmsChannelDeletedRequest, out *CommonResponse) error
+		CreatedSmsChannel(ctx context.Context, in *CreatedSmsChannelRequest, out *CommonResponse) error
+		UpdatedSmsChannel(ctx context.Context, in *UpdatedSmsChannelRequest, out *CommonResponse) error
+		DeletedSmsChannel(ctx context.Context, in *DeletedSmsChannelRequest, out *CommonResponse) error
 		GetSmsTemplateList(ctx context.Context, in *SmsTemplateListRequest, out *SmsTemplateListResponse) error
-		CreatedSmsTemplate(ctx context.Context, in *SmsChannelCreatedRequest, out *CommonResponse) error
-		UpdateSmsTemplate(ctx context.Context, in *SmsChannelUpdatedRequest, out *CommonResponse) error
-		DeletedSmsTemplate(ctx context.Context, in *SmsChannelDeletedRequest, out *CommonResponse) error
+		CreatedSmsTemplate(ctx context.Context, in *CreatedSmsTemplateRequest, out *CommonResponse) error
+		UpdateSmsTemplate(ctx context.Context, in *UpdatedSmsTemplateRequest, out *CommonResponse) error
+		DeletedSmsTemplate(ctx context.Context, in *DeletedSmsTemplateRequest, out *CommonResponse) error
 		GetSmsBizLogList(ctx context.Context, in *SmsBizSendLogListRequest, out *SmsBizSendLogListResponse) error
 		CreatedSmsBizLog(ctx context.Context, in *CreatedSmsBizSendLogRequest, out *CommonResponse) error
 	}
@@ -228,15 +228,15 @@ func (h *notifierHandler) GetSmsChannelList(ctx context.Context, in *SmsChannelL
 	return h.NotifierHandler.GetSmsChannelList(ctx, in, out)
 }
 
-func (h *notifierHandler) CreatedSmsChannel(ctx context.Context, in *SmsChannelCreatedRequest, out *CommonResponse) error {
+func (h *notifierHandler) CreatedSmsChannel(ctx context.Context, in *CreatedSmsChannelRequest, out *CommonResponse) error {
 	return h.NotifierHandler.CreatedSmsChannel(ctx, in, out)
 }
 
-func (h *notifierHandler) UpdatedSmsChannel(ctx context.Context, in *SmsChannelUpdatedRequest, out *CommonResponse) error {
+func (h *notifierHandler) UpdatedSmsChannel(ctx context.Context, in *UpdatedSmsChannelRequest, out *CommonResponse) error {
 	return h.NotifierHandler.UpdatedSmsChannel(ctx, in, out)
 }
 
-func (h *notifierHandler) DeletedSmsChannel(ctx context.Context, in *SmsChannelDeletedRequest, out *CommonResponse) error {
+func (h *notifierHandler) DeletedSmsChannel(ctx context.Context, in *DeletedSmsChannelRequest, out *CommonResponse) error {
 	return h.NotifierHandler.DeletedSmsChannel(ctx, in, out)
 }
 
@@ -244,15 +244,15 @@ func (h *notifierHandler) GetSmsTemplateList(ctx context.Context, in *SmsTemplat
 	return h.NotifierHandler.GetSmsTemplateList(ctx, in, out)
 }
 
-func (h *notifierHandler) CreatedSmsTemplate(ctx context.Context, in *SmsChannelCreatedRequest, out *CommonResponse) error {
+func (h *notifierHandler) CreatedSmsTemplate(ctx context.Context, in *CreatedSmsTemplateRequest, out *CommonResponse) error {
 	return h.NotifierHandler.CreatedSmsTemplate(ctx, in, out)
 }
 
-func (h *notifierHandler) UpdateSmsTemplate(ctx context.Context, in *SmsChannelUpdatedRequest, out *CommonResponse) error {
+func (h *notifierHandler) UpdateSmsTemplate(ctx context.Context, in *UpdatedSmsTemplateRequest, out *CommonResponse) error {
 	return h.NotifierHandler.UpdateSmsTemplate(ctx, in, out)
 }
 
-func (h *notifierHandler) DeletedSmsTemplate(ctx context.Context, in *SmsChannelDeletedRequest, out *CommonResponse) error {
+func (h *notifierHandler) DeletedSmsTemplate(ctx context.Context, in *DeletedSmsTemplateRequest, out *CommonResponse) error {
 	return h.NotifierHandler.DeletedSmsTemplate(ctx, in, out)
 }
 
