@@ -48,7 +48,7 @@ message SmsChannelListResponse {
   repeated SmsChannel list = 2;
 }
 
-message SmsChannelCreatedRequest {
+message CreatedSmsChannelRequest {
   string name = 1;
   int64 scope = 2;
   string merchant_id = 3;
@@ -60,7 +60,7 @@ message SmsChannelCreatedRequest {
   string creator = 9;
 }
 
-message SmsChannelUpdatedRequest {
+message UpdatedSmsChannelRequest {
   int64  id = 1;
   string name = 2;
   int64 scope = 3;
@@ -69,7 +69,7 @@ message SmsChannelUpdatedRequest {
   int32 status = 6;
 }
 
-message SmsChannelDeletedRequest {
+message DeletedSmsChannelRequest {
   int64  id = 1;
 }
 
@@ -187,14 +187,14 @@ service Notifier {
   rpc InitDB(google.protobuf.Empty) returns (InitDBResp); // 初始化数据库
   // sms channel
   rpc GetSmsChannelList(SmsChannelListRequest) returns (SmsChannelListResponse);
-  rpc CreatedSmsChannel(SmsChannelCreatedRequest) returns (CommonResponse);
-  rpc UpdatedSmsChannel(SmsChannelUpdatedRequest) returns (CommonResponse);
-  rpc DeletedSmsChannel (SmsChannelDeletedRequest) returns (CommonResponse);
+  rpc CreatedSmsChannel(CreatedSmsChannelRequest) returns (CommonResponse);
+  rpc UpdatedSmsChannel(UpdatedSmsChannelRequest) returns (CommonResponse);
+  rpc DeletedSmsChannel (DeletedSmsChannelRequest) returns (CommonResponse);
   // sms template
   rpc GetSmsTemplateList(SmsTemplateListRequest) returns (SmsTemplateListResponse);
-  rpc CreatedSmsTemplate(SmsChannelCreatedRequest) returns (CommonResponse);
-  rpc UpdateSmsTemplate(SmsChannelUpdatedRequest) returns (CommonResponse);
-  rpc DeletedSmsTemplate(SmsChannelDeletedRequest) returns (CommonResponse);
+  rpc CreatedSmsTemplate(CreatedSmsTemplateRequest) returns (CommonResponse);
+  rpc UpdateSmsTemplate(UpdatedSmsTemplateRequest) returns (CommonResponse);
+  rpc DeletedSmsTemplate(DeletedSmsTemplateRequest) returns (CommonResponse);
   // sms biz send
   rpc GetSmsBizLogList(SmsBizSendLogListRequest) returns (SmsBizSendLogListResponse);
   rpc CreatedSmsBizLog(CreatedSmsBizSendLogRequest) returns (CommonResponse);
