@@ -4920,8 +4920,10 @@ Room 房间
 | RelationTypeFollow | 1 | 关注主播 |
 | RelationTypeHistory | 2 | 观看历史 |
 | RelationTypeMuzzle | 3 | 禁言 |
-| RelationTypeBlacklistIP | 4 | ip黑名单 |
-| RelationTypeBlacklistDevice | 5 | 设备黑名单 |
+| RelationTypeBlacklistViewer | 4 | 用户黑名单 |
+| RelationTypeBlacklistStreamer | 5 | 主播黑名单 |
+| RelationTypeBlacklistIP | 6 | ip黑名单 |
+| RelationTypeBlacklistDevice | 7 | 设备黑名单 |
 
 
  
