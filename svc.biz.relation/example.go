@@ -66,6 +66,30 @@ func example() {
 		},
 	})
 
+	// 用户黑名单
+	relationClient.RelationAdd(ctx, &RelationAddReq{
+		RelationInfo: &RelationInfo{
+			RelationType: RelationType_RelationTypeBlacklistViewer,
+			MemberId:     RelationMemberPlatform,
+			RMemberId:    "被拉黑的用户id",
+			ExpireTime:   timestamppb.New(time.Now().Add(24 * time.Hour)), // 封禁24小时
+			// ExpireTime:   nil, // 永久拉黑
+			BuildTime: timestamppb.Now(),
+		},
+	})
+
+	// 主播黑名单
+	relationClient.RelationAdd(ctx, &RelationAddReq{
+		RelationInfo: &RelationInfo{
+			RelationType: RelationType_RelationTypeBlacklistStreamer,
+			MemberId:     RelationMemberPlatform,
+			RMemberId:    "被拉黑的主播id",
+			ExpireTime:   timestamppb.New(time.Now().Add(24 * time.Hour)), // 封禁24小时
+			// ExpireTime:   nil, // 永久拉黑
+			BuildTime: timestamppb.Now(),
+		},
+	})
+
 	// ip黑名单
 	relationClient.RelationAdd(ctx, &RelationAddReq{
 		RelationInfo: &RelationInfo{

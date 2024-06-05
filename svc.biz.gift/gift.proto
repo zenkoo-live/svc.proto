@@ -59,7 +59,7 @@ message GiftInfo {
     int32 combo_timeout = 8; // combo触发间隔时间
     int32 combo_showtime = 9; // combo效果展示时间
     string prize = 10; // 奖励(json字符串:{"user_exp":100, "anchor_exp":20})
-    string pack = 11; // 批量包(json字符串:[{pack:"20",desc:""},{pack:"99",desc:""}])
+    string pack = 11; // 批量包(json字符串:[{"pack":20,"desc":""},{"pack":99,"desc":""}])
     string pic = 12; // 图片资源(json字符串:{"icon":"", "icon_gif":"", "chat_icon":"", "combo_bg":"", "combo_icon":""})
     
 }
@@ -98,6 +98,8 @@ message ListAdminReq {
     GiftType type = 4; // 礼物类型
     GiftStatus status = 5; // 礼物状态
     string keyword = 6; // 关键字
+    google.protobuf.Timestamp  create_start_time = 7; // 添加开始时间
+    google.protobuf.Timestamp create_end_time = 8; // 添加结束时间
 }
 
 message ListAdminResp {
