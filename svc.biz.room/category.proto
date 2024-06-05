@@ -33,7 +33,7 @@ message CategoryInfo {
   string category_code = 5; // 代号（唯一，预留）
   string category_name = 6; // 名称
   int32 sort = 7; // 排序
-  repeated CategoryInfo childrens = 20;
+  repeated CategoryInfo childrens = 20; // 子级分类，只在tree接口返回
   google.protobuf.Timestamp created_at = 255;
   google.protobuf.Timestamp updated_at = 256;
 }
