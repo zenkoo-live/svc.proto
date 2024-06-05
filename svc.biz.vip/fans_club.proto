@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+package svc.biz.vip;
+
+import "google/protobuf/field_mask.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+option go_package="./svc.biz.vip;vip";
+
+// 粉丝团
+service FansClub {
+    // CreateFansClub 创建粉丝团
+    rpc Create (CreateReq) returns (CreateResp) {}
+    // GetFansClub 获取粉丝团
+    rpc GetByStreamerID(GetByStreamerIDReq) returns (GetFansClubResp) {}
+    // GetFansClubByName 通过名称获取粉丝团
+    rpc GetByName(GetByNameReq) returns (GetFansClubResp) {}
+    // UpdateByStreamerID 更新粉丝团
+    rpc UpdateByStreamerID (UpdateByStreamerIDReq) returns (google.protobuf.Empty) {}
+}
+
+message FansClubInfo {
+    string fans_club_id = 1;
+    string streamer_id = 2;
+    string name = 3;
+
+    google.protobuf.Timestamp created_at = 101; // 创建时间
+    google.protobuf.Timestamp updated_at = 102; // 更新时间
+}
+
+message CreateReq {
+    FansClubInfo fans_club = 1;
+}
+message CreateResp {
+    FansClubInfo fans_club = 1;
+}
+
+message GetByStreamerIDReq {
+    string streamer_id = 1;
+}
+message GetByNameReq {
+    string name = 1;
+}
+message GetFansClubResp {
+    FansClubInfo fans_club = 1;
+}
+
+message UpdateByStreamerIDReq {
+    string streamer_id = 1;
+    FansClubInfo fans_club = 2;
+    google.protobuf.FieldMask update_mask = 3;
+}

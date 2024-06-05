@@ -343,6 +343,29 @@
   
     - [Notifier](#svc-infra-notifier-Notifier)
   
+- [svc.biz.vip/fans_club_member.proto](#svc-biz-vip_fans_club_member-proto)
+    - [FansClubMemberInfo](#svc-biz-vip-FansClubMemberInfo)
+    - [GetFansClubMemberResp](#svc-biz-vip-GetFansClubMemberResp)
+    - [GetListByMemberIDReq](#svc-biz-vip-GetListByMemberIDReq)
+    - [GetListByStreamerIDReq](#svc-biz-vip-GetListByStreamerIDReq)
+    - [GetListResp](#svc-biz-vip-GetListResp)
+    - [GetReq](#svc-biz-vip-GetReq)
+    - [JoinReq](#svc-biz-vip-JoinReq)
+    - [LeaveReq](#svc-biz-vip-LeaveReq)
+  
+    - [FansClubMember](#svc-biz-vip-FansClubMember)
+  
+- [svc.biz.vip/fans_club.proto](#svc-biz-vip_fans_club-proto)
+    - [CreateReq](#svc-biz-vip-CreateReq)
+    - [CreateResp](#svc-biz-vip-CreateResp)
+    - [FansClubInfo](#svc-biz-vip-FansClubInfo)
+    - [GetByNameReq](#svc-biz-vip-GetByNameReq)
+    - [GetByStreamerIDReq](#svc-biz-vip-GetByStreamerIDReq)
+    - [GetFansClubResp](#svc-biz-vip-GetFansClubResp)
+    - [UpdateByStreamerIDReq](#svc-biz-vip-UpdateByStreamerIDReq)
+  
+    - [FansClub](#svc-biz-vip-FansClub)
+  
 - [svc.web.streamer/streamer.proto](#svc-web-streamer_streamer-proto)
     - [Streamer](#svc-web-streamer-Streamer)
   
@@ -5581,6 +5604,306 @@ Models
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
 | InitDB | [.google.protobuf.Empty](#google-protobuf-Empty) | [InitDBResp](#svc-infra-notifier-InitDBResp) | 初始化数据库 |
+
+ 
+
+
+
+<a name="svc-biz-vip_fans_club_member-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.biz.vip/fans_club_member.proto
+
+
+
+<a name="svc-biz-vip-FansClubMemberInfo"></a>
+
+### FansClubMemberInfo
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer_id | [string](#string) |  |  |
+| member_id | [string](#string) |  |  |
+| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+| updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 更新时间 |
+
+
+
+
+
+
+<a name="svc-biz-vip-GetFansClubMemberResp"></a>
+
+### GetFansClubMemberResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| fans_club_member | [FansClubMemberInfo](#svc-biz-vip-FansClubMemberInfo) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-GetListByMemberIDReq"></a>
+
+### GetListByMemberIDReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| page | [int32](#int32) |  | 页数 |
+| limit | [int32](#int32) |  | 条数 |
+| member_id | [string](#string) |  | 成员id |
+
+
+
+
+
+
+<a name="svc-biz-vip-GetListByStreamerIDReq"></a>
+
+### GetListByStreamerIDReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| page | [int32](#int32) |  | 页数 |
+| limit | [int32](#int32) |  | 条数 |
+| streamer_id | [string](#string) |  | 主播id |
+
+
+
+
+
+
+<a name="svc-biz-vip-GetListResp"></a>
+
+### GetListResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [FansClubMemberInfo](#svc-biz-vip-FansClubMemberInfo) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-GetReq"></a>
+
+### GetReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer_id | [string](#string) |  |  |
+| member_id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-JoinReq"></a>
+
+### JoinReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer_id | [string](#string) |  |  |
+| member_id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-LeaveReq"></a>
+
+### LeaveReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer_id | [string](#string) |  |  |
+| member_id | [string](#string) |  |  |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="svc-biz-vip-FansClubMember"></a>
+
+### FansClubMember
+粉丝团
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| Join | [JoinReq](#svc-biz-vip-JoinReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | Join 加入粉丝团 |
+| Leave | [LeaveReq](#svc-biz-vip-LeaveReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | Leave 离开粉丝团 |
+| Get | [GetReq](#svc-biz-vip-GetReq) | [GetFansClubMemberResp](#svc-biz-vip-GetFansClubMemberResp) | Get 获取粉丝团成员信息 |
+| GetListByStreamerID | [GetListByStreamerIDReq](#svc-biz-vip-GetListByStreamerIDReq) | [GetListResp](#svc-biz-vip-GetListResp) | GetListByStreamerID 获取主播粉丝团成员列表 |
+| GetListByMemberID | [GetListByMemberIDReq](#svc-biz-vip-GetListByMemberIDReq) | [GetListResp](#svc-biz-vip-GetListResp) | GetListByMemberID 获取用户加入的粉丝团列表 |
+
+ 
+
+
+
+<a name="svc-biz-vip_fans_club-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.biz.vip/fans_club.proto
+
+
+
+<a name="svc-biz-vip-CreateReq"></a>
+
+### CreateReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| fans_club | [FansClubInfo](#svc-biz-vip-FansClubInfo) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-CreateResp"></a>
+
+### CreateResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| fans_club | [FansClubInfo](#svc-biz-vip-FansClubInfo) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-FansClubInfo"></a>
+
+### FansClubInfo
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| fans_club_id | [string](#string) |  |  |
+| streamer_id | [string](#string) |  |  |
+| name | [string](#string) |  |  |
+| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+| updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 更新时间 |
+
+
+
+
+
+
+<a name="svc-biz-vip-GetByNameReq"></a>
+
+### GetByNameReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-GetByStreamerIDReq"></a>
+
+### GetByStreamerIDReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer_id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-GetFansClubResp"></a>
+
+### GetFansClubResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| fans_club | [FansClubInfo](#svc-biz-vip-FansClubInfo) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-UpdateByStreamerIDReq"></a>
+
+### UpdateByStreamerIDReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer_id | [string](#string) |  |  |
+| fans_club | [FansClubInfo](#svc-biz-vip-FansClubInfo) |  |  |
+| update_mask | [google.protobuf.FieldMask](#google-protobuf-FieldMask) |  |  |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="svc-biz-vip-FansClub"></a>
+
+### FansClub
+粉丝团
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| Create | [CreateReq](#svc-biz-vip-CreateReq) | [CreateResp](#svc-biz-vip-CreateResp) | CreateFansClub 创建粉丝团 |
+| GetByStreamerID | [GetByStreamerIDReq](#svc-biz-vip-GetByStreamerIDReq) | [GetFansClubResp](#svc-biz-vip-GetFansClubResp) | GetFansClub 获取粉丝团 |
+| GetByName | [GetByNameReq](#svc-biz-vip-GetByNameReq) | [GetFansClubResp](#svc-biz-vip-GetFansClubResp) | GetFansClubByName 通过名称获取粉丝团 |
+| UpdateByStreamerID | [UpdateByStreamerIDReq](#svc-biz-vip-UpdateByStreamerIDReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | UpdateByStreamerID 更新粉丝团 |
 
  
 
