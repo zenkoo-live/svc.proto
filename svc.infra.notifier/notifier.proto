@@ -182,6 +182,43 @@ message CreatedSmsBizSendLogRequest {
   string remark = 4;
 }
 
+////////////////// sms send biz ///////////////////
+// CreatedSmsSendRequest 发送短信请求
+message CreatedSmsSendRequest {
+  string merchant_id = 1;
+  string code_key = 2;
+  string mobile = 3;
+  string remark = 4;
+  string params = 5;
+  string biz_type = 6;
+  string expired_time = 7;
+}
+
+message CreatedSmsVerifyRequest {
+  string merchant_id = 1;
+  string code_key = 2;
+  string mobile = 3;
+  string code = 4;
+  string biz_type = 5;
+  string deleted = 6;
+}
+
+message GetCloudSmsTemplateRequest {
+  string merchant_id = 1;
+  string code_key = 2;
+}
+
+message GetCloudSmsTemplateResponse {
+  string code_key = 1;
+  string content = 3;
+  // 0：短信通知。
+  // 1：推广短信。
+  // 2：验证码短信。
+  // 6：国际/港澳台短信。
+  // 7：数字短信。
+  string template_name = 2;
+  string template_type = 4;
+}
 
 ///////////// service started /////////////////
 service Notifier {
@@ -199,4 +236,8 @@ service Notifier {
   // sms biz send
   rpc GetSmsBizLogList(SmsBizSendLogListRequest) returns (SmsBizSendLogListResponse);
   rpc CreatedSmsBizLog(CreatedSmsBizSendLogRequest) returns (CommonResponse);
+  // send sms operation
+  rpc CreatedSmsSend(CreatedSmsSendRequest) returns (CommonResponse);
+  rpc CreatedSmsVerify(CreatedSmsVerifyRequest) returns (CommonResponse);
+  rpc GetCloudSmsTemplate(GetCloudSmsTemplateRequest) returns (GetCloudSmsTemplateResponse);
 }

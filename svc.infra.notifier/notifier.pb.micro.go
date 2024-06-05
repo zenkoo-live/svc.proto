@@ -52,6 +52,10 @@ type NotifierService interface {
 	// sms biz send
 	GetSmsBizLogList(ctx context.Context, in *SmsBizSendLogListRequest, opts ...client.CallOption) (*SmsBizSendLogListResponse, error)
 	CreatedSmsBizLog(ctx context.Context, in *CreatedSmsBizSendLogRequest, opts ...client.CallOption) (*CommonResponse, error)
+	// send sms operation
+	CreatedSmsSend(ctx context.Context, in *CreatedSmsSendRequest, opts ...client.CallOption) (*CommonResponse, error)
+	CreatedSmsVerify(ctx context.Context, in *CreatedSmsVerifyRequest, opts ...client.CallOption) (*CommonResponse, error)
+	GetCloudSmsTemplate(ctx context.Context, in *GetCloudSmsTemplateRequest, opts ...client.CallOption) (*GetCloudSmsTemplateResponse, error)
 }
 
 type notifierService struct {
@@ -176,6 +180,36 @@ func (c *notifierService) CreatedSmsBizLog(ctx context.Context, in *CreatedSmsBi
 	return out, nil
 }
 
+func (c *notifierService) CreatedSmsSend(ctx context.Context, in *CreatedSmsSendRequest, opts ...client.CallOption) (*CommonResponse, error) {
+	req := c.c.NewRequest(c.name, "Notifier.CreatedSmsSend", in)
+	out := new(CommonResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *notifierService) CreatedSmsVerify(ctx context.Context, in *CreatedSmsVerifyRequest, opts ...client.CallOption) (*CommonResponse, error) {
+	req := c.c.NewRequest(c.name, "Notifier.CreatedSmsVerify", in)
+	out := new(CommonResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *notifierService) GetCloudSmsTemplate(ctx context.Context, in *GetCloudSmsTemplateRequest, opts ...client.CallOption) (*GetCloudSmsTemplateResponse, error) {
+	req := c.c.NewRequest(c.name, "Notifier.GetCloudSmsTemplate", in)
+	out := new(GetCloudSmsTemplateResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for Notifier service
 
 type NotifierHandler interface {
@@ -193,6 +227,10 @@ type NotifierHandler interface {
 	// sms biz send
 	GetSmsBizLogList(context.Context, *SmsBizSendLogListRequest, *SmsBizSendLogListResponse) error
 	CreatedSmsBizLog(context.Context, *CreatedSmsBizSendLogRequest, *CommonResponse) error
+	// send sms operation
+	CreatedSmsSend(context.Context, *CreatedSmsSendRequest, *CommonResponse) error
+	CreatedSmsVerify(context.Context, *CreatedSmsVerifyRequest, *CommonResponse) error
+	GetCloudSmsTemplate(context.Context, *GetCloudSmsTemplateRequest, *GetCloudSmsTemplateResponse) error
 }
 
 func RegisterNotifierHandler(s server.Server, hdlr NotifierHandler, opts ...server.HandlerOption) error {
@@ -208,6 +246,9 @@ func RegisterNotifierHandler(s server.Server, hdlr NotifierHandler, opts ...serv
 		DeletedSmsTemplate(ctx context.Context, in *DeletedSmsTemplateRequest, out *CommonResponse) error
 		GetSmsBizLogList(ctx context.Context, in *SmsBizSendLogListRequest, out *SmsBizSendLogListResponse) error
 		CreatedSmsBizLog(ctx context.Context, in *CreatedSmsBizSendLogRequest, out *CommonResponse) error
+		CreatedSmsSend(ctx context.Context, in *CreatedSmsSendRequest, out *CommonResponse) error
+		CreatedSmsVerify(ctx context.Context, in *CreatedSmsVerifyRequest, out *CommonResponse) error
+		GetCloudSmsTemplate(ctx context.Context, in *GetCloudSmsTemplateRequest, out *GetCloudSmsTemplateResponse) error
 	}
 	type Notifier struct {
 		notifier
@@ -262,4 +303,16 @@ func (h *notifierHandler) GetSmsBizLogList(ctx context.Context, in *SmsBizSendLo
 
 func (h *notifierHandler) CreatedSmsBizLog(ctx context.Context, in *CreatedSmsBizSendLogRequest, out *CommonResponse) error {
 	return h.NotifierHandler.CreatedSmsBizLog(ctx, in, out)
+}
+
+func (h *notifierHandler) CreatedSmsSend(ctx context.Context, in *CreatedSmsSendRequest, out *CommonResponse) error {
+	return h.NotifierHandler.CreatedSmsSend(ctx, in, out)
+}
+
+func (h *notifierHandler) CreatedSmsVerify(ctx context.Context, in *CreatedSmsVerifyRequest, out *CommonResponse) error {
+	return h.NotifierHandler.CreatedSmsVerify(ctx, in, out)
+}
+
+func (h *notifierHandler) GetCloudSmsTemplate(ctx context.Context, in *GetCloudSmsTemplateRequest, out *GetCloudSmsTemplateResponse) error {
+	return h.NotifierHandler.GetCloudSmsTemplate(ctx, in, out)
 }
