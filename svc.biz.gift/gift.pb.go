@@ -187,7 +187,7 @@ type GiftInfo struct {
 	ComboTimeout  int32         `protobuf:"varint,8,opt,name=combo_timeout,json=comboTimeout,proto3" json:"combo_timeout,omitempty"`       // combo触发间隔时间
 	ComboShowtime int32         `protobuf:"varint,9,opt,name=combo_showtime,json=comboShowtime,proto3" json:"combo_showtime,omitempty"`    // combo效果展示时间
 	Prize         string        `protobuf:"bytes,10,opt,name=prize,proto3" json:"prize,omitempty"`                                         // 奖励(json字符串:{"user_exp":100, "anchor_exp":20})
-	Pack          string        `protobuf:"bytes,11,opt,name=pack,proto3" json:"pack,omitempty"`                                           // 批量包(json字符串:[{pack:"20",desc:""},{pack:"99",desc:""}])
+	Pack          string        `protobuf:"bytes,11,opt,name=pack,proto3" json:"pack,omitempty"`                                           // 批量包(json字符串:[{"pack":20,"desc":""},{"pack":99,"desc":""}])
 	Pic           string        `protobuf:"bytes,12,opt,name=pic,proto3" json:"pic,omitempty"`                                             // 图片资源(json字符串:{"icon":"", "icon_gif":"", "chat_icon":"", "combo_bg":"", "combo_icon":""})
 }
 

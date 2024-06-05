@@ -5729,7 +5729,7 @@ Models
 | combo_timeout | [int32](#int32) |  | combo触发间隔时间 |
 | combo_showtime | [int32](#int32) |  | combo效果展示时间 |
 | prize | [string](#string) |  | 奖励(json字符串:{&#34;user_exp&#34;:100, &#34;anchor_exp&#34;:20}) |
-| pack | [string](#string) |  | 批量包(json字符串:[{pack:&#34;20&#34;,desc:&#34;&#34;},{pack:&#34;99&#34;,desc:&#34;&#34;}]) |
+| pack | [string](#string) |  | 批量包(json字符串:[{&#34;pack&#34;:20,&#34;desc&#34;:&#34;&#34;},{&#34;pack&#34;:99,&#34;desc&#34;:&#34;&#34;}]) |
 | pic | [string](#string) |  | 图片资源(json字符串:{&#34;icon&#34;:&#34;&#34;, &#34;icon_gif&#34;:&#34;&#34;, &#34;chat_icon&#34;:&#34;&#34;, &#34;combo_bg&#34;:&#34;&#34;, &#34;combo_icon&#34;:&#34;&#34;}) |
 
 
