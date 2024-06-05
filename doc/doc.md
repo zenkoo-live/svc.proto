@@ -5876,8 +5876,8 @@ Models
 | type | [GiftType](#svc-biz-gift-GiftType) |  | 礼物类型 |
 | status | [GiftStatus](#svc-biz-gift-GiftStatus) |  | 礼物状态 |
 | keyword | [string](#string) |  | 关键字 |
-| create_start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 添加开始时间 |
-| create_end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 添加结束时间 |
+| create_time_start | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 添加开始时间 |
+| create_time_end | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 添加结束时间 |
 
 
 
