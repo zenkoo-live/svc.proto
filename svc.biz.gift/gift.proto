@@ -59,7 +59,7 @@ message GiftInfo {
     int32 combo_timeout = 8; // combo触发间隔时间
     int32 combo_showtime = 9; // combo效果展示时间
     string prize = 10; // 奖励(json字符串:{"user_exp":100, "anchor_exp":20})
-    string pack = 11; // 批量包(json字符串:[{pack:"20",desc:""},{pack:"99",desc:""}])
+    string pack = 11; // 批量包(json字符串:[{"pack":20,"desc":""},{"pack":99,"desc":""}])
     string pic = 12; // 图片资源(json字符串:{"icon":"", "icon_gif":"", "chat_icon":"", "combo_bg":"", "combo_icon":""})
     
 }
