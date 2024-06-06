@@ -62,6 +62,8 @@ message GiftInfo {
     string pack = 11; // 批量包(json字符串:[{"pack":20,"desc":""},{"pack":99,"desc":""}])
     string pic = 12; // 图片资源(json字符串:{"icon":"", "icon_gif":"", "chat_icon":"", "combo_bg":"", "combo_icon":""})
     
+    google.protobuf.Timestamp created_at = 255;
+    google.protobuf.Timestamp updated_at = 256;
 }
 
 //添加礼物
