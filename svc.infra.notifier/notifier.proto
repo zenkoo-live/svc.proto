@@ -37,10 +37,11 @@ message SmsChannel {
   string channel = 4;
   string  access_id = 5;
   string  access_key = 6;
-  int32 status = 7;
-  bool  is_platform = 8;
-  string creator = 9;
-  google.protobuf.Timestamp created_at = 10;
+  string endpoint = 7;
+  int32 status = 8;
+  bool  is_platform = 9;
+  string creator = 10;
+  google.protobuf.Timestamp created_at = 11;
 }
 
 message SmsChannelListResponse {
@@ -55,9 +56,10 @@ message CreatedSmsChannelRequest {
   string channel = 4;
   string  access_id = 5;
   string  access_key = 6;
-  int32 status = 7;
-  bool  is_platform = 8;
-  string creator = 9;
+  string endpoint = 7;
+  int32 status = 8;
+  bool  is_platform = 9;
+  string creator = 10;
 }
 
 message UpdatedSmsChannelRequest {
@@ -66,7 +68,8 @@ message UpdatedSmsChannelRequest {
   int64 scope = 3;
   string  access_id = 4;
   string  access_key = 5;
-  int32 status = 6;
+  string endpoint = 6;
+  int32 status = 7;
 }
 
 message DeletedSmsChannelRequest {
@@ -187,11 +190,12 @@ message CreatedSmsBizSendLogRequest {
 message CreatedSmsSendRequest {
   string merchant_id = 1;
   string code_key = 2;
-  string mobile = 3;
+  repeated string mobiles = 3;
   string remark = 4;
   string params = 5;
   string biz_type = 6;
-  string expired_time = 7;
+  int32 duration_seconds = 7;
+  string created_ip = 8;
 }
 
 message CreatedSmsVerifyRequest {
