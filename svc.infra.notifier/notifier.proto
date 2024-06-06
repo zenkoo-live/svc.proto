@@ -198,18 +198,24 @@ message CreatedSmsSendRequest {
   string created_ip = 8;
 }
 
+message CreatedSmsSendResponse {
+  map<string, bool> send_result = 1;
+}
+
 message CreatedSmsVerifyRequest {
   string merchant_id = 1;
   string code_key = 2;
   string mobile = 3;
   string code = 4;
   string biz_type = 5;
-  string deleted = 6;
+  bool deleted = 6;
 }
 
 message GetCloudSmsTemplateRequest {
   string merchant_id = 1;
-  string code_key = 2;
+  int64 channel_id = 2;
+  int64 template_id = 3;
+  string external_code_key = 4;
 }
 
 message GetCloudSmsTemplateResponse {
@@ -241,7 +247,7 @@ service Notifier {
   rpc GetSmsBizLogList(SmsBizSendLogListRequest) returns (SmsBizSendLogListResponse);
   rpc CreatedSmsBizLog(CreatedSmsBizSendLogRequest) returns (CommonResponse);
   // send sms operation
-  rpc CreatedSmsSend(CreatedSmsSendRequest) returns (CommonResponse);
+  rpc CreatedSmsSend(CreatedSmsSendRequest) returns (CreatedSmsSendResponse);
   rpc CreatedSmsVerify(CreatedSmsVerifyRequest) returns (CommonResponse);
   rpc GetCloudSmsTemplate(GetCloudSmsTemplateRequest) returns (GetCloudSmsTemplateResponse);
 }
