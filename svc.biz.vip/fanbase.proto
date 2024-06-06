@@ -20,7 +20,7 @@ service Fanbase {
     rpc UpdateFanbaseByStreamerID (UpdateFanbaseByStreamerIDReq) returns (google.protobuf.Empty) {}
 }
 
-message FansbaseInfo {
+message FanbaseInfo {
     string fanbase_id = 1;
     string streamer_id = 2;
     string name = 3;
@@ -30,10 +30,10 @@ message FansbaseInfo {
 }
 
 message CreateFanbaseReq {
-    FansbaseInfo fanbase = 1;
+    FanbaseInfo fanbase = 1;
 }
 message CreateFanbaseResp {
-    FansbaseInfo fanbase = 1;
+    FanbaseInfo fanbase = 1;
 }
 
 message GetFanbaseByStreamerIDResp {
@@ -43,11 +43,11 @@ message GetFanbaseByNameReq {
     string name = 1;
 }
 message GetFanbaseResp {
-    FansbaseInfo fanbase = 1;
+    FanbaseInfo fanbase = 1;
 }
 
 message UpdateFanbaseByStreamerIDReq {
     string streamer_id = 1;
-    FansbaseInfo fanbase = 2;
+    FanbaseInfo fanbase = 2;
     google.protobuf.FieldMask update_mask = 3;
 }

@@ -346,7 +346,7 @@
 - [svc.biz.vip/fanbase.proto](#svc-biz-vip_fanbase-proto)
     - [CreateFanbaseReq](#svc-biz-vip-CreateFanbaseReq)
     - [CreateFanbaseResp](#svc-biz-vip-CreateFanbaseResp)
-    - [FansbaseInfo](#svc-biz-vip-FansbaseInfo)
+    - [FanbaseInfo](#svc-biz-vip-FanbaseInfo)
     - [GetFanbaseByNameReq](#svc-biz-vip-GetFanbaseByNameReq)
     - [GetFanbaseByStreamerIDResp](#svc-biz-vip-GetFanbaseByStreamerIDResp)
     - [GetFanbaseResp](#svc-biz-vip-GetFanbaseResp)
@@ -5624,7 +5624,7 @@ Models
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| fanbase | [FansbaseInfo](#svc-biz-vip-FansbaseInfo) |  |  |
+| fanbase | [FanbaseInfo](#svc-biz-vip-FanbaseInfo) |  |  |
 
 
 
@@ -5639,16 +5639,16 @@ Models
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| fanbase | [FansbaseInfo](#svc-biz-vip-FansbaseInfo) |  |  |
+| fanbase | [FanbaseInfo](#svc-biz-vip-FanbaseInfo) |  |  |
 
 
 
 
 
 
-<a name="svc-biz-vip-FansbaseInfo"></a>
+<a name="svc-biz-vip-FanbaseInfo"></a>
 
-### FansbaseInfo
+### FanbaseInfo
 
 
 
@@ -5703,7 +5703,7 @@ Models
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| fanbase | [FansbaseInfo](#svc-biz-vip-FansbaseInfo) |  |  |
+| fanbase | [FanbaseInfo](#svc-biz-vip-FanbaseInfo) |  |  |
 
 
 
@@ -5719,7 +5719,7 @@ Models
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | streamer_id | [string](#string) |  |  |
-| fanbase | [FansbaseInfo](#svc-biz-vip-FansbaseInfo) |  |  |
+| fanbase | [FanbaseInfo](#svc-biz-vip-FanbaseInfo) |  |  |
 | update_mask | [google.protobuf.FieldMask](#google-protobuf-FieldMask) |  |  |
 
 
