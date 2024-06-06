@@ -219,7 +219,7 @@ message GetCloudSmsTemplateRequest {
 }
 
 message GetCloudSmsTemplateResponse {
-  string code_key = 1;
+  string external_code_key = 1;
   string content = 3;
   // 0：短信通知。
   // 1：推广短信。
