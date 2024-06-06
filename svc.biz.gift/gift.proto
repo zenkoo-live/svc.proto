@@ -129,7 +129,7 @@ message GiftSendReq {
     int32 num =4; // 数量
     int32 prize = 5; // 礼物单价（主要用做验证）
     string from_uid = 6; // 赠送者uid
-    string to_uid = 7; // 接收者uid
+    string streamer_id = 7; // 主播uid
     string room_id = 8; // 房间id
     string live_id = 9; // 直播id
 }
@@ -145,9 +145,10 @@ message GiftSendRecord {
     int32 num = 3; // 数量
     int32 total_price = 4; // 总价
     string from_uid = 5; // 送礼uid
-    string room_id = 6; // 房间id
-    string live_id = 7;  // 直播id
-    google.protobuf.Timestamp send_time = 8; // 创建时间
+    string streamer_id = 6; // 主播uid
+    string room_id = 7; // 房间id
+    string live_id = 8;  // 直播id
+    google.protobuf.Timestamp send_time = 9; // 创建时间
 }
 
 message GiftGetRecordReq {

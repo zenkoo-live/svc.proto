@@ -5754,6 +5754,7 @@ Models
 | num | [int32](#int32) |  | 数量 |
 | total_price | [int32](#int32) |  | 总价 |
 | from_uid | [string](#string) |  | 送礼uid |
+| streamer_id | [string](#string) |  | 主播uid |
 | room_id | [string](#string) |  | 房间id |
 | live_id | [string](#string) |  | 直播id |
 | send_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
@@ -5811,7 +5812,7 @@ Models
 | num | [int32](#int32) |  | 数量 |
 | prize | [int32](#int32) |  | 礼物单价（主要用做验证） |
 | from_uid | [string](#string) |  | 赠送者uid |
-| to_uid | [string](#string) |  | 接收者uid |
+| streamer_id | [string](#string) |  | 主播uid |
 | room_id | [string](#string) |  | 房间id |
 | live_id | [string](#string) |  | 直播id |
 
