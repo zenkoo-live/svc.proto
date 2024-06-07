@@ -56,6 +56,8 @@ type NotifierService interface {
 	CreatedSmsSend(ctx context.Context, in *CreatedSmsSendRequest, opts ...client.CallOption) (*CreatedSmsSendResponse, error)
 	CreatedSmsVerify(ctx context.Context, in *CreatedSmsVerifyRequest, opts ...client.CallOption) (*CommonResponse, error)
 	GetCloudSmsTemplate(ctx context.Context, in *GetCloudSmsTemplateRequest, opts ...client.CallOption) (*GetCloudSmsTemplateResponse, error)
+	// 获取签名列表
+	GetCloudSmsSign(ctx context.Context, in *GetCloudSmsSignRequest, opts ...client.CallOption) (*GetCloudSmsSignResponse, error)
 }
 
 type notifierService struct {
@@ -210,6 +212,16 @@ func (c *notifierService) GetCloudSmsTemplate(ctx context.Context, in *GetCloudS
 	return out, nil
 }
 
+func (c *notifierService) GetCloudSmsSign(ctx context.Context, in *GetCloudSmsSignRequest, opts ...client.CallOption) (*GetCloudSmsSignResponse, error) {
+	req := c.c.NewRequest(c.name, "Notifier.GetCloudSmsSign", in)
+	out := new(GetCloudSmsSignResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for Notifier service
 
 type NotifierHandler interface {
@@ -231,6 +243,8 @@ type NotifierHandler interface {
 	CreatedSmsSend(context.Context, *CreatedSmsSendRequest, *CreatedSmsSendResponse) error
 	CreatedSmsVerify(context.Context, *CreatedSmsVerifyRequest, *CommonResponse) error
 	GetCloudSmsTemplate(context.Context, *GetCloudSmsTemplateRequest, *GetCloudSmsTemplateResponse) error
+	// 获取签名列表
+	GetCloudSmsSign(context.Context, *GetCloudSmsSignRequest, *GetCloudSmsSignResponse) error
 }
 
 func RegisterNotifierHandler(s server.Server, hdlr NotifierHandler, opts ...server.HandlerOption) error {
@@ -249,6 +263,7 @@ func RegisterNotifierHandler(s server.Server, hdlr NotifierHandler, opts ...serv
 		CreatedSmsSend(ctx context.Context, in *CreatedSmsSendRequest, out *CreatedSmsSendResponse) error
 		CreatedSmsVerify(ctx context.Context, in *CreatedSmsVerifyRequest, out *CommonResponse) error
 		GetCloudSmsTemplate(ctx context.Context, in *GetCloudSmsTemplateRequest, out *GetCloudSmsTemplateResponse) error
+		GetCloudSmsSign(ctx context.Context, in *GetCloudSmsSignRequest, out *GetCloudSmsSignResponse) error
 	}
 	type Notifier struct {
 		notifier
@@ -315,4 +330,8 @@ func (h *notifierHandler) CreatedSmsVerify(ctx context.Context, in *CreatedSmsVe
 
 func (h *notifierHandler) GetCloudSmsTemplate(ctx context.Context, in *GetCloudSmsTemplateRequest, out *GetCloudSmsTemplateResponse) error {
 	return h.NotifierHandler.GetCloudSmsTemplate(ctx, in, out)
+}
+
+func (h *notifierHandler) GetCloudSmsSign(ctx context.Context, in *GetCloudSmsSignRequest, out *GetCloudSmsSignResponse) error {
+	return h.NotifierHandler.GetCloudSmsSign(ctx, in, out)
 }

@@ -104,6 +104,13 @@ message SmsTemplate {
   string creator = 14;
 }
 
+message SmsSign {
+  string sign_name = 1;
+  string audit_status = 2;
+  string business_type = 3;
+  string reason = 4;
+}
+
 message SmsTemplateListResponse {
   int64 cnt = 1;
   repeated SmsTemplate list = 2;
@@ -230,6 +237,19 @@ message GetCloudSmsTemplateResponse {
   string template_type = 4;
 }
 
+message GetCloudSmsSignRequest {
+  string merchant_id = 1;
+  int64 channel_id = 2;
+}
+
+message GetCloudSmsSignResponse {
+  int64 cnt = 1;
+  repeated SmsSign list = 2;
+}
+
+
+
+
 ///////////// service started /////////////////
 service Notifier {
   rpc InitDB(google.protobuf.Empty) returns (InitDBResp); // 初始化数据库
@@ -250,4 +270,6 @@ service Notifier {
   rpc CreatedSmsSend(CreatedSmsSendRequest) returns (CreatedSmsSendResponse);
   rpc CreatedSmsVerify(CreatedSmsVerifyRequest) returns (CommonResponse);
   rpc GetCloudSmsTemplate(GetCloudSmsTemplateRequest) returns (GetCloudSmsTemplateResponse);
+  // 获取签名列表
+  rpc GetCloudSmsSign(GetCloudSmsSignRequest) returns (GetCloudSmsSignResponse);
 }
