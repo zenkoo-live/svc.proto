@@ -40,7 +40,6 @@ func NewSettingEndpoints() []*api.Endpoint {
 type SettingService interface {
 	InitDB(ctx context.Context, in *emptypb.Empty, opts ...client.CallOption) (*InitDBResp, error)
 	GetConfiguration(ctx context.Context, in *GetConfigurationReq, opts ...client.CallOption) (*GetConfigurationResp, error)
-	ListConfigurations(ctx context.Context, in *ListConfigurationsReq, opts ...client.CallOption) (*ListConfigurationsResp, error)
 	AddConfiguration(ctx context.Context, in *AddConfigurationReq, opts ...client.CallOption) (*AddConfigurationResp, error)
 	UpdateConfiguration(ctx context.Context, in *UpdateConfigurationReq, opts ...client.CallOption) (*UpdateConfigurationResp, error)
 	DeleteConfiguration(ctx context.Context, in *DeleteConfigurationReq, opts ...client.CallOption) (*DeleteConfigurationResp, error)
@@ -72,16 +71,6 @@ func (c *settingService) InitDB(ctx context.Context, in *emptypb.Empty, opts ...
 func (c *settingService) GetConfiguration(ctx context.Context, in *GetConfigurationReq, opts ...client.CallOption) (*GetConfigurationResp, error) {
 	req := c.c.NewRequest(c.name, "Setting.GetConfiguration", in)
 	out := new(GetConfigurationResp)
-	err := c.c.Call(ctx, req, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *settingService) ListConfigurations(ctx context.Context, in *ListConfigurationsReq, opts ...client.CallOption) (*ListConfigurationsResp, error) {
-	req := c.c.NewRequest(c.name, "Setting.ListConfigurations", in)
-	out := new(ListConfigurationsResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -134,7 +123,6 @@ func (c *settingService) Greeting(ctx context.Context, in *SettingGreetingReq, o
 type SettingHandler interface {
 	InitDB(context.Context, *emptypb.Empty, *InitDBResp) error
 	GetConfiguration(context.Context, *GetConfigurationReq, *GetConfigurationResp) error
-	ListConfigurations(context.Context, *ListConfigurationsReq, *ListConfigurationsResp) error
 	AddConfiguration(context.Context, *AddConfigurationReq, *AddConfigurationResp) error
 	UpdateConfiguration(context.Context, *UpdateConfigurationReq, *UpdateConfigurationResp) error
 	DeleteConfiguration(context.Context, *DeleteConfigurationReq, *DeleteConfigurationResp) error
@@ -145,7 +133,6 @@ func RegisterSettingHandler(s server.Server, hdlr SettingHandler, opts ...server
 	type setting interface {
 		InitDB(ctx context.Context, in *emptypb.Empty, out *InitDBResp) error
 		GetConfiguration(ctx context.Context, in *GetConfigurationReq, out *GetConfigurationResp) error
-		ListConfigurations(ctx context.Context, in *ListConfigurationsReq, out *ListConfigurationsResp) error
 		AddConfiguration(ctx context.Context, in *AddConfigurationReq, out *AddConfigurationResp) error
 		UpdateConfiguration(ctx context.Context, in *UpdateConfigurationReq, out *UpdateConfigurationResp) error
 		DeleteConfiguration(ctx context.Context, in *DeleteConfigurationReq, out *DeleteConfigurationResp) error
@@ -168,10 +155,6 @@ func (h *settingHandler) InitDB(ctx context.Context, in *emptypb.Empty, out *Ini
 
 func (h *settingHandler) GetConfiguration(ctx context.Context, in *GetConfigurationReq, out *GetConfigurationResp) error {
 	return h.SettingHandler.GetConfiguration(ctx, in, out)
-}
-
-func (h *settingHandler) ListConfigurations(ctx context.Context, in *ListConfigurationsReq, out *ListConfigurationsResp) error {
-	return h.SettingHandler.ListConfigurations(ctx, in, out)
 }
 
 func (h *settingHandler) AddConfiguration(ctx context.Context, in *AddConfigurationReq, out *AddConfigurationResp) error {

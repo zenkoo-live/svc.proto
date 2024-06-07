@@ -184,8 +184,6 @@
     - [GetConfigurationReq](#svc-infra-setting-GetConfigurationReq)
     - [GetConfigurationResp](#svc-infra-setting-GetConfigurationResp)
     - [InitDBResp](#svc-infra-setting-InitDBResp)
-    - [ListConfigurationsReq](#svc-infra-setting-ListConfigurationsReq)
-    - [ListConfigurationsResp](#svc-infra-setting-ListConfigurationsResp)
     - [SettingGreetingReq](#svc-infra-setting-SettingGreetingReq)
     - [SettingGreetingResp](#svc-infra-setting-SettingGreetingResp)
     - [UpdateConfigurationReq](#svc-infra-setting-UpdateConfigurationReq)
@@ -1993,7 +1991,7 @@ CategoryInfo 分类详情
 | category_code | [string](#string) |  | 代号（唯一，预留） |
 | category_name | [string](#string) |  | 名称 |
 | sort | [int32](#int32) |  | 排序 |
-| childrens | [CategoryInfo](#svc-biz-room-CategoryInfo) | repeated |  |
+| childrens | [CategoryInfo](#svc-biz-room-CategoryInfo) | repeated | 子级分类，只在tree接口返回 |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
 | updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
 
@@ -2949,7 +2947,8 @@ Room 房间
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| configuration | [Configuration](#svc-infra-setting-Configuration) |  |  |
+| key | [string](#string) |  |  |
+| value | [string](#string) |  |  |
 
 
 
@@ -2981,11 +2980,8 @@ Room 房间
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | id | [string](#string) |  | 内部ID |
-| type | [string](#string) |  | 配置类型 |
-| data | [string](#string) |  | 配置数据 |
-| status | [string](#string) |  | 状态 |
-| manager_id | [string](#string) |  | 操作账号 |
-| merchant_id | [string](#string) |  | 商户ID |
+| key | [string](#string) |  | 配置键 |
+| value | [string](#string) |  | 配置json数据字符串值 |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
 
 
@@ -3031,7 +3027,7 @@ Room 房间
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| condition | [Configuration](#svc-infra-setting-Configuration) |  |  |
+| key | [string](#string) |  |  |
 
 
 
@@ -3046,7 +3042,7 @@ Room 房间
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| configuration | [Configuration](#svc-infra-setting-Configuration) |  |  |
+| value | [string](#string) |  |  |
 
 
 
@@ -3062,38 +3058,6 @@ Room 房间
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | result | [bool](#bool) |  |  |
-
-
-
-
-
-
-<a name="svc-infra-setting-ListConfigurationsReq"></a>
-
-### ListConfigurationsReq
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| condition | [Configuration](#svc-infra-setting-Configuration) |  |  |
-| limit | [int32](#int32) |  |  |
-| offset | [int32](#int32) |  |  |
-
-
-
-
-
-
-<a name="svc-infra-setting-ListConfigurationsResp"></a>
-
-### ListConfigurationsResp
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| configurations | [Configuration](#svc-infra-setting-Configuration) | repeated |  |
 
 
 
@@ -3138,7 +3102,8 @@ Room 房间
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| condition | [Configuration](#svc-infra-setting-Configuration) |  |  |
+| key | [string](#string) |  |  |
+| value | [string](#string) |  |  |
 
 
 
@@ -3175,7 +3140,6 @@ Room 房间
 | ----------- | ------------ | ------------- | ------------|
 | InitDB | [.google.protobuf.Empty](#google-protobuf-Empty) | [InitDBResp](#svc-infra-setting-InitDBResp) | 初始化数据库 |
 | GetConfiguration | [GetConfigurationReq](#svc-infra-setting-GetConfigurationReq) | [GetConfigurationResp](#svc-infra-setting-GetConfigurationResp) | 获取配置 |
-| ListConfigurations | [ListConfigurationsReq](#svc-infra-setting-ListConfigurationsReq) | [ListConfigurationsResp](#svc-infra-setting-ListConfigurationsResp) | 获取配置列表 |
 | AddConfiguration | [AddConfigurationReq](#svc-infra-setting-AddConfigurationReq) | [AddConfigurationResp](#svc-infra-setting-AddConfigurationResp) | 添加配置 |
 | UpdateConfiguration | [UpdateConfigurationReq](#svc-infra-setting-UpdateConfigurationReq) | [UpdateConfigurationResp](#svc-infra-setting-UpdateConfigurationResp) | 更新配置 |
 | DeleteConfiguration | [DeleteConfigurationReq](#svc-infra-setting-DeleteConfigurationReq) | [DeleteConfigurationResp](#svc-infra-setting-DeleteConfigurationResp) | 删除配置 |
@@ -4956,8 +4920,10 @@ Room 房间
 | RelationTypeFollow | 1 | 关注主播 |
 | RelationTypeHistory | 2 | 观看历史 |
 | RelationTypeMuzzle | 3 | 禁言 |
-| RelationTypeBlacklistIP | 4 | ip黑名单 |
-| RelationTypeBlacklistDevice | 5 | 设备黑名单 |
+| RelationTypeBlacklistViewer | 4 | 用户黑名单 |
+| RelationTypeBlacklistStreamer | 5 | 主播黑名单 |
+| RelationTypeBlacklistIP | 6 | ip黑名单 |
+| RelationTypeBlacklistDevice | 7 | 设备黑名单 |
 
 
  
@@ -5765,7 +5731,7 @@ Models
 | combo_timeout | [int32](#int32) |  | combo触发间隔时间 |
 | combo_showtime | [int32](#int32) |  | combo效果展示时间 |
 | prize | [string](#string) |  | 奖励(json字符串:{&#34;user_exp&#34;:100, &#34;anchor_exp&#34;:20}) |
-| pack | [string](#string) |  | 批量包(json字符串:[{pack:&#34;20&#34;,desc:&#34;&#34;},{pack:&#34;99&#34;,desc:&#34;&#34;}]) |
+| pack | [string](#string) |  | 批量包(json字符串:[{&#34;pack&#34;:20,&#34;desc&#34;:&#34;&#34;},{&#34;pack&#34;:99,&#34;desc&#34;:&#34;&#34;}]) |
 | pic | [string](#string) |  | 图片资源(json字符串:{&#34;icon&#34;:&#34;&#34;, &#34;icon_gif&#34;:&#34;&#34;, &#34;chat_icon&#34;:&#34;&#34;, &#34;combo_bg&#34;:&#34;&#34;, &#34;combo_icon&#34;:&#34;&#34;}) |
 
 
@@ -5910,6 +5876,8 @@ Models
 | type | [GiftType](#svc-biz-gift-GiftType) |  | 礼物类型 |
 | status | [GiftStatus](#svc-biz-gift-GiftStatus) |  | 礼物状态 |
 | keyword | [string](#string) |  | 关键字 |
+| create_start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 添加开始时间 |
+| create_end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 添加结束时间 |
 
 
 

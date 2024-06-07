@@ -34,7 +34,7 @@ type CategoryInfo struct {
 	CategoryCode     string                 `protobuf:"bytes,5,opt,name=category_code,json=categoryCode,proto3" json:"category_code,omitempty"`               // 代号（唯一，预留）
 	CategoryName     string                 `protobuf:"bytes,6,opt,name=category_name,json=categoryName,proto3" json:"category_name,omitempty"`               // 名称
 	Sort             int32                  `protobuf:"varint,7,opt,name=sort,proto3" json:"sort,omitempty"`                                                  // 排序
-	Childrens        []*CategoryInfo        `protobuf:"bytes,20,rep,name=childrens,proto3" json:"childrens,omitempty"`
+	Childrens        []*CategoryInfo        `protobuf:"bytes,20,rep,name=childrens,proto3" json:"childrens,omitempty"`                                        // 子级分类，只在tree接口返回
 	CreatedAt        *timestamppb.Timestamp `protobuf:"bytes,255,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	UpdatedAt        *timestamppb.Timestamp `protobuf:"bytes,256,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 }

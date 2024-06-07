@@ -10,7 +10,6 @@ service Setting {
     rpc InitDB(google.protobuf.Empty) returns (InitDBResp); // 初始化数据库
     
     rpc GetConfiguration(GetConfigurationReq) returns (GetConfigurationResp); // 获取配置
-    rpc ListConfigurations(ListConfigurationsReq) returns (ListConfigurationsResp); // 获取配置列表
     rpc AddConfiguration(AddConfigurationReq) returns (AddConfigurationResp); // 添加配置
     rpc UpdateConfiguration(UpdateConfigurationReq) returns (UpdateConfigurationResp); // 更新配置
     rpc DeleteConfiguration(DeleteConfigurationReq) returns (DeleteConfigurationResp); // 删除配置
@@ -31,32 +30,21 @@ message SettingGreetingResp {
 
 message Configuration {
     string id = 1; // 内部ID
-    string type = 2; //配置类型
-    string data = 3; // 配置数据
-    string status = 4; //状态
-    string manager_id = 253;// 操作账号
-    string merchant_id = 254; // 商户ID
+    string key = 2; //配置键
+    string value = 3; // 配置json数据字符串值
     google.protobuf.Timestamp created_at = 255; // 创建时间
 }
 
 message GetConfigurationReq {
-    Configuration condition = 1;
+    string key = 1;
 };
 message GetConfigurationResp {
-    Configuration configuration = 1;
-};
-
-message ListConfigurationsReq {
-    Configuration condition = 1;
-    int32 limit = 2;
-    int32 offset = 3;
-};
-message ListConfigurationsResp {
-    repeated Configuration configurations = 1;
+    string value = 1;
 };
 
 message AddConfigurationReq {
-    Configuration configuration = 1;
+    string key = 1;
+    string value = 2;
 };
 
 message AddConfigurationResp {
@@ -65,7 +53,8 @@ message AddConfigurationResp {
 };
 
 message UpdateConfigurationReq {
-    Configuration condition = 1;
+    string key = 1;
+    string value = 2;
 };
 message UpdateConfigurationResp {
     int64 updated = 1;
