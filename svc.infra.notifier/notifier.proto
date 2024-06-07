@@ -37,10 +37,11 @@ message SmsChannel {
   string channel = 4;
   string  access_id = 5;
   string  access_key = 6;
-  int32 status = 7;
-  bool  is_platform = 8;
-  string creator = 9;
-  google.protobuf.Timestamp created_at = 10;
+  string endpoint = 7;
+  int32 status = 8;
+  bool  is_platform = 9;
+  string creator = 10;
+  google.protobuf.Timestamp created_at = 11;
 }
 
 message SmsChannelListResponse {
@@ -48,28 +49,30 @@ message SmsChannelListResponse {
   repeated SmsChannel list = 2;
 }
 
-message SmsChannelCreatedRequest {
+message CreatedSmsChannelRequest {
   string name = 1;
   int64 scope = 2;
   string merchant_id = 3;
   string channel = 4;
   string  access_id = 5;
   string  access_key = 6;
-  int32 status = 7;
-  bool  is_platform = 8;
-  string creator = 9;
+  string endpoint = 7;
+  int32 status = 8;
+  bool  is_platform = 9;
+  string creator = 10;
 }
 
-message SmsChannelUpdatedRequest {
+message UpdatedSmsChannelRequest {
   int64  id = 1;
   string name = 2;
   int64 scope = 3;
   string  access_id = 4;
   string  access_key = 5;
-  int32 status = 6;
+  string endpoint = 6;
+  int32 status = 7;
 }
 
-message SmsChannelDeletedRequest {
+message DeletedSmsChannelRequest {
   int64  id = 1;
 }
 
@@ -78,7 +81,7 @@ message SmsChannelDeletedRequest {
 message SmsTemplateListRequest {
   int64 page = 1;
   int64 size = 2;
-  string channel_config_id = 3;
+  string channel_id = 3;
   google.protobuf.Timestamp start_time = 4;
   google.protobuf.Timestamp end_time = 5;
 }
@@ -86,7 +89,7 @@ message SmsTemplateListRequest {
 message SmsTemplate {
   int64 id = 1;
   string merchant_id = 2;
-  string channel_config_id = 3;
+  string channel_id = 3;
   SmsChannel sms_channel = 4;
   string sign_name = 5;
   string code_key = 6;
@@ -108,7 +111,7 @@ message SmsTemplateListResponse {
 
 message CreatedSmsTemplateRequest {
   string merchant_id = 1;
-  string channel_config_id = 2;
+  string channel_id = 2;
   string sign_name = 3;
   string code_key = 4;
   // 没有绑定，需要绑定外部发送
@@ -125,7 +128,7 @@ message CreatedSmsTemplateRequest {
 // UpdatedSmsTemplateRequest 绑定操作
 message UpdatedSmsTemplateRequest {
   int64 id = 1;
-  string channel_config_id = 2;
+  string channel_id = 2;
   string external_code_key = 3;
   string  remark = 4;
   string template_name = 6;
@@ -160,8 +163,9 @@ message SmsBizSendLogListRequest {
   int64 size = 2;
   int64 template_id = 3;
   int32 biz_type = 4;
-  google.protobuf.Timestamp start_time = 5;
-  google.protobuf.Timestamp end_time = 6;
+  string merchant_id = 5;
+  google.protobuf.Timestamp start_time = 6;
+  google.protobuf.Timestamp end_time = 7;
 }
 
 message SmsBizSendLogListResponse {
@@ -181,21 +185,69 @@ message CreatedSmsBizSendLogRequest {
   string remark = 4;
 }
 
+////////////////// sms send biz ///////////////////
+// CreatedSmsSendRequest 发送短信请求
+message CreatedSmsSendRequest {
+  string merchant_id = 1;
+  string code_key = 2;
+  repeated string mobiles = 3;
+  string remark = 4;
+  string params = 5;
+  string biz_type = 6;
+  int32 duration_seconds = 7;
+  string created_ip = 8;
+}
+
+message CreatedSmsSendResponse {
+  map<string, bool> send_result = 1;
+}
+
+message CreatedSmsVerifyRequest {
+  string merchant_id = 1;
+  string code_key = 2;
+  string mobile = 3;
+  string code = 4;
+  string biz_type = 5;
+  bool deleted = 6;
+}
+
+message GetCloudSmsTemplateRequest {
+  string merchant_id = 1;
+  int64 channel_id = 2;
+  int64 template_id = 3;
+  string external_code_key = 4;
+}
+
+message GetCloudSmsTemplateResponse {
+  string external_code_key = 1;
+  string content = 3;
+  // 0：短信通知。
+  // 1：推广短信。
+  // 2：验证码短信。
+  // 6：国际/港澳台短信。
+  // 7：数字短信。
+  string template_name = 2;
+  string template_type = 4;
+}
 
 ///////////// service started /////////////////
 service Notifier {
   rpc InitDB(google.protobuf.Empty) returns (InitDBResp); // 初始化数据库
   // sms channel
   rpc GetSmsChannelList(SmsChannelListRequest) returns (SmsChannelListResponse);
-  rpc CreatedSmsChannel(SmsChannelCreatedRequest) returns (CommonResponse);
-  rpc UpdatedSmsChannel(SmsChannelUpdatedRequest) returns (CommonResponse);
-  rpc DeletedSmsChannel (SmsChannelDeletedRequest) returns (CommonResponse);
+  rpc CreatedSmsChannel(CreatedSmsChannelRequest) returns (CommonResponse);
+  rpc UpdatedSmsChannel(UpdatedSmsChannelRequest) returns (CommonResponse);
+  rpc DeletedSmsChannel (DeletedSmsChannelRequest) returns (CommonResponse);
   // sms template
   rpc GetSmsTemplateList(SmsTemplateListRequest) returns (SmsTemplateListResponse);
-  rpc CreatedSmsTemplate(SmsChannelCreatedRequest) returns (CommonResponse);
-  rpc UpdateSmsTemplate(SmsChannelUpdatedRequest) returns (CommonResponse);
-  rpc DeletedSmsTemplate(SmsChannelDeletedRequest) returns (CommonResponse);
+  rpc CreatedSmsTemplate(CreatedSmsTemplateRequest) returns (CommonResponse);
+  rpc UpdateSmsTemplate(UpdatedSmsTemplateRequest) returns (CommonResponse);
+  rpc DeletedSmsTemplate(DeletedSmsTemplateRequest) returns (CommonResponse);
   // sms biz send
   rpc GetSmsBizLogList(SmsBizSendLogListRequest) returns (SmsBizSendLogListResponse);
   rpc CreatedSmsBizLog(CreatedSmsBizSendLogRequest) returns (CommonResponse);
+  // send sms operation
+  rpc CreatedSmsSend(CreatedSmsSendRequest) returns (CreatedSmsSendResponse);
+  rpc CreatedSmsVerify(CreatedSmsVerifyRequest) returns (CommonResponse);
+  rpc GetCloudSmsTemplate(GetCloudSmsTemplateRequest) returns (GetCloudSmsTemplateResponse);
 }
