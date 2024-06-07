@@ -32,6 +32,8 @@ service FanbaseMember {
 message JoinFanbaseReq {
     string streamer_id = 1;
     string member_id = 2;
+    FanbaseLevel level = 3;
+    google.protobuf.Timestamp expire_time = 4; // 过期时间
 }
 
 message LeaveFanbaseReq {
@@ -53,7 +55,8 @@ message FanbaseMemberInfo {
     string member_id = 3;
     FanbaseLevel level = 4;
     google.protobuf.Timestamp join_time = 5; // 加入时间
-    int32 score = 6;
+    google.protobuf.Timestamp expire_time = 6; // 过期时间
+    int32 score = 7;
 
     google.protobuf.Timestamp created_at = 101; // 创建时间
     google.protobuf.Timestamp updated_at = 102; // 更新时间

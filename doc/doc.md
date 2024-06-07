@@ -5771,6 +5771,7 @@ Models
 | member_id | [string](#string) |  |  |
 | level | [FanbaseLevel](#svc-biz-vip-FanbaseLevel) |  |  |
 | join_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 加入时间 |
+| expire_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 过期时间 |
 | score | [int32](#int32) |  |  |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
 | updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 更新时间 |
@@ -5870,6 +5871,8 @@ Models
 | ----- | ---- | ----- | ----------- |
 | streamer_id | [string](#string) |  |  |
 | member_id | [string](#string) |  |  |
+| level | [FanbaseLevel](#svc-biz-vip-FanbaseLevel) |  |  |
+| expire_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 过期时间 |
 
 
 
