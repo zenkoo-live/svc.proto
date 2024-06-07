@@ -48,11 +48,12 @@ message GetFanbaseMemberResp {
 }
 
 message FanbaseMemberInfo {
-    string streamer_id = 1;
-    string member_id = 2;
-    FanbaseLevel level = 3;
-    google.protobuf.Timestamp join_time = 4; // 加入时间
-    int32 score = 5;
+    string fanbase_id = 1;
+    string streamer_id = 2;
+    string member_id = 3;
+    FanbaseLevel level = 4;
+    google.protobuf.Timestamp join_time = 5; // 加入时间
+    int32 score = 6;
 
     google.protobuf.Timestamp created_at = 101; // 创建时间
     google.protobuf.Timestamp updated_at = 102; // 更新时间

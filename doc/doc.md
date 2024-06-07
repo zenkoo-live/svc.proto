@@ -5766,6 +5766,7 @@ Models
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| fanbase_id | [string](#string) |  |  |
 | streamer_id | [string](#string) |  |  |
 | member_id | [string](#string) |  |  |
 | level | [FanbaseLevel](#svc-biz-vip-FanbaseLevel) |  |  |
