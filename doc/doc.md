@@ -364,6 +364,8 @@
     - [JoinFanbaseReq](#svc-biz-vip-JoinFanbaseReq)
     - [LeaveFanbaseReq](#svc-biz-vip-LeaveFanbaseReq)
   
+    - [FanbaseLevel](#svc-biz-vip-FanbaseLevel)
+  
     - [FanbaseMember](#svc-biz-vip-FanbaseMember)
   
 - [svc.web.streamer/streamer.proto](#svc-web-streamer_streamer-proto)
@@ -5766,6 +5768,9 @@ Models
 | ----- | ---- | ----- | ----------- |
 | streamer_id | [string](#string) |  |  |
 | member_id | [string](#string) |  |  |
+| level | [FanbaseLevel](#svc-biz-vip-FanbaseLevel) |  |  |
+| join_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 加入时间 |
+| score | [int32](#int32) |  |  |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
 | updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 更新时间 |
 
@@ -5886,6 +5891,20 @@ Models
 
 
  
+
+
+<a name="svc-biz-vip-FanbaseLevel"></a>
+
+### FanbaseLevel
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| FanbaseLevelUnknown | 0 | 未知 |
+| FanbaseLevelPrimary | 1 | 初级 |
+| FanbaseLevelSuper | 2 | 超级 |
+| FanbaseLevelExtreme | 3 | 至尊 |
+
 
  
 
