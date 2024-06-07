@@ -109,6 +109,7 @@ message SmsSign {
   string audit_status = 2;
   string business_type = 3;
   string reason = 4;
+  string order_id = 5;
 }
 
 message SmsTemplateListResponse {
