@@ -239,7 +239,7 @@ message GetCloudSmsTemplateResponse {
 
 message GetCloudSmsSignRequest {
   string merchant_id = 1;
-  int64 channel_id = 2;
+  string channel_name = 2;
 }
 
 message GetCloudSmsSignResponse {
