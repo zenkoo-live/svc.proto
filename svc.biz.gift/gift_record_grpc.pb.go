@@ -19,8 +19,8 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	GiftRecord_GetSendGiftRecord_FullMethodName = "/svc.biz.gift.GiftRecord/GetSendGiftRecord"
-	GiftRecord_GetGetGiftRecord_FullMethodName  = "/svc.biz.gift.GiftRecord/GetGetGiftRecord"
+	GiftRecord_GetSendRecordList_FullMethodName = "/svc.biz.gift.GiftRecord/GetSendRecordList"
+	GiftRecord_GetGetRecordList_FullMethodName  = "/svc.biz.gift.GiftRecord/GetGetRecordList"
 	GiftRecord_GetLiveStat_FullMethodName       = "/svc.biz.gift.GiftRecord/GetLiveStat"
 )
 
@@ -28,10 +28,10 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type GiftRecordClient interface {
-	// GetSendGiftRecord 送礼记录
-	GetSendGiftRecord(ctx context.Context, in *GetSendGiftRecordReq, opts ...grpc.CallOption) (*GetSendGiftRecordResp, error)
-	// GetGetGiftRecord 收礼记录
-	GetGetGiftRecord(ctx context.Context, in *GetGetGiftRecordReq, opts ...grpc.CallOption) (*GetGetGiftRecordResp, error)
+	// GetSendRecordList 送礼记录
+	GetSendRecordList(ctx context.Context, in *GetSendRecordListReq, opts ...grpc.CallOption) (*GetSendRecordListResp, error)
+	// GetGetRecordList 收礼记录
+	GetGetRecordList(ctx context.Context, in *GetGetRecordListReq, opts ...grpc.CallOption) (*GetGetRecordListResp, error)
 	// GetLiveStat 直播统计
 	GetLiveStat(ctx context.Context, in *GetLiveStatReq, opts ...grpc.CallOption) (*GetLiveStatResp, error)
 }
@@ -44,18 +44,18 @@ func NewGiftRecordClient(cc grpc.ClientConnInterface) GiftRecordClient {
 	return &giftRecordClient{cc}
 }
 
-func (c *giftRecordClient) GetSendGiftRecord(ctx context.Context, in *GetSendGiftRecordReq, opts ...grpc.CallOption) (*GetSendGiftRecordResp, error) {
-	out := new(GetSendGiftRecordResp)
-	err := c.cc.Invoke(ctx, GiftRecord_GetSendGiftRecord_FullMethodName, in, out, opts...)
+func (c *giftRecordClient) GetSendRecordList(ctx context.Context, in *GetSendRecordListReq, opts ...grpc.CallOption) (*GetSendRecordListResp, error) {
+	out := new(GetSendRecordListResp)
+	err := c.cc.Invoke(ctx, GiftRecord_GetSendRecordList_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *giftRecordClient) GetGetGiftRecord(ctx context.Context, in *GetGetGiftRecordReq, opts ...grpc.CallOption) (*GetGetGiftRecordResp, error) {
-	out := new(GetGetGiftRecordResp)
-	err := c.cc.Invoke(ctx, GiftRecord_GetGetGiftRecord_FullMethodName, in, out, opts...)
+func (c *giftRecordClient) GetGetRecordList(ctx context.Context, in *GetGetRecordListReq, opts ...grpc.CallOption) (*GetGetRecordListResp, error) {
+	out := new(GetGetRecordListResp)
+	err := c.cc.Invoke(ctx, GiftRecord_GetGetRecordList_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -75,10 +75,10 @@ func (c *giftRecordClient) GetLiveStat(ctx context.Context, in *GetLiveStatReq, 
 // All implementations must embed UnimplementedGiftRecordServer
 // for forward compatibility
 type GiftRecordServer interface {
-	// GetSendGiftRecord 送礼记录
-	GetSendGiftRecord(context.Context, *GetSendGiftRecordReq) (*GetSendGiftRecordResp, error)
-	// GetGetGiftRecord 收礼记录
-	GetGetGiftRecord(context.Context, *GetGetGiftRecordReq) (*GetGetGiftRecordResp, error)
+	// GetSendRecordList 送礼记录
+	GetSendRecordList(context.Context, *GetSendRecordListReq) (*GetSendRecordListResp, error)
+	// GetGetRecordList 收礼记录
+	GetGetRecordList(context.Context, *GetGetRecordListReq) (*GetGetRecordListResp, error)
 	// GetLiveStat 直播统计
 	GetLiveStat(context.Context, *GetLiveStatReq) (*GetLiveStatResp, error)
 	mustEmbedUnimplementedGiftRecordServer()
@@ -88,11 +88,11 @@ type GiftRecordServer interface {
 type UnimplementedGiftRecordServer struct {
 }
 
-func (UnimplementedGiftRecordServer) GetSendGiftRecord(context.Context, *GetSendGiftRecordReq) (*GetSendGiftRecordResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetSendGiftRecord not implemented")
+func (UnimplementedGiftRecordServer) GetSendRecordList(context.Context, *GetSendRecordListReq) (*GetSendRecordListResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSendRecordList not implemented")
 }
-func (UnimplementedGiftRecordServer) GetGetGiftRecord(context.Context, *GetGetGiftRecordReq) (*GetGetGiftRecordResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetGetGiftRecord not implemented")
+func (UnimplementedGiftRecordServer) GetGetRecordList(context.Context, *GetGetRecordListReq) (*GetGetRecordListResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetGetRecordList not implemented")
 }
 func (UnimplementedGiftRecordServer) GetLiveStat(context.Context, *GetLiveStatReq) (*GetLiveStatResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetLiveStat not implemented")
@@ -110,38 +110,38 @@ func RegisterGiftRecordServer(s grpc.ServiceRegistrar, srv GiftRecordServer) {
 	s.RegisterService(&GiftRecord_ServiceDesc, srv)
 }
 
-func _GiftRecord_GetSendGiftRecord_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetSendGiftRecordReq)
+func _GiftRecord_GetSendRecordList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetSendRecordListReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GiftRecordServer).GetSendGiftRecord(ctx, in)
+		return srv.(GiftRecordServer).GetSendRecordList(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: GiftRecord_GetSendGiftRecord_FullMethodName,
+		FullMethod: GiftRecord_GetSendRecordList_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GiftRecordServer).GetSendGiftRecord(ctx, req.(*GetSendGiftRecordReq))
+		return srv.(GiftRecordServer).GetSendRecordList(ctx, req.(*GetSendRecordListReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GiftRecord_GetGetGiftRecord_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetGetGiftRecordReq)
+func _GiftRecord_GetGetRecordList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetGetRecordListReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GiftRecordServer).GetGetGiftRecord(ctx, in)
+		return srv.(GiftRecordServer).GetGetRecordList(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: GiftRecord_GetGetGiftRecord_FullMethodName,
+		FullMethod: GiftRecord_GetGetRecordList_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GiftRecordServer).GetGetGiftRecord(ctx, req.(*GetGetGiftRecordReq))
+		return srv.(GiftRecordServer).GetGetRecordList(ctx, req.(*GetGetRecordListReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -172,12 +172,12 @@ var GiftRecord_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*GiftRecordServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetSendGiftRecord",
-			Handler:    _GiftRecord_GetSendGiftRecord_Handler,
+			MethodName: "GetSendRecordList",
+			Handler:    _GiftRecord_GetSendRecordList_Handler,
 		},
 		{
-			MethodName: "GetGetGiftRecord",
-			Handler:    _GiftRecord_GetGetGiftRecord_Handler,
+			MethodName: "GetGetRecordList",
+			Handler:    _GiftRecord_GetGetRecordList_Handler,
 		},
 		{
 			MethodName: "GetLiveStat",

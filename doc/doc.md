@@ -387,12 +387,12 @@
     - [Gift](#svc-biz-gift-Gift)
   
 - [svc.biz.gift/gift_record.proto](#svc-biz-gift_gift_record-proto)
-    - [GetGetGiftRecordReq](#svc-biz-gift-GetGetGiftRecordReq)
-    - [GetGetGiftRecordResp](#svc-biz-gift-GetGetGiftRecordResp)
+    - [GetGetRecordListReq](#svc-biz-gift-GetGetRecordListReq)
+    - [GetGetRecordListResp](#svc-biz-gift-GetGetRecordListResp)
     - [GetLiveStatReq](#svc-biz-gift-GetLiveStatReq)
     - [GetLiveStatResp](#svc-biz-gift-GetLiveStatResp)
-    - [GetSendGiftRecordReq](#svc-biz-gift-GetSendGiftRecordReq)
-    - [GetSendGiftRecordResp](#svc-biz-gift-GetSendGiftRecordResp)
+    - [GetSendRecordListReq](#svc-biz-gift-GetSendRecordListReq)
+    - [GetSendRecordListResp](#svc-biz-gift-GetSendRecordListResp)
     - [GiftRecordInfo](#svc-biz-gift-GiftRecordInfo)
   
     - [GiftRecord](#svc-biz-gift-GiftRecord)
@@ -6314,9 +6314,9 @@ service started /////////////////
 
 
 
-<a name="svc-biz-gift-GetGetGiftRecordReq"></a>
+<a name="svc-biz-gift-GetGetRecordListReq"></a>
 
-### GetGetGiftRecordReq
+### GetGetRecordListReq
 
 
 
@@ -6335,9 +6335,9 @@ service started /////////////////
 
 
 
-<a name="svc-biz-gift-GetGetGiftRecordResp"></a>
+<a name="svc-biz-gift-GetGetRecordListResp"></a>
 
-### GetGetGiftRecordResp
+### GetGetRecordListResp
 
 
 
@@ -6382,9 +6382,9 @@ service started /////////////////
 
 
 
-<a name="svc-biz-gift-GetSendGiftRecordReq"></a>
+<a name="svc-biz-gift-GetSendRecordListReq"></a>
 
-### GetSendGiftRecordReq
+### GetSendRecordListReq
 
 
 
@@ -6401,9 +6401,9 @@ service started /////////////////
 
 
 
-<a name="svc-biz-gift-GetSendGiftRecordResp"></a>
+<a name="svc-biz-gift-GetSendRecordListResp"></a>
 
-### GetSendGiftRecordResp
+### GetSendRecordListResp
 
 
 
@@ -6452,8 +6452,8 @@ service started /////////////////
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| GetSendGiftRecord | [GetSendGiftRecordReq](#svc-biz-gift-GetSendGiftRecordReq) | [GetSendGiftRecordResp](#svc-biz-gift-GetSendGiftRecordResp) | GetSendGiftRecord 送礼记录 |
-| GetGetGiftRecord | [GetGetGiftRecordReq](#svc-biz-gift-GetGetGiftRecordReq) | [GetGetGiftRecordResp](#svc-biz-gift-GetGetGiftRecordResp) | GetGetGiftRecord 收礼记录 |
+| GetSendRecordList | [GetSendRecordListReq](#svc-biz-gift-GetSendRecordListReq) | [GetSendRecordListResp](#svc-biz-gift-GetSendRecordListResp) | GetSendRecordList 送礼记录 |
+| GetGetRecordList | [GetGetRecordListReq](#svc-biz-gift-GetGetRecordListReq) | [GetGetRecordListResp](#svc-biz-gift-GetGetRecordListResp) | GetGetRecordList 收礼记录 |
 | GetLiveStat | [GetLiveStatReq](#svc-biz-gift-GetLiveStatReq) | [GetLiveStatResp](#svc-biz-gift-GetLiveStatResp) | GetLiveStat 直播统计 |
 
  

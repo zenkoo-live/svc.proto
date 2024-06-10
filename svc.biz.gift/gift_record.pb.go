@@ -132,7 +132,7 @@ func (x *GiftRecordInfo) GetSendTime() *timestamppb.Timestamp {
 	return nil
 }
 
-type GetSendGiftRecordReq struct {
+type GetSendRecordListReq struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -144,8 +144,8 @@ type GetSendGiftRecordReq struct {
 	EndTime   *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=end_time,json=endTime,proto3" json:"end_time,omitempty"`       // 结束时间
 }
 
-func (x *GetSendGiftRecordReq) Reset() {
-	*x = GetSendGiftRecordReq{}
+func (x *GetSendRecordListReq) Reset() {
+	*x = GetSendRecordListReq{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_svc_biz_gift_gift_record_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -153,13 +153,13 @@ func (x *GetSendGiftRecordReq) Reset() {
 	}
 }
 
-func (x *GetSendGiftRecordReq) String() string {
+func (x *GetSendRecordListReq) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetSendGiftRecordReq) ProtoMessage() {}
+func (*GetSendRecordListReq) ProtoMessage() {}
 
-func (x *GetSendGiftRecordReq) ProtoReflect() protoreflect.Message {
+func (x *GetSendRecordListReq) ProtoReflect() protoreflect.Message {
 	mi := &file_svc_biz_gift_gift_record_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -171,47 +171,47 @@ func (x *GetSendGiftRecordReq) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetSendGiftRecordReq.ProtoReflect.Descriptor instead.
-func (*GetSendGiftRecordReq) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetSendRecordListReq.ProtoReflect.Descriptor instead.
+func (*GetSendRecordListReq) Descriptor() ([]byte, []int) {
 	return file_svc_biz_gift_gift_record_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *GetSendGiftRecordReq) GetPageno() int64 {
+func (x *GetSendRecordListReq) GetPageno() int64 {
 	if x != nil {
 		return x.Pageno
 	}
 	return 0
 }
 
-func (x *GetSendGiftRecordReq) GetPagenum() int64 {
+func (x *GetSendRecordListReq) GetPagenum() int64 {
 	if x != nil {
 		return x.Pagenum
 	}
 	return 0
 }
 
-func (x *GetSendGiftRecordReq) GetFromUid() string {
+func (x *GetSendRecordListReq) GetFromUid() string {
 	if x != nil {
 		return x.FromUid
 	}
 	return ""
 }
 
-func (x *GetSendGiftRecordReq) GetStartTime() *timestamppb.Timestamp {
+func (x *GetSendRecordListReq) GetStartTime() *timestamppb.Timestamp {
 	if x != nil {
 		return x.StartTime
 	}
 	return nil
 }
 
-func (x *GetSendGiftRecordReq) GetEndTime() *timestamppb.Timestamp {
+func (x *GetSendRecordListReq) GetEndTime() *timestamppb.Timestamp {
 	if x != nil {
 		return x.EndTime
 	}
 	return nil
 }
 
-type GetSendGiftRecordResp struct {
+type GetSendRecordListResp struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -219,8 +219,8 @@ type GetSendGiftRecordResp struct {
 	Items []*GiftRecordInfo `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
 }
 
-func (x *GetSendGiftRecordResp) Reset() {
-	*x = GetSendGiftRecordResp{}
+func (x *GetSendRecordListResp) Reset() {
+	*x = GetSendRecordListResp{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_svc_biz_gift_gift_record_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -228,13 +228,13 @@ func (x *GetSendGiftRecordResp) Reset() {
 	}
 }
 
-func (x *GetSendGiftRecordResp) String() string {
+func (x *GetSendRecordListResp) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetSendGiftRecordResp) ProtoMessage() {}
+func (*GetSendRecordListResp) ProtoMessage() {}
 
-func (x *GetSendGiftRecordResp) ProtoReflect() protoreflect.Message {
+func (x *GetSendRecordListResp) ProtoReflect() protoreflect.Message {
 	mi := &file_svc_biz_gift_gift_record_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -246,19 +246,19 @@ func (x *GetSendGiftRecordResp) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetSendGiftRecordResp.ProtoReflect.Descriptor instead.
-func (*GetSendGiftRecordResp) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetSendRecordListResp.ProtoReflect.Descriptor instead.
+func (*GetSendRecordListResp) Descriptor() ([]byte, []int) {
 	return file_svc_biz_gift_gift_record_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *GetSendGiftRecordResp) GetItems() []*GiftRecordInfo {
+func (x *GetSendRecordListResp) GetItems() []*GiftRecordInfo {
 	if x != nil {
 		return x.Items
 	}
 	return nil
 }
 
-type GetGetGiftRecordReq struct {
+type GetGetRecordListReq struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -272,8 +272,8 @@ type GetGetGiftRecordReq struct {
 	EndTime    *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=end_time,json=endTime,proto3" json:"end_time,omitempty"`          // 结束时间
 }
 
-func (x *GetGetGiftRecordReq) Reset() {
-	*x = GetGetGiftRecordReq{}
+func (x *GetGetRecordListReq) Reset() {
+	*x = GetGetRecordListReq{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_svc_biz_gift_gift_record_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -281,13 +281,13 @@ func (x *GetGetGiftRecordReq) Reset() {
 	}
 }
 
-func (x *GetGetGiftRecordReq) String() string {
+func (x *GetGetRecordListReq) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetGetGiftRecordReq) ProtoMessage() {}
+func (*GetGetRecordListReq) ProtoMessage() {}
 
-func (x *GetGetGiftRecordReq) ProtoReflect() protoreflect.Message {
+func (x *GetGetRecordListReq) ProtoReflect() protoreflect.Message {
 	mi := &file_svc_biz_gift_gift_record_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -299,61 +299,61 @@ func (x *GetGetGiftRecordReq) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetGetGiftRecordReq.ProtoReflect.Descriptor instead.
-func (*GetGetGiftRecordReq) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetGetRecordListReq.ProtoReflect.Descriptor instead.
+func (*GetGetRecordListReq) Descriptor() ([]byte, []int) {
 	return file_svc_biz_gift_gift_record_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *GetGetGiftRecordReq) GetPageno() int64 {
+func (x *GetGetRecordListReq) GetPageno() int64 {
 	if x != nil {
 		return x.Pageno
 	}
 	return 0
 }
 
-func (x *GetGetGiftRecordReq) GetPagenum() int64 {
+func (x *GetGetRecordListReq) GetPagenum() int64 {
 	if x != nil {
 		return x.Pagenum
 	}
 	return 0
 }
 
-func (x *GetGetGiftRecordReq) GetStreamerId() string {
+func (x *GetGetRecordListReq) GetStreamerId() string {
 	if x != nil {
 		return x.StreamerId
 	}
 	return ""
 }
 
-func (x *GetGetGiftRecordReq) GetRoomId() string {
+func (x *GetGetRecordListReq) GetRoomId() string {
 	if x != nil {
 		return x.RoomId
 	}
 	return ""
 }
 
-func (x *GetGetGiftRecordReq) GetLiveId() string {
+func (x *GetGetRecordListReq) GetLiveId() string {
 	if x != nil {
 		return x.LiveId
 	}
 	return ""
 }
 
-func (x *GetGetGiftRecordReq) GetStartTime() *timestamppb.Timestamp {
+func (x *GetGetRecordListReq) GetStartTime() *timestamppb.Timestamp {
 	if x != nil {
 		return x.StartTime
 	}
 	return nil
 }
 
-func (x *GetGetGiftRecordReq) GetEndTime() *timestamppb.Timestamp {
+func (x *GetGetRecordListReq) GetEndTime() *timestamppb.Timestamp {
 	if x != nil {
 		return x.EndTime
 	}
 	return nil
 }
 
-type GetGetGiftRecordResp struct {
+type GetGetRecordListResp struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -361,8 +361,8 @@ type GetGetGiftRecordResp struct {
 	Items []*GiftRecordInfo `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
 }
 
-func (x *GetGetGiftRecordResp) Reset() {
-	*x = GetGetGiftRecordResp{}
+func (x *GetGetRecordListResp) Reset() {
+	*x = GetGetRecordListResp{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_svc_biz_gift_gift_record_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -370,13 +370,13 @@ func (x *GetGetGiftRecordResp) Reset() {
 	}
 }
 
-func (x *GetGetGiftRecordResp) String() string {
+func (x *GetGetRecordListResp) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetGetGiftRecordResp) ProtoMessage() {}
+func (*GetGetRecordListResp) ProtoMessage() {}
 
-func (x *GetGetGiftRecordResp) ProtoReflect() protoreflect.Message {
+func (x *GetGetRecordListResp) ProtoReflect() protoreflect.Message {
 	mi := &file_svc_biz_gift_gift_record_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -388,12 +388,12 @@ func (x *GetGetGiftRecordResp) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetGetGiftRecordResp.ProtoReflect.Descriptor instead.
-func (*GetGetGiftRecordResp) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetGetRecordListResp.ProtoReflect.Descriptor instead.
+func (*GetGetRecordListResp) Descriptor() ([]byte, []int) {
 	return file_svc_biz_gift_gift_record_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *GetGetGiftRecordResp) GetItems() []*GiftRecordInfo {
+func (x *GetGetRecordListResp) GetItems() []*GiftRecordInfo {
 	if x != nil {
 		return x.Items
 	}
@@ -536,8 +536,8 @@ var file_svc_biz_gift_gift_record_proto_rawDesc = []byte{
 	0x64, 0x5f, 0x74, 0x69, 0x6d, 0x65, 0x18, 0x09, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67,
 	0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54,
 	0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x52, 0x08, 0x73, 0x65, 0x6e, 0x64, 0x54, 0x69,
-	0x6d, 0x65, 0x22, 0xd5, 0x01, 0x0a, 0x14, 0x47, 0x65, 0x74, 0x53, 0x65, 0x6e, 0x64, 0x47, 0x69,
-	0x66, 0x74, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x52, 0x65, 0x71, 0x12, 0x16, 0x0a, 0x06, 0x70,
+	0x6d, 0x65, 0x22, 0xd5, 0x01, 0x0a, 0x14, 0x47, 0x65, 0x74, 0x53, 0x65, 0x6e, 0x64, 0x52, 0x65,
+	0x63, 0x6f, 0x72, 0x64, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x71, 0x12, 0x16, 0x0a, 0x06, 0x70,
 	0x61, 0x67, 0x65, 0x6e, 0x6f, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x70, 0x61, 0x67,
 	0x65, 0x6e, 0x6f, 0x12, 0x18, 0x0a, 0x07, 0x70, 0x61, 0x67, 0x65, 0x6e, 0x75, 0x6d, 0x18, 0x02,
 	0x20, 0x01, 0x28, 0x03, 0x52, 0x07, 0x70, 0x61, 0x67, 0x65, 0x6e, 0x75, 0x6d, 0x12, 0x19, 0x0a,
@@ -550,12 +550,12 @@ var file_svc_biz_gift_gift_record_proto_rawDesc = []byte{
 	0x05, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70,
 	0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d,
 	0x70, 0x52, 0x07, 0x65, 0x6e, 0x64, 0x54, 0x69, 0x6d, 0x65, 0x22, 0x4b, 0x0a, 0x15, 0x47, 0x65,
-	0x74, 0x53, 0x65, 0x6e, 0x64, 0x47, 0x69, 0x66, 0x74, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x52,
+	0x74, 0x53, 0x65, 0x6e, 0x64, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x4c, 0x69, 0x73, 0x74, 0x52,
 	0x65, 0x73, 0x70, 0x12, 0x32, 0x0a, 0x05, 0x69, 0x74, 0x65, 0x6d, 0x73, 0x18, 0x01, 0x20, 0x03,
 	0x28, 0x0b, 0x32, 0x1c, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x67, 0x69, 0x66,
 	0x74, 0x2e, 0x47, 0x69, 0x66, 0x74, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x49, 0x6e, 0x66, 0x6f,
 	0x52, 0x05, 0x69, 0x74, 0x65, 0x6d, 0x73, 0x22, 0x8c, 0x02, 0x0a, 0x13, 0x47, 0x65, 0x74, 0x47,
-	0x65, 0x74, 0x47, 0x69, 0x66, 0x74, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x52, 0x65, 0x71, 0x12,
+	0x65, 0x74, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x71, 0x12,
 	0x16, 0x0a, 0x06, 0x70, 0x61, 0x67, 0x65, 0x6e, 0x6f, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52,
 	0x06, 0x70, 0x61, 0x67, 0x65, 0x6e, 0x6f, 0x12, 0x18, 0x0a, 0x07, 0x70, 0x61, 0x67, 0x65, 0x6e,
 	0x75, 0x6d, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x07, 0x70, 0x61, 0x67, 0x65, 0x6e, 0x75,
@@ -572,7 +572,7 @@ var file_svc_biz_gift_gift_record_proto_rawDesc = []byte{
 	0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
 	0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x52, 0x07, 0x65,
 	0x6e, 0x64, 0x54, 0x69, 0x6d, 0x65, 0x22, 0x4a, 0x0a, 0x14, 0x47, 0x65, 0x74, 0x47, 0x65, 0x74,
-	0x47, 0x69, 0x66, 0x74, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x52, 0x65, 0x73, 0x70, 0x12, 0x32,
+	0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x73, 0x70, 0x12, 0x32,
 	0x0a, 0x05, 0x69, 0x74, 0x65, 0x6d, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1c, 0x2e,
 	0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x67, 0x69, 0x66, 0x74, 0x2e, 0x47, 0x69, 0x66,
 	0x74, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x05, 0x69, 0x74, 0x65,
@@ -587,17 +587,17 @@ var file_svc_biz_gift_gift_record_proto_rawDesc = []byte{
 	0x74, 0x61, 0x6c, 0x5f, 0x63, 0x6f, 0x73, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x09,
 	0x74, 0x6f, 0x74, 0x61, 0x6c, 0x43, 0x6f, 0x73, 0x74, 0x32, 0x97, 0x02, 0x0a, 0x0a, 0x47, 0x69,
 	0x66, 0x74, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x12, 0x5e, 0x0a, 0x11, 0x47, 0x65, 0x74, 0x53,
-	0x65, 0x6e, 0x64, 0x47, 0x69, 0x66, 0x74, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x12, 0x22, 0x2e,
+	0x65, 0x6e, 0x64, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x22, 0x2e,
 	0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x67, 0x69, 0x66, 0x74, 0x2e, 0x47, 0x65, 0x74,
-	0x53, 0x65, 0x6e, 0x64, 0x47, 0x69, 0x66, 0x74, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x52, 0x65,
+	0x53, 0x65, 0x6e, 0x64, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65,
 	0x71, 0x1a, 0x23, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x67, 0x69, 0x66, 0x74,
-	0x2e, 0x47, 0x65, 0x74, 0x53, 0x65, 0x6e, 0x64, 0x47, 0x69, 0x66, 0x74, 0x52, 0x65, 0x63, 0x6f,
-	0x72, 0x64, 0x52, 0x65, 0x73, 0x70, 0x22, 0x00, 0x12, 0x5b, 0x0a, 0x10, 0x47, 0x65, 0x74, 0x47,
-	0x65, 0x74, 0x47, 0x69, 0x66, 0x74, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x12, 0x21, 0x2e, 0x73,
+	0x2e, 0x47, 0x65, 0x74, 0x53, 0x65, 0x6e, 0x64, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x4c, 0x69,
+	0x73, 0x74, 0x52, 0x65, 0x73, 0x70, 0x22, 0x00, 0x12, 0x5b, 0x0a, 0x10, 0x47, 0x65, 0x74, 0x47,
+	0x65, 0x74, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x21, 0x2e, 0x73,
 	0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x67, 0x69, 0x66, 0x74, 0x2e, 0x47, 0x65, 0x74, 0x47,
-	0x65, 0x74, 0x47, 0x69, 0x66, 0x74, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x52, 0x65, 0x71, 0x1a,
+	0x65, 0x74, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x71, 0x1a,
 	0x22, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x67, 0x69, 0x66, 0x74, 0x2e, 0x47,
-	0x65, 0x74, 0x47, 0x65, 0x74, 0x47, 0x69, 0x66, 0x74, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x52,
+	0x65, 0x74, 0x47, 0x65, 0x74, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x4c, 0x69, 0x73, 0x74, 0x52,
 	0x65, 0x73, 0x70, 0x22, 0x00, 0x12, 0x4c, 0x0a, 0x0b, 0x47, 0x65, 0x74, 0x4c, 0x69, 0x76, 0x65,
 	0x53, 0x74, 0x61, 0x74, 0x12, 0x1c, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x67,
 	0x69, 0x66, 0x74, 0x2e, 0x47, 0x65, 0x74, 0x4c, 0x69, 0x76, 0x65, 0x53, 0x74, 0x61, 0x74, 0x52,
@@ -623,27 +623,27 @@ func file_svc_biz_gift_gift_record_proto_rawDescGZIP() []byte {
 var file_svc_biz_gift_gift_record_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_svc_biz_gift_gift_record_proto_goTypes = []interface{}{
 	(*GiftRecordInfo)(nil),        // 0: svc.biz.gift.GiftRecordInfo
-	(*GetSendGiftRecordReq)(nil),  // 1: svc.biz.gift.GetSendGiftRecordReq
-	(*GetSendGiftRecordResp)(nil), // 2: svc.biz.gift.GetSendGiftRecordResp
-	(*GetGetGiftRecordReq)(nil),   // 3: svc.biz.gift.GetGetGiftRecordReq
-	(*GetGetGiftRecordResp)(nil),  // 4: svc.biz.gift.GetGetGiftRecordResp
+	(*GetSendRecordListReq)(nil),  // 1: svc.biz.gift.GetSendRecordListReq
+	(*GetSendRecordListResp)(nil), // 2: svc.biz.gift.GetSendRecordListResp
+	(*GetGetRecordListReq)(nil),   // 3: svc.biz.gift.GetGetRecordListReq
+	(*GetGetRecordListResp)(nil),  // 4: svc.biz.gift.GetGetRecordListResp
 	(*GetLiveStatReq)(nil),        // 5: svc.biz.gift.GetLiveStatReq
 	(*GetLiveStatResp)(nil),       // 6: svc.biz.gift.GetLiveStatResp
 	(*timestamppb.Timestamp)(nil), // 7: google.protobuf.Timestamp
 }
 var file_svc_biz_gift_gift_record_proto_depIdxs = []int32{
 	7,  // 0: svc.biz.gift.GiftRecordInfo.send_time:type_name -> google.protobuf.Timestamp
-	7,  // 1: svc.biz.gift.GetSendGiftRecordReq.start_time:type_name -> google.protobuf.Timestamp
-	7,  // 2: svc.biz.gift.GetSendGiftRecordReq.end_time:type_name -> google.protobuf.Timestamp
-	0,  // 3: svc.biz.gift.GetSendGiftRecordResp.items:type_name -> svc.biz.gift.GiftRecordInfo
-	7,  // 4: svc.biz.gift.GetGetGiftRecordReq.start_time:type_name -> google.protobuf.Timestamp
-	7,  // 5: svc.biz.gift.GetGetGiftRecordReq.end_time:type_name -> google.protobuf.Timestamp
-	0,  // 6: svc.biz.gift.GetGetGiftRecordResp.items:type_name -> svc.biz.gift.GiftRecordInfo
-	1,  // 7: svc.biz.gift.GiftRecord.GetSendGiftRecord:input_type -> svc.biz.gift.GetSendGiftRecordReq
-	3,  // 8: svc.biz.gift.GiftRecord.GetGetGiftRecord:input_type -> svc.biz.gift.GetGetGiftRecordReq
+	7,  // 1: svc.biz.gift.GetSendRecordListReq.start_time:type_name -> google.protobuf.Timestamp
+	7,  // 2: svc.biz.gift.GetSendRecordListReq.end_time:type_name -> google.protobuf.Timestamp
+	0,  // 3: svc.biz.gift.GetSendRecordListResp.items:type_name -> svc.biz.gift.GiftRecordInfo
+	7,  // 4: svc.biz.gift.GetGetRecordListReq.start_time:type_name -> google.protobuf.Timestamp
+	7,  // 5: svc.biz.gift.GetGetRecordListReq.end_time:type_name -> google.protobuf.Timestamp
+	0,  // 6: svc.biz.gift.GetGetRecordListResp.items:type_name -> svc.biz.gift.GiftRecordInfo
+	1,  // 7: svc.biz.gift.GiftRecord.GetSendRecordList:input_type -> svc.biz.gift.GetSendRecordListReq
+	3,  // 8: svc.biz.gift.GiftRecord.GetGetRecordList:input_type -> svc.biz.gift.GetGetRecordListReq
 	5,  // 9: svc.biz.gift.GiftRecord.GetLiveStat:input_type -> svc.biz.gift.GetLiveStatReq
-	2,  // 10: svc.biz.gift.GiftRecord.GetSendGiftRecord:output_type -> svc.biz.gift.GetSendGiftRecordResp
-	4,  // 11: svc.biz.gift.GiftRecord.GetGetGiftRecord:output_type -> svc.biz.gift.GetGetGiftRecordResp
+	2,  // 10: svc.biz.gift.GiftRecord.GetSendRecordList:output_type -> svc.biz.gift.GetSendRecordListResp
+	4,  // 11: svc.biz.gift.GiftRecord.GetGetRecordList:output_type -> svc.biz.gift.GetGetRecordListResp
 	6,  // 12: svc.biz.gift.GiftRecord.GetLiveStat:output_type -> svc.biz.gift.GetLiveStatResp
 	10, // [10:13] is the sub-list for method output_type
 	7,  // [7:10] is the sub-list for method input_type
@@ -671,7 +671,7 @@ func file_svc_biz_gift_gift_record_proto_init() {
 			}
 		}
 		file_svc_biz_gift_gift_record_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetSendGiftRecordReq); i {
+			switch v := v.(*GetSendRecordListReq); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -683,7 +683,7 @@ func file_svc_biz_gift_gift_record_proto_init() {
 			}
 		}
 		file_svc_biz_gift_gift_record_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetSendGiftRecordResp); i {
+			switch v := v.(*GetSendRecordListResp); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -695,7 +695,7 @@ func file_svc_biz_gift_gift_record_proto_init() {
 			}
 		}
 		file_svc_biz_gift_gift_record_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetGetGiftRecordReq); i {
+			switch v := v.(*GetGetRecordListReq); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -707,7 +707,7 @@ func file_svc_biz_gift_gift_record_proto_init() {
 			}
 		}
 		file_svc_biz_gift_gift_record_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetGetGiftRecordResp); i {
+			switch v := v.(*GetGetRecordListResp); i {
 			case 0:
 				return &v.state
 			case 1:

@@ -7,10 +7,10 @@ import "google/protobuf/timestamp.proto";
 option go_package="./svc.biz.gift;gift";
 
 service GiftRecord {
-    // GetSendGiftRecord 送礼记录
-    rpc GetSendGiftRecord(GetSendGiftRecordReq) returns (GetSendGiftRecordResp) {}
-    // GetGetGiftRecord 收礼记录
-    rpc GetGetGiftRecord(GetGetGiftRecordReq) returns (GetGetGiftRecordResp) {}
+    // GetSendRecordList 送礼记录
+    rpc GetSendRecordList(GetSendRecordListReq) returns (GetSendRecordListResp) {}
+    // GetGetRecordList 收礼记录
+    rpc GetGetRecordList(GetGetRecordListReq) returns (GetGetRecordListResp) {}
     // GetLiveStat 直播统计
     rpc GetLiveStat(GetLiveStatReq) returns (GetLiveStatResp) {}
 }
@@ -28,20 +28,18 @@ message GiftRecordInfo {
     google.protobuf.Timestamp send_time = 9; // 创建时间
 }
 
-
-
-message GetSendGiftRecordReq {
+message GetSendRecordListReq {
     int64 pageno = 1; // 第几页
     int64 pagenum = 2; // 每页几条数据
     string from_uid = 3; // 用户id
     google.protobuf.Timestamp  start_time = 4; // 开始时间
     google.protobuf.Timestamp  end_time = 5; // 结束时间
 }
-message GetSendGiftRecordResp {
+message GetSendRecordListResp {
     repeated GiftRecordInfo items = 1;
 }
 
-message GetGetGiftRecordReq {
+message GetGetRecordListReq {
     int64 pageno = 1; // 第几页
     int64 pagenum = 2; // 每页几条数据
     string streamer_id = 3; // 主播uid
@@ -49,9 +47,8 @@ message GetGetGiftRecordReq {
     string live_id = 5; // 直播id
     google.protobuf.Timestamp  start_time = 6; // 开始时间
     google.protobuf.Timestamp  end_time = 7; // 结束时间
-
 }
-message GetGetGiftRecordResp {
+message GetGetRecordListResp {
     repeated GiftRecordInfo items = 1;
 }
 

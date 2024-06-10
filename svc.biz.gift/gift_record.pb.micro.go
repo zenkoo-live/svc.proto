@@ -37,10 +37,10 @@ func NewGiftRecordEndpoints() []*api.Endpoint {
 // Client API for GiftRecord service
 
 type GiftRecordService interface {
-	// GetSendGiftRecord 送礼记录
-	GetSendGiftRecord(ctx context.Context, in *GetSendGiftRecordReq, opts ...client.CallOption) (*GetSendGiftRecordResp, error)
-	// GetGetGiftRecord 收礼记录
-	GetGetGiftRecord(ctx context.Context, in *GetGetGiftRecordReq, opts ...client.CallOption) (*GetGetGiftRecordResp, error)
+	// GetSendRecordList 送礼记录
+	GetSendRecordList(ctx context.Context, in *GetSendRecordListReq, opts ...client.CallOption) (*GetSendRecordListResp, error)
+	// GetGetRecordList 收礼记录
+	GetGetRecordList(ctx context.Context, in *GetGetRecordListReq, opts ...client.CallOption) (*GetGetRecordListResp, error)
 	// GetLiveStat 直播统计
 	GetLiveStat(ctx context.Context, in *GetLiveStatReq, opts ...client.CallOption) (*GetLiveStatResp, error)
 }
@@ -57,9 +57,9 @@ func NewGiftRecordService(name string, c client.Client) GiftRecordService {
 	}
 }
 
-func (c *giftRecordService) GetSendGiftRecord(ctx context.Context, in *GetSendGiftRecordReq, opts ...client.CallOption) (*GetSendGiftRecordResp, error) {
-	req := c.c.NewRequest(c.name, "GiftRecord.GetSendGiftRecord", in)
-	out := new(GetSendGiftRecordResp)
+func (c *giftRecordService) GetSendRecordList(ctx context.Context, in *GetSendRecordListReq, opts ...client.CallOption) (*GetSendRecordListResp, error) {
+	req := c.c.NewRequest(c.name, "GiftRecord.GetSendRecordList", in)
+	out := new(GetSendRecordListResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -67,9 +67,9 @@ func (c *giftRecordService) GetSendGiftRecord(ctx context.Context, in *GetSendGi
 	return out, nil
 }
 
-func (c *giftRecordService) GetGetGiftRecord(ctx context.Context, in *GetGetGiftRecordReq, opts ...client.CallOption) (*GetGetGiftRecordResp, error) {
-	req := c.c.NewRequest(c.name, "GiftRecord.GetGetGiftRecord", in)
-	out := new(GetGetGiftRecordResp)
+func (c *giftRecordService) GetGetRecordList(ctx context.Context, in *GetGetRecordListReq, opts ...client.CallOption) (*GetGetRecordListResp, error) {
+	req := c.c.NewRequest(c.name, "GiftRecord.GetGetRecordList", in)
+	out := new(GetGetRecordListResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -90,18 +90,18 @@ func (c *giftRecordService) GetLiveStat(ctx context.Context, in *GetLiveStatReq,
 // Server API for GiftRecord service
 
 type GiftRecordHandler interface {
-	// GetSendGiftRecord 送礼记录
-	GetSendGiftRecord(context.Context, *GetSendGiftRecordReq, *GetSendGiftRecordResp) error
-	// GetGetGiftRecord 收礼记录
-	GetGetGiftRecord(context.Context, *GetGetGiftRecordReq, *GetGetGiftRecordResp) error
+	// GetSendRecordList 送礼记录
+	GetSendRecordList(context.Context, *GetSendRecordListReq, *GetSendRecordListResp) error
+	// GetGetRecordList 收礼记录
+	GetGetRecordList(context.Context, *GetGetRecordListReq, *GetGetRecordListResp) error
 	// GetLiveStat 直播统计
 	GetLiveStat(context.Context, *GetLiveStatReq, *GetLiveStatResp) error
 }
 
 func RegisterGiftRecordHandler(s server.Server, hdlr GiftRecordHandler, opts ...server.HandlerOption) error {
 	type giftRecord interface {
-		GetSendGiftRecord(ctx context.Context, in *GetSendGiftRecordReq, out *GetSendGiftRecordResp) error
-		GetGetGiftRecord(ctx context.Context, in *GetGetGiftRecordReq, out *GetGetGiftRecordResp) error
+		GetSendRecordList(ctx context.Context, in *GetSendRecordListReq, out *GetSendRecordListResp) error
+		GetGetRecordList(ctx context.Context, in *GetGetRecordListReq, out *GetGetRecordListResp) error
 		GetLiveStat(ctx context.Context, in *GetLiveStatReq, out *GetLiveStatResp) error
 	}
 	type GiftRecord struct {
@@ -115,12 +115,12 @@ type giftRecordHandler struct {
 	GiftRecordHandler
 }
 
-func (h *giftRecordHandler) GetSendGiftRecord(ctx context.Context, in *GetSendGiftRecordReq, out *GetSendGiftRecordResp) error {
-	return h.GiftRecordHandler.GetSendGiftRecord(ctx, in, out)
+func (h *giftRecordHandler) GetSendRecordList(ctx context.Context, in *GetSendRecordListReq, out *GetSendRecordListResp) error {
+	return h.GiftRecordHandler.GetSendRecordList(ctx, in, out)
 }
 
-func (h *giftRecordHandler) GetGetGiftRecord(ctx context.Context, in *GetGetGiftRecordReq, out *GetGetGiftRecordResp) error {
-	return h.GiftRecordHandler.GetGetGiftRecord(ctx, in, out)
+func (h *giftRecordHandler) GetGetRecordList(ctx context.Context, in *GetGetRecordListReq, out *GetGetRecordListResp) error {
+	return h.GiftRecordHandler.GetGetRecordList(ctx, in, out)
 }
 
 func (h *giftRecordHandler) GetLiveStat(ctx context.Context, in *GetLiveStatReq, out *GetLiveStatResp) error {
