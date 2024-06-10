@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+package svc.biz.gift;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package="./svc.biz.gift;gift";
+
+service GiftRecord {
+    // GetSendGiftRecord 送礼记录
+    rpc GetSendGiftRecord(GetSendGiftRecordReq) returns (GetSendGiftRecordResp) {}
+    // GetGetGiftRecord 收礼记录
+    rpc GetGetGiftRecord(GetGetGiftRecordReq) returns (GetGetGiftRecordResp) {}
+    // GetLiveStat 直播统计
+    rpc GetLiveStat(GetLiveStatReq) returns (GetLiveStatResp) {}
+}
+
+
+message GiftRecordInfo {
+    string gift_id = 1; // 礼物id
+    string gift_name = 2;  // 礼物名
+    int32 num = 3; // 数量
+    int32 total_price = 4; // 总价
+    string from_uid = 5; // 送礼uid
+    string streamer_id = 6; // 主播uid
+    string room_id = 7; // 房间id
+    string live_id = 8;  // 直播id
+    google.protobuf.Timestamp send_time = 9; // 创建时间
+}
+
+
+
+message GetSendGiftRecordReq {
+    int64 pageno = 1; // 第几页
+    int64 pagenum = 2; // 每页几条数据
+    string from_uid = 3; // 用户id
+    google.protobuf.Timestamp  start_time = 4; // 开始时间
+    google.protobuf.Timestamp  end_time = 5; // 结束时间
+}
+message GetSendGiftRecordResp {
+    repeated GiftRecordInfo items = 1;
+}
+
+message GetGetGiftRecordReq {
+    int64 pageno = 1; // 第几页
+    int64 pagenum = 2; // 每页几条数据
+    string streamer_id = 3; // 主播uid
+    string room_id = 4; // 房间id
+    string live_id = 5; // 直播id
+    google.protobuf.Timestamp  start_time = 6; // 开始时间
+    google.protobuf.Timestamp  end_time = 7; // 结束时间
+
+}
+message GetGetGiftRecordResp {
+    repeated GiftRecordInfo items = 1;
+}
+
+message GetLiveStatReq {
+    string streamer_id = 1; // 主播uid
+    string room_id = 2;
+    string live_id = 3;
+}
+
+message GetLiveStatResp {
+    int32 total_cost = 1;
+}

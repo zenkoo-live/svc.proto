@@ -339,7 +339,25 @@
     - [Org](#svc-biz-org-Org)
   
 - [svc.infra.notifier/notifier.proto](#svc-infra-notifier_notifier-proto)
+    - [CommonResponse](#svc-infra-notifier-CommonResponse)
+    - [CreatedSmsBizSendLogRequest](#svc-infra-notifier-CreatedSmsBizSendLogRequest)
+    - [CreatedSmsTemplateRequest](#svc-infra-notifier-CreatedSmsTemplateRequest)
+    - [DeletedSmsTemplateRequest](#svc-infra-notifier-DeletedSmsTemplateRequest)
     - [InitDBResp](#svc-infra-notifier-InitDBResp)
+    - [SmsBizSendLog](#svc-infra-notifier-SmsBizSendLog)
+    - [SmsBizSendLogListRequest](#svc-infra-notifier-SmsBizSendLogListRequest)
+    - [SmsBizSendLogListResponse](#svc-infra-notifier-SmsBizSendLogListResponse)
+    - [SmsBizSendLogListResponse.SmsBizSendLog](#svc-infra-notifier-SmsBizSendLogListResponse-SmsBizSendLog)
+    - [SmsChannel](#svc-infra-notifier-SmsChannel)
+    - [SmsChannelCreatedRequest](#svc-infra-notifier-SmsChannelCreatedRequest)
+    - [SmsChannelDeletedRequest](#svc-infra-notifier-SmsChannelDeletedRequest)
+    - [SmsChannelListRequest](#svc-infra-notifier-SmsChannelListRequest)
+    - [SmsChannelListResponse](#svc-infra-notifier-SmsChannelListResponse)
+    - [SmsChannelUpdatedRequest](#svc-infra-notifier-SmsChannelUpdatedRequest)
+    - [SmsTemplate](#svc-infra-notifier-SmsTemplate)
+    - [SmsTemplateListRequest](#svc-infra-notifier-SmsTemplateListRequest)
+    - [SmsTemplateListResponse](#svc-infra-notifier-SmsTemplateListResponse)
+    - [UpdatedSmsTemplateRequest](#svc-infra-notifier-UpdatedSmsTemplateRequest)
   
     - [Notifier](#svc-infra-notifier-Notifier)
   
@@ -349,14 +367,9 @@
 - [svc.biz.gift/gift.proto](#svc-biz-gift_gift-proto)
     - [GiftAddReq](#svc-biz-gift-GiftAddReq)
     - [GiftAddResp](#svc-biz-gift-GiftAddResp)
-    - [GiftGetRecordReq](#svc-biz-gift-GiftGetRecordReq)
-    - [GiftGetRecordResp](#svc-biz-gift-GiftGetRecordResp)
     - [GiftGetReq](#svc-biz-gift-GiftGetReq)
     - [GiftGetResp](#svc-biz-gift-GiftGetResp)
     - [GiftInfo](#svc-biz-gift-GiftInfo)
-    - [GiftSendRecord](#svc-biz-gift-GiftSendRecord)
-    - [GiftSendRecordReq](#svc-biz-gift-GiftSendRecordReq)
-    - [GiftSendRecordResp](#svc-biz-gift-GiftSendRecordResp)
     - [GiftSendReq](#svc-biz-gift-GiftSendReq)
     - [GiftSendResp](#svc-biz-gift-GiftSendResp)
     - [GiftUpdateReq](#svc-biz-gift-GiftUpdateReq)
@@ -366,14 +379,23 @@
     - [ListOnlineAllReq](#svc-biz-gift-ListOnlineAllReq)
     - [ListOnlineByTypeReq](#svc-biz-gift-ListOnlineByTypeReq)
     - [ListOnlineResp](#svc-biz-gift-ListOnlineResp)
-    - [LiveStatReq](#svc-biz-gift-LiveStatReq)
-    - [LiveStatResp](#svc-biz-gift-LiveStatResp)
   
     - [GiftRecommend](#svc-biz-gift-GiftRecommend)
     - [GiftStatus](#svc-biz-gift-GiftStatus)
     - [GiftType](#svc-biz-gift-GiftType)
   
     - [Gift](#svc-biz-gift-Gift)
+  
+- [svc.biz.gift/gift_record.proto](#svc-biz-gift_gift_record-proto)
+    - [GetGetGiftRecordReq](#svc-biz-gift-GetGetGiftRecordReq)
+    - [GetGetGiftRecordResp](#svc-biz-gift-GetGetGiftRecordResp)
+    - [GetLiveStatReq](#svc-biz-gift-GetLiveStatReq)
+    - [GetLiveStatResp](#svc-biz-gift-GetLiveStatResp)
+    - [GetSendGiftRecordReq](#svc-biz-gift-GetSendGiftRecordReq)
+    - [GetSendGiftRecordResp](#svc-biz-gift-GetSendGiftRecordResp)
+    - [GiftRecordInfo](#svc-biz-gift-GiftRecordInfo)
+  
+    - [GiftRecord](#svc-biz-gift-GiftRecord)
   
 - [Scalar Value Types](#scalar-value-types)
 
@@ -5552,6 +5574,83 @@ Models
 
 
 
+<a name="svc-infra-notifier-CommonResponse"></a>
+
+### CommonResponse
+CommonResponse
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| code | [int64](#int64) |  | code |
+| message | [string](#string) |  | message |
+| uuid | [string](#string) |  | ID |
+| lid | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-notifier-CreatedSmsBizSendLogRequest"></a>
+
+### CreatedSmsBizSendLogRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| sms_template_id | [int64](#int64) |  |  |
+| params | [string](#string) |  |  |
+| user_set | [int32](#int32) |  |  |
+| remark | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-notifier-CreatedSmsTemplateRequest"></a>
+
+### CreatedSmsTemplateRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| merchant_id | [string](#string) |  |  |
+| channel_config_id | [string](#string) |  |  |
+| sign_name | [string](#string) |  |  |
+| code_key | [string](#string) |  |  |
+| external_code_key | [string](#string) |  | 没有绑定，需要绑定外部发送 |
+| template_name | [string](#string) |  |  |
+| template_type | [string](#string) |  |  |
+| params | [string](#string) |  |  |
+| content | [string](#string) |  |  |
+| remark | [string](#string) |  |  |
+| is_system | [string](#string) |  |  |
+| creator | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-notifier-DeletedSmsTemplateRequest"></a>
+
+### DeletedSmsTemplateRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [int64](#int64) |  |  |
+
+
+
+
+
+
 <a name="svc-infra-notifier-InitDBResp"></a>
 
 ### InitDBResp
@@ -5561,6 +5660,288 @@ Models
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | result | [bool](#bool) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-notifier-SmsBizSendLog"></a>
+
+### SmsBizSendLog
+biz sms send /////////////
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [int64](#int64) |  |  |
+| template_id | [int64](#int64) |  |  |
+| channel_id | [int64](#int64) |  |  |
+| biz_type | [int64](#int64) |  |  |
+| content | [string](#string) |  |  |
+| user_set | [int32](#int32) |  |  |
+| send_user_cnt | [int64](#int64) |  |  |
+| send_ok_cnt | [int64](#int64) |  |  |
+| is_completed | [bool](#bool) |  |  |
+| remark | [string](#string) |  |  |
+| creator | [string](#string) |  |  |
+| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+| updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-notifier-SmsBizSendLogListRequest"></a>
+
+### SmsBizSendLogListRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| page | [int64](#int64) |  |  |
+| size | [int64](#int64) |  |  |
+| template_id | [int64](#int64) |  |  |
+| biz_type | [int32](#int32) |  |  |
+| start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+| end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-notifier-SmsBizSendLogListResponse"></a>
+
+### SmsBizSendLogListResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| cnt | [int64](#int64) |  |  |
+| list | [SmsBizSendLogListResponse.SmsBizSendLog](#svc-infra-notifier-SmsBizSendLogListResponse-SmsBizSendLog) | repeated |  |
+
+
+
+
+
+
+<a name="svc-infra-notifier-SmsBizSendLogListResponse-SmsBizSendLog"></a>
+
+### SmsBizSendLogListResponse.SmsBizSendLog
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| sms_biz_send_log | [SmsBizSendLogListResponse.SmsBizSendLog](#svc-infra-notifier-SmsBizSendLogListResponse-SmsBizSendLog) |  |  |
+| sms_template | [SmsTemplate](#svc-infra-notifier-SmsTemplate) |  |  |
+| sms_channel | [SmsChannel](#svc-infra-notifier-SmsChannel) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-notifier-SmsChannel"></a>
+
+### SmsChannel
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  |  |
+| scope | [int64](#int64) |  |  |
+| merchant_id | [string](#string) |  |  |
+| channel | [string](#string) |  |  |
+| access_id | [string](#string) |  |  |
+| access_key | [string](#string) |  |  |
+| status | [int32](#int32) |  |  |
+| is_platform | [bool](#bool) |  |  |
+| creator | [string](#string) |  |  |
+| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-notifier-SmsChannelCreatedRequest"></a>
+
+### SmsChannelCreatedRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  |  |
+| scope | [int64](#int64) |  |  |
+| merchant_id | [string](#string) |  |  |
+| channel | [string](#string) |  |  |
+| access_id | [string](#string) |  |  |
+| access_key | [string](#string) |  |  |
+| status | [int32](#int32) |  |  |
+| is_platform | [bool](#bool) |  |  |
+| creator | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-notifier-SmsChannelDeletedRequest"></a>
+
+### SmsChannelDeletedRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-notifier-SmsChannelListRequest"></a>
+
+### SmsChannelListRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| page | [int64](#int64) |  |  |
+| size | [int64](#int64) |  |  |
+| name | [string](#string) |  |  |
+| start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+| end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-notifier-SmsChannelListResponse"></a>
+
+### SmsChannelListResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| cnt | [int64](#int64) |  |  |
+| list | [SmsChannel](#svc-infra-notifier-SmsChannel) | repeated |  |
+
+
+
+
+
+
+<a name="svc-infra-notifier-SmsChannelUpdatedRequest"></a>
+
+### SmsChannelUpdatedRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [int64](#int64) |  |  |
+| name | [string](#string) |  |  |
+| scope | [int64](#int64) |  |  |
+| access_id | [string](#string) |  |  |
+| access_key | [string](#string) |  |  |
+| status | [int32](#int32) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-notifier-SmsTemplate"></a>
+
+### SmsTemplate
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [int64](#int64) |  |  |
+| merchant_id | [string](#string) |  |  |
+| channel_config_id | [string](#string) |  |  |
+| sms_channel | [SmsChannel](#svc-infra-notifier-SmsChannel) |  |  |
+| sign_name | [string](#string) |  |  |
+| code_key | [string](#string) |  |  |
+| external_code_key | [string](#string) |  | 没有绑定，需要绑定外部发送 |
+| template_name | [string](#string) |  |  |
+| template_type | [string](#string) |  |  |
+| params | [string](#string) |  |  |
+| content | [string](#string) |  |  |
+| remark | [string](#string) |  |  |
+| is_system | [string](#string) |  |  |
+| creator | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-notifier-SmsTemplateListRequest"></a>
+
+### SmsTemplateListRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| page | [int64](#int64) |  |  |
+| size | [int64](#int64) |  |  |
+| channel_config_id | [string](#string) |  |  |
+| start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+| end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-notifier-SmsTemplateListResponse"></a>
+
+### SmsTemplateListResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| cnt | [int64](#int64) |  |  |
+| list | [SmsTemplate](#svc-infra-notifier-SmsTemplate) | repeated |  |
+
+
+
+
+
+
+<a name="svc-infra-notifier-UpdatedSmsTemplateRequest"></a>
+
+### UpdatedSmsTemplateRequest
+UpdatedSmsTemplateRequest 绑定操作
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [int64](#int64) |  |  |
+| channel_config_id | [string](#string) |  |  |
+| external_code_key | [string](#string) |  |  |
+| remark | [string](#string) |  |  |
+| template_name | [string](#string) |  |  |
+| template_type | [string](#string) |  |  |
+| params | [string](#string) |  |  |
+| content | [string](#string) |  |  |
 
 
 
@@ -5576,11 +5957,21 @@ Models
 <a name="svc-infra-notifier-Notifier"></a>
 
 ### Notifier
-
+service started /////////////////
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
 | InitDB | [.google.protobuf.Empty](#google-protobuf-Empty) | [InitDBResp](#svc-infra-notifier-InitDBResp) | 初始化数据库 |
+| GetSmsChannelList | [SmsChannelListRequest](#svc-infra-notifier-SmsChannelListRequest) | [SmsChannelListResponse](#svc-infra-notifier-SmsChannelListResponse) | sms channel |
+| CreatedSmsChannel | [SmsChannelCreatedRequest](#svc-infra-notifier-SmsChannelCreatedRequest) | [CommonResponse](#svc-infra-notifier-CommonResponse) |  |
+| UpdatedSmsChannel | [SmsChannelUpdatedRequest](#svc-infra-notifier-SmsChannelUpdatedRequest) | [CommonResponse](#svc-infra-notifier-CommonResponse) |  |
+| DeletedSmsChannel | [SmsChannelDeletedRequest](#svc-infra-notifier-SmsChannelDeletedRequest) | [CommonResponse](#svc-infra-notifier-CommonResponse) |  |
+| GetSmsTemplateList | [SmsTemplateListRequest](#svc-infra-notifier-SmsTemplateListRequest) | [SmsTemplateListResponse](#svc-infra-notifier-SmsTemplateListResponse) | sms template |
+| CreatedSmsTemplate | [SmsChannelCreatedRequest](#svc-infra-notifier-SmsChannelCreatedRequest) | [CommonResponse](#svc-infra-notifier-CommonResponse) |  |
+| UpdateSmsTemplate | [SmsChannelUpdatedRequest](#svc-infra-notifier-SmsChannelUpdatedRequest) | [CommonResponse](#svc-infra-notifier-CommonResponse) |  |
+| DeletedSmsTemplate | [SmsChannelDeletedRequest](#svc-infra-notifier-SmsChannelDeletedRequest) | [CommonResponse](#svc-infra-notifier-CommonResponse) |  |
+| GetSmsBizLogList | [SmsBizSendLogListRequest](#svc-infra-notifier-SmsBizSendLogListRequest) | [SmsBizSendLogListResponse](#svc-infra-notifier-SmsBizSendLogListResponse) | sms biz send |
+| CreatedSmsBizLog | [CreatedSmsBizSendLogRequest](#svc-infra-notifier-CreatedSmsBizSendLogRequest) | [CommonResponse](#svc-infra-notifier-CommonResponse) |  |
 
  
 
@@ -5648,41 +6039,6 @@ Models
 
 
 
-<a name="svc-biz-gift-GiftGetRecordReq"></a>
-
-### GiftGetRecordReq
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| pageno | [int64](#int64) |  | 第几页 |
-| pagenum | [int64](#int64) |  | 每页几条数据 |
-| room_id | [string](#string) |  | 房间id |
-| live_id | [string](#string) |  | 直播id |
-| start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开始时间 |
-| end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 结束时间 |
-
-
-
-
-
-
-<a name="svc-biz-gift-GiftGetRecordResp"></a>
-
-### GiftGetRecordResp
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| items | [GiftSendRecord](#svc-biz-gift-GiftSendRecord) | repeated |  |
-
-
-
-
-
-
 <a name="svc-biz-gift-GiftGetReq"></a>
 
 ### GiftGetReq
@@ -5735,63 +6091,6 @@ Models
 | pic | [string](#string) |  | 图片资源(json字符串:{&#34;icon&#34;:&#34;&#34;, &#34;icon_gif&#34;:&#34;&#34;, &#34;chat_icon&#34;:&#34;&#34;, &#34;combo_bg&#34;:&#34;&#34;, &#34;combo_icon&#34;:&#34;&#34;}) |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
 | updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
-
-
-
-
-
-
-<a name="svc-biz-gift-GiftSendRecord"></a>
-
-### GiftSendRecord
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| gift_id | [string](#string) |  | 礼物id |
-| gift_name | [string](#string) |  | 礼物名 |
-| num | [int32](#int32) |  | 数量 |
-| total_price | [int32](#int32) |  | 总价 |
-| from_uid | [string](#string) |  | 送礼uid |
-| streamer_id | [string](#string) |  | 主播uid |
-| room_id | [string](#string) |  | 房间id |
-| live_id | [string](#string) |  | 直播id |
-| send_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
-
-
-
-
-
-
-<a name="svc-biz-gift-GiftSendRecordReq"></a>
-
-### GiftSendRecordReq
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| pageno | [int64](#int64) |  | 第几页 |
-| pagenum | [int64](#int64) |  | 每页几条数据 |
-| from_uid | [string](#string) |  | 用户id |
-| start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开始时间 |
-| end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 结束时间 |
-
-
-
-
-
-
-<a name="svc-biz-gift-GiftSendRecordResp"></a>
-
-### GiftSendRecordResp
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| items | [GiftSendRecord](#svc-biz-gift-GiftSendRecord) | repeated |  |
 
 
 
@@ -5942,37 +6241,6 @@ Models
 
 
 
-
-<a name="svc-biz-gift-LiveStatReq"></a>
-
-### LiveStatReq
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| room_id | [string](#string) |  |  |
-| live_id | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="svc-biz-gift-LiveStatResp"></a>
-
-### LiveStatResp
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| total_cost | [int32](#int32) |  |  |
-
-
-
-
-
  
 
 
@@ -6034,9 +6302,159 @@ Models
 | ListOnlineByType | [ListOnlineByTypeReq](#svc-biz-gift-ListOnlineByTypeReq) | [ListOnlineResp](#svc-biz-gift-ListOnlineResp) | ListOnlineByType 前台房间礼物查询接口 |
 | ListOnlineAll | [ListOnlineAllReq](#svc-biz-gift-ListOnlineAllReq) | [ListOnlineResp](#svc-biz-gift-ListOnlineResp) | ListOnlineAll 所有礼物的缓存接口 |
 | Send | [GiftSendReq](#svc-biz-gift-GiftSendReq) | [GiftSendResp](#svc-biz-gift-GiftSendResp) | Send 送礼物接口 |
-| SendRecord | [GiftSendRecordReq](#svc-biz-gift-GiftSendRecordReq) | [GiftSendRecordResp](#svc-biz-gift-GiftSendRecordResp) | SendRecord 送礼记录 |
-| GetRecord | [GiftGetRecordReq](#svc-biz-gift-GiftGetRecordReq) | [GiftGetRecordResp](#svc-biz-gift-GiftGetRecordResp) | GetRecord 收礼记录 |
-| LiveStat | [LiveStatReq](#svc-biz-gift-LiveStatReq) | [LiveStatResp](#svc-biz-gift-LiveStatResp) | LiveStat 直播统计 |
+
+ 
+
+
+
+<a name="svc-biz-gift_gift_record-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.biz.gift/gift_record.proto
+
+
+
+<a name="svc-biz-gift-GetGetGiftRecordReq"></a>
+
+### GetGetGiftRecordReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| pageno | [int64](#int64) |  | 第几页 |
+| pagenum | [int64](#int64) |  | 每页几条数据 |
+| streamer_id | [string](#string) |  | 主播uid |
+| room_id | [string](#string) |  | 房间id |
+| live_id | [string](#string) |  | 直播id |
+| start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开始时间 |
+| end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 结束时间 |
+
+
+
+
+
+
+<a name="svc-biz-gift-GetGetGiftRecordResp"></a>
+
+### GetGetGiftRecordResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [GiftRecordInfo](#svc-biz-gift-GiftRecordInfo) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-gift-GetLiveStatReq"></a>
+
+### GetLiveStatReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer_id | [string](#string) |  | 主播uid |
+| room_id | [string](#string) |  |  |
+| live_id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-gift-GetLiveStatResp"></a>
+
+### GetLiveStatResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| total_cost | [int32](#int32) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-gift-GetSendGiftRecordReq"></a>
+
+### GetSendGiftRecordReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| pageno | [int64](#int64) |  | 第几页 |
+| pagenum | [int64](#int64) |  | 每页几条数据 |
+| from_uid | [string](#string) |  | 用户id |
+| start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开始时间 |
+| end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 结束时间 |
+
+
+
+
+
+
+<a name="svc-biz-gift-GetSendGiftRecordResp"></a>
+
+### GetSendGiftRecordResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [GiftRecordInfo](#svc-biz-gift-GiftRecordInfo) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-gift-GiftRecordInfo"></a>
+
+### GiftRecordInfo
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| gift_id | [string](#string) |  | 礼物id |
+| gift_name | [string](#string) |  | 礼物名 |
+| num | [int32](#int32) |  | 数量 |
+| total_price | [int32](#int32) |  | 总价 |
+| from_uid | [string](#string) |  | 送礼uid |
+| streamer_id | [string](#string) |  | 主播uid |
+| room_id | [string](#string) |  | 房间id |
+| live_id | [string](#string) |  | 直播id |
+| send_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="svc-biz-gift-GiftRecord"></a>
+
+### GiftRecord
+
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| GetSendGiftRecord | [GetSendGiftRecordReq](#svc-biz-gift-GetSendGiftRecordReq) | [GetSendGiftRecordResp](#svc-biz-gift-GetSendGiftRecordResp) | GetSendGiftRecord 送礼记录 |
+| GetGetGiftRecord | [GetGetGiftRecordReq](#svc-biz-gift-GetGetGiftRecordReq) | [GetGetGiftRecordResp](#svc-biz-gift-GetGetGiftRecordResp) | GetGetGiftRecord 收礼记录 |
+| GetLiveStat | [GetLiveStatReq](#svc-biz-gift-GetLiveStatReq) | [GetLiveStatResp](#svc-biz-gift-GetLiveStatResp) | GetLiveStat 直播统计 |
 
  
 
