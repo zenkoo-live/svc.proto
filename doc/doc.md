@@ -6359,8 +6359,7 @@ service started /////////////////
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | streamer_id | [string](#string) |  | 主播uid |
-| room_id | [string](#string) |  |  |
-| live_id | [string](#string) |  |  |
+| live_id | [string](#string) |  | 直播id |
 
 
 
@@ -6375,7 +6374,7 @@ service started /////////////////
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| total_cost | [int32](#int32) |  |  |
+| total_price | [int32](#int32) |  |  |
 
 
 

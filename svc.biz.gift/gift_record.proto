@@ -54,10 +54,9 @@ message GetGetRecordListResp {
 
 message GetLiveStatReq {
     string streamer_id = 1; // 主播uid
-    string room_id = 2;
-    string live_id = 3;
+    string live_id = 2; // 直播id
 }
 
 message GetLiveStatResp {
-    int32 total_cost = 1;
+    int32 total_price = 1;
 }
