@@ -6173,8 +6173,8 @@ service started /////////////////
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | return_count | [bool](#bool) |  | 是否返回总数 |
-| pageno | [int64](#int64) |  | 第几页 |
-| pagenum | [int64](#int64) |  | 每页几条数据 |
+| page | [int64](#int64) |  | 第几页 |
+| limit | [int64](#int64) |  | 每页几条数据 |
 | type | [GiftType](#svc-biz-gift-GiftType) |  | 礼物类型 |
 | status | [GiftStatus](#svc-biz-gift-GiftStatus) |  | 礼物状态 |
 | keyword | [string](#string) |  | 关键字 |
@@ -6322,8 +6322,8 @@ service started /////////////////
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| pageno | [int64](#int64) |  | 第几页 |
-| pagenum | [int64](#int64) |  | 每页几条数据 |
+| page | [int64](#int64) |  | 第几页 |
+| limit | [int64](#int64) |  | 每页几条数据 |
 | streamer_id | [string](#string) |  | 主播uid |
 | room_id | [string](#string) |  | 房间id |
 | live_id | [string](#string) |  | 直播id |
@@ -6390,8 +6390,8 @@ service started /////////////////
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| pageno | [int64](#int64) |  | 第几页 |
-| pagenum | [int64](#int64) |  | 每页几条数据 |
+| page | [int64](#int64) |  | 第几页 |
+| limit | [int64](#int64) |  | 每页几条数据 |
 | from_uid | [string](#string) |  | 用户id |
 | start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开始时间 |
 | end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 结束时间 |

@@ -89,8 +89,8 @@ message GiftUpdateResp {
 //礼物列表（后台使用）
 message ListAdminReq {
     bool return_count = 1; // 是否返回总数
-    int64 pageno = 2; // 第几页
-    int64 pagenum = 3; // 每页几条数据
+    int64 page = 2; // 第几页
+    int64 limit = 3; // 每页几条数据
     GiftType type = 4; // 礼物类型
     GiftStatus status = 5; // 礼物状态
     string keyword = 6; // 关键字

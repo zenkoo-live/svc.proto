@@ -29,8 +29,8 @@ message GiftRecordInfo {
 }
 
 message GetSendRecordListReq {
-    int64 pageno = 1; // 第几页
-    int64 pagenum = 2; // 每页几条数据
+    int64 page = 1; // 第几页
+    int64 limit = 2; // 每页几条数据
     string from_uid = 3; // 用户id
     google.protobuf.Timestamp  start_time = 4; // 开始时间
     google.protobuf.Timestamp  end_time = 5; // 结束时间
@@ -40,8 +40,8 @@ message GetSendRecordListResp {
 }
 
 message GetGetRecordListReq {
-    int64 pageno = 1; // 第几页
-    int64 pagenum = 2; // 每页几条数据
+    int64 page = 1; // 第几页
+    int64 limit = 2; // 每页几条数据
     string streamer_id = 3; // 主播uid
     string room_id = 4; // 房间id
     string live_id = 5; // 直播id
