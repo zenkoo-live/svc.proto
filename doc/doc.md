@@ -101,9 +101,26 @@
     - [Trade](#svc-biz-trade-Trade)
   
 - [svc.infra.static/static.proto](#svc-infra-static_static-proto)
+    - [ConfigurationMessage](#svc-infra-static-ConfigurationMessage)
+    - [ConfigurationResponseMessage](#svc-infra-static-ConfigurationResponseMessage)
     - [InitDBResp](#svc-infra-static-InitDBResp)
+    - [S3](#svc-infra-static-S3)
+    - [StreamRequestInfo](#svc-infra-static-StreamRequestInfo)
+    - [UploadRequestMessage](#svc-infra-static-UploadRequestMessage)
+    - [UploadResponseMessage](#svc-infra-static-UploadResponseMessage)
+    - [UploadStreamRequestMessage](#svc-infra-static-UploadStreamRequestMessage)
   
     - [Static](#svc-infra-static-Static)
+  
+- [svc.biz.log/log.proto](#svc-biz-log_log-proto)
+    - [AddLogReq](#svc-biz-log-AddLogReq)
+    - [AddLogResp](#svc-biz-log-AddLogResp)
+    - [LogInfo](#svc-biz-log-LogInfo)
+    - [MGetLastLogReq](#svc-biz-log-MGetLastLogReq)
+    - [MGetLastLogResp](#svc-biz-log-MGetLastLogResp)
+    - [MGetLastLogResp.ItemsEntry](#svc-biz-log-MGetLastLogResp-ItemsEntry)
+  
+    - [Log](#svc-biz-log-Log)
   
 - [svc.biz.room/category.proto](#svc-biz-room_category-proto)
     - [CategoryInfo](#svc-biz-room-CategoryInfo)
@@ -116,6 +133,9 @@
     - [ListCategoryResp](#svc-biz-room-ListCategoryResp)
     - [ListCategoryTreeReq](#svc-biz-room-ListCategoryTreeReq)
     - [ListCategoryTreeResp](#svc-biz-room-ListCategoryTreeResp)
+    - [MGetCategoryReq](#svc-biz-room-MGetCategoryReq)
+    - [MGetCategoryResp](#svc-biz-room-MGetCategoryResp)
+    - [MGetCategoryResp.ItemsEntry](#svc-biz-room-MGetCategoryResp-ItemsEntry)
     - [UpdateCategoryReq](#svc-biz-room-UpdateCategoryReq)
   
     - [Category](#svc-biz-room-Category)
@@ -135,6 +155,8 @@
 - [svc.biz.room/room.proto](#svc-biz-room_room-proto)
     - [CreateRoomReq](#svc-biz-room-CreateRoomReq)
     - [CreateRoomResp](#svc-biz-room-CreateRoomResp)
+    - [ForbidRoomReq](#svc-biz-room-ForbidRoomReq)
+    - [ForbidRoomResp](#svc-biz-room-ForbidRoomResp)
     - [GetOnlineRoomListReq](#svc-biz-room-GetOnlineRoomListReq)
     - [GetOnlineRoomListResp](#svc-biz-room-GetOnlineRoomListResp)
     - [GetRoomByStreamerIDReq](#svc-biz-room-GetRoomByStreamerIDReq)
@@ -149,6 +171,8 @@
     - [MGetRoomsReq](#svc-biz-room-MGetRoomsReq)
     - [MGetRoomsResp](#svc-biz-room-MGetRoomsResp)
     - [MGetRoomsResp.ItemsEntry](#svc-biz-room-MGetRoomsResp-ItemsEntry)
+    - [ResumeRoomReq](#svc-biz-room-ResumeRoomReq)
+    - [ResumeRoomResp](#svc-biz-room-ResumeRoomResp)
     - [RoomInfo](#svc-biz-room-RoomInfo)
     - [StartLiveReq](#svc-biz-room-StartLiveReq)
     - [StartLiveResp](#svc-biz-room-StartLiveResp)
@@ -174,8 +198,6 @@
     - [GetConfigurationReq](#svc-infra-setting-GetConfigurationReq)
     - [GetConfigurationResp](#svc-infra-setting-GetConfigurationResp)
     - [InitDBResp](#svc-infra-setting-InitDBResp)
-    - [ListConfigurationsReq](#svc-infra-setting-ListConfigurationsReq)
-    - [ListConfigurationsResp](#svc-infra-setting-ListConfigurationsResp)
     - [SettingGreetingReq](#svc-infra-setting-SettingGreetingReq)
     - [SettingGreetingResp](#svc-infra-setting-SettingGreetingResp)
     - [UpdateConfigurationReq](#svc-infra-setting-UpdateConfigurationReq)
@@ -272,6 +294,23 @@
   
     - [Asset](#svc-biz-asset-Asset)
   
+- [svc.biz.relation/relation.proto](#svc-biz-relation_relation-proto)
+    - [GetRelationCountReq](#svc-biz-relation-GetRelationCountReq)
+    - [GetRelationCountResp](#svc-biz-relation-GetRelationCountResp)
+    - [GetRelationListReq](#svc-biz-relation-GetRelationListReq)
+    - [GetRelationListResp](#svc-biz-relation-GetRelationListResp)
+    - [RelationAddReq](#svc-biz-relation-RelationAddReq)
+    - [RelationCheckReq](#svc-biz-relation-RelationCheckReq)
+    - [RelationCheckResp](#svc-biz-relation-RelationCheckResp)
+    - [RelationDelReq](#svc-biz-relation-RelationDelReq)
+    - [RelationGetReq](#svc-biz-relation-RelationGetReq)
+    - [RelationGetResp](#svc-biz-relation-RelationGetResp)
+    - [RelationInfo](#svc-biz-relation-RelationInfo)
+  
+    - [RelationType](#svc-biz-relation-RelationType)
+  
+    - [Relation](#svc-biz-relation-Relation)
+  
 - [third_party/buf/validate/priv/private.proto](#third_party_buf_validate_priv_private-proto)
     - [Constraint](#buf-validate-priv-Constraint)
     - [FieldConstraints](#buf-validate-priv-FieldConstraints)
@@ -320,12 +359,73 @@
     - [Dashboard](#svc-web-dashboard-Dashboard)
   
 - [svc.biz.org/org.proto](#svc-biz-org_org-proto)
+    - [AddDepartmentReq](#svc-biz-org-AddDepartmentReq)
+    - [AddDepartmentResp](#svc-biz-org-AddDepartmentResp)
+    - [AddMerchantReq](#svc-biz-org-AddMerchantReq)
+    - [AddMerchantResp](#svc-biz-org-AddMerchantResp)
+    - [AddUnionReq](#svc-biz-org-AddUnionReq)
+    - [AddUnionResp](#svc-biz-org-AddUnionResp)
+    - [DeleteDepartmentReq](#svc-biz-org-DeleteDepartmentReq)
+    - [DeleteDepartmentResp](#svc-biz-org-DeleteDepartmentResp)
+    - [DeleteMerchantReq](#svc-biz-org-DeleteMerchantReq)
+    - [DeleteMerchantResp](#svc-biz-org-DeleteMerchantResp)
+    - [DeleteUnionReq](#svc-biz-org-DeleteUnionReq)
+    - [DeleteUnionResp](#svc-biz-org-DeleteUnionResp)
+    - [Department](#svc-biz-org-Department)
+    - [GetDepartmentReq](#svc-biz-org-GetDepartmentReq)
+    - [GetDepartmentResp](#svc-biz-org-GetDepartmentResp)
+    - [GetMerchantReq](#svc-biz-org-GetMerchantReq)
+    - [GetMerchantResp](#svc-biz-org-GetMerchantResp)
+    - [GetUnionReq](#svc-biz-org-GetUnionReq)
+    - [GetUnionResp](#svc-biz-org-GetUnionResp)
     - [InitDBResp](#svc-biz-org-InitDBResp)
+    - [ListDepartmentsReq](#svc-biz-org-ListDepartmentsReq)
+    - [ListDepartmentsResp](#svc-biz-org-ListDepartmentsResp)
+    - [ListMerchantsReq](#svc-biz-org-ListMerchantsReq)
+    - [ListMerchantsResp](#svc-biz-org-ListMerchantsResp)
+    - [ListUnionsReq](#svc-biz-org-ListUnionsReq)
+    - [ListUnionsResp](#svc-biz-org-ListUnionsResp)
+    - [Merchant](#svc-biz-org-Merchant)
+    - [Union](#svc-biz-org-Union)
+    - [UpdateDepartmentReq](#svc-biz-org-UpdateDepartmentReq)
+    - [UpdateDepartmentResp](#svc-biz-org-UpdateDepartmentResp)
+    - [UpdateMerchantReq](#svc-biz-org-UpdateMerchantReq)
+    - [UpdateMerchantResp](#svc-biz-org-UpdateMerchantResp)
+    - [UpdateUnionReq](#svc-biz-org-UpdateUnionReq)
+    - [UpdateUnionResp](#svc-biz-org-UpdateUnionResp)
   
     - [Org](#svc-biz-org-Org)
   
 - [svc.infra.notifier/notifier.proto](#svc-infra-notifier_notifier-proto)
+    - [CommonResponse](#svc-infra-notifier-CommonResponse)
+    - [CreatedSmsBizSendLogRequest](#svc-infra-notifier-CreatedSmsBizSendLogRequest)
+    - [CreatedSmsChannelRequest](#svc-infra-notifier-CreatedSmsChannelRequest)
+    - [CreatedSmsCodeBindRequest](#svc-infra-notifier-CreatedSmsCodeBindRequest)
+    - [CreatedSmsSendRequest](#svc-infra-notifier-CreatedSmsSendRequest)
+    - [CreatedSmsSendResponse](#svc-infra-notifier-CreatedSmsSendResponse)
+    - [CreatedSmsSendResponse.SendResultEntry](#svc-infra-notifier-CreatedSmsSendResponse-SendResultEntry)
+    - [CreatedSmsTemplateRequest](#svc-infra-notifier-CreatedSmsTemplateRequest)
+    - [CreatedSmsVerifyRequest](#svc-infra-notifier-CreatedSmsVerifyRequest)
+    - [DeletedSmsChannelRequest](#svc-infra-notifier-DeletedSmsChannelRequest)
+    - [DeletedSmsTemplateRequest](#svc-infra-notifier-DeletedSmsTemplateRequest)
+    - [GetCloudSmsSignRequest](#svc-infra-notifier-GetCloudSmsSignRequest)
+    - [GetCloudSmsSignResponse](#svc-infra-notifier-GetCloudSmsSignResponse)
+    - [GetCloudSmsTemplateRequest](#svc-infra-notifier-GetCloudSmsTemplateRequest)
+    - [GetCloudSmsTemplateResponse](#svc-infra-notifier-GetCloudSmsTemplateResponse)
     - [InitDBResp](#svc-infra-notifier-InitDBResp)
+    - [SmsBizSendLog](#svc-infra-notifier-SmsBizSendLog)
+    - [SmsBizSendLogListRequest](#svc-infra-notifier-SmsBizSendLogListRequest)
+    - [SmsBizSendLogListResponse](#svc-infra-notifier-SmsBizSendLogListResponse)
+    - [SmsBizSendLogListResponse.SmsBizSendLog](#svc-infra-notifier-SmsBizSendLogListResponse-SmsBizSendLog)
+    - [SmsChannel](#svc-infra-notifier-SmsChannel)
+    - [SmsChannelListRequest](#svc-infra-notifier-SmsChannelListRequest)
+    - [SmsChannelListResponse](#svc-infra-notifier-SmsChannelListResponse)
+    - [SmsSign](#svc-infra-notifier-SmsSign)
+    - [SmsTemplate](#svc-infra-notifier-SmsTemplate)
+    - [SmsTemplateListRequest](#svc-infra-notifier-SmsTemplateListRequest)
+    - [SmsTemplateListResponse](#svc-infra-notifier-SmsTemplateListResponse)
+    - [UpdatedSmsChannelRequest](#svc-infra-notifier-UpdatedSmsChannelRequest)
+    - [UpdatedSmsTemplateRequest](#svc-infra-notifier-UpdatedSmsTemplateRequest)
   
     - [Notifier](#svc-infra-notifier-Notifier)
   
@@ -760,6 +860,8 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | condition | [Manager](#svc-biz-account-Manager) |  |  |
+| limit | [int32](#int32) |  |  |
+| offset | [int32](#int32) |  |  |
 
 
 
@@ -790,6 +892,8 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | condition | [Streamer](#svc-biz-account-Streamer) |  |  |
+| limit | [int32](#int32) |  |  |
+| offset | [int32](#int32) |  |  |
 
 
 
@@ -820,6 +924,8 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | condition | [Union](#svc-biz-account-Union) |  |  |
+| limit | [int32](#int32) |  |  |
+| offset | [int32](#int32) |  |  |
 
 
 
@@ -889,6 +995,7 @@
 | salt | [string](#string) | optional | 加密混淆 |
 | merchant_id | [string](#string) |  | 商户ID |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+| additions | [string](#string) |  | 扩展属性 |
 
 
 
@@ -907,12 +1014,14 @@
 | display_id | [string](#string) |  | 用于显示和索引的数字ID |
 | name | [string](#string) |  | 用户名 |
 | nickname | [string](#string) |  | 昵称 |
+| avatar | [string](#string) |  | 头像 |
 | mobile | [string](#string) |  | 手机 |
 | email | [string](#string) |  | 邮箱 |
 | password | [string](#string) | optional | 密码 |
 | salt | [string](#string) | optional | 加密混淆 |
 | merchant_id | [string](#string) |  | 商户ID |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+| additions | [string](#string) |  | 扩展属性 |
 
 
 
@@ -935,6 +1044,7 @@
 | salt | [string](#string) | optional | 加密混淆 |
 | merchant_id | [string](#string) |  | 商户ID |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+| additions | [string](#string) |  | 扩展属性 |
 
 
 
@@ -1073,6 +1183,7 @@ Models
 | display_id | [string](#string) |  | 用于显示和索引的数字ID |
 | name | [string](#string) |  | 用户名 |
 | nickname | [string](#string) |  | 昵称 |
+| avatar | [string](#string) |  | 头像 |
 | mobile | [string](#string) |  | 手机 |
 | email | [string](#string) |  | 邮箱 |
 | device_ident | [string](#string) |  | 设备号 / 指纹 |
@@ -1080,6 +1191,7 @@ Models
 | salt | [string](#string) | optional | 加密混淆 |
 | merchant_id | [string](#string) |  | 商户ID |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+| additions | [string](#string) |  | 扩展属性 |
 
 
 
@@ -1891,6 +2003,37 @@ Models
 
 
 
+<a name="svc-infra-static-ConfigurationMessage"></a>
+
+### ConfigurationMessage
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| s3 | [S3](#svc-infra-static-S3) |  | s3配置 |
+| merchant_id | [string](#string) |  | 商户id |
+
+
+
+
+
+
+<a name="svc-infra-static-ConfigurationResponseMessage"></a>
+
+### ConfigurationResponseMessage
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| result | [bool](#bool) |  |  |
+
+
+
+
+
+
 <a name="svc-infra-static-InitDBResp"></a>
 
 ### InitDBResp
@@ -1900,6 +2043,96 @@ Models
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | result | [bool](#bool) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-static-S3"></a>
+
+### S3
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| app_id | [string](#string) |  |  |
+| app_secret | [string](#string) |  |  |
+| region | [string](#string) |  |  |
+| bucket | [string](#string) |  |  |
+| queue | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-static-StreamRequestInfo"></a>
+
+### StreamRequestInfo
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | 为空将会自动生成 |
+| bucket | [string](#string) |  | 自定义桶 |
+| user_id | [string](#string) |  | 用户id |
+| merchant_id | [string](#string) |  | 商户id |
+
+
+
+
+
+
+<a name="svc-infra-static-UploadRequestMessage"></a>
+
+### UploadRequestMessage
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | 为空将会自动生成 |
+| binary | [bytes](#bytes) |  | 文件内容 |
+| is_pre_mode | [bool](#bool) |  | 预写模式, 返回token客户端根据这个直接上传 |
+| bucket | [string](#string) |  | 自定义桶 |
+| user_id | [string](#string) |  | 用户id |
+| merchant_id | [string](#string) |  | 商户id |
+
+
+
+
+
+
+<a name="svc-infra-static-UploadResponseMessage"></a>
+
+### UploadResponseMessage
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| path | [string](#string) |  | 返回文件路径 ，如果是预写模式该值就是token 或者地址 |
+| domain | [string](#string) |  | 域 |
+| provider | [string](#string) |  | oss 提供商 |
+
+
+
+
+
+
+<a name="svc-infra-static-UploadStreamRequestMessage"></a>
+
+### UploadStreamRequestMessage
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| info | [StreamRequestInfo](#svc-infra-static-StreamRequestInfo) |  |  |
+| binary | [bytes](#bytes) |  |  |
 
 
 
@@ -1920,6 +2153,134 @@ Models
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
 | InitDB | [.google.protobuf.Empty](#google-protobuf-Empty) | [InitDBResp](#svc-infra-static-InitDBResp) | 初始化数据库 |
+| Configuration | [ConfigurationMessage](#svc-infra-static-ConfigurationMessage) | [ConfigurationResponseMessage](#svc-infra-static-ConfigurationResponseMessage) | 服务配置 |
+| UploadAvatar | [UploadRequestMessage](#svc-infra-static-UploadRequestMessage) | [UploadResponseMessage](#svc-infra-static-UploadResponseMessage) | 上传头像 |
+| UploadCover | [UploadRequestMessage](#svc-infra-static-UploadRequestMessage) | [UploadResponseMessage](#svc-infra-static-UploadResponseMessage) | 上传封面 |
+| UploadVideo | [UploadRequestMessage](#svc-infra-static-UploadRequestMessage) | [UploadResponseMessage](#svc-infra-static-UploadResponseMessage) | 上传视频 |
+| UploadImage | [UploadRequestMessage](#svc-infra-static-UploadRequestMessage) | [UploadResponseMessage](#svc-infra-static-UploadResponseMessage) | 上传图片 |
+| UploadFile | [UploadRequestMessage](#svc-infra-static-UploadRequestMessage) | [UploadResponseMessage](#svc-infra-static-UploadResponseMessage) | 上传文件 |
+| UploadStreamFile | [UploadStreamRequestMessage](#svc-infra-static-UploadStreamRequestMessage) stream | [UploadResponseMessage](#svc-infra-static-UploadResponseMessage) | 流式上传文件 |
+
+ 
+
+
+
+<a name="svc-biz-log_log-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.biz.log/log.proto
+
+
+
+<a name="svc-biz-log-AddLogReq"></a>
+
+### AddLogReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| log_info | [LogInfo](#svc-biz-log-LogInfo) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-log-AddLogResp"></a>
+
+### AddLogResp
+
+
+
+
+
+
+
+<a name="svc-biz-log-LogInfo"></a>
+
+### LogInfo
+LogInfo 日志详情
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| log_id | [string](#string) |  |  |
+| object | [string](#string) |  | 操作对象 |
+| object_id | [string](#string) |  | 操作对象uuid |
+| action | [string](#string) |  | 操作行为 |
+| operator | [string](#string) |  | 操作人 |
+| operate_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 操作时间 |
+| extra | [string](#string) |  | 扩展信息,爱存啥存啥 |
+| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-log-MGetLastLogReq"></a>
+
+### MGetLastLogReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| object | [string](#string) |  | 操作对象 |
+| object_ids | [string](#string) | repeated | 操作对象uuid |
+
+
+
+
+
+
+<a name="svc-biz-log-MGetLastLogResp"></a>
+
+### MGetLastLogResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [MGetLastLogResp.ItemsEntry](#svc-biz-log-MGetLastLogResp-ItemsEntry) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-log-MGetLastLogResp-ItemsEntry"></a>
+
+### MGetLastLogResp.ItemsEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [LogInfo](#svc-biz-log-LogInfo) |  |  |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="svc-biz-log-Log"></a>
+
+### Log
+分类
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| AddLog | [AddLogReq](#svc-biz-log-AddLogReq) | [AddLogResp](#svc-biz-log-AddLogResp) | AddLog 记录日志 |
+| MGetLastLog | [MGetLastLogReq](#svc-biz-log-MGetLastLogReq) | [MGetLastLogResp](#svc-biz-log-MGetLastLogResp) | MGetLastLog 批量获取最近一次操作 |
 
  
 
@@ -1945,7 +2306,7 @@ CategoryInfo 分类详情
 | category_code | [string](#string) |  | 代号（唯一，预留） |
 | category_name | [string](#string) |  | 名称 |
 | sort | [int32](#int32) |  | 排序 |
-| childrens | [CategoryInfo](#svc-biz-room-CategoryInfo) | repeated |  |
+| childrens | [CategoryInfo](#svc-biz-room-CategoryInfo) | repeated | 子级分类，只在tree接口返回 |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
 | updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
 
@@ -2037,6 +2398,8 @@ CategoryInfo 分类详情
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| page | [int32](#int32) |  | 页数 |
+| limit | [int32](#int32) |  | 条数 |
 | return_count | [bool](#bool) |  | 是否返回总数 |
 | level | [int32](#int32) |  | 查询标识（0查询所有，1=查询一级分类；2=查询二级分类） |
 | parent_category_id | [string](#string) |  | 父级ID |
@@ -2088,6 +2451,52 @@ CategoryInfo 分类详情
 
 
 
+<a name="svc-biz-room-MGetCategoryReq"></a>
+
+### MGetCategoryReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| category_ids | [string](#string) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-room-MGetCategoryResp"></a>
+
+### MGetCategoryResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [MGetCategoryResp.ItemsEntry](#svc-biz-room-MGetCategoryResp-ItemsEntry) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-room-MGetCategoryResp-ItemsEntry"></a>
+
+### MGetCategoryResp.ItemsEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [CategoryInfo](#svc-biz-room-CategoryInfo) |  |  |
+
+
+
+
+
+
 <a name="svc-biz-room-UpdateCategoryReq"></a>
 
 ### UpdateCategoryReq
@@ -2119,6 +2528,7 @@ CategoryInfo 分类详情
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
 | GetCategory | [GetCategoryReq](#svc-biz-room-GetCategoryReq) | [GetCategoryResp](#svc-biz-room-GetCategoryResp) | 获取分类 |
+| MGetCategory | [MGetCategoryReq](#svc-biz-room-MGetCategoryReq) | [MGetCategoryResp](#svc-biz-room-MGetCategoryResp) | 获取分类 |
 | CreateCategory | [CreateCategoryReq](#svc-biz-room-CreateCategoryReq) | [CreateCategoryResp](#svc-biz-room-CreateCategoryResp) | 创建分类 |
 | UpdateCategory | [UpdateCategoryReq](#svc-biz-room-UpdateCategoryReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | 更新某个分类信息 |
 | DeleteCategory | [DeleteCategoryReq](#svc-biz-room-DeleteCategoryReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | 删除一个分类信息 |
@@ -2318,6 +2728,33 @@ CategoryInfo 分类详情
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | room | [RoomInfo](#svc-biz-room-RoomInfo) |  | 房间信息 |
+
+
+
+
+
+
+<a name="svc-biz-room-ForbidRoomReq"></a>
+
+### ForbidRoomReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer_id | [string](#string) |  | 主播id |
+| forbid_expire | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 封禁过期时间 |
+| reason | [string](#string) |  | 封禁原因 |
+
+
+
+
+
+
+<a name="svc-biz-room-ForbidRoomResp"></a>
+
+### ForbidRoomResp
+
 
 
 
@@ -2547,6 +2984,31 @@ CategoryInfo 分类详情
 
 
 
+<a name="svc-biz-room-ResumeRoomReq"></a>
+
+### ResumeRoomReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer_id | [string](#string) |  | 主播id |
+
+
+
+
+
+
+<a name="svc-biz-room-ResumeRoomResp"></a>
+
+### ResumeRoomResp
+
+
+
+
+
+
+
 <a name="svc-biz-room-RoomInfo"></a>
 
 ### RoomInfo
@@ -2561,7 +3023,8 @@ CategoryInfo 分类详情
 | category_id | [string](#string) |  | 分类id |
 | title | [string](#string) |  | 标题 |
 | intro | [string](#string) |  | 简介 |
-| ban_expire | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 封禁到期时间 |
+| forbid_expire | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 封禁到期时间 |
+| forbid_reason | [string](#string) |  | 封禁原因 |
 | hidden | [bool](#bool) |  | 是否隐藏 |
 | merchants | [string](#string) | repeated | 商户id |
 | bind_tags | [string](#string) | repeated | 标签 |
@@ -2775,6 +3238,8 @@ Room 房间
 | MGetRoomsByStreamerIDs | [MGetRoomsByStreamerIDsReq](#svc-biz-room-MGetRoomsByStreamerIDsReq) | [MGetRoomsByStreamerIDsResp](#svc-biz-room-MGetRoomsByStreamerIDsResp) | MGetRoomByStreamerIDs 批量查询房间 |
 | GetRoomList | [GetRoomListReq](#svc-biz-room-GetRoomListReq) | [GetRoomListResp](#svc-biz-room-GetRoomListResp) | GetRoomList 查询房间列表（后台使用此接口） |
 | GetOnlineRoomList | [GetOnlineRoomListReq](#svc-biz-room-GetOnlineRoomListReq) | [GetOnlineRoomListResp](#svc-biz-room-GetOnlineRoomListResp) | GetOnlineRoomList 查询在线房间列表（用户端列表使用此接口） |
+| ForbidRoom | [ForbidRoomReq](#svc-biz-room-ForbidRoomReq) | [ForbidRoomResp](#svc-biz-room-ForbidRoomResp) | ForbidRoom 封禁直播间 |
+| ResumeRoom | [ResumeRoomReq](#svc-biz-room-ResumeRoomReq) | [ResumeRoomResp](#svc-biz-room-ResumeRoomResp) | ResumeRoom 解封直播间 |
 | StartLive | [StartLiveReq](#svc-biz-room-StartLiveReq) | [StartLiveResp](#svc-biz-room-StartLiveResp) | StartLive 开始直播 |
 | StopLive | [StopLiveReq](#svc-biz-room-StopLiveReq) | [StopLiveResp](#svc-biz-room-StopLiveResp) | StopLive 关闭直播 |
 
@@ -2797,7 +3262,9 @@ Room 房间
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| configuration | [Configuration](#svc-infra-setting-Configuration) |  |  |
+| key | [string](#string) |  |  |
+| value | [string](#string) |  |  |
+| force | [bool](#bool) |  |  |
 
 
 
@@ -2828,10 +3295,8 @@ Room 房间
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| id | [string](#string) |  | 内部ID |
-| type | [string](#string) |  | 配置类型 |
-| data | [string](#string) |  | 配置数据 |
-| merchant_id | [string](#string) |  | 商户ID |
+| key | [string](#string) |  | 配置键 |
+| value | [string](#string) |  | 配置json数据字符串值 |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
 
 
@@ -2877,7 +3342,7 @@ Room 房间
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| condition | [Configuration](#svc-infra-setting-Configuration) |  |  |
+| key | [string](#string) |  |  |
 
 
 
@@ -2892,7 +3357,7 @@ Room 房间
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| configuration | [Configuration](#svc-infra-setting-Configuration) |  |  |
+| value | [string](#string) |  |  |
 
 
 
@@ -2908,38 +3373,6 @@ Room 房间
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | result | [bool](#bool) |  |  |
-
-
-
-
-
-
-<a name="svc-infra-setting-ListConfigurationsReq"></a>
-
-### ListConfigurationsReq
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| condition | [Configuration](#svc-infra-setting-Configuration) |  |  |
-| limit | [int32](#int32) |  |  |
-| offset | [int32](#int32) |  |  |
-
-
-
-
-
-
-<a name="svc-infra-setting-ListConfigurationsResp"></a>
-
-### ListConfigurationsResp
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| configurations | [Configuration](#svc-infra-setting-Configuration) | repeated |  |
 
 
 
@@ -2984,7 +3417,8 @@ Room 房间
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| condition | [Configuration](#svc-infra-setting-Configuration) |  |  |
+| key | [string](#string) |  |  |
+| value | [string](#string) |  |  |
 
 
 
@@ -3021,7 +3455,6 @@ Room 房间
 | ----------- | ------------ | ------------- | ------------|
 | InitDB | [.google.protobuf.Empty](#google-protobuf-Empty) | [InitDBResp](#svc-infra-setting-InitDBResp) | 初始化数据库 |
 | GetConfiguration | [GetConfigurationReq](#svc-infra-setting-GetConfigurationReq) | [GetConfigurationResp](#svc-infra-setting-GetConfigurationResp) | 获取配置 |
-| ListConfigurations | [ListConfigurationsReq](#svc-infra-setting-ListConfigurationsReq) | [ListConfigurationsResp](#svc-infra-setting-ListConfigurationsResp) | 获取配置列表 |
 | AddConfiguration | [AddConfigurationReq](#svc-infra-setting-AddConfigurationReq) | [AddConfigurationResp](#svc-infra-setting-AddConfigurationResp) | 添加配置 |
 | UpdateConfiguration | [UpdateConfigurationReq](#svc-infra-setting-UpdateConfigurationReq) | [UpdateConfigurationResp](#svc-infra-setting-UpdateConfigurationResp) | 更新配置 |
 | DeleteConfiguration | [DeleteConfigurationReq](#svc-infra-setting-DeleteConfigurationReq) | [DeleteConfigurationResp](#svc-infra-setting-DeleteConfigurationResp) | 删除配置 |
@@ -4607,6 +5040,238 @@ Room 房间
 
 
 
+<a name="svc-biz-relation_relation-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.biz.relation/relation.proto
+
+
+
+<a name="svc-biz-relation-GetRelationCountReq"></a>
+
+### GetRelationCountReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| relation_type | [RelationType](#svc-biz-relation-RelationType) |  |  |
+| member_id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-relation-GetRelationCountResp"></a>
+
+### GetRelationCountResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| count | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-relation-GetRelationListReq"></a>
+
+### GetRelationListReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| relation_type | [RelationType](#svc-biz-relation-RelationType) |  |  |
+| member_id | [string](#string) |  |  |
+| page | [int64](#int64) |  |  |
+| limit | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-relation-GetRelationListResp"></a>
+
+### GetRelationListResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [RelationInfo](#svc-biz-relation-RelationInfo) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-relation-RelationAddReq"></a>
+
+### RelationAddReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| relation_info | [RelationInfo](#svc-biz-relation-RelationInfo) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-relation-RelationCheckReq"></a>
+
+### RelationCheckReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| relation_type | [RelationType](#svc-biz-relation-RelationType) |  |  |
+| member_id | [string](#string) |  | 成员 |
+| r_member_id | [string](#string) |  | 产生关系的成员 |
+
+
+
+
+
+
+<a name="svc-biz-relation-RelationCheckResp"></a>
+
+### RelationCheckResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| result | [bool](#bool) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-relation-RelationDelReq"></a>
+
+### RelationDelReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| relation_type | [RelationType](#svc-biz-relation-RelationType) |  |  |
+| member_id | [string](#string) |  | 成员 |
+| r_member_id | [string](#string) |  | 产生关系的成员 |
+
+
+
+
+
+
+<a name="svc-biz-relation-RelationGetReq"></a>
+
+### RelationGetReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| relation_type | [RelationType](#svc-biz-relation-RelationType) |  |  |
+| member_id | [string](#string) |  | 成员 |
+| r_member_id | [string](#string) |  | 产生关系的成员 |
+
+
+
+
+
+
+<a name="svc-biz-relation-RelationGetResp"></a>
+
+### RelationGetResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| relation_info | [RelationInfo](#svc-biz-relation-RelationInfo) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-relation-RelationInfo"></a>
+
+### RelationInfo
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| relation_type | [RelationType](#svc-biz-relation-RelationType) |  | 关系类型 |
+| member_id | [string](#string) |  | 成员（名单属于谁） |
+| r_member_id | [string](#string) |  | 产生关系的成员（名单内有谁；当为ip或者设备号时不是uuid格式） |
+| build_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 建立关系时间（默认会按照此字段排序） |
+| expire_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 过期时间（可无，为空则永久有效） |
+| operator_id | [string](#string) |  | 操作人 |
+| remark | [string](#string) |  | 备注 |
+| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+| updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 更新时间 |
+
+
+
+
+
+ 
+
+
+<a name="svc-biz-relation-RelationType"></a>
+
+### RelationType
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| RelationTypeUnknown | 0 | 未知 |
+| RelationTypeFollow | 1 | 关注主播 |
+| RelationTypeHistory | 2 | 观看历史 |
+| RelationTypeMuzzle | 3 | 禁言 |
+| RelationTypeBlacklistViewer | 4 | 用户黑名单 |
+| RelationTypeBlacklistStreamer | 5 | 主播黑名单 |
+| RelationTypeBlacklistIP | 6 | ip黑名单 |
+| RelationTypeBlacklistDevice | 7 | 设备黑名单 |
+
+
+ 
+
+ 
+
+
+<a name="svc-biz-relation-Relation"></a>
+
+### Relation
+
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| RelationAdd | [RelationAddReq](#svc-biz-relation-RelationAddReq) | [.google.protobuf.Empty](#google-protobuf-Empty) |  |
+| RelationGet | [RelationGetReq](#svc-biz-relation-RelationGetReq) | [RelationGetResp](#svc-biz-relation-RelationGetResp) |  |
+| RelationDel | [RelationDelReq](#svc-biz-relation-RelationDelReq) | [.google.protobuf.Empty](#google-protobuf-Empty) |  |
+| RelationCheck | [RelationCheckReq](#svc-biz-relation-RelationCheckReq) | [RelationCheckResp](#svc-biz-relation-RelationCheckResp) |  |
+| GetRelationCount | [GetRelationCountReq](#svc-biz-relation-GetRelationCountReq) | [GetRelationCountResp](#svc-biz-relation-GetRelationCountResp) |  |
+| GetRelationList | [GetRelationListReq](#svc-biz-relation-GetRelationListReq) | [GetRelationListResp](#svc-biz-relation-GetRelationListResp) |  |
+
+ 
+
+
+
 <a name="third_party_buf_validate_priv_private-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
@@ -5879,6 +6544,298 @@ WellKnownRegex contain some well-known patterns.
 
 
 
+<a name="svc-biz-org-AddDepartmentReq"></a>
+
+### AddDepartmentReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| department | [Department](#svc-biz-org-Department) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-AddDepartmentResp"></a>
+
+### AddDepartmentResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| department | [Department](#svc-biz-org-Department) |  |  |
+| result | [bool](#bool) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-AddMerchantReq"></a>
+
+### AddMerchantReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| merchant | [Merchant](#svc-biz-org-Merchant) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-AddMerchantResp"></a>
+
+### AddMerchantResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| merchant | [Merchant](#svc-biz-org-Merchant) |  |  |
+| result | [bool](#bool) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-AddUnionReq"></a>
+
+### AddUnionReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| union | [Union](#svc-biz-org-Union) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-AddUnionResp"></a>
+
+### AddUnionResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| union | [Union](#svc-biz-org-Union) |  |  |
+| result | [bool](#bool) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-DeleteDepartmentReq"></a>
+
+### DeleteDepartmentReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Department](#svc-biz-org-Department) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-DeleteDepartmentResp"></a>
+
+### DeleteDepartmentResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| deleted | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-DeleteMerchantReq"></a>
+
+### DeleteMerchantReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Merchant](#svc-biz-org-Merchant) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-DeleteMerchantResp"></a>
+
+### DeleteMerchantResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| deleted | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-DeleteUnionReq"></a>
+
+### DeleteUnionReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Union](#svc-biz-org-Union) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-DeleteUnionResp"></a>
+
+### DeleteUnionResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| deleted | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-Department"></a>
+
+### Department
+Models
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  | 内部ID |
+| name | [string](#string) |  | 名字 |
+| merchant_id | [string](#string) |  | 商户ID |
+| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+| additions | [string](#string) |  | 扩展属性 |
+
+
+
+
+
+
+<a name="svc-biz-org-GetDepartmentReq"></a>
+
+### GetDepartmentReq
+{{{ [Department]
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Department](#svc-biz-org-Department) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-GetDepartmentResp"></a>
+
+### GetDepartmentResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| department | [Department](#svc-biz-org-Department) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-GetMerchantReq"></a>
+
+### GetMerchantReq
+{{{ [Merchant]
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Merchant](#svc-biz-org-Merchant) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-GetMerchantResp"></a>
+
+### GetMerchantResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| merchant | [Merchant](#svc-biz-org-Merchant) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-GetUnionReq"></a>
+
+### GetUnionReq
+{{{ [Union]
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Union](#svc-biz-org-Union) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-GetUnionResp"></a>
+
+### GetUnionResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| union | [Union](#svc-biz-org-Union) |  |  |
+
+
+
+
+
+
 <a name="svc-biz-org-InitDBResp"></a>
 
 ### InitDBResp
@@ -5888,6 +6845,229 @@ WellKnownRegex contain some well-known patterns.
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | result | [bool](#bool) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-ListDepartmentsReq"></a>
+
+### ListDepartmentsReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Department](#svc-biz-org-Department) |  |  |
+| limit | [int32](#int32) |  |  |
+| offset | [int32](#int32) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-ListDepartmentsResp"></a>
+
+### ListDepartmentsResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| departments | [Department](#svc-biz-org-Department) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-org-ListMerchantsReq"></a>
+
+### ListMerchantsReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Merchant](#svc-biz-org-Merchant) |  |  |
+| limit | [int32](#int32) |  |  |
+| offset | [int32](#int32) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-ListMerchantsResp"></a>
+
+### ListMerchantsResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| merchants | [Merchant](#svc-biz-org-Merchant) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-org-ListUnionsReq"></a>
+
+### ListUnionsReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Union](#svc-biz-org-Union) |  |  |
+| limit | [int32](#int32) |  |  |
+| offset | [int32](#int32) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-ListUnionsResp"></a>
+
+### ListUnionsResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| unions | [Union](#svc-biz-org-Union) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-org-Merchant"></a>
+
+### Merchant
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  | 内部ID |
+| name | [string](#string) |  | 名字 |
+| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+| additions | [string](#string) |  | 扩展属性 |
+
+
+
+
+
+
+<a name="svc-biz-org-Union"></a>
+
+### Union
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  | 内部ID |
+| name | [string](#string) |  | 名字 |
+| merchant_id | [string](#string) |  | 商户ID |
+| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+| additions | [string](#string) |  | 扩展属性 |
+
+
+
+
+
+
+<a name="svc-biz-org-UpdateDepartmentReq"></a>
+
+### UpdateDepartmentReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Department](#svc-biz-org-Department) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-UpdateDepartmentResp"></a>
+
+### UpdateDepartmentResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| updated | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-UpdateMerchantReq"></a>
+
+### UpdateMerchantReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Merchant](#svc-biz-org-Merchant) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-UpdateMerchantResp"></a>
+
+### UpdateMerchantResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| updated | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-UpdateUnionReq"></a>
+
+### UpdateUnionReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Union](#svc-biz-org-Union) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-UpdateUnionResp"></a>
+
+### UpdateUnionResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| updated | [int64](#int64) |  |  |
 
 
 
@@ -5908,6 +7088,21 @@ WellKnownRegex contain some well-known patterns.
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
 | InitDB | [.google.protobuf.Empty](#google-protobuf-Empty) | [InitDBResp](#svc-biz-org-InitDBResp) | 初始化数据库 |
+| GetDepartment | [GetDepartmentReq](#svc-biz-org-GetDepartmentReq) | [GetDepartmentResp](#svc-biz-org-GetDepartmentResp) | 获取部门 |
+| ListDepartments | [ListDepartmentsReq](#svc-biz-org-ListDepartmentsReq) | [ListDepartmentsResp](#svc-biz-org-ListDepartmentsResp) | 获取部门列表 |
+| AddDepartment | [AddDepartmentReq](#svc-biz-org-AddDepartmentReq) | [AddDepartmentResp](#svc-biz-org-AddDepartmentResp) | 添加部门 |
+| UpdateDepartment | [UpdateDepartmentReq](#svc-biz-org-UpdateDepartmentReq) | [UpdateDepartmentResp](#svc-biz-org-UpdateDepartmentResp) | 更新部门 |
+| DeleteDepartment | [DeleteDepartmentReq](#svc-biz-org-DeleteDepartmentReq) | [DeleteDepartmentResp](#svc-biz-org-DeleteDepartmentResp) | 删除部门 |
+| GetMerchant | [GetMerchantReq](#svc-biz-org-GetMerchantReq) | [GetMerchantResp](#svc-biz-org-GetMerchantResp) | 获取商户 |
+| ListMerchants | [ListMerchantsReq](#svc-biz-org-ListMerchantsReq) | [ListMerchantsResp](#svc-biz-org-ListMerchantsResp) | 获取商户列表 |
+| AddMerchant | [AddMerchantReq](#svc-biz-org-AddMerchantReq) | [AddMerchantResp](#svc-biz-org-AddMerchantResp) | 添加商户 |
+| UpdateMerchant | [UpdateMerchantReq](#svc-biz-org-UpdateMerchantReq) | [UpdateMerchantResp](#svc-biz-org-UpdateMerchantResp) | 更新商户 |
+| DeleteMerchant | [DeleteMerchantReq](#svc-biz-org-DeleteMerchantReq) | [DeleteMerchantResp](#svc-biz-org-DeleteMerchantResp) | 删除商户 |
+| GetUnion | [GetUnionReq](#svc-biz-org-GetUnionReq) | [GetUnionResp](#svc-biz-org-GetUnionResp) | 获取工会 |
+| ListUnions | [ListUnionsReq](#svc-biz-org-ListUnionsReq) | [ListUnionsResp](#svc-biz-org-ListUnionsResp) | 获取工会列表 |
+| AddUnion | [AddUnionReq](#svc-biz-org-AddUnionReq) | [AddUnionResp](#svc-biz-org-AddUnionResp) | 添加工会 |
+| UpdateUnion | [UpdateUnionReq](#svc-biz-org-UpdateUnionReq) | [UpdateUnionResp](#svc-biz-org-UpdateUnionResp) | 更新工会 |
+| DeleteUnion | [DeleteUnionReq](#svc-biz-org-DeleteUnionReq) | [DeleteUnionResp](#svc-biz-org-DeleteUnionResp) | 删除工会 |
 
  
 
@@ -5917,6 +7112,290 @@ WellKnownRegex contain some well-known patterns.
 <p align="right"><a href="#top">Top</a></p>
 
 ## svc.infra.notifier/notifier.proto
+
+
+
+<a name="svc-infra-notifier-CommonResponse"></a>
+
+### CommonResponse
+CommonResponse
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| code | [int64](#int64) |  | code |
+| message | [string](#string) |  | message |
+| uuid | [string](#string) |  | ID |
+| lid | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-notifier-CreatedSmsBizSendLogRequest"></a>
+
+### CreatedSmsBizSendLogRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| sms_template_id | [int64](#int64) |  |  |
+| params | [string](#string) |  |  |
+| user_set | [int32](#int32) |  |  |
+| remark | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-notifier-CreatedSmsChannelRequest"></a>
+
+### CreatedSmsChannelRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  |  |
+| scope | [int64](#int64) |  |  |
+| merchant_id | [string](#string) |  |  |
+| channel | [string](#string) |  |  |
+| access_id | [string](#string) |  |  |
+| access_key | [string](#string) |  |  |
+| endpoint | [string](#string) |  |  |
+| status | [int32](#int32) |  |  |
+| is_platform | [bool](#bool) |  |  |
+| creator | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-notifier-CreatedSmsCodeBindRequest"></a>
+
+### CreatedSmsCodeBindRequest
+绑定消息
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [int64](#int64) |  | created if big than zero else updated. |
+| channel_id | [int64](#int64) |  | channel_id |
+| scope | [int32](#int32) |  |  |
+| merchant_id | [string](#string) |  |  |
+| sign_name | [string](#string) |  |  |
+| remark | [string](#string) |  |  |
+| template_name | [string](#string) |  |  |
+| template_type | [string](#string) |  |  |
+| content | [string](#string) |  |  |
+| code_key | [string](#string) |  |  |
+| external_code_key | [string](#string) |  |  |
+| creator | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-notifier-CreatedSmsSendRequest"></a>
+
+### CreatedSmsSendRequest
+sms send biz ///////////////////
+CreatedSmsSendRequest 发送短信请求
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| merchant_id | [string](#string) |  |  |
+| code_key | [string](#string) |  |  |
+| mobiles | [string](#string) | repeated |  |
+| remark | [string](#string) |  |  |
+| params | [string](#string) |  |  |
+| biz_type | [string](#string) |  |  |
+| duration_seconds | [int32](#int32) |  |  |
+| created_ip | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-notifier-CreatedSmsSendResponse"></a>
+
+### CreatedSmsSendResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| send_result | [CreatedSmsSendResponse.SendResultEntry](#svc-infra-notifier-CreatedSmsSendResponse-SendResultEntry) | repeated |  |
+
+
+
+
+
+
+<a name="svc-infra-notifier-CreatedSmsSendResponse-SendResultEntry"></a>
+
+### CreatedSmsSendResponse.SendResultEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [bool](#bool) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-notifier-CreatedSmsTemplateRequest"></a>
+
+### CreatedSmsTemplateRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| merchant_id | [string](#string) |  |  |
+| channel_id | [string](#string) |  |  |
+| sign_name | [string](#string) |  |  |
+| code_key | [string](#string) |  |  |
+| external_code_key | [string](#string) |  | 没有绑定，需要绑定外部发送 |
+| template_name | [string](#string) |  |  |
+| template_type | [string](#string) |  |  |
+| params | [string](#string) |  |  |
+| content | [string](#string) |  |  |
+| remark | [string](#string) |  |  |
+| is_system | [string](#string) |  |  |
+| creator | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-notifier-CreatedSmsVerifyRequest"></a>
+
+### CreatedSmsVerifyRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| merchant_id | [string](#string) |  |  |
+| code_key | [string](#string) |  |  |
+| mobile | [string](#string) |  |  |
+| code | [string](#string) |  |  |
+| biz_type | [string](#string) |  |  |
+| deleted | [bool](#bool) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-notifier-DeletedSmsChannelRequest"></a>
+
+### DeletedSmsChannelRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-notifier-DeletedSmsTemplateRequest"></a>
+
+### DeletedSmsTemplateRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-notifier-GetCloudSmsSignRequest"></a>
+
+### GetCloudSmsSignRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| merchant_id | [string](#string) |  |  |
+| channel_name | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-notifier-GetCloudSmsSignResponse"></a>
+
+### GetCloudSmsSignResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| cnt | [int64](#int64) |  |  |
+| list | [SmsSign](#svc-infra-notifier-SmsSign) | repeated |  |
+
+
+
+
+
+
+<a name="svc-infra-notifier-GetCloudSmsTemplateRequest"></a>
+
+### GetCloudSmsTemplateRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| merchant_id | [string](#string) |  |  |
+| channel_id | [int64](#int64) |  |  |
+| template_id | [int64](#int64) |  |  |
+| external_code_key | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-notifier-GetCloudSmsTemplateResponse"></a>
+
+### GetCloudSmsTemplateResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| external_code_key | [string](#string) |  |  |
+| content | [string](#string) |  |  |
+| template_name | [string](#string) |  | 0：短信通知。 1：推广短信。 2：验证码短信。 6：国际/港澳台短信。 7：数字短信。 |
+| template_type | [string](#string) |  |  |
+
+
+
 
 
 
@@ -5934,6 +7413,272 @@ WellKnownRegex contain some well-known patterns.
 
 
 
+
+<a name="svc-infra-notifier-SmsBizSendLog"></a>
+
+### SmsBizSendLog
+biz sms send /////////////
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [int64](#int64) |  |  |
+| template_id | [int64](#int64) |  |  |
+| channel_id | [int64](#int64) |  |  |
+| biz_type | [int64](#int64) |  |  |
+| content | [string](#string) |  |  |
+| user_set | [int32](#int32) |  |  |
+| send_user_cnt | [int64](#int64) |  |  |
+| send_ok_cnt | [int64](#int64) |  |  |
+| is_completed | [bool](#bool) |  |  |
+| remark | [string](#string) |  |  |
+| creator | [string](#string) |  |  |
+| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+| updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-notifier-SmsBizSendLogListRequest"></a>
+
+### SmsBizSendLogListRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| page | [int64](#int64) |  |  |
+| size | [int64](#int64) |  |  |
+| template_id | [int64](#int64) |  |  |
+| biz_type | [int32](#int32) |  |  |
+| merchant_id | [string](#string) |  |  |
+| start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+| end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-notifier-SmsBizSendLogListResponse"></a>
+
+### SmsBizSendLogListResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| cnt | [int64](#int64) |  |  |
+| list | [SmsBizSendLogListResponse.SmsBizSendLog](#svc-infra-notifier-SmsBizSendLogListResponse-SmsBizSendLog) | repeated |  |
+
+
+
+
+
+
+<a name="svc-infra-notifier-SmsBizSendLogListResponse-SmsBizSendLog"></a>
+
+### SmsBizSendLogListResponse.SmsBizSendLog
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| sms_biz_send_log | [SmsBizSendLogListResponse.SmsBizSendLog](#svc-infra-notifier-SmsBizSendLogListResponse-SmsBizSendLog) |  |  |
+| sms_template | [SmsTemplate](#svc-infra-notifier-SmsTemplate) |  |  |
+| sms_channel | [SmsChannel](#svc-infra-notifier-SmsChannel) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-notifier-SmsChannel"></a>
+
+### SmsChannel
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  |  |
+| scope | [int64](#int64) |  |  |
+| merchant_id | [string](#string) |  |  |
+| channel | [string](#string) |  |  |
+| access_id | [string](#string) |  |  |
+| access_key | [string](#string) |  |  |
+| endpoint | [string](#string) |  |  |
+| status | [int32](#int32) |  |  |
+| is_platform | [bool](#bool) |  |  |
+| creator | [string](#string) |  |  |
+| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-notifier-SmsChannelListRequest"></a>
+
+### SmsChannelListRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| page | [int64](#int64) |  |  |
+| size | [int64](#int64) |  |  |
+| name | [string](#string) |  |  |
+| start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+| end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-notifier-SmsChannelListResponse"></a>
+
+### SmsChannelListResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| cnt | [int64](#int64) |  |  |
+| list | [SmsChannel](#svc-infra-notifier-SmsChannel) | repeated |  |
+
+
+
+
+
+
+<a name="svc-infra-notifier-SmsSign"></a>
+
+### SmsSign
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| sign_name | [string](#string) |  |  |
+| audit_status | [string](#string) |  |  |
+| business_type | [string](#string) |  |  |
+| reason | [string](#string) |  |  |
+| order_id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-notifier-SmsTemplate"></a>
+
+### SmsTemplate
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [int64](#int64) |  |  |
+| merchant_id | [string](#string) |  |  |
+| channel_id | [string](#string) |  |  |
+| sms_channel | [SmsChannel](#svc-infra-notifier-SmsChannel) |  |  |
+| sign_name | [string](#string) |  |  |
+| code_key | [string](#string) |  |  |
+| external_code_key | [string](#string) |  | 没有绑定，需要绑定外部发送 |
+| template_name | [string](#string) |  |  |
+| template_type | [string](#string) |  |  |
+| params | [string](#string) |  |  |
+| content | [string](#string) |  |  |
+| remark | [string](#string) |  |  |
+| is_system | [string](#string) |  |  |
+| creator | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-notifier-SmsTemplateListRequest"></a>
+
+### SmsTemplateListRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| page | [int64](#int64) |  |  |
+| size | [int64](#int64) |  |  |
+| channel_id | [string](#string) |  |  |
+| start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+| end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-notifier-SmsTemplateListResponse"></a>
+
+### SmsTemplateListResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| cnt | [int64](#int64) |  |  |
+| list | [SmsTemplate](#svc-infra-notifier-SmsTemplate) | repeated |  |
+
+
+
+
+
+
+<a name="svc-infra-notifier-UpdatedSmsChannelRequest"></a>
+
+### UpdatedSmsChannelRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [int64](#int64) |  |  |
+| name | [string](#string) |  |  |
+| scope | [int64](#int64) |  |  |
+| access_id | [string](#string) |  |  |
+| access_key | [string](#string) |  |  |
+| endpoint | [string](#string) |  |  |
+| status | [int32](#int32) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-notifier-UpdatedSmsTemplateRequest"></a>
+
+### UpdatedSmsTemplateRequest
+UpdatedSmsTemplateRequest 绑定操作
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [int64](#int64) |  |  |
+| channel_id | [string](#string) |  |  |
+| external_code_key | [string](#string) |  |  |
+| remark | [string](#string) |  |  |
+| template_name | [string](#string) |  |  |
+| template_type | [string](#string) |  |  |
+| params | [string](#string) |  |  |
+| content | [string](#string) |  |  |
+
+
+
+
+
  
 
  
@@ -5944,11 +7689,26 @@ WellKnownRegex contain some well-known patterns.
 <a name="svc-infra-notifier-Notifier"></a>
 
 ### Notifier
-
+service started /////////////////
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
 | InitDB | [.google.protobuf.Empty](#google-protobuf-Empty) | [InitDBResp](#svc-infra-notifier-InitDBResp) | 初始化数据库 |
+| GetSmsChannelList | [SmsChannelListRequest](#svc-infra-notifier-SmsChannelListRequest) | [SmsChannelListResponse](#svc-infra-notifier-SmsChannelListResponse) | sms channel |
+| CreatedSmsChannel | [CreatedSmsChannelRequest](#svc-infra-notifier-CreatedSmsChannelRequest) | [CommonResponse](#svc-infra-notifier-CommonResponse) |  |
+| UpdatedSmsChannel | [UpdatedSmsChannelRequest](#svc-infra-notifier-UpdatedSmsChannelRequest) | [CommonResponse](#svc-infra-notifier-CommonResponse) |  |
+| DeletedSmsChannel | [DeletedSmsChannelRequest](#svc-infra-notifier-DeletedSmsChannelRequest) | [CommonResponse](#svc-infra-notifier-CommonResponse) |  |
+| GetSmsTemplateList | [SmsTemplateListRequest](#svc-infra-notifier-SmsTemplateListRequest) | [SmsTemplateListResponse](#svc-infra-notifier-SmsTemplateListResponse) | sms template |
+| CreatedSmsTemplate | [CreatedSmsTemplateRequest](#svc-infra-notifier-CreatedSmsTemplateRequest) | [CommonResponse](#svc-infra-notifier-CommonResponse) |  |
+| UpdateSmsTemplate | [UpdatedSmsTemplateRequest](#svc-infra-notifier-UpdatedSmsTemplateRequest) | [CommonResponse](#svc-infra-notifier-CommonResponse) |  |
+| DeletedSmsTemplate | [DeletedSmsTemplateRequest](#svc-infra-notifier-DeletedSmsTemplateRequest) | [CommonResponse](#svc-infra-notifier-CommonResponse) |  |
+| GetSmsBizLogList | [SmsBizSendLogListRequest](#svc-infra-notifier-SmsBizSendLogListRequest) | [SmsBizSendLogListResponse](#svc-infra-notifier-SmsBizSendLogListResponse) | sms biz send |
+| CreatedSmsBizLog | [CreatedSmsBizSendLogRequest](#svc-infra-notifier-CreatedSmsBizSendLogRequest) | [CommonResponse](#svc-infra-notifier-CommonResponse) |  |
+| CreatedSmsSend | [CreatedSmsSendRequest](#svc-infra-notifier-CreatedSmsSendRequest) | [CreatedSmsSendResponse](#svc-infra-notifier-CreatedSmsSendResponse) | send sms operation |
+| CreatedSmsVerify | [CreatedSmsVerifyRequest](#svc-infra-notifier-CreatedSmsVerifyRequest) | [CommonResponse](#svc-infra-notifier-CommonResponse) |  |
+| GetCloudSmsTemplate | [GetCloudSmsTemplateRequest](#svc-infra-notifier-GetCloudSmsTemplateRequest) | [GetCloudSmsTemplateResponse](#svc-infra-notifier-GetCloudSmsTemplateResponse) |  |
+| CreatedSmsCodeBind | [CreatedSmsCodeBindRequest](#svc-infra-notifier-CreatedSmsCodeBindRequest) | [CommonResponse](#svc-infra-notifier-CommonResponse) |  |
+| GetCloudSmsSign | [GetCloudSmsSignRequest](#svc-infra-notifier-GetCloudSmsSignRequest) | [GetCloudSmsSignResponse](#svc-infra-notifier-GetCloudSmsSignResponse) | 获取签名列表 |
 
  
 
@@ -6099,7 +7859,7 @@ WellKnownRegex contain some well-known patterns.
 | combo_timeout | [int32](#int32) |  | combo触发间隔时间 |
 | combo_showtime | [int32](#int32) |  | combo效果展示时间 |
 | prize | [string](#string) |  | 奖励(json字符串:{&#34;user_exp&#34;:100, &#34;anchor_exp&#34;:20}) |
-| pack | [string](#string) |  | 批量包(json字符串:[{pack:&#34;20&#34;,desc:&#34;&#34;},{pack:&#34;99&#34;,desc:&#34;&#34;}]) |
+| pack | [string](#string) |  | 批量包(json字符串:[{&#34;pack&#34;:20,&#34;desc&#34;:&#34;&#34;},{&#34;pack&#34;:99,&#34;desc&#34;:&#34;&#34;}]) |
 | pic | [string](#string) |  | 图片资源(json字符串:{&#34;icon&#34;:&#34;&#34;, &#34;icon_gif&#34;:&#34;&#34;, &#34;chat_icon&#34;:&#34;&#34;, &#34;combo_bg&#34;:&#34;&#34;, &#34;combo_icon&#34;:&#34;&#34;}) |
 
 
@@ -6244,6 +8004,8 @@ WellKnownRegex contain some well-known patterns.
 | type | [GiftType](#svc-biz-gift-GiftType) |  | 礼物类型 |
 | status | [GiftStatus](#svc-biz-gift-GiftStatus) |  | 礼物状态 |
 | keyword | [string](#string) |  | 关键字 |
+| create_start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 添加开始时间 |
+| create_end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 添加结束时间 |
 
 
 

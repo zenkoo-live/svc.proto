@@ -38,6 +38,13 @@ func NewStaticEndpoints() []*api.Endpoint {
 
 type StaticService interface {
 	InitDB(ctx context.Context, in *emptypb.Empty, opts ...client.CallOption) (*InitDBResp, error)
+	Configuration(ctx context.Context, in *ConfigurationMessage, opts ...client.CallOption) (*ConfigurationResponseMessage, error)
+	UploadAvatar(ctx context.Context, in *UploadRequestMessage, opts ...client.CallOption) (*UploadResponseMessage, error)
+	UploadCover(ctx context.Context, in *UploadRequestMessage, opts ...client.CallOption) (*UploadResponseMessage, error)
+	UploadVideo(ctx context.Context, in *UploadRequestMessage, opts ...client.CallOption) (*UploadResponseMessage, error)
+	UploadImage(ctx context.Context, in *UploadRequestMessage, opts ...client.CallOption) (*UploadResponseMessage, error)
+	UploadFile(ctx context.Context, in *UploadRequestMessage, opts ...client.CallOption) (*UploadResponseMessage, error)
+	UploadStreamFile(ctx context.Context, opts ...client.CallOption) (Static_UploadStreamFileService, error)
 }
 
 type staticService struct {
@@ -62,15 +69,135 @@ func (c *staticService) InitDB(ctx context.Context, in *emptypb.Empty, opts ...c
 	return out, nil
 }
 
+func (c *staticService) Configuration(ctx context.Context, in *ConfigurationMessage, opts ...client.CallOption) (*ConfigurationResponseMessage, error) {
+	req := c.c.NewRequest(c.name, "Static.Configuration", in)
+	out := new(ConfigurationResponseMessage)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *staticService) UploadAvatar(ctx context.Context, in *UploadRequestMessage, opts ...client.CallOption) (*UploadResponseMessage, error) {
+	req := c.c.NewRequest(c.name, "Static.UploadAvatar", in)
+	out := new(UploadResponseMessage)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *staticService) UploadCover(ctx context.Context, in *UploadRequestMessage, opts ...client.CallOption) (*UploadResponseMessage, error) {
+	req := c.c.NewRequest(c.name, "Static.UploadCover", in)
+	out := new(UploadResponseMessage)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *staticService) UploadVideo(ctx context.Context, in *UploadRequestMessage, opts ...client.CallOption) (*UploadResponseMessage, error) {
+	req := c.c.NewRequest(c.name, "Static.UploadVideo", in)
+	out := new(UploadResponseMessage)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *staticService) UploadImage(ctx context.Context, in *UploadRequestMessage, opts ...client.CallOption) (*UploadResponseMessage, error) {
+	req := c.c.NewRequest(c.name, "Static.UploadImage", in)
+	out := new(UploadResponseMessage)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *staticService) UploadFile(ctx context.Context, in *UploadRequestMessage, opts ...client.CallOption) (*UploadResponseMessage, error) {
+	req := c.c.NewRequest(c.name, "Static.UploadFile", in)
+	out := new(UploadResponseMessage)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *staticService) UploadStreamFile(ctx context.Context, opts ...client.CallOption) (Static_UploadStreamFileService, error) {
+	req := c.c.NewRequest(c.name, "Static.UploadStreamFile", &UploadStreamRequestMessage{})
+	stream, err := c.c.Stream(ctx, req, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return &staticServiceUploadStreamFile{stream}, nil
+}
+
+type Static_UploadStreamFileService interface {
+	Context() context.Context
+	SendMsg(interface{}) error
+	RecvMsg(interface{}) error
+	CloseSend() error
+	Close() error
+	Send(*UploadStreamRequestMessage) error
+}
+
+type staticServiceUploadStreamFile struct {
+	stream client.Stream
+}
+
+func (x *staticServiceUploadStreamFile) CloseSend() error {
+	return x.stream.CloseSend()
+}
+
+func (x *staticServiceUploadStreamFile) Close() error {
+	return x.stream.Close()
+}
+
+func (x *staticServiceUploadStreamFile) Context() context.Context {
+	return x.stream.Context()
+}
+
+func (x *staticServiceUploadStreamFile) SendMsg(m interface{}) error {
+	return x.stream.Send(m)
+}
+
+func (x *staticServiceUploadStreamFile) RecvMsg(m interface{}) error {
+	return x.stream.Recv(m)
+}
+
+func (x *staticServiceUploadStreamFile) Send(m *UploadStreamRequestMessage) error {
+	return x.stream.Send(m)
+}
+
 // Server API for Static service
 
 type StaticHandler interface {
 	InitDB(context.Context, *emptypb.Empty, *InitDBResp) error
+	Configuration(context.Context, *ConfigurationMessage, *ConfigurationResponseMessage) error
+	UploadAvatar(context.Context, *UploadRequestMessage, *UploadResponseMessage) error
+	UploadCover(context.Context, *UploadRequestMessage, *UploadResponseMessage) error
+	UploadVideo(context.Context, *UploadRequestMessage, *UploadResponseMessage) error
+	UploadImage(context.Context, *UploadRequestMessage, *UploadResponseMessage) error
+	UploadFile(context.Context, *UploadRequestMessage, *UploadResponseMessage) error
+	UploadStreamFile(context.Context, Static_UploadStreamFileStream) error
 }
 
 func RegisterStaticHandler(s server.Server, hdlr StaticHandler, opts ...server.HandlerOption) error {
 	type static interface {
 		InitDB(ctx context.Context, in *emptypb.Empty, out *InitDBResp) error
+		Configuration(ctx context.Context, in *ConfigurationMessage, out *ConfigurationResponseMessage) error
+		UploadAvatar(ctx context.Context, in *UploadRequestMessage, out *UploadResponseMessage) error
+		UploadCover(ctx context.Context, in *UploadRequestMessage, out *UploadResponseMessage) error
+		UploadVideo(ctx context.Context, in *UploadRequestMessage, out *UploadResponseMessage) error
+		UploadImage(ctx context.Context, in *UploadRequestMessage, out *UploadResponseMessage) error
+		UploadFile(ctx context.Context, in *UploadRequestMessage, out *UploadResponseMessage) error
+		UploadStreamFile(ctx context.Context, stream server.Stream) error
 	}
 	type Static struct {
 		static
@@ -85,4 +212,68 @@ type staticHandler struct {
 
 func (h *staticHandler) InitDB(ctx context.Context, in *emptypb.Empty, out *InitDBResp) error {
 	return h.StaticHandler.InitDB(ctx, in, out)
+}
+
+func (h *staticHandler) Configuration(ctx context.Context, in *ConfigurationMessage, out *ConfigurationResponseMessage) error {
+	return h.StaticHandler.Configuration(ctx, in, out)
+}
+
+func (h *staticHandler) UploadAvatar(ctx context.Context, in *UploadRequestMessage, out *UploadResponseMessage) error {
+	return h.StaticHandler.UploadAvatar(ctx, in, out)
+}
+
+func (h *staticHandler) UploadCover(ctx context.Context, in *UploadRequestMessage, out *UploadResponseMessage) error {
+	return h.StaticHandler.UploadCover(ctx, in, out)
+}
+
+func (h *staticHandler) UploadVideo(ctx context.Context, in *UploadRequestMessage, out *UploadResponseMessage) error {
+	return h.StaticHandler.UploadVideo(ctx, in, out)
+}
+
+func (h *staticHandler) UploadImage(ctx context.Context, in *UploadRequestMessage, out *UploadResponseMessage) error {
+	return h.StaticHandler.UploadImage(ctx, in, out)
+}
+
+func (h *staticHandler) UploadFile(ctx context.Context, in *UploadRequestMessage, out *UploadResponseMessage) error {
+	return h.StaticHandler.UploadFile(ctx, in, out)
+}
+
+func (h *staticHandler) UploadStreamFile(ctx context.Context, stream server.Stream) error {
+	return h.StaticHandler.UploadStreamFile(ctx, &staticUploadStreamFileStream{stream})
+}
+
+type Static_UploadStreamFileStream interface {
+	Context() context.Context
+	SendMsg(interface{}) error
+	RecvMsg(interface{}) error
+	Close() error
+	Recv() (*UploadStreamRequestMessage, error)
+}
+
+type staticUploadStreamFileStream struct {
+	stream server.Stream
+}
+
+func (x *staticUploadStreamFileStream) Close() error {
+	return x.stream.Close()
+}
+
+func (x *staticUploadStreamFileStream) Context() context.Context {
+	return x.stream.Context()
+}
+
+func (x *staticUploadStreamFileStream) SendMsg(m interface{}) error {
+	return x.stream.Send(m)
+}
+
+func (x *staticUploadStreamFileStream) RecvMsg(m interface{}) error {
+	return x.stream.Recv(m)
+}
+
+func (x *staticUploadStreamFileStream) Recv() (*UploadStreamRequestMessage, error) {
+	m := new(UploadStreamRequestMessage)
+	if err := x.stream.Recv(m); err != nil {
+		return nil, err
+	}
+	return m, nil
 }

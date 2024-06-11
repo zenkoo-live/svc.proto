@@ -4,11 +4,173 @@ package svc.biz.org;
 option go_package="./svc.biz.org;org";
 
 import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
 
 service Org {
     rpc InitDB(google.protobuf.Empty) returns (InitDBResp); // 初始化数据库
+
+    rpc GetDepartment(GetDepartmentReq) returns (GetDepartmentResp); // 获取部门
+    rpc ListDepartments(ListDepartmentsReq) returns (ListDepartmentsResp); // 获取部门列表
+    rpc AddDepartment(AddDepartmentReq) returns (AddDepartmentResp); // 添加部门
+    rpc UpdateDepartment(UpdateDepartmentReq) returns (UpdateDepartmentResp); // 更新部门
+    rpc DeleteDepartment(DeleteDepartmentReq) returns (DeleteDepartmentResp); // 删除部门
+
+    rpc GetMerchant(GetMerchantReq) returns (GetMerchantResp); // 获取商户
+    rpc ListMerchants(ListMerchantsReq) returns (ListMerchantsResp); // 获取商户列表
+    rpc AddMerchant(AddMerchantReq) returns (AddMerchantResp); // 添加商户
+    rpc UpdateMerchant(UpdateMerchantReq) returns (UpdateMerchantResp); // 更新商户
+    rpc DeleteMerchant(DeleteMerchantReq) returns (DeleteMerchantResp); // 删除商户
+
+    rpc GetUnion(GetUnionReq) returns (GetUnionResp); // 获取工会
+    rpc ListUnions(ListUnionsReq) returns (ListUnionsResp); // 获取工会列表
+    rpc AddUnion(AddUnionReq) returns (AddUnionResp); // 添加工会
+    rpc UpdateUnion(UpdateUnionReq) returns (UpdateUnionResp); // 更新工会
+    rpc DeleteUnion(DeleteUnionReq) returns (DeleteUnionResp); // 删除工会
 }
 
 message InitDBResp {
     bool result = 1;
 }
+
+// Models
+message Department {
+    string id = 1; // 内部ID
+    string name = 3; // 名字
+    string merchant_id = 254; // 商户ID
+    google.protobuf.Timestamp created_at = 255; // 创建时间
+    string additions = 256; // 扩展属性
+};
+message Merchant {
+    string id = 1; // 内部ID
+    string name = 3; // 名字
+    google.protobuf.Timestamp created_at = 255; // 创建时间
+    string additions = 256; // 扩展属性
+};
+message Union {
+    string id = 1; // 内部ID
+    string name = 3; // 名字
+    string merchant_id = 254; // 商户ID
+    google.protobuf.Timestamp created_at = 255; // 创建时间
+    string additions = 256; // 扩展属性
+};
+
+// Parameters
+/* {{{ [Department] */
+message GetDepartmentReq {
+    Department condition = 1;
+};
+message GetDepartmentResp {
+    Department department = 1;
+};
+
+message ListDepartmentsReq {
+    Department condition = 1;
+    int32 limit = 2;
+    int32 offset = 3;
+};
+message ListDepartmentsResp {
+    repeated Department departments = 1;
+};
+
+message AddDepartmentReq {
+    Department department = 1;
+};
+message AddDepartmentResp {
+    Department department = 1;
+    bool result = 255;
+};
+
+message UpdateDepartmentReq {
+    Department condition = 1;
+};
+message UpdateDepartmentResp {
+    int64 updated = 1;
+};
+
+message DeleteDepartmentReq {
+    Department condition = 1;
+};
+message DeleteDepartmentResp {
+    int64 deleted = 1;
+};
+/* }}} */
+
+/* {{{ [Merchant] */
+message GetMerchantReq {
+    Merchant condition = 1;
+};
+message GetMerchantResp {
+    Merchant merchant = 1;
+};
+
+message ListMerchantsReq {
+    Merchant condition = 1;
+    int32 limit = 2;
+    int32 offset = 3;
+};
+message ListMerchantsResp {
+    repeated Merchant merchants = 1;
+};
+
+message AddMerchantReq {
+    Merchant merchant = 1;
+};
+message AddMerchantResp {
+    Merchant merchant = 1;
+    bool result = 255;
+};
+
+message UpdateMerchantReq {
+    Merchant condition = 1;
+};
+message UpdateMerchantResp {
+    int64 updated = 1;
+};
+
+message DeleteMerchantReq {
+    Merchant condition = 1;
+};
+message DeleteMerchantResp {
+    int64 deleted = 1;
+};
+/* }}} */
+
+/* {{{ [Union] */
+message GetUnionReq {
+    Union condition = 1;
+};
+message GetUnionResp {
+    Union union = 1;
+};
+
+message ListUnionsReq {
+    Union condition = 1;
+    int32 limit = 2;
+    int32 offset = 3;
+};
+message ListUnionsResp {
+    repeated Union unions = 1;
+};
+
+message AddUnionReq {
+    Union union = 1;
+};
+message AddUnionResp {
+    Union union = 1;
+    bool result = 255;
+};
+
+message UpdateUnionReq {
+    Union condition = 1;
+};
+message UpdateUnionResp {
+    int64 updated = 1;
+};
+
+message DeleteUnionReq {
+    Union condition = 1;
+};
+message DeleteUnionResp {
+    int64 deleted = 1;
+};
+/* }}} */

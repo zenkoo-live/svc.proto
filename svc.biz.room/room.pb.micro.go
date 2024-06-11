@@ -55,6 +55,10 @@ type RoomService interface {
 	GetRoomList(ctx context.Context, in *GetRoomListReq, opts ...client.CallOption) (*GetRoomListResp, error)
 	// GetOnlineRoomList 查询在线房间列表（用户端列表使用此接口）
 	GetOnlineRoomList(ctx context.Context, in *GetOnlineRoomListReq, opts ...client.CallOption) (*GetOnlineRoomListResp, error)
+	// ForbidRoom 封禁直播间
+	ForbidRoom(ctx context.Context, in *ForbidRoomReq, opts ...client.CallOption) (*ForbidRoomResp, error)
+	// ResumeRoom 解封直播间
+	ResumeRoom(ctx context.Context, in *ResumeRoomReq, opts ...client.CallOption) (*ResumeRoomResp, error)
 	// StartLive 开始直播
 	StartLive(ctx context.Context, in *StartLiveReq, opts ...client.CallOption) (*StartLiveResp, error)
 	// StopLive 关闭直播
@@ -153,6 +157,26 @@ func (c *roomService) GetOnlineRoomList(ctx context.Context, in *GetOnlineRoomLi
 	return out, nil
 }
 
+func (c *roomService) ForbidRoom(ctx context.Context, in *ForbidRoomReq, opts ...client.CallOption) (*ForbidRoomResp, error) {
+	req := c.c.NewRequest(c.name, "Room.ForbidRoom", in)
+	out := new(ForbidRoomResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *roomService) ResumeRoom(ctx context.Context, in *ResumeRoomReq, opts ...client.CallOption) (*ResumeRoomResp, error) {
+	req := c.c.NewRequest(c.name, "Room.ResumeRoom", in)
+	out := new(ResumeRoomResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *roomService) StartLive(ctx context.Context, in *StartLiveReq, opts ...client.CallOption) (*StartLiveResp, error) {
 	req := c.c.NewRequest(c.name, "Room.StartLive", in)
 	out := new(StartLiveResp)
@@ -192,6 +216,10 @@ type RoomHandler interface {
 	GetRoomList(context.Context, *GetRoomListReq, *GetRoomListResp) error
 	// GetOnlineRoomList 查询在线房间列表（用户端列表使用此接口）
 	GetOnlineRoomList(context.Context, *GetOnlineRoomListReq, *GetOnlineRoomListResp) error
+	// ForbidRoom 封禁直播间
+	ForbidRoom(context.Context, *ForbidRoomReq, *ForbidRoomResp) error
+	// ResumeRoom 解封直播间
+	ResumeRoom(context.Context, *ResumeRoomReq, *ResumeRoomResp) error
 	// StartLive 开始直播
 	StartLive(context.Context, *StartLiveReq, *StartLiveResp) error
 	// StopLive 关闭直播
@@ -208,6 +236,8 @@ func RegisterRoomHandler(s server.Server, hdlr RoomHandler, opts ...server.Handl
 		MGetRoomsByStreamerIDs(ctx context.Context, in *MGetRoomsByStreamerIDsReq, out *MGetRoomsByStreamerIDsResp) error
 		GetRoomList(ctx context.Context, in *GetRoomListReq, out *GetRoomListResp) error
 		GetOnlineRoomList(ctx context.Context, in *GetOnlineRoomListReq, out *GetOnlineRoomListResp) error
+		ForbidRoom(ctx context.Context, in *ForbidRoomReq, out *ForbidRoomResp) error
+		ResumeRoom(ctx context.Context, in *ResumeRoomReq, out *ResumeRoomResp) error
 		StartLive(ctx context.Context, in *StartLiveReq, out *StartLiveResp) error
 		StopLive(ctx context.Context, in *StopLiveReq, out *StopLiveResp) error
 	}
@@ -252,6 +282,14 @@ func (h *roomHandler) GetRoomList(ctx context.Context, in *GetRoomListReq, out *
 
 func (h *roomHandler) GetOnlineRoomList(ctx context.Context, in *GetOnlineRoomListReq, out *GetOnlineRoomListResp) error {
 	return h.RoomHandler.GetOnlineRoomList(ctx, in, out)
+}
+
+func (h *roomHandler) ForbidRoom(ctx context.Context, in *ForbidRoomReq, out *ForbidRoomResp) error {
+	return h.RoomHandler.ForbidRoom(ctx, in, out)
+}
+
+func (h *roomHandler) ResumeRoom(ctx context.Context, in *ResumeRoomReq, out *ResumeRoomResp) error {
+	return h.RoomHandler.ResumeRoom(ctx, in, out)
 }
 
 func (h *roomHandler) StartLive(ctx context.Context, in *StartLiveReq, out *StartLiveResp) error {

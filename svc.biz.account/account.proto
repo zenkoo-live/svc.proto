@@ -44,6 +44,7 @@ message Viewer {
     string display_id = 2; // 用于显示和索引的数字ID
     string name = 3; // 用户名
     string nickname = 4; // 昵称
+    string avatar = 5; // 头像
     string mobile = 11; // 手机
     string email = 12; // 邮箱
     string device_ident = 13; // 设备号 / 指纹
@@ -51,18 +52,21 @@ message Viewer {
     optional string salt = 22; // 加密混淆
     string merchant_id = 254; // 商户ID
     google.protobuf.Timestamp created_at = 255; // 创建时间
+    string additions = 256; // 扩展属性
 };
 message Streamer {
     string id = 1; // 内部ID
     string display_id = 2; // 用于显示和索引的数字ID
     string name = 3; // 用户名
     string nickname = 4; // 昵称
+    string avatar = 5; // 头像
     string mobile = 11; // 手机
     string email = 12; // 邮箱
     optional string password = 21; // 密码
     optional string salt = 22; // 加密混淆
     string merchant_id = 254; // 商户ID
     google.protobuf.Timestamp created_at = 255; // 创建时间
+    string additions = 256; // 扩展属性
 };
 message Manager {
     string id = 1; // 内部ID
@@ -73,6 +77,7 @@ message Manager {
     optional string salt = 22; // 加密混淆
     string merchant_id = 254; // 商户ID
     google.protobuf.Timestamp created_at = 255; // 创建时间
+    string additions = 256; // 扩展属性
 };
 message Union {
     string id = 1; // 内部ID
@@ -83,6 +88,7 @@ message Union {
     optional string salt = 22; // 加密混淆
     string merchant_id = 254; // 商户ID
     google.protobuf.Timestamp created_at = 255; // 创建时间
+    string additions = 256; // 扩展属性
 }
 
 // Parameters
@@ -137,6 +143,8 @@ message GetStreamerResp {
 
 message ListStreamersReq {
     Streamer condition = 1;
+    int32 limit = 2;
+    int32 offset = 3;
 };
 message ListStreamersResp {
     repeated Streamer streamers = 1;
@@ -176,6 +184,8 @@ message GetManagerResp {
 
 message ListManagersReq {
     Manager condition = 1;
+    int32 limit = 2;
+    int32 offset = 3;
 };
 message ListManagersResp {
     repeated Manager managers = 1;
@@ -215,6 +225,8 @@ message GetUnionResp {
 
 message ListUnionsReq {
     Union condition = 1;
+    int32 limit = 2;
+    int32 offset = 3;
 };
 message ListUnionsResp {
     repeated Union unions = 1;

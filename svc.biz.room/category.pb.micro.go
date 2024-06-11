@@ -41,6 +41,8 @@ func NewCategoryEndpoints() []*api.Endpoint {
 type CategoryService interface {
 	// 获取分类
 	GetCategory(ctx context.Context, in *GetCategoryReq, opts ...client.CallOption) (*GetCategoryResp, error)
+	// 获取分类
+	MGetCategory(ctx context.Context, in *MGetCategoryReq, opts ...client.CallOption) (*MGetCategoryResp, error)
 	// 创建分类
 	CreateCategory(ctx context.Context, in *CreateCategoryReq, opts ...client.CallOption) (*CreateCategoryResp, error)
 	// 更新某个分类信息
@@ -68,6 +70,16 @@ func NewCategoryService(name string, c client.Client) CategoryService {
 func (c *categoryService) GetCategory(ctx context.Context, in *GetCategoryReq, opts ...client.CallOption) (*GetCategoryResp, error) {
 	req := c.c.NewRequest(c.name, "Category.GetCategory", in)
 	out := new(GetCategoryResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *categoryService) MGetCategory(ctx context.Context, in *MGetCategoryReq, opts ...client.CallOption) (*MGetCategoryResp, error) {
+	req := c.c.NewRequest(c.name, "Category.MGetCategory", in)
+	out := new(MGetCategoryResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -130,6 +142,8 @@ func (c *categoryService) ListCategoryTree(ctx context.Context, in *ListCategory
 type CategoryHandler interface {
 	// 获取分类
 	GetCategory(context.Context, *GetCategoryReq, *GetCategoryResp) error
+	// 获取分类
+	MGetCategory(context.Context, *MGetCategoryReq, *MGetCategoryResp) error
 	// 创建分类
 	CreateCategory(context.Context, *CreateCategoryReq, *CreateCategoryResp) error
 	// 更新某个分类信息
@@ -145,6 +159,7 @@ type CategoryHandler interface {
 func RegisterCategoryHandler(s server.Server, hdlr CategoryHandler, opts ...server.HandlerOption) error {
 	type category interface {
 		GetCategory(ctx context.Context, in *GetCategoryReq, out *GetCategoryResp) error
+		MGetCategory(ctx context.Context, in *MGetCategoryReq, out *MGetCategoryResp) error
 		CreateCategory(ctx context.Context, in *CreateCategoryReq, out *CreateCategoryResp) error
 		UpdateCategory(ctx context.Context, in *UpdateCategoryReq, out *emptypb.Empty) error
 		DeleteCategory(ctx context.Context, in *DeleteCategoryReq, out *emptypb.Empty) error
@@ -164,6 +179,10 @@ type categoryHandler struct {
 
 func (h *categoryHandler) GetCategory(ctx context.Context, in *GetCategoryReq, out *GetCategoryResp) error {
 	return h.CategoryHandler.GetCategory(ctx, in, out)
+}
+
+func (h *categoryHandler) MGetCategory(ctx context.Context, in *MGetCategoryReq, out *MGetCategoryResp) error {
+	return h.CategoryHandler.MGetCategory(ctx, in, out)
 }
 
 func (h *categoryHandler) CreateCategory(ctx context.Context, in *CreateCategoryReq, out *CreateCategoryResp) error {
