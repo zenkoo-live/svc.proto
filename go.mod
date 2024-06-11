@@ -3,13 +3,14 @@ module github.com/zenkoo-live/svc.proto
 go 1.22.3
 
 require (
+	buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go v1.34.1-20240508200655-46a4cf4ba109.1
 	github.com/go-micro/plugins/v4/client/grpc v1.2.1
 	github.com/google/uuid v1.5.0
-	github.com/zenkoo-live/svc.base v0.0.0-20240522172942-8d2cd7e3ad61
+	github.com/zenkoo-live/svc.base v0.0.0-20240531175105-396a52ca7e45
 	go-micro.dev/v4 v4.10.2
 	golang.org/x/text v0.14.0
 	google.golang.org/grpc v1.53.0
-	google.golang.org/protobuf v1.28.1
+	google.golang.org/protobuf v1.34.1
 )
 
 require (
