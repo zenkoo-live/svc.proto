@@ -635,6 +635,7 @@ LogInfo 日志详情
 | ----- | ---- | ----- | ----------- |
 | key | [string](#string) |  |  |
 | value | [string](#string) |  |  |
+| force | [bool](#bool) |  |  |
 
 
 
@@ -665,7 +666,6 @@ LogInfo 日志详情
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| id | [string](#string) |  | 内部ID |
 | key | [string](#string) |  | 配置键 |
 | value | [string](#string) |  | 配置json数据字符串值 |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
