@@ -638,7 +638,9 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| condition | [Manager](#svc-biz-account-Manager) |  |  |
+| key | [string](#string) |  |  |
+| value | [string](#string) |  |  |
+| force | [bool](#bool) |  |  |
 
 
 
@@ -668,7 +670,9 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| condition | [Streamer](#svc-biz-account-Streamer) |  |  |
+| key | [string](#string) |  | 配置键 |
+| value | [string](#string) |  | 配置json数据字符串值 |
+| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
 
 
 
