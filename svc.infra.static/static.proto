@@ -8,6 +8,7 @@ import "google/protobuf/empty.proto";
 service Static {
     rpc InitDB(google.protobuf.Empty) returns (InitDBResp); // 初始化数据库
 
+    rpc Configuration(ConfigurationMessage) returns (ConfigurationResponseMessage); // 服务配置
     rpc UploadAvatar(UploadRequestMessage) returns (UploadResponseMessage); // 上传头像
     rpc UploadCover(UploadRequestMessage) returns (UploadResponseMessage); // 上传封面
     rpc UploadVideo(UploadRequestMessage) returns (UploadResponseMessage); // 上传视频
@@ -17,6 +18,26 @@ service Static {
 }
 
 message InitDBResp {
+    bool result = 1;
+}
+
+message S3 {
+    string app_id = 1;
+    string app_secret = 2;
+    string region = 3;
+    string bucket = 4;
+    string queue = 5;
+}
+
+message ConfigurationMessage {
+    S3 s3 = 1; // s3配置
+
+    string merchant_id = 255; // 商户id
+}
+
+
+
+message ConfigurationResponseMessage {
     bool result = 1;
 }
 
