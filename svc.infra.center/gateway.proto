@@ -1,0 +1,74 @@
+syntax = "proto3";
+
+package svc.infra.center;
+option go_package = "./svc.infra.center;center";
+
+
+
+// Services of gateway
+service LinkGateway {
+  // 网关列表
+  rpc List(ListGatewayRequest) returns (ListGatewayResponse) {};
+  // 获取网关信息
+  rpc Get(GetGatewayRequest) returns (GetGatewayResponse) {};
+  // 分配网关
+  rpc Select(SelectGatewayRequest) returns (SelectGatewayResponse) {};
+};
+
+message gateway {
+  string id = 1;                              // 网关ID
+  string advertise_address = 2;               // 网关地址
+  int64 current_sessions = 3;                 // 当前连接数
+  int64 current_groups = 4;                   // 当前群组数（包括空群组）
+  int64 current_accounts = 5;                 // 当前账号数
+  int64 current_devices = 6;                  // 当前设备数
+  int64 total_upward_msgs = 7;                // 总上行消息条数
+  int64 total_downward_msgs = 8;              // 总下行消息条数
+  int64 total_connects = 9;                   // 总创建连接次数
+  int64 total_registers = 10;                 // 总注册成功次数
+  int64 total_binds = 11;                     // 总绑定群组次数
+  uint64 mem_alloc = 12;                      // 进程当前分配内存
+  uint64 total_mem_alloc = 13;                // 进程总分配内存
+  uint64 allocs = 14;                         // 进程分配内存次数
+  uint64 frees = 15;                          // 进程释放内存次数
+  int32 num_cpus = 16;                        // 当前逻辑CPU个数
+  int32 num_goroutines = 17;                  // 当前Goroutine数
+  uint64 cpu_idle = 18;                       // CPU空闲时间片
+  uint64 cpu_no_idle = 19;                    // CPU工作时间片
+  uint64 mem_total = 20;                      // 总内存数
+  uint64 mem_available = 21;                  // 可用内存数
+  string svc = 127;                          // 网关类型
+};
+
+message select_summary {
+  string id = 1;                              // 网关ID
+  string advertise_address = 2;               // 网关地址
+  string sign = 3;                            // 签名
+  string svc = 127;                          // 网关类型
+};
+
+message ListGatewayRequest {
+  string svc = 127;                            // 网关类型（可留空）
+};
+message ListGatewayResponse {
+  repeated gateway gateways = 1;              // 网关列表
+};
+
+message GetGatewayRequest {
+  string id = 1;                              // 网关ID
+};
+message GetGatewayResponse {
+  gateway gateway = 1;                        // 网关信息
+};
+
+message SelectGatewayRequest {
+  int64 account_id = 1;                       // 账号ID
+  string platform = 2;                        // 平台
+  string version = 3;                         // 客户端版本
+  string device = 4;                          // 设备标识（指纹）
+  string svc = 127;                          // 网关类型（默认ws）
+  int64 total = 128;                          // 希望获取网关总数（默认5）
+};
+message SelectGatewayResponse {
+  repeated select_summary gateways = 1;       // 网关列表
+};

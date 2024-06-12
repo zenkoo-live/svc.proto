@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package svc.infra.center;
+option go_package = "./svc.infra.center;center";
+
+
+
+// Service of instruction
+service LinkInstruction {
+  // 移除（踢）连接
+  rpc RemoveSession(RemoveSessionRequest) returns (RemoveSessionResponse) {};
+  // 移除（踢）账号
+  rpc RemoveAccount(RemoveAccountRequest) returns (RemoveAccountResponse) {};
+  // 移除（踢）设备
+  rpc RemoveDevice(RemoveDeviceRequest) returns (RemoveDeviceResponse) {};
+};
+
+message RemoveSessionRequest {
+  string session = 15;                        // 连接Session
+};
+message RemoveSessionResponse {
+  bool ok = 1;                                // 是否成功
+};
+
+message RemoveAccountRequest {
+  int64 account_id = 16;                      // 账号ID
+  int64 group_id = 17;                        // 群组ID（可留空）
+};
+message RemoveAccountResponse {
+  bool ok = 1;                                // 是否成功（不代表结果）
+};
+
+message RemoveDeviceRequest {
+  string device = 18;                         // 设备标识（指纹）
+};
+message RemoveDeviceResponse {
+  bool ok = 1;                                // 是否成功
+};
