@@ -46,7 +46,7 @@ summary:
 
 build:
 	@printf "\033[1;36m  Compiling protos ...\033[0m\n"
-	@for f in $(shell find . -name '*.proto') ; do \
+	@for f in $(shell find . -name '*.proto' ! -path '*/third_party/*') ; do \
 		printf "    Compiling <$${f}>\n"  && \
 		$(PROTOC) --go_out=. --go-grpc_out=. --micro_out=. $${f} ; \
 	done
@@ -59,6 +59,7 @@ micro:
 	@$(GO) install google.golang.org/protobuf/cmd/protoc-gen-go@latest
 	@$(GO) install github.com/go-micro/generator/cmd/protoc-gen-micro@latest
 	@$(GO) install github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc@latest
+	@$(GO) install github.com/envoyproxy/protoc-gen-validate@latest
 
 doc:
 	@printf "\033[1;36m  Generating document ...\033[0m\n"
