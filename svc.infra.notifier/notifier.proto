@@ -227,15 +227,18 @@ message GetCloudSmsTemplateRequest {
 }
 
 message GetCloudSmsTemplateResponse {
-  string external_code_key = 1;
-  string content = 3;
-  // 0：短信通知。
-  // 1：推广短信。
-  // 2：验证码短信。
-  // 6：国际/港澳台短信。
-  // 7：数字短信。
-  string template_name = 2;
-  string template_type = 4;
+  message CloudSmsTemplate {
+    string external_code_key = 1;
+    string content = 3;
+    // 0：短信通知。
+    // 1：推广短信。
+    // 2：验证码短信。
+    // 6：国际/港澳台短信。
+    // 7：数字短信。
+    string template_name = 2;
+    string template_type = 4;
+  }
+  repeated CloudSmsTemplate cloud_sms_template = 1;
 }
 
 message GetCloudSmsSignRequest {
