@@ -22,12 +22,6 @@ service Gift {
     rpc ListOnlineAll(ListOnlineAllReq) returns (ListOnlineResp) {}
     // Send 送礼物接口
     rpc Send (GiftSendReq) returns (GiftSendResp) {}
-    // SendRecord 送礼记录
-    rpc SendRecord(GiftSendRecordReq) returns (GiftSendRecordResp) {}
-    // GetRecord 收礼记录
-    rpc GetRecord(GiftGetRecordReq) returns (GiftGetRecordResp) {}
-    // LiveStat 直播统计
-    rpc LiveStat(LiveStatReq) returns (LiveStatResp) {}
 }
 
 enum GiftType {
@@ -62,6 +56,8 @@ message GiftInfo {
     string pack = 11; // 批量包(json字符串:[{"pack":20,"desc":""},{"pack":99,"desc":""}])
     string pic = 12; // 图片资源(json字符串:{"icon":"", "icon_gif":"", "chat_icon":"", "combo_bg":"", "combo_icon":""})
     
+    google.protobuf.Timestamp created_at = 255;
+    google.protobuf.Timestamp updated_at = 256;
 }
 
 //添加礼物
@@ -93,13 +89,13 @@ message GiftUpdateResp {
 //礼物列表（后台使用）
 message ListAdminReq {
     bool return_count = 1; // 是否返回总数
-    int64 pageno = 2; // 第几页
-    int64 pagenum = 3; // 每页几条数据
+    int64 page = 2; // 第几页
+    int64 limit = 3; // 每页几条数据
     GiftType type = 4; // 礼物类型
     GiftStatus status = 5; // 礼物状态
     string keyword = 6; // 关键字
-    google.protobuf.Timestamp  create_start_time = 7; // 添加开始时间
-    google.protobuf.Timestamp create_end_time = 8; // 添加结束时间
+    google.protobuf.Timestamp  create_time_start = 7; // 添加开始时间
+    google.protobuf.Timestamp create_time_end = 8; // 添加结束时间
 }
 
 message ListAdminResp {
@@ -125,9 +121,9 @@ message GiftSendReq {
     string order_id = 2; // 支付订单id
     string gift_id = 3; // 礼物id
     int32 num =4; // 数量
-    int32 prize = 5; // 礼物单价（主要用做验证）
+    int32 price = 5; // 礼物单价（主要用做验证）
     string from_uid = 6; // 赠送者uid
-    string to_uid = 7; // 接收者uid
+    string streamer_id = 7; // 主播uid
     string room_id = 8; // 房间id
     string live_id = 9; // 直播id
 }
@@ -135,49 +131,4 @@ message GiftSendResp {
     bool sendret = 1; // 赠送结果
     int32 combo_num = 2; // 连击数
     string combo_group = 3; // 连击组
-}
-
-message GiftSendRecord {
-    string gift_id = 1; // 礼物id
-    string gift_name = 2;  // 礼物名
-    int32 num = 3; // 数量
-    int32 total_price = 4; // 总价
-    string from_uid = 5; // 送礼uid
-    string room_id = 6; // 房间id
-    string live_id = 7;  // 直播id
-    google.protobuf.Timestamp send_time = 8; // 创建时间
-}
-
-message GiftGetRecordReq {
-    int64 pageno = 1; // 第几页
-    int64 pagenum = 2; // 每页几条数据
-    string room_id = 3; // 房间id
-    string live_id = 4; // 直播id
-    google.protobuf.Timestamp  start_time = 6; // 开始时间
-    google.protobuf.Timestamp  end_time = 7; // 结束时间
-
-}
-
-message GiftGetRecordResp {
-    repeated GiftSendRecord items = 1;
-}
-
-message GiftSendRecordReq {
-    int64 pageno = 1; // 第几页
-    int64 pagenum = 2; // 每页几条数据
-    string from_uid = 3; // 用户id
-    google.protobuf.Timestamp  start_time = 4; // 开始时间
-    google.protobuf.Timestamp  end_time = 5; // 结束时间
-}
-message GiftSendRecordResp {
-    repeated GiftSendRecord items = 1;
-}
-
-message LiveStatReq {
-    string room_id = 1;
-    string live_id = 2;
-}
-
-message LiveStatResp {
-    int32 total_cost = 1;
 }

@@ -61,6 +61,7 @@ var (
 	SvcWebDashboardDashboard  = svcWebDashboard.NewDashboardService(AppName+"::"+SvcWebDashboard+runtime.AppendEnv(), clt)
 	SvcInfraGatewayTrace      = svcInfraGateway.NewLinkTraceService(AppName+"::"+SvcInfraGateway+runtime.AppendEnv(), clt)
 	SvcBizGiftGift            = svcBizGift.NewGiftService(AppName+"::"+SvcBizGift+runtime.AppendEnv(), clt)
+	SvcBizGiftGift_record     = svcBizGift.NewGiftRecordService(AppName+"::"+SvcBizGift+runtime.AppendEnv(), clt)
 	SvcBizLogLog              = svcBizLog.NewLogService(AppName+"::"+SvcBizLog+runtime.AppendEnv(), clt)
 	SvcInfraNotifierNotifier  = svcInfraNotifier.NewNotifierService(AppName+"::"+SvcInfraNotifier+runtime.AppendEnv(), clt)
 	SvcBizOrgOrg              = svcBizOrg.NewOrgService(AppName+"::"+SvcBizOrg+runtime.AppendEnv(), clt)

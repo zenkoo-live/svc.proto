@@ -100,6 +100,52 @@
   
     - [Trade](#svc-biz-trade-Trade)
   
+- [svc.infra.pay/comm.inc.proto](#svc-infra-pay_comm-inc-proto)
+    - [CommonDeletedRequest](#svc-infra-pay-CommonDeletedRequest)
+    - [CommonError](#svc-infra-pay-CommonError)
+    - [CommonResponse](#svc-infra-pay-CommonResponse)
+  
+    - [ErrCode](#svc-infra-pay-ErrCode)
+  
+- [svc.infra.pay/pay.proto](#svc-infra-pay_pay-proto)
+    - [ChannelSupportedListRequest](#svc-infra-pay-ChannelSupportedListRequest)
+    - [ChannelSupportedListResponse](#svc-infra-pay-ChannelSupportedListResponse)
+    - [ChannelSupportedListResponse.ChannelSupported](#svc-infra-pay-ChannelSupportedListResponse-ChannelSupported)
+    - [ChannelTypeListRequest](#svc-infra-pay-ChannelTypeListRequest)
+    - [ChannelTypeListResponse](#svc-infra-pay-ChannelTypeListResponse)
+    - [ChannelTypeListResponse.ChannelType](#svc-infra-pay-ChannelTypeListResponse-ChannelType)
+    - [ChannelTypeMerchantListRequest](#svc-infra-pay-ChannelTypeMerchantListRequest)
+    - [ChannelTypeMerchantListResponse](#svc-infra-pay-ChannelTypeMerchantListResponse)
+    - [ChannelTypeMerchantListResponse.ChannelTypeMerchant](#svc-infra-pay-ChannelTypeMerchantListResponse-ChannelTypeMerchant)
+    - [ChannelsListRequest](#svc-infra-pay-ChannelsListRequest)
+    - [ChannelsListResponse](#svc-infra-pay-ChannelsListResponse)
+    - [ChannelsListResponse.Channel](#svc-infra-pay-ChannelsListResponse-Channel)
+    - [ChargeChannelTypeRequest](#svc-infra-pay-ChargeChannelTypeRequest)
+    - [ChargeChannelTypeResponse](#svc-infra-pay-ChargeChannelTypeResponse)
+    - [ChargeChannelTypeResponse.ChannelType](#svc-infra-pay-ChargeChannelTypeResponse-ChannelType)
+    - [CreatedChannelRequest](#svc-infra-pay-CreatedChannelRequest)
+    - [CreatedChannelTypeMerchantRequest](#svc-infra-pay-CreatedChannelTypeMerchantRequest)
+    - [CreatedChannelTypeRequest](#svc-infra-pay-CreatedChannelTypeRequest)
+    - [OrderInfo](#svc-infra-pay-OrderInfo)
+    - [OrderNotifyRequest](#svc-infra-pay-OrderNotifyRequest)
+    - [OrderNotifyRequest.BodyEntry](#svc-infra-pay-OrderNotifyRequest-BodyEntry)
+    - [OrderNotifyResponse](#svc-infra-pay-OrderNotifyResponse)
+    - [OrderQueryRequest](#svc-infra-pay-OrderQueryRequest)
+    - [OrderQueryResponse](#svc-infra-pay-OrderQueryResponse)
+    - [PayRecord](#svc-infra-pay-PayRecord)
+    - [PayRecordRequest](#svc-infra-pay-PayRecordRequest)
+    - [PayRecordResponse](#svc-infra-pay-PayRecordResponse)
+    - [RechargeRequest](#svc-infra-pay-RechargeRequest)
+    - [RechargeResponse](#svc-infra-pay-RechargeResponse)
+    - [UpdatedChannelRequest](#svc-infra-pay-UpdatedChannelRequest)
+    - [UpdatedChannelTypeMerchantRequest](#svc-infra-pay-UpdatedChannelTypeMerchantRequest)
+    - [UpdatedChannelTypeRequest](#svc-infra-pay-UpdatedChannelTypeRequest)
+  
+    - [DeliveryStatus](#svc-infra-pay-DeliveryStatus)
+    - [PayStatus](#svc-infra-pay-PayStatus)
+  
+    - [PayService](#svc-infra-pay-PayService)
+  
 - [svc.infra.static/static.proto](#svc-infra-static_static-proto)
     - [ConfigurationMessage](#svc-infra-static-ConfigurationMessage)
     - [ConfigurationResponseMessage](#svc-infra-static-ConfigurationResponseMessage)
@@ -205,6 +251,16 @@
   
     - [Setting](#svc-infra-setting-Setting)
   
+- [svc.infra.gateway/trace.proto](#svc-infra-gateway_trace-proto)
+    - [StartTraceRequest](#svc-infra-gateway-StartTraceRequest)
+    - [StartTraceResponse](#svc-infra-gateway-StartTraceResponse)
+    - [StopTraceRequest](#svc-infra-gateway-StopTraceRequest)
+    - [StopTraceResponse](#svc-infra-gateway-StopTraceResponse)
+  
+    - [StartTraceRequest.TracerType](#svc-infra-gateway-StartTraceRequest-TracerType)
+  
+    - [LinkTrace](#svc-infra-gateway-LinkTrace)
+  
 - [svc.web.viewer/viewer.proto](#svc-web-viewer_viewer-proto)
     - [Viewer](#svc-web-viewer-Viewer)
   
@@ -293,6 +349,29 @@
     - [ValueChange](#svc-biz-asset-ValueChange)
   
     - [Asset](#svc-biz-asset-Asset)
+  
+- [svc.infra.stat/stat.proto](#svc-infra-stat_stat-proto)
+    - [CheckAccountRequest](#svc-infra-stat-CheckAccountRequest)
+    - [CheckAccountResponse](#svc-infra-stat-CheckAccountResponse)
+    - [CheckAccountResponse.OnlineEntry](#svc-infra-stat-CheckAccountResponse-OnlineEntry)
+    - [CheckDeviceRequest](#svc-infra-stat-CheckDeviceRequest)
+    - [CheckDeviceResponse](#svc-infra-stat-CheckDeviceResponse)
+    - [CheckDeviceResponse.OnlineEntry](#svc-infra-stat-CheckDeviceResponse-OnlineEntry)
+    - [CheckSessionRequest](#svc-infra-stat-CheckSessionRequest)
+    - [CheckSessionResponse](#svc-infra-stat-CheckSessionResponse)
+    - [CheckSessionResponse.OnlineEntry](#svc-infra-stat-CheckSessionResponse-OnlineEntry)
+    - [OnlineAccountListResponse](#svc-infra-stat-OnlineAccountListResponse)
+    - [OnlineCountRequest](#svc-infra-stat-OnlineCountRequest)
+    - [OnlineCountResponse](#svc-infra-stat-OnlineCountResponse)
+    - [OnlineDeviceListResponse](#svc-infra-stat-OnlineDeviceListResponse)
+    - [OnlineListRequest](#svc-infra-stat-OnlineListRequest)
+    - [OnlineSessionListResponse](#svc-infra-stat-OnlineSessionListResponse)
+    - [RefreshStatRequest](#svc-infra-stat-RefreshStatRequest)
+    - [RefreshStatResponse](#svc-infra-stat-RefreshStatResponse)
+    - [online_detail](#svc-infra-stat-online_detail)
+    - [online_detail_list](#svc-infra-stat-online_detail_list)
+  
+    - [LinkStat](#svc-infra-stat-LinkStat)
   
 - [svc.biz.relation/relation.proto](#svc-biz-relation_relation-proto)
     - [GetRelationCountReq](#svc-biz-relation-GetRelationCountReq)
@@ -412,6 +491,7 @@
     - [GetCloudSmsSignResponse](#svc-infra-notifier-GetCloudSmsSignResponse)
     - [GetCloudSmsTemplateRequest](#svc-infra-notifier-GetCloudSmsTemplateRequest)
     - [GetCloudSmsTemplateResponse](#svc-infra-notifier-GetCloudSmsTemplateResponse)
+    - [GetCloudSmsTemplateResponse.CloudSmsTemplate](#svc-infra-notifier-GetCloudSmsTemplateResponse-CloudSmsTemplate)
     - [InitDBResp](#svc-infra-notifier-InitDBResp)
     - [SmsBizSendLog](#svc-infra-notifier-SmsBizSendLog)
     - [SmsBizSendLogListRequest](#svc-infra-notifier-SmsBizSendLogListRequest)
@@ -429,20 +509,51 @@
   
     - [Notifier](#svc-infra-notifier-Notifier)
   
+- [svc.infra.center/gateway.proto](#svc-infra-center_gateway-proto)
+    - [GetGatewayRequest](#svc-infra-center-GetGatewayRequest)
+    - [GetGatewayResponse](#svc-infra-center-GetGatewayResponse)
+    - [ListGatewayRequest](#svc-infra-center-ListGatewayRequest)
+    - [ListGatewayResponse](#svc-infra-center-ListGatewayResponse)
+    - [SelectGatewayRequest](#svc-infra-center-SelectGatewayRequest)
+    - [SelectGatewayResponse](#svc-infra-center-SelectGatewayResponse)
+    - [gateway](#svc-infra-center-gateway)
+    - [select_summary](#svc-infra-center-select_summary)
+  
+    - [LinkGateway](#svc-infra-center-LinkGateway)
+  
+- [svc.infra.center/message.proto](#svc-infra-center_message-proto)
+    - [SendAccountRequest](#svc-infra-center-SendAccountRequest)
+    - [SendAccountResponse](#svc-infra-center-SendAccountResponse)
+    - [SendDeviceRequest](#svc-infra-center-SendDeviceRequest)
+    - [SendDeviceResponse](#svc-infra-center-SendDeviceResponse)
+    - [SendGlobalRequest](#svc-infra-center-SendGlobalRequest)
+    - [SendGlobalResponse](#svc-infra-center-SendGlobalResponse)
+    - [SendGroupRequest](#svc-infra-center-SendGroupRequest)
+    - [SendGroupResponse](#svc-infra-center-SendGroupResponse)
+    - [SendSessionRequest](#svc-infra-center-SendSessionRequest)
+    - [SendSessionResponse](#svc-infra-center-SendSessionResponse)
+  
+    - [LinkMessage](#svc-infra-center-LinkMessage)
+  
+- [svc.infra.center/instruction.proto](#svc-infra-center_instruction-proto)
+    - [RemoveAccountRequest](#svc-infra-center-RemoveAccountRequest)
+    - [RemoveAccountResponse](#svc-infra-center-RemoveAccountResponse)
+    - [RemoveDeviceRequest](#svc-infra-center-RemoveDeviceRequest)
+    - [RemoveDeviceResponse](#svc-infra-center-RemoveDeviceResponse)
+    - [RemoveSessionRequest](#svc-infra-center-RemoveSessionRequest)
+    - [RemoveSessionResponse](#svc-infra-center-RemoveSessionResponse)
+  
+    - [LinkInstruction](#svc-infra-center-LinkInstruction)
+  
 - [svc.web.streamer/streamer.proto](#svc-web-streamer_streamer-proto)
     - [Streamer](#svc-web-streamer-Streamer)
   
 - [svc.biz.gift/gift.proto](#svc-biz-gift_gift-proto)
     - [GiftAddReq](#svc-biz-gift-GiftAddReq)
     - [GiftAddResp](#svc-biz-gift-GiftAddResp)
-    - [GiftGetRecordReq](#svc-biz-gift-GiftGetRecordReq)
-    - [GiftGetRecordResp](#svc-biz-gift-GiftGetRecordResp)
     - [GiftGetReq](#svc-biz-gift-GiftGetReq)
     - [GiftGetResp](#svc-biz-gift-GiftGetResp)
     - [GiftInfo](#svc-biz-gift-GiftInfo)
-    - [GiftSendRecord](#svc-biz-gift-GiftSendRecord)
-    - [GiftSendRecordReq](#svc-biz-gift-GiftSendRecordReq)
-    - [GiftSendRecordResp](#svc-biz-gift-GiftSendRecordResp)
     - [GiftSendReq](#svc-biz-gift-GiftSendReq)
     - [GiftSendResp](#svc-biz-gift-GiftSendResp)
     - [GiftUpdateReq](#svc-biz-gift-GiftUpdateReq)
@@ -452,14 +563,23 @@
     - [ListOnlineAllReq](#svc-biz-gift-ListOnlineAllReq)
     - [ListOnlineByTypeReq](#svc-biz-gift-ListOnlineByTypeReq)
     - [ListOnlineResp](#svc-biz-gift-ListOnlineResp)
-    - [LiveStatReq](#svc-biz-gift-LiveStatReq)
-    - [LiveStatResp](#svc-biz-gift-LiveStatResp)
   
     - [GiftRecommend](#svc-biz-gift-GiftRecommend)
     - [GiftStatus](#svc-biz-gift-GiftStatus)
     - [GiftType](#svc-biz-gift-GiftType)
   
     - [Gift](#svc-biz-gift-Gift)
+  
+- [svc.biz.gift/gift_record.proto](#svc-biz-gift_gift_record-proto)
+    - [GetGetRecordListReq](#svc-biz-gift-GetGetRecordListReq)
+    - [GetGetRecordListResp](#svc-biz-gift-GetGetRecordListResp)
+    - [GetLiveStatReq](#svc-biz-gift-GetLiveStatReq)
+    - [GetLiveStatResp](#svc-biz-gift-GetLiveStatResp)
+    - [GetSendRecordListReq](#svc-biz-gift-GetSendRecordListReq)
+    - [GetSendRecordListResp](#svc-biz-gift-GetSendRecordListResp)
+    - [GiftRecordInfo](#svc-biz-gift-GiftRecordInfo)
+  
+    - [GiftRecord](#svc-biz-gift-GiftRecord)
   
 - [Scalar Value Types](#scalar-value-types)
 
@@ -1996,6 +2116,773 @@ Models
 
 
 
+<a name="svc-infra-pay_comm-inc-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.infra.pay/comm.inc.proto
+
+
+
+<a name="svc-infra-pay-CommonDeletedRequest"></a>
+
+### CommonDeletedRequest
+CommonDeletedRequest
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| lid | [int64](#int64) |  | long id |
+| uuid | [string](#string) |  | uuid |
+
+
+
+
+
+
+<a name="svc-infra-pay-CommonError"></a>
+
+### CommonError
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| code | [ErrCode](#svc-infra-pay-ErrCode) |  |  |
+| message | [string](#string) |  |  |
+| data | [google.protobuf.Any](#google-protobuf-Any) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-pay-CommonResponse"></a>
+
+### CommonResponse
+CommonBoolResponse
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| code | [int64](#int64) |  | code |
+| message | [string](#string) |  | message |
+| uuid | [string](#string) |  | ID |
+| lid | [int64](#int64) |  |  |
+
+
+
+
+
+ 
+
+
+<a name="svc-infra-pay-ErrCode"></a>
+
+### ErrCode
+ErrCode
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| CODE_OK | 0 |  |
+| CODE_COMMON_ERR | 1 |  |
+
+
+ 
+
+ 
+
+ 
+
+
+
+<a name="svc-infra-pay_pay-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.infra.pay/pay.proto
+
+
+
+<a name="svc-infra-pay-ChannelSupportedListRequest"></a>
+
+### ChannelSupportedListRequest
+《《《《 渠道相关  /////////////////////////////////////////////////////////////////////
+ChannelSupportedListRequest
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  |  |
+| status | [int64](#int64) |  | 是否开启的渠道 |
+| page | [int64](#int64) |  |  |
+| size | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-pay-ChannelSupportedListResponse"></a>
+
+### ChannelSupportedListResponse
+ChannelSupportedListResponse 支持平台
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| cnt | [int64](#int64) |  |  |
+| list | [ChannelSupportedListResponse.ChannelSupported](#svc-infra-pay-ChannelSupportedListResponse-ChannelSupported) | repeated | 永成支付 |
+
+
+
+
+
+
+<a name="svc-infra-pay-ChannelSupportedListResponse-ChannelSupported"></a>
+
+### ChannelSupportedListResponse.ChannelSupported
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+| name | [string](#string) |  |  |
+| status | [int64](#int64) |  |  |
+| identity_key | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-pay-ChannelTypeListRequest"></a>
+
+### ChannelTypeListRequest
+ChannelTypeListRequest 列表查询
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| status | [int64](#int64) |  | 状态 0/关 1/开 -1/全部 |
+| name | [string](#string) |  | 名称搜索 |
+| pay_platform | [int64](#int64) |  | 支付平台 |
+| page | [int64](#int64) |  |  |
+| size | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-pay-ChannelTypeListResponse"></a>
+
+### ChannelTypeListResponse
+ChannelTypeListResponse 列表数据
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| cnt | [int64](#int64) |  |  |
+| list | [ChannelTypeListResponse.ChannelType](#svc-infra-pay-ChannelTypeListResponse-ChannelType) | repeated |  |
+
+
+
+
+
+
+<a name="svc-infra-pay-ChannelTypeListResponse-ChannelType"></a>
+
+### ChannelTypeListResponse.ChannelType
+ChannelType 渠道支付类型
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  | ID |
+| channel_id | [string](#string) |  | 渠道ID |
+| name | [string](#string) |  | 名称 |
+| channel_type_id | [string](#string) |  | 充值字符串 |
+| status | [int64](#int64) |  | 状态 |
+| ratio | [int64](#int64) |  | 费率 |
+| creator | [string](#string) |  | 创建者 |
+| pay_platform | [int64](#int64) |  | 支付平台 |
+| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+| updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-pay-ChannelTypeMerchantListRequest"></a>
+
+### ChannelTypeMerchantListRequest
+ChannelTypeMerchantListRequest 请求数据
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| merchant_id | [string](#string) |  |  |
+| channel_id | [string](#string) |  |  |
+| pay_type_name | [string](#string) |  |  |
+| status | [int64](#int64) |  |  |
+| start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+| end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+| page | [int64](#int64) |  |  |
+| size | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-pay-ChannelTypeMerchantListResponse"></a>
+
+### ChannelTypeMerchantListResponse
+ChannelTypeMerchantListResponse 返回数据
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| cnt | [int64](#int64) |  |  |
+| list | [ChannelTypeMerchantListResponse.ChannelTypeMerchant](#svc-infra-pay-ChannelTypeMerchantListResponse-ChannelTypeMerchant) | repeated |  |
+
+
+
+
+
+
+<a name="svc-infra-pay-ChannelTypeMerchantListResponse-ChannelTypeMerchant"></a>
+
+### ChannelTypeMerchantListResponse.ChannelTypeMerchant
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| merchant_id | [string](#string) |  |  |
+| channel_id | [string](#string) |  |  |
+| channel_type_id | [string](#string) |  |  |
+| pay_type_name | [string](#string) |  |  |
+| type_no | [string](#string) |  |  |
+| amount_type | [int64](#int64) |  |  |
+| amount_min | [int64](#int64) |  |  |
+| amount_max | [int64](#int64) |  |  |
+| channel_ratio | [int64](#int64) |  |  |
+| platform | [int64](#int64) |  |  |
+| weight | [int64](#int64) |  |  |
+| status | [int64](#int64) |  |  |
+| id | [string](#string) |  |  |
+| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+| updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+| deleted_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-pay-ChannelsListRequest"></a>
+
+### ChannelsListRequest
+ChannelListRequest
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| merchant_id | [string](#string) |  | 所属商户号 |
+| status | [int64](#int64) |  | 状态0/关 1/开， -1/全部 |
+| start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开始时间 |
+| end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 结束时间 |
+| page | [int64](#int64) |  |  |
+| size | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-pay-ChannelsListResponse"></a>
+
+### ChannelsListResponse
+ChannelListResponse
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| cnt | [int64](#int64) |  |  |
+| list | [ChannelsListResponse.Channel](#svc-infra-pay-ChannelsListResponse-Channel) | repeated |  |
+
+
+
+
+
+
+<a name="svc-infra-pay-ChannelsListResponse-Channel"></a>
+
+### ChannelsListResponse.Channel
+Channel
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  | 数据ID |
+| merchant_id | [string](#string) |  | 商户号 |
+| name | [string](#string) |  | 名称, etc. 永成支付 |
+| display_id | [int64](#int64) |  | 显示ID |
+| merchant_no | [string](#string) |  | 商户号 |
+| secret | [string](#string) |  | 密钥 |
+| gateway_url | [string](#string) |  | 网关地址 |
+| notify_url | [string](#string) |  | 通知地址 |
+| statue | [int64](#int64) |  | 状态 0/关 1/开启 |
+| creator | [string](#string) |  | 创建者 |
+| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+
+
+
+
+
+
+<a name="svc-infra-pay-ChargeChannelTypeRequest"></a>
+
+### ChargeChannelTypeRequest
+ChargeChannelTypeRequest 支付渠道类型，用户点击金额后，查询对应的渠道类型，返回可支付的方式和费率
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| merchant_id | [string](#string) |  |  |
+| app_id | [string](#string) |  | 应用ID |
+| amount | [uint64](#uint64) |  |  |
+| platform | [uint64](#uint64) |  | 平台类型 |
+
+
+
+
+
+
+<a name="svc-infra-pay-ChargeChannelTypeResponse"></a>
+
+### ChargeChannelTypeResponse
+ChargeChannelTypeResponse 支付渠道类型列表
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| ChannelTypeList | [ChargeChannelTypeResponse.ChannelType](#svc-infra-pay-ChargeChannelTypeResponse-ChannelType) | repeated |  |
+
+
+
+
+
+
+<a name="svc-infra-pay-ChargeChannelTypeResponse-ChannelType"></a>
+
+### ChargeChannelTypeResponse.ChannelType
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| pay_type_id | [string](#string) |  | 支付类型ID |
+| channel_id | [string](#string) |  | 渠道ID |
+| pay_type_name | [string](#string) |  | 支付名称 |
+| charge_ratio | [uint64](#uint64) |  | 支付费率 |
+| amount | [uint64](#uint64) |  | 充充值值 |
+| obtain_amount | [uint64](#uint64) |  | 支付值到账值 |
+| pay_platform | [string](#string) |  |  |
+| image | [string](#string) |  |  |
+| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+
+
+
+
+
+
+<a name="svc-infra-pay-CreatedChannelRequest"></a>
+
+### CreatedChannelRequest
+CreatedChannelRequest
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| merchant_id | [string](#string) |  | 商户号 |
+| name | [string](#string) |  | 名称 |
+| display_id | [int64](#int64) |  | 显示ID |
+| merchant_no | [string](#string) |  | 商户号 |
+| secret | [string](#string) |  | 密钥 |
+| gateway_url | [string](#string) |  | 网关地址 |
+| notify_url | [string](#string) |  | 通知地址 |
+| statue | [int64](#int64) |  | 状态 0/关 1/开启 |
+| creator | [string](#string) |  | 创建者 |
+
+
+
+
+
+
+<a name="svc-infra-pay-CreatedChannelTypeMerchantRequest"></a>
+
+### CreatedChannelTypeMerchantRequest
+CreatedChannelTypeMerchantRequest 创建支付渠道
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| merchant_id | [string](#string) |  |  |
+| channel_id | [string](#string) |  |  |
+| channel_type_id | [string](#string) |  |  |
+| pay_type_name | [string](#string) |  |  |
+| type_no | [string](#string) |  |  |
+| amount_type | [int64](#int64) |  |  |
+| amount_min | [int64](#int64) |  |  |
+| amount_max | [int64](#int64) |  |  |
+| channel_ratio | [int64](#int64) |  |  |
+| platform | [int64](#int64) |  |  |
+| weight | [int64](#int64) |  |  |
+| status | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-pay-CreatedChannelTypeRequest"></a>
+
+### CreatedChannelTypeRequest
+CreatedChannelTypeRequest 渠道支付类型
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| channel_id | [string](#string) |  | 渠道ID |
+| name | [string](#string) |  | 名称 |
+| channel_type_id | [string](#string) |  | 充值字符串 |
+| status | [int64](#int64) |  | 状态 |
+| ratio | [int64](#int64) |  | 费率 |
+| creator | [string](#string) |  | 创建者 |
+| pay_platform | [int64](#int64) |  | 支付平台 |
+
+
+
+
+
+
+<a name="svc-infra-pay-OrderInfo"></a>
+
+### OrderInfo
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| order_no | [string](#string) |  |  |
+| money | [int64](#int64) |  |  |
+| status | [PayStatus](#svc-infra-pay-PayStatus) |  | 订单状态 |
+| delivery_status | [DeliveryStatus](#svc-infra-pay-DeliveryStatus) |  | 发货状态 |
+| ObtainAmount | [int64](#int64) |  | 到账金额 |
+| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 结束时间 |
+| updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 结束时间 |
+
+
+
+
+
+
+<a name="svc-infra-pay-OrderNotifyRequest"></a>
+
+### OrderNotifyRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| body | [OrderNotifyRequest.BodyEntry](#svc-infra-pay-OrderNotifyRequest-BodyEntry) | repeated | 所有参数 |
+
+
+
+
+
+
+<a name="svc-infra-pay-OrderNotifyRequest-BodyEntry"></a>
+
+### OrderNotifyRequest.BodyEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [google.protobuf.Any](#google-protobuf-Any) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-pay-OrderNotifyResponse"></a>
+
+### OrderNotifyResponse
+
+
+
+
+
+
+
+<a name="svc-infra-pay-OrderQueryRequest"></a>
+
+### OrderQueryRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| merchant_id | [string](#string) |  | 商户ID |
+| user_id | [string](#string) |  |  |
+| order_no | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-pay-OrderQueryResponse"></a>
+
+### OrderQueryResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| info | [OrderInfo](#svc-infra-pay-OrderInfo) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-pay-PayRecord"></a>
+
+### PayRecord
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| order_no | [string](#string) |  | 订单号 |
+| money | [int64](#int64) |  | 充值金额 |
+| status | [PayStatus](#svc-infra-pay-PayStatus) |  | 订单状态 |
+| delivery_status | [DeliveryStatus](#svc-infra-pay-DeliveryStatus) |  | 发货状态 |
+| ObtainAmount | [int64](#int64) |  | 到账金额 |
+| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 结束时间 |
+| updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 结束时间 |
+
+
+
+
+
+
+<a name="svc-infra-pay-PayRecordRequest"></a>
+
+### PayRecordRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| merchant_id | [string](#string) |  | 商户ID |
+| user_id | [string](#string) |  | 用户ID |
+| page | [uint32](#uint32) |  | 页数 |
+
+
+
+
+
+
+<a name="svc-infra-pay-PayRecordResponse"></a>
+
+### PayRecordResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| count | [int64](#int64) |  | 总数 |
+| list | [PayRecord](#svc-infra-pay-PayRecord) | repeated | 记录 |
+
+
+
+
+
+
+<a name="svc-infra-pay-RechargeRequest"></a>
+
+### RechargeRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| merchant_id | [string](#string) |  | 商户ID |
+| user_id | [string](#string) |  | 用户ID |
+| money | [uint64](#uint64) |  | 充值金额 |
+| type | [uint32](#uint32) |  | 充值方式 |
+| app_id | [string](#string) |  | 充值的APPID |
+| remote_addr | [string](#string) |  | 请求IP |
+
+
+
+
+
+
+<a name="svc-infra-pay-RechargeResponse"></a>
+
+### RechargeResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| order_no | [string](#string) |  | 订单号 |
+| pay_url | [string](#string) |  | 付款的URL |
+
+
+
+
+
+
+<a name="svc-infra-pay-UpdatedChannelRequest"></a>
+
+### UpdatedChannelRequest
+UpdatedChannelRequest
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+| name | [string](#string) |  | 名称 |
+| merchant_no | [string](#string) |  | 商户号 |
+| secret | [string](#string) |  | 密钥 |
+| gateway_url | [string](#string) |  | 网关地址 |
+| notify_url | [string](#string) |  | 通知地址 |
+| statue | [int64](#int64) |  | 状态 0/关 1/开启 |
+
+
+
+
+
+
+<a name="svc-infra-pay-UpdatedChannelTypeMerchantRequest"></a>
+
+### UpdatedChannelTypeMerchantRequest
+UpdatedChannelTypeMerchantRequest 更新
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+| pay_type_name | [string](#string) |  |  |
+| type_no | [string](#string) |  |  |
+| amount_type | [int64](#int64) |  |  |
+| amount_min | [int64](#int64) |  |  |
+| amount_max | [int64](#int64) |  |  |
+| platform | [int64](#int64) |  | int64 channel_ratio = 9; |
+| weight | [int64](#int64) |  |  |
+| status | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-pay-UpdatedChannelTypeRequest"></a>
+
+### UpdatedChannelTypeRequest
+UpdatedChannelTypeRequest 更新渠道
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  | ID |
+| channel_id | [string](#string) |  | 渠道ID |
+| name | [string](#string) |  | 名称 |
+| channel_type_key | [string](#string) |  | 充值字符串 |
+| status | [int64](#int64) |  | 状态 |
+| pay_platform | [int64](#int64) |  | 支付平台 |
+
+
+
+
+
+ 
+
+
+<a name="svc-infra-pay-DeliveryStatus"></a>
+
+### DeliveryStatus
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| NoDelivered | 0 |  |
+| Delivered | 1 |  |
+
+
+
+<a name="svc-infra-pay-PayStatus"></a>
+
+### PayStatus
+《《《《 支付相关  //////////////////////////////////////////////////////////////////////
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| Paying | 0 |  |
+| Paid | 1 |  |
+| Closed | 2 |  |
+| Refunding | 3 |  |
+| Refunded | 4 |  |
+
+
+ 
+
+ 
+
+
+<a name="svc-infra-pay-PayService"></a>
+
+### PayService
+《《《 《 RPC Service of stat //////////////////////////////////////////////////////////////
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| ArtificialRecharge | [RechargeRequest](#svc-infra-pay-RechargeRequest) | [RechargeResponse](#svc-infra-pay-RechargeResponse) | 人工充值 for dashboard |
+| Recharge | [RechargeRequest](#svc-infra-pay-RechargeRequest) | [RechargeResponse](#svc-infra-pay-RechargeResponse) | 充值 for client |
+| PayRecords | [PayRecordRequest](#svc-infra-pay-PayRecordRequest) | [PayRecordResponse](#svc-infra-pay-PayRecordResponse) | 充值记录 |
+| OrderQuery | [OrderQueryRequest](#svc-infra-pay-OrderQueryRequest) | [OrderQueryResponse](#svc-infra-pay-OrderQueryResponse) | 订单查询 |
+| Notify | [OrderNotifyRequest](#svc-infra-pay-OrderNotifyRequest) | [OrderNotifyResponse](#svc-infra-pay-OrderNotifyResponse) | 回调通知 |
+| GetChannelSupportedList | [ChannelSupportedListRequest](#svc-infra-pay-ChannelSupportedListRequest) | [ChannelSupportedListResponse](#svc-infra-pay-ChannelSupportedListResponse) | ChannelSupportedList api for dashbaord |
+| CreatedChannel | [CreatedChannelRequest](#svc-infra-pay-CreatedChannelRequest) | [CommonResponse](#svc-infra-pay-CommonResponse) | Channel |
+| DeletedChannel | [CommonDeletedRequest](#svc-infra-pay-CommonDeletedRequest) | [CommonResponse](#svc-infra-pay-CommonResponse) | DeletedChannel delete useless channel rows |
+| UpdatedChannel | [UpdatedChannelRequest](#svc-infra-pay-UpdatedChannelRequest) | [CommonResponse](#svc-infra-pay-CommonResponse) | UpdatedChannel update channel basic information |
+| GetChannelsList | [ChannelsListRequest](#svc-infra-pay-ChannelsListRequest) | [ChannelsListResponse](#svc-infra-pay-ChannelsListResponse) | GetChannelsList fetch channel list api for dashboard |
+| CreatedChannelType | [CreatedChannelTypeRequest](#svc-infra-pay-CreatedChannelTypeRequest) | [CommonResponse](#svc-infra-pay-CommonResponse) | CreatedChannelType created channel types api for dashboard |
+| UpdatedChannelType | [UpdatedChannelTypeRequest](#svc-infra-pay-UpdatedChannelTypeRequest) | [CommonResponse](#svc-infra-pay-CommonResponse) | UpdatedChannelType updated channel types api for dashboard |
+| DeletedChannelType | [CommonDeletedRequest](#svc-infra-pay-CommonDeletedRequest) | [CommonResponse](#svc-infra-pay-CommonResponse) | DeletedChannelType deleted channel types api for dashboard |
+| GetChannelTypeList | [ChannelTypeListRequest](#svc-infra-pay-ChannelTypeListRequest) | [ChannelTypeListResponse](#svc-infra-pay-ChannelTypeListResponse) | GetChannelTypeList fetch channel types api for dashboard |
+| CreatedChannelTypeMerchant | [CreatedChannelTypeMerchantRequest](#svc-infra-pay-CreatedChannelTypeMerchantRequest) | [CommonResponse](#svc-infra-pay-CommonResponse) | CreatedChannelTypeMerchant merchant channel type created api for dashboard |
+| UpdatedChannelTypeMerchant | [UpdatedChannelTypeMerchantRequest](#svc-infra-pay-UpdatedChannelTypeMerchantRequest) | [CommonResponse](#svc-infra-pay-CommonResponse) | UpdatedChannelTypeMerchant merchant channel type updated api for dashboard |
+| DeletedChannelTypeMerchant | [CommonDeletedRequest](#svc-infra-pay-CommonDeletedRequest) | [CommonResponse](#svc-infra-pay-CommonResponse) | DeletedChannelTypeMerchant merchant channel type deleted api for dashboard |
+| GetChannelTypeMerchantList | [ChannelTypeMerchantListRequest](#svc-infra-pay-ChannelTypeMerchantListRequest) | [ChannelTypeMerchantListResponse](#svc-infra-pay-ChannelTypeMerchantListResponse) | GetChannelTypeMerchantList merchant channel type list api for dashboard |
+| GetChargeChannelTypeList | [ChargeChannelTypeRequest](#svc-infra-pay-ChargeChannelTypeRequest) | [ChargeChannelTypeResponse](#svc-infra-pay-ChargeChannelTypeResponse) | GetChargeChannelTypeList fetch charge channel list api for viewer layer
+
+///////////////// C端 》》》》 ////////////////////////////////////// |
+
+ 
+
+
+
 <a name="svc-infra-static_static-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
@@ -3023,6 +3910,7 @@ CategoryInfo 分类详情
 | category_id | [string](#string) |  | 分类id |
 | title | [string](#string) |  | 标题 |
 | intro | [string](#string) |  | 简介 |
+| cover | [string](#string) |  | 封面 |
 | forbid_expire | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 封禁到期时间 |
 | forbid_reason | [string](#string) |  | 封禁原因 |
 | hidden | [bool](#bool) |  | 是否隐藏 |
@@ -3459,6 +4347,109 @@ Room 房间
 | UpdateConfiguration | [UpdateConfigurationReq](#svc-infra-setting-UpdateConfigurationReq) | [UpdateConfigurationResp](#svc-infra-setting-UpdateConfigurationResp) | 更新配置 |
 | DeleteConfiguration | [DeleteConfigurationReq](#svc-infra-setting-DeleteConfigurationReq) | [DeleteConfigurationResp](#svc-infra-setting-DeleteConfigurationResp) | 删除配置 |
 | Greeting | [SettingGreetingReq](#svc-infra-setting-SettingGreetingReq) | [SettingGreetingResp](#svc-infra-setting-SettingGreetingResp) |  |
+
+ 
+
+
+
+<a name="svc-infra-gateway_trace-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.infra.gateway/trace.proto
+
+
+
+<a name="svc-infra-gateway-StartTraceRequest"></a>
+
+### StartTraceRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| tracer_type | [StartTraceRequest.TracerType](#svc-infra-gateway-StartTraceRequest-TracerType) |  |  |
+| session_id | [string](#string) |  | 连接ID |
+| device | [string](#string) |  | 设备标识 |
+| account_id | [int64](#int64) |  | 账号ID |
+| remote_addr | [string](#string) |  | 远程地址 |
+| duration | [int64](#int64) |  | 持续时长 |
+
+
+
+
+
+
+<a name="svc-infra-gateway-StartTraceResponse"></a>
+
+### StartTraceResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| ok | [bool](#bool) |  | 状态 |
+| trace_id | [string](#string) |  | Trace标识 |
+
+
+
+
+
+
+<a name="svc-infra-gateway-StopTraceRequest"></a>
+
+### StopTraceRequest
+
+
+
+
+
+
+
+<a name="svc-infra-gateway-StopTraceResponse"></a>
+
+### StopTraceResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| ok | [bool](#bool) |  | 状态 |
+
+
+
+
+
+ 
+
+
+<a name="svc-infra-gateway-StartTraceRequest-TracerType"></a>
+
+### StartTraceRequest.TracerType
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| TRACER_ACCOUNT | 0 |  |
+| TRACER_SESSION | 1 |  |
+| TRACER_DEVICE | 2 |  |
+| TRACER_REMOTE | 3 |  |
+| TRACER_GLOBAL | 4 |  |
+
+
+ 
+
+ 
+
+
+<a name="svc-infra-gateway-LinkTrace"></a>
+
+### LinkTrace
+
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| Start | [StartTraceRequest](#svc-infra-gateway-StartTraceRequest) | [StartTraceResponse](#svc-infra-gateway-StartTraceResponse) | 设置Trace |
+| Stop | [StopTraceRequest](#svc-infra-gateway-StopTraceRequest) | [StopTraceResponse](#svc-infra-gateway-StopTraceResponse) | 关闭Trace |
 
  
 
@@ -5035,6 +6026,331 @@ Room 房间
 | IncrMerchantCoin | [IncrMerchantCoinReq](#svc-biz-asset-IncrMerchantCoinReq) | [ChangeMerchantCoinResp](#svc-biz-asset-ChangeMerchantCoinResp) |  |
 | DecrMerchantCoin | [DecrMerchantCoinReq](#svc-biz-asset-DecrMerchantCoinReq) | [ChangeMerchantCoinResp](#svc-biz-asset-ChangeMerchantCoinResp) |  |
 | ListMerchantCoinDetail | [ListMerchantCoinDetailReq](#svc-biz-asset-ListMerchantCoinDetailReq) | [ListMerchantCoinDetailResp](#svc-biz-asset-ListMerchantCoinDetailResp) |  |
+
+ 
+
+
+
+<a name="svc-infra-stat_stat-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.infra.stat/stat.proto
+
+
+
+<a name="svc-infra-stat-CheckAccountRequest"></a>
+
+### CheckAccountRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| merchant_id | [int64](#int64) |  | 商户ID |
+| account_ids | [int64](#int64) | repeated | 账号ID（列表） |
+
+
+
+
+
+
+<a name="svc-infra-stat-CheckAccountResponse"></a>
+
+### CheckAccountResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| online | [CheckAccountResponse.OnlineEntry](#svc-infra-stat-CheckAccountResponse-OnlineEntry) | repeated | 账号ID =&gt; 是否在线 |
+
+
+
+
+
+
+<a name="svc-infra-stat-CheckAccountResponse-OnlineEntry"></a>
+
+### CheckAccountResponse.OnlineEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [int64](#int64) |  |  |
+| value | [bool](#bool) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-stat-CheckDeviceRequest"></a>
+
+### CheckDeviceRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| merchant_id | [int64](#int64) |  | 商户ID |
+| devices | [string](#string) | repeated | 设备标识（列表） |
+
+
+
+
+
+
+<a name="svc-infra-stat-CheckDeviceResponse"></a>
+
+### CheckDeviceResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| online | [CheckDeviceResponse.OnlineEntry](#svc-infra-stat-CheckDeviceResponse-OnlineEntry) | repeated | 设备标识 =&gt; 是否在线 |
+
+
+
+
+
+
+<a name="svc-infra-stat-CheckDeviceResponse-OnlineEntry"></a>
+
+### CheckDeviceResponse.OnlineEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [bool](#bool) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-stat-CheckSessionRequest"></a>
+
+### CheckSessionRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| merchant_id | [int64](#int64) |  | 商户ID |
+| session_ids | [string](#string) | repeated | 连接ID（列表） |
+
+
+
+
+
+
+<a name="svc-infra-stat-CheckSessionResponse"></a>
+
+### CheckSessionResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| online | [CheckSessionResponse.OnlineEntry](#svc-infra-stat-CheckSessionResponse-OnlineEntry) | repeated | 连接ID =&gt; 是否在线 |
+
+
+
+
+
+
+<a name="svc-infra-stat-CheckSessionResponse-OnlineEntry"></a>
+
+### CheckSessionResponse.OnlineEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [bool](#bool) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-stat-OnlineAccountListResponse"></a>
+
+### OnlineAccountListResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| online | [online_detail_list](#svc-infra-stat-online_detail_list) |  | 在线列表 |
+
+
+
+
+
+
+<a name="svc-infra-stat-OnlineCountRequest"></a>
+
+### OnlineCountRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| merchant_id | [int64](#int64) |  | 商户ID |
+| group_id | [int64](#int64) |  | 群组ID |
+
+
+
+
+
+
+<a name="svc-infra-stat-OnlineCountResponse"></a>
+
+### OnlineCountResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| count | [int64](#int64) |  | 总数 |
+
+
+
+
+
+
+<a name="svc-infra-stat-OnlineDeviceListResponse"></a>
+
+### OnlineDeviceListResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| online | [online_detail_list](#svc-infra-stat-online_detail_list) |  | 在线列表 |
+
+
+
+
+
+
+<a name="svc-infra-stat-OnlineListRequest"></a>
+
+### OnlineListRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| merchant_id | [int64](#int64) |  | 商户ID |
+| group_id | [int64](#int64) |  | 群组ID |
+| page | [int64](#int64) |  | 分页码 |
+| size | [int64](#int64) | optional | 数量 |
+
+
+
+
+
+
+<a name="svc-infra-stat-OnlineSessionListResponse"></a>
+
+### OnlineSessionListResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| online | [online_detail_list](#svc-infra-stat-online_detail_list) |  | 在线列表 |
+
+
+
+
+
+
+<a name="svc-infra-stat-RefreshStatRequest"></a>
+
+### RefreshStatRequest
+
+
+
+
+
+
+
+<a name="svc-infra-stat-RefreshStatResponse"></a>
+
+### RefreshStatResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| ok | [bool](#bool) |  | 是否刷新成功 |
+
+
+
+
+
+
+<a name="svc-infra-stat-online_detail"></a>
+
+### online_detail
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| account_id | [int64](#int64) |  | 账号ID |
+
+
+
+
+
+
+<a name="svc-infra-stat-online_detail_list"></a>
+
+### online_detail_list
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| list | [online_detail](#svc-infra-stat-online_detail) | repeated | 列表 |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="svc-infra-stat-LinkStat"></a>
+
+### LinkStat
+Service of stat
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| OnlineSessionCount | [OnlineCountRequest](#svc-infra-stat-OnlineCountRequest) | [OnlineCountResponse](#svc-infra-stat-OnlineCountResponse) | 获取在线连接数 |
+| OnlineAccountCount | [OnlineCountRequest](#svc-infra-stat-OnlineCountRequest) | [OnlineCountResponse](#svc-infra-stat-OnlineCountResponse) | 获取在线账号数 |
+| OnlineDeviceCount | [OnlineCountRequest](#svc-infra-stat-OnlineCountRequest) | [OnlineCountResponse](#svc-infra-stat-OnlineCountResponse) | 获取在线设备数 |
+| OnlineSessionList | [OnlineListRequest](#svc-infra-stat-OnlineListRequest) | [OnlineSessionListResponse](#svc-infra-stat-OnlineSessionListResponse) | 获取在线连接列表 |
+| OnlineAccountList | [OnlineListRequest](#svc-infra-stat-OnlineListRequest) | [OnlineAccountListResponse](#svc-infra-stat-OnlineAccountListResponse) | 获取在线账号列表 |
+| OnlineDeviceList | [OnlineListRequest](#svc-infra-stat-OnlineListRequest) | [OnlineDeviceListResponse](#svc-infra-stat-OnlineDeviceListResponse) | 获取在线设备列表 |
+| CheckSession | [CheckSessionRequest](#svc-infra-stat-CheckSessionRequest) | [CheckSessionResponse](#svc-infra-stat-CheckSessionResponse) | 检查连接是否在线 |
+| CheckAccount | [CheckAccountRequest](#svc-infra-stat-CheckAccountRequest) | [CheckAccountResponse](#svc-infra-stat-CheckAccountResponse) | 检查账号是否在线 |
+| CheckDevice | [CheckDeviceRequest](#svc-infra-stat-CheckDeviceRequest) | [CheckDeviceResponse](#svc-infra-stat-CheckDeviceResponse) | 检查设备是否在线 |
+| Refresh | [RefreshStatRequest](#svc-infra-stat-RefreshStatRequest) | [RefreshStatResponse](#svc-infra-stat-RefreshStatResponse) | 刷新统计 |
 
  
 
@@ -7389,6 +8705,21 @@ CreatedSmsSendRequest 发送短信请求
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| cloud_sms_template | [GetCloudSmsTemplateResponse.CloudSmsTemplate](#svc-infra-notifier-GetCloudSmsTemplateResponse-CloudSmsTemplate) | repeated |  |
+
+
+
+
+
+
+<a name="svc-infra-notifier-GetCloudSmsTemplateResponse-CloudSmsTemplate"></a>
+
+### GetCloudSmsTemplateResponse.CloudSmsTemplate
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
 | external_code_key | [string](#string) |  |  |
 | content | [string](#string) |  |  |
 | template_name | [string](#string) |  | 0：短信通知。 1：推广短信。 2：验证码短信。 6：国际/港澳台短信。 7：数字短信。 |
@@ -7714,6 +9045,508 @@ service started /////////////////
 
 
 
+<a name="svc-infra-center_gateway-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.infra.center/gateway.proto
+
+
+
+<a name="svc-infra-center-GetGatewayRequest"></a>
+
+### GetGatewayRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  | 网关ID |
+
+
+
+
+
+
+<a name="svc-infra-center-GetGatewayResponse"></a>
+
+### GetGatewayResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| gateway | [gateway](#svc-infra-center-gateway) |  | 网关信息 |
+
+
+
+
+
+
+<a name="svc-infra-center-ListGatewayRequest"></a>
+
+### ListGatewayRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| svc | [string](#string) |  | 网关类型（可留空） |
+
+
+
+
+
+
+<a name="svc-infra-center-ListGatewayResponse"></a>
+
+### ListGatewayResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| gateways | [gateway](#svc-infra-center-gateway) | repeated | 网关列表 |
+
+
+
+
+
+
+<a name="svc-infra-center-SelectGatewayRequest"></a>
+
+### SelectGatewayRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| account_id | [int64](#int64) |  | 账号ID |
+| platform | [string](#string) |  | 平台 |
+| version | [string](#string) |  | 客户端版本 |
+| device | [string](#string) |  | 设备标识（指纹） |
+| svc | [string](#string) |  | 网关类型（默认ws） |
+| total | [int64](#int64) |  | 希望获取网关总数（默认5） |
+
+
+
+
+
+
+<a name="svc-infra-center-SelectGatewayResponse"></a>
+
+### SelectGatewayResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| gateways | [select_summary](#svc-infra-center-select_summary) | repeated | 网关列表 |
+
+
+
+
+
+
+<a name="svc-infra-center-gateway"></a>
+
+### gateway
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  | 网关ID |
+| advertise_address | [string](#string) |  | 网关地址 |
+| current_sessions | [int64](#int64) |  | 当前连接数 |
+| current_groups | [int64](#int64) |  | 当前群组数（包括空群组） |
+| current_accounts | [int64](#int64) |  | 当前账号数 |
+| current_devices | [int64](#int64) |  | 当前设备数 |
+| total_upward_msgs | [int64](#int64) |  | 总上行消息条数 |
+| total_downward_msgs | [int64](#int64) |  | 总下行消息条数 |
+| total_connects | [int64](#int64) |  | 总创建连接次数 |
+| total_registers | [int64](#int64) |  | 总注册成功次数 |
+| total_binds | [int64](#int64) |  | 总绑定群组次数 |
+| mem_alloc | [uint64](#uint64) |  | 进程当前分配内存 |
+| total_mem_alloc | [uint64](#uint64) |  | 进程总分配内存 |
+| allocs | [uint64](#uint64) |  | 进程分配内存次数 |
+| frees | [uint64](#uint64) |  | 进程释放内存次数 |
+| num_cpus | [int32](#int32) |  | 当前逻辑CPU个数 |
+| num_goroutines | [int32](#int32) |  | 当前Goroutine数 |
+| cpu_idle | [uint64](#uint64) |  | CPU空闲时间片 |
+| cpu_no_idle | [uint64](#uint64) |  | CPU工作时间片 |
+| mem_total | [uint64](#uint64) |  | 总内存数 |
+| mem_available | [uint64](#uint64) |  | 可用内存数 |
+| svc | [string](#string) |  | 网关类型 |
+
+
+
+
+
+
+<a name="svc-infra-center-select_summary"></a>
+
+### select_summary
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  | 网关ID |
+| advertise_address | [string](#string) |  | 网关地址 |
+| sign | [string](#string) |  | 签名 |
+| svc | [string](#string) |  | 网关类型 |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="svc-infra-center-LinkGateway"></a>
+
+### LinkGateway
+Services of gateway
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| List | [ListGatewayRequest](#svc-infra-center-ListGatewayRequest) | [ListGatewayResponse](#svc-infra-center-ListGatewayResponse) | 网关列表 |
+| Get | [GetGatewayRequest](#svc-infra-center-GetGatewayRequest) | [GetGatewayResponse](#svc-infra-center-GetGatewayResponse) | 获取网关信息 |
+| Select | [SelectGatewayRequest](#svc-infra-center-SelectGatewayRequest) | [SelectGatewayResponse](#svc-infra-center-SelectGatewayResponse) | 分配网关 |
+
+ 
+
+
+
+<a name="svc-infra-center_message-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.infra.center/message.proto
+
+
+
+<a name="svc-infra-center-SendAccountRequest"></a>
+
+### SendAccountRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| type | [int32](#int32) |  | 消息类型 |
+| priority | [int32](#int32) |  | 消息优先级 |
+| payload | [string](#string) |  | 消息内容 |
+| to_account | [int64](#int64) |  | 接收账号 |
+| to_group | [int64](#int64) |  | 接收群组（可留空）（如不为空，标识只发给该群组下的对应账号） |
+| from | [int64](#int64) |  | 发送者 |
+
+
+
+
+
+
+<a name="svc-infra-center-SendAccountResponse"></a>
+
+### SendAccountResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| ok | [bool](#bool) |  | 是否发送成功 |
+| message_id | [int64](#int64) |  | 消息ID |
+
+
+
+
+
+
+<a name="svc-infra-center-SendDeviceRequest"></a>
+
+### SendDeviceRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| type | [int32](#int32) |  | 消息类型 |
+| priority | [int32](#int32) |  | 消息优先级 |
+| payload | [string](#string) |  | 消息内容 |
+| to_device | [string](#string) |  | 接收设备 |
+| from | [int64](#int64) |  | 发送者 |
+
+
+
+
+
+
+<a name="svc-infra-center-SendDeviceResponse"></a>
+
+### SendDeviceResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| ok | [bool](#bool) |  | 是否发送成功 |
+| message_id | [int64](#int64) |  | 消息ID |
+
+
+
+
+
+
+<a name="svc-infra-center-SendGlobalRequest"></a>
+
+### SendGlobalRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| type | [int32](#int32) |  | 消息类型 |
+| priority | [int32](#int32) |  | 消息优先级 |
+| payload | [string](#string) |  | 消息内容 |
+| to_group | [int64](#int64) |  | 组别（大于0：所有在组中的连接、0：所有连接、小于0：所有不在组中的连接） |
+| from | [int64](#int64) |  | 发送者（账号ID） |
+
+
+
+
+
+
+<a name="svc-infra-center-SendGlobalResponse"></a>
+
+### SendGlobalResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| ok | [bool](#bool) |  | 是否发送成功（仅标识接收成功状态，不代表完全投递） |
+| message_id | [int64](#int64) |  | 消息ID |
+
+
+
+
+
+
+<a name="svc-infra-center-SendGroupRequest"></a>
+
+### SendGroupRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| type | [int32](#int32) |  | 消息类型 |
+| priority | [int32](#int32) |  | 消息优先级 |
+| payload | [string](#string) |  | 消息内容 |
+| to_group | [int64](#int64) |  | 接收群组 |
+| from | [int64](#int64) |  | 发送者 |
+
+
+
+
+
+
+<a name="svc-infra-center-SendGroupResponse"></a>
+
+### SendGroupResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| ok | [bool](#bool) |  | 是否发送成功 |
+| message_id | [int64](#int64) |  | 消息ID |
+
+
+
+
+
+
+<a name="svc-infra-center-SendSessionRequest"></a>
+
+### SendSessionRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| type | [int32](#int32) |  |  |
+| priority | [int32](#int32) |  |  |
+| payload | [string](#string) |  |  |
+| to_session | [string](#string) |  |  |
+| from | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-center-SendSessionResponse"></a>
+
+### SendSessionResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| ok | [bool](#bool) |  |  |
+| message_id | [int64](#int64) |  |  |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="svc-infra-center-LinkMessage"></a>
+
+### LinkMessage
+Service of message
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| SendGlobal | [SendGlobalRequest](#svc-infra-center-SendGlobalRequest) | [SendGlobalResponse](#svc-infra-center-SendGlobalResponse) | 发送全局消息 |
+| SendGroup | [SendGroupRequest](#svc-infra-center-SendGroupRequest) | [SendGroupResponse](#svc-infra-center-SendGroupResponse) | 发送群组消息 |
+| SendAccount | [SendAccountRequest](#svc-infra-center-SendAccountRequest) | [SendAccountResponse](#svc-infra-center-SendAccountResponse) | 发送账号消息（对单人) |
+| SendDevice | [SendDeviceRequest](#svc-infra-center-SendDeviceRequest) | [SendDeviceResponse](#svc-infra-center-SendDeviceResponse) | 发送设备消息 |
+| SendSession | [SendSessionRequest](#svc-infra-center-SendSessionRequest) | [SendSessionResponse](#svc-infra-center-SendSessionResponse) | 发送连接消息 |
+
+ 
+
+
+
+<a name="svc-infra-center_instruction-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.infra.center/instruction.proto
+
+
+
+<a name="svc-infra-center-RemoveAccountRequest"></a>
+
+### RemoveAccountRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| account_id | [int64](#int64) |  | 账号ID |
+| group_id | [int64](#int64) |  | 群组ID（可留空） |
+
+
+
+
+
+
+<a name="svc-infra-center-RemoveAccountResponse"></a>
+
+### RemoveAccountResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| ok | [bool](#bool) |  | 是否成功（不代表结果） |
+
+
+
+
+
+
+<a name="svc-infra-center-RemoveDeviceRequest"></a>
+
+### RemoveDeviceRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| device | [string](#string) |  | 设备标识（指纹） |
+
+
+
+
+
+
+<a name="svc-infra-center-RemoveDeviceResponse"></a>
+
+### RemoveDeviceResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| ok | [bool](#bool) |  | 是否成功 |
+
+
+
+
+
+
+<a name="svc-infra-center-RemoveSessionRequest"></a>
+
+### RemoveSessionRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| session | [string](#string) |  | 连接Session |
+
+
+
+
+
+
+<a name="svc-infra-center-RemoveSessionResponse"></a>
+
+### RemoveSessionResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| ok | [bool](#bool) |  | 是否成功 |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="svc-infra-center-LinkInstruction"></a>
+
+### LinkInstruction
+Service of instruction
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| RemoveSession | [RemoveSessionRequest](#svc-infra-center-RemoveSessionRequest) | [RemoveSessionResponse](#svc-infra-center-RemoveSessionResponse) | 移除（踢）连接 |
+| RemoveAccount | [RemoveAccountRequest](#svc-infra-center-RemoveAccountRequest) | [RemoveAccountResponse](#svc-infra-center-RemoveAccountResponse) | 移除（踢）账号 |
+| RemoveDevice | [RemoveDeviceRequest](#svc-infra-center-RemoveDeviceRequest) | [RemoveDeviceResponse](#svc-infra-center-RemoveDeviceResponse) | 移除（踢）设备 |
+
+ 
+
+
+
 <a name="svc-web-streamer_streamer-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
@@ -7776,41 +9609,6 @@ service started /////////////////
 
 
 
-<a name="svc-biz-gift-GiftGetRecordReq"></a>
-
-### GiftGetRecordReq
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| pageno | [int64](#int64) |  | 第几页 |
-| pagenum | [int64](#int64) |  | 每页几条数据 |
-| room_id | [string](#string) |  | 房间id |
-| live_id | [string](#string) |  | 直播id |
-| start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开始时间 |
-| end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 结束时间 |
-
-
-
-
-
-
-<a name="svc-biz-gift-GiftGetRecordResp"></a>
-
-### GiftGetRecordResp
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| items | [GiftSendRecord](#svc-biz-gift-GiftSendRecord) | repeated |  |
-
-
-
-
-
-
 <a name="svc-biz-gift-GiftGetReq"></a>
 
 ### GiftGetReq
@@ -7861,62 +9659,8 @@ service started /////////////////
 | prize | [string](#string) |  | 奖励(json字符串:{&#34;user_exp&#34;:100, &#34;anchor_exp&#34;:20}) |
 | pack | [string](#string) |  | 批量包(json字符串:[{&#34;pack&#34;:20,&#34;desc&#34;:&#34;&#34;},{&#34;pack&#34;:99,&#34;desc&#34;:&#34;&#34;}]) |
 | pic | [string](#string) |  | 图片资源(json字符串:{&#34;icon&#34;:&#34;&#34;, &#34;icon_gif&#34;:&#34;&#34;, &#34;chat_icon&#34;:&#34;&#34;, &#34;combo_bg&#34;:&#34;&#34;, &#34;combo_icon&#34;:&#34;&#34;}) |
-
-
-
-
-
-
-<a name="svc-biz-gift-GiftSendRecord"></a>
-
-### GiftSendRecord
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| gift_id | [string](#string) |  | 礼物id |
-| gift_name | [string](#string) |  | 礼物名 |
-| num | [int32](#int32) |  | 数量 |
-| total_price | [int32](#int32) |  | 总价 |
-| from_uid | [string](#string) |  | 送礼uid |
-| room_id | [string](#string) |  | 房间id |
-| live_id | [string](#string) |  | 直播id |
-| send_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
-
-
-
-
-
-
-<a name="svc-biz-gift-GiftSendRecordReq"></a>
-
-### GiftSendRecordReq
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| pageno | [int64](#int64) |  | 第几页 |
-| pagenum | [int64](#int64) |  | 每页几条数据 |
-| from_uid | [string](#string) |  | 用户id |
-| start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开始时间 |
-| end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 结束时间 |
-
-
-
-
-
-
-<a name="svc-biz-gift-GiftSendRecordResp"></a>
-
-### GiftSendRecordResp
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| items | [GiftSendRecord](#svc-biz-gift-GiftSendRecord) | repeated |  |
+| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+| updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
 
 
 
@@ -7935,9 +9679,9 @@ service started /////////////////
 | order_id | [string](#string) |  | 支付订单id |
 | gift_id | [string](#string) |  | 礼物id |
 | num | [int32](#int32) |  | 数量 |
-| prize | [int32](#int32) |  | 礼物单价（主要用做验证） |
+| price | [int32](#int32) |  | 礼物单价（主要用做验证） |
 | from_uid | [string](#string) |  | 赠送者uid |
-| to_uid | [string](#string) |  | 接收者uid |
+| streamer_id | [string](#string) |  | 主播uid |
 | room_id | [string](#string) |  | 房间id |
 | live_id | [string](#string) |  | 直播id |
 
@@ -7999,13 +9743,13 @@ service started /////////////////
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | return_count | [bool](#bool) |  | 是否返回总数 |
-| pageno | [int64](#int64) |  | 第几页 |
-| pagenum | [int64](#int64) |  | 每页几条数据 |
+| page | [int64](#int64) |  | 第几页 |
+| limit | [int64](#int64) |  | 每页几条数据 |
 | type | [GiftType](#svc-biz-gift-GiftType) |  | 礼物类型 |
 | status | [GiftStatus](#svc-biz-gift-GiftStatus) |  | 礼物状态 |
 | keyword | [string](#string) |  | 关键字 |
-| create_start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 添加开始时间 |
-| create_end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 添加结束时间 |
+| create_time_start | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 添加开始时间 |
+| create_time_end | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 添加结束时间 |
 
 
 
@@ -8062,37 +9806,6 @@ service started /////////////////
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | items | [GiftInfo](#svc-biz-gift-GiftInfo) | repeated |  |
-
-
-
-
-
-
-<a name="svc-biz-gift-LiveStatReq"></a>
-
-### LiveStatReq
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| room_id | [string](#string) |  |  |
-| live_id | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="svc-biz-gift-LiveStatResp"></a>
-
-### LiveStatResp
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| total_cost | [int32](#int32) |  |  |
 
 
 
@@ -8159,9 +9872,158 @@ service started /////////////////
 | ListOnlineByType | [ListOnlineByTypeReq](#svc-biz-gift-ListOnlineByTypeReq) | [ListOnlineResp](#svc-biz-gift-ListOnlineResp) | ListOnlineByType 前台房间礼物查询接口 |
 | ListOnlineAll | [ListOnlineAllReq](#svc-biz-gift-ListOnlineAllReq) | [ListOnlineResp](#svc-biz-gift-ListOnlineResp) | ListOnlineAll 所有礼物的缓存接口 |
 | Send | [GiftSendReq](#svc-biz-gift-GiftSendReq) | [GiftSendResp](#svc-biz-gift-GiftSendResp) | Send 送礼物接口 |
-| SendRecord | [GiftSendRecordReq](#svc-biz-gift-GiftSendRecordReq) | [GiftSendRecordResp](#svc-biz-gift-GiftSendRecordResp) | SendRecord 送礼记录 |
-| GetRecord | [GiftGetRecordReq](#svc-biz-gift-GiftGetRecordReq) | [GiftGetRecordResp](#svc-biz-gift-GiftGetRecordResp) | GetRecord 收礼记录 |
-| LiveStat | [LiveStatReq](#svc-biz-gift-LiveStatReq) | [LiveStatResp](#svc-biz-gift-LiveStatResp) | LiveStat 直播统计 |
+
+ 
+
+
+
+<a name="svc-biz-gift_gift_record-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.biz.gift/gift_record.proto
+
+
+
+<a name="svc-biz-gift-GetGetRecordListReq"></a>
+
+### GetGetRecordListReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| page | [int64](#int64) |  | 第几页 |
+| limit | [int64](#int64) |  | 每页几条数据 |
+| streamer_id | [string](#string) |  | 主播uid |
+| room_id | [string](#string) |  | 房间id |
+| live_id | [string](#string) |  | 直播id |
+| start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开始时间 |
+| end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 结束时间 |
+
+
+
+
+
+
+<a name="svc-biz-gift-GetGetRecordListResp"></a>
+
+### GetGetRecordListResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [GiftRecordInfo](#svc-biz-gift-GiftRecordInfo) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-gift-GetLiveStatReq"></a>
+
+### GetLiveStatReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer_id | [string](#string) |  | 主播uid |
+| live_id | [string](#string) |  | 直播id |
+
+
+
+
+
+
+<a name="svc-biz-gift-GetLiveStatResp"></a>
+
+### GetLiveStatResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| total_price | [int32](#int32) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-gift-GetSendRecordListReq"></a>
+
+### GetSendRecordListReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| page | [int64](#int64) |  | 第几页 |
+| limit | [int64](#int64) |  | 每页几条数据 |
+| from_uid | [string](#string) |  | 用户id |
+| start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开始时间 |
+| end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 结束时间 |
+
+
+
+
+
+
+<a name="svc-biz-gift-GetSendRecordListResp"></a>
+
+### GetSendRecordListResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [GiftRecordInfo](#svc-biz-gift-GiftRecordInfo) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-gift-GiftRecordInfo"></a>
+
+### GiftRecordInfo
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| gift_id | [string](#string) |  | 礼物id |
+| gift_name | [string](#string) |  | 礼物名 |
+| num | [int32](#int32) |  | 数量 |
+| total_price | [int32](#int32) |  | 总价 |
+| from_uid | [string](#string) |  | 送礼uid |
+| streamer_id | [string](#string) |  | 主播uid |
+| room_id | [string](#string) |  | 房间id |
+| live_id | [string](#string) |  | 直播id |
+| send_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="svc-biz-gift-GiftRecord"></a>
+
+### GiftRecord
+
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| GetSendRecordList | [GetSendRecordListReq](#svc-biz-gift-GetSendRecordListReq) | [GetSendRecordListResp](#svc-biz-gift-GetSendRecordListResp) | GetSendRecordList 送礼记录 |
+| GetGetRecordList | [GetGetRecordListReq](#svc-biz-gift-GetGetRecordListReq) | [GetGetRecordListResp](#svc-biz-gift-GetGetRecordListResp) | GetGetRecordList 收礼记录 |
+| GetLiveStat | [GetLiveStatReq](#svc-biz-gift-GetLiveStatReq) | [GetLiveStatResp](#svc-biz-gift-GetLiveStatResp) | GetLiveStat 直播统计 |
 
  
 
