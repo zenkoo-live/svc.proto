@@ -1,0 +1,93 @@
+syntax = "proto3";
+
+
+package svc.infra.stat;
+option go_package = "./svc.infra.stat;stat";
+
+// Service of stat
+service LinkStat {
+  // 获取在线连接数
+  rpc OnlineSessionCount(OnlineCountRequest) returns (OnlineCountResponse);
+  // 获取在线账号数
+  rpc OnlineAccountCount(OnlineCountRequest) returns (OnlineCountResponse);
+  // 获取在线设备数
+  rpc OnlineDeviceCount(OnlineCountRequest) returns (OnlineCountResponse);
+
+  // 获取在线连接列表
+  rpc OnlineSessionList(OnlineListRequest) returns (OnlineSessionListResponse);
+  // 获取在线账号列表
+  rpc OnlineAccountList(OnlineListRequest) returns (OnlineAccountListResponse);
+  // 获取在线设备列表
+  rpc OnlineDeviceList(OnlineListRequest) returns (OnlineDeviceListResponse);
+
+  // 检查连接是否在线
+  rpc CheckSession(CheckSessionRequest) returns (CheckSessionResponse);
+  // 检查账号是否在线
+  rpc CheckAccount(CheckAccountRequest) returns (CheckAccountResponse);
+  // 检查设备是否在线
+  rpc CheckDevice(CheckDeviceRequest) returns (CheckDeviceResponse);
+
+  // 刷新统计
+  rpc Refresh(RefreshStatRequest) returns (RefreshStatResponse);
+};
+
+message online_detail {
+  int64 account_id = 1;                       // 账号ID
+};
+
+message online_detail_list {
+  repeated online_detail list = 1;            // 列表
+};
+
+message OnlineCountRequest {
+  int64 merchant_id = 1;                      // 商户ID
+  int64 group_id = 2;                         // 群组ID
+};
+message OnlineCountResponse {
+  int64 count = 1;                            // 总数
+};
+
+message OnlineListRequest {
+  int64 merchant_id = 1;                      // 商户ID
+  int64 group_id = 2;                         // 群组ID
+  int64 page = 3;                             // 分页码
+  optional int64 size = 4;                    // 数量
+};
+message OnlineSessionListResponse {
+  online_detail_list online = 1;              // 在线列表
+};
+message OnlineAccountListResponse {
+  online_detail_list online = 1;  // 在线列表
+};
+message OnlineDeviceListResponse {
+  online_detail_list online = 1; // 在线列表
+};
+
+message CheckSessionRequest {
+  int64 merchant_id = 1;                      // 商户ID
+  repeated string session_ids = 2;            // 连接ID（列表）
+};
+message CheckSessionResponse {
+  map<string, bool> online = 1;               // 连接ID => 是否在线
+};
+
+message CheckAccountRequest {
+  int64 merchant_id = 1;                      // 商户ID
+  repeated int64 account_ids = 2;             // 账号ID（列表）
+};
+message CheckAccountResponse {
+  map<int64, bool> online = 1;                // 账号ID => 是否在线
+};
+
+message CheckDeviceRequest {
+  int64 merchant_id = 1;                      // 商户ID
+  repeated string devices = 2;                // 设备标识（列表）
+};
+message CheckDeviceResponse {
+  map<string, bool> online = 1;               // 设备标识 => 是否在线
+};
+
+message RefreshStatRequest {};
+message RefreshStatResponse {
+  bool ok = 1;                                // 是否刷新成功
+};

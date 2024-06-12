@@ -21,6 +21,7 @@ const _ = grpc.SupportPackageIsVersion7
 
 const (
 	Static_InitDB_FullMethodName           = "/svc.infra.static.Static/InitDB"
+	Static_Configuration_FullMethodName    = "/svc.infra.static.Static/Configuration"
 	Static_UploadAvatar_FullMethodName     = "/svc.infra.static.Static/UploadAvatar"
 	Static_UploadCover_FullMethodName      = "/svc.infra.static.Static/UploadCover"
 	Static_UploadVideo_FullMethodName      = "/svc.infra.static.Static/UploadVideo"
@@ -34,6 +35,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type StaticClient interface {
 	InitDB(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*InitDBResp, error)
+	Configuration(ctx context.Context, in *ConfigurationMessage, opts ...grpc.CallOption) (*ConfigurationResponseMessage, error)
 	UploadAvatar(ctx context.Context, in *UploadRequestMessage, opts ...grpc.CallOption) (*UploadResponseMessage, error)
 	UploadCover(ctx context.Context, in *UploadRequestMessage, opts ...grpc.CallOption) (*UploadResponseMessage, error)
 	UploadVideo(ctx context.Context, in *UploadRequestMessage, opts ...grpc.CallOption) (*UploadResponseMessage, error)
@@ -53,6 +55,15 @@ func NewStaticClient(cc grpc.ClientConnInterface) StaticClient {
 func (c *staticClient) InitDB(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*InitDBResp, error) {
 	out := new(InitDBResp)
 	err := c.cc.Invoke(ctx, Static_InitDB_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *staticClient) Configuration(ctx context.Context, in *ConfigurationMessage, opts ...grpc.CallOption) (*ConfigurationResponseMessage, error) {
+	out := new(ConfigurationResponseMessage)
+	err := c.cc.Invoke(ctx, Static_Configuration_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -143,6 +154,7 @@ func (x *staticUploadStreamFileClient) CloseAndRecv() (*UploadResponseMessage, e
 // for forward compatibility
 type StaticServer interface {
 	InitDB(context.Context, *emptypb.Empty) (*InitDBResp, error)
+	Configuration(context.Context, *ConfigurationMessage) (*ConfigurationResponseMessage, error)
 	UploadAvatar(context.Context, *UploadRequestMessage) (*UploadResponseMessage, error)
 	UploadCover(context.Context, *UploadRequestMessage) (*UploadResponseMessage, error)
 	UploadVideo(context.Context, *UploadRequestMessage) (*UploadResponseMessage, error)
@@ -158,6 +170,9 @@ type UnimplementedStaticServer struct {
 
 func (UnimplementedStaticServer) InitDB(context.Context, *emptypb.Empty) (*InitDBResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method InitDB not implemented")
+}
+func (UnimplementedStaticServer) Configuration(context.Context, *ConfigurationMessage) (*ConfigurationResponseMessage, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Configuration not implemented")
 }
 func (UnimplementedStaticServer) UploadAvatar(context.Context, *UploadRequestMessage) (*UploadResponseMessage, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UploadAvatar not implemented")
@@ -204,6 +219,24 @@ func _Static_InitDB_Handler(srv interface{}, ctx context.Context, dec func(inter
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(StaticServer).InitDB(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Static_Configuration_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ConfigurationMessage)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StaticServer).Configuration(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Static_Configuration_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StaticServer).Configuration(ctx, req.(*ConfigurationMessage))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -334,6 +367,10 @@ var Static_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "InitDB",
 			Handler:    _Static_InitDB_Handler,
+		},
+		{
+			MethodName: "Configuration",
+			Handler:    _Static_Configuration_Handler,
 		},
 		{
 			MethodName: "UploadAvatar",
