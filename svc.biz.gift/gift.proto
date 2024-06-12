@@ -121,7 +121,7 @@ message GiftSendReq {
     string order_id = 2; // 支付订单id
     string gift_id = 3; // 礼物id
     int32 num =4; // 数量
-    int32 prize = 5; // 礼物单价（主要用做验证）
+    int32 price = 5; // 礼物单价（主要用做验证）
     string from_uid = 6; // 赠送者uid
     string streamer_id = 7; // 主播uid
     string room_id = 8; // 房间id

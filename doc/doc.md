@@ -9679,7 +9679,7 @@ Service of instruction
 | order_id | [string](#string) |  | 支付订单id |
 | gift_id | [string](#string) |  | 礼物id |
 | num | [int32](#int32) |  | 数量 |
-| prize | [int32](#int32) |  | 礼物单价（主要用做验证） |
+| price | [int32](#int32) |  | 礼物单价（主要用做验证） |
 | from_uid | [string](#string) |  | 赠送者uid |
 | streamer_id | [string](#string) |  | 主播uid |
 | room_id | [string](#string) |  | 房间id |
