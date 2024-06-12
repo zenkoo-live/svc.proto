@@ -26,9 +26,6 @@ const (
 	Gift_ListOnlineByType_FullMethodName = "/svc.biz.gift.Gift/ListOnlineByType"
 	Gift_ListOnlineAll_FullMethodName    = "/svc.biz.gift.Gift/ListOnlineAll"
 	Gift_Send_FullMethodName             = "/svc.biz.gift.Gift/Send"
-	Gift_SendRecord_FullMethodName       = "/svc.biz.gift.Gift/SendRecord"
-	Gift_GetRecord_FullMethodName        = "/svc.biz.gift.Gift/GetRecord"
-	Gift_LiveStat_FullMethodName         = "/svc.biz.gift.Gift/LiveStat"
 )
 
 // GiftClient is the client API for Gift service.
@@ -49,12 +46,6 @@ type GiftClient interface {
 	ListOnlineAll(ctx context.Context, in *ListOnlineAllReq, opts ...grpc.CallOption) (*ListOnlineResp, error)
 	// Send 送礼物接口
 	Send(ctx context.Context, in *GiftSendReq, opts ...grpc.CallOption) (*GiftSendResp, error)
-	// SendRecord 送礼记录
-	SendRecord(ctx context.Context, in *GiftSendRecordReq, opts ...grpc.CallOption) (*GiftSendRecordResp, error)
-	// GetRecord 收礼记录
-	GetRecord(ctx context.Context, in *GiftGetRecordReq, opts ...grpc.CallOption) (*GiftGetRecordResp, error)
-	// LiveStat 直播统计
-	LiveStat(ctx context.Context, in *LiveStatReq, opts ...grpc.CallOption) (*LiveStatResp, error)
 }
 
 type giftClient struct {
@@ -128,33 +119,6 @@ func (c *giftClient) Send(ctx context.Context, in *GiftSendReq, opts ...grpc.Cal
 	return out, nil
 }
 
-func (c *giftClient) SendRecord(ctx context.Context, in *GiftSendRecordReq, opts ...grpc.CallOption) (*GiftSendRecordResp, error) {
-	out := new(GiftSendRecordResp)
-	err := c.cc.Invoke(ctx, Gift_SendRecord_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *giftClient) GetRecord(ctx context.Context, in *GiftGetRecordReq, opts ...grpc.CallOption) (*GiftGetRecordResp, error) {
-	out := new(GiftGetRecordResp)
-	err := c.cc.Invoke(ctx, Gift_GetRecord_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *giftClient) LiveStat(ctx context.Context, in *LiveStatReq, opts ...grpc.CallOption) (*LiveStatResp, error) {
-	out := new(LiveStatResp)
-	err := c.cc.Invoke(ctx, Gift_LiveStat_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // GiftServer is the server API for Gift service.
 // All implementations must embed UnimplementedGiftServer
 // for forward compatibility
@@ -173,12 +137,6 @@ type GiftServer interface {
 	ListOnlineAll(context.Context, *ListOnlineAllReq) (*ListOnlineResp, error)
 	// Send 送礼物接口
 	Send(context.Context, *GiftSendReq) (*GiftSendResp, error)
-	// SendRecord 送礼记录
-	SendRecord(context.Context, *GiftSendRecordReq) (*GiftSendRecordResp, error)
-	// GetRecord 收礼记录
-	GetRecord(context.Context, *GiftGetRecordReq) (*GiftGetRecordResp, error)
-	// LiveStat 直播统计
-	LiveStat(context.Context, *LiveStatReq) (*LiveStatResp, error)
 	mustEmbedUnimplementedGiftServer()
 }
 
@@ -206,15 +164,6 @@ func (UnimplementedGiftServer) ListOnlineAll(context.Context, *ListOnlineAllReq)
 }
 func (UnimplementedGiftServer) Send(context.Context, *GiftSendReq) (*GiftSendResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Send not implemented")
-}
-func (UnimplementedGiftServer) SendRecord(context.Context, *GiftSendRecordReq) (*GiftSendRecordResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SendRecord not implemented")
-}
-func (UnimplementedGiftServer) GetRecord(context.Context, *GiftGetRecordReq) (*GiftGetRecordResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetRecord not implemented")
-}
-func (UnimplementedGiftServer) LiveStat(context.Context, *LiveStatReq) (*LiveStatResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method LiveStat not implemented")
 }
 func (UnimplementedGiftServer) mustEmbedUnimplementedGiftServer() {}
 
@@ -355,60 +304,6 @@ func _Gift_Send_Handler(srv interface{}, ctx context.Context, dec func(interface
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Gift_SendRecord_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GiftSendRecordReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GiftServer).SendRecord(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Gift_SendRecord_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GiftServer).SendRecord(ctx, req.(*GiftSendRecordReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Gift_GetRecord_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GiftGetRecordReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GiftServer).GetRecord(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Gift_GetRecord_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GiftServer).GetRecord(ctx, req.(*GiftGetRecordReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Gift_LiveStat_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(LiveStatReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GiftServer).LiveStat(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Gift_LiveStat_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GiftServer).LiveStat(ctx, req.(*LiveStatReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // Gift_ServiceDesc is the grpc.ServiceDesc for Gift service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -443,18 +338,6 @@ var Gift_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Send",
 			Handler:    _Gift_Send_Handler,
-		},
-		{
-			MethodName: "SendRecord",
-			Handler:    _Gift_SendRecord_Handler,
-		},
-		{
-			MethodName: "GetRecord",
-			Handler:    _Gift_GetRecord_Handler,
-		},
-		{
-			MethodName: "LiveStat",
-			Handler:    _Gift_LiveStat_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

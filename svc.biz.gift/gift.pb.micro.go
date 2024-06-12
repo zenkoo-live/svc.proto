@@ -52,12 +52,6 @@ type GiftService interface {
 	ListOnlineAll(ctx context.Context, in *ListOnlineAllReq, opts ...client.CallOption) (*ListOnlineResp, error)
 	// Send 送礼物接口
 	Send(ctx context.Context, in *GiftSendReq, opts ...client.CallOption) (*GiftSendResp, error)
-	// SendRecord 送礼记录
-	SendRecord(ctx context.Context, in *GiftSendRecordReq, opts ...client.CallOption) (*GiftSendRecordResp, error)
-	// GetRecord 收礼记录
-	GetRecord(ctx context.Context, in *GiftGetRecordReq, opts ...client.CallOption) (*GiftGetRecordResp, error)
-	// LiveStat 直播统计
-	LiveStat(ctx context.Context, in *LiveStatReq, opts ...client.CallOption) (*LiveStatResp, error)
 }
 
 type giftService struct {
@@ -142,36 +136,6 @@ func (c *giftService) Send(ctx context.Context, in *GiftSendReq, opts ...client.
 	return out, nil
 }
 
-func (c *giftService) SendRecord(ctx context.Context, in *GiftSendRecordReq, opts ...client.CallOption) (*GiftSendRecordResp, error) {
-	req := c.c.NewRequest(c.name, "Gift.SendRecord", in)
-	out := new(GiftSendRecordResp)
-	err := c.c.Call(ctx, req, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *giftService) GetRecord(ctx context.Context, in *GiftGetRecordReq, opts ...client.CallOption) (*GiftGetRecordResp, error) {
-	req := c.c.NewRequest(c.name, "Gift.GetRecord", in)
-	out := new(GiftGetRecordResp)
-	err := c.c.Call(ctx, req, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *giftService) LiveStat(ctx context.Context, in *LiveStatReq, opts ...client.CallOption) (*LiveStatResp, error) {
-	req := c.c.NewRequest(c.name, "Gift.LiveStat", in)
-	out := new(LiveStatResp)
-	err := c.c.Call(ctx, req, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // Server API for Gift service
 
 type GiftHandler interface {
@@ -189,12 +153,6 @@ type GiftHandler interface {
 	ListOnlineAll(context.Context, *ListOnlineAllReq, *ListOnlineResp) error
 	// Send 送礼物接口
 	Send(context.Context, *GiftSendReq, *GiftSendResp) error
-	// SendRecord 送礼记录
-	SendRecord(context.Context, *GiftSendRecordReq, *GiftSendRecordResp) error
-	// GetRecord 收礼记录
-	GetRecord(context.Context, *GiftGetRecordReq, *GiftGetRecordResp) error
-	// LiveStat 直播统计
-	LiveStat(context.Context, *LiveStatReq, *LiveStatResp) error
 }
 
 func RegisterGiftHandler(s server.Server, hdlr GiftHandler, opts ...server.HandlerOption) error {
@@ -206,9 +164,6 @@ func RegisterGiftHandler(s server.Server, hdlr GiftHandler, opts ...server.Handl
 		ListOnlineByType(ctx context.Context, in *ListOnlineByTypeReq, out *ListOnlineResp) error
 		ListOnlineAll(ctx context.Context, in *ListOnlineAllReq, out *ListOnlineResp) error
 		Send(ctx context.Context, in *GiftSendReq, out *GiftSendResp) error
-		SendRecord(ctx context.Context, in *GiftSendRecordReq, out *GiftSendRecordResp) error
-		GetRecord(ctx context.Context, in *GiftGetRecordReq, out *GiftGetRecordResp) error
-		LiveStat(ctx context.Context, in *LiveStatReq, out *LiveStatResp) error
 	}
 	type Gift struct {
 		gift
@@ -247,16 +202,4 @@ func (h *giftHandler) ListOnlineAll(ctx context.Context, in *ListOnlineAllReq, o
 
 func (h *giftHandler) Send(ctx context.Context, in *GiftSendReq, out *GiftSendResp) error {
 	return h.GiftHandler.Send(ctx, in, out)
-}
-
-func (h *giftHandler) SendRecord(ctx context.Context, in *GiftSendRecordReq, out *GiftSendRecordResp) error {
-	return h.GiftHandler.SendRecord(ctx, in, out)
-}
-
-func (h *giftHandler) GetRecord(ctx context.Context, in *GiftGetRecordReq, out *GiftGetRecordResp) error {
-	return h.GiftHandler.GetRecord(ctx, in, out)
-}
-
-func (h *giftHandler) LiveStat(ctx context.Context, in *LiveStatReq, out *LiveStatResp) error {
-	return h.GiftHandler.LiveStat(ctx, in, out)
 }
