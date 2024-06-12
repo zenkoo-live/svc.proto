@@ -46,7 +46,7 @@ message RechargeRequest {
   string merchant_id = 1;                      // 商户ID
   string user_id = 2;                          // 用户ID
   uint64 money = 3;                            // 充值金额
-  uint32 type = 4;                             // 充值方式
+  string type_channel_id= 4;                     // 通过获取充值方式列表中的Id UUID类型
   string app_id = 5;                           // 充值的APPID
   string remote_addr = 6;                      // 请求IP
 }
@@ -79,6 +79,7 @@ message PayRecordRequest {
   string user_id = 2;                         // 用户ID
 
   uint32 page = 3;                           // 页数
+  uint32 size = 4;                           // 每页数量
 };
 
 message PayRecordResponse {
