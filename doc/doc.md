@@ -3910,6 +3910,7 @@ CategoryInfo 分类详情
 | category_id | [string](#string) |  | 分类id |
 | title | [string](#string) |  | 标题 |
 | intro | [string](#string) |  | 简介 |
+| cover | [string](#string) |  | 封面 |
 | forbid_expire | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 封禁到期时间 |
 | forbid_reason | [string](#string) |  | 封禁原因 |
 | hidden | [bool](#bool) |  | 是否隐藏 |
