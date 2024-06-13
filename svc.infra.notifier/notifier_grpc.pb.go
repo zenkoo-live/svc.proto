@@ -27,7 +27,7 @@ const (
 	Notifier_DeletedSmsChannel_FullMethodName   = "/svc.infra.notifier.Notifier/DeletedSmsChannel"
 	Notifier_GetSmsTemplateList_FullMethodName  = "/svc.infra.notifier.Notifier/GetSmsTemplateList"
 	Notifier_CreatedSmsTemplate_FullMethodName  = "/svc.infra.notifier.Notifier/CreatedSmsTemplate"
-	Notifier_UpdateSmsTemplate_FullMethodName   = "/svc.infra.notifier.Notifier/UpdateSmsTemplate"
+	Notifier_UpdatedSmsTemplate_FullMethodName  = "/svc.infra.notifier.Notifier/UpdatedSmsTemplate"
 	Notifier_DeletedSmsTemplate_FullMethodName  = "/svc.infra.notifier.Notifier/DeletedSmsTemplate"
 	Notifier_GetSmsBizLogList_FullMethodName    = "/svc.infra.notifier.Notifier/GetSmsBizLogList"
 	Notifier_CreatedSmsBizLog_FullMethodName    = "/svc.infra.notifier.Notifier/CreatedSmsBizLog"
@@ -51,7 +51,7 @@ type NotifierClient interface {
 	// sms template
 	GetSmsTemplateList(ctx context.Context, in *SmsTemplateListRequest, opts ...grpc.CallOption) (*SmsTemplateListResponse, error)
 	CreatedSmsTemplate(ctx context.Context, in *CreatedSmsTemplateRequest, opts ...grpc.CallOption) (*CommonResponse, error)
-	UpdateSmsTemplate(ctx context.Context, in *UpdatedSmsTemplateRequest, opts ...grpc.CallOption) (*CommonResponse, error)
+	UpdatedSmsTemplate(ctx context.Context, in *UpdatedSmsTemplateRequest, opts ...grpc.CallOption) (*CommonResponse, error)
 	DeletedSmsTemplate(ctx context.Context, in *DeletedSmsTemplateRequest, opts ...grpc.CallOption) (*CommonResponse, error)
 	// sms biz send
 	GetSmsBizLogList(ctx context.Context, in *SmsBizSendLogListRequest, opts ...grpc.CallOption) (*SmsBizSendLogListResponse, error)
@@ -136,9 +136,9 @@ func (c *notifierClient) CreatedSmsTemplate(ctx context.Context, in *CreatedSmsT
 	return out, nil
 }
 
-func (c *notifierClient) UpdateSmsTemplate(ctx context.Context, in *UpdatedSmsTemplateRequest, opts ...grpc.CallOption) (*CommonResponse, error) {
+func (c *notifierClient) UpdatedSmsTemplate(ctx context.Context, in *UpdatedSmsTemplateRequest, opts ...grpc.CallOption) (*CommonResponse, error) {
 	out := new(CommonResponse)
-	err := c.cc.Invoke(ctx, Notifier_UpdateSmsTemplate_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, Notifier_UpdatedSmsTemplate_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -230,7 +230,7 @@ type NotifierServer interface {
 	// sms template
 	GetSmsTemplateList(context.Context, *SmsTemplateListRequest) (*SmsTemplateListResponse, error)
 	CreatedSmsTemplate(context.Context, *CreatedSmsTemplateRequest) (*CommonResponse, error)
-	UpdateSmsTemplate(context.Context, *UpdatedSmsTemplateRequest) (*CommonResponse, error)
+	UpdatedSmsTemplate(context.Context, *UpdatedSmsTemplateRequest) (*CommonResponse, error)
 	DeletedSmsTemplate(context.Context, *DeletedSmsTemplateRequest) (*CommonResponse, error)
 	// sms biz send
 	GetSmsBizLogList(context.Context, *SmsBizSendLogListRequest) (*SmsBizSendLogListResponse, error)
@@ -270,8 +270,8 @@ func (UnimplementedNotifierServer) GetSmsTemplateList(context.Context, *SmsTempl
 func (UnimplementedNotifierServer) CreatedSmsTemplate(context.Context, *CreatedSmsTemplateRequest) (*CommonResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreatedSmsTemplate not implemented")
 }
-func (UnimplementedNotifierServer) UpdateSmsTemplate(context.Context, *UpdatedSmsTemplateRequest) (*CommonResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateSmsTemplate not implemented")
+func (UnimplementedNotifierServer) UpdatedSmsTemplate(context.Context, *UpdatedSmsTemplateRequest) (*CommonResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdatedSmsTemplate not implemented")
 }
 func (UnimplementedNotifierServer) DeletedSmsTemplate(context.Context, *DeletedSmsTemplateRequest) (*CommonResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeletedSmsTemplate not implemented")
@@ -436,20 +436,20 @@ func _Notifier_CreatedSmsTemplate_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Notifier_UpdateSmsTemplate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Notifier_UpdatedSmsTemplate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UpdatedSmsTemplateRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(NotifierServer).UpdateSmsTemplate(ctx, in)
+		return srv.(NotifierServer).UpdatedSmsTemplate(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Notifier_UpdateSmsTemplate_FullMethodName,
+		FullMethod: Notifier_UpdatedSmsTemplate_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NotifierServer).UpdateSmsTemplate(ctx, req.(*UpdatedSmsTemplateRequest))
+		return srv.(NotifierServer).UpdatedSmsTemplate(ctx, req.(*UpdatedSmsTemplateRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -634,8 +634,8 @@ var Notifier_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Notifier_CreatedSmsTemplate_Handler,
 		},
 		{
-			MethodName: "UpdateSmsTemplate",
-			Handler:    _Notifier_UpdateSmsTemplate_Handler,
+			MethodName: "UpdatedSmsTemplate",
+			Handler:    _Notifier_UpdatedSmsTemplate_Handler,
 		},
 		{
 			MethodName: "DeletedSmsTemplate",
