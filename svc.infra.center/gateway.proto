@@ -62,7 +62,7 @@ message GetGatewayResponse {
 };
 
 message SelectGatewayRequest {
-  int64 account_id = 1;                       // 账号ID
+  string account_id = 1;                       // 账号ID
   string platform = 2;                        // 平台
   string version = 3;                         // 客户端版本
   string device = 4;                          // 设备标识（指纹）

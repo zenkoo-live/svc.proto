@@ -46,7 +46,7 @@ message RechargeRequest {
   string merchant_id = 1;                      // 商户ID
   string user_id = 2;                          // 用户ID
   uint64 money = 3;                            // 充值金额
-  uint32 type = 4;                             // 充值方式
+  string type_channel_id= 4;                     // 通过获取充值方式列表中的Id UUID类型
   string app_id = 5;                           // 充值的APPID
   string remote_addr = 6;                      // 请求IP
 }
@@ -79,6 +79,7 @@ message PayRecordRequest {
   string user_id = 2;                         // 用户ID
 
   uint32 page = 3;                           // 页数
+  uint32 size = 4;                           // 每页数量
 };
 
 message PayRecordResponse {
@@ -119,7 +120,7 @@ message CreatedChannelRequest {
   string secret = 5; // 密钥
   string gateway_url = 6; // 网关地址
   string notify_url = 7; // 通知地址
-  int64 statue = 8; // 状态 0/关 1/开启
+  int64 status = 8; // 状态 0/关 1/开启
   string creator = 9; // 创建者
 }
 
@@ -131,7 +132,7 @@ message UpdatedChannelRequest {
   string secret = 4; // 密钥
   string gateway_url = 5; // 网关地址
   string notify_url = 6; // 通知地址
-  int64 statue = 7; // 状态 0/关 1/开启
+  int64 status = 7; // 状态 0/关 1/开启
 }
 
 // ChannelListRequest
@@ -156,7 +157,7 @@ message ChannelsListResponse {
     string secret = 6; // 密钥
     string gateway_url = 7; // 网关地址
     string notify_url = 8; // 通知地址
-    int64 statue = 9; // 状态 0/关 1/开启
+    int64 status = 9; // 状态 0/关 1/开启
     string creator = 10; // 创建者
     google.protobuf.Timestamp created_at = 11; // 创建时间
   }

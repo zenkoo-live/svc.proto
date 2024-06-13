@@ -47,7 +47,7 @@ type NotifierService interface {
 	// sms template
 	GetSmsTemplateList(ctx context.Context, in *SmsTemplateListRequest, opts ...client.CallOption) (*SmsTemplateListResponse, error)
 	CreatedSmsTemplate(ctx context.Context, in *CreatedSmsTemplateRequest, opts ...client.CallOption) (*CommonResponse, error)
-	UpdateSmsTemplate(ctx context.Context, in *UpdatedSmsTemplateRequest, opts ...client.CallOption) (*CommonResponse, error)
+	UpdatedSmsTemplate(ctx context.Context, in *UpdatedSmsTemplateRequest, opts ...client.CallOption) (*CommonResponse, error)
 	DeletedSmsTemplate(ctx context.Context, in *DeletedSmsTemplateRequest, opts ...client.CallOption) (*CommonResponse, error)
 	// sms biz send
 	GetSmsBizLogList(ctx context.Context, in *SmsBizSendLogListRequest, opts ...client.CallOption) (*SmsBizSendLogListResponse, error)
@@ -143,8 +143,8 @@ func (c *notifierService) CreatedSmsTemplate(ctx context.Context, in *CreatedSms
 	return out, nil
 }
 
-func (c *notifierService) UpdateSmsTemplate(ctx context.Context, in *UpdatedSmsTemplateRequest, opts ...client.CallOption) (*CommonResponse, error) {
-	req := c.c.NewRequest(c.name, "Notifier.UpdateSmsTemplate", in)
+func (c *notifierService) UpdatedSmsTemplate(ctx context.Context, in *UpdatedSmsTemplateRequest, opts ...client.CallOption) (*CommonResponse, error) {
+	req := c.c.NewRequest(c.name, "Notifier.UpdatedSmsTemplate", in)
 	out := new(CommonResponse)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
@@ -245,7 +245,7 @@ type NotifierHandler interface {
 	// sms template
 	GetSmsTemplateList(context.Context, *SmsTemplateListRequest, *SmsTemplateListResponse) error
 	CreatedSmsTemplate(context.Context, *CreatedSmsTemplateRequest, *CommonResponse) error
-	UpdateSmsTemplate(context.Context, *UpdatedSmsTemplateRequest, *CommonResponse) error
+	UpdatedSmsTemplate(context.Context, *UpdatedSmsTemplateRequest, *CommonResponse) error
 	DeletedSmsTemplate(context.Context, *DeletedSmsTemplateRequest, *CommonResponse) error
 	// sms biz send
 	GetSmsBizLogList(context.Context, *SmsBizSendLogListRequest, *SmsBizSendLogListResponse) error
@@ -268,7 +268,7 @@ func RegisterNotifierHandler(s server.Server, hdlr NotifierHandler, opts ...serv
 		DeletedSmsChannel(ctx context.Context, in *DeletedSmsChannelRequest, out *CommonResponse) error
 		GetSmsTemplateList(ctx context.Context, in *SmsTemplateListRequest, out *SmsTemplateListResponse) error
 		CreatedSmsTemplate(ctx context.Context, in *CreatedSmsTemplateRequest, out *CommonResponse) error
-		UpdateSmsTemplate(ctx context.Context, in *UpdatedSmsTemplateRequest, out *CommonResponse) error
+		UpdatedSmsTemplate(ctx context.Context, in *UpdatedSmsTemplateRequest, out *CommonResponse) error
 		DeletedSmsTemplate(ctx context.Context, in *DeletedSmsTemplateRequest, out *CommonResponse) error
 		GetSmsBizLogList(ctx context.Context, in *SmsBizSendLogListRequest, out *SmsBizSendLogListResponse) error
 		CreatedSmsBizLog(ctx context.Context, in *CreatedSmsBizSendLogRequest, out *CommonResponse) error
@@ -317,8 +317,8 @@ func (h *notifierHandler) CreatedSmsTemplate(ctx context.Context, in *CreatedSms
 	return h.NotifierHandler.CreatedSmsTemplate(ctx, in, out)
 }
 
-func (h *notifierHandler) UpdateSmsTemplate(ctx context.Context, in *UpdatedSmsTemplateRequest, out *CommonResponse) error {
-	return h.NotifierHandler.UpdateSmsTemplate(ctx, in, out)
+func (h *notifierHandler) UpdatedSmsTemplate(ctx context.Context, in *UpdatedSmsTemplateRequest, out *CommonResponse) error {
+	return h.NotifierHandler.UpdatedSmsTemplate(ctx, in, out)
 }
 
 func (h *notifierHandler) DeletedSmsTemplate(ctx context.Context, in *DeletedSmsTemplateRequest, out *CommonResponse) error {
