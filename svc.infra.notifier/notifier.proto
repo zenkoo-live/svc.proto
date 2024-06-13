@@ -174,7 +174,7 @@ message SmsBizSendLogListRequest {
   int64 page = 1;
   int64 size = 2;
   int64 template_id = 3;
-  int32 biz_type = 4;
+  string biz_type = 4;
   string merchant_id = 5;
   google.protobuf.Timestamp start_time = 6;
   google.protobuf.Timestamp end_time = 7;
@@ -193,8 +193,9 @@ message SmsBizSendLogListResponse {
 message CreatedSmsBizSendLogRequest {
   int64 sms_template_id = 1 ;
   string params = 2;
-  int32 user_set = 3;
-  string remark = 4;
+  string biz_type = 3;
+  int32 user_set = 4;
+  string remark = 5;
 }
 
 ////////////////// sms send biz ///////////////////
