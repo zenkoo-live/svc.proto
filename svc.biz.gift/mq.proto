@@ -3,23 +3,24 @@ syntax = "proto3";
 package svc.biz.gift;
 
 import "google/protobuf/timestamp.proto";
+import "svc.biz.gift/gift.proto";
 
 option go_package="./svc.biz.gift;gift";
 
 message GiftSendTopicInfo {
     string uuid  = 1; // 送礼记录唯一ID
     string order_id = 2; // 送礼扣费订单ID
-    string gift_id = 3; // 礼物ID
-    string gift_name = 4; // 礼物名称 
-    string from_uid = 5; // 送礼人UID
-    string from_nickname = 6; // 送礼人昵称
-    string streamer_id = 7; // 主播ID
-    string room_id = 8; // 房间ID
-    string live_id = 9; // 直播ID
-    int32 num = 10; // 数量
-    int32 price = 11; // 礼物单价
-    int32 total_price = 12; // 礼物总价
-    int32 combo = 13; // 礼物combo
-    string group = 14; // 礼物combogroup
-    google.protobuf.Timestamp send_time = 15; // 赠送时间
+
+    GiftInfo gift = 11; // 礼物信息
+    int32 num = 12; // 数量
+    int32 total_price = 13; // 礼物总价
+
+    string from_uid = 21; // 送礼人UID
+    string from_nickname = 22; // 送礼人昵称
+    string streamer_id = 23; // 主播ID
+    string room_id = 24; // 房间ID
+    string live_id = 25; // 直播ID
+    int32 combo = 26; // 礼物combo
+    string group = 27; // 礼物combogroup
+    google.protobuf.Timestamp send_time = 28; // 赠送时间
 }

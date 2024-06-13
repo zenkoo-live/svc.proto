@@ -9598,16 +9598,14 @@ Service of instruction
 | ----- | ---- | ----- | ----------- |
 | uuid | [string](#string) |  | 送礼记录唯一ID |
 | order_id | [string](#string) |  | 送礼扣费订单ID |
-| gift_id | [string](#string) |  | 礼物ID |
-| gift_name | [string](#string) |  | 礼物名称 |
+| gift | [GiftInfo](#svc-biz-gift-GiftInfo) |  | 礼物信息 |
+| num | [int32](#int32) |  | 数量 |
+| total_price | [int32](#int32) |  | 礼物总价 |
 | from_uid | [string](#string) |  | 送礼人UID |
 | from_nickname | [string](#string) |  | 送礼人昵称 |
 | streamer_id | [string](#string) |  | 主播ID |
 | room_id | [string](#string) |  | 房间ID |
 | live_id | [string](#string) |  | 直播ID |
-| num | [int32](#int32) |  | 数量 |
-| price | [int32](#int32) |  | 礼物单价 |
-| total_price | [int32](#int32) |  | 礼物总价 |
 | combo | [int32](#int32) |  | 礼物combo |
 | group | [string](#string) |  | 礼物combogroup |
 | send_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 赠送时间 |
