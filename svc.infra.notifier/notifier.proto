@@ -64,16 +64,18 @@ message CreatedSmsChannelRequest {
 
 message UpdatedSmsChannelRequest {
   int64  id = 1;
-  string name = 2;
-  int64 scope = 3;
-  string  access_id = 4;
-  string  access_key = 5;
-  string endpoint = 6;
-  int32 status = 7;
+  string merchant_id = 2;
+  string name = 3;
+  int64 scope = 4;
+  string  access_id = 5;
+  string  access_key = 6;
+  string endpoint = 7;
+  int32 status = 8;
 }
 
 message DeletedSmsChannelRequest {
   int64  id = 1;
+  string merchant_id = 2;
 }
 
 ///////////////////// sms template ////////////////////
@@ -119,7 +121,7 @@ message SmsTemplateListResponse {
 
 message CreatedSmsTemplateRequest {
   string merchant_id = 1;
-  string channel_id = 2;
+  int64 channel_id = 2;
   string sign_name = 3;
   string code_key = 4;
   // 没有绑定，需要绑定外部发送
@@ -129,24 +131,26 @@ message CreatedSmsTemplateRequest {
   string params = 8;
   string content = 9;
   string remark = 10;
-  string is_system = 11;
+  bool is_system = 11;
   string creator = 12;
 }
 
 // UpdatedSmsTemplateRequest 绑定操作
 message UpdatedSmsTemplateRequest {
   int64 id = 1;
-  string channel_id = 2;
-  string external_code_key = 3;
-  string  remark = 4;
-  string template_name = 6;
-  string template_type = 7;
-  string params = 8;
-  string content = 9;
+  string merchant_id = 2;
+  int64 channel_id = 3;
+  string external_code_key = 4;
+  string  remark = 5;
+  string template_name = 7;
+  string template_type = 8;
+  string params = 9;
+  string content = 10;
 }
 
 message DeletedSmsTemplateRequest {
   int64 id = 1;
+  string merchant_id = 2;
 }
 
 ////////// biz sms send /////////////
@@ -280,7 +284,7 @@ service Notifier {
   // sms template
   rpc GetSmsTemplateList(SmsTemplateListRequest) returns (SmsTemplateListResponse);
   rpc CreatedSmsTemplate(CreatedSmsTemplateRequest) returns (CommonResponse);
-  rpc UpdateSmsTemplate(UpdatedSmsTemplateRequest) returns (CommonResponse);
+  rpc UpdatedSmsTemplate(UpdatedSmsTemplateRequest) returns (CommonResponse);
   rpc DeletedSmsTemplate(DeletedSmsTemplateRequest) returns (CommonResponse);
   // sms biz send
   rpc GetSmsBizLogList(SmsBizSendLogListRequest) returns (SmsBizSendLogListResponse);
