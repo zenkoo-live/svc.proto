@@ -545,6 +545,31 @@
   
     - [LinkInstruction](#svc-infra-center-LinkInstruction)
   
+- [svc.biz.vip/fanbase.proto](#svc-biz-vip_fanbase-proto)
+    - [CreateFanbaseReq](#svc-biz-vip-CreateFanbaseReq)
+    - [CreateFanbaseResp](#svc-biz-vip-CreateFanbaseResp)
+    - [FanbaseInfo](#svc-biz-vip-FanbaseInfo)
+    - [GetFanbaseByNameReq](#svc-biz-vip-GetFanbaseByNameReq)
+    - [GetFanbaseByStreamerIDResp](#svc-biz-vip-GetFanbaseByStreamerIDResp)
+    - [GetFanbaseResp](#svc-biz-vip-GetFanbaseResp)
+    - [UpdateFanbaseByStreamerIDReq](#svc-biz-vip-UpdateFanbaseByStreamerIDReq)
+  
+    - [Fanbase](#svc-biz-vip-Fanbase)
+  
+- [svc.biz.vip/fanbase_member.proto](#svc-biz-vip_fanbase_member-proto)
+    - [FanbaseMemberInfo](#svc-biz-vip-FanbaseMemberInfo)
+    - [GeFanbaseMemberByStreamerIDReq](#svc-biz-vip-GeFanbaseMemberByStreamerIDReq)
+    - [GetFanbaseMemberReq](#svc-biz-vip-GetFanbaseMemberReq)
+    - [GetFanbaseMemberResp](#svc-biz-vip-GetFanbaseMemberResp)
+    - [GetFanbaseMembertByMemberIDResp](#svc-biz-vip-GetFanbaseMembertByMemberIDResp)
+    - [GetListResp](#svc-biz-vip-GetListResp)
+    - [JoinFanbaseReq](#svc-biz-vip-JoinFanbaseReq)
+    - [LeaveFanbaseReq](#svc-biz-vip-LeaveFanbaseReq)
+  
+    - [FanbaseLevel](#svc-biz-vip-FanbaseLevel)
+  
+    - [FanbaseMember](#svc-biz-vip-FanbaseMember)
+  
 - [svc.web.streamer/streamer.proto](#svc-web-streamer_streamer-proto)
     - [Streamer](#svc-web-streamer-Streamer)
   
@@ -2434,7 +2459,7 @@ Channel
 | secret | [string](#string) |  | 密钥 |
 | gateway_url | [string](#string) |  | 网关地址 |
 | notify_url | [string](#string) |  | 通知地址 |
-| statue | [int64](#int64) |  | 状态 0/关 1/开启 |
+| status | [int64](#int64) |  | 状态 0/关 1/开启 |
 | creator | [string](#string) |  | 创建者 |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
 
@@ -2514,7 +2539,7 @@ CreatedChannelRequest
 | secret | [string](#string) |  | 密钥 |
 | gateway_url | [string](#string) |  | 网关地址 |
 | notify_url | [string](#string) |  | 通知地址 |
-| statue | [int64](#int64) |  | 状态 0/关 1/开启 |
+| status | [int64](#int64) |  | 状态 0/关 1/开启 |
 | creator | [string](#string) |  | 创建者 |
 
 
@@ -2695,6 +2720,7 @@ CreatedChannelTypeRequest 渠道支付类型
 | merchant_id | [string](#string) |  | 商户ID |
 | user_id | [string](#string) |  | 用户ID |
 | page | [uint32](#uint32) |  | 页数 |
+| size | [uint32](#uint32) |  | 每页数量 |
 
 
 
@@ -2728,7 +2754,7 @@ CreatedChannelTypeRequest 渠道支付类型
 | merchant_id | [string](#string) |  | 商户ID |
 | user_id | [string](#string) |  | 用户ID |
 | money | [uint64](#uint64) |  | 充值金额 |
-| type | [uint32](#uint32) |  | 充值方式 |
+| type_channel_id | [string](#string) |  | 通过获取充值方式列表中的Id UUID类型 |
 | app_id | [string](#string) |  | 充值的APPID |
 | remote_addr | [string](#string) |  | 请求IP |
 
@@ -2767,7 +2793,7 @@ UpdatedChannelRequest
 | secret | [string](#string) |  | 密钥 |
 | gateway_url | [string](#string) |  | 网关地址 |
 | notify_url | [string](#string) |  | 通知地址 |
-| statue | [int64](#int64) |  | 状态 0/关 1/开启 |
+| status | [int64](#int64) |  | 状态 0/关 1/开启 |
 
 
 
@@ -4370,7 +4396,7 @@ Room 房间
 | tracer_type | [StartTraceRequest.TracerType](#svc-infra-gateway-StartTraceRequest-TracerType) |  |  |
 | session_id | [string](#string) |  | 连接ID |
 | device | [string](#string) |  | 设备标识 |
-| account_id | [int64](#int64) |  | 账号ID |
+| account_id | [string](#string) |  | 账号ID |
 | remote_addr | [string](#string) |  | 远程地址 |
 | duration | [int64](#int64) |  | 持续时长 |
 
@@ -6046,8 +6072,8 @@ Room 房间
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| merchant_id | [int64](#int64) |  | 商户ID |
-| account_ids | [int64](#int64) | repeated | 账号ID（列表） |
+| merchant_id | [string](#string) |  | 商户ID |
+| account_ids | [string](#string) | repeated | 账号ID（列表） |
 
 
 
@@ -6077,7 +6103,7 @@ Room 房间
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| key | [int64](#int64) |  |  |
+| key | [string](#string) |  |  |
 | value | [bool](#bool) |  |  |
 
 
@@ -6093,7 +6119,7 @@ Room 房间
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| merchant_id | [int64](#int64) |  | 商户ID |
+| merchant_id | [string](#string) |  | 商户ID |
 | devices | [string](#string) | repeated | 设备标识（列表） |
 
 
@@ -6140,7 +6166,7 @@ Room 房间
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| merchant_id | [int64](#int64) |  | 商户ID |
+| merchant_id | [string](#string) |  | 商户ID |
 | session_ids | [string](#string) | repeated | 连接ID（列表） |
 
 
@@ -6202,8 +6228,8 @@ Room 房间
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| merchant_id | [int64](#int64) |  | 商户ID |
-| group_id | [int64](#int64) |  | 群组ID |
+| merchant_id | [string](#string) |  | 商户ID |
+| group_id | [string](#string) |  | 群组ID |
 
 
 
@@ -6248,8 +6274,8 @@ Room 房间
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| merchant_id | [int64](#int64) |  | 商户ID |
-| group_id | [int64](#int64) |  | 群组ID |
+| merchant_id | [string](#string) |  | 商户ID |
+| group_id | [string](#string) |  | 群组ID |
 | page | [int64](#int64) |  | 分页码 |
 | size | [int64](#int64) | optional | 数量 |
 
@@ -6306,7 +6332,7 @@ Room 房间
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| account_id | [int64](#int64) |  | 账号ID |
+| account_id | [string](#string) |  | 账号ID |
 
 
 
@@ -8459,6 +8485,7 @@ CommonResponse
 | ----- | ---- | ----- | ----------- |
 | sms_template_id | [int64](#int64) |  |  |
 | params | [string](#string) |  |  |
+| biz_type | [string](#string) |  |  |
 | user_set | [int32](#int32) |  |  |
 | remark | [string](#string) |  |  |
 
@@ -8580,7 +8607,7 @@ CreatedSmsSendRequest 发送短信请求
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | merchant_id | [string](#string) |  |  |
-| channel_id | [string](#string) |  |  |
+| channel_id | [int64](#int64) |  |  |
 | sign_name | [string](#string) |  |  |
 | code_key | [string](#string) |  |  |
 | external_code_key | [string](#string) |  | 没有绑定，需要绑定外部发送 |
@@ -8589,7 +8616,7 @@ CreatedSmsSendRequest 发送短信请求
 | params | [string](#string) |  |  |
 | content | [string](#string) |  |  |
 | remark | [string](#string) |  |  |
-| is_system | [string](#string) |  |  |
+| is_system | [bool](#bool) |  |  |
 | creator | [string](#string) |  |  |
 
 
@@ -8626,6 +8653,7 @@ CreatedSmsSendRequest 发送短信请求
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | id | [int64](#int64) |  |  |
+| merchant_id | [string](#string) |  |  |
 
 
 
@@ -8641,6 +8669,7 @@ CreatedSmsSendRequest 发送短信请求
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | id | [int64](#int64) |  |  |
+| merchant_id | [string](#string) |  |  |
 
 
 
@@ -8783,7 +8812,7 @@ biz sms send /////////////
 | page | [int64](#int64) |  |  |
 | size | [int64](#int64) |  |  |
 | template_id | [int64](#int64) |  |  |
-| biz_type | [int32](#int32) |  |  |
+| biz_type | [string](#string) |  |  |
 | merchant_id | [string](#string) |  |  |
 | start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
 | end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
@@ -8977,6 +9006,7 @@ biz sms send /////////////
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | id | [int64](#int64) |  |  |
+| merchant_id | [string](#string) |  |  |
 | name | [string](#string) |  |  |
 | scope | [int64](#int64) |  |  |
 | access_id | [string](#string) |  |  |
@@ -8998,7 +9028,8 @@ UpdatedSmsTemplateRequest 绑定操作
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | id | [int64](#int64) |  |  |
-| channel_id | [string](#string) |  |  |
+| merchant_id | [string](#string) |  |  |
+| channel_id | [int64](#int64) |  |  |
 | external_code_key | [string](#string) |  |  |
 | remark | [string](#string) |  |  |
 | template_name | [string](#string) |  |  |
@@ -9031,7 +9062,7 @@ service started /////////////////
 | DeletedSmsChannel | [DeletedSmsChannelRequest](#svc-infra-notifier-DeletedSmsChannelRequest) | [CommonResponse](#svc-infra-notifier-CommonResponse) |  |
 | GetSmsTemplateList | [SmsTemplateListRequest](#svc-infra-notifier-SmsTemplateListRequest) | [SmsTemplateListResponse](#svc-infra-notifier-SmsTemplateListResponse) | sms template |
 | CreatedSmsTemplate | [CreatedSmsTemplateRequest](#svc-infra-notifier-CreatedSmsTemplateRequest) | [CommonResponse](#svc-infra-notifier-CommonResponse) |  |
-| UpdateSmsTemplate | [UpdatedSmsTemplateRequest](#svc-infra-notifier-UpdatedSmsTemplateRequest) | [CommonResponse](#svc-infra-notifier-CommonResponse) |  |
+| UpdatedSmsTemplate | [UpdatedSmsTemplateRequest](#svc-infra-notifier-UpdatedSmsTemplateRequest) | [CommonResponse](#svc-infra-notifier-CommonResponse) |  |
 | DeletedSmsTemplate | [DeletedSmsTemplateRequest](#svc-infra-notifier-DeletedSmsTemplateRequest) | [CommonResponse](#svc-infra-notifier-CommonResponse) |  |
 | GetSmsBizLogList | [SmsBizSendLogListRequest](#svc-infra-notifier-SmsBizSendLogListRequest) | [SmsBizSendLogListResponse](#svc-infra-notifier-SmsBizSendLogListResponse) | sms biz send |
 | CreatedSmsBizLog | [CreatedSmsBizSendLogRequest](#svc-infra-notifier-CreatedSmsBizSendLogRequest) | [CommonResponse](#svc-infra-notifier-CommonResponse) |  |
@@ -9120,7 +9151,7 @@ service started /////////////////
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| account_id | [int64](#int64) |  | 账号ID |
+| account_id | [string](#string) |  | 账号ID |
 | platform | [string](#string) |  | 平台 |
 | version | [string](#string) |  | 客户端版本 |
 | device | [string](#string) |  | 设备标识（指纹） |
@@ -9240,9 +9271,9 @@ Services of gateway
 | type | [int32](#int32) |  | 消息类型 |
 | priority | [int32](#int32) |  | 消息优先级 |
 | payload | [string](#string) |  | 消息内容 |
-| to_account | [int64](#int64) |  | 接收账号 |
-| to_group | [int64](#int64) |  | 接收群组（可留空）（如不为空，标识只发给该群组下的对应账号） |
-| from | [int64](#int64) |  | 发送者 |
+| to_account | [string](#string) |  | 接收账号 |
+| to_group | [string](#string) |  | 接收群组（可留空）（如不为空，标识只发给该群组下的对应账号） |
+| from | [string](#string) |  | 发送者 |
 
 
 
@@ -9277,7 +9308,7 @@ Services of gateway
 | priority | [int32](#int32) |  | 消息优先级 |
 | payload | [string](#string) |  | 消息内容 |
 | to_device | [string](#string) |  | 接收设备 |
-| from | [int64](#int64) |  | 发送者 |
+| from | [string](#string) |  | 发送者 |
 
 
 
@@ -9311,8 +9342,8 @@ Services of gateway
 | type | [int32](#int32) |  | 消息类型 |
 | priority | [int32](#int32) |  | 消息优先级 |
 | payload | [string](#string) |  | 消息内容 |
-| to_group | [int64](#int64) |  | 组别（大于0：所有在组中的连接、0：所有连接、小于0：所有不在组中的连接） |
-| from | [int64](#int64) |  | 发送者（账号ID） |
+| to_group | [string](#string) |  | 组别（大于0：所有在组中的连接、0：所有连接、小于0：所有不在组中的连接） |
+| from | [string](#string) |  | 发送者（账号ID） |
 
 
 
@@ -9346,8 +9377,8 @@ Services of gateway
 | type | [int32](#int32) |  | 消息类型 |
 | priority | [int32](#int32) |  | 消息优先级 |
 | payload | [string](#string) |  | 消息内容 |
-| to_group | [int64](#int64) |  | 接收群组 |
-| from | [int64](#int64) |  | 发送者 |
+| to_group | [string](#string) |  | 接收群组 |
+| from | [string](#string) |  | 发送者 |
 
 
 
@@ -9382,7 +9413,7 @@ Services of gateway
 | priority | [int32](#int32) |  |  |
 | payload | [string](#string) |  |  |
 | to_session | [string](#string) |  |  |
-| from | [int64](#int64) |  |  |
+| from | [string](#string) |  |  |
 
 
 
@@ -9443,8 +9474,8 @@ Service of message
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| account_id | [int64](#int64) |  | 账号ID |
-| group_id | [int64](#int64) |  | 群组ID（可留空） |
+| account_id | [string](#string) |  | 账号ID |
+| group_id | [string](#string) |  | 群组ID（可留空） |
 
 
 
@@ -9542,6 +9573,327 @@ Service of instruction
 | RemoveSession | [RemoveSessionRequest](#svc-infra-center-RemoveSessionRequest) | [RemoveSessionResponse](#svc-infra-center-RemoveSessionResponse) | 移除（踢）连接 |
 | RemoveAccount | [RemoveAccountRequest](#svc-infra-center-RemoveAccountRequest) | [RemoveAccountResponse](#svc-infra-center-RemoveAccountResponse) | 移除（踢）账号 |
 | RemoveDevice | [RemoveDeviceRequest](#svc-infra-center-RemoveDeviceRequest) | [RemoveDeviceResponse](#svc-infra-center-RemoveDeviceResponse) | 移除（踢）设备 |
+
+ 
+
+
+
+<a name="svc-biz-vip_fanbase-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.biz.vip/fanbase.proto
+
+
+
+<a name="svc-biz-vip-CreateFanbaseReq"></a>
+
+### CreateFanbaseReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| fanbase | [FanbaseInfo](#svc-biz-vip-FanbaseInfo) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-CreateFanbaseResp"></a>
+
+### CreateFanbaseResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| fanbase | [FanbaseInfo](#svc-biz-vip-FanbaseInfo) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-FanbaseInfo"></a>
+
+### FanbaseInfo
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| fanbase_id | [string](#string) |  |  |
+| streamer_id | [string](#string) |  |  |
+| name | [string](#string) |  |  |
+| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+| updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 更新时间 |
+
+
+
+
+
+
+<a name="svc-biz-vip-GetFanbaseByNameReq"></a>
+
+### GetFanbaseByNameReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-GetFanbaseByStreamerIDResp"></a>
+
+### GetFanbaseByStreamerIDResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer_id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-GetFanbaseResp"></a>
+
+### GetFanbaseResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| fanbase | [FanbaseInfo](#svc-biz-vip-FanbaseInfo) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-UpdateFanbaseByStreamerIDReq"></a>
+
+### UpdateFanbaseByStreamerIDReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer_id | [string](#string) |  |  |
+| fanbase | [FanbaseInfo](#svc-biz-vip-FanbaseInfo) |  |  |
+| update_mask | [google.protobuf.FieldMask](#google-protobuf-FieldMask) |  |  |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="svc-biz-vip-Fanbase"></a>
+
+### Fanbase
+粉丝团
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| CreateFanbase | [CreateFanbaseReq](#svc-biz-vip-CreateFanbaseReq) | [CreateFanbaseResp](#svc-biz-vip-CreateFanbaseResp) | CreateFanbase 创建粉丝团 |
+| GetFanbaseByStreamerID | [GetFanbaseByStreamerIDResp](#svc-biz-vip-GetFanbaseByStreamerIDResp) | [GetFanbaseResp](#svc-biz-vip-GetFanbaseResp) | GetFanbaseByStreamerID 获取粉丝团 |
+| GetFanbaseByName | [GetFanbaseByNameReq](#svc-biz-vip-GetFanbaseByNameReq) | [GetFanbaseResp](#svc-biz-vip-GetFanbaseResp) | GetFanbaseByName 通过名称获取粉丝团 |
+| UpdateFanbaseByStreamerID | [UpdateFanbaseByStreamerIDReq](#svc-biz-vip-UpdateFanbaseByStreamerIDReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | UpdateFanbaseByStreamerID 更新粉丝团 |
+
+ 
+
+
+
+<a name="svc-biz-vip_fanbase_member-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.biz.vip/fanbase_member.proto
+
+
+
+<a name="svc-biz-vip-FanbaseMemberInfo"></a>
+
+### FanbaseMemberInfo
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| fanbase_id | [string](#string) |  |  |
+| streamer_id | [string](#string) |  |  |
+| member_id | [string](#string) |  |  |
+| level | [FanbaseLevel](#svc-biz-vip-FanbaseLevel) |  |  |
+| join_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 加入时间 |
+| expire_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 过期时间 |
+| score | [int32](#int32) |  |  |
+| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+| updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 更新时间 |
+
+
+
+
+
+
+<a name="svc-biz-vip-GeFanbaseMemberByStreamerIDReq"></a>
+
+### GeFanbaseMemberByStreamerIDReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| page | [int32](#int32) |  | 页数 |
+| limit | [int32](#int32) |  | 条数 |
+| streamer_id | [string](#string) |  | 主播id |
+
+
+
+
+
+
+<a name="svc-biz-vip-GetFanbaseMemberReq"></a>
+
+### GetFanbaseMemberReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer_id | [string](#string) |  |  |
+| member_id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-GetFanbaseMemberResp"></a>
+
+### GetFanbaseMemberResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| fanbase_member | [FanbaseMemberInfo](#svc-biz-vip-FanbaseMemberInfo) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-GetFanbaseMembertByMemberIDResp"></a>
+
+### GetFanbaseMembertByMemberIDResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| page | [int32](#int32) |  | 页数 |
+| limit | [int32](#int32) |  | 条数 |
+| member_id | [string](#string) |  | 成员id |
+
+
+
+
+
+
+<a name="svc-biz-vip-GetListResp"></a>
+
+### GetListResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [FanbaseMemberInfo](#svc-biz-vip-FanbaseMemberInfo) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-JoinFanbaseReq"></a>
+
+### JoinFanbaseReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer_id | [string](#string) |  |  |
+| member_id | [string](#string) |  |  |
+| level | [FanbaseLevel](#svc-biz-vip-FanbaseLevel) |  |  |
+| expire_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 过期时间 |
+
+
+
+
+
+
+<a name="svc-biz-vip-LeaveFanbaseReq"></a>
+
+### LeaveFanbaseReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer_id | [string](#string) |  |  |
+| member_id | [string](#string) |  |  |
+
+
+
+
+
+ 
+
+
+<a name="svc-biz-vip-FanbaseLevel"></a>
+
+### FanbaseLevel
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| FanbaseLevelUnknown | 0 | 未知 |
+| FanbaseLevelPrimary | 1 | 初级 |
+| FanbaseLevelSuper | 2 | 超级 |
+| FanbaseLevelExtreme | 3 | 至尊 |
+
+
+ 
+
+ 
+
+
+<a name="svc-biz-vip-FanbaseMember"></a>
+
+### FanbaseMember
+粉丝团
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| JoinFanbase | [JoinFanbaseReq](#svc-biz-vip-JoinFanbaseReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | JoinFanbase 加入粉丝团 |
+| LeaveFanbase | [LeaveFanbaseReq](#svc-biz-vip-LeaveFanbaseReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | LeaveFanbase 离开粉丝团 |
+| GetFanbaseMember | [GetFanbaseMemberReq](#svc-biz-vip-GetFanbaseMemberReq) | [GetFanbaseMemberResp](#svc-biz-vip-GetFanbaseMemberResp) | GetFanbaseMember 获取粉丝团成员信息 |
+| GeFanbaseMemberByStreamerID | [GeFanbaseMemberByStreamerIDReq](#svc-biz-vip-GeFanbaseMemberByStreamerIDReq) | [GetListResp](#svc-biz-vip-GetListResp) | GeFanbaseMemberByStreamerID 获取主播粉丝团成员列表 |
+| GetFanbaseMembertByMemberID | [GetFanbaseMembertByMemberIDResp](#svc-biz-vip-GetFanbaseMembertByMemberIDResp) | [GetListResp](#svc-biz-vip-GetListResp) | GetFanbaseMembertByMemberID 获取用户加入的粉丝团列表 |
 
  
 

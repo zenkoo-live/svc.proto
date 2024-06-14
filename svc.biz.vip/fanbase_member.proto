@@ -1,0 +1,77 @@
+syntax = "proto3";
+
+package svc.biz.vip;
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+option go_package="./svc.biz.vip;vip";
+
+enum FanbaseLevel {
+    FanbaseLevelUnknown = 0; // 未知
+    FanbaseLevelPrimary = 1; // 初级
+    FanbaseLevelSuper = 2; // 超级
+    FanbaseLevelExtreme = 3; // 至尊
+}
+
+// 粉丝团
+service FanbaseMember {
+    // JoinFanbase 加入粉丝团
+    rpc JoinFanbase (JoinFanbaseReq) returns (google.protobuf.Empty) {}
+    // LeaveFanbase 离开粉丝团
+    rpc LeaveFanbase (LeaveFanbaseReq) returns (google.protobuf.Empty) {}
+    // GetFanbaseMember 获取粉丝团成员信息
+    rpc GetFanbaseMember (GetFanbaseMemberReq) returns (GetFanbaseMemberResp) {}
+
+    // GeFanbaseMemberByStreamerID 获取主播粉丝团成员列表
+    rpc GeFanbaseMemberByStreamerID (GeFanbaseMemberByStreamerIDReq) returns (GetListResp) {}
+    // GetFanbaseMembertByMemberID 获取用户加入的粉丝团列表
+    rpc GetFanbaseMembertByMemberID (GetFanbaseMembertByMemberIDResp) returns (GetListResp) {}
+}
+
+message JoinFanbaseReq {
+    string streamer_id = 1;
+    string member_id = 2;
+    FanbaseLevel level = 3;
+    google.protobuf.Timestamp expire_time = 4; // 过期时间
+}
+
+message LeaveFanbaseReq {
+    string streamer_id = 1;
+    string member_id = 2;
+}
+
+message GetFanbaseMemberReq {
+    string streamer_id = 1;
+    string member_id = 2;
+}
+message GetFanbaseMemberResp {
+    FanbaseMemberInfo fanbase_member = 1;
+}
+
+message FanbaseMemberInfo {
+    string fanbase_id = 1;
+    string streamer_id = 2;
+    string member_id = 3;
+    FanbaseLevel level = 4;
+    google.protobuf.Timestamp join_time = 5; // 加入时间
+    google.protobuf.Timestamp expire_time = 6; // 过期时间
+    int32 score = 7;
+
+    google.protobuf.Timestamp created_at = 101; // 创建时间
+    google.protobuf.Timestamp updated_at = 102; // 更新时间
+}
+
+message GeFanbaseMemberByStreamerIDReq {
+    int32 page = 1; // 页数
+    int32 limit = 2; // 条数
+    string streamer_id = 3; // 主播id
+}
+message GetFanbaseMembertByMemberIDResp {
+    int32 page = 1; // 页数
+    int32 limit = 2; // 条数
+    string member_id = 3; // 成员id
+}
+message GetListResp {
+    repeated FanbaseMemberInfo items = 1;
+} 
