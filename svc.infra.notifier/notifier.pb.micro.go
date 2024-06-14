@@ -5,7 +5,7 @@ package notifier
 
 import (
 	fmt "fmt"
-	proto "google.golang.org/protobuf/proto"
+	proto "github.com/golang/protobuf/proto"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	_ "google.golang.org/protobuf/types/known/timestamppb"
 	math "math"
@@ -13,15 +13,21 @@ import (
 
 import (
 	context "context"
-	api "go-micro.dev/v4/api"
-	client "go-micro.dev/v4/client"
-	server "go-micro.dev/v4/server"
+	api "xinhari.com/xinhari/api"
+	client "xinhari.com/xinhari/client"
+	server "xinhari.com/xinhari/server"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
 var _ = fmt.Errorf
 var _ = math.Inf
+
+// This is a compile-time assertion to ensure that this generated file
+// is compatible with the proto package it is being compiled against.
+// A compilation error at this line likely means your copy of the
+// proto package needs to be updated.
+const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ api.Endpoint
@@ -59,6 +65,8 @@ type NotifierService interface {
 	CreatedSmsCodeBind(ctx context.Context, in *CreatedSmsCodeBindRequest, opts ...client.CallOption) (*CommonResponse, error)
 	// 获取签名列表
 	GetCloudSmsSign(ctx context.Context, in *GetCloudSmsSignRequest, opts ...client.CallOption) (*GetCloudSmsSignResponse, error)
+	// merchant created channel need init template
+	CreatedMerchantInitTemplate(ctx context.Context, in *CreatedMerchantInitTemplateRequest, opts ...client.CallOption) (*CommonResponse, error)
 }
 
 type notifierService struct {
@@ -233,6 +241,16 @@ func (c *notifierService) GetCloudSmsSign(ctx context.Context, in *GetCloudSmsSi
 	return out, nil
 }
 
+func (c *notifierService) CreatedMerchantInitTemplate(ctx context.Context, in *CreatedMerchantInitTemplateRequest, opts ...client.CallOption) (*CommonResponse, error) {
+	req := c.c.NewRequest(c.name, "Notifier.CreatedMerchantInitTemplate", in)
+	out := new(CommonResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for Notifier service
 
 type NotifierHandler interface {
@@ -257,6 +275,8 @@ type NotifierHandler interface {
 	CreatedSmsCodeBind(context.Context, *CreatedSmsCodeBindRequest, *CommonResponse) error
 	// 获取签名列表
 	GetCloudSmsSign(context.Context, *GetCloudSmsSignRequest, *GetCloudSmsSignResponse) error
+	// merchant created channel need init template
+	CreatedMerchantInitTemplate(context.Context, *CreatedMerchantInitTemplateRequest, *CommonResponse) error
 }
 
 func RegisterNotifierHandler(s server.Server, hdlr NotifierHandler, opts ...server.HandlerOption) error {
@@ -277,6 +297,7 @@ func RegisterNotifierHandler(s server.Server, hdlr NotifierHandler, opts ...serv
 		GetCloudSmsTemplate(ctx context.Context, in *GetCloudSmsTemplateRequest, out *GetCloudSmsTemplateResponse) error
 		CreatedSmsCodeBind(ctx context.Context, in *CreatedSmsCodeBindRequest, out *CommonResponse) error
 		GetCloudSmsSign(ctx context.Context, in *GetCloudSmsSignRequest, out *GetCloudSmsSignResponse) error
+		CreatedMerchantInitTemplate(ctx context.Context, in *CreatedMerchantInitTemplateRequest, out *CommonResponse) error
 	}
 	type Notifier struct {
 		notifier
@@ -351,4 +372,8 @@ func (h *notifierHandler) CreatedSmsCodeBind(ctx context.Context, in *CreatedSms
 
 func (h *notifierHandler) GetCloudSmsSign(ctx context.Context, in *GetCloudSmsSignRequest, out *GetCloudSmsSignResponse) error {
 	return h.NotifierHandler.GetCloudSmsSign(ctx, in, out)
+}
+
+func (h *notifierHandler) CreatedMerchantInitTemplate(ctx context.Context, in *CreatedMerchantInitTemplateRequest, out *CommonResponse) error {
+	return h.NotifierHandler.CreatedMerchantInitTemplate(ctx, in, out)
 }
