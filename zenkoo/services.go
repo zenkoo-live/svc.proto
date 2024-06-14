@@ -15,6 +15,7 @@ import (
 	svcBizRelation "github.com/zenkoo-live/svc.proto/svc.biz.relation"
 	svcBizRoom "github.com/zenkoo-live/svc.proto/svc.biz.room"
 	svcBizTrade "github.com/zenkoo-live/svc.proto/svc.biz.trade"
+	svcBizVip "github.com/zenkoo-live/svc.proto/svc.biz.vip"
 	svcInfraCenter "github.com/zenkoo-live/svc.proto/svc.infra.center"
 	svcInfraGateway "github.com/zenkoo-live/svc.proto/svc.infra.gateway"
 	svcInfraNotifier "github.com/zenkoo-live/svc.proto/svc.infra.notifier"
@@ -48,6 +49,7 @@ const (
 	SvcWebStreamer   = "svc.web.streamer"
 	SvcBizTrade      = "svc.biz.trade"
 	SvcWebViewer     = "svc.web.viewer"
+	SvcBizVip        = "svc.biz.vip"
 )
 
 var (
@@ -76,4 +78,6 @@ var (
 	SvcWebStreamerStreamer    = svcWebStreamer.NewStreamerService(AppName+"::"+SvcWebStreamer+runtime.AppendEnv(), clt)
 	SvcBizTradeTrade          = svcBizTrade.NewTradeService(AppName+"::"+SvcBizTrade+runtime.AppendEnv(), clt)
 	SvcWebViewerViewer        = svcWebViewer.NewViewerService(AppName+"::"+SvcWebViewer+runtime.AppendEnv(), clt)
+	SvcBizVipFanbase          = svcBizVip.NewFanbaseService(AppName+"::"+SvcBizVip+runtime.AppendEnv(), clt)
+	SvcBizVipFanbase_member   = svcBizVip.NewFanbaseMemberService(AppName+"::"+SvcBizVip+runtime.AppendEnv(), clt)
 )

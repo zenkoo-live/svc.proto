@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+package svc.biz.vip;
+
+import "google/protobuf/field_mask.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+option go_package="./svc.biz.vip;vip";
+
+// 粉丝团
+service Fanbase {
+    // CreateFanbase 创建粉丝团
+    rpc CreateFanbase (CreateFanbaseReq) returns (CreateFanbaseResp) {}
+    // GetFanbaseByStreamerID 获取粉丝团
+    rpc GetFanbaseByStreamerID(GetFanbaseByStreamerIDResp) returns (GetFanbaseResp) {}
+    // GetFanbaseByName 通过名称获取粉丝团
+    rpc GetFanbaseByName(GetFanbaseByNameReq) returns (GetFanbaseResp) {}
+    // UpdateFanbaseByStreamerID 更新粉丝团
+    rpc UpdateFanbaseByStreamerID (UpdateFanbaseByStreamerIDReq) returns (google.protobuf.Empty) {}
+}
+
+message FanbaseInfo {
+    string fanbase_id = 1;
+    string streamer_id = 2;
+    string name = 3;
+
+    google.protobuf.Timestamp created_at = 101; // 创建时间
+    google.protobuf.Timestamp updated_at = 102; // 更新时间
+}
+
+message CreateFanbaseReq {
+    FanbaseInfo fanbase = 1;
+}
+message CreateFanbaseResp {
+    FanbaseInfo fanbase = 1;
+}
+
+message GetFanbaseByStreamerIDResp {
+    string streamer_id = 1;
+}
+message GetFanbaseByNameReq {
+    string name = 1;
+}
+message GetFanbaseResp {
+    FanbaseInfo fanbase = 1;
+}
+
+message UpdateFanbaseByStreamerIDReq {
+    string streamer_id = 1;
+    FanbaseInfo fanbase = 2;
+    google.protobuf.FieldMask update_mask = 3;
+}

@@ -545,6 +545,31 @@
   
     - [LinkInstruction](#svc-infra-center-LinkInstruction)
   
+- [svc.biz.vip/fanbase.proto](#svc-biz-vip_fanbase-proto)
+    - [CreateFanbaseReq](#svc-biz-vip-CreateFanbaseReq)
+    - [CreateFanbaseResp](#svc-biz-vip-CreateFanbaseResp)
+    - [FanbaseInfo](#svc-biz-vip-FanbaseInfo)
+    - [GetFanbaseByNameReq](#svc-biz-vip-GetFanbaseByNameReq)
+    - [GetFanbaseByStreamerIDResp](#svc-biz-vip-GetFanbaseByStreamerIDResp)
+    - [GetFanbaseResp](#svc-biz-vip-GetFanbaseResp)
+    - [UpdateFanbaseByStreamerIDReq](#svc-biz-vip-UpdateFanbaseByStreamerIDReq)
+  
+    - [Fanbase](#svc-biz-vip-Fanbase)
+  
+- [svc.biz.vip/fanbase_member.proto](#svc-biz-vip_fanbase_member-proto)
+    - [FanbaseMemberInfo](#svc-biz-vip-FanbaseMemberInfo)
+    - [GeFanbaseMemberByStreamerIDReq](#svc-biz-vip-GeFanbaseMemberByStreamerIDReq)
+    - [GetFanbaseMemberReq](#svc-biz-vip-GetFanbaseMemberReq)
+    - [GetFanbaseMemberResp](#svc-biz-vip-GetFanbaseMemberResp)
+    - [GetFanbaseMembertByMemberIDResp](#svc-biz-vip-GetFanbaseMembertByMemberIDResp)
+    - [GetListResp](#svc-biz-vip-GetListResp)
+    - [JoinFanbaseReq](#svc-biz-vip-JoinFanbaseReq)
+    - [LeaveFanbaseReq](#svc-biz-vip-LeaveFanbaseReq)
+  
+    - [FanbaseLevel](#svc-biz-vip-FanbaseLevel)
+  
+    - [FanbaseMember](#svc-biz-vip-FanbaseMember)
+  
 - [svc.web.streamer/streamer.proto](#svc-web-streamer_streamer-proto)
     - [Streamer](#svc-web-streamer-Streamer)
   
@@ -9551,6 +9576,327 @@ Service of instruction
 | RemoveSession | [RemoveSessionRequest](#svc-infra-center-RemoveSessionRequest) | [RemoveSessionResponse](#svc-infra-center-RemoveSessionResponse) | 移除（踢）连接 |
 | RemoveAccount | [RemoveAccountRequest](#svc-infra-center-RemoveAccountRequest) | [RemoveAccountResponse](#svc-infra-center-RemoveAccountResponse) | 移除（踢）账号 |
 | RemoveDevice | [RemoveDeviceRequest](#svc-infra-center-RemoveDeviceRequest) | [RemoveDeviceResponse](#svc-infra-center-RemoveDeviceResponse) | 移除（踢）设备 |
+
+ 
+
+
+
+<a name="svc-biz-vip_fanbase-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.biz.vip/fanbase.proto
+
+
+
+<a name="svc-biz-vip-CreateFanbaseReq"></a>
+
+### CreateFanbaseReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| fanbase | [FanbaseInfo](#svc-biz-vip-FanbaseInfo) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-CreateFanbaseResp"></a>
+
+### CreateFanbaseResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| fanbase | [FanbaseInfo](#svc-biz-vip-FanbaseInfo) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-FanbaseInfo"></a>
+
+### FanbaseInfo
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| fanbase_id | [string](#string) |  |  |
+| streamer_id | [string](#string) |  |  |
+| name | [string](#string) |  |  |
+| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+| updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 更新时间 |
+
+
+
+
+
+
+<a name="svc-biz-vip-GetFanbaseByNameReq"></a>
+
+### GetFanbaseByNameReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-GetFanbaseByStreamerIDResp"></a>
+
+### GetFanbaseByStreamerIDResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer_id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-GetFanbaseResp"></a>
+
+### GetFanbaseResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| fanbase | [FanbaseInfo](#svc-biz-vip-FanbaseInfo) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-UpdateFanbaseByStreamerIDReq"></a>
+
+### UpdateFanbaseByStreamerIDReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer_id | [string](#string) |  |  |
+| fanbase | [FanbaseInfo](#svc-biz-vip-FanbaseInfo) |  |  |
+| update_mask | [google.protobuf.FieldMask](#google-protobuf-FieldMask) |  |  |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="svc-biz-vip-Fanbase"></a>
+
+### Fanbase
+粉丝团
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| CreateFanbase | [CreateFanbaseReq](#svc-biz-vip-CreateFanbaseReq) | [CreateFanbaseResp](#svc-biz-vip-CreateFanbaseResp) | CreateFanbase 创建粉丝团 |
+| GetFanbaseByStreamerID | [GetFanbaseByStreamerIDResp](#svc-biz-vip-GetFanbaseByStreamerIDResp) | [GetFanbaseResp](#svc-biz-vip-GetFanbaseResp) | GetFanbaseByStreamerID 获取粉丝团 |
+| GetFanbaseByName | [GetFanbaseByNameReq](#svc-biz-vip-GetFanbaseByNameReq) | [GetFanbaseResp](#svc-biz-vip-GetFanbaseResp) | GetFanbaseByName 通过名称获取粉丝团 |
+| UpdateFanbaseByStreamerID | [UpdateFanbaseByStreamerIDReq](#svc-biz-vip-UpdateFanbaseByStreamerIDReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | UpdateFanbaseByStreamerID 更新粉丝团 |
+
+ 
+
+
+
+<a name="svc-biz-vip_fanbase_member-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.biz.vip/fanbase_member.proto
+
+
+
+<a name="svc-biz-vip-FanbaseMemberInfo"></a>
+
+### FanbaseMemberInfo
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| fanbase_id | [string](#string) |  |  |
+| streamer_id | [string](#string) |  |  |
+| member_id | [string](#string) |  |  |
+| level | [FanbaseLevel](#svc-biz-vip-FanbaseLevel) |  |  |
+| join_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 加入时间 |
+| expire_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 过期时间 |
+| score | [int32](#int32) |  |  |
+| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+| updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 更新时间 |
+
+
+
+
+
+
+<a name="svc-biz-vip-GeFanbaseMemberByStreamerIDReq"></a>
+
+### GeFanbaseMemberByStreamerIDReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| page | [int32](#int32) |  | 页数 |
+| limit | [int32](#int32) |  | 条数 |
+| streamer_id | [string](#string) |  | 主播id |
+
+
+
+
+
+
+<a name="svc-biz-vip-GetFanbaseMemberReq"></a>
+
+### GetFanbaseMemberReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer_id | [string](#string) |  |  |
+| member_id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-GetFanbaseMemberResp"></a>
+
+### GetFanbaseMemberResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| fanbase_member | [FanbaseMemberInfo](#svc-biz-vip-FanbaseMemberInfo) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-GetFanbaseMembertByMemberIDResp"></a>
+
+### GetFanbaseMembertByMemberIDResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| page | [int32](#int32) |  | 页数 |
+| limit | [int32](#int32) |  | 条数 |
+| member_id | [string](#string) |  | 成员id |
+
+
+
+
+
+
+<a name="svc-biz-vip-GetListResp"></a>
+
+### GetListResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [FanbaseMemberInfo](#svc-biz-vip-FanbaseMemberInfo) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-JoinFanbaseReq"></a>
+
+### JoinFanbaseReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer_id | [string](#string) |  |  |
+| member_id | [string](#string) |  |  |
+| level | [FanbaseLevel](#svc-biz-vip-FanbaseLevel) |  |  |
+| expire_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 过期时间 |
+
+
+
+
+
+
+<a name="svc-biz-vip-LeaveFanbaseReq"></a>
+
+### LeaveFanbaseReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer_id | [string](#string) |  |  |
+| member_id | [string](#string) |  |  |
+
+
+
+
+
+ 
+
+
+<a name="svc-biz-vip-FanbaseLevel"></a>
+
+### FanbaseLevel
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| FanbaseLevelUnknown | 0 | 未知 |
+| FanbaseLevelPrimary | 1 | 初级 |
+| FanbaseLevelSuper | 2 | 超级 |
+| FanbaseLevelExtreme | 3 | 至尊 |
+
+
+ 
+
+ 
+
+
+<a name="svc-biz-vip-FanbaseMember"></a>
+
+### FanbaseMember
+粉丝团
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| JoinFanbase | [JoinFanbaseReq](#svc-biz-vip-JoinFanbaseReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | JoinFanbase 加入粉丝团 |
+| LeaveFanbase | [LeaveFanbaseReq](#svc-biz-vip-LeaveFanbaseReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | LeaveFanbase 离开粉丝团 |
+| GetFanbaseMember | [GetFanbaseMemberReq](#svc-biz-vip-GetFanbaseMemberReq) | [GetFanbaseMemberResp](#svc-biz-vip-GetFanbaseMemberResp) | GetFanbaseMember 获取粉丝团成员信息 |
+| GeFanbaseMemberByStreamerID | [GeFanbaseMemberByStreamerIDReq](#svc-biz-vip-GeFanbaseMemberByStreamerIDReq) | [GetListResp](#svc-biz-vip-GetListResp) | GeFanbaseMemberByStreamerID 获取主播粉丝团成员列表 |
+| GetFanbaseMembertByMemberID | [GetFanbaseMembertByMemberIDResp](#svc-biz-vip-GetFanbaseMembertByMemberIDResp) | [GetListResp](#svc-biz-vip-GetListResp) | GetFanbaseMembertByMemberID 获取用户加入的粉丝团列表 |
 
  
 
