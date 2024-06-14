@@ -168,6 +168,10 @@
   
     - [Log](#svc-biz-log-Log)
   
+- [svc.biz.room/mq.proto](#svc-biz-room_mq-proto)
+    - [RoomStartLiveTopicInfo](#svc-biz-room-RoomStartLiveTopicInfo)
+    - [RoomStopLiveTopicInfo](#svc-biz-room-RoomStopLiveTopicInfo)
+  
 - [svc.biz.room/category.proto](#svc-biz-room_category-proto)
     - [CategoryInfo](#svc-biz-room-CategoryInfo)
     - [CreateCategoryReq](#svc-biz-room-CreateCategoryReq)
@@ -3197,6 +3201,54 @@ LogInfo 日志详情
 | ----------- | ------------ | ------------- | ------------|
 | AddLog | [AddLogReq](#svc-biz-log-AddLogReq) | [AddLogResp](#svc-biz-log-AddLogResp) | AddLog 记录日志 |
 | MGetLastLog | [MGetLastLogReq](#svc-biz-log-MGetLastLogReq) | [MGetLastLogResp](#svc-biz-log-MGetLastLogResp) | MGetLastLog 批量获取最近一次操作 |
+
+ 
+
+
+
+<a name="svc-biz-room_mq-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.biz.room/mq.proto
+
+
+
+<a name="svc-biz-room-RoomStartLiveTopicInfo"></a>
+
+### RoomStartLiveTopicInfo
+topic: topic.room.start_live
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| room | [RoomInfo](#svc-biz-room-RoomInfo) |  |  |
+| start_live_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开播时间 |
+
+
+
+
+
+
+<a name="svc-biz-room-RoomStopLiveTopicInfo"></a>
+
+### RoomStopLiveTopicInfo
+topic: topic.room.stop_live
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| room | [RoomInfo](#svc-biz-room-RoomInfo) |  |  |
+| start_stop_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开播时间 |
+
+
+
+
+
+ 
+
+ 
+
+ 
 
  
 
