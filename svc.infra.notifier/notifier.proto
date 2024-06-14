@@ -1,14 +1,300 @@
 syntax = "proto3";
 
 package svc.infra.notifier;
-option go_package="./svc.infra.notifier;notifier";
+option go_package = "./svc.infra.notifier;notifier";
 
 import "google/protobuf/empty.proto";
-
-service Notifier {
-    rpc InitDB(google.protobuf.Empty) returns (InitDBResp); // 初始化数据库
-}
+import "google/protobuf/timestamp.proto";
 
 message InitDBResp {
-    bool result = 1;
+  bool result = 1;
+}
+
+//////////////////////////// channel ///////////////////////////
+
+// CommonResponse
+message CommonResponse {
+  int64 code = 1; // code
+  string message = 2; // message
+  oneof id {
+    string uuid = 3; // ID
+    int64 lid = 4;
+  }
+}
+
+message SmsChannelListRequest {
+  int64 page = 1;
+  int64 size = 2;
+  string name = 3;
+  google.protobuf.Timestamp start_time = 4;
+  google.protobuf.Timestamp end_time = 5;
+}
+
+message SmsChannel {
+  string name = 1;
+  int64 scope = 2;
+  string merchant_id = 3;
+  string channel = 4;
+  string  access_id = 5;
+  string  access_key = 6;
+  string endpoint = 7;
+  int32 status = 8;
+  bool  is_platform = 9;
+  string creator = 10;
+  google.protobuf.Timestamp created_at = 11;
+}
+
+message SmsChannelListResponse {
+  int64 cnt = 1;
+  repeated SmsChannel list = 2;
+}
+
+message CreatedSmsChannelRequest {
+  string name = 1;
+  int64 scope = 2;
+  string merchant_id = 3;
+  string channel = 4;
+  string  access_id = 5;
+  string  access_key = 6;
+  string endpoint = 7;
+  int32 status = 8;
+  bool  is_platform = 9;
+  string creator = 10;
+}
+
+message UpdatedSmsChannelRequest {
+  int64  id = 1;
+  string merchant_id = 2;
+  string name = 3;
+  int64 scope = 4;
+  string  access_id = 5;
+  string  access_key = 6;
+  string endpoint = 7;
+  int32 status = 8;
+}
+
+message DeletedSmsChannelRequest {
+  int64  id = 1;
+  string merchant_id = 2;
+}
+
+///////////////////// sms template ////////////////////
+
+message SmsTemplateListRequest {
+  int64 page = 1;
+  int64 size = 2;
+  string channel_id = 3;
+  google.protobuf.Timestamp start_time = 4;
+  google.protobuf.Timestamp end_time = 5;
+}
+
+message SmsTemplate {
+  int64 id = 1;
+  string merchant_id = 2;
+  string channel_id = 3;
+  SmsChannel sms_channel = 4;
+  string sign_name = 5;
+  string code_key = 6;
+  // 没有绑定，需要绑定外部发送
+  string external_code_key = 7;
+  string template_name = 8;
+  string template_type = 9;
+  string params = 10;
+  string content = 11;
+  string remark = 12;
+  string is_system = 13;
+  string creator = 14;
+}
+
+message SmsSign {
+  string sign_name = 1;
+  string audit_status = 2;
+  string business_type = 3;
+  string reason = 4;
+  string order_id = 5;
+}
+
+message SmsTemplateListResponse {
+  int64 cnt = 1;
+  repeated SmsTemplate list = 2;
+}
+
+message CreatedSmsTemplateRequest {
+  string merchant_id = 1;
+  int64 channel_id = 2;
+  string sign_name = 3;
+  string code_key = 4;
+  // 没有绑定，需要绑定外部发送
+  string external_code_key = 5;
+  string template_name = 6;
+  string template_type = 7;
+  string params = 8;
+  string content = 9;
+  string remark = 10;
+  bool is_system = 11;
+  string creator = 12;
+}
+
+// UpdatedSmsTemplateRequest 绑定操作
+message UpdatedSmsTemplateRequest {
+  int64 id = 1;
+  string merchant_id = 2;
+  int64 channel_id = 3;
+  string external_code_key = 4;
+  string  remark = 5;
+  string template_name = 7;
+  string template_type = 8;
+  string params = 9;
+  string content = 10;
+}
+
+message DeletedSmsTemplateRequest {
+  int64 id = 1;
+  string merchant_id = 2;
+}
+
+////////// biz sms send /////////////
+message  SmsBizSendLog {
+  int64  id = 1;
+  int64 template_id = 2;
+  int64 channel_id = 3;
+  int64 biz_type = 4;
+  string content = 5;
+  int32 user_set = 6;
+  int64 send_user_cnt = 7;
+  int64 send_ok_cnt = 8;
+  bool is_completed = 9;
+  string remark = 10;
+  string creator = 11;
+  google.protobuf.Timestamp created_at = 12;
+  google.protobuf.Timestamp updated_at = 13;
+}
+
+message SmsBizSendLogListRequest {
+  int64 page = 1;
+  int64 size = 2;
+  int64 template_id = 3;
+  string biz_type = 4;
+  string merchant_id = 5;
+  google.protobuf.Timestamp start_time = 6;
+  google.protobuf.Timestamp end_time = 7;
+}
+
+message SmsBizSendLogListResponse {
+  message SmsBizSendLog {
+    SmsBizSendLog sms_biz_send_log = 1;
+    SmsTemplate sms_template = 2;
+    SmsChannel sms_channel = 3;
+  }
+  int64 cnt = 1;
+  repeated SmsBizSendLog list = 3;
+}
+
+message CreatedSmsBizSendLogRequest {
+  int64 sms_template_id = 1 ;
+  string params = 2;
+  string biz_type = 3;
+  int32 user_set = 4;
+  string remark = 5;
+}
+
+////////////////// sms send biz ///////////////////
+// CreatedSmsSendRequest 发送短信请求
+message CreatedSmsSendRequest {
+  string merchant_id = 1;
+  string code_key = 2;
+  repeated string mobiles = 3;
+  string remark = 4;
+  string params = 5;
+  string biz_type = 6;
+  int32 duration_seconds = 7;
+  string created_ip = 8;
+}
+
+message CreatedSmsSendResponse {
+  map<string, bool> send_result = 1;
+}
+
+message CreatedSmsVerifyRequest {
+  string merchant_id = 1;
+  string code_key = 2;
+  string mobile = 3;
+  string code = 4;
+  string biz_type = 5;
+  bool deleted = 6;
+}
+
+message GetCloudSmsTemplateRequest {
+  string merchant_id = 1;
+  int64 channel_id = 2;
+  int64 template_id = 3;
+  string external_code_key = 4;
+}
+
+message GetCloudSmsTemplateResponse {
+  message CloudSmsTemplate {
+    string external_code_key = 1;
+    string content = 3;
+    // 0：短信通知。
+    // 1：推广短信。
+    // 2：验证码短信。
+    // 6：国际/港澳台短信。
+    // 7：数字短信。
+    string template_name = 2;
+    string template_type = 4;
+  }
+  repeated CloudSmsTemplate cloud_sms_template = 1;
+}
+
+message GetCloudSmsSignRequest {
+  string merchant_id = 1;
+  string channel_name = 2;
+}
+
+message GetCloudSmsSignResponse {
+  int64 cnt = 1;
+  repeated SmsSign list = 2;
+}
+
+// 绑定消息
+message CreatedSmsCodeBindRequest {
+  int64 id = 1; // created if big than zero else updated.
+  int64 channel_id = 2; // channel_id
+  int32  scope = 3;
+  string merchant_id = 4;
+  string sign_name = 5;
+  string remark = 6;
+  string template_name = 7;
+  string template_type = 8;
+  string content = 9;
+  string code_key = 10;
+  string external_code_key = 11;
+  string creator = 12;
+}
+
+
+
+///////////// service started /////////////////
+service Notifier {
+  rpc InitDB(google.protobuf.Empty) returns (InitDBResp); // 初始化数据库
+  // sms channel
+  rpc GetSmsChannelList(SmsChannelListRequest) returns (SmsChannelListResponse);
+  rpc CreatedSmsChannel(CreatedSmsChannelRequest) returns (CommonResponse);
+  rpc UpdatedSmsChannel(UpdatedSmsChannelRequest) returns (CommonResponse);
+  rpc DeletedSmsChannel (DeletedSmsChannelRequest) returns (CommonResponse);
+  // sms template
+  rpc GetSmsTemplateList(SmsTemplateListRequest) returns (SmsTemplateListResponse);
+  rpc CreatedSmsTemplate(CreatedSmsTemplateRequest) returns (CommonResponse);
+  rpc UpdatedSmsTemplate(UpdatedSmsTemplateRequest) returns (CommonResponse);
+  rpc DeletedSmsTemplate(DeletedSmsTemplateRequest) returns (CommonResponse);
+  // sms biz send
+  rpc GetSmsBizLogList(SmsBizSendLogListRequest) returns (SmsBizSendLogListResponse);
+  rpc CreatedSmsBizLog(CreatedSmsBizSendLogRequest) returns (CommonResponse);
+  // send sms operation
+  rpc CreatedSmsSend(CreatedSmsSendRequest) returns (CreatedSmsSendResponse);
+  rpc CreatedSmsVerify(CreatedSmsVerifyRequest) returns (CommonResponse);
+  rpc GetCloudSmsTemplate(GetCloudSmsTemplateRequest) returns (GetCloudSmsTemplateResponse);
+  rpc CreatedSmsCodeBind(CreatedSmsCodeBindRequest) returns (CommonResponse);
+  // 获取签名列表
+  rpc GetCloudSmsSign(GetCloudSmsSignRequest) returns (GetCloudSmsSignResponse);
 }

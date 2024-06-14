@@ -1,0 +1,375 @@
+syntax = "proto3";
+
+package svc.infra.pay;
+option go_package = "./svc.infra.pay;pay";
+
+import "google/protobuf/any.proto";
+import "google/protobuf/timestamp.proto";
+import "svc.infra.pay/comm.inc.proto";
+
+///////////////////////////////////////////////////////////// 《《《《 支付相关  //////////////////////////////////////////////////////////////////////
+enum PayStatus {
+  Paying = 0;
+  Paid = 1;
+  Closed = 2;
+  Refunding = 3;
+  Refunded = 4;
+}
+enum DeliveryStatus {
+  NoDelivered = 0;
+  Delivered = 1;
+}
+
+
+message PayRecord {
+  string order_no = 1; // 订单号
+  int64 money = 2; // 充值金额
+  PayStatus status = 3; // 订单状态
+  DeliveryStatus delivery_status = 4; // 发货状态
+  int64 ObtainAmount = 5; // 到账金额
+  google.protobuf.Timestamp created_at = 6; // 结束时间
+  google.protobuf.Timestamp updated_at = 7; // 结束时间
+}
+message OrderInfo {
+  string order_no = 1;
+  int64 money = 2;
+  PayStatus status = 3; // 订单状态
+  DeliveryStatus delivery_status = 4; // 发货状态
+  int64 ObtainAmount = 5; // 到账金额
+
+  google.protobuf.Timestamp created_at = 6; // 结束时间
+  google.protobuf.Timestamp updated_at = 7; // 结束时间
+}
+
+
+message RechargeRequest {
+  string merchant_id = 1;                      // 商户ID
+  string user_id = 2;                          // 用户ID
+  uint64 money = 3;                            // 充值金额
+  string type_channel_id= 4;                     // 通过获取充值方式列表中的Id UUID类型
+  string app_id = 5;                           // 充值的APPID
+  string remote_addr = 6;                      // 请求IP
+}
+
+message RechargeResponse {
+  string order_no = 1; // 订单号
+  string pay_url = 2; //  付款的URL
+}
+
+message OrderNotifyRequest {
+  map<string, google.protobuf.Any> body = 1; // 所有参数
+}
+
+message OrderNotifyResponse {
+
+}
+
+message OrderQueryRequest {
+  string merchant_id = 1;                      // 商户ID
+  string user_id = 2;
+  string order_no = 3;
+}
+
+message OrderQueryResponse {
+  OrderInfo info = 1;
+}
+
+message PayRecordRequest {
+  string merchant_id = 1;                      // 商户ID
+  string user_id = 2;                         // 用户ID
+
+  uint32 page = 3;                           // 页数
+  uint32 size = 4;                           // 每页数量
+};
+
+message PayRecordResponse {
+  int64 count = 1;                            // 总数
+  repeated PayRecord list = 2;                 // 记录
+};
+
+///////////////////////////////////////////////////////////// 支付相关 》》》》 //////////////////////////////////////////////////////////////////////
+
+
+///////////////////////////////////////////////////////////// 《《《《 渠道相关  /////////////////////////////////////////////////////////////////////
+// ChannelSupportedListRequest
+message ChannelSupportedListRequest {
+  string name = 1;
+  int64 status = 2; // 是否开启的渠道
+  int64 page = 3;
+  int64 size = 4;
+}
+
+// ChannelSupportedListResponse 支持平台
+message ChannelSupportedListResponse {
+  message ChannelSupported {
+    string id = 1;
+    string name = 2;
+    int64 status = 3;
+    string identity_key = 4;
+  }
+  int64 cnt = 1;
+  repeated ChannelSupported list = 2; // 永成支付
+
+}
+// CreatedChannelRequest
+message CreatedChannelRequest {
+  string merchant_id = 1; // 商户号
+  string name = 2; // 名称
+  int64 display_id = 3; // 显示ID
+  string merchant_no = 4; // 商户号
+  string secret = 5; // 密钥
+  string gateway_url = 6; // 网关地址
+  string notify_url = 7; // 通知地址
+  int64 status = 8; // 状态 0/关 1/开启
+  string creator = 9; // 创建者
+}
+
+// UpdatedChannelRequest
+message UpdatedChannelRequest {
+  string id = 1;
+  string name = 2; // 名称
+  string merchant_no = 3; // 商户号
+  string secret = 4; // 密钥
+  string gateway_url = 5; // 网关地址
+  string notify_url = 6; // 通知地址
+  int64 status = 7; // 状态 0/关 1/开启
+}
+
+// ChannelListRequest
+message ChannelsListRequest {
+  string merchant_id = 1; // 所属商户号
+  int64 status = 2; // 状态0/关 1/开， -1/全部
+  google.protobuf.Timestamp start_time = 3; // 开始时间
+  google.protobuf.Timestamp end_time = 4; // 结束时间
+  int64 page = 5;
+  int64 size = 6;
+}
+
+// ChannelListResponse
+message ChannelsListResponse {
+  // Channel
+  message Channel {
+    string id = 1; // 数据ID
+    string merchant_id = 2; // 商户号
+    string name = 3; // 名称, etc. 永成支付
+    int64 display_id = 4; // 显示ID
+    string merchant_no = 5; // 商户号
+    string secret = 6; // 密钥
+    string gateway_url = 7; // 网关地址
+    string notify_url = 8; // 通知地址
+    int64 status = 9; // 状态 0/关 1/开启
+    string creator = 10; // 创建者
+    google.protobuf.Timestamp created_at = 11; // 创建时间
+  }
+  int64 cnt = 1;
+  repeated Channel list = 2;
+}
+
+
+// CreatedChannelTypeRequest 渠道支付类型
+message CreatedChannelTypeRequest {
+  string channel_id = 2; // 渠道ID
+  string name = 3; // 名称
+  string channel_type_id = 4; // 充值字符串
+  int64 status = 5; // 状态
+  int64 ratio = 6; // 费率
+  string creator = 7; // 创建者
+  int64 pay_platform = 8; // 支付平台
+}
+
+// UpdatedChannelTypeRequest 更新渠道
+message UpdatedChannelTypeRequest {
+  string id = 1; // ID
+  string channel_id = 2; // 渠道ID
+  string name = 3; // 名称
+  string channel_type_key = 4; // 充值字符串
+  int64 status = 5; // 状态
+  int64 pay_platform = 8; // 支付平台
+}
+
+// ChannelTypeListRequest 列表查询
+message ChannelTypeListRequest {
+  int64 status = 1; // 状态 0/关 1/开 -1/全部
+  string name = 2; // 名称搜索
+  int64 pay_platform = 3; // 支付平台
+  int64 page = 4;
+  int64 size = 5;
+}
+
+// ChannelTypeListResponse 列表数据
+message ChannelTypeListResponse {
+  // ChannelType 渠道支付类型
+  message ChannelType {
+    string id = 1; // ID
+    string channel_id = 2; // 渠道ID
+    string name = 3; // 名称
+    string channel_type_id = 4; // 充值字符串
+    int64 status = 5; // 状态
+    int64 ratio = 6; // 费率
+    string creator = 7; // 创建者
+    int64 pay_platform = 8; // 支付平台
+    google.protobuf.Timestamp created_at = 9;
+    google.protobuf.Timestamp updated_at = 10;
+  }
+  int64 cnt = 1;
+  repeated ChannelType list = 2;
+}
+
+// ChargeChannelTypeRequest 支付渠道类型，用户点击金额后，查询对应的渠道类型，返回可支付的方式和费率
+message ChargeChannelTypeRequest {
+  string merchant_id = 1;
+  string app_id = 2; // 应用ID
+  uint64 amount = 3;
+  uint64 platform = 4; // 平台类型
+}
+
+// ChargeChannelTypeResponse 支付渠道类型列表
+message ChargeChannelTypeResponse {
+  message ChannelType {
+    string  pay_type_id = 1; // 支付类型ID
+    string  channel_id = 2; // 渠道ID
+    string  pay_type_name = 3; // 支付名称
+    uint64  charge_ratio = 4; // 支付费率
+    uint64  amount = 5; // 充充值值
+    uint64  obtain_amount = 6; // 支付值到账值
+    string  pay_platform = 7;
+    string  image = 8;
+    google.protobuf.Timestamp created_at = 9; // 创建时间
+  }
+  repeated ChannelType ChannelTypeList = 1;
+}
+
+// CreatedChannelTypeMerchantRequest 创建支付渠道
+message CreatedChannelTypeMerchantRequest {
+  string merchant_id = 1;
+  string channel_id = 2;
+  string channel_type_id = 3;
+  string pay_type_name = 4;
+  string type_no = 5;
+  int64 amount_type = 6;
+  int64 amount_min = 7;
+  int64 amount_max = 8;
+  int64 channel_ratio = 9;
+  int64 platform = 10;
+  int64 weight = 11;
+  int64 status = 12;
+}
+
+// UpdatedChannelTypeMerchantRequest 更新
+message UpdatedChannelTypeMerchantRequest {
+  string id = 1;
+  string pay_type_name = 4;
+  string type_no = 5;
+  int64 amount_type = 6;
+  int64 amount_min = 7;
+  int64 amount_max = 8;
+  // int64 channel_ratio = 9;
+  int64 platform = 10;
+  int64 weight = 11;
+  int64 status = 12;
+}
+
+// ChannelTypeMerchantListRequest 请求数据
+message ChannelTypeMerchantListRequest {
+  string merchant_id = 1;
+  string channel_id = 2;
+  string pay_type_name = 3;
+  int64 status = 4;
+  google.protobuf.Timestamp start_time = 5;
+  google.protobuf.Timestamp end_time = 6;
+  int64 page = 7;
+  int64 size = 8;
+
+}
+
+// ChannelTypeMerchantListResponse 返回数据
+message ChannelTypeMerchantListResponse {
+  message ChannelTypeMerchant {
+    string merchant_id = 1;
+    string channel_id = 2;
+    string channel_type_id = 3;
+    string pay_type_name = 4;
+    string type_no = 5;
+    int64 amount_type = 6;
+    int64 amount_min = 7;
+    int64 amount_max = 8;
+    int64 channel_ratio = 9;
+    int64 platform = 10;
+    int64 weight = 11;
+    int64 status = 12;
+    string id = 13;
+    google.protobuf.Timestamp created_at = 14;
+    google.protobuf.Timestamp updated_at = 15;
+    google.protobuf.Timestamp deleted_at = 16;
+  }
+  int64 cnt = 1;
+  repeated ChannelTypeMerchant list = 2;
+}
+
+
+///////////////////////////////////////////////////////////// 渠道相关 》》》》 //////////////////////////////////////////////////////////////////////
+
+
+//////////////////////////////////////////////////////// 《《《 《 RPC Service of stat //////////////////////////////////////////////////////////////
+service PayService {
+  // 人工充值 for dashboard
+  rpc ArtificialRecharge(RechargeRequest) returns (RechargeResponse);
+  // 充值 for client
+  rpc Recharge(RechargeRequest) returns (RechargeResponse);
+  // 充值记录
+  rpc PayRecords(PayRecordRequest) returns (PayRecordResponse);
+  // 订单查询
+  rpc OrderQuery(OrderQueryRequest) returns (OrderQueryResponse);
+  // 回调通知
+  rpc Notify(OrderNotifyRequest) returns (OrderNotifyResponse);
+
+  /////////////////// 《《《《 渠道 /////////////////////////////////
+
+  // ChannelSupportedList api for dashbaord
+  rpc GetChannelSupportedList(ChannelSupportedListRequest) returns (ChannelSupportedListResponse);
+
+  // Channel
+  rpc CreatedChannel(CreatedChannelRequest) returns (CommonResponse);
+
+  // DeletedChannel delete useless channel rows
+  rpc DeletedChannel(CommonDeletedRequest) returns (CommonResponse);
+
+  // UpdatedChannel update channel basic information
+  rpc UpdatedChannel(UpdatedChannelRequest) returns (CommonResponse);
+
+  //  GetChannelsList fetch channel list api for dashboard
+  rpc GetChannelsList(ChannelsListRequest) returns (ChannelsListResponse);
+
+  // CreatedChannelType created channel types api for dashboard
+  rpc CreatedChannelType (CreatedChannelTypeRequest) returns (CommonResponse);
+
+  // UpdatedChannelType updated channel types api for dashboard
+  rpc UpdatedChannelType (UpdatedChannelTypeRequest) returns (CommonResponse);
+
+  // DeletedChannelType deleted channel types api for dashboard
+  rpc DeletedChannelType (CommonDeletedRequest) returns (CommonResponse);
+
+  // GetChannelTypeList fetch channel types api for dashboard
+  rpc GetChannelTypeList(ChannelTypeListRequest) returns (ChannelTypeListResponse);
+
+  // CreatedChannelTypeMerchant merchant channel type created api for dashboard
+  rpc CreatedChannelTypeMerchant(CreatedChannelTypeMerchantRequest) returns (CommonResponse);
+
+  // UpdatedChannelTypeMerchant merchant channel type updated api for dashboard
+  rpc UpdatedChannelTypeMerchant(UpdatedChannelTypeMerchantRequest) returns (CommonResponse);
+
+  // DeletedChannelTypeMerchant merchant channel type deleted api for dashboard
+  rpc DeletedChannelTypeMerchant(CommonDeletedRequest) returns (CommonResponse);
+
+  // GetChannelTypeMerchantList merchant channel type list api for dashboard
+  rpc GetChannelTypeMerchantList(ChannelTypeMerchantListRequest) returns (ChannelTypeMerchantListResponse);
+
+  ////////////////////////// 渠道 》》》》 /////////////////////////////////
+
+  /////////////////// 《《《《 C端  //////////////// //////////////////////
+
+  // GetChargeChannelTypeList fetch charge channel list api for viewer layer
+  rpc GetChargeChannelTypeList(ChargeChannelTypeRequest) returns (ChargeChannelTypeResponse);
+  ///////////////////  C端  》》》》 //////////////////////////////////////
+};
+////////////////////////////////////////////////////////  RPC Service of stat 》》》》 //////////////////////////////////////////////////////////////

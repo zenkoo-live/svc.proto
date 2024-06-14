@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package svc.infra.pay;
+option go_package = "./svc.infra.pay;pay";
+
+import "google/protobuf/any.proto";
+// ErrCode
+enum ErrCode {
+  CODE_OK = 0;
+
+  CODE_COMMON_ERR = 1;
+}
+
+// CommonBoolResponse
+message CommonResponse {
+  int64 code = 1; // code
+  string message = 2; // message
+  oneof id {
+    string uuid = 3; // ID
+    int64 lid = 4;
+  }
+}
+
+// CommonDeletedRequest
+message CommonDeletedRequest {
+  oneof id {
+    int64 lid = 1; // long id
+    string uuid = 2; // uuid
+  }
+}
+
+message CommonError {
+  ErrCode code = 1;
+  string  message = 2;
+  google.protobuf.Any data = 3;
+}

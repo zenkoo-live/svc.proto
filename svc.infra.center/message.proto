@@ -1,0 +1,85 @@
+syntax = "proto3";
+
+package svc.infra.center;
+option go_package = "./svc.infra.center;center";
+
+// Service of message
+service LinkMessage {
+  // 发送全局消息
+  rpc SendGlobal(SendGlobalRequest) returns (SendGlobalResponse) {};
+  // 发送群组消息
+  rpc SendGroup(SendGroupRequest) returns (SendGroupResponse) {};
+  // 发送账号消息（对单人)
+  rpc SendAccount(SendAccountRequest) returns (SendAccountResponse) {};
+  // 发送设备消息
+  rpc SendDevice(SendDeviceRequest) returns (SendDeviceResponse) {};
+  // 发送连接消息
+  rpc SendSession(SendSessionRequest) returns (SendSessionResponse) {};
+};
+
+message SendGlobalRequest {
+  int32 type = 1;                             // 消息类型
+  int32 priority = 2;                         // 消息优先级
+  string payload = 3;                         // 消息内容
+
+  string to_group = 17;                        // 组别（大于0：所有在组中的连接、0：所有连接、小于0：所有不在组中的连接）
+
+  string from = 255;                           // 发送者（账号ID）
+};
+message SendGlobalResponse {
+  bool ok = 1;                                // 是否发送成功（仅标识接收成功状态，不代表完全投递）
+  int64 message_id = 2;                       // 消息ID
+};
+
+message SendGroupRequest {
+  int32 type = 1;                             // 消息类型
+  int32 priority = 2;                         // 消息优先级
+  string payload = 3;                         // 消息内容
+
+  string to_group = 17;                        // 接收群组
+  string from = 255;                           // 发送者
+};
+message SendGroupResponse {
+  bool ok = 1;                                // 是否发送成功
+  int64 message_id = 2;                       // 消息ID
+};
+
+message SendAccountRequest {
+  int32 type = 1;                             // 消息类型
+  int32 priority = 2;                         // 消息优先级
+  string payload = 3;                         // 消息内容
+
+  string to_account = 16;                      // 接收账号
+  string to_group = 17;                        // 接收群组（可留空）（如不为空，标识只发给该群组下的对应账号）
+  string from = 255;                           // 发送者
+};
+message SendAccountResponse {
+  bool ok = 1;                                // 是否发送成功
+  int64 message_id = 2;                       // 消息ID
+};
+
+message SendDeviceRequest {
+  int32 type = 1;                             // 消息类型
+  int32 priority = 2;                         // 消息优先级
+  string payload = 3;                         // 消息内容
+
+  string to_device = 18;                      // 接收设备
+  string from = 255;                           // 发送者
+};
+message SendDeviceResponse {
+  bool ok = 1;                                // 是否发送成功
+  int64 message_id = 2;                       // 消息ID
+};
+
+message SendSessionRequest {
+  int32 type = 1;
+  int32 priority = 2;
+  string payload = 3;
+
+  string to_session = 15;
+  string from = 255;
+};
+message SendSessionResponse {
+  bool ok = 1;
+  int64 message_id = 2;
+};

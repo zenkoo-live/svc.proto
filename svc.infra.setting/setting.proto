@@ -29,7 +29,6 @@ message SettingGreetingResp {
 }
 
 message Configuration {
-    string id = 1; // 内部ID
     string key = 2; //配置键
     string value = 3; // 配置json数据字符串值
     google.protobuf.Timestamp created_at = 255; // 创建时间
@@ -45,6 +44,7 @@ message GetConfigurationResp {
 message AddConfigurationReq {
     string key = 1;
     string value = 2;
+    bool force = 3;
 };
 
 message AddConfigurationResp {

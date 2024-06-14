@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+
+package svc.infra.gateway;
+option go_package = "./svc.infra.gateway;gateway";
+
+service LinkTrace {
+    // 设置Trace
+    rpc Start(StartTraceRequest) returns (StartTraceResponse) {};
+    // 关闭Trace
+    rpc Stop(StopTraceRequest) returns (StopTraceResponse) {};
+};
+
+message StartTraceRequest {
+    enum TracerType {
+        TRACER_ACCOUNT = 0;
+        TRACER_SESSION = 1;
+        TRACER_DEVICE  = 2;
+        TRACER_REMOTE  = 3;
+        TRACER_GLOBAL  = 4;
+    };
+    TracerType tracer_type = 1;
+    string session_id = 2;                      // 连接ID
+    string device = 3;                          // 设备标识
+    string account_id = 4;                       // 账号ID
+    string remote_addr = 5;                    // 远程地址
+    int64 duration = 127;                       // 持续时长
+};
+message StartTraceResponse {
+    bool ok = 1;                                // 状态
+    string trace_id = 127;                      // Trace标识
+};
+
+message StopTraceRequest {
+};
+message StopTraceResponse {
+    bool ok = 1;                                // 状态
+};
