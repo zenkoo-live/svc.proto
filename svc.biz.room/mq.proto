@@ -16,5 +16,5 @@ message RoomStartLiveTopicInfo {
 // topic: topic.room.stop_live
 message RoomStopLiveTopicInfo {
     RoomInfo room = 1;
-    google.protobuf.Timestamp start_stop_at = 2; // 开播时间
+    google.protobuf.Timestamp stop_live_at = 2; // 关播时间
 }

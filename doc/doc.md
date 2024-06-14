@@ -3238,7 +3238,7 @@ topic: topic.room.stop_live
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | room | [RoomInfo](#svc-biz-room-RoomInfo) |  |  |
-| start_stop_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开播时间 |
+| stop_live_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 关播时间 |
 
 
 
