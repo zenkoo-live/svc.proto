@@ -67,19 +67,19 @@ message StreamPull {
     string udp = 4; // UDP 拉流地址
   }
   
-  // 推流地址
-  message StreamPush {
+// 推流地址
+message StreamPush {
     string rtmp = 1; // RTMP 推流地址
     string web_rtc = 2; // WebRTC 推流地址
     string srt = 3; // SRT 推流地址
     string rmtp_over_srt = 4; // RTMP over SRT 推流地址
-  }
-  
-  // 流信息
-  message Stream {
+}
+
+// 流信息
+message Stream {
     StreamPull pull = 1; // 推流信息
     StreamPush push = 2; // 推流信息
-  }
+}
 
 message RoomInfo {
     string room_id = 1; // id

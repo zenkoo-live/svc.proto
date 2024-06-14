@@ -573,6 +573,9 @@
 - [svc.web.streamer/streamer.proto](#svc-web-streamer_streamer-proto)
     - [Streamer](#svc-web-streamer-Streamer)
   
+- [svc.biz.gift/mq.proto](#svc-biz-gift_mq-proto)
+    - [GiftSendTopicInfo](#svc-biz-gift-GiftSendTopicInfo)
+  
 - [svc.biz.gift/gift.proto](#svc-biz-gift_gift-proto)
     - [GiftAddReq](#svc-biz-gift-GiftAddReq)
     - [GiftAddResp](#svc-biz-gift-GiftAddResp)
@@ -9919,6 +9922,49 @@ Service of instruction
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
+
+ 
+
+
+
+<a name="svc-biz-gift_mq-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.biz.gift/mq.proto
+
+
+
+<a name="svc-biz-gift-GiftSendTopicInfo"></a>
+
+### GiftSendTopicInfo
+topic: topic.gift.send
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| uuid | [string](#string) |  | 送礼记录唯一ID |
+| order_id | [string](#string) |  | 送礼扣费订单ID |
+| gift | [GiftInfo](#svc-biz-gift-GiftInfo) |  | 礼物信息 |
+| num | [int32](#int32) |  | 数量 |
+| total_price | [int32](#int32) |  | 礼物总价 |
+| from_uid | [string](#string) |  | 送礼人UID |
+| from_nickname | [string](#string) |  | 送礼人昵称 |
+| streamer_id | [string](#string) |  | 主播ID |
+| room_id | [string](#string) |  | 房间ID |
+| live_id | [string](#string) |  | 直播ID |
+| combo | [int32](#int32) |  | 礼物combo |
+| group | [string](#string) |  | 礼物combogroup |
+| send_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 赠送时间 |
+
+
+
+
+
+ 
+
+ 
+
+ 
 
  
 
