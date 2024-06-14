@@ -9937,7 +9937,7 @@ Service of instruction
 <a name="svc-biz-gift-GiftSendTopicInfo"></a>
 
 ### GiftSendTopicInfo
-
+topic: topic.gift.send
 
 
 | Field | Type | Label | Description |

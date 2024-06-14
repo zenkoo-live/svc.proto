@@ -7,6 +7,7 @@ import "svc.biz.gift/gift.proto";
 
 option go_package="./svc.biz.gift;gift";
 
+// topic: topic.gift.send
 message GiftSendTopicInfo {
     string uuid  = 1; // 送礼记录唯一ID
     string order_id = 2; // 送礼扣费订单ID
