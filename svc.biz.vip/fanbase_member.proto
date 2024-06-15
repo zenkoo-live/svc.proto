@@ -23,8 +23,11 @@ service FanbaseMember {
     // GetFanbaseMember 获取粉丝团成员信息
     rpc GetFanbaseMember (GetFanbaseMemberReq) returns (GetFanbaseMemberResp) {}
 
+
     // GeFanbaseMemberByStreamerID 获取主播粉丝团成员列表
-    rpc GeFanbaseMemberByStreamerID (GeFanbaseMemberByStreamerIDReq) returns (GetListResp) {}
+    rpc GetFanbaseMemberByStreamerID (GetFanbaseMemberByStreamerIDReq) returns (GetListResp) {}
+    // GetOnlineFanbaseMemberByStreamerID 获取主播粉丝团在线成员列表
+    rpc GetOnlineFanbaseMemberByStreamerID (GetOnlineFanbaseMemberByStreamerIDReq) returns (GetListResp) {}
     // GetFanbaseMembertByMemberID 获取用户加入的粉丝团列表
     rpc GetFanbaseMembertByMemberID (GetFanbaseMembertByMemberIDResp) returns (GetListResp) {}
 }
@@ -62,15 +65,21 @@ message FanbaseMemberInfo {
     google.protobuf.Timestamp updated_at = 102; // 更新时间
 }
 
-message GeFanbaseMemberByStreamerIDReq {
+message GetFanbaseMemberByStreamerIDReq {
     int32 page = 1; // 页数
     int32 limit = 2; // 条数
     string streamer_id = 3; // 主播id
+    FanbaseLevel level = 4; // 等级
 }
 message GetFanbaseMembertByMemberIDResp {
     int32 page = 1; // 页数
     int32 limit = 2; // 条数
     string member_id = 3; // 成员id
+}
+message GetOnlineFanbaseMemberByStreamerIDReq {
+    int32 page = 1; // 页数
+    int32 limit = 2; // 条数
+    string streamer_id = 3; // 主播id
 }
 message GetListResp {
     repeated FanbaseMemberInfo items = 1;

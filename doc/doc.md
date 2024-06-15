@@ -255,16 +255,6 @@
   
     - [Setting](#svc-infra-setting-Setting)
   
-- [svc.infra.gateway/trace.proto](#svc-infra-gateway_trace-proto)
-    - [StartTraceRequest](#svc-infra-gateway-StartTraceRequest)
-    - [StartTraceResponse](#svc-infra-gateway-StartTraceResponse)
-    - [StopTraceRequest](#svc-infra-gateway-StopTraceRequest)
-    - [StopTraceResponse](#svc-infra-gateway-StopTraceResponse)
-  
-    - [StartTraceRequest.TracerType](#svc-infra-gateway-StartTraceRequest-TracerType)
-  
-    - [LinkTrace](#svc-infra-gateway-LinkTrace)
-  
 - [svc.web.viewer/viewer.proto](#svc-web-viewer_viewer-proto)
     - [Viewer](#svc-web-viewer-Viewer)
   
@@ -354,7 +344,7 @@
   
     - [Asset](#svc-biz-asset-Asset)
   
-- [svc.infra.stat/stat.proto](#svc-infra-stat_stat-proto)
+- [svc.infra.link/stat.proto](#svc-infra-link_stat-proto)
     - [CheckAccountRequest](#svc-infra-stat-CheckAccountRequest)
     - [CheckAccountResponse](#svc-infra-stat-CheckAccountResponse)
     - [CheckAccountResponse.OnlineEntry](#svc-infra-stat-CheckAccountResponse-OnlineEntry)
@@ -376,6 +366,52 @@
     - [online_detail_list](#svc-infra-stat-online_detail_list)
   
     - [LinkStat](#svc-infra-stat-LinkStat)
+  
+- [svc.infra.link/trace.proto](#svc-infra-link_trace-proto)
+    - [StartTraceRequest](#svc-infra-gateway-StartTraceRequest)
+    - [StartTraceResponse](#svc-infra-gateway-StartTraceResponse)
+    - [StopTraceRequest](#svc-infra-gateway-StopTraceRequest)
+    - [StopTraceResponse](#svc-infra-gateway-StopTraceResponse)
+  
+    - [StartTraceRequest.TracerType](#svc-infra-gateway-StartTraceRequest-TracerType)
+  
+    - [LinkTrace](#svc-infra-gateway-LinkTrace)
+  
+- [svc.infra.link/gateway.proto](#svc-infra-link_gateway-proto)
+    - [GetGatewayRequest](#svc-infra-center-GetGatewayRequest)
+    - [GetGatewayResponse](#svc-infra-center-GetGatewayResponse)
+    - [ListGatewayRequest](#svc-infra-center-ListGatewayRequest)
+    - [ListGatewayResponse](#svc-infra-center-ListGatewayResponse)
+    - [SelectGatewayRequest](#svc-infra-center-SelectGatewayRequest)
+    - [SelectGatewayResponse](#svc-infra-center-SelectGatewayResponse)
+    - [gateway](#svc-infra-center-gateway)
+    - [select_summary](#svc-infra-center-select_summary)
+  
+    - [LinkGateway](#svc-infra-center-LinkGateway)
+  
+- [svc.infra.link/message.proto](#svc-infra-link_message-proto)
+    - [SendAccountRequest](#svc-infra-center-SendAccountRequest)
+    - [SendAccountResponse](#svc-infra-center-SendAccountResponse)
+    - [SendDeviceRequest](#svc-infra-center-SendDeviceRequest)
+    - [SendDeviceResponse](#svc-infra-center-SendDeviceResponse)
+    - [SendGlobalRequest](#svc-infra-center-SendGlobalRequest)
+    - [SendGlobalResponse](#svc-infra-center-SendGlobalResponse)
+    - [SendGroupRequest](#svc-infra-center-SendGroupRequest)
+    - [SendGroupResponse](#svc-infra-center-SendGroupResponse)
+    - [SendSessionRequest](#svc-infra-center-SendSessionRequest)
+    - [SendSessionResponse](#svc-infra-center-SendSessionResponse)
+  
+    - [LinkMessage](#svc-infra-center-LinkMessage)
+  
+- [svc.infra.link/instruction.proto](#svc-infra-link_instruction-proto)
+    - [RemoveAccountRequest](#svc-infra-center-RemoveAccountRequest)
+    - [RemoveAccountResponse](#svc-infra-center-RemoveAccountResponse)
+    - [RemoveDeviceRequest](#svc-infra-center-RemoveDeviceRequest)
+    - [RemoveDeviceResponse](#svc-infra-center-RemoveDeviceResponse)
+    - [RemoveSessionRequest](#svc-infra-center-RemoveSessionRequest)
+    - [RemoveSessionResponse](#svc-infra-center-RemoveSessionResponse)
+  
+    - [LinkInstruction](#svc-infra-center-LinkInstruction)
   
 - [svc.biz.relation/relation.proto](#svc-biz-relation_relation-proto)
     - [GetRelationCountReq](#svc-biz-relation-GetRelationCountReq)
@@ -481,6 +517,7 @@
   
 - [svc.infra.notifier/notifier.proto](#svc-infra-notifier_notifier-proto)
     - [CommonResponse](#svc-infra-notifier-CommonResponse)
+    - [CreatedMerchantInitTemplateRequest](#svc-infra-notifier-CreatedMerchantInitTemplateRequest)
     - [CreatedSmsBizSendLogRequest](#svc-infra-notifier-CreatedSmsBizSendLogRequest)
     - [CreatedSmsChannelRequest](#svc-infra-notifier-CreatedSmsChannelRequest)
     - [CreatedSmsCodeBindRequest](#svc-infra-notifier-CreatedSmsCodeBindRequest)
@@ -513,42 +550,6 @@
   
     - [Notifier](#svc-infra-notifier-Notifier)
   
-- [svc.infra.center/gateway.proto](#svc-infra-center_gateway-proto)
-    - [GetGatewayRequest](#svc-infra-center-GetGatewayRequest)
-    - [GetGatewayResponse](#svc-infra-center-GetGatewayResponse)
-    - [ListGatewayRequest](#svc-infra-center-ListGatewayRequest)
-    - [ListGatewayResponse](#svc-infra-center-ListGatewayResponse)
-    - [SelectGatewayRequest](#svc-infra-center-SelectGatewayRequest)
-    - [SelectGatewayResponse](#svc-infra-center-SelectGatewayResponse)
-    - [gateway](#svc-infra-center-gateway)
-    - [select_summary](#svc-infra-center-select_summary)
-  
-    - [LinkGateway](#svc-infra-center-LinkGateway)
-  
-- [svc.infra.center/message.proto](#svc-infra-center_message-proto)
-    - [SendAccountRequest](#svc-infra-center-SendAccountRequest)
-    - [SendAccountResponse](#svc-infra-center-SendAccountResponse)
-    - [SendDeviceRequest](#svc-infra-center-SendDeviceRequest)
-    - [SendDeviceResponse](#svc-infra-center-SendDeviceResponse)
-    - [SendGlobalRequest](#svc-infra-center-SendGlobalRequest)
-    - [SendGlobalResponse](#svc-infra-center-SendGlobalResponse)
-    - [SendGroupRequest](#svc-infra-center-SendGroupRequest)
-    - [SendGroupResponse](#svc-infra-center-SendGroupResponse)
-    - [SendSessionRequest](#svc-infra-center-SendSessionRequest)
-    - [SendSessionResponse](#svc-infra-center-SendSessionResponse)
-  
-    - [LinkMessage](#svc-infra-center-LinkMessage)
-  
-- [svc.infra.center/instruction.proto](#svc-infra-center_instruction-proto)
-    - [RemoveAccountRequest](#svc-infra-center-RemoveAccountRequest)
-    - [RemoveAccountResponse](#svc-infra-center-RemoveAccountResponse)
-    - [RemoveDeviceRequest](#svc-infra-center-RemoveDeviceRequest)
-    - [RemoveDeviceResponse](#svc-infra-center-RemoveDeviceResponse)
-    - [RemoveSessionRequest](#svc-infra-center-RemoveSessionRequest)
-    - [RemoveSessionResponse](#svc-infra-center-RemoveSessionResponse)
-  
-    - [LinkInstruction](#svc-infra-center-LinkInstruction)
-  
 - [svc.biz.vip/fanbase.proto](#svc-biz-vip_fanbase-proto)
     - [CreateFanbaseReq](#svc-biz-vip-CreateFanbaseReq)
     - [CreateFanbaseResp](#svc-biz-vip-CreateFanbaseResp)
@@ -562,11 +563,12 @@
   
 - [svc.biz.vip/fanbase_member.proto](#svc-biz-vip_fanbase_member-proto)
     - [FanbaseMemberInfo](#svc-biz-vip-FanbaseMemberInfo)
-    - [GeFanbaseMemberByStreamerIDReq](#svc-biz-vip-GeFanbaseMemberByStreamerIDReq)
+    - [GetFanbaseMemberByStreamerIDReq](#svc-biz-vip-GetFanbaseMemberByStreamerIDReq)
     - [GetFanbaseMemberReq](#svc-biz-vip-GetFanbaseMemberReq)
     - [GetFanbaseMemberResp](#svc-biz-vip-GetFanbaseMemberResp)
     - [GetFanbaseMembertByMemberIDResp](#svc-biz-vip-GetFanbaseMembertByMemberIDResp)
     - [GetListResp](#svc-biz-vip-GetListResp)
+    - [GetOnlineFanbaseMemberByStreamerIDReq](#svc-biz-vip-GetOnlineFanbaseMemberByStreamerIDReq)
     - [JoinFanbaseReq](#svc-biz-vip-JoinFanbaseReq)
     - [LeaveFanbaseReq](#svc-biz-vip-LeaveFanbaseReq)
   
@@ -4433,109 +4435,6 @@ Room 房间
 
 
 
-<a name="svc-infra-gateway_trace-proto"></a>
-<p align="right"><a href="#top">Top</a></p>
-
-## svc.infra.gateway/trace.proto
-
-
-
-<a name="svc-infra-gateway-StartTraceRequest"></a>
-
-### StartTraceRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| tracer_type | [StartTraceRequest.TracerType](#svc-infra-gateway-StartTraceRequest-TracerType) |  |  |
-| session_id | [string](#string) |  | 连接ID |
-| device | [string](#string) |  | 设备标识 |
-| account_id | [string](#string) |  | 账号ID |
-| remote_addr | [string](#string) |  | 远程地址 |
-| duration | [int64](#int64) |  | 持续时长 |
-
-
-
-
-
-
-<a name="svc-infra-gateway-StartTraceResponse"></a>
-
-### StartTraceResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| ok | [bool](#bool) |  | 状态 |
-| trace_id | [string](#string) |  | Trace标识 |
-
-
-
-
-
-
-<a name="svc-infra-gateway-StopTraceRequest"></a>
-
-### StopTraceRequest
-
-
-
-
-
-
-
-<a name="svc-infra-gateway-StopTraceResponse"></a>
-
-### StopTraceResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| ok | [bool](#bool) |  | 状态 |
-
-
-
-
-
- 
-
-
-<a name="svc-infra-gateway-StartTraceRequest-TracerType"></a>
-
-### StartTraceRequest.TracerType
-
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| TRACER_ACCOUNT | 0 |  |
-| TRACER_SESSION | 1 |  |
-| TRACER_DEVICE | 2 |  |
-| TRACER_REMOTE | 3 |  |
-| TRACER_GLOBAL | 4 |  |
-
-
- 
-
- 
-
-
-<a name="svc-infra-gateway-LinkTrace"></a>
-
-### LinkTrace
-
-
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-| Start | [StartTraceRequest](#svc-infra-gateway-StartTraceRequest) | [StartTraceResponse](#svc-infra-gateway-StartTraceResponse) | 设置Trace |
-| Stop | [StopTraceRequest](#svc-infra-gateway-StopTraceRequest) | [StopTraceResponse](#svc-infra-gateway-StopTraceResponse) | 关闭Trace |
-
- 
-
-
-
 <a name="svc-web-viewer_viewer-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
@@ -6112,10 +6011,10 @@ Room 房间
 
 
 
-<a name="svc-infra-stat_stat-proto"></a>
+<a name="svc-infra-link_stat-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## svc.infra.stat/stat.proto
+## svc.infra.link/stat.proto
 
 
 
@@ -6432,6 +6331,611 @@ Service of stat
 | CheckAccount | [CheckAccountRequest](#svc-infra-stat-CheckAccountRequest) | [CheckAccountResponse](#svc-infra-stat-CheckAccountResponse) | 检查账号是否在线 |
 | CheckDevice | [CheckDeviceRequest](#svc-infra-stat-CheckDeviceRequest) | [CheckDeviceResponse](#svc-infra-stat-CheckDeviceResponse) | 检查设备是否在线 |
 | Refresh | [RefreshStatRequest](#svc-infra-stat-RefreshStatRequest) | [RefreshStatResponse](#svc-infra-stat-RefreshStatResponse) | 刷新统计 |
+
+ 
+
+
+
+<a name="svc-infra-link_trace-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.infra.link/trace.proto
+
+
+
+<a name="svc-infra-gateway-StartTraceRequest"></a>
+
+### StartTraceRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| tracer_type | [StartTraceRequest.TracerType](#svc-infra-gateway-StartTraceRequest-TracerType) |  |  |
+| session_id | [string](#string) |  | 连接ID |
+| device | [string](#string) |  | 设备标识 |
+| account_id | [string](#string) |  | 账号ID |
+| remote_addr | [string](#string) |  | 远程地址 |
+| duration | [int64](#int64) |  | 持续时长 |
+
+
+
+
+
+
+<a name="svc-infra-gateway-StartTraceResponse"></a>
+
+### StartTraceResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| ok | [bool](#bool) |  | 状态 |
+| trace_id | [string](#string) |  | Trace标识 |
+
+
+
+
+
+
+<a name="svc-infra-gateway-StopTraceRequest"></a>
+
+### StopTraceRequest
+
+
+
+
+
+
+
+<a name="svc-infra-gateway-StopTraceResponse"></a>
+
+### StopTraceResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| ok | [bool](#bool) |  | 状态 |
+
+
+
+
+
+ 
+
+
+<a name="svc-infra-gateway-StartTraceRequest-TracerType"></a>
+
+### StartTraceRequest.TracerType
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| TRACER_ACCOUNT | 0 |  |
+| TRACER_SESSION | 1 |  |
+| TRACER_DEVICE | 2 |  |
+| TRACER_REMOTE | 3 |  |
+| TRACER_GLOBAL | 4 |  |
+
+
+ 
+
+ 
+
+
+<a name="svc-infra-gateway-LinkTrace"></a>
+
+### LinkTrace
+
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| Start | [StartTraceRequest](#svc-infra-gateway-StartTraceRequest) | [StartTraceResponse](#svc-infra-gateway-StartTraceResponse) | 设置Trace |
+| Stop | [StopTraceRequest](#svc-infra-gateway-StopTraceRequest) | [StopTraceResponse](#svc-infra-gateway-StopTraceResponse) | 关闭Trace |
+
+ 
+
+
+
+<a name="svc-infra-link_gateway-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.infra.link/gateway.proto
+
+
+
+<a name="svc-infra-center-GetGatewayRequest"></a>
+
+### GetGatewayRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  | 网关ID |
+
+
+
+
+
+
+<a name="svc-infra-center-GetGatewayResponse"></a>
+
+### GetGatewayResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| gateway | [gateway](#svc-infra-center-gateway) |  | 网关信息 |
+
+
+
+
+
+
+<a name="svc-infra-center-ListGatewayRequest"></a>
+
+### ListGatewayRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| svc | [string](#string) |  | 网关类型（可留空） |
+
+
+
+
+
+
+<a name="svc-infra-center-ListGatewayResponse"></a>
+
+### ListGatewayResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| gateways | [gateway](#svc-infra-center-gateway) | repeated | 网关列表 |
+
+
+
+
+
+
+<a name="svc-infra-center-SelectGatewayRequest"></a>
+
+### SelectGatewayRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| account_id | [string](#string) |  | 账号ID |
+| platform | [string](#string) |  | 平台 |
+| version | [string](#string) |  | 客户端版本 |
+| device | [string](#string) |  | 设备标识（指纹） |
+| svc | [string](#string) |  | 网关类型（默认ws） |
+| total | [int64](#int64) |  | 希望获取网关总数（默认5） |
+
+
+
+
+
+
+<a name="svc-infra-center-SelectGatewayResponse"></a>
+
+### SelectGatewayResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| gateways | [select_summary](#svc-infra-center-select_summary) | repeated | 网关列表 |
+
+
+
+
+
+
+<a name="svc-infra-center-gateway"></a>
+
+### gateway
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  | 网关ID |
+| advertise_address | [string](#string) |  | 网关地址 |
+| current_sessions | [int64](#int64) |  | 当前连接数 |
+| current_groups | [int64](#int64) |  | 当前群组数（包括空群组） |
+| current_accounts | [int64](#int64) |  | 当前账号数 |
+| current_devices | [int64](#int64) |  | 当前设备数 |
+| total_upward_msgs | [int64](#int64) |  | 总上行消息条数 |
+| total_downward_msgs | [int64](#int64) |  | 总下行消息条数 |
+| total_connects | [int64](#int64) |  | 总创建连接次数 |
+| total_registers | [int64](#int64) |  | 总注册成功次数 |
+| total_binds | [int64](#int64) |  | 总绑定群组次数 |
+| mem_alloc | [uint64](#uint64) |  | 进程当前分配内存 |
+| total_mem_alloc | [uint64](#uint64) |  | 进程总分配内存 |
+| allocs | [uint64](#uint64) |  | 进程分配内存次数 |
+| frees | [uint64](#uint64) |  | 进程释放内存次数 |
+| num_cpus | [int32](#int32) |  | 当前逻辑CPU个数 |
+| num_goroutines | [int32](#int32) |  | 当前Goroutine数 |
+| cpu_idle | [uint64](#uint64) |  | CPU空闲时间片 |
+| cpu_no_idle | [uint64](#uint64) |  | CPU工作时间片 |
+| mem_total | [uint64](#uint64) |  | 总内存数 |
+| mem_available | [uint64](#uint64) |  | 可用内存数 |
+| svc | [string](#string) |  | 网关类型 |
+
+
+
+
+
+
+<a name="svc-infra-center-select_summary"></a>
+
+### select_summary
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  | 网关ID |
+| advertise_address | [string](#string) |  | 网关地址 |
+| sign | [string](#string) |  | 签名 |
+| svc | [string](#string) |  | 网关类型 |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="svc-infra-center-LinkGateway"></a>
+
+### LinkGateway
+Services of gateway
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| List | [ListGatewayRequest](#svc-infra-center-ListGatewayRequest) | [ListGatewayResponse](#svc-infra-center-ListGatewayResponse) | 网关列表 |
+| Get | [GetGatewayRequest](#svc-infra-center-GetGatewayRequest) | [GetGatewayResponse](#svc-infra-center-GetGatewayResponse) | 获取网关信息 |
+| Select | [SelectGatewayRequest](#svc-infra-center-SelectGatewayRequest) | [SelectGatewayResponse](#svc-infra-center-SelectGatewayResponse) | 分配网关 |
+
+ 
+
+
+
+<a name="svc-infra-link_message-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.infra.link/message.proto
+
+
+
+<a name="svc-infra-center-SendAccountRequest"></a>
+
+### SendAccountRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| type | [int32](#int32) |  | 消息类型 |
+| priority | [int32](#int32) |  | 消息优先级 |
+| payload | [string](#string) |  | 消息内容 |
+| to_account | [string](#string) |  | 接收账号 |
+| to_group | [string](#string) |  | 接收群组（可留空）（如不为空，标识只发给该群组下的对应账号） |
+| from | [string](#string) |  | 发送者 |
+
+
+
+
+
+
+<a name="svc-infra-center-SendAccountResponse"></a>
+
+### SendAccountResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| ok | [bool](#bool) |  | 是否发送成功 |
+| message_id | [int64](#int64) |  | 消息ID |
+
+
+
+
+
+
+<a name="svc-infra-center-SendDeviceRequest"></a>
+
+### SendDeviceRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| type | [int32](#int32) |  | 消息类型 |
+| priority | [int32](#int32) |  | 消息优先级 |
+| payload | [string](#string) |  | 消息内容 |
+| to_device | [string](#string) |  | 接收设备 |
+| from | [string](#string) |  | 发送者 |
+
+
+
+
+
+
+<a name="svc-infra-center-SendDeviceResponse"></a>
+
+### SendDeviceResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| ok | [bool](#bool) |  | 是否发送成功 |
+| message_id | [int64](#int64) |  | 消息ID |
+
+
+
+
+
+
+<a name="svc-infra-center-SendGlobalRequest"></a>
+
+### SendGlobalRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| type | [int32](#int32) |  | 消息类型 |
+| priority | [int32](#int32) |  | 消息优先级 |
+| payload | [string](#string) |  | 消息内容 |
+| to_group | [string](#string) |  | 组别（大于0：所有在组中的连接、0：所有连接、小于0：所有不在组中的连接） |
+| from | [string](#string) |  | 发送者（账号ID） |
+
+
+
+
+
+
+<a name="svc-infra-center-SendGlobalResponse"></a>
+
+### SendGlobalResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| ok | [bool](#bool) |  | 是否发送成功（仅标识接收成功状态，不代表完全投递） |
+| message_id | [int64](#int64) |  | 消息ID |
+
+
+
+
+
+
+<a name="svc-infra-center-SendGroupRequest"></a>
+
+### SendGroupRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| type | [int32](#int32) |  | 消息类型 |
+| priority | [int32](#int32) |  | 消息优先级 |
+| payload | [string](#string) |  | 消息内容 |
+| to_group | [string](#string) |  | 接收群组 |
+| from | [string](#string) |  | 发送者 |
+
+
+
+
+
+
+<a name="svc-infra-center-SendGroupResponse"></a>
+
+### SendGroupResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| ok | [bool](#bool) |  | 是否发送成功 |
+| message_id | [int64](#int64) |  | 消息ID |
+
+
+
+
+
+
+<a name="svc-infra-center-SendSessionRequest"></a>
+
+### SendSessionRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| type | [int32](#int32) |  |  |
+| priority | [int32](#int32) |  |  |
+| payload | [string](#string) |  |  |
+| to_session | [string](#string) |  |  |
+| from | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-center-SendSessionResponse"></a>
+
+### SendSessionResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| ok | [bool](#bool) |  |  |
+| message_id | [int64](#int64) |  |  |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="svc-infra-center-LinkMessage"></a>
+
+### LinkMessage
+Service of message
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| SendGlobal | [SendGlobalRequest](#svc-infra-center-SendGlobalRequest) | [SendGlobalResponse](#svc-infra-center-SendGlobalResponse) | 发送全局消息 |
+| SendGroup | [SendGroupRequest](#svc-infra-center-SendGroupRequest) | [SendGroupResponse](#svc-infra-center-SendGroupResponse) | 发送群组消息 |
+| SendAccount | [SendAccountRequest](#svc-infra-center-SendAccountRequest) | [SendAccountResponse](#svc-infra-center-SendAccountResponse) | 发送账号消息（对单人) |
+| SendDevice | [SendDeviceRequest](#svc-infra-center-SendDeviceRequest) | [SendDeviceResponse](#svc-infra-center-SendDeviceResponse) | 发送设备消息 |
+| SendSession | [SendSessionRequest](#svc-infra-center-SendSessionRequest) | [SendSessionResponse](#svc-infra-center-SendSessionResponse) | 发送连接消息 |
+
+ 
+
+
+
+<a name="svc-infra-link_instruction-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.infra.link/instruction.proto
+
+
+
+<a name="svc-infra-center-RemoveAccountRequest"></a>
+
+### RemoveAccountRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| account_id | [string](#string) |  | 账号ID |
+| group_id | [string](#string) |  | 群组ID（可留空） |
+
+
+
+
+
+
+<a name="svc-infra-center-RemoveAccountResponse"></a>
+
+### RemoveAccountResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| ok | [bool](#bool) |  | 是否成功（不代表结果） |
+
+
+
+
+
+
+<a name="svc-infra-center-RemoveDeviceRequest"></a>
+
+### RemoveDeviceRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| device | [string](#string) |  | 设备标识（指纹） |
+
+
+
+
+
+
+<a name="svc-infra-center-RemoveDeviceResponse"></a>
+
+### RemoveDeviceResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| ok | [bool](#bool) |  | 是否成功 |
+
+
+
+
+
+
+<a name="svc-infra-center-RemoveSessionRequest"></a>
+
+### RemoveSessionRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| session | [string](#string) |  | 连接Session |
+
+
+
+
+
+
+<a name="svc-infra-center-RemoveSessionResponse"></a>
+
+### RemoveSessionResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| ok | [bool](#bool) |  | 是否成功 |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="svc-infra-center-LinkInstruction"></a>
+
+### LinkInstruction
+Service of instruction
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| RemoveSession | [RemoveSessionRequest](#svc-infra-center-RemoveSessionRequest) | [RemoveSessionResponse](#svc-infra-center-RemoveSessionResponse) | 移除（踢）连接 |
+| RemoveAccount | [RemoveAccountRequest](#svc-infra-center-RemoveAccountRequest) | [RemoveAccountResponse](#svc-infra-center-RemoveAccountResponse) | 移除（踢）账号 |
+| RemoveDevice | [RemoveDeviceRequest](#svc-infra-center-RemoveDeviceRequest) | [RemoveDeviceResponse](#svc-infra-center-RemoveDeviceResponse) | 移除（踢）设备 |
 
  
 
@@ -8530,6 +9034,22 @@ CommonResponse
 
 
 
+<a name="svc-infra-notifier-CreatedMerchantInitTemplateRequest"></a>
+
+### CreatedMerchantInitTemplateRequest
+sync system template to merchant
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| merchant_id | [string](#string) |  |  |
+| channel_id | [int64](#int64) |  |  |
+
+
+
+
+
+
 <a name="svc-infra-notifier-CreatedSmsBizSendLogRequest"></a>
 
 ### CreatedSmsBizSendLogRequest
@@ -9126,508 +9646,7 @@ service started /////////////////
 | GetCloudSmsTemplate | [GetCloudSmsTemplateRequest](#svc-infra-notifier-GetCloudSmsTemplateRequest) | [GetCloudSmsTemplateResponse](#svc-infra-notifier-GetCloudSmsTemplateResponse) |  |
 | CreatedSmsCodeBind | [CreatedSmsCodeBindRequest](#svc-infra-notifier-CreatedSmsCodeBindRequest) | [CommonResponse](#svc-infra-notifier-CommonResponse) |  |
 | GetCloudSmsSign | [GetCloudSmsSignRequest](#svc-infra-notifier-GetCloudSmsSignRequest) | [GetCloudSmsSignResponse](#svc-infra-notifier-GetCloudSmsSignResponse) | 获取签名列表 |
-
- 
-
-
-
-<a name="svc-infra-center_gateway-proto"></a>
-<p align="right"><a href="#top">Top</a></p>
-
-## svc.infra.center/gateway.proto
-
-
-
-<a name="svc-infra-center-GetGatewayRequest"></a>
-
-### GetGatewayRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| id | [string](#string) |  | 网关ID |
-
-
-
-
-
-
-<a name="svc-infra-center-GetGatewayResponse"></a>
-
-### GetGatewayResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| gateway | [gateway](#svc-infra-center-gateway) |  | 网关信息 |
-
-
-
-
-
-
-<a name="svc-infra-center-ListGatewayRequest"></a>
-
-### ListGatewayRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| svc | [string](#string) |  | 网关类型（可留空） |
-
-
-
-
-
-
-<a name="svc-infra-center-ListGatewayResponse"></a>
-
-### ListGatewayResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| gateways | [gateway](#svc-infra-center-gateway) | repeated | 网关列表 |
-
-
-
-
-
-
-<a name="svc-infra-center-SelectGatewayRequest"></a>
-
-### SelectGatewayRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| account_id | [string](#string) |  | 账号ID |
-| platform | [string](#string) |  | 平台 |
-| version | [string](#string) |  | 客户端版本 |
-| device | [string](#string) |  | 设备标识（指纹） |
-| svc | [string](#string) |  | 网关类型（默认ws） |
-| total | [int64](#int64) |  | 希望获取网关总数（默认5） |
-
-
-
-
-
-
-<a name="svc-infra-center-SelectGatewayResponse"></a>
-
-### SelectGatewayResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| gateways | [select_summary](#svc-infra-center-select_summary) | repeated | 网关列表 |
-
-
-
-
-
-
-<a name="svc-infra-center-gateway"></a>
-
-### gateway
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| id | [string](#string) |  | 网关ID |
-| advertise_address | [string](#string) |  | 网关地址 |
-| current_sessions | [int64](#int64) |  | 当前连接数 |
-| current_groups | [int64](#int64) |  | 当前群组数（包括空群组） |
-| current_accounts | [int64](#int64) |  | 当前账号数 |
-| current_devices | [int64](#int64) |  | 当前设备数 |
-| total_upward_msgs | [int64](#int64) |  | 总上行消息条数 |
-| total_downward_msgs | [int64](#int64) |  | 总下行消息条数 |
-| total_connects | [int64](#int64) |  | 总创建连接次数 |
-| total_registers | [int64](#int64) |  | 总注册成功次数 |
-| total_binds | [int64](#int64) |  | 总绑定群组次数 |
-| mem_alloc | [uint64](#uint64) |  | 进程当前分配内存 |
-| total_mem_alloc | [uint64](#uint64) |  | 进程总分配内存 |
-| allocs | [uint64](#uint64) |  | 进程分配内存次数 |
-| frees | [uint64](#uint64) |  | 进程释放内存次数 |
-| num_cpus | [int32](#int32) |  | 当前逻辑CPU个数 |
-| num_goroutines | [int32](#int32) |  | 当前Goroutine数 |
-| cpu_idle | [uint64](#uint64) |  | CPU空闲时间片 |
-| cpu_no_idle | [uint64](#uint64) |  | CPU工作时间片 |
-| mem_total | [uint64](#uint64) |  | 总内存数 |
-| mem_available | [uint64](#uint64) |  | 可用内存数 |
-| svc | [string](#string) |  | 网关类型 |
-
-
-
-
-
-
-<a name="svc-infra-center-select_summary"></a>
-
-### select_summary
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| id | [string](#string) |  | 网关ID |
-| advertise_address | [string](#string) |  | 网关地址 |
-| sign | [string](#string) |  | 签名 |
-| svc | [string](#string) |  | 网关类型 |
-
-
-
-
-
- 
-
- 
-
- 
-
-
-<a name="svc-infra-center-LinkGateway"></a>
-
-### LinkGateway
-Services of gateway
-
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-| List | [ListGatewayRequest](#svc-infra-center-ListGatewayRequest) | [ListGatewayResponse](#svc-infra-center-ListGatewayResponse) | 网关列表 |
-| Get | [GetGatewayRequest](#svc-infra-center-GetGatewayRequest) | [GetGatewayResponse](#svc-infra-center-GetGatewayResponse) | 获取网关信息 |
-| Select | [SelectGatewayRequest](#svc-infra-center-SelectGatewayRequest) | [SelectGatewayResponse](#svc-infra-center-SelectGatewayResponse) | 分配网关 |
-
- 
-
-
-
-<a name="svc-infra-center_message-proto"></a>
-<p align="right"><a href="#top">Top</a></p>
-
-## svc.infra.center/message.proto
-
-
-
-<a name="svc-infra-center-SendAccountRequest"></a>
-
-### SendAccountRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| type | [int32](#int32) |  | 消息类型 |
-| priority | [int32](#int32) |  | 消息优先级 |
-| payload | [string](#string) |  | 消息内容 |
-| to_account | [string](#string) |  | 接收账号 |
-| to_group | [string](#string) |  | 接收群组（可留空）（如不为空，标识只发给该群组下的对应账号） |
-| from | [string](#string) |  | 发送者 |
-
-
-
-
-
-
-<a name="svc-infra-center-SendAccountResponse"></a>
-
-### SendAccountResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| ok | [bool](#bool) |  | 是否发送成功 |
-| message_id | [int64](#int64) |  | 消息ID |
-
-
-
-
-
-
-<a name="svc-infra-center-SendDeviceRequest"></a>
-
-### SendDeviceRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| type | [int32](#int32) |  | 消息类型 |
-| priority | [int32](#int32) |  | 消息优先级 |
-| payload | [string](#string) |  | 消息内容 |
-| to_device | [string](#string) |  | 接收设备 |
-| from | [string](#string) |  | 发送者 |
-
-
-
-
-
-
-<a name="svc-infra-center-SendDeviceResponse"></a>
-
-### SendDeviceResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| ok | [bool](#bool) |  | 是否发送成功 |
-| message_id | [int64](#int64) |  | 消息ID |
-
-
-
-
-
-
-<a name="svc-infra-center-SendGlobalRequest"></a>
-
-### SendGlobalRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| type | [int32](#int32) |  | 消息类型 |
-| priority | [int32](#int32) |  | 消息优先级 |
-| payload | [string](#string) |  | 消息内容 |
-| to_group | [string](#string) |  | 组别（大于0：所有在组中的连接、0：所有连接、小于0：所有不在组中的连接） |
-| from | [string](#string) |  | 发送者（账号ID） |
-
-
-
-
-
-
-<a name="svc-infra-center-SendGlobalResponse"></a>
-
-### SendGlobalResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| ok | [bool](#bool) |  | 是否发送成功（仅标识接收成功状态，不代表完全投递） |
-| message_id | [int64](#int64) |  | 消息ID |
-
-
-
-
-
-
-<a name="svc-infra-center-SendGroupRequest"></a>
-
-### SendGroupRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| type | [int32](#int32) |  | 消息类型 |
-| priority | [int32](#int32) |  | 消息优先级 |
-| payload | [string](#string) |  | 消息内容 |
-| to_group | [string](#string) |  | 接收群组 |
-| from | [string](#string) |  | 发送者 |
-
-
-
-
-
-
-<a name="svc-infra-center-SendGroupResponse"></a>
-
-### SendGroupResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| ok | [bool](#bool) |  | 是否发送成功 |
-| message_id | [int64](#int64) |  | 消息ID |
-
-
-
-
-
-
-<a name="svc-infra-center-SendSessionRequest"></a>
-
-### SendSessionRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| type | [int32](#int32) |  |  |
-| priority | [int32](#int32) |  |  |
-| payload | [string](#string) |  |  |
-| to_session | [string](#string) |  |  |
-| from | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="svc-infra-center-SendSessionResponse"></a>
-
-### SendSessionResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| ok | [bool](#bool) |  |  |
-| message_id | [int64](#int64) |  |  |
-
-
-
-
-
- 
-
- 
-
- 
-
-
-<a name="svc-infra-center-LinkMessage"></a>
-
-### LinkMessage
-Service of message
-
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-| SendGlobal | [SendGlobalRequest](#svc-infra-center-SendGlobalRequest) | [SendGlobalResponse](#svc-infra-center-SendGlobalResponse) | 发送全局消息 |
-| SendGroup | [SendGroupRequest](#svc-infra-center-SendGroupRequest) | [SendGroupResponse](#svc-infra-center-SendGroupResponse) | 发送群组消息 |
-| SendAccount | [SendAccountRequest](#svc-infra-center-SendAccountRequest) | [SendAccountResponse](#svc-infra-center-SendAccountResponse) | 发送账号消息（对单人) |
-| SendDevice | [SendDeviceRequest](#svc-infra-center-SendDeviceRequest) | [SendDeviceResponse](#svc-infra-center-SendDeviceResponse) | 发送设备消息 |
-| SendSession | [SendSessionRequest](#svc-infra-center-SendSessionRequest) | [SendSessionResponse](#svc-infra-center-SendSessionResponse) | 发送连接消息 |
-
- 
-
-
-
-<a name="svc-infra-center_instruction-proto"></a>
-<p align="right"><a href="#top">Top</a></p>
-
-## svc.infra.center/instruction.proto
-
-
-
-<a name="svc-infra-center-RemoveAccountRequest"></a>
-
-### RemoveAccountRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| account_id | [string](#string) |  | 账号ID |
-| group_id | [string](#string) |  | 群组ID（可留空） |
-
-
-
-
-
-
-<a name="svc-infra-center-RemoveAccountResponse"></a>
-
-### RemoveAccountResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| ok | [bool](#bool) |  | 是否成功（不代表结果） |
-
-
-
-
-
-
-<a name="svc-infra-center-RemoveDeviceRequest"></a>
-
-### RemoveDeviceRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| device | [string](#string) |  | 设备标识（指纹） |
-
-
-
-
-
-
-<a name="svc-infra-center-RemoveDeviceResponse"></a>
-
-### RemoveDeviceResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| ok | [bool](#bool) |  | 是否成功 |
-
-
-
-
-
-
-<a name="svc-infra-center-RemoveSessionRequest"></a>
-
-### RemoveSessionRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| session | [string](#string) |  | 连接Session |
-
-
-
-
-
-
-<a name="svc-infra-center-RemoveSessionResponse"></a>
-
-### RemoveSessionResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| ok | [bool](#bool) |  | 是否成功 |
-
-
-
-
-
- 
-
- 
-
- 
-
-
-<a name="svc-infra-center-LinkInstruction"></a>
-
-### LinkInstruction
-Service of instruction
-
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-| RemoveSession | [RemoveSessionRequest](#svc-infra-center-RemoveSessionRequest) | [RemoveSessionResponse](#svc-infra-center-RemoveSessionResponse) | 移除（踢）连接 |
-| RemoveAccount | [RemoveAccountRequest](#svc-infra-center-RemoveAccountRequest) | [RemoveAccountResponse](#svc-infra-center-RemoveAccountResponse) | 移除（踢）账号 |
-| RemoveDevice | [RemoveDeviceRequest](#svc-infra-center-RemoveDeviceRequest) | [RemoveDeviceResponse](#svc-infra-center-RemoveDeviceResponse) | 移除（踢）设备 |
+| CreatedMerchantInitTemplate | [CreatedMerchantInitTemplateRequest](#svc-infra-notifier-CreatedMerchantInitTemplateRequest) | [CommonResponse](#svc-infra-notifier-CommonResponse) | merchant created channel need init system template |
 
  
 
@@ -9803,9 +9822,9 @@ Service of instruction
 
 
 
-<a name="svc-biz-vip-GeFanbaseMemberByStreamerIDReq"></a>
+<a name="svc-biz-vip-GetFanbaseMemberByStreamerIDReq"></a>
 
-### GeFanbaseMemberByStreamerIDReq
+### GetFanbaseMemberByStreamerIDReq
 
 
 
@@ -9814,6 +9833,7 @@ Service of instruction
 | page | [int32](#int32) |  | 页数 |
 | limit | [int32](#int32) |  | 条数 |
 | streamer_id | [string](#string) |  | 主播id |
+| level | [FanbaseLevel](#svc-biz-vip-FanbaseLevel) |  | 等级 |
 
 
 
@@ -9877,6 +9897,23 @@ Service of instruction
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | items | [FanbaseMemberInfo](#svc-biz-vip-FanbaseMemberInfo) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-GetOnlineFanbaseMemberByStreamerIDReq"></a>
+
+### GetOnlineFanbaseMemberByStreamerIDReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| page | [int32](#int32) |  | 页数 |
+| limit | [int32](#int32) |  | 条数 |
+| streamer_id | [string](#string) |  | 主播id |
 
 
 
@@ -9947,7 +9984,8 @@ Service of instruction
 | JoinFanbase | [JoinFanbaseReq](#svc-biz-vip-JoinFanbaseReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | JoinFanbase 加入粉丝团 |
 | LeaveFanbase | [LeaveFanbaseReq](#svc-biz-vip-LeaveFanbaseReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | LeaveFanbase 离开粉丝团 |
 | GetFanbaseMember | [GetFanbaseMemberReq](#svc-biz-vip-GetFanbaseMemberReq) | [GetFanbaseMemberResp](#svc-biz-vip-GetFanbaseMemberResp) | GetFanbaseMember 获取粉丝团成员信息 |
-| GeFanbaseMemberByStreamerID | [GeFanbaseMemberByStreamerIDReq](#svc-biz-vip-GeFanbaseMemberByStreamerIDReq) | [GetListResp](#svc-biz-vip-GetListResp) | GeFanbaseMemberByStreamerID 获取主播粉丝团成员列表 |
+| GetFanbaseMemberByStreamerID | [GetFanbaseMemberByStreamerIDReq](#svc-biz-vip-GetFanbaseMemberByStreamerIDReq) | [GetListResp](#svc-biz-vip-GetListResp) | GeFanbaseMemberByStreamerID 获取主播粉丝团成员列表 |
+| GetOnlineFanbaseMemberByStreamerID | [GetOnlineFanbaseMemberByStreamerIDReq](#svc-biz-vip-GetOnlineFanbaseMemberByStreamerIDReq) | [GetListResp](#svc-biz-vip-GetListResp) | GetOnlineFanbaseMemberByStreamerID 获取主播粉丝团在线成员列表 |
 | GetFanbaseMembertByMemberID | [GetFanbaseMembertByMemberIDResp](#svc-biz-vip-GetFanbaseMembertByMemberIDResp) | [GetListResp](#svc-biz-vip-GetListResp) | GetFanbaseMembertByMemberID 获取用户加入的粉丝团列表 |
 
  

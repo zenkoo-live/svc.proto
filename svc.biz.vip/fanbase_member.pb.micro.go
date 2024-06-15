@@ -45,7 +45,9 @@ type FanbaseMemberService interface {
 	// GetFanbaseMember 获取粉丝团成员信息
 	GetFanbaseMember(ctx context.Context, in *GetFanbaseMemberReq, opts ...client.CallOption) (*GetFanbaseMemberResp, error)
 	// GeFanbaseMemberByStreamerID 获取主播粉丝团成员列表
-	GeFanbaseMemberByStreamerID(ctx context.Context, in *GeFanbaseMemberByStreamerIDReq, opts ...client.CallOption) (*GetListResp, error)
+	GetFanbaseMemberByStreamerID(ctx context.Context, in *GetFanbaseMemberByStreamerIDReq, opts ...client.CallOption) (*GetListResp, error)
+	// GetOnlineFanbaseMemberByStreamerID 获取主播粉丝团在线成员列表
+	GetOnlineFanbaseMemberByStreamerID(ctx context.Context, in *GetOnlineFanbaseMemberByStreamerIDReq, opts ...client.CallOption) (*GetListResp, error)
 	// GetFanbaseMembertByMemberID 获取用户加入的粉丝团列表
 	GetFanbaseMembertByMemberID(ctx context.Context, in *GetFanbaseMembertByMemberIDResp, opts ...client.CallOption) (*GetListResp, error)
 }
@@ -92,8 +94,18 @@ func (c *fanbaseMemberService) GetFanbaseMember(ctx context.Context, in *GetFanb
 	return out, nil
 }
 
-func (c *fanbaseMemberService) GeFanbaseMemberByStreamerID(ctx context.Context, in *GeFanbaseMemberByStreamerIDReq, opts ...client.CallOption) (*GetListResp, error) {
-	req := c.c.NewRequest(c.name, "FanbaseMember.GeFanbaseMemberByStreamerID", in)
+func (c *fanbaseMemberService) GetFanbaseMemberByStreamerID(ctx context.Context, in *GetFanbaseMemberByStreamerIDReq, opts ...client.CallOption) (*GetListResp, error) {
+	req := c.c.NewRequest(c.name, "FanbaseMember.GetFanbaseMemberByStreamerID", in)
+	out := new(GetListResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *fanbaseMemberService) GetOnlineFanbaseMemberByStreamerID(ctx context.Context, in *GetOnlineFanbaseMemberByStreamerIDReq, opts ...client.CallOption) (*GetListResp, error) {
+	req := c.c.NewRequest(c.name, "FanbaseMember.GetOnlineFanbaseMemberByStreamerID", in)
 	out := new(GetListResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
@@ -122,7 +134,9 @@ type FanbaseMemberHandler interface {
 	// GetFanbaseMember 获取粉丝团成员信息
 	GetFanbaseMember(context.Context, *GetFanbaseMemberReq, *GetFanbaseMemberResp) error
 	// GeFanbaseMemberByStreamerID 获取主播粉丝团成员列表
-	GeFanbaseMemberByStreamerID(context.Context, *GeFanbaseMemberByStreamerIDReq, *GetListResp) error
+	GetFanbaseMemberByStreamerID(context.Context, *GetFanbaseMemberByStreamerIDReq, *GetListResp) error
+	// GetOnlineFanbaseMemberByStreamerID 获取主播粉丝团在线成员列表
+	GetOnlineFanbaseMemberByStreamerID(context.Context, *GetOnlineFanbaseMemberByStreamerIDReq, *GetListResp) error
 	// GetFanbaseMembertByMemberID 获取用户加入的粉丝团列表
 	GetFanbaseMembertByMemberID(context.Context, *GetFanbaseMembertByMemberIDResp, *GetListResp) error
 }
@@ -132,7 +146,8 @@ func RegisterFanbaseMemberHandler(s server.Server, hdlr FanbaseMemberHandler, op
 		JoinFanbase(ctx context.Context, in *JoinFanbaseReq, out *emptypb.Empty) error
 		LeaveFanbase(ctx context.Context, in *LeaveFanbaseReq, out *emptypb.Empty) error
 		GetFanbaseMember(ctx context.Context, in *GetFanbaseMemberReq, out *GetFanbaseMemberResp) error
-		GeFanbaseMemberByStreamerID(ctx context.Context, in *GeFanbaseMemberByStreamerIDReq, out *GetListResp) error
+		GetFanbaseMemberByStreamerID(ctx context.Context, in *GetFanbaseMemberByStreamerIDReq, out *GetListResp) error
+		GetOnlineFanbaseMemberByStreamerID(ctx context.Context, in *GetOnlineFanbaseMemberByStreamerIDReq, out *GetListResp) error
 		GetFanbaseMembertByMemberID(ctx context.Context, in *GetFanbaseMembertByMemberIDResp, out *GetListResp) error
 	}
 	type FanbaseMember struct {
@@ -158,8 +173,12 @@ func (h *fanbaseMemberHandler) GetFanbaseMember(ctx context.Context, in *GetFanb
 	return h.FanbaseMemberHandler.GetFanbaseMember(ctx, in, out)
 }
 
-func (h *fanbaseMemberHandler) GeFanbaseMemberByStreamerID(ctx context.Context, in *GeFanbaseMemberByStreamerIDReq, out *GetListResp) error {
-	return h.FanbaseMemberHandler.GeFanbaseMemberByStreamerID(ctx, in, out)
+func (h *fanbaseMemberHandler) GetFanbaseMemberByStreamerID(ctx context.Context, in *GetFanbaseMemberByStreamerIDReq, out *GetListResp) error {
+	return h.FanbaseMemberHandler.GetFanbaseMemberByStreamerID(ctx, in, out)
+}
+
+func (h *fanbaseMemberHandler) GetOnlineFanbaseMemberByStreamerID(ctx context.Context, in *GetOnlineFanbaseMemberByStreamerIDReq, out *GetListResp) error {
+	return h.FanbaseMemberHandler.GetOnlineFanbaseMemberByStreamerID(ctx, in, out)
 }
 
 func (h *fanbaseMemberHandler) GetFanbaseMembertByMemberID(ctx context.Context, in *GetFanbaseMembertByMemberIDResp, out *GetListResp) error {
