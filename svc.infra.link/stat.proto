@@ -2,7 +2,7 @@ syntax = "proto3";
 
 
 package svc.infra.stat;
-option go_package = "./svc.infra.stat;stat";
+option go_package = "./svc.infra.link;link";
 
 // Service of stat
 service LinkStat {
