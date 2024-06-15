@@ -20,11 +20,12 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	FanbaseMember_JoinFanbase_FullMethodName                 = "/svc.biz.vip.FanbaseMember/JoinFanbase"
-	FanbaseMember_LeaveFanbase_FullMethodName                = "/svc.biz.vip.FanbaseMember/LeaveFanbase"
-	FanbaseMember_GetFanbaseMember_FullMethodName            = "/svc.biz.vip.FanbaseMember/GetFanbaseMember"
-	FanbaseMember_GeFanbaseMemberByStreamerID_FullMethodName = "/svc.biz.vip.FanbaseMember/GeFanbaseMemberByStreamerID"
-	FanbaseMember_GetFanbaseMembertByMemberID_FullMethodName = "/svc.biz.vip.FanbaseMember/GetFanbaseMembertByMemberID"
+	FanbaseMember_JoinFanbase_FullMethodName                        = "/svc.biz.vip.FanbaseMember/JoinFanbase"
+	FanbaseMember_LeaveFanbase_FullMethodName                       = "/svc.biz.vip.FanbaseMember/LeaveFanbase"
+	FanbaseMember_GetFanbaseMember_FullMethodName                   = "/svc.biz.vip.FanbaseMember/GetFanbaseMember"
+	FanbaseMember_GetFanbaseMemberByStreamerID_FullMethodName       = "/svc.biz.vip.FanbaseMember/GetFanbaseMemberByStreamerID"
+	FanbaseMember_GetOnlineFanbaseMemberByStreamerID_FullMethodName = "/svc.biz.vip.FanbaseMember/GetOnlineFanbaseMemberByStreamerID"
+	FanbaseMember_GetFanbaseMembertByMemberID_FullMethodName        = "/svc.biz.vip.FanbaseMember/GetFanbaseMembertByMemberID"
 )
 
 // FanbaseMemberClient is the client API for FanbaseMember service.
@@ -38,7 +39,9 @@ type FanbaseMemberClient interface {
 	// GetFanbaseMember 获取粉丝团成员信息
 	GetFanbaseMember(ctx context.Context, in *GetFanbaseMemberReq, opts ...grpc.CallOption) (*GetFanbaseMemberResp, error)
 	// GeFanbaseMemberByStreamerID 获取主播粉丝团成员列表
-	GeFanbaseMemberByStreamerID(ctx context.Context, in *GeFanbaseMemberByStreamerIDReq, opts ...grpc.CallOption) (*GetListResp, error)
+	GetFanbaseMemberByStreamerID(ctx context.Context, in *GetFanbaseMemberByStreamerIDReq, opts ...grpc.CallOption) (*GetListResp, error)
+	// GetOnlineFanbaseMemberByStreamerID 获取主播粉丝团在线成员列表
+	GetOnlineFanbaseMemberByStreamerID(ctx context.Context, in *GetOnlineFanbaseMemberByStreamerIDReq, opts ...grpc.CallOption) (*GetListResp, error)
 	// GetFanbaseMembertByMemberID 获取用户加入的粉丝团列表
 	GetFanbaseMembertByMemberID(ctx context.Context, in *GetFanbaseMembertByMemberIDResp, opts ...grpc.CallOption) (*GetListResp, error)
 }
@@ -78,9 +81,18 @@ func (c *fanbaseMemberClient) GetFanbaseMember(ctx context.Context, in *GetFanba
 	return out, nil
 }
 
-func (c *fanbaseMemberClient) GeFanbaseMemberByStreamerID(ctx context.Context, in *GeFanbaseMemberByStreamerIDReq, opts ...grpc.CallOption) (*GetListResp, error) {
+func (c *fanbaseMemberClient) GetFanbaseMemberByStreamerID(ctx context.Context, in *GetFanbaseMemberByStreamerIDReq, opts ...grpc.CallOption) (*GetListResp, error) {
 	out := new(GetListResp)
-	err := c.cc.Invoke(ctx, FanbaseMember_GeFanbaseMemberByStreamerID_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, FanbaseMember_GetFanbaseMemberByStreamerID_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *fanbaseMemberClient) GetOnlineFanbaseMemberByStreamerID(ctx context.Context, in *GetOnlineFanbaseMemberByStreamerIDReq, opts ...grpc.CallOption) (*GetListResp, error) {
+	out := new(GetListResp)
+	err := c.cc.Invoke(ctx, FanbaseMember_GetOnlineFanbaseMemberByStreamerID_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -107,7 +119,9 @@ type FanbaseMemberServer interface {
 	// GetFanbaseMember 获取粉丝团成员信息
 	GetFanbaseMember(context.Context, *GetFanbaseMemberReq) (*GetFanbaseMemberResp, error)
 	// GeFanbaseMemberByStreamerID 获取主播粉丝团成员列表
-	GeFanbaseMemberByStreamerID(context.Context, *GeFanbaseMemberByStreamerIDReq) (*GetListResp, error)
+	GetFanbaseMemberByStreamerID(context.Context, *GetFanbaseMemberByStreamerIDReq) (*GetListResp, error)
+	// GetOnlineFanbaseMemberByStreamerID 获取主播粉丝团在线成员列表
+	GetOnlineFanbaseMemberByStreamerID(context.Context, *GetOnlineFanbaseMemberByStreamerIDReq) (*GetListResp, error)
 	// GetFanbaseMembertByMemberID 获取用户加入的粉丝团列表
 	GetFanbaseMembertByMemberID(context.Context, *GetFanbaseMembertByMemberIDResp) (*GetListResp, error)
 	mustEmbedUnimplementedFanbaseMemberServer()
@@ -126,8 +140,11 @@ func (UnimplementedFanbaseMemberServer) LeaveFanbase(context.Context, *LeaveFanb
 func (UnimplementedFanbaseMemberServer) GetFanbaseMember(context.Context, *GetFanbaseMemberReq) (*GetFanbaseMemberResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetFanbaseMember not implemented")
 }
-func (UnimplementedFanbaseMemberServer) GeFanbaseMemberByStreamerID(context.Context, *GeFanbaseMemberByStreamerIDReq) (*GetListResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GeFanbaseMemberByStreamerID not implemented")
+func (UnimplementedFanbaseMemberServer) GetFanbaseMemberByStreamerID(context.Context, *GetFanbaseMemberByStreamerIDReq) (*GetListResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetFanbaseMemberByStreamerID not implemented")
+}
+func (UnimplementedFanbaseMemberServer) GetOnlineFanbaseMemberByStreamerID(context.Context, *GetOnlineFanbaseMemberByStreamerIDReq) (*GetListResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetOnlineFanbaseMemberByStreamerID not implemented")
 }
 func (UnimplementedFanbaseMemberServer) GetFanbaseMembertByMemberID(context.Context, *GetFanbaseMembertByMemberIDResp) (*GetListResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetFanbaseMembertByMemberID not implemented")
@@ -199,20 +216,38 @@ func _FanbaseMember_GetFanbaseMember_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
-func _FanbaseMember_GeFanbaseMemberByStreamerID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GeFanbaseMemberByStreamerIDReq)
+func _FanbaseMember_GetFanbaseMemberByStreamerID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetFanbaseMemberByStreamerIDReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(FanbaseMemberServer).GeFanbaseMemberByStreamerID(ctx, in)
+		return srv.(FanbaseMemberServer).GetFanbaseMemberByStreamerID(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: FanbaseMember_GeFanbaseMemberByStreamerID_FullMethodName,
+		FullMethod: FanbaseMember_GetFanbaseMemberByStreamerID_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FanbaseMemberServer).GeFanbaseMemberByStreamerID(ctx, req.(*GeFanbaseMemberByStreamerIDReq))
+		return srv.(FanbaseMemberServer).GetFanbaseMemberByStreamerID(ctx, req.(*GetFanbaseMemberByStreamerIDReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _FanbaseMember_GetOnlineFanbaseMemberByStreamerID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetOnlineFanbaseMemberByStreamerIDReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FanbaseMemberServer).GetOnlineFanbaseMemberByStreamerID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: FanbaseMember_GetOnlineFanbaseMemberByStreamerID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FanbaseMemberServer).GetOnlineFanbaseMemberByStreamerID(ctx, req.(*GetOnlineFanbaseMemberByStreamerIDReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -255,8 +290,12 @@ var FanbaseMember_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _FanbaseMember_GetFanbaseMember_Handler,
 		},
 		{
-			MethodName: "GeFanbaseMemberByStreamerID",
-			Handler:    _FanbaseMember_GeFanbaseMemberByStreamerID_Handler,
+			MethodName: "GetFanbaseMemberByStreamerID",
+			Handler:    _FanbaseMember_GetFanbaseMemberByStreamerID_Handler,
+		},
+		{
+			MethodName: "GetOnlineFanbaseMemberByStreamerID",
+			Handler:    _FanbaseMember_GetOnlineFanbaseMemberByStreamerID_Handler,
 		},
 		{
 			MethodName: "GetFanbaseMembertByMemberID",
