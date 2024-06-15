@@ -168,6 +168,10 @@
   
     - [Log](#svc-biz-log-Log)
   
+- [svc.biz.room/mq.proto](#svc-biz-room_mq-proto)
+    - [RoomStartLiveTopicInfo](#svc-biz-room-RoomStartLiveTopicInfo)
+    - [RoomStopLiveTopicInfo](#svc-biz-room-RoomStopLiveTopicInfo)
+  
 - [svc.biz.room/category.proto](#svc-biz-room_category-proto)
     - [CategoryInfo](#svc-biz-room-CategoryInfo)
     - [CreateCategoryReq](#svc-biz-room-CreateCategoryReq)
@@ -572,6 +576,9 @@
   
 - [svc.web.streamer/streamer.proto](#svc-web-streamer_streamer-proto)
     - [Streamer](#svc-web-streamer-Streamer)
+  
+- [svc.biz.gift/mq.proto](#svc-biz-gift_mq-proto)
+    - [GiftSendTopicInfo](#svc-biz-gift-GiftSendTopicInfo)
   
 - [svc.biz.gift/gift.proto](#svc-biz-gift_gift-proto)
     - [GiftAddReq](#svc-biz-gift-GiftAddReq)
@@ -3194,6 +3201,54 @@ LogInfo 日志详情
 | ----------- | ------------ | ------------- | ------------|
 | AddLog | [AddLogReq](#svc-biz-log-AddLogReq) | [AddLogResp](#svc-biz-log-AddLogResp) | AddLog 记录日志 |
 | MGetLastLog | [MGetLastLogReq](#svc-biz-log-MGetLastLogReq) | [MGetLastLogResp](#svc-biz-log-MGetLastLogResp) | MGetLastLog 批量获取最近一次操作 |
+
+ 
+
+
+
+<a name="svc-biz-room_mq-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.biz.room/mq.proto
+
+
+
+<a name="svc-biz-room-RoomStartLiveTopicInfo"></a>
+
+### RoomStartLiveTopicInfo
+topic: topic.room.start_live
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| room | [RoomInfo](#svc-biz-room-RoomInfo) |  |  |
+| start_live_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开播时间 |
+
+
+
+
+
+
+<a name="svc-biz-room-RoomStopLiveTopicInfo"></a>
+
+### RoomStopLiveTopicInfo
+topic: topic.room.stop_live
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| room | [RoomInfo](#svc-biz-room-RoomInfo) |  |  |
+| stop_live_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 关播时间 |
+
+
+
+
+
+ 
+
+ 
+
+ 
 
  
 
@@ -9919,6 +9974,49 @@ Service of instruction
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
+
+ 
+
+
+
+<a name="svc-biz-gift_mq-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.biz.gift/mq.proto
+
+
+
+<a name="svc-biz-gift-GiftSendTopicInfo"></a>
+
+### GiftSendTopicInfo
+topic: topic.gift.send
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| uuid | [string](#string) |  | 送礼记录唯一ID |
+| order_id | [string](#string) |  | 送礼扣费订单ID |
+| gift | [GiftInfo](#svc-biz-gift-GiftInfo) |  | 礼物信息 |
+| num | [int32](#int32) |  | 数量 |
+| total_price | [int32](#int32) |  | 礼物总价 |
+| from_uid | [string](#string) |  | 送礼人UID |
+| from_nickname | [string](#string) |  | 送礼人昵称 |
+| streamer_id | [string](#string) |  | 主播ID |
+| room_id | [string](#string) |  | 房间ID |
+| live_id | [string](#string) |  | 直播ID |
+| combo | [int32](#int32) |  | 礼物combo |
+| group | [string](#string) |  | 礼物combogroup |
+| send_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 赠送时间 |
+
+
+
+
+
+ 
+
+ 
+
+ 
 
  
 

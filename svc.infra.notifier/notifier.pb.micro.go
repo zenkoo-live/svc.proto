@@ -65,7 +65,7 @@ type NotifierService interface {
 	CreatedSmsCodeBind(ctx context.Context, in *CreatedSmsCodeBindRequest, opts ...client.CallOption) (*CommonResponse, error)
 	// 获取签名列表
 	GetCloudSmsSign(ctx context.Context, in *GetCloudSmsSignRequest, opts ...client.CallOption) (*GetCloudSmsSignResponse, error)
-	// merchant created channel need init template
+	// merchant created channel need init system template
 	CreatedMerchantInitTemplate(ctx context.Context, in *CreatedMerchantInitTemplateRequest, opts ...client.CallOption) (*CommonResponse, error)
 }
 
@@ -275,7 +275,7 @@ type NotifierHandler interface {
 	CreatedSmsCodeBind(context.Context, *CreatedSmsCodeBindRequest, *CommonResponse) error
 	// 获取签名列表
 	GetCloudSmsSign(context.Context, *GetCloudSmsSignRequest, *GetCloudSmsSignResponse) error
-	// merchant created channel need init template
+	// merchant created channel need init system template
 	CreatedMerchantInitTemplate(context.Context, *CreatedMerchantInitTemplateRequest, *CommonResponse) error
 }
 
