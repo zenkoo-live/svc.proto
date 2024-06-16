@@ -8433,6 +8433,12 @@ WellKnownRegex contain some well-known patterns.
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer_id | [string](#string) |  | 主播uid |
+| live_id | [string](#string) |  | 直播id |
+
+
 
 
 
