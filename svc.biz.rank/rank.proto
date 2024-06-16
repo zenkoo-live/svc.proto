@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package svc.biz.rank;
+
+option go_package="./svc.biz.rank;rank";
+
+// 排行
+service Rank {
+  // 获取直播在线的排行榜成员
+  rpc GetLiveOnlineRankMember(GetLiveOnlineRankMemberReq) returns (GetLiveOnlineRankMemberResp) {}
+}
+
+// RankMemberInfo 排行榜成员信息
+message RankMemberInfo {
+  string member_id = 1; 
+  int64 score = 2;
+}
+
+message GetLiveOnlineRankMemberReq {
+
+}
+message GetLiveOnlineRankMemberResp {
+  repeated RankMemberInfo items = 1;
+}
