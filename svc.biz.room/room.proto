@@ -89,11 +89,12 @@ message RoomInfo {
     string title = 5; // 标题
     string intro = 6; // 简介
     string cover = 7; // 封面
-    google.protobuf.Timestamp forbid_expire = 8; // 封禁到期时间
-    string forbid_reason = 9; // 封禁原因
-    bool hidden = 10; // 是否隐藏
-    repeated string merchants = 11; // 商户id
-    repeated string bind_tags = 12; // 标签
+    string video = 8; // 视频
+    google.protobuf.Timestamp forbid_expire = 9; // 封禁到期时间
+    string forbid_reason = 10; // 封禁原因
+    bool hidden = 11; // 是否隐藏
+    repeated string merchants = 12; // 商户id
+    repeated string bind_tags = 13; // 标签
     
     string live_id = 21; // 直播id（开播状态时才会有，关播时清空）
     int32 live_region = 22; // 直播区域（开播状态时才会有，关播时清空）
