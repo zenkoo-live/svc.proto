@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package svc.biz.gift;
+
+import "google/protobuf/timestamp.proto";
+import "svc.biz.gift/gift.proto";
+
+option go_package="./svc.biz.gift;gift";
+
+// topic: topic.gift.send
+message GiftSendTopicInfo {
+    string uuid  = 1; // 送礼记录唯一ID
+    string order_id = 2; // 送礼扣费订单ID
+
+    GiftInfo gift = 11; // 礼物信息
+    int32 num = 12; // 数量
+    int32 total_price = 13; // 礼物总价
+
+    string from_uid = 21; // 送礼人UID
+    string from_nickname = 22; // 送礼人昵称
+    string streamer_id = 23; // 主播ID
+    string room_id = 24; // 房间ID
+    string live_id = 25; // 直播ID
+    int32 combo = 26; // 礼物combo
+    string group = 27; // 礼物combogroup
+    google.protobuf.Timestamp send_time = 28; // 赠送时间
+}

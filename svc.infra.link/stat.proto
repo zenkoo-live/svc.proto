@@ -2,7 +2,7 @@ syntax = "proto3";
 
 
 package svc.infra.stat;
-option go_package = "./svc.infra.stat;stat";
+option go_package = "./svc.infra.link;link";
 
 // Service of stat
 service LinkStat {
@@ -32,7 +32,7 @@ service LinkStat {
 };
 
 message online_detail {
-  int64 account_id = 1;                       // 账号ID
+  string account_id = 1;                       // 账号ID
 };
 
 message online_detail_list {
@@ -40,16 +40,16 @@ message online_detail_list {
 };
 
 message OnlineCountRequest {
-  int64 merchant_id = 1;                      // 商户ID
-  int64 group_id = 2;                         // 群组ID
+  string merchant_id = 1;                      // 商户ID
+  string group_id = 2;                         // 群组ID
 };
 message OnlineCountResponse {
   int64 count = 1;                            // 总数
 };
 
 message OnlineListRequest {
-  int64 merchant_id = 1;                      // 商户ID
-  int64 group_id = 2;                         // 群组ID
+  string merchant_id = 1;                      // 商户ID
+  string group_id = 2;                         // 群组ID
   int64 page = 3;                             // 分页码
   optional int64 size = 4;                    // 数量
 };
@@ -64,7 +64,7 @@ message OnlineDeviceListResponse {
 };
 
 message CheckSessionRequest {
-  int64 merchant_id = 1;                      // 商户ID
+  string merchant_id = 1;                      // 商户ID
   repeated string session_ids = 2;            // 连接ID（列表）
 };
 message CheckSessionResponse {
@@ -72,15 +72,15 @@ message CheckSessionResponse {
 };
 
 message CheckAccountRequest {
-  int64 merchant_id = 1;                      // 商户ID
-  repeated int64 account_ids = 2;             // 账号ID（列表）
+  string merchant_id = 1;                      // 商户ID
+  repeated string account_ids = 2;             // 账号ID（列表）
 };
 message CheckAccountResponse {
-  map<int64, bool> online = 1;                // 账号ID => 是否在线
+  map<string, bool> online = 1;                // 账号ID => 是否在线
 };
 
 message CheckDeviceRequest {
-  int64 merchant_id = 1;                      // 商户ID
+  string merchant_id = 1;                      // 商户ID
   repeated string devices = 2;                // 设备标识（列表）
 };
 message CheckDeviceResponse {

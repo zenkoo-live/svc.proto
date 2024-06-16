@@ -57,6 +57,7 @@ build:
 
 micro:
 	@$(GO) install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+	@$(GO) install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
 	@$(GO) install github.com/go-micro/generator/cmd/protoc-gen-micro@latest
 	@$(GO) install github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc@latest
 	@$(GO) install github.com/envoyproxy/protoc-gen-validate@latest

@@ -15,12 +15,11 @@ import (
 	svcBizRelation "github.com/zenkoo-live/svc.proto/svc.biz.relation"
 	svcBizRoom "github.com/zenkoo-live/svc.proto/svc.biz.room"
 	svcBizTrade "github.com/zenkoo-live/svc.proto/svc.biz.trade"
-	svcInfraCenter "github.com/zenkoo-live/svc.proto/svc.infra.center"
-	svcInfraGateway "github.com/zenkoo-live/svc.proto/svc.infra.gateway"
+	svcBizVip "github.com/zenkoo-live/svc.proto/svc.biz.vip"
+	svcInfraLink "github.com/zenkoo-live/svc.proto/svc.infra.link"
 	svcInfraNotifier "github.com/zenkoo-live/svc.proto/svc.infra.notifier"
 	svcInfraPay "github.com/zenkoo-live/svc.proto/svc.infra.pay"
 	svcInfraSetting "github.com/zenkoo-live/svc.proto/svc.infra.setting"
-	svcInfraStat "github.com/zenkoo-live/svc.proto/svc.infra.stat"
 	svcInfraStatic "github.com/zenkoo-live/svc.proto/svc.infra.static"
 	svcWebDashboard "github.com/zenkoo-live/svc.proto/svc.web.dashboard"
 	svcWebStreamer "github.com/zenkoo-live/svc.proto/svc.web.streamer"
@@ -32,10 +31,9 @@ const (
 
 	SvcBizAccount    = "svc.biz.account"
 	SvcBizAsset      = "svc.biz.asset"
-	SvcInfraCenter   = "svc.infra.center"
 	SvcWebDashboard  = "svc.web.dashboard"
-	SvcInfraGateway  = "svc.infra.gateway"
 	SvcBizGift       = "svc.biz.gift"
+	SvcInfraLink     = "svc.infra.link"
 	SvcBizLog        = "svc.biz.log"
 	SvcInfraNotifier = "svc.infra.notifier"
 	SvcBizOrg        = "svc.biz.org"
@@ -43,37 +41,39 @@ const (
 	SvcBizRelation   = "svc.biz.relation"
 	SvcBizRoom       = "svc.biz.room"
 	SvcInfraSetting  = "svc.infra.setting"
-	SvcInfraStat     = "svc.infra.stat"
 	SvcInfraStatic   = "svc.infra.static"
 	SvcWebStreamer   = "svc.web.streamer"
 	SvcBizTrade      = "svc.biz.trade"
 	SvcWebViewer     = "svc.web.viewer"
+	SvcBizVip        = "svc.biz.vip"
 )
 
 var (
 	clt = cltGrpc.NewClient()
 
-	SvcBizAccountAccount      = svcBizAccount.NewAccountService(AppName+"::"+SvcBizAccount+runtime.AppendEnv(), clt)
-	SvcBizAssetAsset          = svcBizAsset.NewAssetService(AppName+"::"+SvcBizAsset+runtime.AppendEnv(), clt)
-	SvcInfraCenterGateway     = svcInfraCenter.NewLinkGatewayService(AppName+"::"+SvcInfraCenter+runtime.AppendEnv(), clt)
-	SvcInfraCenterInstruction = svcInfraCenter.NewLinkInstructionService(AppName+"::"+SvcInfraCenter+runtime.AppendEnv(), clt)
-	SvcInfraCenterMessage     = svcInfraCenter.NewLinkMessageService(AppName+"::"+SvcInfraCenter+runtime.AppendEnv(), clt)
-	SvcWebDashboardDashboard  = svcWebDashboard.NewDashboardService(AppName+"::"+SvcWebDashboard+runtime.AppendEnv(), clt)
-	SvcInfraGatewayTrace      = svcInfraGateway.NewLinkTraceService(AppName+"::"+SvcInfraGateway+runtime.AppendEnv(), clt)
-	SvcBizGiftGift            = svcBizGift.NewGiftService(AppName+"::"+SvcBizGift+runtime.AppendEnv(), clt)
-	SvcBizGiftGift_record     = svcBizGift.NewGiftRecordService(AppName+"::"+SvcBizGift+runtime.AppendEnv(), clt)
-	SvcBizLogLog              = svcBizLog.NewLogService(AppName+"::"+SvcBizLog+runtime.AppendEnv(), clt)
-	SvcInfraNotifierNotifier  = svcInfraNotifier.NewNotifierService(AppName+"::"+SvcInfraNotifier+runtime.AppendEnv(), clt)
-	SvcBizOrgOrg              = svcBizOrg.NewOrgService(AppName+"::"+SvcBizOrg+runtime.AppendEnv(), clt)
-	SvcInfraPayPay            = svcInfraPay.NewPayService(AppName+"::"+SvcInfraPay+runtime.AppendEnv(), clt)
-	SvcBizRelationRelation    = svcBizRelation.NewRelationService(AppName+"::"+SvcBizRelation+runtime.AppendEnv(), clt)
-	SvcBizRoomCategory        = svcBizRoom.NewCategoryService(AppName+"::"+SvcBizRoom+runtime.AppendEnv(), clt)
-	SvcBizRoomLive            = svcBizRoom.NewLiveService(AppName+"::"+SvcBizRoom+runtime.AppendEnv(), clt)
-	SvcBizRoomRoom            = svcBizRoom.NewRoomService(AppName+"::"+SvcBizRoom+runtime.AppendEnv(), clt)
-	SvcInfraSettingSetting    = svcInfraSetting.NewSettingService(AppName+"::"+SvcInfraSetting+runtime.AppendEnv(), clt)
-	SvcInfraStatStat          = svcInfraStat.NewLinkStatService(AppName+"::"+SvcInfraStat+runtime.AppendEnv(), clt)
-	SvcInfraStaticStatic      = svcInfraStatic.NewStaticService(AppName+"::"+SvcInfraStatic+runtime.AppendEnv(), clt)
-	SvcWebStreamerStreamer    = svcWebStreamer.NewStreamerService(AppName+"::"+SvcWebStreamer+runtime.AppendEnv(), clt)
-	SvcBizTradeTrade          = svcBizTrade.NewTradeService(AppName+"::"+SvcBizTrade+runtime.AppendEnv(), clt)
-	SvcWebViewerViewer        = svcWebViewer.NewViewerService(AppName+"::"+SvcWebViewer+runtime.AppendEnv(), clt)
+	SvcBizAccountAccount     = svcBizAccount.NewAccountService(AppName+"::"+SvcBizAccount+runtime.AppendEnv(), clt)
+	SvcBizAssetAsset         = svcBizAsset.NewAssetService(AppName+"::"+SvcBizAsset+runtime.AppendEnv(), clt)
+	SvcWebDashboardDashboard = svcWebDashboard.NewDashboardService(AppName+"::"+SvcWebDashboard+runtime.AppendEnv(), clt)
+	SvcBizGiftGift           = svcBizGift.NewGiftService(AppName+"::"+SvcBizGift+runtime.AppendEnv(), clt)
+	SvcBizGiftGift_record    = svcBizGift.NewGiftRecordService(AppName+"::"+SvcBizGift+runtime.AppendEnv(), clt)
+	SvcInfraLinkGateway      = svcInfraLink.NewLinkGatewayService(AppName+"::"+SvcInfraLink+runtime.AppendEnv(), clt)
+	SvcInfraLinkInstruction  = svcInfraLink.NewLinkInstructionService(AppName+"::"+SvcInfraLink+runtime.AppendEnv(), clt)
+	SvcInfraLinkMessage      = svcInfraLink.NewLinkMessageService(AppName+"::"+SvcInfraLink+runtime.AppendEnv(), clt)
+	SvcInfraLinkStat         = svcInfraLink.NewLinkStatService(AppName+"::"+SvcInfraLink+runtime.AppendEnv(), clt)
+	SvcInfraLinkTrace        = svcInfraLink.NewLinkTraceService(AppName+"::"+SvcInfraLink+runtime.AppendEnv(), clt)
+	SvcBizLogLog             = svcBizLog.NewLogService(AppName+"::"+SvcBizLog+runtime.AppendEnv(), clt)
+	SvcInfraNotifierNotifier = svcInfraNotifier.NewNotifierService(AppName+"::"+SvcInfraNotifier+runtime.AppendEnv(), clt)
+	SvcBizOrgOrg             = svcBizOrg.NewOrgService(AppName+"::"+SvcBizOrg+runtime.AppendEnv(), clt)
+	SvcInfraPayPay           = svcInfraPay.NewPayService(AppName+"::"+SvcInfraPay+runtime.AppendEnv(), clt)
+	SvcBizRelationRelation   = svcBizRelation.NewRelationService(AppName+"::"+SvcBizRelation+runtime.AppendEnv(), clt)
+	SvcBizRoomCategory       = svcBizRoom.NewCategoryService(AppName+"::"+SvcBizRoom+runtime.AppendEnv(), clt)
+	SvcBizRoomLive           = svcBizRoom.NewLiveService(AppName+"::"+SvcBizRoom+runtime.AppendEnv(), clt)
+	SvcBizRoomRoom           = svcBizRoom.NewRoomService(AppName+"::"+SvcBizRoom+runtime.AppendEnv(), clt)
+	SvcInfraSettingSetting   = svcInfraSetting.NewSettingService(AppName+"::"+SvcInfraSetting+runtime.AppendEnv(), clt)
+	SvcInfraStaticStatic     = svcInfraStatic.NewStaticService(AppName+"::"+SvcInfraStatic+runtime.AppendEnv(), clt)
+	SvcWebStreamerStreamer   = svcWebStreamer.NewStreamerService(AppName+"::"+SvcWebStreamer+runtime.AppendEnv(), clt)
+	SvcBizTradeTrade         = svcBizTrade.NewTradeService(AppName+"::"+SvcBizTrade+runtime.AppendEnv(), clt)
+	SvcWebViewerViewer       = svcWebViewer.NewViewerService(AppName+"::"+SvcWebViewer+runtime.AppendEnv(), clt)
+	SvcBizVipFanbase         = svcBizVip.NewFanbaseService(AppName+"::"+SvcBizVip+runtime.AppendEnv(), clt)
+	SvcBizVipFanbase_member  = svcBizVip.NewFanbaseMemberService(AppName+"::"+SvcBizVip+runtime.AppendEnv(), clt)
 )

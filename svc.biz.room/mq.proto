@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package svc.biz.room;
+
+import "google/protobuf/timestamp.proto";
+import "svc.biz.room/room.proto";
+
+option go_package="./svc.biz.room;room";
+
+// topic: topic.room.start_live
+message RoomStartLiveTopicInfo {
+    RoomInfo room = 1;
+    google.protobuf.Timestamp start_live_at = 2; // 开播时间
+}
+
+// topic: topic.room.stop_live
+message RoomStopLiveTopicInfo {
+    RoomInfo room = 1;
+    google.protobuf.Timestamp stop_live_at = 2; // 关播时间
+}

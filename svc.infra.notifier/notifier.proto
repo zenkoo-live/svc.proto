@@ -289,6 +289,11 @@ message CreatedSmsCodeBindRequest {
   string creator = 12;
 }
 
+// sync system template to merchant
+message CreatedMerchantInitTemplateRequest {
+  string merchant_id = 1;
+  int64 channel_id = 2;
+}
 
 
 ///////////// service started /////////////////
@@ -314,4 +319,7 @@ service Notifier {
   rpc CreatedSmsCodeBind(CreatedSmsCodeBindRequest) returns (CommonResponse);
   // 获取签名列表
   rpc GetCloudSmsSign(GetCloudSmsSignRequest) returns (GetCloudSmsSignResponse);
+
+  // merchant created channel need init system template
+  rpc CreatedMerchantInitTemplate(CreatedMerchantInitTemplateRequest) returns (CommonResponse);
 }

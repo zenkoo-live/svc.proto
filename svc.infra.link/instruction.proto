@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package svc.infra.center;
-option go_package = "./svc.infra.center;center";
+option go_package = "./svc.infra.link;link";
 
 
 
@@ -23,8 +23,8 @@ message RemoveSessionResponse {
 };
 
 message RemoveAccountRequest {
-  int64 account_id = 16;                      // 账号ID
-  int64 group_id = 17;                        // 群组ID（可留空）
+  string account_id = 16;                      // 账号ID
+  string group_id = 17;                        // 群组ID（可留空）
 };
 message RemoveAccountResponse {
   bool ok = 1;                                // 是否成功（不代表结果）
