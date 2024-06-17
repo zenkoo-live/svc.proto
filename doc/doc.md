@@ -344,74 +344,79 @@
   
     - [Asset](#svc-biz-asset-Asset)
   
-- [svc.infra.link/stat.proto](#svc-infra-link_stat-proto)
-    - [CheckAccountRequest](#svc-infra-stat-CheckAccountRequest)
-    - [CheckAccountResponse](#svc-infra-stat-CheckAccountResponse)
-    - [CheckAccountResponse.OnlineEntry](#svc-infra-stat-CheckAccountResponse-OnlineEntry)
-    - [CheckDeviceRequest](#svc-infra-stat-CheckDeviceRequest)
-    - [CheckDeviceResponse](#svc-infra-stat-CheckDeviceResponse)
-    - [CheckDeviceResponse.OnlineEntry](#svc-infra-stat-CheckDeviceResponse-OnlineEntry)
-    - [CheckSessionRequest](#svc-infra-stat-CheckSessionRequest)
-    - [CheckSessionResponse](#svc-infra-stat-CheckSessionResponse)
-    - [CheckSessionResponse.OnlineEntry](#svc-infra-stat-CheckSessionResponse-OnlineEntry)
-    - [OnlineAccountListResponse](#svc-infra-stat-OnlineAccountListResponse)
-    - [OnlineCountRequest](#svc-infra-stat-OnlineCountRequest)
-    - [OnlineCountResponse](#svc-infra-stat-OnlineCountResponse)
-    - [OnlineDeviceListResponse](#svc-infra-stat-OnlineDeviceListResponse)
-    - [OnlineListRequest](#svc-infra-stat-OnlineListRequest)
-    - [OnlineSessionListResponse](#svc-infra-stat-OnlineSessionListResponse)
-    - [RefreshStatRequest](#svc-infra-stat-RefreshStatRequest)
-    - [RefreshStatResponse](#svc-infra-stat-RefreshStatResponse)
-    - [online_detail](#svc-infra-stat-online_detail)
-    - [online_detail_list](#svc-infra-stat-online_detail_list)
+- [svc.infra.link/mq.proto](#svc-infra-link_mq-proto)
+    - [UserEnterQuitRoomTopic](#svc-infra-link-UserEnterQuitRoomTopic)
   
-    - [LinkStat](#svc-infra-stat-LinkStat)
+    - [UserEnterQuitAction](#svc-infra-link-UserEnterQuitAction)
+  
+- [svc.infra.link/stat.proto](#svc-infra-link_stat-proto)
+    - [CheckAccountRequest](#svc-infra-link-CheckAccountRequest)
+    - [CheckAccountResponse](#svc-infra-link-CheckAccountResponse)
+    - [CheckAccountResponse.OnlineEntry](#svc-infra-link-CheckAccountResponse-OnlineEntry)
+    - [CheckDeviceRequest](#svc-infra-link-CheckDeviceRequest)
+    - [CheckDeviceResponse](#svc-infra-link-CheckDeviceResponse)
+    - [CheckDeviceResponse.OnlineEntry](#svc-infra-link-CheckDeviceResponse-OnlineEntry)
+    - [CheckSessionRequest](#svc-infra-link-CheckSessionRequest)
+    - [CheckSessionResponse](#svc-infra-link-CheckSessionResponse)
+    - [CheckSessionResponse.OnlineEntry](#svc-infra-link-CheckSessionResponse-OnlineEntry)
+    - [OnlineAccountListResponse](#svc-infra-link-OnlineAccountListResponse)
+    - [OnlineCountRequest](#svc-infra-link-OnlineCountRequest)
+    - [OnlineCountResponse](#svc-infra-link-OnlineCountResponse)
+    - [OnlineDeviceListResponse](#svc-infra-link-OnlineDeviceListResponse)
+    - [OnlineListRequest](#svc-infra-link-OnlineListRequest)
+    - [OnlineSessionListResponse](#svc-infra-link-OnlineSessionListResponse)
+    - [RefreshStatRequest](#svc-infra-link-RefreshStatRequest)
+    - [RefreshStatResponse](#svc-infra-link-RefreshStatResponse)
+    - [online_detail](#svc-infra-link-online_detail)
+    - [online_detail_list](#svc-infra-link-online_detail_list)
+  
+    - [LinkStat](#svc-infra-link-LinkStat)
   
 - [svc.infra.link/trace.proto](#svc-infra-link_trace-proto)
-    - [StartTraceRequest](#svc-infra-gateway-StartTraceRequest)
-    - [StartTraceResponse](#svc-infra-gateway-StartTraceResponse)
-    - [StopTraceRequest](#svc-infra-gateway-StopTraceRequest)
-    - [StopTraceResponse](#svc-infra-gateway-StopTraceResponse)
+    - [StartTraceRequest](#svc-infra-link-StartTraceRequest)
+    - [StartTraceResponse](#svc-infra-link-StartTraceResponse)
+    - [StopTraceRequest](#svc-infra-link-StopTraceRequest)
+    - [StopTraceResponse](#svc-infra-link-StopTraceResponse)
   
-    - [StartTraceRequest.TracerType](#svc-infra-gateway-StartTraceRequest-TracerType)
+    - [StartTraceRequest.TracerType](#svc-infra-link-StartTraceRequest-TracerType)
   
-    - [LinkTrace](#svc-infra-gateway-LinkTrace)
+    - [LinkTrace](#svc-infra-link-LinkTrace)
   
 - [svc.infra.link/gateway.proto](#svc-infra-link_gateway-proto)
-    - [GetGatewayRequest](#svc-infra-center-GetGatewayRequest)
-    - [GetGatewayResponse](#svc-infra-center-GetGatewayResponse)
-    - [ListGatewayRequest](#svc-infra-center-ListGatewayRequest)
-    - [ListGatewayResponse](#svc-infra-center-ListGatewayResponse)
-    - [SelectGatewayRequest](#svc-infra-center-SelectGatewayRequest)
-    - [SelectGatewayResponse](#svc-infra-center-SelectGatewayResponse)
-    - [gateway](#svc-infra-center-gateway)
-    - [select_summary](#svc-infra-center-select_summary)
+    - [GetGatewayRequest](#svc-infra-link-GetGatewayRequest)
+    - [GetGatewayResponse](#svc-infra-link-GetGatewayResponse)
+    - [ListGatewayRequest](#svc-infra-link-ListGatewayRequest)
+    - [ListGatewayResponse](#svc-infra-link-ListGatewayResponse)
+    - [SelectGatewayRequest](#svc-infra-link-SelectGatewayRequest)
+    - [SelectGatewayResponse](#svc-infra-link-SelectGatewayResponse)
+    - [gateway](#svc-infra-link-gateway)
+    - [select_summary](#svc-infra-link-select_summary)
   
-    - [LinkGateway](#svc-infra-center-LinkGateway)
+    - [LinkGateway](#svc-infra-link-LinkGateway)
   
 - [svc.infra.link/message.proto](#svc-infra-link_message-proto)
-    - [SendAccountRequest](#svc-infra-center-SendAccountRequest)
-    - [SendAccountResponse](#svc-infra-center-SendAccountResponse)
-    - [SendDeviceRequest](#svc-infra-center-SendDeviceRequest)
-    - [SendDeviceResponse](#svc-infra-center-SendDeviceResponse)
-    - [SendGlobalRequest](#svc-infra-center-SendGlobalRequest)
-    - [SendGlobalResponse](#svc-infra-center-SendGlobalResponse)
-    - [SendGroupRequest](#svc-infra-center-SendGroupRequest)
-    - [SendGroupResponse](#svc-infra-center-SendGroupResponse)
-    - [SendSessionRequest](#svc-infra-center-SendSessionRequest)
-    - [SendSessionResponse](#svc-infra-center-SendSessionResponse)
+    - [SendAccountRequest](#svc-infra-link-SendAccountRequest)
+    - [SendAccountResponse](#svc-infra-link-SendAccountResponse)
+    - [SendDeviceRequest](#svc-infra-link-SendDeviceRequest)
+    - [SendDeviceResponse](#svc-infra-link-SendDeviceResponse)
+    - [SendGlobalRequest](#svc-infra-link-SendGlobalRequest)
+    - [SendGlobalResponse](#svc-infra-link-SendGlobalResponse)
+    - [SendGroupRequest](#svc-infra-link-SendGroupRequest)
+    - [SendGroupResponse](#svc-infra-link-SendGroupResponse)
+    - [SendSessionRequest](#svc-infra-link-SendSessionRequest)
+    - [SendSessionResponse](#svc-infra-link-SendSessionResponse)
   
-    - [LinkMessage](#svc-infra-center-LinkMessage)
+    - [LinkMessage](#svc-infra-link-LinkMessage)
   
 - [svc.infra.link/instruction.proto](#svc-infra-link_instruction-proto)
-    - [RemoveAccountRequest](#svc-infra-center-RemoveAccountRequest)
-    - [RemoveAccountResponse](#svc-infra-center-RemoveAccountResponse)
-    - [RemoveDeviceRequest](#svc-infra-center-RemoveDeviceRequest)
-    - [RemoveDeviceResponse](#svc-infra-center-RemoveDeviceResponse)
-    - [RemoveSessionRequest](#svc-infra-center-RemoveSessionRequest)
-    - [RemoveSessionResponse](#svc-infra-center-RemoveSessionResponse)
+    - [RemoveAccountRequest](#svc-infra-link-RemoveAccountRequest)
+    - [RemoveAccountResponse](#svc-infra-link-RemoveAccountResponse)
+    - [RemoveDeviceRequest](#svc-infra-link-RemoveDeviceRequest)
+    - [RemoveDeviceResponse](#svc-infra-link-RemoveDeviceResponse)
+    - [RemoveSessionRequest](#svc-infra-link-RemoveSessionRequest)
+    - [RemoveSessionResponse](#svc-infra-link-RemoveSessionResponse)
   
-    - [LinkInstruction](#svc-infra-center-LinkInstruction)
+    - [LinkInstruction](#svc-infra-link-LinkInstruction)
   
 - [svc.biz.relation/relation.proto](#svc-biz-relation_relation-proto)
     - [GetRelationCountReq](#svc-biz-relation-GetRelationCountReq)
@@ -547,6 +552,9 @@
     - [SmsTemplateListResponse](#svc-infra-notifier-SmsTemplateListResponse)
     - [UpdatedSmsChannelRequest](#svc-infra-notifier-UpdatedSmsChannelRequest)
     - [UpdatedSmsTemplateRequest](#svc-infra-notifier-UpdatedSmsTemplateRequest)
+  
+    - [BizType](#svc-infra-notifier-BizType)
+    - [CodeKey](#svc-infra-notifier-CodeKey)
   
     - [Notifier](#svc-infra-notifier-Notifier)
   
@@ -6013,6 +6021,53 @@ Room 房间
 
 
 
+<a name="svc-infra-link_mq-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.infra.link/mq.proto
+
+
+
+<a name="svc-infra-link-UserEnterQuitRoomTopic"></a>
+
+### UserEnterQuitRoomTopic
+用户进出房间topic: topic.user.room.enter_quit
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| room_id | [string](#string) |  | 房间ID |
+| user_id | [string](#string) |  |  |
+| merchant_id | [string](#string) |  |  |
+| online_count | [int64](#int64) |  | 当前直播间的在人数数量 |
+| action | [UserEnterQuitAction](#svc-infra-link-UserEnterQuitAction) |  |  |
+
+
+
+
+
+ 
+
+
+<a name="svc-infra-link-UserEnterQuitAction"></a>
+
+### UserEnterQuitAction
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| Enter | 0 |  |
+| Quit | 1 |  |
+
+
+ 
+
+ 
+
+ 
+
+
+
 <a name="svc-infra-link_stat-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
@@ -6020,7 +6075,7 @@ Room 房间
 
 
 
-<a name="svc-infra-stat-CheckAccountRequest"></a>
+<a name="svc-infra-link-CheckAccountRequest"></a>
 
 ### CheckAccountRequest
 
@@ -6036,7 +6091,7 @@ Room 房间
 
 
 
-<a name="svc-infra-stat-CheckAccountResponse"></a>
+<a name="svc-infra-link-CheckAccountResponse"></a>
 
 ### CheckAccountResponse
 
@@ -6044,14 +6099,14 @@ Room 房间
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| online | [CheckAccountResponse.OnlineEntry](#svc-infra-stat-CheckAccountResponse-OnlineEntry) | repeated | 账号ID =&gt; 是否在线 |
+| online | [CheckAccountResponse.OnlineEntry](#svc-infra-link-CheckAccountResponse-OnlineEntry) | repeated | 账号ID =&gt; 是否在线 |
 
 
 
 
 
 
-<a name="svc-infra-stat-CheckAccountResponse-OnlineEntry"></a>
+<a name="svc-infra-link-CheckAccountResponse-OnlineEntry"></a>
 
 ### CheckAccountResponse.OnlineEntry
 
@@ -6067,7 +6122,7 @@ Room 房间
 
 
 
-<a name="svc-infra-stat-CheckDeviceRequest"></a>
+<a name="svc-infra-link-CheckDeviceRequest"></a>
 
 ### CheckDeviceRequest
 
@@ -6083,7 +6138,7 @@ Room 房间
 
 
 
-<a name="svc-infra-stat-CheckDeviceResponse"></a>
+<a name="svc-infra-link-CheckDeviceResponse"></a>
 
 ### CheckDeviceResponse
 
@@ -6091,14 +6146,14 @@ Room 房间
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| online | [CheckDeviceResponse.OnlineEntry](#svc-infra-stat-CheckDeviceResponse-OnlineEntry) | repeated | 设备标识 =&gt; 是否在线 |
+| online | [CheckDeviceResponse.OnlineEntry](#svc-infra-link-CheckDeviceResponse-OnlineEntry) | repeated | 设备标识 =&gt; 是否在线 |
 
 
 
 
 
 
-<a name="svc-infra-stat-CheckDeviceResponse-OnlineEntry"></a>
+<a name="svc-infra-link-CheckDeviceResponse-OnlineEntry"></a>
 
 ### CheckDeviceResponse.OnlineEntry
 
@@ -6114,7 +6169,7 @@ Room 房间
 
 
 
-<a name="svc-infra-stat-CheckSessionRequest"></a>
+<a name="svc-infra-link-CheckSessionRequest"></a>
 
 ### CheckSessionRequest
 
@@ -6130,7 +6185,7 @@ Room 房间
 
 
 
-<a name="svc-infra-stat-CheckSessionResponse"></a>
+<a name="svc-infra-link-CheckSessionResponse"></a>
 
 ### CheckSessionResponse
 
@@ -6138,14 +6193,14 @@ Room 房间
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| online | [CheckSessionResponse.OnlineEntry](#svc-infra-stat-CheckSessionResponse-OnlineEntry) | repeated | 连接ID =&gt; 是否在线 |
+| online | [CheckSessionResponse.OnlineEntry](#svc-infra-link-CheckSessionResponse-OnlineEntry) | repeated | 连接ID =&gt; 是否在线 |
 
 
 
 
 
 
-<a name="svc-infra-stat-CheckSessionResponse-OnlineEntry"></a>
+<a name="svc-infra-link-CheckSessionResponse-OnlineEntry"></a>
 
 ### CheckSessionResponse.OnlineEntry
 
@@ -6161,7 +6216,7 @@ Room 房间
 
 
 
-<a name="svc-infra-stat-OnlineAccountListResponse"></a>
+<a name="svc-infra-link-OnlineAccountListResponse"></a>
 
 ### OnlineAccountListResponse
 
@@ -6169,14 +6224,14 @@ Room 房间
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| online | [online_detail_list](#svc-infra-stat-online_detail_list) |  | 在线列表 |
+| online | [online_detail_list](#svc-infra-link-online_detail_list) |  | 在线列表 |
 
 
 
 
 
 
-<a name="svc-infra-stat-OnlineCountRequest"></a>
+<a name="svc-infra-link-OnlineCountRequest"></a>
 
 ### OnlineCountRequest
 
@@ -6192,7 +6247,7 @@ Room 房间
 
 
 
-<a name="svc-infra-stat-OnlineCountResponse"></a>
+<a name="svc-infra-link-OnlineCountResponse"></a>
 
 ### OnlineCountResponse
 
@@ -6207,7 +6262,7 @@ Room 房间
 
 
 
-<a name="svc-infra-stat-OnlineDeviceListResponse"></a>
+<a name="svc-infra-link-OnlineDeviceListResponse"></a>
 
 ### OnlineDeviceListResponse
 
@@ -6215,14 +6270,14 @@ Room 房间
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| online | [online_detail_list](#svc-infra-stat-online_detail_list) |  | 在线列表 |
+| online | [online_detail_list](#svc-infra-link-online_detail_list) |  | 在线列表 |
 
 
 
 
 
 
-<a name="svc-infra-stat-OnlineListRequest"></a>
+<a name="svc-infra-link-OnlineListRequest"></a>
 
 ### OnlineListRequest
 
@@ -6240,7 +6295,7 @@ Room 房间
 
 
 
-<a name="svc-infra-stat-OnlineSessionListResponse"></a>
+<a name="svc-infra-link-OnlineSessionListResponse"></a>
 
 ### OnlineSessionListResponse
 
@@ -6248,14 +6303,14 @@ Room 房间
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| online | [online_detail_list](#svc-infra-stat-online_detail_list) |  | 在线列表 |
+| online | [online_detail_list](#svc-infra-link-online_detail_list) |  | 在线列表 |
 
 
 
 
 
 
-<a name="svc-infra-stat-RefreshStatRequest"></a>
+<a name="svc-infra-link-RefreshStatRequest"></a>
 
 ### RefreshStatRequest
 
@@ -6265,7 +6320,7 @@ Room 房间
 
 
 
-<a name="svc-infra-stat-RefreshStatResponse"></a>
+<a name="svc-infra-link-RefreshStatResponse"></a>
 
 ### RefreshStatResponse
 
@@ -6280,7 +6335,7 @@ Room 房间
 
 
 
-<a name="svc-infra-stat-online_detail"></a>
+<a name="svc-infra-link-online_detail"></a>
 
 ### online_detail
 
@@ -6295,7 +6350,7 @@ Room 房间
 
 
 
-<a name="svc-infra-stat-online_detail_list"></a>
+<a name="svc-infra-link-online_detail_list"></a>
 
 ### online_detail_list
 
@@ -6303,7 +6358,7 @@ Room 房间
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| list | [online_detail](#svc-infra-stat-online_detail) | repeated | 列表 |
+| list | [online_detail](#svc-infra-link-online_detail) | repeated | 列表 |
 
 
 
@@ -6316,23 +6371,23 @@ Room 房间
  
 
 
-<a name="svc-infra-stat-LinkStat"></a>
+<a name="svc-infra-link-LinkStat"></a>
 
 ### LinkStat
 Service of stat
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| OnlineSessionCount | [OnlineCountRequest](#svc-infra-stat-OnlineCountRequest) | [OnlineCountResponse](#svc-infra-stat-OnlineCountResponse) | 获取在线连接数 |
-| OnlineAccountCount | [OnlineCountRequest](#svc-infra-stat-OnlineCountRequest) | [OnlineCountResponse](#svc-infra-stat-OnlineCountResponse) | 获取在线账号数 |
-| OnlineDeviceCount | [OnlineCountRequest](#svc-infra-stat-OnlineCountRequest) | [OnlineCountResponse](#svc-infra-stat-OnlineCountResponse) | 获取在线设备数 |
-| OnlineSessionList | [OnlineListRequest](#svc-infra-stat-OnlineListRequest) | [OnlineSessionListResponse](#svc-infra-stat-OnlineSessionListResponse) | 获取在线连接列表 |
-| OnlineAccountList | [OnlineListRequest](#svc-infra-stat-OnlineListRequest) | [OnlineAccountListResponse](#svc-infra-stat-OnlineAccountListResponse) | 获取在线账号列表 |
-| OnlineDeviceList | [OnlineListRequest](#svc-infra-stat-OnlineListRequest) | [OnlineDeviceListResponse](#svc-infra-stat-OnlineDeviceListResponse) | 获取在线设备列表 |
-| CheckSession | [CheckSessionRequest](#svc-infra-stat-CheckSessionRequest) | [CheckSessionResponse](#svc-infra-stat-CheckSessionResponse) | 检查连接是否在线 |
-| CheckAccount | [CheckAccountRequest](#svc-infra-stat-CheckAccountRequest) | [CheckAccountResponse](#svc-infra-stat-CheckAccountResponse) | 检查账号是否在线 |
-| CheckDevice | [CheckDeviceRequest](#svc-infra-stat-CheckDeviceRequest) | [CheckDeviceResponse](#svc-infra-stat-CheckDeviceResponse) | 检查设备是否在线 |
-| Refresh | [RefreshStatRequest](#svc-infra-stat-RefreshStatRequest) | [RefreshStatResponse](#svc-infra-stat-RefreshStatResponse) | 刷新统计 |
+| OnlineSessionCount | [OnlineCountRequest](#svc-infra-link-OnlineCountRequest) | [OnlineCountResponse](#svc-infra-link-OnlineCountResponse) | 获取在线连接数 |
+| OnlineAccountCount | [OnlineCountRequest](#svc-infra-link-OnlineCountRequest) | [OnlineCountResponse](#svc-infra-link-OnlineCountResponse) | 获取在线账号数 |
+| OnlineDeviceCount | [OnlineCountRequest](#svc-infra-link-OnlineCountRequest) | [OnlineCountResponse](#svc-infra-link-OnlineCountResponse) | 获取在线设备数 |
+| OnlineSessionList | [OnlineListRequest](#svc-infra-link-OnlineListRequest) | [OnlineSessionListResponse](#svc-infra-link-OnlineSessionListResponse) | 获取在线连接列表 |
+| OnlineAccountList | [OnlineListRequest](#svc-infra-link-OnlineListRequest) | [OnlineAccountListResponse](#svc-infra-link-OnlineAccountListResponse) | 获取在线账号列表 |
+| OnlineDeviceList | [OnlineListRequest](#svc-infra-link-OnlineListRequest) | [OnlineDeviceListResponse](#svc-infra-link-OnlineDeviceListResponse) | 获取在线设备列表 |
+| CheckSession | [CheckSessionRequest](#svc-infra-link-CheckSessionRequest) | [CheckSessionResponse](#svc-infra-link-CheckSessionResponse) | 检查连接是否在线 |
+| CheckAccount | [CheckAccountRequest](#svc-infra-link-CheckAccountRequest) | [CheckAccountResponse](#svc-infra-link-CheckAccountResponse) | 检查账号是否在线 |
+| CheckDevice | [CheckDeviceRequest](#svc-infra-link-CheckDeviceRequest) | [CheckDeviceResponse](#svc-infra-link-CheckDeviceResponse) | 检查设备是否在线 |
+| Refresh | [RefreshStatRequest](#svc-infra-link-RefreshStatRequest) | [RefreshStatResponse](#svc-infra-link-RefreshStatResponse) | 刷新统计 |
 
  
 
@@ -6345,7 +6400,7 @@ Service of stat
 
 
 
-<a name="svc-infra-gateway-StartTraceRequest"></a>
+<a name="svc-infra-link-StartTraceRequest"></a>
 
 ### StartTraceRequest
 
@@ -6353,7 +6408,7 @@ Service of stat
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| tracer_type | [StartTraceRequest.TracerType](#svc-infra-gateway-StartTraceRequest-TracerType) |  |  |
+| tracer_type | [StartTraceRequest.TracerType](#svc-infra-link-StartTraceRequest-TracerType) |  |  |
 | session_id | [string](#string) |  | 连接ID |
 | device | [string](#string) |  | 设备标识 |
 | account_id | [string](#string) |  | 账号ID |
@@ -6365,7 +6420,7 @@ Service of stat
 
 
 
-<a name="svc-infra-gateway-StartTraceResponse"></a>
+<a name="svc-infra-link-StartTraceResponse"></a>
 
 ### StartTraceResponse
 
@@ -6381,7 +6436,7 @@ Service of stat
 
 
 
-<a name="svc-infra-gateway-StopTraceRequest"></a>
+<a name="svc-infra-link-StopTraceRequest"></a>
 
 ### StopTraceRequest
 
@@ -6391,7 +6446,7 @@ Service of stat
 
 
 
-<a name="svc-infra-gateway-StopTraceResponse"></a>
+<a name="svc-infra-link-StopTraceResponse"></a>
 
 ### StopTraceResponse
 
@@ -6408,7 +6463,7 @@ Service of stat
  
 
 
-<a name="svc-infra-gateway-StartTraceRequest-TracerType"></a>
+<a name="svc-infra-link-StartTraceRequest-TracerType"></a>
 
 ### StartTraceRequest.TracerType
 
@@ -6427,15 +6482,15 @@ Service of stat
  
 
 
-<a name="svc-infra-gateway-LinkTrace"></a>
+<a name="svc-infra-link-LinkTrace"></a>
 
 ### LinkTrace
 
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| Start | [StartTraceRequest](#svc-infra-gateway-StartTraceRequest) | [StartTraceResponse](#svc-infra-gateway-StartTraceResponse) | 设置Trace |
-| Stop | [StopTraceRequest](#svc-infra-gateway-StopTraceRequest) | [StopTraceResponse](#svc-infra-gateway-StopTraceResponse) | 关闭Trace |
+| Start | [StartTraceRequest](#svc-infra-link-StartTraceRequest) | [StartTraceResponse](#svc-infra-link-StartTraceResponse) | 设置Trace |
+| Stop | [StopTraceRequest](#svc-infra-link-StopTraceRequest) | [StopTraceResponse](#svc-infra-link-StopTraceResponse) | 关闭Trace |
 
  
 
@@ -6448,7 +6503,7 @@ Service of stat
 
 
 
-<a name="svc-infra-center-GetGatewayRequest"></a>
+<a name="svc-infra-link-GetGatewayRequest"></a>
 
 ### GetGatewayRequest
 
@@ -6463,7 +6518,7 @@ Service of stat
 
 
 
-<a name="svc-infra-center-GetGatewayResponse"></a>
+<a name="svc-infra-link-GetGatewayResponse"></a>
 
 ### GetGatewayResponse
 
@@ -6471,14 +6526,14 @@ Service of stat
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| gateway | [gateway](#svc-infra-center-gateway) |  | 网关信息 |
+| gateway | [gateway](#svc-infra-link-gateway) |  | 网关信息 |
 
 
 
 
 
 
-<a name="svc-infra-center-ListGatewayRequest"></a>
+<a name="svc-infra-link-ListGatewayRequest"></a>
 
 ### ListGatewayRequest
 
@@ -6493,7 +6548,7 @@ Service of stat
 
 
 
-<a name="svc-infra-center-ListGatewayResponse"></a>
+<a name="svc-infra-link-ListGatewayResponse"></a>
 
 ### ListGatewayResponse
 
@@ -6501,14 +6556,14 @@ Service of stat
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| gateways | [gateway](#svc-infra-center-gateway) | repeated | 网关列表 |
+| gateways | [gateway](#svc-infra-link-gateway) | repeated | 网关列表 |
 
 
 
 
 
 
-<a name="svc-infra-center-SelectGatewayRequest"></a>
+<a name="svc-infra-link-SelectGatewayRequest"></a>
 
 ### SelectGatewayRequest
 
@@ -6528,7 +6583,7 @@ Service of stat
 
 
 
-<a name="svc-infra-center-SelectGatewayResponse"></a>
+<a name="svc-infra-link-SelectGatewayResponse"></a>
 
 ### SelectGatewayResponse
 
@@ -6536,14 +6591,14 @@ Service of stat
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| gateways | [select_summary](#svc-infra-center-select_summary) | repeated | 网关列表 |
+| gateways | [select_summary](#svc-infra-link-select_summary) | repeated | 网关列表 |
 
 
 
 
 
 
-<a name="svc-infra-center-gateway"></a>
+<a name="svc-infra-link-gateway"></a>
 
 ### gateway
 
@@ -6579,7 +6634,7 @@ Service of stat
 
 
 
-<a name="svc-infra-center-select_summary"></a>
+<a name="svc-infra-link-select_summary"></a>
 
 ### select_summary
 
@@ -6603,16 +6658,16 @@ Service of stat
  
 
 
-<a name="svc-infra-center-LinkGateway"></a>
+<a name="svc-infra-link-LinkGateway"></a>
 
 ### LinkGateway
 Services of gateway
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| List | [ListGatewayRequest](#svc-infra-center-ListGatewayRequest) | [ListGatewayResponse](#svc-infra-center-ListGatewayResponse) | 网关列表 |
-| Get | [GetGatewayRequest](#svc-infra-center-GetGatewayRequest) | [GetGatewayResponse](#svc-infra-center-GetGatewayResponse) | 获取网关信息 |
-| Select | [SelectGatewayRequest](#svc-infra-center-SelectGatewayRequest) | [SelectGatewayResponse](#svc-infra-center-SelectGatewayResponse) | 分配网关 |
+| List | [ListGatewayRequest](#svc-infra-link-ListGatewayRequest) | [ListGatewayResponse](#svc-infra-link-ListGatewayResponse) | 网关列表 |
+| Get | [GetGatewayRequest](#svc-infra-link-GetGatewayRequest) | [GetGatewayResponse](#svc-infra-link-GetGatewayResponse) | 获取网关信息 |
+| Select | [SelectGatewayRequest](#svc-infra-link-SelectGatewayRequest) | [SelectGatewayResponse](#svc-infra-link-SelectGatewayResponse) | 分配网关 |
 
  
 
@@ -6625,7 +6680,7 @@ Services of gateway
 
 
 
-<a name="svc-infra-center-SendAccountRequest"></a>
+<a name="svc-infra-link-SendAccountRequest"></a>
 
 ### SendAccountRequest
 
@@ -6645,7 +6700,7 @@ Services of gateway
 
 
 
-<a name="svc-infra-center-SendAccountResponse"></a>
+<a name="svc-infra-link-SendAccountResponse"></a>
 
 ### SendAccountResponse
 
@@ -6661,7 +6716,7 @@ Services of gateway
 
 
 
-<a name="svc-infra-center-SendDeviceRequest"></a>
+<a name="svc-infra-link-SendDeviceRequest"></a>
 
 ### SendDeviceRequest
 
@@ -6680,7 +6735,7 @@ Services of gateway
 
 
 
-<a name="svc-infra-center-SendDeviceResponse"></a>
+<a name="svc-infra-link-SendDeviceResponse"></a>
 
 ### SendDeviceResponse
 
@@ -6696,7 +6751,7 @@ Services of gateway
 
 
 
-<a name="svc-infra-center-SendGlobalRequest"></a>
+<a name="svc-infra-link-SendGlobalRequest"></a>
 
 ### SendGlobalRequest
 
@@ -6715,7 +6770,7 @@ Services of gateway
 
 
 
-<a name="svc-infra-center-SendGlobalResponse"></a>
+<a name="svc-infra-link-SendGlobalResponse"></a>
 
 ### SendGlobalResponse
 
@@ -6731,7 +6786,7 @@ Services of gateway
 
 
 
-<a name="svc-infra-center-SendGroupRequest"></a>
+<a name="svc-infra-link-SendGroupRequest"></a>
 
 ### SendGroupRequest
 
@@ -6750,7 +6805,7 @@ Services of gateway
 
 
 
-<a name="svc-infra-center-SendGroupResponse"></a>
+<a name="svc-infra-link-SendGroupResponse"></a>
 
 ### SendGroupResponse
 
@@ -6766,7 +6821,7 @@ Services of gateway
 
 
 
-<a name="svc-infra-center-SendSessionRequest"></a>
+<a name="svc-infra-link-SendSessionRequest"></a>
 
 ### SendSessionRequest
 
@@ -6785,7 +6840,7 @@ Services of gateway
 
 
 
-<a name="svc-infra-center-SendSessionResponse"></a>
+<a name="svc-infra-link-SendSessionResponse"></a>
 
 ### SendSessionResponse
 
@@ -6807,18 +6862,18 @@ Services of gateway
  
 
 
-<a name="svc-infra-center-LinkMessage"></a>
+<a name="svc-infra-link-LinkMessage"></a>
 
 ### LinkMessage
 Service of message
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| SendGlobal | [SendGlobalRequest](#svc-infra-center-SendGlobalRequest) | [SendGlobalResponse](#svc-infra-center-SendGlobalResponse) | 发送全局消息 |
-| SendGroup | [SendGroupRequest](#svc-infra-center-SendGroupRequest) | [SendGroupResponse](#svc-infra-center-SendGroupResponse) | 发送群组消息 |
-| SendAccount | [SendAccountRequest](#svc-infra-center-SendAccountRequest) | [SendAccountResponse](#svc-infra-center-SendAccountResponse) | 发送账号消息（对单人) |
-| SendDevice | [SendDeviceRequest](#svc-infra-center-SendDeviceRequest) | [SendDeviceResponse](#svc-infra-center-SendDeviceResponse) | 发送设备消息 |
-| SendSession | [SendSessionRequest](#svc-infra-center-SendSessionRequest) | [SendSessionResponse](#svc-infra-center-SendSessionResponse) | 发送连接消息 |
+| SendGlobal | [SendGlobalRequest](#svc-infra-link-SendGlobalRequest) | [SendGlobalResponse](#svc-infra-link-SendGlobalResponse) | 发送全局消息 |
+| SendGroup | [SendGroupRequest](#svc-infra-link-SendGroupRequest) | [SendGroupResponse](#svc-infra-link-SendGroupResponse) | 发送群组消息 |
+| SendAccount | [SendAccountRequest](#svc-infra-link-SendAccountRequest) | [SendAccountResponse](#svc-infra-link-SendAccountResponse) | 发送账号消息（对单人) |
+| SendDevice | [SendDeviceRequest](#svc-infra-link-SendDeviceRequest) | [SendDeviceResponse](#svc-infra-link-SendDeviceResponse) | 发送设备消息 |
+| SendSession | [SendSessionRequest](#svc-infra-link-SendSessionRequest) | [SendSessionResponse](#svc-infra-link-SendSessionResponse) | 发送连接消息 |
 
  
 
@@ -6831,7 +6886,7 @@ Service of message
 
 
 
-<a name="svc-infra-center-RemoveAccountRequest"></a>
+<a name="svc-infra-link-RemoveAccountRequest"></a>
 
 ### RemoveAccountRequest
 
@@ -6847,7 +6902,7 @@ Service of message
 
 
 
-<a name="svc-infra-center-RemoveAccountResponse"></a>
+<a name="svc-infra-link-RemoveAccountResponse"></a>
 
 ### RemoveAccountResponse
 
@@ -6862,7 +6917,7 @@ Service of message
 
 
 
-<a name="svc-infra-center-RemoveDeviceRequest"></a>
+<a name="svc-infra-link-RemoveDeviceRequest"></a>
 
 ### RemoveDeviceRequest
 
@@ -6877,7 +6932,7 @@ Service of message
 
 
 
-<a name="svc-infra-center-RemoveDeviceResponse"></a>
+<a name="svc-infra-link-RemoveDeviceResponse"></a>
 
 ### RemoveDeviceResponse
 
@@ -6892,7 +6947,7 @@ Service of message
 
 
 
-<a name="svc-infra-center-RemoveSessionRequest"></a>
+<a name="svc-infra-link-RemoveSessionRequest"></a>
 
 ### RemoveSessionRequest
 
@@ -6907,7 +6962,7 @@ Service of message
 
 
 
-<a name="svc-infra-center-RemoveSessionResponse"></a>
+<a name="svc-infra-link-RemoveSessionResponse"></a>
 
 ### RemoveSessionResponse
 
@@ -6928,16 +6983,16 @@ Service of message
  
 
 
-<a name="svc-infra-center-LinkInstruction"></a>
+<a name="svc-infra-link-LinkInstruction"></a>
 
 ### LinkInstruction
 Service of instruction
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| RemoveSession | [RemoveSessionRequest](#svc-infra-center-RemoveSessionRequest) | [RemoveSessionResponse](#svc-infra-center-RemoveSessionResponse) | 移除（踢）连接 |
-| RemoveAccount | [RemoveAccountRequest](#svc-infra-center-RemoveAccountRequest) | [RemoveAccountResponse](#svc-infra-center-RemoveAccountResponse) | 移除（踢）账号 |
-| RemoveDevice | [RemoveDeviceRequest](#svc-infra-center-RemoveDeviceRequest) | [RemoveDeviceResponse](#svc-infra-center-RemoveDeviceResponse) | 移除（踢）设备 |
+| RemoveSession | [RemoveSessionRequest](#svc-infra-link-RemoveSessionRequest) | [RemoveSessionResponse](#svc-infra-link-RemoveSessionResponse) | 移除（踢）连接 |
+| RemoveAccount | [RemoveAccountRequest](#svc-infra-link-RemoveAccountRequest) | [RemoveAccountResponse](#svc-infra-link-RemoveAccountResponse) | 移除（踢）账号 |
+| RemoveDevice | [RemoveDeviceRequest](#svc-infra-link-RemoveDeviceRequest) | [RemoveDeviceResponse](#svc-infra-link-RemoveDeviceResponse) | 移除（踢）设备 |
 
  
 
@@ -9619,6 +9674,31 @@ UpdatedSmsTemplateRequest 绑定操作
 
 
  
+
+
+<a name="svc-infra-notifier-BizType"></a>
+
+### BizType
+业务类型
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| TYPE_LOGIN | 0 | 登录 |
+| TYPE_RESET_PWD | 1 | 找回密码 |
+| TYPE_RESET_MOBILE | 2 | 重置手机号 |
+| TYPE_UNREGISTER | 3 | 注销 |
+
+
+
+<a name="svc-infra-notifier-CodeKey"></a>
+
+### CodeKey
+系统预设模板类型
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| SMS_COMM_CODE | 0 | 通用验证码 |
+
 
  
 
