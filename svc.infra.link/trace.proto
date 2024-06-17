@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 
-package svc.infra.gateway;
+package svc.infra.link;
 option go_package = "./svc.infra.link;link";
 
 service LinkTrace {

@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package svc.infra.link;
+option go_package = "./svc.infra.link;link";
+
+enum UserEnterQuitAction {
+  Enter = 0;
+  Quit = 1;
+}
+
+// 用户进出房间topic: topic.user.room.enter_quit
+message UserEnterQuitRoomTopic {
+    // 房间ID
+    string room_id = 1;
+    string user_id = 2;
+    string merchant_id = 3;
+    // 当前直播间的在人数数量
+    int64 online_count = 4;
+
+    UserEnterQuitAction action = 255;
+}
