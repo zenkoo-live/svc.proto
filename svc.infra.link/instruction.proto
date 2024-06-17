@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package svc.infra.center;
+package svc.infra.link;
 option go_package = "./svc.infra.link;link";
 
 

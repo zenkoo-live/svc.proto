@@ -6,6 +6,23 @@ option go_package = "./svc.infra.notifier;notifier";
 import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
 
+///////////////// enum ////////////////
+
+// 系统预设模板类型
+enum CodeKey {
+  SMS_COMM_CODE = 0; // 通用验证码
+}
+
+// 业务类型
+enum BizType {
+  TYPE_LOGIN = 0; // 登录
+  TYPE_RESET_PWD = 1; // 找回密码
+  TYPE_RESET_MOBILE = 2; // 重置手机号
+  TYPE_UNREGISTER = 3; // 注销
+
+}
+
+
 message InitDBResp {
   bool result = 1;
 }
