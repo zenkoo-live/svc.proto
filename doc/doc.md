@@ -231,7 +231,7 @@
     - [Stream](#svc-biz-room-Stream)
     - [StreamPull](#svc-biz-room-StreamPull)
     - [StreamPush](#svc-biz-room-StreamPush)
-    - [TrtcInfo](#svc-biz-room-TrtcInfo)
+    - [TrtcConf](#svc-biz-room-TrtcConf)
     - [UpdateRoomReq](#svc-biz-room-UpdateRoomReq)
   
     - [LiveDisplayType](#svc-biz-room-LiveDisplayType)
@@ -3807,7 +3807,7 @@ CategoryInfo 分类详情
 | ----- | ---- | ----- | ----------- |
 | room | [RoomInfo](#svc-biz-room-RoomInfo) |  | 房间信息 |
 | stream | [Stream](#svc-biz-room-Stream) |  | 流信息 |
-| trtc_info | [TrtcInfo](#svc-biz-room-TrtcInfo) |  | trtc信息 |
+| trtc_conf | [TrtcConf](#svc-biz-room-TrtcConf) |  | trtc信息 |
 
 
 
@@ -3872,7 +3872,7 @@ CategoryInfo 分类详情
 | ----- | ---- | ----- | ----------- |
 | room | [RoomInfo](#svc-biz-room-RoomInfo) |  | 房间信息 |
 | stream | [Stream](#svc-biz-room-Stream) |  | 流信息 |
-| trtc_info | [TrtcInfo](#svc-biz-room-TrtcInfo) |  | trtc信息 |
+| trtc_conf | [TrtcConf](#svc-biz-room-TrtcConf) |  | trtc信息 |
 
 
 
@@ -4064,7 +4064,7 @@ CategoryInfo 分类详情
 | ----- | ---- | ----- | ----------- |
 | room | [RoomInfo](#svc-biz-room-RoomInfo) |  | 房间信息 |
 | stream | [Stream](#svc-biz-room-Stream) |  | 流信息 |
-| trtc_info | [TrtcInfo](#svc-biz-room-TrtcInfo) |  | trtc信息 |
+| trtc_conf | [TrtcConf](#svc-biz-room-TrtcConf) |  | trtc信息 |
 
 
 
@@ -4148,9 +4148,9 @@ CategoryInfo 分类详情
 
 
 
-<a name="svc-biz-room-TrtcInfo"></a>
+<a name="svc-biz-room-TrtcConf"></a>
 
-### TrtcInfo
+### TrtcConf
 
 
 
