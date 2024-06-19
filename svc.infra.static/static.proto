@@ -11,6 +11,7 @@ service Static {
     rpc Configuration(ConfigurationMessage) returns (ConfigurationResponseMessage); // 服务配置
     rpc UploadAvatar(UploadRequestMessage) returns (UploadResponseMessage); // 上传头像
     rpc UploadCover(UploadRequestMessage) returns (UploadResponseMessage); // 上传封面
+    rpc UploadAudio(UploadRequestMessage) returns (UploadResponseMessage); // 上传音频
     rpc UploadVideo(UploadRequestMessage) returns (UploadResponseMessage); // 上传视频
     rpc UploadImage(UploadRequestMessage) returns (UploadResponseMessage); // 上传图片
     rpc UploadFile(UploadRequestMessage) returns (UploadResponseMessage); // 上传文件
@@ -31,7 +32,7 @@ message S3 {
 
 message ConfigurationMessage {
     S3 s3 = 1; // s3配置
-
+    repeated string domains = 2; // 静态域名
     string merchant_id = 255; // 商户id
 }
 
@@ -69,4 +70,7 @@ message UploadResponseMessage {
     string path     = 1; // 返回文件路径 ，如果是预写模式该值就是token 或者地址
     string domain   = 2; // 域
     string provider = 3; // oss 提供商
+    string certificate = 4; // 预写凭证
+    string bucket   = 5;
+    string region   = 6;
 }

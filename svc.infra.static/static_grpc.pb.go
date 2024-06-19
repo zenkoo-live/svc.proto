@@ -24,6 +24,7 @@ const (
 	Static_Configuration_FullMethodName    = "/svc.infra.static.Static/Configuration"
 	Static_UploadAvatar_FullMethodName     = "/svc.infra.static.Static/UploadAvatar"
 	Static_UploadCover_FullMethodName      = "/svc.infra.static.Static/UploadCover"
+	Static_UploadAudio_FullMethodName      = "/svc.infra.static.Static/UploadAudio"
 	Static_UploadVideo_FullMethodName      = "/svc.infra.static.Static/UploadVideo"
 	Static_UploadImage_FullMethodName      = "/svc.infra.static.Static/UploadImage"
 	Static_UploadFile_FullMethodName       = "/svc.infra.static.Static/UploadFile"
@@ -38,6 +39,7 @@ type StaticClient interface {
 	Configuration(ctx context.Context, in *ConfigurationMessage, opts ...grpc.CallOption) (*ConfigurationResponseMessage, error)
 	UploadAvatar(ctx context.Context, in *UploadRequestMessage, opts ...grpc.CallOption) (*UploadResponseMessage, error)
 	UploadCover(ctx context.Context, in *UploadRequestMessage, opts ...grpc.CallOption) (*UploadResponseMessage, error)
+	UploadAudio(ctx context.Context, in *UploadRequestMessage, opts ...grpc.CallOption) (*UploadResponseMessage, error)
 	UploadVideo(ctx context.Context, in *UploadRequestMessage, opts ...grpc.CallOption) (*UploadResponseMessage, error)
 	UploadImage(ctx context.Context, in *UploadRequestMessage, opts ...grpc.CallOption) (*UploadResponseMessage, error)
 	UploadFile(ctx context.Context, in *UploadRequestMessage, opts ...grpc.CallOption) (*UploadResponseMessage, error)
@@ -86,6 +88,16 @@ func (c *staticClient) UploadCover(ctx context.Context, in *UploadRequestMessage
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(UploadResponseMessage)
 	err := c.cc.Invoke(ctx, Static_UploadCover_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *staticClient) UploadAudio(ctx context.Context, in *UploadRequestMessage, opts ...grpc.CallOption) (*UploadResponseMessage, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UploadResponseMessage)
+	err := c.cc.Invoke(ctx, Static_UploadAudio_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -165,6 +177,7 @@ type StaticServer interface {
 	Configuration(context.Context, *ConfigurationMessage) (*ConfigurationResponseMessage, error)
 	UploadAvatar(context.Context, *UploadRequestMessage) (*UploadResponseMessage, error)
 	UploadCover(context.Context, *UploadRequestMessage) (*UploadResponseMessage, error)
+	UploadAudio(context.Context, *UploadRequestMessage) (*UploadResponseMessage, error)
 	UploadVideo(context.Context, *UploadRequestMessage) (*UploadResponseMessage, error)
 	UploadImage(context.Context, *UploadRequestMessage) (*UploadResponseMessage, error)
 	UploadFile(context.Context, *UploadRequestMessage) (*UploadResponseMessage, error)
@@ -187,6 +200,9 @@ func (UnimplementedStaticServer) UploadAvatar(context.Context, *UploadRequestMes
 }
 func (UnimplementedStaticServer) UploadCover(context.Context, *UploadRequestMessage) (*UploadResponseMessage, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UploadCover not implemented")
+}
+func (UnimplementedStaticServer) UploadAudio(context.Context, *UploadRequestMessage) (*UploadResponseMessage, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UploadAudio not implemented")
 }
 func (UnimplementedStaticServer) UploadVideo(context.Context, *UploadRequestMessage) (*UploadResponseMessage, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UploadVideo not implemented")
@@ -281,6 +297,24 @@ func _Static_UploadCover_Handler(srv interface{}, ctx context.Context, dec func(
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(StaticServer).UploadCover(ctx, req.(*UploadRequestMessage))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Static_UploadAudio_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UploadRequestMessage)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StaticServer).UploadAudio(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Static_UploadAudio_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StaticServer).UploadAudio(ctx, req.(*UploadRequestMessage))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -387,6 +421,10 @@ var Static_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UploadCover",
 			Handler:    _Static_UploadCover_Handler,
+		},
+		{
+			MethodName: "UploadAudio",
+			Handler:    _Static_UploadAudio_Handler,
 		},
 		{
 			MethodName: "UploadVideo",
