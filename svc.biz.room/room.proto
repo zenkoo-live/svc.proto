@@ -61,9 +61,10 @@ enum LiveStatus {
 
 message TrtcConf {
     string sdk_app_id = 1;
-    string streamer_id = 2;
-    string user_sig = 3;
-    string private_map_key = 4;
+    string user_id = 2;
+    string trtc_room_id = 3;
+    string user_sig = 4;
+    string private_map_key = 5;
 }
 
 // 拉流地址
