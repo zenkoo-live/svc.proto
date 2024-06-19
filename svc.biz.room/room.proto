@@ -138,6 +138,7 @@ message UpdateRoomReq {
 message GetRoomReq {
     string room_id = 1; // id
     bool with_stream = 2; // 是否带流信息
+    string user_id = 3; // 如果需要带流信息，需要传递user_id
 }
 message GetRoomResp {
     RoomInfo room = 1; // 房间信息
@@ -149,6 +150,7 @@ message GetRoomResp {
 message GetRoomByStreamerIDReq {
     string streamer_id = 1; // 主播id
     bool with_stream = 2; // 是否带流信息
+    string user_id = 3; // 如果需要带流信息，需要传递user_id
 }
 message GetRoomByStreamerIDResp {
     RoomInfo room = 1; // 房间信息

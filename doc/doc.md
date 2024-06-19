@@ -3791,6 +3791,7 @@ CategoryInfo 分类详情
 | ----- | ---- | ----- | ----------- |
 | streamer_id | [string](#string) |  | 主播id |
 | with_stream | [bool](#bool) |  | 是否带流信息 |
+| user_id | [string](#string) |  | 如果需要带流信息，需要传递user_id |
 
 
 
@@ -3856,6 +3857,7 @@ CategoryInfo 分类详情
 | ----- | ---- | ----- | ----------- |
 | room_id | [string](#string) |  | id |
 | with_stream | [bool](#bool) |  | 是否带流信息 |
+| user_id | [string](#string) |  | 如果需要带流信息，需要传递user_id |
 
 
 
