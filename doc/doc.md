@@ -4159,7 +4159,7 @@ CategoryInfo 分类详情
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | sdk_app_id | [string](#string) |  |  |
-| user_id | [string](#string) |  |  |
+| trtc_user_id | [string](#string) |  |  |
 | trtc_room_id | [string](#string) |  |  |
 | user_sig | [string](#string) |  |  |
 | private_map_key | [string](#string) |  |  |
