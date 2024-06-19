@@ -231,6 +231,7 @@
     - [Stream](#svc-biz-room-Stream)
     - [StreamPull](#svc-biz-room-StreamPull)
     - [StreamPush](#svc-biz-room-StreamPush)
+    - [TrtcConf](#svc-biz-room-TrtcConf)
     - [UpdateRoomReq](#svc-biz-room-UpdateRoomReq)
   
     - [LiveDisplayType](#svc-biz-room-LiveDisplayType)
@@ -2943,6 +2944,7 @@ UpdatedChannelTypeRequest 更新渠道
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | s3 | [S3](#svc-infra-static-S3) |  | s3配置 |
+| domains | [string](#string) | repeated | 静态域名 |
 | merchant_id | [string](#string) |  | 商户id |
 
 
@@ -3048,6 +3050,9 @@ UpdatedChannelTypeRequest 更新渠道
 | path | [string](#string) |  | 返回文件路径 ，如果是预写模式该值就是token 或者地址 |
 | domain | [string](#string) |  | 域 |
 | provider | [string](#string) |  | oss 提供商 |
+| certificate | [string](#string) |  | 预写凭证 |
+| bucket | [string](#string) |  |  |
+| region | [string](#string) |  |  |
 
 
 
@@ -3087,6 +3092,7 @@ UpdatedChannelTypeRequest 更新渠道
 | Configuration | [ConfigurationMessage](#svc-infra-static-ConfigurationMessage) | [ConfigurationResponseMessage](#svc-infra-static-ConfigurationResponseMessage) | 服务配置 |
 | UploadAvatar | [UploadRequestMessage](#svc-infra-static-UploadRequestMessage) | [UploadResponseMessage](#svc-infra-static-UploadResponseMessage) | 上传头像 |
 | UploadCover | [UploadRequestMessage](#svc-infra-static-UploadRequestMessage) | [UploadResponseMessage](#svc-infra-static-UploadResponseMessage) | 上传封面 |
+| UploadAudio | [UploadRequestMessage](#svc-infra-static-UploadRequestMessage) | [UploadResponseMessage](#svc-infra-static-UploadResponseMessage) | 上传音频 |
 | UploadVideo | [UploadRequestMessage](#svc-infra-static-UploadRequestMessage) | [UploadResponseMessage](#svc-infra-static-UploadResponseMessage) | 上传视频 |
 | UploadImage | [UploadRequestMessage](#svc-infra-static-UploadRequestMessage) | [UploadResponseMessage](#svc-infra-static-UploadResponseMessage) | 上传图片 |
 | UploadFile | [UploadRequestMessage](#svc-infra-static-UploadRequestMessage) | [UploadResponseMessage](#svc-infra-static-UploadResponseMessage) | 上传文件 |
@@ -3785,6 +3791,7 @@ CategoryInfo 分类详情
 | ----- | ---- | ----- | ----------- |
 | streamer_id | [string](#string) |  | 主播id |
 | with_stream | [bool](#bool) |  | 是否带流信息 |
+| user_id | [string](#string) |  | 如果需要带流信息，需要传递user_id |
 
 
 
@@ -3801,6 +3808,7 @@ CategoryInfo 分类详情
 | ----- | ---- | ----- | ----------- |
 | room | [RoomInfo](#svc-biz-room-RoomInfo) |  | 房间信息 |
 | stream | [Stream](#svc-biz-room-Stream) |  | 流信息 |
+| trtc_conf | [TrtcConf](#svc-biz-room-TrtcConf) |  | trtc信息 |
 
 
 
@@ -3849,6 +3857,7 @@ CategoryInfo 分类详情
 | ----- | ---- | ----- | ----------- |
 | room_id | [string](#string) |  | id |
 | with_stream | [bool](#bool) |  | 是否带流信息 |
+| user_id | [string](#string) |  | 如果需要带流信息，需要传递user_id |
 
 
 
@@ -3865,6 +3874,7 @@ CategoryInfo 分类详情
 | ----- | ---- | ----- | ----------- |
 | room | [RoomInfo](#svc-biz-room-RoomInfo) |  | 房间信息 |
 | stream | [Stream](#svc-biz-room-Stream) |  | 流信息 |
+| trtc_conf | [TrtcConf](#svc-biz-room-TrtcConf) |  | trtc信息 |
 
 
 
@@ -4056,6 +4066,7 @@ CategoryInfo 分类详情
 | ----- | ---- | ----- | ----------- |
 | room | [RoomInfo](#svc-biz-room-RoomInfo) |  | 房间信息 |
 | stream | [Stream](#svc-biz-room-Stream) |  | 流信息 |
+| trtc_conf | [TrtcConf](#svc-biz-room-TrtcConf) |  | trtc信息 |
 
 
 
@@ -4133,6 +4144,25 @@ CategoryInfo 分类详情
 | web_rtc | [string](#string) |  | WebRTC 推流地址 |
 | srt | [string](#string) |  | SRT 推流地址 |
 | rmtp_over_srt | [string](#string) |  | RTMP over SRT 推流地址 |
+
+
+
+
+
+
+<a name="svc-biz-room-TrtcConf"></a>
+
+### TrtcConf
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| sdk_app_id | [string](#string) |  |  |
+| trtc_user_id | [string](#string) |  |  |
+| trtc_room_id | [string](#string) |  |  |
+| user_sig | [string](#string) |  |  |
+| private_map_key | [string](#string) |  |  |
 
 
 
@@ -9525,6 +9555,7 @@ biz sms send /////////////
 | name | [string](#string) |  |  |
 | start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
 | end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+| merchant_id | [string](#string) |  |  |
 
 
 

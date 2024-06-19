@@ -59,6 +59,14 @@ enum LiveStatus {
     LiveStatusOffline = 2; // 下线
 }
 
+message TrtcConf {
+    string sdk_app_id = 1;
+    string trtc_user_id = 2;
+    string trtc_room_id = 3;
+    string user_sig = 4;
+    string private_map_key = 5;
+}
+
 // 拉流地址
 message StreamPull {
     string rtmp = 1; // RTMP 拉流地址
@@ -131,19 +139,24 @@ message UpdateRoomReq {
 message GetRoomReq {
     string room_id = 1; // id
     bool with_stream = 2; // 是否带流信息
+    string user_id = 3; // 如果需要带流信息，需要传递user_id
 }
 message GetRoomResp {
     RoomInfo room = 1; // 房间信息
     Stream stream = 2; // 流信息
+    TrtcConf trtc_conf = 3; // trtc信息
+
 }
 
 message GetRoomByStreamerIDReq {
     string streamer_id = 1; // 主播id
     bool with_stream = 2; // 是否带流信息
+    string user_id = 3; // 如果需要带流信息，需要传递user_id
 }
 message GetRoomByStreamerIDResp {
     RoomInfo room = 1; // 房间信息
     Stream stream = 2; // 流信息
+    TrtcConf trtc_conf = 3; // trtc信息
 }
 
 message MGetRoomsReq {
@@ -204,6 +217,7 @@ message StartLiveReq {
 message StartLiveResp {
     RoomInfo room = 1; // 房间信息
     Stream stream = 2; // 流信息
+    TrtcConf trtc_conf = 3; // trtc信息
 }
 
 message StopLiveReq {
