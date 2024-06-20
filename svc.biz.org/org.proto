@@ -70,6 +70,7 @@ message ListDepartmentsReq {
 };
 message ListDepartmentsResp {
     repeated Department departments = 1;
+    int64 total = 2;
 };
 
 message AddDepartmentReq {
@@ -110,6 +111,7 @@ message ListMerchantsReq {
 };
 message ListMerchantsResp {
     repeated Merchant merchants = 1;
+    int64 total = 2;
 };
 
 message AddMerchantReq {

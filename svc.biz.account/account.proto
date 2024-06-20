@@ -107,6 +107,7 @@ message ListViewersReq {
 };
 message ListViewersResp {
     repeated Viewer viewers = 1;
+    int64 total = 2;
 };
 
 message AddViewerReq {
@@ -148,6 +149,7 @@ message ListStreamersReq {
 };
 message ListStreamersResp {
     repeated Streamer streamers = 1;
+    int64 total = 2;
 };
 
 message AddStreamerReq {
@@ -189,6 +191,7 @@ message ListManagersReq {
 };
 message ListManagersResp {
     repeated Manager managers = 1;
+    int64 total = 2;
 };
 
 message AddManagerReq {
