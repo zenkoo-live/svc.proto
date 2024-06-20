@@ -126,6 +126,7 @@ message GiftSendReq {
     string streamer_id = 7; // 主播uid
     string room_id = 8; // 房间id
     string live_id = 9; // 直播id
+    int32 glamour_rate = 10; // 魅力值比例 
 }
 message GiftSendResp {
     bool sendret = 1; // 赠送结果
