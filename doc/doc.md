@@ -505,6 +505,12 @@
     - [ListUnionsReq](#svc-biz-org-ListUnionsReq)
     - [ListUnionsResp](#svc-biz-org-ListUnionsResp)
     - [Merchant](#svc-biz-org-Merchant)
+    - [TotalDepartmentsReq](#svc-biz-org-TotalDepartmentsReq)
+    - [TotalDepartmentsResp](#svc-biz-org-TotalDepartmentsResp)
+    - [TotalMerchantsReq](#svc-biz-org-TotalMerchantsReq)
+    - [TotalMerchantsResp](#svc-biz-org-TotalMerchantsResp)
+    - [TotalUnionsReq](#svc-biz-org-TotalUnionsReq)
+    - [TotalUnionsResp](#svc-biz-org-TotalUnionsResp)
     - [Union](#svc-biz-org-Union)
     - [UpdateDepartmentReq](#svc-biz-org-UpdateDepartmentReq)
     - [UpdateDepartmentResp](#svc-biz-org-UpdateDepartmentResp)
@@ -8816,6 +8822,7 @@ Models
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | unions | [Union](#svc-biz-org-Union) | repeated |  |
+| total | [int64](#int64) |  |  |
 
 
 
@@ -8834,6 +8841,96 @@ Models
 | name | [string](#string) |  | 名字 |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
 | additions | [string](#string) |  | 扩展属性 |
+
+
+
+
+
+
+<a name="svc-biz-org-TotalDepartmentsReq"></a>
+
+### TotalDepartmentsReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Department](#svc-biz-org-Department) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-TotalDepartmentsResp"></a>
+
+### TotalDepartmentsResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| total | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-TotalMerchantsReq"></a>
+
+### TotalMerchantsReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Merchant](#svc-biz-org-Merchant) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-TotalMerchantsResp"></a>
+
+### TotalMerchantsResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| total | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-TotalUnionsReq"></a>
+
+### TotalUnionsReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Union](#svc-biz-org-Union) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-TotalUnionsResp"></a>
+
+### TotalUnionsResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| total | [int64](#int64) |  |  |
 
 
 
@@ -8968,16 +9065,19 @@ Models
 | AddDepartment | [AddDepartmentReq](#svc-biz-org-AddDepartmentReq) | [AddDepartmentResp](#svc-biz-org-AddDepartmentResp) | 添加部门 |
 | UpdateDepartment | [UpdateDepartmentReq](#svc-biz-org-UpdateDepartmentReq) | [UpdateDepartmentResp](#svc-biz-org-UpdateDepartmentResp) | 更新部门 |
 | DeleteDepartment | [DeleteDepartmentReq](#svc-biz-org-DeleteDepartmentReq) | [DeleteDepartmentResp](#svc-biz-org-DeleteDepartmentResp) | 删除部门 |
+| TotalDepartments | [TotalDepartmentsReq](#svc-biz-org-TotalDepartmentsReq) | [TotalDepartmentsResp](#svc-biz-org-TotalDepartmentsResp) | 获取波门总数 |
 | GetMerchant | [GetMerchantReq](#svc-biz-org-GetMerchantReq) | [GetMerchantResp](#svc-biz-org-GetMerchantResp) | 获取商户 |
 | ListMerchants | [ListMerchantsReq](#svc-biz-org-ListMerchantsReq) | [ListMerchantsResp](#svc-biz-org-ListMerchantsResp) | 获取商户列表 |
 | AddMerchant | [AddMerchantReq](#svc-biz-org-AddMerchantReq) | [AddMerchantResp](#svc-biz-org-AddMerchantResp) | 添加商户 |
 | UpdateMerchant | [UpdateMerchantReq](#svc-biz-org-UpdateMerchantReq) | [UpdateMerchantResp](#svc-biz-org-UpdateMerchantResp) | 更新商户 |
 | DeleteMerchant | [DeleteMerchantReq](#svc-biz-org-DeleteMerchantReq) | [DeleteMerchantResp](#svc-biz-org-DeleteMerchantResp) | 删除商户 |
+| TotalMerchants | [TotalMerchantsReq](#svc-biz-org-TotalMerchantsReq) | [TotalMerchantsResp](#svc-biz-org-TotalMerchantsResp) | 获取商户总数 |
 | GetUnion | [GetUnionReq](#svc-biz-org-GetUnionReq) | [GetUnionResp](#svc-biz-org-GetUnionResp) | 获取工会 |
 | ListUnions | [ListUnionsReq](#svc-biz-org-ListUnionsReq) | [ListUnionsResp](#svc-biz-org-ListUnionsResp) | 获取工会列表 |
 | AddUnion | [AddUnionReq](#svc-biz-org-AddUnionReq) | [AddUnionResp](#svc-biz-org-AddUnionResp) | 添加工会 |
 | UpdateUnion | [UpdateUnionReq](#svc-biz-org-UpdateUnionReq) | [UpdateUnionResp](#svc-biz-org-UpdateUnionResp) | 更新工会 |
 | DeleteUnion | [DeleteUnionReq](#svc-biz-org-DeleteUnionReq) | [DeleteUnionResp](#svc-biz-org-DeleteUnionResp) | 删除工会 |
+| TotalUnions | [TotalUnionsReq](#svc-biz-org-TotalUnionsReq) | [TotalUnionsResp](#svc-biz-org-TotalUnionsResp) | 获取工会总数 |
 
  
 
