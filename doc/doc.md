@@ -10178,6 +10178,7 @@ topic: topic.gift.send
 | live_id | [string](#string) |  | 直播ID |
 | combo | [int32](#int32) |  | 礼物combo |
 | group | [string](#string) |  | 礼物combogroup |
+| glamour_rate | [int32](#int32) |  | 魅力值比例 |
 | send_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 赠送时间 |
 
 
