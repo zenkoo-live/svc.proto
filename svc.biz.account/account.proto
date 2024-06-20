@@ -14,24 +14,28 @@ service Account {
     rpc AddViewer(AddViewerReq) returns (AddViewerResp); // 添加普通账号
     rpc UpdateViewer(UpdateViewerReq) returns (UpdateViewerResp); // 更新普通账号
     rpc DeleteViewer(DeleteViewerReq) returns (DeleteViewerResp); // 删除普通账号
+    rpc TotalViewers(TotalViewersReq) returns (TotalViewersResp); // 获取账号总数
 
     rpc GetStreamer(GetStreamerReq) returns (GetStreamerResp); // 获取主播账号
     rpc ListStreamers(ListStreamersReq) returns (ListStreamersResp); // 获取主播账号列表
     rpc AddStreamer(AddStreamerReq) returns (AddStreamerResp); // 添加普通账号
     rpc UpdateStreamer(UpdateStreamerReq) returns (UpdateStreamerResp); // 更新主播账号
     rpc DeleteStreamer(DeleteStreamerReq) returns (DeleteStreamerResp); // 删除主播账号
+    rpc TotalStreamers(TotalStreamersReq) returns (TotalStreamersResp); // 获取主播总数
 
     rpc GetManager(GetManagerReq) returns (GetManagerResp); // 获取管理账号
     rpc ListManagers(ListManagersReq) returns (ListManagersResp); // 获取管理账号列表
     rpc AddManager(AddManagerReq) returns (AddManagerResp); // 添加管理账号
     rpc UpdateManager(UpdateManagerReq) returns (UpdateManagerResp); // 更新管理账号
     rpc DeleteManager(DeleteManagerReq) returns (DeleteManagerResp); // 删除管理账号
+    rpc TotalManagers(TotalManagersReq) returns (TotalManagersResp); // 获取管理总数
 
     rpc GetUnion(GetUnionReq) returns (GetUnionResp); // 获取工会账号
     rpc ListUnions(ListUnionsReq) returns (ListUnionsResp); // 获取工会账号列表
     rpc AddUnion(AddUnionReq) returns (AddUnionResp); // 添加工会账号
     rpc UpdateUnion(UpdateUnionReq) returns (UpdateUnionResp); // 更新工会账号
     rpc DeleteUnion(DeleteUnionReq) returns (DeleteUnionResp); // 删除工会账号
+    rpc TotalUnions(TotalUnionsReq) returns (TotalUnionsResp); // 获取工会总数
 }
 
 message InitDBResp {
@@ -132,6 +136,13 @@ message DeleteViewerResp {
     int64 deleted = 1;
 };
 
+message TotalViewersReq {
+    Viewer condition = 1;
+}
+message TotalViewersResp {
+    int64 total = 1;
+}
+
 /* }}} */
 
 /* {{{ [Streamer] */
@@ -173,6 +184,13 @@ message DeleteStreamerReq {
 message DeleteStreamerResp {
     int64 deleted = 1;
 };
+
+message TotalStreamersReq {
+    Streamer condition = 1;
+}
+message TotalStreamersResp {
+    int64 total = 1;
+}
 
 /* }}} */
 
@@ -216,6 +234,13 @@ message DeleteManagerResp {
     int64 deleted = 1;
 };
 
+message TotalManagersReq {
+    Manager condition = 1;
+}
+message TotalManagersResp {
+    int64 total = 1;
+}
+
 /* }}} */
 
 /* {{{ [Union] */
@@ -233,6 +258,7 @@ message ListUnionsReq {
 };
 message ListUnionsResp {
     repeated Union unions = 1;
+    int64 total = 2;
 };
 
 message AddUnionReq {
@@ -256,5 +282,12 @@ message DeleteUnionReq {
 message DeleteUnionResp {
     int64 deleted = 1;
 };
+
+message TotalUnionsReq {
+    Union condition = 1;
+}
+message TotalUnionsResp {
+    int64 total = 1;
+}
 
 /* }}} */
