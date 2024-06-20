@@ -913,16 +913,16 @@ type GiftSendReq struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Uuid        string  `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`                                     // 唯一标识
-	OrderId     string  `protobuf:"bytes,2,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`                // 支付订单id
-	GiftId      string  `protobuf:"bytes,3,opt,name=gift_id,json=giftId,proto3" json:"gift_id,omitempty"`                   // 礼物id
-	Num         int32   `protobuf:"varint,4,opt,name=num,proto3" json:"num,omitempty"`                                      // 数量
-	Price       int32   `protobuf:"varint,5,opt,name=price,proto3" json:"price,omitempty"`                                  // 礼物单价（主要用做验证）
-	FromUid     string  `protobuf:"bytes,6,opt,name=from_uid,json=fromUid,proto3" json:"from_uid,omitempty"`                // 赠送者uid
-	StreamerId  string  `protobuf:"bytes,7,opt,name=streamer_id,json=streamerId,proto3" json:"streamer_id,omitempty"`       // 主播uid
-	RoomId      string  `protobuf:"bytes,8,opt,name=room_id,json=roomId,proto3" json:"room_id,omitempty"`                   // 房间id
-	LiveId      string  `protobuf:"bytes,9,opt,name=live_id,json=liveId,proto3" json:"live_id,omitempty"`                   // 直播id
-	GlamourRate float32 `protobuf:"fixed32,10,opt,name=glamour_rate,json=glamourRate,proto3" json:"glamour_rate,omitempty"` // 魅力值比例
+	Uuid        string `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`                                    // 唯一标识
+	OrderId     string `protobuf:"bytes,2,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`               // 支付订单id
+	GiftId      string `protobuf:"bytes,3,opt,name=gift_id,json=giftId,proto3" json:"gift_id,omitempty"`                  // 礼物id
+	Num         int32  `protobuf:"varint,4,opt,name=num,proto3" json:"num,omitempty"`                                     // 数量
+	Price       int32  `protobuf:"varint,5,opt,name=price,proto3" json:"price,omitempty"`                                 // 礼物单价（主要用做验证）
+	FromUid     string `protobuf:"bytes,6,opt,name=from_uid,json=fromUid,proto3" json:"from_uid,omitempty"`               // 赠送者uid
+	StreamerId  string `protobuf:"bytes,7,opt,name=streamer_id,json=streamerId,proto3" json:"streamer_id,omitempty"`      // 主播uid
+	RoomId      string `protobuf:"bytes,8,opt,name=room_id,json=roomId,proto3" json:"room_id,omitempty"`                  // 房间id
+	LiveId      string `protobuf:"bytes,9,opt,name=live_id,json=liveId,proto3" json:"live_id,omitempty"`                  // 直播id
+	GlamourRate int32  `protobuf:"varint,10,opt,name=glamour_rate,json=glamourRate,proto3" json:"glamour_rate,omitempty"` // 魅力值比例
 }
 
 func (x *GiftSendReq) Reset() {
@@ -1020,7 +1020,7 @@ func (x *GiftSendReq) GetLiveId() string {
 	return ""
 }
 
-func (x *GiftSendReq) GetGlamourRate() float32 {
+func (x *GiftSendReq) GetGlamourRate() int32 {
 	if x != nil {
 		return x.GlamourRate
 	}
@@ -1207,7 +1207,7 @@ var file_svc_biz_gift_gift_proto_rawDesc = []byte{
 	0x64, 0x18, 0x08, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x72, 0x6f, 0x6f, 0x6d, 0x49, 0x64, 0x12,
 	0x17, 0x0a, 0x07, 0x6c, 0x69, 0x76, 0x65, 0x5f, 0x69, 0x64, 0x18, 0x09, 0x20, 0x01, 0x28, 0x09,
 	0x52, 0x06, 0x6c, 0x69, 0x76, 0x65, 0x49, 0x64, 0x12, 0x21, 0x0a, 0x0c, 0x67, 0x6c, 0x61, 0x6d,
-	0x6f, 0x75, 0x72, 0x5f, 0x72, 0x61, 0x74, 0x65, 0x18, 0x0a, 0x20, 0x01, 0x28, 0x02, 0x52, 0x0b,
+	0x6f, 0x75, 0x72, 0x5f, 0x72, 0x61, 0x74, 0x65, 0x18, 0x0a, 0x20, 0x01, 0x28, 0x05, 0x52, 0x0b,
 	0x67, 0x6c, 0x61, 0x6d, 0x6f, 0x75, 0x72, 0x52, 0x61, 0x74, 0x65, 0x22, 0x66, 0x0a, 0x0c, 0x47,
 	0x69, 0x66, 0x74, 0x53, 0x65, 0x6e, 0x64, 0x52, 0x65, 0x73, 0x70, 0x12, 0x18, 0x0a, 0x07, 0x73,
 	0x65, 0x6e, 0x64, 0x72, 0x65, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x07, 0x73, 0x65,

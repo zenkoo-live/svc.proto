@@ -10306,7 +10306,7 @@ topic: topic.gift.send
 | streamer_id | [string](#string) |  | 主播uid |
 | room_id | [string](#string) |  | 房间id |
 | live_id | [string](#string) |  | 直播id |
-| glamour_rate | [float](#float) |  | 魅力值比例 |
+| glamour_rate | [int32](#int32) |  | 魅力值比例 |
 
 
 
