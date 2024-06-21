@@ -17,6 +17,11 @@ service LinkMessage {
   rpc SendSession(SendSessionRequest) returns (SendSessionResponse) {};
 };
 
+enum MsgType {
+  COMM_CHAT = 0; // 弹幕
+  STREAMER_CHAT = 1; // 主播弹幕
+}
+
 message SendGlobalRequest {
   int32 type = 1;                             // 消息类型
   int32 priority = 2;                         // 消息优先级
