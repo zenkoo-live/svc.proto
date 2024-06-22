@@ -16,6 +16,8 @@ message UserEnterQuitRoomTopic {
     string merchant_id = 3;
     // 当前直播间的在人数数量
     int64 online_count = 4;
+    // 主播ID
+    string streamer_id = 5;
 
     UserEnterQuitAction action = 255;
 }

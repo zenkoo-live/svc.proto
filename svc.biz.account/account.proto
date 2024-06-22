@@ -11,6 +11,7 @@ service Account {
 
     rpc GetViewer(GetViewerReq) returns (GetViewerResp); // 获取普通账号
     rpc ListViewers(ListViewersReq) returns (ListViewersResp); // 获取普通账号列表
+    rpc FilterViewers(FilterViewersReq) returns (FilterViewersResp); // 通过ID列表获取普通账号列表
     rpc AddViewer(AddViewerReq) returns (AddViewerResp); // 添加普通账号
     rpc UpdateViewer(UpdateViewerReq) returns (UpdateViewerResp); // 更新普通账号
     rpc DeleteViewer(DeleteViewerReq) returns (DeleteViewerResp); // 删除普通账号
@@ -18,6 +19,7 @@ service Account {
 
     rpc GetStreamer(GetStreamerReq) returns (GetStreamerResp); // 获取主播账号
     rpc ListStreamers(ListStreamersReq) returns (ListStreamersResp); // 获取主播账号列表
+    rpc FilterStreamers(FilterStreamersReq) returns (FilterStreamersResp); // 通过ID列表获取主播账号列表
     rpc AddStreamer(AddStreamerReq) returns (AddStreamerResp); // 添加普通账号
     rpc UpdateStreamer(UpdateStreamerReq) returns (UpdateStreamerResp); // 更新主播账号
     rpc DeleteStreamer(DeleteStreamerReq) returns (DeleteStreamerResp); // 删除主播账号
@@ -25,6 +27,7 @@ service Account {
 
     rpc GetManager(GetManagerReq) returns (GetManagerResp); // 获取管理账号
     rpc ListManagers(ListManagersReq) returns (ListManagersResp); // 获取管理账号列表
+    rpc FilterManagers(FilterManagersReq) returns (FilterManagersResp); // 通过ID列表获取管理账号列表
     rpc AddManager(AddManagerReq) returns (AddManagerResp); // 添加管理账号
     rpc UpdateManager(UpdateManagerReq) returns (UpdateManagerResp); // 更新管理账号
     rpc DeleteManager(DeleteManagerReq) returns (DeleteManagerResp); // 删除管理账号
@@ -32,6 +35,7 @@ service Account {
 
     rpc GetUnion(GetUnionReq) returns (GetUnionResp); // 获取工会账号
     rpc ListUnions(ListUnionsReq) returns (ListUnionsResp); // 获取工会账号列表
+    rpc FilterUnions(FilterUnionsReq) returns (FilterUnionsResp); // 通过ID列表获取工会账号列表
     rpc AddUnion(AddUnionReq) returns (AddUnionResp); // 添加工会账号
     rpc UpdateUnion(UpdateUnionReq) returns (UpdateUnionResp); // 更新工会账号
     rpc DeleteUnion(DeleteUnionReq) returns (DeleteUnionResp); // 删除工会账号
@@ -108,11 +112,20 @@ message ListViewersReq {
     Viewer condition = 1;
     int32 limit = 2;
     int32 offset = 3;
+    bool exclude_platform = 255;
 };
 message ListViewersResp {
     repeated Viewer viewers = 1;
     int64 total = 2;
 };
+
+message FilterViewersReq {
+    repeated string ids = 1;
+}
+message FilterViewersResp {
+    repeated Viewer viewers = 1;
+    int64 total = 2;
+}
 
 message AddViewerReq {
     Viewer viewer = 1;
@@ -157,11 +170,20 @@ message ListStreamersReq {
     Streamer condition = 1;
     int32 limit = 2;
     int32 offset = 3;
+    bool exclude_platform = 255;
 };
 message ListStreamersResp {
     repeated Streamer streamers = 1;
     int64 total = 2;
 };
+
+message FilterStreamersReq {
+    repeated string ids = 1;
+}
+message FilterStreamersResp {
+    repeated Streamer streamers = 1;
+    int64 total = 2;
+}
 
 message AddStreamerReq {
     Streamer streamer = 1;
@@ -206,11 +228,20 @@ message ListManagersReq {
     Manager condition = 1;
     int32 limit = 2;
     int32 offset = 3;
+    bool exclude_platform = 255;
 };
 message ListManagersResp {
     repeated Manager managers = 1;
     int64 total = 2;
 };
+
+message FilterManagersReq {
+    repeated string ids = 1;
+}
+message FilterManagersResp {
+    repeated Manager managers = 1;
+    int64 total = 2;
+}
 
 message AddManagerReq {
     Manager manager = 1;
@@ -255,11 +286,20 @@ message ListUnionsReq {
     Union condition = 1;
     int32 limit = 2;
     int32 offset = 3;
+    bool exclude_platform = 255;
 };
 message ListUnionsResp {
     repeated Union unions = 1;
     int64 total = 2;
 };
+
+message FilterUnionsReq {
+    repeated string ids = 1;
+};
+message FilterUnionsResp {
+    repeated Union unions = 1;
+    int64 total = 2;
+}
 
 message AddUnionReq {
     Union union = 1;

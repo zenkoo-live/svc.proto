@@ -20,6 +20,14 @@
     - [DeleteUnionResp](#svc-biz-account-DeleteUnionResp)
     - [DeleteViewerReq](#svc-biz-account-DeleteViewerReq)
     - [DeleteViewerResp](#svc-biz-account-DeleteViewerResp)
+    - [FilterManagersReq](#svc-biz-account-FilterManagersReq)
+    - [FilterManagersResp](#svc-biz-account-FilterManagersResp)
+    - [FilterStreamersReq](#svc-biz-account-FilterStreamersReq)
+    - [FilterStreamersResp](#svc-biz-account-FilterStreamersResp)
+    - [FilterUnionsReq](#svc-biz-account-FilterUnionsReq)
+    - [FilterUnionsResp](#svc-biz-account-FilterUnionsResp)
+    - [FilterViewersReq](#svc-biz-account-FilterViewersReq)
+    - [FilterViewersResp](#svc-biz-account-FilterViewersResp)
     - [GetManagerReq](#svc-biz-account-GetManagerReq)
     - [GetManagerResp](#svc-biz-account-GetManagerResp)
     - [GetStreamerReq](#svc-biz-account-GetStreamerReq)
@@ -244,6 +252,7 @@
   
     - [LiveDisplayType](#svc-biz-room-LiveDisplayType)
     - [LiveStatus](#svc-biz-room-LiveStatus)
+    - [ShowStatus](#svc-biz-room-ShowStatus)
     - [SortType](#svc-biz-room-SortType)
   
     - [Room](#svc-biz-room-Room)
@@ -390,6 +399,17 @@
     - [StartTraceRequest.TracerType](#svc-infra-link-StartTraceRequest-TracerType)
   
     - [LinkTrace](#svc-infra-link-LinkTrace)
+  
+- [svc.infra.link/payload.proto](#svc-infra-link_payload-proto)
+    - [PayloadCharm](#svc-infra-link-PayloadCharm)
+    - [PayloadFans](#svc-infra-link-PayloadFans)
+    - [PayloadGuard](#svc-infra-link-PayloadGuard)
+    - [PayloadStreamerDm](#svc-infra-link-PayloadStreamerDm)
+    - [PayloadUserCommDm](#svc-infra-link-PayloadUserCommDm)
+    - [PayloadWrap](#svc-infra-link-PayloadWrap)
+  
+    - [CommandType](#svc-infra-link-CommandType)
+    - [PayloadType](#svc-infra-link-PayloadType)
   
 - [svc.infra.link/gateway.proto](#svc-infra-link_gateway-proto)
     - [GetGatewayRequest](#svc-infra-link-GetGatewayRequest)
@@ -894,6 +914,130 @@
 
 
 
+<a name="svc-biz-account-FilterManagersReq"></a>
+
+### FilterManagersReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| ids | [string](#string) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-account-FilterManagersResp"></a>
+
+### FilterManagersResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| managers | [Manager](#svc-biz-account-Manager) | repeated |  |
+| total | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-FilterStreamersReq"></a>
+
+### FilterStreamersReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| ids | [string](#string) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-account-FilterStreamersResp"></a>
+
+### FilterStreamersResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamers | [Streamer](#svc-biz-account-Streamer) | repeated |  |
+| total | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-FilterUnionsReq"></a>
+
+### FilterUnionsReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| ids | [string](#string) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-account-FilterUnionsResp"></a>
+
+### FilterUnionsResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| unions | [Union](#svc-biz-account-Union) | repeated |  |
+| total | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-FilterViewersReq"></a>
+
+### FilterViewersReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| ids | [string](#string) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-account-FilterViewersResp"></a>
+
+### FilterViewersResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| viewers | [Viewer](#svc-biz-account-Viewer) | repeated |  |
+| total | [int64](#int64) |  |  |
+
+
+
+
+
+
 <a name="svc-biz-account-GetManagerReq"></a>
 
 ### GetManagerReq
@@ -1040,6 +1184,7 @@
 | condition | [Manager](#svc-biz-account-Manager) |  |  |
 | limit | [int32](#int32) |  |  |
 | offset | [int32](#int32) |  |  |
+| exclude_platform | [bool](#bool) |  |  |
 
 
 
@@ -1073,6 +1218,7 @@
 | condition | [Streamer](#svc-biz-account-Streamer) |  |  |
 | limit | [int32](#int32) |  |  |
 | offset | [int32](#int32) |  |  |
+| exclude_platform | [bool](#bool) |  |  |
 
 
 
@@ -1106,6 +1252,7 @@
 | condition | [Union](#svc-biz-account-Union) |  |  |
 | limit | [int32](#int32) |  |  |
 | offset | [int32](#int32) |  |  |
+| exclude_platform | [bool](#bool) |  |  |
 
 
 
@@ -1139,6 +1286,7 @@
 | condition | [Viewer](#svc-biz-account-Viewer) |  |  |
 | limit | [int32](#int32) |  |  |
 | offset | [int32](#int32) |  |  |
+| exclude_platform | [bool](#bool) |  |  |
 
 
 
@@ -1516,24 +1664,28 @@ Models
 | InitDB | [.google.protobuf.Empty](#google-protobuf-Empty) | [InitDBResp](#svc-biz-account-InitDBResp) | 初始化数据库 |
 | GetViewer | [GetViewerReq](#svc-biz-account-GetViewerReq) | [GetViewerResp](#svc-biz-account-GetViewerResp) | 获取普通账号 |
 | ListViewers | [ListViewersReq](#svc-biz-account-ListViewersReq) | [ListViewersResp](#svc-biz-account-ListViewersResp) | 获取普通账号列表 |
+| FilterViewers | [FilterViewersReq](#svc-biz-account-FilterViewersReq) | [FilterViewersResp](#svc-biz-account-FilterViewersResp) | 通过ID列表获取普通账号列表 |
 | AddViewer | [AddViewerReq](#svc-biz-account-AddViewerReq) | [AddViewerResp](#svc-biz-account-AddViewerResp) | 添加普通账号 |
 | UpdateViewer | [UpdateViewerReq](#svc-biz-account-UpdateViewerReq) | [UpdateViewerResp](#svc-biz-account-UpdateViewerResp) | 更新普通账号 |
 | DeleteViewer | [DeleteViewerReq](#svc-biz-account-DeleteViewerReq) | [DeleteViewerResp](#svc-biz-account-DeleteViewerResp) | 删除普通账号 |
 | TotalViewers | [TotalViewersReq](#svc-biz-account-TotalViewersReq) | [TotalViewersResp](#svc-biz-account-TotalViewersResp) | 获取账号总数 |
 | GetStreamer | [GetStreamerReq](#svc-biz-account-GetStreamerReq) | [GetStreamerResp](#svc-biz-account-GetStreamerResp) | 获取主播账号 |
 | ListStreamers | [ListStreamersReq](#svc-biz-account-ListStreamersReq) | [ListStreamersResp](#svc-biz-account-ListStreamersResp) | 获取主播账号列表 |
+| FilterStreamers | [FilterStreamersReq](#svc-biz-account-FilterStreamersReq) | [FilterStreamersResp](#svc-biz-account-FilterStreamersResp) | 通过ID列表获取主播账号列表 |
 | AddStreamer | [AddStreamerReq](#svc-biz-account-AddStreamerReq) | [AddStreamerResp](#svc-biz-account-AddStreamerResp) | 添加普通账号 |
 | UpdateStreamer | [UpdateStreamerReq](#svc-biz-account-UpdateStreamerReq) | [UpdateStreamerResp](#svc-biz-account-UpdateStreamerResp) | 更新主播账号 |
 | DeleteStreamer | [DeleteStreamerReq](#svc-biz-account-DeleteStreamerReq) | [DeleteStreamerResp](#svc-biz-account-DeleteStreamerResp) | 删除主播账号 |
 | TotalStreamers | [TotalStreamersReq](#svc-biz-account-TotalStreamersReq) | [TotalStreamersResp](#svc-biz-account-TotalStreamersResp) | 获取主播总数 |
 | GetManager | [GetManagerReq](#svc-biz-account-GetManagerReq) | [GetManagerResp](#svc-biz-account-GetManagerResp) | 获取管理账号 |
 | ListManagers | [ListManagersReq](#svc-biz-account-ListManagersReq) | [ListManagersResp](#svc-biz-account-ListManagersResp) | 获取管理账号列表 |
+| FilterManagers | [FilterManagersReq](#svc-biz-account-FilterManagersReq) | [FilterManagersResp](#svc-biz-account-FilterManagersResp) | 通过ID列表获取管理账号列表 |
 | AddManager | [AddManagerReq](#svc-biz-account-AddManagerReq) | [AddManagerResp](#svc-biz-account-AddManagerResp) | 添加管理账号 |
 | UpdateManager | [UpdateManagerReq](#svc-biz-account-UpdateManagerReq) | [UpdateManagerResp](#svc-biz-account-UpdateManagerResp) | 更新管理账号 |
 | DeleteManager | [DeleteManagerReq](#svc-biz-account-DeleteManagerReq) | [DeleteManagerResp](#svc-biz-account-DeleteManagerResp) | 删除管理账号 |
 | TotalManagers | [TotalManagersReq](#svc-biz-account-TotalManagersReq) | [TotalManagersResp](#svc-biz-account-TotalManagersResp) | 获取管理总数 |
 | GetUnion | [GetUnionReq](#svc-biz-account-GetUnionReq) | [GetUnionResp](#svc-biz-account-GetUnionResp) | 获取工会账号 |
 | ListUnions | [ListUnionsReq](#svc-biz-account-ListUnionsReq) | [ListUnionsResp](#svc-biz-account-ListUnionsResp) | 获取工会账号列表 |
+| FilterUnions | [FilterUnionsReq](#svc-biz-account-FilterUnionsReq) | [FilterUnionsResp](#svc-biz-account-FilterUnionsResp) | 通过ID列表获取工会账号列表 |
 | AddUnion | [AddUnionReq](#svc-biz-account-AddUnionReq) | [AddUnionResp](#svc-biz-account-AddUnionResp) | 添加工会账号 |
 | UpdateUnion | [UpdateUnionReq](#svc-biz-account-UpdateUnionReq) | [UpdateUnionResp](#svc-biz-account-UpdateUnionResp) | 更新工会账号 |
 | DeleteUnion | [DeleteUnionReq](#svc-biz-account-DeleteUnionReq) | [DeleteUnionResp](#svc-biz-account-DeleteUnionResp) | 删除工会账号 |
@@ -4158,7 +4310,7 @@ CategoryInfo 分类详情
 | video | [string](#string) |  | 视频 |
 | forbid_expire | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 封禁到期时间 |
 | forbid_reason | [string](#string) |  | 封禁原因 |
-| hidden | [bool](#bool) |  | 是否隐藏 |
+| show_status | [ShowStatus](#svc-biz-room-ShowStatus) |  | 展示状态 |
 | merchants | [string](#string) | repeated | 商户id |
 | bind_tags | [string](#string) | repeated | 标签 |
 | live_id | [string](#string) |  | 直播id（开播状态时才会有，关播时清空） |
@@ -4234,6 +4386,11 @@ CategoryInfo 分类详情
 
 ### StopLiveResp
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| live | [LiveInfo](#svc-biz-room-LiveInfo) |  |  |
 
 
 
@@ -4353,6 +4510,19 @@ CategoryInfo 分类详情
 | LiveStatusUnknown | 0 | 未知 |
 | LiveStatusOnline | 1 | 上线 |
 | LiveStatusOffline | 2 | 下线 |
+
+
+
+<a name="svc-biz-room-ShowStatus"></a>
+
+### ShowStatus
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| ShowStatusUnknown | 0 | 未知 |
+| ShowStatusHidden | 1 | 隐藏 |
+| ShowStatusShow | 2 | 展示 |
 
 
 
@@ -6212,6 +6382,7 @@ Room 房间
 | user_id | [string](#string) |  |  |
 | merchant_id | [string](#string) |  |  |
 | online_count | [int64](#int64) |  | 当前直播间的在人数数量 |
+| streamer_id | [string](#string) |  | 主播ID |
 | action | [UserEnterQuitAction](#svc-infra-link-UserEnterQuitAction) |  |  |
 
 
@@ -6663,6 +6834,142 @@ Service of stat
 | ----------- | ------------ | ------------- | ------------|
 | Start | [StartTraceRequest](#svc-infra-link-StartTraceRequest) | [StartTraceResponse](#svc-infra-link-StartTraceResponse) | 设置Trace |
 | Stop | [StopTraceRequest](#svc-infra-link-StopTraceRequest) | [StopTraceResponse](#svc-infra-link-StopTraceResponse) | 关闭Trace |
+
+ 
+
+
+
+<a name="svc-infra-link_payload-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.infra.link/payload.proto
+
+
+
+<a name="svc-infra-link-PayloadCharm"></a>
+
+### PayloadCharm
+魅力值
+
+
+
+
+
+
+<a name="svc-infra-link-PayloadFans"></a>
+
+### PayloadFans
+粉丝消息
+
+
+
+
+
+
+<a name="svc-infra-link-PayloadGuard"></a>
+
+### PayloadGuard
+守护消息
+
+
+
+
+
+
+<a name="svc-infra-link-PayloadStreamerDm"></a>
+
+### PayloadStreamerDm
+主播聊天弹幕消息
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| uid | [string](#string) |  | 用户UID |
+| nickname | [string](#string) |  | 昵称 |
+| text | [string](#string) |  | 聊天内容 |
+| avatar | [string](#string) |  | 头像地址 |
+
+
+
+
+
+
+<a name="svc-infra-link-PayloadUserCommDm"></a>
+
+### PayloadUserCommDm
+用户普通聊天消息
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| uid | [string](#string) |  | 用户UID |
+| nickname | [string](#string) |  | 昵称 |
+| text | [string](#string) |  | 聊天内容 |
+| avatar | [string](#string) |  | 头像地址 |
+| is_room_adm | [bool](#bool) |  | 房管 |
+| is_super_adm | [bool](#bool) |  | 是否超管 |
+| charm | [PayloadCharm](#svc-infra-link-PayloadCharm) |  | 魅力值 |
+| fans | [PayloadFans](#svc-infra-link-PayloadFans) |  | 粉丝信息 |
+| guard | [PayloadGuard](#svc-infra-link-PayloadGuard) |  | 守护信息 |
+
+
+
+
+
+
+<a name="svc-infra-link-PayloadWrap"></a>
+
+### PayloadWrap
+Payload容器
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| i | [int64](#int64) |  |  |
+| t | [int32](#int32) |  |  |
+| p | [int32](#int32) |  |  |
+| d | [string](#string) |  |  |
+
+
+
+
+
+ 
+
+
+<a name="svc-infra-link-CommandType"></a>
+
+### CommandType
+消息命令类型
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| UnKnow | 0 | 未知 |
+| CommandMsgDownward | 10 | 通用下行消息 |
+
+
+
+<a name="svc-infra-link-PayloadType"></a>
+
+### PayloadType
+业务消息类型
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| StreamerDm | 0 | 主播弹幕 |
+| UserCommDm | 1 | 普通弹幕 |
+| UserVipDm | 2 | 付费弹幕 |
+| UserGift | 3 | 用户送礼 |
+| UserOpenFans | 4 | 开通粉丝团 |
+| UserOpenGz | 5 | 开通贵族 |
+| UserKickRoom | 6 | 提出房间 |
+| StreamerOnline | 7 | 主播开播 |
+| StreamerOffline | 8 | 主播下播 |
+
+
+ 
+
+ 
 
  
 
@@ -9773,6 +10080,7 @@ biz sms send /////////////
 | status | [int32](#int32) |  |  |
 | is_platform | [bool](#bool) |  |  |
 | creator | [string](#string) |  |  |
+| id | [int64](#int64) |  |  |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
 
 
