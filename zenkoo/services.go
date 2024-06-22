@@ -62,9 +62,7 @@ var (
 	SvcInfraLinkStat         = svcInfraLink.NewLinkStatService(AppName+"::"+SvcInfraLink+runtime.AppendEnv(), clt)
 	SvcInfraLinkTrace        = svcInfraLink.NewLinkTraceService(AppName+"::"+SvcInfraLink+runtime.AppendEnv(), clt)
 	SvcBizLogLog             = svcBizLog.NewLogService(AppName+"::"+SvcBizLog+runtime.AppendEnv(), clt)
-	SvcInfraNotifierNotifier = func() svcInfraNotifier.NotifierService {
-		return svcInfraNotifier.NewNotifierService(AppName+"::"+SvcInfraNotifier+runtime.AppendEnv(), clt)
-	}
+	SvcInfraNotifierNotifier = svcInfraNotifier.NewNotifierService(AppName+"::"+SvcInfraNotifier+runtime.AppendEnv(), clt)
 	SvcBizOrgOrg            = svcBizOrg.NewOrgService(AppName+"::"+SvcBizOrg+runtime.AppendEnv(), clt)
 	SvcInfraPayPay          = svcInfraPay.NewPayService(AppName+"::"+SvcInfraPay+runtime.AppendEnv(), clt)
 	SvcBizRelationRelation  = svcBizRelation.NewRelationService(AppName+"::"+SvcBizRelation+runtime.AppendEnv(), clt)
