@@ -63,6 +63,7 @@ message CommonResponse {
     string uuid = 3; // ID
     int64 lid = 4;
   }
+  bool success = 5; // success or not, for update or deleted
 }
 
 message SmsChannelListRequest {
