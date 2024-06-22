@@ -41,18 +41,21 @@ type OrgService interface {
 	InitDB(ctx context.Context, in *emptypb.Empty, opts ...client.CallOption) (*InitDBResp, error)
 	GetDepartment(ctx context.Context, in *GetDepartmentReq, opts ...client.CallOption) (*GetDepartmentResp, error)
 	ListDepartments(ctx context.Context, in *ListDepartmentsReq, opts ...client.CallOption) (*ListDepartmentsResp, error)
+	FilterDepartments(ctx context.Context, in *FilterDepartmentsReq, opts ...client.CallOption) (*FilterDepartmentsResp, error)
 	AddDepartment(ctx context.Context, in *AddDepartmentReq, opts ...client.CallOption) (*AddDepartmentResp, error)
 	UpdateDepartment(ctx context.Context, in *UpdateDepartmentReq, opts ...client.CallOption) (*UpdateDepartmentResp, error)
 	DeleteDepartment(ctx context.Context, in *DeleteDepartmentReq, opts ...client.CallOption) (*DeleteDepartmentResp, error)
 	TotalDepartments(ctx context.Context, in *TotalDepartmentsReq, opts ...client.CallOption) (*TotalDepartmentsResp, error)
 	GetMerchant(ctx context.Context, in *GetMerchantReq, opts ...client.CallOption) (*GetMerchantResp, error)
 	ListMerchants(ctx context.Context, in *ListMerchantsReq, opts ...client.CallOption) (*ListMerchantsResp, error)
+	FilterMerchants(ctx context.Context, in *FilterMerchantsReq, opts ...client.CallOption) (*FilterMerchantsResp, error)
 	AddMerchant(ctx context.Context, in *AddMerchantReq, opts ...client.CallOption) (*AddMerchantResp, error)
 	UpdateMerchant(ctx context.Context, in *UpdateMerchantReq, opts ...client.CallOption) (*UpdateMerchantResp, error)
 	DeleteMerchant(ctx context.Context, in *DeleteMerchantReq, opts ...client.CallOption) (*DeleteMerchantResp, error)
 	TotalMerchants(ctx context.Context, in *TotalMerchantsReq, opts ...client.CallOption) (*TotalMerchantsResp, error)
 	GetUnion(ctx context.Context, in *GetUnionReq, opts ...client.CallOption) (*GetUnionResp, error)
 	ListUnions(ctx context.Context, in *ListUnionsReq, opts ...client.CallOption) (*ListUnionsResp, error)
+	FilterUnions(ctx context.Context, in *FilterUnionsReq, opts ...client.CallOption) (*FilterUnionsResp, error)
 	AddUnion(ctx context.Context, in *AddUnionReq, opts ...client.CallOption) (*AddUnionResp, error)
 	UpdateUnion(ctx context.Context, in *UpdateUnionReq, opts ...client.CallOption) (*UpdateUnionResp, error)
 	DeleteUnion(ctx context.Context, in *DeleteUnionReq, opts ...client.CallOption) (*DeleteUnionResp, error)
@@ -94,6 +97,16 @@ func (c *orgService) GetDepartment(ctx context.Context, in *GetDepartmentReq, op
 func (c *orgService) ListDepartments(ctx context.Context, in *ListDepartmentsReq, opts ...client.CallOption) (*ListDepartmentsResp, error) {
 	req := c.c.NewRequest(c.name, "Org.ListDepartments", in)
 	out := new(ListDepartmentsResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *orgService) FilterDepartments(ctx context.Context, in *FilterDepartmentsReq, opts ...client.CallOption) (*FilterDepartmentsResp, error) {
+	req := c.c.NewRequest(c.name, "Org.FilterDepartments", in)
+	out := new(FilterDepartmentsResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -161,6 +174,16 @@ func (c *orgService) ListMerchants(ctx context.Context, in *ListMerchantsReq, op
 	return out, nil
 }
 
+func (c *orgService) FilterMerchants(ctx context.Context, in *FilterMerchantsReq, opts ...client.CallOption) (*FilterMerchantsResp, error) {
+	req := c.c.NewRequest(c.name, "Org.FilterMerchants", in)
+	out := new(FilterMerchantsResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *orgService) AddMerchant(ctx context.Context, in *AddMerchantReq, opts ...client.CallOption) (*AddMerchantResp, error) {
 	req := c.c.NewRequest(c.name, "Org.AddMerchant", in)
 	out := new(AddMerchantResp)
@@ -221,6 +244,16 @@ func (c *orgService) ListUnions(ctx context.Context, in *ListUnionsReq, opts ...
 	return out, nil
 }
 
+func (c *orgService) FilterUnions(ctx context.Context, in *FilterUnionsReq, opts ...client.CallOption) (*FilterUnionsResp, error) {
+	req := c.c.NewRequest(c.name, "Org.FilterUnions", in)
+	out := new(FilterUnionsResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *orgService) AddUnion(ctx context.Context, in *AddUnionReq, opts ...client.CallOption) (*AddUnionResp, error) {
 	req := c.c.NewRequest(c.name, "Org.AddUnion", in)
 	out := new(AddUnionResp)
@@ -267,18 +300,21 @@ type OrgHandler interface {
 	InitDB(context.Context, *emptypb.Empty, *InitDBResp) error
 	GetDepartment(context.Context, *GetDepartmentReq, *GetDepartmentResp) error
 	ListDepartments(context.Context, *ListDepartmentsReq, *ListDepartmentsResp) error
+	FilterDepartments(context.Context, *FilterDepartmentsReq, *FilterDepartmentsResp) error
 	AddDepartment(context.Context, *AddDepartmentReq, *AddDepartmentResp) error
 	UpdateDepartment(context.Context, *UpdateDepartmentReq, *UpdateDepartmentResp) error
 	DeleteDepartment(context.Context, *DeleteDepartmentReq, *DeleteDepartmentResp) error
 	TotalDepartments(context.Context, *TotalDepartmentsReq, *TotalDepartmentsResp) error
 	GetMerchant(context.Context, *GetMerchantReq, *GetMerchantResp) error
 	ListMerchants(context.Context, *ListMerchantsReq, *ListMerchantsResp) error
+	FilterMerchants(context.Context, *FilterMerchantsReq, *FilterMerchantsResp) error
 	AddMerchant(context.Context, *AddMerchantReq, *AddMerchantResp) error
 	UpdateMerchant(context.Context, *UpdateMerchantReq, *UpdateMerchantResp) error
 	DeleteMerchant(context.Context, *DeleteMerchantReq, *DeleteMerchantResp) error
 	TotalMerchants(context.Context, *TotalMerchantsReq, *TotalMerchantsResp) error
 	GetUnion(context.Context, *GetUnionReq, *GetUnionResp) error
 	ListUnions(context.Context, *ListUnionsReq, *ListUnionsResp) error
+	FilterUnions(context.Context, *FilterUnionsReq, *FilterUnionsResp) error
 	AddUnion(context.Context, *AddUnionReq, *AddUnionResp) error
 	UpdateUnion(context.Context, *UpdateUnionReq, *UpdateUnionResp) error
 	DeleteUnion(context.Context, *DeleteUnionReq, *DeleteUnionResp) error
@@ -290,18 +326,21 @@ func RegisterOrgHandler(s server.Server, hdlr OrgHandler, opts ...server.Handler
 		InitDB(ctx context.Context, in *emptypb.Empty, out *InitDBResp) error
 		GetDepartment(ctx context.Context, in *GetDepartmentReq, out *GetDepartmentResp) error
 		ListDepartments(ctx context.Context, in *ListDepartmentsReq, out *ListDepartmentsResp) error
+		FilterDepartments(ctx context.Context, in *FilterDepartmentsReq, out *FilterDepartmentsResp) error
 		AddDepartment(ctx context.Context, in *AddDepartmentReq, out *AddDepartmentResp) error
 		UpdateDepartment(ctx context.Context, in *UpdateDepartmentReq, out *UpdateDepartmentResp) error
 		DeleteDepartment(ctx context.Context, in *DeleteDepartmentReq, out *DeleteDepartmentResp) error
 		TotalDepartments(ctx context.Context, in *TotalDepartmentsReq, out *TotalDepartmentsResp) error
 		GetMerchant(ctx context.Context, in *GetMerchantReq, out *GetMerchantResp) error
 		ListMerchants(ctx context.Context, in *ListMerchantsReq, out *ListMerchantsResp) error
+		FilterMerchants(ctx context.Context, in *FilterMerchantsReq, out *FilterMerchantsResp) error
 		AddMerchant(ctx context.Context, in *AddMerchantReq, out *AddMerchantResp) error
 		UpdateMerchant(ctx context.Context, in *UpdateMerchantReq, out *UpdateMerchantResp) error
 		DeleteMerchant(ctx context.Context, in *DeleteMerchantReq, out *DeleteMerchantResp) error
 		TotalMerchants(ctx context.Context, in *TotalMerchantsReq, out *TotalMerchantsResp) error
 		GetUnion(ctx context.Context, in *GetUnionReq, out *GetUnionResp) error
 		ListUnions(ctx context.Context, in *ListUnionsReq, out *ListUnionsResp) error
+		FilterUnions(ctx context.Context, in *FilterUnionsReq, out *FilterUnionsResp) error
 		AddUnion(ctx context.Context, in *AddUnionReq, out *AddUnionResp) error
 		UpdateUnion(ctx context.Context, in *UpdateUnionReq, out *UpdateUnionResp) error
 		DeleteUnion(ctx context.Context, in *DeleteUnionReq, out *DeleteUnionResp) error
@@ -330,6 +369,10 @@ func (h *orgHandler) ListDepartments(ctx context.Context, in *ListDepartmentsReq
 	return h.OrgHandler.ListDepartments(ctx, in, out)
 }
 
+func (h *orgHandler) FilterDepartments(ctx context.Context, in *FilterDepartmentsReq, out *FilterDepartmentsResp) error {
+	return h.OrgHandler.FilterDepartments(ctx, in, out)
+}
+
 func (h *orgHandler) AddDepartment(ctx context.Context, in *AddDepartmentReq, out *AddDepartmentResp) error {
 	return h.OrgHandler.AddDepartment(ctx, in, out)
 }
@@ -354,6 +397,10 @@ func (h *orgHandler) ListMerchants(ctx context.Context, in *ListMerchantsReq, ou
 	return h.OrgHandler.ListMerchants(ctx, in, out)
 }
 
+func (h *orgHandler) FilterMerchants(ctx context.Context, in *FilterMerchantsReq, out *FilterMerchantsResp) error {
+	return h.OrgHandler.FilterMerchants(ctx, in, out)
+}
+
 func (h *orgHandler) AddMerchant(ctx context.Context, in *AddMerchantReq, out *AddMerchantResp) error {
 	return h.OrgHandler.AddMerchant(ctx, in, out)
 }
@@ -376,6 +423,10 @@ func (h *orgHandler) GetUnion(ctx context.Context, in *GetUnionReq, out *GetUnio
 
 func (h *orgHandler) ListUnions(ctx context.Context, in *ListUnionsReq, out *ListUnionsResp) error {
 	return h.OrgHandler.ListUnions(ctx, in, out)
+}
+
+func (h *orgHandler) FilterUnions(ctx context.Context, in *FilterUnionsReq, out *FilterUnionsResp) error {
+	return h.OrgHandler.FilterUnions(ctx, in, out)
 }
 
 func (h *orgHandler) AddUnion(ctx context.Context, in *AddUnionReq, out *AddUnionResp) error {

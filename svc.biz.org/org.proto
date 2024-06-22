@@ -11,6 +11,7 @@ service Org {
 
     rpc GetDepartment(GetDepartmentReq) returns (GetDepartmentResp); // 获取部门
     rpc ListDepartments(ListDepartmentsReq) returns (ListDepartmentsResp); // 获取部门列表
+    rpc FilterDepartments(FilterDepartmentsReq) returns (FilterDepartmentsResp); // 通过ID列表获取部门
     rpc AddDepartment(AddDepartmentReq) returns (AddDepartmentResp); // 添加部门
     rpc UpdateDepartment(UpdateDepartmentReq) returns (UpdateDepartmentResp); // 更新部门
     rpc DeleteDepartment(DeleteDepartmentReq) returns (DeleteDepartmentResp); // 删除部门
@@ -18,6 +19,7 @@ service Org {
 
     rpc GetMerchant(GetMerchantReq) returns (GetMerchantResp); // 获取商户
     rpc ListMerchants(ListMerchantsReq) returns (ListMerchantsResp); // 获取商户列表
+    rpc FilterMerchants(FilterMerchantsReq) returns (FilterMerchantsResp); // 通过ID列表获取商户
     rpc AddMerchant(AddMerchantReq) returns (AddMerchantResp); // 添加商户
     rpc UpdateMerchant(UpdateMerchantReq) returns (UpdateMerchantResp); // 更新商户
     rpc DeleteMerchant(DeleteMerchantReq) returns (DeleteMerchantResp); // 删除商户
@@ -25,6 +27,7 @@ service Org {
 
     rpc GetUnion(GetUnionReq) returns (GetUnionResp); // 获取工会
     rpc ListUnions(ListUnionsReq) returns (ListUnionsResp); // 获取工会列表
+    rpc FilterUnions(FilterUnionsReq) returns (FilterUnionsResp); // 通过ID列表获取工会
     rpc AddUnion(AddUnionReq) returns (AddUnionResp); // 添加工会
     rpc UpdateUnion(UpdateUnionReq) returns (UpdateUnionResp); // 更新工会
     rpc DeleteUnion(DeleteUnionReq) returns (DeleteUnionResp); // 删除工会
@@ -76,6 +79,13 @@ message ListDepartmentsResp {
     int64 total = 2;
 };
 
+message FilterDepartmentsReq {
+    repeated string ids = 1;
+};
+message FilterDepartmentsResp {
+    repeated Department departments = 1;
+};
+
 message AddDepartmentReq {
     Department department = 1;
 };
@@ -100,10 +110,11 @@ message DeleteDepartmentResp {
 
 message TotalDepartmentsReq {
     Department condition = 1;
-}
+};
 message TotalDepartmentsResp {
     int64 total = 1;
-}
+};
+
 /* }}} */
 
 /* {{{ [Merchant] */
@@ -122,6 +133,13 @@ message ListMerchantsReq {
 message ListMerchantsResp {
     repeated Merchant merchants = 1;
     int64 total = 2;
+};
+
+message FilterMerchantsReq {
+    repeated string ids = 1;
+};
+message FilterMerchantsResp {
+    repeated Merchant merchants = 1;
 };
 
 message AddMerchantReq {
@@ -148,10 +166,11 @@ message DeleteMerchantResp {
 
 message TotalMerchantsReq {
     Merchant condition = 1;
-}
+};
 message TotalMerchantsResp {
     int64 total = 1;
-}
+};
+
 /* }}} */
 
 /* {{{ [Union] */
@@ -170,6 +189,13 @@ message ListUnionsReq {
 message ListUnionsResp {
     repeated Union unions = 1;
     int64 total = 2;
+};
+
+message FilterUnionsReq {
+    repeated string ids = 1;
+};
+message FilterUnionsResp {
+    repeated Union unions = 1;
 };
 
 message AddUnionReq {
@@ -196,8 +222,9 @@ message DeleteUnionResp {
 
 message TotalUnionsReq {
     Union condition = 1;
-}
+};
 message TotalUnionsResp {
     int64 total = 1;
-}
+};
+
 /* }}} */

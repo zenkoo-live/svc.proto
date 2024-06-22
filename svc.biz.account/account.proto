@@ -121,11 +121,10 @@ message ListViewersResp {
 
 message FilterViewersReq {
     repeated string ids = 1;
-}
+};
 message FilterViewersResp {
     repeated Viewer viewers = 1;
-    int64 total = 2;
-}
+};
 
 message AddViewerReq {
     Viewer viewer = 1;
@@ -151,10 +150,10 @@ message DeleteViewerResp {
 
 message TotalViewersReq {
     Viewer condition = 1;
-}
+};
 message TotalViewersResp {
     int64 total = 1;
-}
+};
 
 /* }}} */
 
@@ -179,11 +178,10 @@ message ListStreamersResp {
 
 message FilterStreamersReq {
     repeated string ids = 1;
-}
+};
 message FilterStreamersResp {
     repeated Streamer streamers = 1;
-    int64 total = 2;
-}
+};
 
 message AddStreamerReq {
     Streamer streamer = 1;
@@ -209,10 +207,10 @@ message DeleteStreamerResp {
 
 message TotalStreamersReq {
     Streamer condition = 1;
-}
+};
 message TotalStreamersResp {
     int64 total = 1;
-}
+};
 
 /* }}} */
 
@@ -237,11 +235,10 @@ message ListManagersResp {
 
 message FilterManagersReq {
     repeated string ids = 1;
-}
+};
 message FilterManagersResp {
     repeated Manager managers = 1;
-    int64 total = 2;
-}
+};
 
 message AddManagerReq {
     Manager manager = 1;
@@ -267,10 +264,10 @@ message DeleteManagerResp {
 
 message TotalManagersReq {
     Manager condition = 1;
-}
+};
 message TotalManagersResp {
     int64 total = 1;
-}
+};
 
 /* }}} */
 
@@ -298,8 +295,7 @@ message FilterUnionsReq {
 };
 message FilterUnionsResp {
     repeated Union unions = 1;
-    int64 total = 2;
-}
+};
 
 message AddUnionReq {
     Union union = 1;
@@ -325,9 +321,9 @@ message DeleteUnionResp {
 
 message TotalUnionsReq {
     Union condition = 1;
-}
+};
 message TotalUnionsResp {
     int64 total = 1;
-}
+};
 
 /* }}} */
