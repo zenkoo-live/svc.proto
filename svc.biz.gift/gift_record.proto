@@ -58,5 +58,7 @@ message GetLiveStatReq {
 }
 
 message GetLiveStatResp {
-    int32 total_price = 1;
+    int32 total_num = 1; // 礼物总数
+    int32 total_price = 2; // 礼物代币总数
+    int32 total_user = 3; // 礼物用户总数
 }
