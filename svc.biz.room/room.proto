@@ -5,6 +5,7 @@ package svc.biz.room;
 import "google/protobuf/field_mask.proto";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/empty.proto";
+import "svc.biz.room/live.proto";
 
 option go_package="./svc.biz.room;room";
 
@@ -230,5 +231,5 @@ message StopLiveReq {
     string streamer_id = 1; // 主播id
 }
 message StopLiveResp {
-
+    LiveInfo live = 1;
 }
