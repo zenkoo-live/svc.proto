@@ -11107,7 +11107,9 @@ topic: topic.gift.send
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| total_price | [int32](#int32) |  |  |
+| total_num | [int32](#int32) |  | 礼物总数 |
+| total_price | [int32](#int32) |  | 礼物代币总数 |
+| total_user | [int32](#int32) |  | 礼物用户总数 |
 
 
 
