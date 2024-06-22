@@ -59,6 +59,12 @@ enum LiveStatus {
     LiveStatusOffline = 2; // 下线
 }
 
+enum ShowStatus {
+    ShowStatusUnknown = 0; // 未知
+    ShowStatusHidden = 1; // 隐藏
+    ShowStatusShow = 2; // 展示
+}
+
 message TrtcConf {
     string sdk_app_id = 1;
     string trtc_user_id = 2;
@@ -100,7 +106,7 @@ message RoomInfo {
     string video = 8; // 视频
     google.protobuf.Timestamp forbid_expire = 9; // 封禁到期时间
     string forbid_reason = 10; // 封禁原因
-    bool hidden = 11; // 是否隐藏
+    ShowStatus show_status = 11; // 展示状态
     repeated string merchants = 12; // 商户id
     repeated string bind_tags = 13; // 标签
     
