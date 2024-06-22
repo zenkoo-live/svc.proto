@@ -4,19 +4,35 @@ package svc.infra.link;
 
 option go_package = "./svc.infra.link;link";
 
+import "google/protobuf/timestamp.proto";
 
-// PayloadType 消息类型
-enum PayloadType {
-  STREAMER_DM = 0; // 主播弹幕
-  USER_COMM_DM = 1; // 普通弹幕
-  USER_VIP_DM = 2; // 付费弹幕
-  USER_GIFT = 3; // 用户送礼
-  USER_OPEN_FANS = 4; // 开通粉丝团
-  USER_OPEN_GZ = 5; // 开通贵族
-  USER_KICK_ROOM = 6; // 提出房间
-  STREAMER_ONLINE = 7; // 主播开播
-  STREAMER_OFFLINE = 8; // 主播下播
+// 消息命令类型
+enum CommandType {
+  UnKnow = 0; // 未知
+  CommandMsgDownward = 10;  // 通用下行消息
 }
+
+// 业务消息类型
+enum PayloadType {
+  StreamerDm = 0; // 主播弹幕
+  UserCommDm = 1; // 普通弹幕
+  UserVipDm = 2; // 付费弹幕
+  UserGift = 3; // 用户送礼
+  UserOpenFans = 4; // 开通粉丝团
+  UserOpenGz = 5; // 开通贵族
+  UserKickRoom = 6; // 提出房间
+  StreamerOnline = 7; // 主播开播
+  StreamerOffline = 8; // 主播下播
+}
+
+//
+message MsgMessage  {
+  int64 i = 1 ;
+  int32 t = 2 ;
+  int32 p = 3;
+  string d = 11;
+}
+
 
 // 守护消息
 message PayloadGuard {
