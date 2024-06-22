@@ -606,11 +606,13 @@
     - [Fanbase](#svc-biz-vip-Fanbase)
   
 - [svc.biz.vip/fanbase_member.proto](#svc-biz-vip_fanbase_member-proto)
+    - [CountFanbaseMemberByStreamerIDReq](#svc-biz-vip-CountFanbaseMemberByStreamerIDReq)
+    - [CountFanbaseMemberByStreamerIDResp](#svc-biz-vip-CountFanbaseMemberByStreamerIDResp)
     - [FanbaseMemberInfo](#svc-biz-vip-FanbaseMemberInfo)
     - [GetFanbaseMemberByStreamerIDReq](#svc-biz-vip-GetFanbaseMemberByStreamerIDReq)
     - [GetFanbaseMemberReq](#svc-biz-vip-GetFanbaseMemberReq)
     - [GetFanbaseMemberResp](#svc-biz-vip-GetFanbaseMemberResp)
-    - [GetFanbaseMembertByMemberIDResp](#svc-biz-vip-GetFanbaseMembertByMemberIDResp)
+    - [GetFanbaseMembertByMemberIDReq](#svc-biz-vip-GetFanbaseMembertByMemberIDReq)
     - [GetListResp](#svc-biz-vip-GetListResp)
     - [GetOnlineFanbaseMemberByStreamerIDReq](#svc-biz-vip-GetOnlineFanbaseMemberByStreamerIDReq)
     - [JoinFanbaseReq](#svc-biz-vip-JoinFanbaseReq)
@@ -10474,6 +10476,39 @@ service started /////////////////
 
 
 
+<a name="svc-biz-vip-CountFanbaseMemberByStreamerIDReq"></a>
+
+### CountFanbaseMemberByStreamerIDReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer_id | [string](#string) |  | 主播id |
+| level | [FanbaseLevel](#svc-biz-vip-FanbaseLevel) |  | 等级 |
+| start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开始时间 |
+| end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 结束时间 |
+
+
+
+
+
+
+<a name="svc-biz-vip-CountFanbaseMemberByStreamerIDResp"></a>
+
+### CountFanbaseMemberByStreamerIDResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| total | [int64](#int64) |  | 总数 |
+
+
+
+
+
+
 <a name="svc-biz-vip-FanbaseMemberInfo"></a>
 
 ### FanbaseMemberInfo
@@ -10545,9 +10580,9 @@ service started /////////////////
 
 
 
-<a name="svc-biz-vip-GetFanbaseMembertByMemberIDResp"></a>
+<a name="svc-biz-vip-GetFanbaseMembertByMemberIDReq"></a>
 
-### GetFanbaseMembertByMemberIDResp
+### GetFanbaseMembertByMemberIDReq
 
 
 
@@ -10657,9 +10692,10 @@ service started /////////////////
 | JoinFanbase | [JoinFanbaseReq](#svc-biz-vip-JoinFanbaseReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | JoinFanbase 加入粉丝团 |
 | LeaveFanbase | [LeaveFanbaseReq](#svc-biz-vip-LeaveFanbaseReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | LeaveFanbase 离开粉丝团 |
 | GetFanbaseMember | [GetFanbaseMemberReq](#svc-biz-vip-GetFanbaseMemberReq) | [GetFanbaseMemberResp](#svc-biz-vip-GetFanbaseMemberResp) | GetFanbaseMember 获取粉丝团成员信息 |
-| GetFanbaseMemberByStreamerID | [GetFanbaseMemberByStreamerIDReq](#svc-biz-vip-GetFanbaseMemberByStreamerIDReq) | [GetListResp](#svc-biz-vip-GetListResp) | GeFanbaseMemberByStreamerID 获取主播粉丝团成员列表 |
+| GetFanbaseMemberByStreamerID | [GetFanbaseMemberByStreamerIDReq](#svc-biz-vip-GetFanbaseMemberByStreamerIDReq) | [GetListResp](#svc-biz-vip-GetListResp) | GetFanbaseMemberByStreamerID 获取主播粉丝团成员列表 |
+| CountFanbaseMemberByStreamerID | [CountFanbaseMemberByStreamerIDReq](#svc-biz-vip-CountFanbaseMemberByStreamerIDReq) | [CountFanbaseMemberByStreamerIDResp](#svc-biz-vip-CountFanbaseMemberByStreamerIDResp) | CountFanbaseMemberByStreamerID 获取主播粉丝团成员总数 |
 | GetOnlineFanbaseMemberByStreamerID | [GetOnlineFanbaseMemberByStreamerIDReq](#svc-biz-vip-GetOnlineFanbaseMemberByStreamerIDReq) | [GetListResp](#svc-biz-vip-GetListResp) | GetOnlineFanbaseMemberByStreamerID 获取主播粉丝团在线成员列表 |
-| GetFanbaseMembertByMemberID | [GetFanbaseMembertByMemberIDResp](#svc-biz-vip-GetFanbaseMembertByMemberIDResp) | [GetListResp](#svc-biz-vip-GetListResp) | GetFanbaseMembertByMemberID 获取用户加入的粉丝团列表 |
+| GetFanbaseMembertByMemberID | [GetFanbaseMembertByMemberIDReq](#svc-biz-vip-GetFanbaseMembertByMemberIDReq) | [GetListResp](#svc-biz-vip-GetListResp) | GetFanbaseMembertByMemberID 获取用户加入的粉丝团列表 |
 
  
 
