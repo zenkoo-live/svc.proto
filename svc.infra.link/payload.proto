@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+package svc.infra.link;
+
+option go_package = "./svc.infra.link;link";
+
+
+// PayloadType 消息类型
+enum PayloadType {
+  STREAMER_DM = 0; // 主播弹幕
+  USER_COMM_DM = 1; // 普通弹幕
+  USER_VIP_DM = 2; // 付费弹幕
+  USER_GIFT = 3; // 用户送礼
+  USER_OPEN_FANS = 4; // 开通粉丝团
+  USER_OPEN_GZ = 5; // 开通贵族
+  USER_KICK_ROOM = 6; // 提出房间
+  STREAMER_ONLINE = 7; // 主播开播
+  STREAMER_OFFLINE = 8; // 主播下播
+}
+
+// 守护消息
+message PayloadGuard {
+
+}
+
+// 粉丝消息
+message PayloadFans {
+
+}
+
+// 魅力值
+message PayloadCharm {
+
+}
+
+// 主播聊天弹幕消息
+message PayloadStreamerDm {
+  string uid = 1; // 用户UID
+  string nickname = 2; // 昵称
+  string text = 3; // 聊天内容
+  string avatar = 4; // 头像地址
+}
+
+// 用户普通聊天消息
+message PayloadUserCommDm {
+  string uid = 1; // 用户UID
+  string nickname = 2; // 昵称
+  string text = 3; // 聊天内容
+  string avatar = 4; // 头像地址
+  bool is_room_adm = 5; // 房管
+  bool is_super_adm = 6; // 是否超管
+  PayloadCharm charm = 7; // 魅力值
+  PayloadFans fans = 8; // 粉丝信息
+  PayloadGuard guard = 9; // 守护信息
+}
