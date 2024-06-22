@@ -14,18 +14,21 @@ service Org {
     rpc AddDepartment(AddDepartmentReq) returns (AddDepartmentResp); // 添加部门
     rpc UpdateDepartment(UpdateDepartmentReq) returns (UpdateDepartmentResp); // 更新部门
     rpc DeleteDepartment(DeleteDepartmentReq) returns (DeleteDepartmentResp); // 删除部门
+    rpc TotalDepartments(TotalDepartmentsReq) returns (TotalDepartmentsResp); // 获取波门总数
 
     rpc GetMerchant(GetMerchantReq) returns (GetMerchantResp); // 获取商户
     rpc ListMerchants(ListMerchantsReq) returns (ListMerchantsResp); // 获取商户列表
     rpc AddMerchant(AddMerchantReq) returns (AddMerchantResp); // 添加商户
     rpc UpdateMerchant(UpdateMerchantReq) returns (UpdateMerchantResp); // 更新商户
     rpc DeleteMerchant(DeleteMerchantReq) returns (DeleteMerchantResp); // 删除商户
+    rpc TotalMerchants(TotalMerchantsReq) returns (TotalMerchantsResp); // 获取商户总数
 
     rpc GetUnion(GetUnionReq) returns (GetUnionResp); // 获取工会
     rpc ListUnions(ListUnionsReq) returns (ListUnionsResp); // 获取工会列表
     rpc AddUnion(AddUnionReq) returns (AddUnionResp); // 添加工会
     rpc UpdateUnion(UpdateUnionReq) returns (UpdateUnionResp); // 更新工会
     rpc DeleteUnion(DeleteUnionReq) returns (DeleteUnionResp); // 删除工会
+    rpc TotalUnions(TotalUnionsReq) returns (TotalUnionsResp); // 获取工会总数
 }
 
 message InitDBResp {
@@ -94,6 +97,13 @@ message DeleteDepartmentReq {
 message DeleteDepartmentResp {
     int64 deleted = 1;
 };
+
+message TotalDepartmentsReq {
+    Department condition = 1;
+}
+message TotalDepartmentsResp {
+    int64 total = 1;
+}
 /* }}} */
 
 /* {{{ [Merchant] */
@@ -135,6 +145,13 @@ message DeleteMerchantReq {
 message DeleteMerchantResp {
     int64 deleted = 1;
 };
+
+message TotalMerchantsReq {
+    Merchant condition = 1;
+}
+message TotalMerchantsResp {
+    int64 total = 1;
+}
 /* }}} */
 
 /* {{{ [Union] */
@@ -152,6 +169,7 @@ message ListUnionsReq {
 };
 message ListUnionsResp {
     repeated Union unions = 1;
+    int64 total = 2;
 };
 
 message AddUnionReq {
@@ -175,4 +193,11 @@ message DeleteUnionReq {
 message DeleteUnionResp {
     int64 deleted = 1;
 };
+
+message TotalUnionsReq {
+    Union condition = 1;
+}
+message TotalUnionsResp {
+    int64 total = 1;
+}
 /* }}} */

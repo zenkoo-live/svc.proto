@@ -44,21 +44,25 @@ type AccountService interface {
 	AddViewer(ctx context.Context, in *AddViewerReq, opts ...client.CallOption) (*AddViewerResp, error)
 	UpdateViewer(ctx context.Context, in *UpdateViewerReq, opts ...client.CallOption) (*UpdateViewerResp, error)
 	DeleteViewer(ctx context.Context, in *DeleteViewerReq, opts ...client.CallOption) (*DeleteViewerResp, error)
+	TotalViewers(ctx context.Context, in *TotalViewersReq, opts ...client.CallOption) (*TotalViewersResp, error)
 	GetStreamer(ctx context.Context, in *GetStreamerReq, opts ...client.CallOption) (*GetStreamerResp, error)
 	ListStreamers(ctx context.Context, in *ListStreamersReq, opts ...client.CallOption) (*ListStreamersResp, error)
 	AddStreamer(ctx context.Context, in *AddStreamerReq, opts ...client.CallOption) (*AddStreamerResp, error)
 	UpdateStreamer(ctx context.Context, in *UpdateStreamerReq, opts ...client.CallOption) (*UpdateStreamerResp, error)
 	DeleteStreamer(ctx context.Context, in *DeleteStreamerReq, opts ...client.CallOption) (*DeleteStreamerResp, error)
+	TotalStreamers(ctx context.Context, in *TotalStreamersReq, opts ...client.CallOption) (*TotalStreamersResp, error)
 	GetManager(ctx context.Context, in *GetManagerReq, opts ...client.CallOption) (*GetManagerResp, error)
 	ListManagers(ctx context.Context, in *ListManagersReq, opts ...client.CallOption) (*ListManagersResp, error)
 	AddManager(ctx context.Context, in *AddManagerReq, opts ...client.CallOption) (*AddManagerResp, error)
 	UpdateManager(ctx context.Context, in *UpdateManagerReq, opts ...client.CallOption) (*UpdateManagerResp, error)
 	DeleteManager(ctx context.Context, in *DeleteManagerReq, opts ...client.CallOption) (*DeleteManagerResp, error)
+	TotalManagers(ctx context.Context, in *TotalManagersReq, opts ...client.CallOption) (*TotalManagersResp, error)
 	GetUnion(ctx context.Context, in *GetUnionReq, opts ...client.CallOption) (*GetUnionResp, error)
 	ListUnions(ctx context.Context, in *ListUnionsReq, opts ...client.CallOption) (*ListUnionsResp, error)
 	AddUnion(ctx context.Context, in *AddUnionReq, opts ...client.CallOption) (*AddUnionResp, error)
 	UpdateUnion(ctx context.Context, in *UpdateUnionReq, opts ...client.CallOption) (*UpdateUnionResp, error)
 	DeleteUnion(ctx context.Context, in *DeleteUnionReq, opts ...client.CallOption) (*DeleteUnionResp, error)
+	TotalUnions(ctx context.Context, in *TotalUnionsReq, opts ...client.CallOption) (*TotalUnionsResp, error)
 }
 
 type accountService struct {
@@ -133,6 +137,16 @@ func (c *accountService) DeleteViewer(ctx context.Context, in *DeleteViewerReq, 
 	return out, nil
 }
 
+func (c *accountService) TotalViewers(ctx context.Context, in *TotalViewersReq, opts ...client.CallOption) (*TotalViewersResp, error) {
+	req := c.c.NewRequest(c.name, "Account.TotalViewers", in)
+	out := new(TotalViewersResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *accountService) GetStreamer(ctx context.Context, in *GetStreamerReq, opts ...client.CallOption) (*GetStreamerResp, error) {
 	req := c.c.NewRequest(c.name, "Account.GetStreamer", in)
 	out := new(GetStreamerResp)
@@ -176,6 +190,16 @@ func (c *accountService) UpdateStreamer(ctx context.Context, in *UpdateStreamerR
 func (c *accountService) DeleteStreamer(ctx context.Context, in *DeleteStreamerReq, opts ...client.CallOption) (*DeleteStreamerResp, error) {
 	req := c.c.NewRequest(c.name, "Account.DeleteStreamer", in)
 	out := new(DeleteStreamerResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *accountService) TotalStreamers(ctx context.Context, in *TotalStreamersReq, opts ...client.CallOption) (*TotalStreamersResp, error) {
+	req := c.c.NewRequest(c.name, "Account.TotalStreamers", in)
+	out := new(TotalStreamersResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -233,6 +257,16 @@ func (c *accountService) DeleteManager(ctx context.Context, in *DeleteManagerReq
 	return out, nil
 }
 
+func (c *accountService) TotalManagers(ctx context.Context, in *TotalManagersReq, opts ...client.CallOption) (*TotalManagersResp, error) {
+	req := c.c.NewRequest(c.name, "Account.TotalManagers", in)
+	out := new(TotalManagersResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *accountService) GetUnion(ctx context.Context, in *GetUnionReq, opts ...client.CallOption) (*GetUnionResp, error) {
 	req := c.c.NewRequest(c.name, "Account.GetUnion", in)
 	out := new(GetUnionResp)
@@ -283,6 +317,16 @@ func (c *accountService) DeleteUnion(ctx context.Context, in *DeleteUnionReq, op
 	return out, nil
 }
 
+func (c *accountService) TotalUnions(ctx context.Context, in *TotalUnionsReq, opts ...client.CallOption) (*TotalUnionsResp, error) {
+	req := c.c.NewRequest(c.name, "Account.TotalUnions", in)
+	out := new(TotalUnionsResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for Account service
 
 type AccountHandler interface {
@@ -292,21 +336,25 @@ type AccountHandler interface {
 	AddViewer(context.Context, *AddViewerReq, *AddViewerResp) error
 	UpdateViewer(context.Context, *UpdateViewerReq, *UpdateViewerResp) error
 	DeleteViewer(context.Context, *DeleteViewerReq, *DeleteViewerResp) error
+	TotalViewers(context.Context, *TotalViewersReq, *TotalViewersResp) error
 	GetStreamer(context.Context, *GetStreamerReq, *GetStreamerResp) error
 	ListStreamers(context.Context, *ListStreamersReq, *ListStreamersResp) error
 	AddStreamer(context.Context, *AddStreamerReq, *AddStreamerResp) error
 	UpdateStreamer(context.Context, *UpdateStreamerReq, *UpdateStreamerResp) error
 	DeleteStreamer(context.Context, *DeleteStreamerReq, *DeleteStreamerResp) error
+	TotalStreamers(context.Context, *TotalStreamersReq, *TotalStreamersResp) error
 	GetManager(context.Context, *GetManagerReq, *GetManagerResp) error
 	ListManagers(context.Context, *ListManagersReq, *ListManagersResp) error
 	AddManager(context.Context, *AddManagerReq, *AddManagerResp) error
 	UpdateManager(context.Context, *UpdateManagerReq, *UpdateManagerResp) error
 	DeleteManager(context.Context, *DeleteManagerReq, *DeleteManagerResp) error
+	TotalManagers(context.Context, *TotalManagersReq, *TotalManagersResp) error
 	GetUnion(context.Context, *GetUnionReq, *GetUnionResp) error
 	ListUnions(context.Context, *ListUnionsReq, *ListUnionsResp) error
 	AddUnion(context.Context, *AddUnionReq, *AddUnionResp) error
 	UpdateUnion(context.Context, *UpdateUnionReq, *UpdateUnionResp) error
 	DeleteUnion(context.Context, *DeleteUnionReq, *DeleteUnionResp) error
+	TotalUnions(context.Context, *TotalUnionsReq, *TotalUnionsResp) error
 }
 
 func RegisterAccountHandler(s server.Server, hdlr AccountHandler, opts ...server.HandlerOption) error {
@@ -317,21 +365,25 @@ func RegisterAccountHandler(s server.Server, hdlr AccountHandler, opts ...server
 		AddViewer(ctx context.Context, in *AddViewerReq, out *AddViewerResp) error
 		UpdateViewer(ctx context.Context, in *UpdateViewerReq, out *UpdateViewerResp) error
 		DeleteViewer(ctx context.Context, in *DeleteViewerReq, out *DeleteViewerResp) error
+		TotalViewers(ctx context.Context, in *TotalViewersReq, out *TotalViewersResp) error
 		GetStreamer(ctx context.Context, in *GetStreamerReq, out *GetStreamerResp) error
 		ListStreamers(ctx context.Context, in *ListStreamersReq, out *ListStreamersResp) error
 		AddStreamer(ctx context.Context, in *AddStreamerReq, out *AddStreamerResp) error
 		UpdateStreamer(ctx context.Context, in *UpdateStreamerReq, out *UpdateStreamerResp) error
 		DeleteStreamer(ctx context.Context, in *DeleteStreamerReq, out *DeleteStreamerResp) error
+		TotalStreamers(ctx context.Context, in *TotalStreamersReq, out *TotalStreamersResp) error
 		GetManager(ctx context.Context, in *GetManagerReq, out *GetManagerResp) error
 		ListManagers(ctx context.Context, in *ListManagersReq, out *ListManagersResp) error
 		AddManager(ctx context.Context, in *AddManagerReq, out *AddManagerResp) error
 		UpdateManager(ctx context.Context, in *UpdateManagerReq, out *UpdateManagerResp) error
 		DeleteManager(ctx context.Context, in *DeleteManagerReq, out *DeleteManagerResp) error
+		TotalManagers(ctx context.Context, in *TotalManagersReq, out *TotalManagersResp) error
 		GetUnion(ctx context.Context, in *GetUnionReq, out *GetUnionResp) error
 		ListUnions(ctx context.Context, in *ListUnionsReq, out *ListUnionsResp) error
 		AddUnion(ctx context.Context, in *AddUnionReq, out *AddUnionResp) error
 		UpdateUnion(ctx context.Context, in *UpdateUnionReq, out *UpdateUnionResp) error
 		DeleteUnion(ctx context.Context, in *DeleteUnionReq, out *DeleteUnionResp) error
+		TotalUnions(ctx context.Context, in *TotalUnionsReq, out *TotalUnionsResp) error
 	}
 	type Account struct {
 		account
@@ -368,6 +420,10 @@ func (h *accountHandler) DeleteViewer(ctx context.Context, in *DeleteViewerReq, 
 	return h.AccountHandler.DeleteViewer(ctx, in, out)
 }
 
+func (h *accountHandler) TotalViewers(ctx context.Context, in *TotalViewersReq, out *TotalViewersResp) error {
+	return h.AccountHandler.TotalViewers(ctx, in, out)
+}
+
 func (h *accountHandler) GetStreamer(ctx context.Context, in *GetStreamerReq, out *GetStreamerResp) error {
 	return h.AccountHandler.GetStreamer(ctx, in, out)
 }
@@ -386,6 +442,10 @@ func (h *accountHandler) UpdateStreamer(ctx context.Context, in *UpdateStreamerR
 
 func (h *accountHandler) DeleteStreamer(ctx context.Context, in *DeleteStreamerReq, out *DeleteStreamerResp) error {
 	return h.AccountHandler.DeleteStreamer(ctx, in, out)
+}
+
+func (h *accountHandler) TotalStreamers(ctx context.Context, in *TotalStreamersReq, out *TotalStreamersResp) error {
+	return h.AccountHandler.TotalStreamers(ctx, in, out)
 }
 
 func (h *accountHandler) GetManager(ctx context.Context, in *GetManagerReq, out *GetManagerResp) error {
@@ -408,6 +468,10 @@ func (h *accountHandler) DeleteManager(ctx context.Context, in *DeleteManagerReq
 	return h.AccountHandler.DeleteManager(ctx, in, out)
 }
 
+func (h *accountHandler) TotalManagers(ctx context.Context, in *TotalManagersReq, out *TotalManagersResp) error {
+	return h.AccountHandler.TotalManagers(ctx, in, out)
+}
+
 func (h *accountHandler) GetUnion(ctx context.Context, in *GetUnionReq, out *GetUnionResp) error {
 	return h.AccountHandler.GetUnion(ctx, in, out)
 }
@@ -426,4 +490,8 @@ func (h *accountHandler) UpdateUnion(ctx context.Context, in *UpdateUnionReq, ou
 
 func (h *accountHandler) DeleteUnion(ctx context.Context, in *DeleteUnionReq, out *DeleteUnionResp) error {
 	return h.AccountHandler.DeleteUnion(ctx, in, out)
+}
+
+func (h *accountHandler) TotalUnions(ctx context.Context, in *TotalUnionsReq, out *TotalUnionsResp) error {
+	return h.AccountHandler.TotalUnions(ctx, in, out)
 }

@@ -23,5 +23,6 @@ message GiftSendTopicInfo {
     string live_id = 25; // 直播ID
     int32 combo = 26; // 礼物combo
     string group = 27; // 礼物combogroup
-    google.protobuf.Timestamp send_time = 28; // 赠送时间
+    int32 glamour_rate = 28; // 魅力值比例
+    google.protobuf.Timestamp send_time = 29; // 赠送时间
 }
