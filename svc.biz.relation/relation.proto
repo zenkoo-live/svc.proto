@@ -72,6 +72,8 @@ message RelationCheckResp {
 message GetRelationCountReq  {
     RelationType relation_type = 1;
     string member_id = 2; 
+    google.protobuf.Timestamp build_start_time = 3; 
+    google.protobuf.Timestamp build_end_time = 4;
 }
 message GetRelationCountResp {
     int64 count = 1;
