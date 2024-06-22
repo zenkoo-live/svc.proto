@@ -4237,6 +4237,11 @@ CategoryInfo 分类详情
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| live | [LiveInfo](#svc-biz-room-LiveInfo) |  |  |
+
+
 
 
 
