@@ -7496,6 +7496,8 @@ Service of instruction
 | ----- | ---- | ----- | ----------- |
 | relation_type | [RelationType](#svc-biz-relation-RelationType) |  |  |
 | member_id | [string](#string) |  |  |
+| build_start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+| build_end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
 
 
 
