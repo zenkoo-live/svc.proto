@@ -4,8 +4,6 @@ package svc.infra.link;
 
 option go_package = "./svc.infra.link;link";
 
-import "google/protobuf/timestamp.proto";
-
 // 消息命令类型
 enum CommandType {
   UnKnow = 0; // 未知
@@ -25,14 +23,13 @@ enum PayloadType {
   StreamerOffline = 8; // 主播下播
 }
 
-//
-message MsgMessage  {
+// Payload容器
+message PayloadWrap  {
   int64 i = 1 ;
   int32 t = 2 ;
   int32 p = 3;
   string d = 11;
 }
-
 
 // 守护消息
 message PayloadGuard {
