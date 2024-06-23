@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package svc.biz.vip;
+
+import "google/protobuf/timestamp.proto";
+import "svc.biz.vip/noble.proto";
+
+option go_package="./svc.biz.vip;vip";
+
+// 贵族
+service NobleMember {
+    // JoinNoble 加入贵族
+    rpc JoinNoble (JoinNobleReq) returns (JoinNobleResp) {}
+    // GetNobleMember 获取成员贵族信息
+    rpc GetNobleMember (GetNobleMemberReq) returns (GetNobleMemberResp) {}
+
+    // GetOnlineNobleMemberByStreamerID 获取主播贵族在线成员列表
+    rpc GetOnlineNobleMemberByStreamerID (GetOnlineNobleMemberByStreamerIDReq) returns (GetOnlineNobleMemberByStreamerIDResp) {}
+}
+
+message NobleMemberInfo {
+    NobleLevel level = 1; // 贵族等级
+    string member_id = 2; // 用户id
+    string streamer_id = 3; // 主播id（可为空）
+    google.protobuf.Timestamp join_time = 4; // 加入时间
+    google.protobuf.Timestamp expire_time = 5; // 过期时间
+}
+
+message JoinNobleReq {
+    NobleLevel level = 1; // 贵族等级
+    string member_id = 2; // 用户id
+    string streamer_id = 3; // 主播id（可为空；贵族可直接开通，也可在某个直播间开通）
+}
+message JoinNobleResp {
+}
+
+message GetNobleMemberReq {
+    string member_id = 1; // 用户id
+}
+message GetNobleMemberResp {
+    NobleMemberInfo noble_member = 1;
+}
+
+message GetOnlineNobleMemberByStreamerIDReq {
+    string streamer_id = 1; // 主播id
+}
+message GetOnlineNobleMemberByStreamerIDResp {
+    repeated NobleMemberInfo items = 1;
+}

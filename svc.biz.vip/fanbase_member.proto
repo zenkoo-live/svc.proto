@@ -60,6 +60,12 @@ message FanbaseMemberInfo {
     google.protobuf.Timestamp join_time = 5; // 加入时间
     int32 score = 6;
 
+    bool rights_icon = 10; // 专属勋章
+    bool rights_gift = 11; // 专属礼物
+    bool rights_inroom_effect = 12; // 进场特效
+    bool rights_avoid_kick = 13; // 防踢
+    bool rights_avoid_ban_speaking = 14; // 防禁言
+
     google.protobuf.Timestamp created_at = 101; // 创建时间
     google.protobuf.Timestamp updated_at = 102; // 更新时间
 }

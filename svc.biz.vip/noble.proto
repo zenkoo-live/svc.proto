@@ -1,0 +1,97 @@
+syntax = "proto3";
+
+package svc.biz.vip;
+
+import "google/protobuf/field_mask.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package="./svc.biz.vip;vip";
+
+
+// 贵族
+service Noble {
+    // CreateNoble 创建贵族
+    rpc CreateNoble (CreateNobleReq) returns (CreateNobleResp) {}
+    // GetNoble 创建贵族
+    rpc GetNoble (GetNobleReq) returns (GetNobleResp) {}
+    // CreateNoble 创建贵族
+    rpc GetNobleList (GetNobleListReq) returns (GetNobleListResp) {}
+    // UpdateNoble 更新贵族
+    rpc UpdateNoble (UpdateNobleReq) returns (UpdateNobleResp) {}
+}
+
+message CreateNobleReq {
+    NobleInfo noble = 1;
+}
+message CreateNobleResp {
+    NobleInfo noble = 1;
+}
+
+message GetNobleReq {
+    NobleLevel level = 1;
+}
+message GetNobleResp {
+    NobleInfo noble = 1;
+}
+
+message GetNobleListReq {
+}
+message GetNobleListResp {
+    repeated NobleInfo items = 1;
+}
+
+message UpdateNobleReq {
+    NobleLevel level = 1;
+    NobleInfo noble = 2;
+    google.protobuf.FieldMask update_mask = 3;
+}
+message UpdateNobleResp {
+}
+
+
+enum NobleLevel {
+    NobleLevelUnknown = 0; // 未知
+    NobleLevelKnight = 1; // 骑士
+    NobleLevelViscount = 2; // 子爵
+    NobleLevelEarl = 3; // 伯爵
+    NobleLevelMarquis = 4; // 侯爵
+    NobleLevelDuke = 5; // 公爵
+    NobleLevelKing = 6; // 国王
+}
+message NobleInfo {
+    NobleLevel level = 1; // 等级
+    string name = 2; // 名称
+    int32 first_open_price = 3; // 首次开通价格
+    int32 first_remand_diamond = 4; // 首次开通奖励金
+    int32 renew_price = 5; // 续费价格
+    int32 renew_remand_diamond = 6; // 续费奖励金
+    string icon = 7; // 身份标签
+
+    bool rights_avoid_kick = 101; // 防踢
+    bool rights_avoid_ban_speaking = 102; // 防禁言
+    bool rights_identity_icon = 103; // 身份标签（所有贵族都有，此字段不入库默认为true）
+    int32 rights_upgrade_addition = 104; // 升级加成（保存的是加成比例，20%的话，存的是数字20）
+    bool  rights_inroom_effect = 105; // 进场特效（所有贵族都有，此字段不入库默认为true）
+    repeated string rights_barrage_colors = 106; // 弹幕颜色
+    bool rights_remand_diamond = 107; // 专属俸禄（所有贵族都有，此字段不入库默认为true）
+    repeated string rights_mounts = 108; // 坐骑（进场特效）
+    repeated NobleRightsFreeGift rights_free_gifts = 109; // 免费礼物
+    bool rights_noble_gift = 110; // 专属礼物（所有贵族都有，此字段不入库默认为true）
+    bool rights_into_room_hide = 111; // 进场隐身
+    bool rights_rank_hide = 112; // 榜单隐身
+    repeated NobleRightsDiscountGift rights_discount_gifts = 113; // 特价礼物
+
+    google.protobuf.Timestamp created_at = 201; // 创建时间
+    google.protobuf.Timestamp updated_at = 202; // 更新时间
+}
+
+message NobleRightsFreeGift {
+    string gift_id = 1; // 礼物id
+    int32 num = 2; // 个数
+}
+
+message NobleRightsDiscountGift {
+    string gift_id = 1; // 礼物id
+    int32 discount_price = 2; // 折扣价格
+}
+
