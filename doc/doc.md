@@ -116,11 +116,13 @@
   
 - [svc.biz.vip/right.proto](#svc-biz-vip_right-proto)
 - [svc.biz.vip/fanbase_member.proto](#svc-biz-vip_fanbase_member-proto)
+    - [CountFanbaseMemberByStreamerIDReq](#svc-biz-vip-CountFanbaseMemberByStreamerIDReq)
+    - [CountFanbaseMemberByStreamerIDResp](#svc-biz-vip-CountFanbaseMemberByStreamerIDResp)
     - [FanbaseMemberInfo](#svc-biz-vip-FanbaseMemberInfo)
     - [GetFanbaseMemberByStreamerIDReq](#svc-biz-vip-GetFanbaseMemberByStreamerIDReq)
     - [GetFanbaseMemberReq](#svc-biz-vip-GetFanbaseMemberReq)
     - [GetFanbaseMemberResp](#svc-biz-vip-GetFanbaseMemberResp)
-    - [GetFanbaseMembertByMemberIDResp](#svc-biz-vip-GetFanbaseMembertByMemberIDResp)
+    - [GetFanbaseMembertByMemberIDReq](#svc-biz-vip-GetFanbaseMembertByMemberIDReq)
     - [GetListResp](#svc-biz-vip-GetListResp)
     - [GetOnlineFanbaseMemberByStreamerIDReq](#svc-biz-vip-GetOnlineFanbaseMemberByStreamerIDReq)
     - [JoinFanbaseReq](#svc-biz-vip-JoinFanbaseReq)
@@ -510,6 +512,12 @@
     - [DeleteUnionReq](#svc-biz-org-DeleteUnionReq)
     - [DeleteUnionResp](#svc-biz-org-DeleteUnionResp)
     - [Department](#svc-biz-org-Department)
+    - [FilterDepartmentsReq](#svc-biz-org-FilterDepartmentsReq)
+    - [FilterDepartmentsResp](#svc-biz-org-FilterDepartmentsResp)
+    - [FilterMerchantsReq](#svc-biz-org-FilterMerchantsReq)
+    - [FilterMerchantsResp](#svc-biz-org-FilterMerchantsResp)
+    - [FilterUnionsReq](#svc-biz-org-FilterUnionsReq)
+    - [FilterUnionsResp](#svc-biz-org-FilterUnionsResp)
     - [GetDepartmentReq](#svc-biz-org-GetDepartmentReq)
     - [GetDepartmentResp](#svc-biz-org-GetDepartmentResp)
     - [GetMerchantReq](#svc-biz-org-GetMerchantReq)
@@ -2959,6 +2967,39 @@ service started /////////////////
 
 
 
+<a name="svc-biz-vip-CountFanbaseMemberByStreamerIDReq"></a>
+
+### CountFanbaseMemberByStreamerIDReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer_id | [string](#string) |  | 主播id |
+| level | [FanbaseLevel](#svc-biz-vip-FanbaseLevel) |  | 等级 |
+| start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开始时间 |
+| end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 结束时间 |
+
+
+
+
+
+
+<a name="svc-biz-vip-CountFanbaseMemberByStreamerIDResp"></a>
+
+### CountFanbaseMemberByStreamerIDResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| total | [int64](#int64) |  | 总数 |
+
+
+
+
+
+
 <a name="svc-biz-vip-FanbaseMemberInfo"></a>
 
 ### FanbaseMemberInfo
@@ -2972,7 +3013,6 @@ service started /////////////////
 | member_id | [string](#string) |  |  |
 | level | [FanbaseLevel](#svc-biz-vip-FanbaseLevel) |  |  |
 | join_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 加入时间 |
-| expire_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 过期时间 |
 | score | [int32](#int32) |  |  |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
 | updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 更新时间 |
@@ -3031,9 +3071,9 @@ service started /////////////////
 
 
 
-<a name="svc-biz-vip-GetFanbaseMembertByMemberIDResp"></a>
+<a name="svc-biz-vip-GetFanbaseMembertByMemberIDReq"></a>
 
-### GetFanbaseMembertByMemberIDResp
+### GetFanbaseMembertByMemberIDReq
 
 
 
@@ -3091,7 +3131,6 @@ service started /////////////////
 | streamer_id | [string](#string) |  |  |
 | member_id | [string](#string) |  |  |
 | level | [FanbaseLevel](#svc-biz-vip-FanbaseLevel) |  |  |
-| expire_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 过期时间 |
 
 
 
@@ -3144,9 +3183,10 @@ service started /////////////////
 | JoinFanbase | [JoinFanbaseReq](#svc-biz-vip-JoinFanbaseReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | JoinFanbase 加入粉丝团 |
 | LeaveFanbase | [LeaveFanbaseReq](#svc-biz-vip-LeaveFanbaseReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | LeaveFanbase 离开粉丝团 |
 | GetFanbaseMember | [GetFanbaseMemberReq](#svc-biz-vip-GetFanbaseMemberReq) | [GetFanbaseMemberResp](#svc-biz-vip-GetFanbaseMemberResp) | GetFanbaseMember 获取粉丝团成员信息 |
-| GetFanbaseMemberByStreamerID | [GetFanbaseMemberByStreamerIDReq](#svc-biz-vip-GetFanbaseMemberByStreamerIDReq) | [GetListResp](#svc-biz-vip-GetListResp) | GeFanbaseMemberByStreamerID 获取主播粉丝团成员列表 |
+| GetFanbaseMemberByStreamerID | [GetFanbaseMemberByStreamerIDReq](#svc-biz-vip-GetFanbaseMemberByStreamerIDReq) | [GetListResp](#svc-biz-vip-GetListResp) | GetFanbaseMemberByStreamerID 获取主播粉丝团成员列表 |
+| CountFanbaseMemberByStreamerID | [CountFanbaseMemberByStreamerIDReq](#svc-biz-vip-CountFanbaseMemberByStreamerIDReq) | [CountFanbaseMemberByStreamerIDResp](#svc-biz-vip-CountFanbaseMemberByStreamerIDResp) | CountFanbaseMemberByStreamerID 获取主播粉丝团成员总数 |
 | GetOnlineFanbaseMemberByStreamerID | [GetOnlineFanbaseMemberByStreamerIDReq](#svc-biz-vip-GetOnlineFanbaseMemberByStreamerIDReq) | [GetListResp](#svc-biz-vip-GetListResp) | GetOnlineFanbaseMemberByStreamerID 获取主播粉丝团在线成员列表 |
-| GetFanbaseMembertByMemberID | [GetFanbaseMembertByMemberIDResp](#svc-biz-vip-GetFanbaseMembertByMemberIDResp) | [GetListResp](#svc-biz-vip-GetListResp) | GetFanbaseMembertByMemberID 获取用户加入的粉丝团列表 |
+| GetFanbaseMembertByMemberID | [GetFanbaseMembertByMemberIDReq](#svc-biz-vip-GetFanbaseMembertByMemberIDReq) | [GetListResp](#svc-biz-vip-GetListResp) | GetFanbaseMembertByMemberID 获取用户加入的粉丝团列表 |
 
  
 
@@ -5212,6 +5252,7 @@ Service of instruction
 | user_id | [string](#string) |  |  |
 | merchant_id | [string](#string) |  |  |
 | online_count | [int64](#int64) |  | 当前直播间的在人数数量 |
+| streamer_id | [string](#string) |  | 主播ID |
 | action | [UserEnterQuitAction](#svc-infra-link-UserEnterQuitAction) |  |  |
 
 
@@ -6048,7 +6089,9 @@ Services of gateway
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| total_price | [int32](#int32) |  |  |
+| total_num | [int32](#int32) |  | 礼物总数 |
+| total_price | [int32](#int32) |  | 礼物代币总数 |
+| total_user | [int32](#int32) |  | 礼物用户总数 |
 
 
 
@@ -6957,7 +7000,6 @@ topic: topic.gift.send
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | managers | [Manager](#svc-biz-account-Manager) | repeated |  |
-| total | [int64](#int64) |  |  |
 
 
 
@@ -6988,7 +7030,6 @@ topic: topic.gift.send
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | streamers | [Streamer](#svc-biz-account-Streamer) | repeated |  |
-| total | [int64](#int64) |  |  |
 
 
 
@@ -7019,7 +7060,6 @@ topic: topic.gift.send
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | unions | [Union](#svc-biz-account-Union) | repeated |  |
-| total | [int64](#int64) |  |  |
 
 
 
@@ -7050,7 +7090,6 @@ topic: topic.gift.send
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | viewers | [Viewer](#svc-biz-account-Viewer) | repeated |  |
-| total | [int64](#int64) |  |  |
 
 
 
@@ -7731,6 +7770,8 @@ Models
 | ----- | ---- | ----- | ----------- |
 | relation_type | [RelationType](#svc-biz-relation-RelationType) |  |  |
 | member_id | [string](#string) |  |  |
+| build_start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+| build_end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
 
 
 
@@ -8914,6 +8955,96 @@ Models
 
 
 
+<a name="svc-biz-org-FilterDepartmentsReq"></a>
+
+### FilterDepartmentsReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| ids | [string](#string) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-org-FilterDepartmentsResp"></a>
+
+### FilterDepartmentsResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| departments | [Department](#svc-biz-org-Department) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-org-FilterMerchantsReq"></a>
+
+### FilterMerchantsReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| ids | [string](#string) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-org-FilterMerchantsResp"></a>
+
+### FilterMerchantsResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| merchants | [Merchant](#svc-biz-org-Merchant) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-org-FilterUnionsReq"></a>
+
+### FilterUnionsReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| ids | [string](#string) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-org-FilterUnionsResp"></a>
+
+### FilterUnionsResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| unions | [Union](#svc-biz-org-Union) | repeated |  |
+
+
+
+
+
+
 <a name="svc-biz-org-GetDepartmentReq"></a>
 
 ### GetDepartmentReq
@@ -9351,18 +9482,21 @@ Models
 | InitDB | [.google.protobuf.Empty](#google-protobuf-Empty) | [InitDBResp](#svc-biz-org-InitDBResp) | 初始化数据库 |
 | GetDepartment | [GetDepartmentReq](#svc-biz-org-GetDepartmentReq) | [GetDepartmentResp](#svc-biz-org-GetDepartmentResp) | 获取部门 |
 | ListDepartments | [ListDepartmentsReq](#svc-biz-org-ListDepartmentsReq) | [ListDepartmentsResp](#svc-biz-org-ListDepartmentsResp) | 获取部门列表 |
+| FilterDepartments | [FilterDepartmentsReq](#svc-biz-org-FilterDepartmentsReq) | [FilterDepartmentsResp](#svc-biz-org-FilterDepartmentsResp) | 通过ID列表获取部门 |
 | AddDepartment | [AddDepartmentReq](#svc-biz-org-AddDepartmentReq) | [AddDepartmentResp](#svc-biz-org-AddDepartmentResp) | 添加部门 |
 | UpdateDepartment | [UpdateDepartmentReq](#svc-biz-org-UpdateDepartmentReq) | [UpdateDepartmentResp](#svc-biz-org-UpdateDepartmentResp) | 更新部门 |
 | DeleteDepartment | [DeleteDepartmentReq](#svc-biz-org-DeleteDepartmentReq) | [DeleteDepartmentResp](#svc-biz-org-DeleteDepartmentResp) | 删除部门 |
 | TotalDepartments | [TotalDepartmentsReq](#svc-biz-org-TotalDepartmentsReq) | [TotalDepartmentsResp](#svc-biz-org-TotalDepartmentsResp) | 获取波门总数 |
 | GetMerchant | [GetMerchantReq](#svc-biz-org-GetMerchantReq) | [GetMerchantResp](#svc-biz-org-GetMerchantResp) | 获取商户 |
 | ListMerchants | [ListMerchantsReq](#svc-biz-org-ListMerchantsReq) | [ListMerchantsResp](#svc-biz-org-ListMerchantsResp) | 获取商户列表 |
+| FilterMerchants | [FilterMerchantsReq](#svc-biz-org-FilterMerchantsReq) | [FilterMerchantsResp](#svc-biz-org-FilterMerchantsResp) | 通过ID列表获取商户 |
 | AddMerchant | [AddMerchantReq](#svc-biz-org-AddMerchantReq) | [AddMerchantResp](#svc-biz-org-AddMerchantResp) | 添加商户 |
 | UpdateMerchant | [UpdateMerchantReq](#svc-biz-org-UpdateMerchantReq) | [UpdateMerchantResp](#svc-biz-org-UpdateMerchantResp) | 更新商户 |
 | DeleteMerchant | [DeleteMerchantReq](#svc-biz-org-DeleteMerchantReq) | [DeleteMerchantResp](#svc-biz-org-DeleteMerchantResp) | 删除商户 |
 | TotalMerchants | [TotalMerchantsReq](#svc-biz-org-TotalMerchantsReq) | [TotalMerchantsResp](#svc-biz-org-TotalMerchantsResp) | 获取商户总数 |
 | GetUnion | [GetUnionReq](#svc-biz-org-GetUnionReq) | [GetUnionResp](#svc-biz-org-GetUnionResp) | 获取工会 |
 | ListUnions | [ListUnionsReq](#svc-biz-org-ListUnionsReq) | [ListUnionsResp](#svc-biz-org-ListUnionsResp) | 获取工会列表 |
+| FilterUnions | [FilterUnionsReq](#svc-biz-org-FilterUnionsReq) | [FilterUnionsResp](#svc-biz-org-FilterUnionsResp) | 通过ID列表获取工会 |
 | AddUnion | [AddUnionReq](#svc-biz-org-AddUnionReq) | [AddUnionResp](#svc-biz-org-AddUnionResp) | 添加工会 |
 | UpdateUnion | [UpdateUnionReq](#svc-biz-org-UpdateUnionReq) | [UpdateUnionResp](#svc-biz-org-UpdateUnionResp) | 更新工会 |
 | DeleteUnion | [DeleteUnionReq](#svc-biz-org-DeleteUnionReq) | [DeleteUnionResp](#svc-biz-org-DeleteUnionResp) | 删除工会 |
