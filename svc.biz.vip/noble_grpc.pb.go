@@ -31,13 +31,13 @@ const (
 //
 // 贵族
 type NobleClient interface {
-	// CreateNoble 创建贵族
+	// CreateNoble 创建
 	CreateNoble(ctx context.Context, in *CreateNobleReq, opts ...grpc.CallOption) (*CreateNobleResp, error)
-	// GetNoble 创建贵族
+	// GetNoble 查询
 	GetNoble(ctx context.Context, in *GetNobleReq, opts ...grpc.CallOption) (*GetNobleResp, error)
-	// CreateNoble 创建贵族
+	// CreateNoble 查询列表
 	GetNobleList(ctx context.Context, in *GetNobleListReq, opts ...grpc.CallOption) (*GetNobleListResp, error)
-	// UpdateNoble 更新贵族
+	// UpdateNoble 更新
 	UpdateNoble(ctx context.Context, in *UpdateNobleReq, opts ...grpc.CallOption) (*UpdateNobleResp, error)
 }
 
@@ -95,13 +95,13 @@ func (c *nobleClient) UpdateNoble(ctx context.Context, in *UpdateNobleReq, opts 
 //
 // 贵族
 type NobleServer interface {
-	// CreateNoble 创建贵族
+	// CreateNoble 创建
 	CreateNoble(context.Context, *CreateNobleReq) (*CreateNobleResp, error)
-	// GetNoble 创建贵族
+	// GetNoble 查询
 	GetNoble(context.Context, *GetNobleReq) (*GetNobleResp, error)
-	// CreateNoble 创建贵族
+	// CreateNoble 查询列表
 	GetNobleList(context.Context, *GetNobleListReq) (*GetNobleListResp, error)
-	// UpdateNoble 更新贵族
+	// UpdateNoble 更新
 	UpdateNoble(context.Context, *UpdateNobleReq) (*UpdateNobleResp, error)
 	mustEmbedUnimplementedNobleServer()
 }

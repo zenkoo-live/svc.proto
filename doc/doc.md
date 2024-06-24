@@ -11068,10 +11068,10 @@ service started /////////////////
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| CreateNoble | [CreateNobleReq](#svc-biz-vip-CreateNobleReq) | [CreateNobleResp](#svc-biz-vip-CreateNobleResp) | CreateNoble 创建贵族 |
-| GetNoble | [GetNobleReq](#svc-biz-vip-GetNobleReq) | [GetNobleResp](#svc-biz-vip-GetNobleResp) | GetNoble 创建贵族 |
-| GetNobleList | [GetNobleListReq](#svc-biz-vip-GetNobleListReq) | [GetNobleListResp](#svc-biz-vip-GetNobleListResp) | CreateNoble 创建贵族 |
-| UpdateNoble | [UpdateNobleReq](#svc-biz-vip-UpdateNobleReq) | [UpdateNobleResp](#svc-biz-vip-UpdateNobleResp) | UpdateNoble 更新贵族 |
+| CreateNoble | [CreateNobleReq](#svc-biz-vip-CreateNobleReq) | [CreateNobleResp](#svc-biz-vip-CreateNobleResp) | CreateNoble 创建 |
+| GetNoble | [GetNobleReq](#svc-biz-vip-GetNobleReq) | [GetNobleResp](#svc-biz-vip-GetNobleResp) | GetNoble 查询 |
+| GetNobleList | [GetNobleListReq](#svc-biz-vip-GetNobleListReq) | [GetNobleListResp](#svc-biz-vip-GetNobleListResp) | CreateNoble 查询列表 |
+| UpdateNoble | [UpdateNobleReq](#svc-biz-vip-UpdateNobleReq) | [UpdateNobleResp](#svc-biz-vip-UpdateNobleResp) | UpdateNoble 更新 |
 
  
 

@@ -10,13 +10,13 @@ option go_package="./svc.biz.vip;vip";
 
 // 贵族
 service Noble {
-    // CreateNoble 创建贵族
+    // CreateNoble 创建
     rpc CreateNoble (CreateNobleReq) returns (CreateNobleResp) {}
-    // GetNoble 创建贵族
+    // GetNoble 查询
     rpc GetNoble (GetNobleReq) returns (GetNobleResp) {}
-    // CreateNoble 创建贵族
+    // CreateNoble 查询列表
     rpc GetNobleList (GetNobleListReq) returns (GetNobleListResp) {}
-    // UpdateNoble 更新贵族
+    // UpdateNoble 更新
     rpc UpdateNoble (UpdateNobleReq) returns (UpdateNobleResp) {}
 }
 

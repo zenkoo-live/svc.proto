@@ -38,13 +38,13 @@ func NewNobleEndpoints() []*api.Endpoint {
 // Client API for Noble service
 
 type NobleService interface {
-	// CreateNoble 创建贵族
+	// CreateNoble 创建
 	CreateNoble(ctx context.Context, in *CreateNobleReq, opts ...client.CallOption) (*CreateNobleResp, error)
-	// GetNoble 创建贵族
+	// GetNoble 查询
 	GetNoble(ctx context.Context, in *GetNobleReq, opts ...client.CallOption) (*GetNobleResp, error)
-	// CreateNoble 创建贵族
+	// CreateNoble 查询列表
 	GetNobleList(ctx context.Context, in *GetNobleListReq, opts ...client.CallOption) (*GetNobleListResp, error)
-	// UpdateNoble 更新贵族
+	// UpdateNoble 更新
 	UpdateNoble(ctx context.Context, in *UpdateNobleReq, opts ...client.CallOption) (*UpdateNobleResp, error)
 }
 
@@ -103,13 +103,13 @@ func (c *nobleService) UpdateNoble(ctx context.Context, in *UpdateNobleReq, opts
 // Server API for Noble service
 
 type NobleHandler interface {
-	// CreateNoble 创建贵族
+	// CreateNoble 创建
 	CreateNoble(context.Context, *CreateNobleReq, *CreateNobleResp) error
-	// GetNoble 创建贵族
+	// GetNoble 查询
 	GetNoble(context.Context, *GetNobleReq, *GetNobleResp) error
-	// CreateNoble 创建贵族
+	// CreateNoble 查询列表
 	GetNobleList(context.Context, *GetNobleListReq, *GetNobleListResp) error
-	// UpdateNoble 更新贵族
+	// UpdateNoble 更新
 	UpdateNoble(context.Context, *UpdateNobleReq, *UpdateNobleResp) error
 }
 
