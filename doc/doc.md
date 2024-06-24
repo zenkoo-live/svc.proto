@@ -635,15 +635,15 @@
 - [svc.biz.vip/noble.proto](#svc-biz-vip_noble-proto)
     - [CreateNobleReq](#svc-biz-vip-CreateNobleReq)
     - [CreateNobleResp](#svc-biz-vip-CreateNobleResp)
+    - [GetNobleByLevelReq](#svc-biz-vip-GetNobleByLevelReq)
+    - [GetNobleByLevelResp](#svc-biz-vip-GetNobleByLevelResp)
     - [GetNobleListReq](#svc-biz-vip-GetNobleListReq)
     - [GetNobleListResp](#svc-biz-vip-GetNobleListResp)
-    - [GetNobleReq](#svc-biz-vip-GetNobleReq)
-    - [GetNobleResp](#svc-biz-vip-GetNobleResp)
     - [NobleInfo](#svc-biz-vip-NobleInfo)
     - [NobleRightsDiscountGift](#svc-biz-vip-NobleRightsDiscountGift)
     - [NobleRightsFreeGift](#svc-biz-vip-NobleRightsFreeGift)
-    - [UpdateNobleReq](#svc-biz-vip-UpdateNobleReq)
-    - [UpdateNobleResp](#svc-biz-vip-UpdateNobleResp)
+    - [UpdateNobleByLevelReq](#svc-biz-vip-UpdateNobleByLevelReq)
+    - [UpdateNobleByLevelResp](#svc-biz-vip-UpdateNobleByLevelResp)
   
     - [NobleLevel](#svc-biz-vip-NobleLevel)
   
@@ -10888,6 +10888,36 @@ service started /////////////////
 
 
 
+<a name="svc-biz-vip-GetNobleByLevelReq"></a>
+
+### GetNobleByLevelReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| level | [NobleLevel](#svc-biz-vip-NobleLevel) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-GetNobleByLevelResp"></a>
+
+### GetNobleByLevelResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| noble | [NobleInfo](#svc-biz-vip-NobleInfo) |  |  |
+
+
+
+
+
+
 <a name="svc-biz-vip-GetNobleListReq"></a>
 
 ### GetNobleListReq
@@ -10907,36 +10937,6 @@ service started /////////////////
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | items | [NobleInfo](#svc-biz-vip-NobleInfo) | repeated |  |
-
-
-
-
-
-
-<a name="svc-biz-vip-GetNobleReq"></a>
-
-### GetNobleReq
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| level | [NobleLevel](#svc-biz-vip-NobleLevel) |  |  |
-
-
-
-
-
-
-<a name="svc-biz-vip-GetNobleResp"></a>
-
-### GetNobleResp
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| noble | [NobleInfo](#svc-biz-vip-NobleInfo) |  |  |
 
 
 
@@ -11011,9 +11011,9 @@ service started /////////////////
 
 
 
-<a name="svc-biz-vip-UpdateNobleReq"></a>
+<a name="svc-biz-vip-UpdateNobleByLevelReq"></a>
 
-### UpdateNobleReq
+### UpdateNobleByLevelReq
 
 
 
@@ -11028,9 +11028,9 @@ service started /////////////////
 
 
 
-<a name="svc-biz-vip-UpdateNobleResp"></a>
+<a name="svc-biz-vip-UpdateNobleByLevelResp"></a>
 
-### UpdateNobleResp
+### UpdateNobleByLevelResp
 
 
 
@@ -11069,9 +11069,9 @@ service started /////////////////
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
 | CreateNoble | [CreateNobleReq](#svc-biz-vip-CreateNobleReq) | [CreateNobleResp](#svc-biz-vip-CreateNobleResp) | CreateNoble 创建 |
-| GetNoble | [GetNobleReq](#svc-biz-vip-GetNobleReq) | [GetNobleResp](#svc-biz-vip-GetNobleResp) | GetNoble 查询 |
+| GetNobleByLevel | [GetNobleByLevelReq](#svc-biz-vip-GetNobleByLevelReq) | [GetNobleByLevelResp](#svc-biz-vip-GetNobleByLevelResp) | GetNobleByLevel 查询 |
 | GetNobleList | [GetNobleListReq](#svc-biz-vip-GetNobleListReq) | [GetNobleListResp](#svc-biz-vip-GetNobleListResp) | CreateNoble 查询列表 |
-| UpdateNoble | [UpdateNobleReq](#svc-biz-vip-UpdateNobleReq) | [UpdateNobleResp](#svc-biz-vip-UpdateNobleResp) | UpdateNoble 更新 |
+| UpdateNobleByLevel | [UpdateNobleByLevelReq](#svc-biz-vip-UpdateNobleByLevelReq) | [UpdateNobleByLevelResp](#svc-biz-vip-UpdateNobleByLevelResp) | UpdateNobleByLevel 更新 |
 
  
 

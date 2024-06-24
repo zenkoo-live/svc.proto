@@ -12,12 +12,12 @@ option go_package="./svc.biz.vip;vip";
 service Noble {
     // CreateNoble 创建
     rpc CreateNoble (CreateNobleReq) returns (CreateNobleResp) {}
-    // GetNoble 查询
-    rpc GetNoble (GetNobleReq) returns (GetNobleResp) {}
+    // GetNobleByLevel 查询
+    rpc GetNobleByLevel (GetNobleByLevelReq) returns (GetNobleByLevelResp) {}
     // CreateNoble 查询列表
     rpc GetNobleList (GetNobleListReq) returns (GetNobleListResp) {}
-    // UpdateNoble 更新
-    rpc UpdateNoble (UpdateNobleReq) returns (UpdateNobleResp) {}
+    // UpdateNobleByLevel 更新
+    rpc UpdateNobleByLevel (UpdateNobleByLevelReq) returns (UpdateNobleByLevelResp) {}
 }
 
 message CreateNobleReq {
@@ -27,10 +27,10 @@ message CreateNobleResp {
     NobleInfo noble = 1;
 }
 
-message GetNobleReq {
+message GetNobleByLevelReq {
     NobleLevel level = 1;
 }
-message GetNobleResp {
+message GetNobleByLevelResp {
     NobleInfo noble = 1;
 }
 
@@ -40,12 +40,12 @@ message GetNobleListResp {
     repeated NobleInfo items = 1;
 }
 
-message UpdateNobleReq {
+message UpdateNobleByLevelReq {
     NobleLevel level = 1;
     NobleInfo noble = 2;
     google.protobuf.FieldMask update_mask = 3;
 }
-message UpdateNobleResp {
+message UpdateNobleByLevelResp {
 }
 
 
