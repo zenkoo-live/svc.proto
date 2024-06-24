@@ -6,6 +6,7 @@ package org
 import (
 	fmt "fmt"
 	proto "google.golang.org/protobuf/proto"
+	_ "google.golang.org/protobuf/types/known/anypb"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	_ "google.golang.org/protobuf/types/known/timestamppb"
 	math "math"
@@ -46,6 +47,9 @@ type OrgService interface {
 	UpdateDepartment(ctx context.Context, in *UpdateDepartmentReq, opts ...client.CallOption) (*UpdateDepartmentResp, error)
 	DeleteDepartment(ctx context.Context, in *DeleteDepartmentReq, opts ...client.CallOption) (*DeleteDepartmentResp, error)
 	TotalDepartments(ctx context.Context, in *TotalDepartmentsReq, opts ...client.CallOption) (*TotalDepartmentsResp, error)
+	DepartmentAdditionsSet(ctx context.Context, in *DepartmentAdditionsSetReq, opts ...client.CallOption) (*DepartmentAdditionsSetResp, error)
+	DepartmentAdditionsGet(ctx context.Context, in *DepartmentAdditionsGetReq, opts ...client.CallOption) (*DepartmentAdditionsGetResp, error)
+	DepartmentAdditionsDump(ctx context.Context, in *DepartmentAdditionsDumpReq, opts ...client.CallOption) (*DepartmentAdditionsDumpResp, error)
 	GetMerchant(ctx context.Context, in *GetMerchantReq, opts ...client.CallOption) (*GetMerchantResp, error)
 	ListMerchants(ctx context.Context, in *ListMerchantsReq, opts ...client.CallOption) (*ListMerchantsResp, error)
 	FilterMerchants(ctx context.Context, in *FilterMerchantsReq, opts ...client.CallOption) (*FilterMerchantsResp, error)
@@ -147,6 +151,36 @@ func (c *orgService) DeleteDepartment(ctx context.Context, in *DeleteDepartmentR
 func (c *orgService) TotalDepartments(ctx context.Context, in *TotalDepartmentsReq, opts ...client.CallOption) (*TotalDepartmentsResp, error) {
 	req := c.c.NewRequest(c.name, "Org.TotalDepartments", in)
 	out := new(TotalDepartmentsResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *orgService) DepartmentAdditionsSet(ctx context.Context, in *DepartmentAdditionsSetReq, opts ...client.CallOption) (*DepartmentAdditionsSetResp, error) {
+	req := c.c.NewRequest(c.name, "Org.DepartmentAdditionsSet", in)
+	out := new(DepartmentAdditionsSetResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *orgService) DepartmentAdditionsGet(ctx context.Context, in *DepartmentAdditionsGetReq, opts ...client.CallOption) (*DepartmentAdditionsGetResp, error) {
+	req := c.c.NewRequest(c.name, "Org.DepartmentAdditionsGet", in)
+	out := new(DepartmentAdditionsGetResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *orgService) DepartmentAdditionsDump(ctx context.Context, in *DepartmentAdditionsDumpReq, opts ...client.CallOption) (*DepartmentAdditionsDumpResp, error) {
+	req := c.c.NewRequest(c.name, "Org.DepartmentAdditionsDump", in)
+	out := new(DepartmentAdditionsDumpResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -305,6 +339,9 @@ type OrgHandler interface {
 	UpdateDepartment(context.Context, *UpdateDepartmentReq, *UpdateDepartmentResp) error
 	DeleteDepartment(context.Context, *DeleteDepartmentReq, *DeleteDepartmentResp) error
 	TotalDepartments(context.Context, *TotalDepartmentsReq, *TotalDepartmentsResp) error
+	DepartmentAdditionsSet(context.Context, *DepartmentAdditionsSetReq, *DepartmentAdditionsSetResp) error
+	DepartmentAdditionsGet(context.Context, *DepartmentAdditionsGetReq, *DepartmentAdditionsGetResp) error
+	DepartmentAdditionsDump(context.Context, *DepartmentAdditionsDumpReq, *DepartmentAdditionsDumpResp) error
 	GetMerchant(context.Context, *GetMerchantReq, *GetMerchantResp) error
 	ListMerchants(context.Context, *ListMerchantsReq, *ListMerchantsResp) error
 	FilterMerchants(context.Context, *FilterMerchantsReq, *FilterMerchantsResp) error
@@ -331,6 +368,9 @@ func RegisterOrgHandler(s server.Server, hdlr OrgHandler, opts ...server.Handler
 		UpdateDepartment(ctx context.Context, in *UpdateDepartmentReq, out *UpdateDepartmentResp) error
 		DeleteDepartment(ctx context.Context, in *DeleteDepartmentReq, out *DeleteDepartmentResp) error
 		TotalDepartments(ctx context.Context, in *TotalDepartmentsReq, out *TotalDepartmentsResp) error
+		DepartmentAdditionsSet(ctx context.Context, in *DepartmentAdditionsSetReq, out *DepartmentAdditionsSetResp) error
+		DepartmentAdditionsGet(ctx context.Context, in *DepartmentAdditionsGetReq, out *DepartmentAdditionsGetResp) error
+		DepartmentAdditionsDump(ctx context.Context, in *DepartmentAdditionsDumpReq, out *DepartmentAdditionsDumpResp) error
 		GetMerchant(ctx context.Context, in *GetMerchantReq, out *GetMerchantResp) error
 		ListMerchants(ctx context.Context, in *ListMerchantsReq, out *ListMerchantsResp) error
 		FilterMerchants(ctx context.Context, in *FilterMerchantsReq, out *FilterMerchantsResp) error
@@ -387,6 +427,18 @@ func (h *orgHandler) DeleteDepartment(ctx context.Context, in *DeleteDepartmentR
 
 func (h *orgHandler) TotalDepartments(ctx context.Context, in *TotalDepartmentsReq, out *TotalDepartmentsResp) error {
 	return h.OrgHandler.TotalDepartments(ctx, in, out)
+}
+
+func (h *orgHandler) DepartmentAdditionsSet(ctx context.Context, in *DepartmentAdditionsSetReq, out *DepartmentAdditionsSetResp) error {
+	return h.OrgHandler.DepartmentAdditionsSet(ctx, in, out)
+}
+
+func (h *orgHandler) DepartmentAdditionsGet(ctx context.Context, in *DepartmentAdditionsGetReq, out *DepartmentAdditionsGetResp) error {
+	return h.OrgHandler.DepartmentAdditionsGet(ctx, in, out)
+}
+
+func (h *orgHandler) DepartmentAdditionsDump(ctx context.Context, in *DepartmentAdditionsDumpReq, out *DepartmentAdditionsDumpResp) error {
+	return h.OrgHandler.DepartmentAdditionsDump(ctx, in, out)
 }
 
 func (h *orgHandler) GetMerchant(ctx context.Context, in *GetMerchantReq, out *GetMerchantResp) error {

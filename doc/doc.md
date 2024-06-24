@@ -512,6 +512,14 @@
     - [DeleteUnionReq](#svc-biz-org-DeleteUnionReq)
     - [DeleteUnionResp](#svc-biz-org-DeleteUnionResp)
     - [Department](#svc-biz-org-Department)
+    - [Department.AdditionsEntry](#svc-biz-org-Department-AdditionsEntry)
+    - [DepartmentAdditionsDumpReq](#svc-biz-org-DepartmentAdditionsDumpReq)
+    - [DepartmentAdditionsDumpResp](#svc-biz-org-DepartmentAdditionsDumpResp)
+    - [DepartmentAdditionsDumpResp.AllEntry](#svc-biz-org-DepartmentAdditionsDumpResp-AllEntry)
+    - [DepartmentAdditionsGetReq](#svc-biz-org-DepartmentAdditionsGetReq)
+    - [DepartmentAdditionsGetResp](#svc-biz-org-DepartmentAdditionsGetResp)
+    - [DepartmentAdditionsSetReq](#svc-biz-org-DepartmentAdditionsSetReq)
+    - [DepartmentAdditionsSetResp](#svc-biz-org-DepartmentAdditionsSetResp)
     - [FilterDepartmentsReq](#svc-biz-org-FilterDepartmentsReq)
     - [FilterDepartmentsResp](#svc-biz-org-FilterDepartmentsResp)
     - [FilterMerchantsReq](#svc-biz-org-FilterMerchantsReq)
@@ -2293,6 +2301,7 @@ CommonResponse
 | message | [string](#string) |  | message |
 | uuid | [string](#string) |  | ID |
 | lid | [int64](#int64) |  |  |
+| success | [bool](#bool) |  | success or not, for update or deleted |
 
 
 
@@ -8948,7 +8957,132 @@ Models
 | name | [string](#string) |  | 名字 |
 | merchant_id | [string](#string) |  | 商户ID |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
-| additions | [string](#string) |  | 扩展属性 |
+| additions | [Department.AdditionsEntry](#svc-biz-org-Department-AdditionsEntry) | repeated | 扩展属性 |
+
+
+
+
+
+
+<a name="svc-biz-org-Department-AdditionsEntry"></a>
+
+### Department.AdditionsEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [google.protobuf.Any](#google-protobuf-Any) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-DepartmentAdditionsDumpReq"></a>
+
+### DepartmentAdditionsDumpReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-DepartmentAdditionsDumpResp"></a>
+
+### DepartmentAdditionsDumpResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| all | [DepartmentAdditionsDumpResp.AllEntry](#svc-biz-org-DepartmentAdditionsDumpResp-AllEntry) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-org-DepartmentAdditionsDumpResp-AllEntry"></a>
+
+### DepartmentAdditionsDumpResp.AllEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [google.protobuf.Any](#google-protobuf-Any) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-DepartmentAdditionsGetReq"></a>
+
+### DepartmentAdditionsGetReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+| key | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-DepartmentAdditionsGetResp"></a>
+
+### DepartmentAdditionsGetResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| value | [google.protobuf.Any](#google-protobuf-Any) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-DepartmentAdditionsSetReq"></a>
+
+### DepartmentAdditionsSetReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+| key | [string](#string) |  |  |
+| value | [google.protobuf.Any](#google-protobuf-Any) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-DepartmentAdditionsSetResp"></a>
+
+### DepartmentAdditionsSetResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| result | [bool](#bool) |  |  |
 
 
 
@@ -9487,6 +9621,9 @@ Models
 | UpdateDepartment | [UpdateDepartmentReq](#svc-biz-org-UpdateDepartmentReq) | [UpdateDepartmentResp](#svc-biz-org-UpdateDepartmentResp) | 更新部门 |
 | DeleteDepartment | [DeleteDepartmentReq](#svc-biz-org-DeleteDepartmentReq) | [DeleteDepartmentResp](#svc-biz-org-DeleteDepartmentResp) | 删除部门 |
 | TotalDepartments | [TotalDepartmentsReq](#svc-biz-org-TotalDepartmentsReq) | [TotalDepartmentsResp](#svc-biz-org-TotalDepartmentsResp) | 获取波门总数 |
+| DepartmentAdditionsSet | [DepartmentAdditionsSetReq](#svc-biz-org-DepartmentAdditionsSetReq) | [DepartmentAdditionsSetResp](#svc-biz-org-DepartmentAdditionsSetResp) | 设置部门的扩展属性 |
+| DepartmentAdditionsGet | [DepartmentAdditionsGetReq](#svc-biz-org-DepartmentAdditionsGetReq) | [DepartmentAdditionsGetResp](#svc-biz-org-DepartmentAdditionsGetResp) | 通过key获取部门的扩展属性 |
+| DepartmentAdditionsDump | [DepartmentAdditionsDumpReq](#svc-biz-org-DepartmentAdditionsDumpReq) | [DepartmentAdditionsDumpResp](#svc-biz-org-DepartmentAdditionsDumpResp) | 获取部门的所有扩展属性 |
 | GetMerchant | [GetMerchantReq](#svc-biz-org-GetMerchantReq) | [GetMerchantResp](#svc-biz-org-GetMerchantResp) | 获取商户 |
 | ListMerchants | [ListMerchantsReq](#svc-biz-org-ListMerchantsReq) | [ListMerchantsResp](#svc-biz-org-ListMerchantsResp) | 获取商户列表 |
 | FilterMerchants | [FilterMerchantsReq](#svc-biz-org-FilterMerchantsReq) | [FilterMerchantsResp](#svc-biz-org-FilterMerchantsResp) | 通过ID列表获取商户 |

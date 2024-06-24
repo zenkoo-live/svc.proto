@@ -20,28 +20,31 @@ import (
 const _ = grpc.SupportPackageIsVersion8
 
 const (
-	Org_InitDB_FullMethodName            = "/svc.biz.org.Org/InitDB"
-	Org_GetDepartment_FullMethodName     = "/svc.biz.org.Org/GetDepartment"
-	Org_ListDepartments_FullMethodName   = "/svc.biz.org.Org/ListDepartments"
-	Org_FilterDepartments_FullMethodName = "/svc.biz.org.Org/FilterDepartments"
-	Org_AddDepartment_FullMethodName     = "/svc.biz.org.Org/AddDepartment"
-	Org_UpdateDepartment_FullMethodName  = "/svc.biz.org.Org/UpdateDepartment"
-	Org_DeleteDepartment_FullMethodName  = "/svc.biz.org.Org/DeleteDepartment"
-	Org_TotalDepartments_FullMethodName  = "/svc.biz.org.Org/TotalDepartments"
-	Org_GetMerchant_FullMethodName       = "/svc.biz.org.Org/GetMerchant"
-	Org_ListMerchants_FullMethodName     = "/svc.biz.org.Org/ListMerchants"
-	Org_FilterMerchants_FullMethodName   = "/svc.biz.org.Org/FilterMerchants"
-	Org_AddMerchant_FullMethodName       = "/svc.biz.org.Org/AddMerchant"
-	Org_UpdateMerchant_FullMethodName    = "/svc.biz.org.Org/UpdateMerchant"
-	Org_DeleteMerchant_FullMethodName    = "/svc.biz.org.Org/DeleteMerchant"
-	Org_TotalMerchants_FullMethodName    = "/svc.biz.org.Org/TotalMerchants"
-	Org_GetUnion_FullMethodName          = "/svc.biz.org.Org/GetUnion"
-	Org_ListUnions_FullMethodName        = "/svc.biz.org.Org/ListUnions"
-	Org_FilterUnions_FullMethodName      = "/svc.biz.org.Org/FilterUnions"
-	Org_AddUnion_FullMethodName          = "/svc.biz.org.Org/AddUnion"
-	Org_UpdateUnion_FullMethodName       = "/svc.biz.org.Org/UpdateUnion"
-	Org_DeleteUnion_FullMethodName       = "/svc.biz.org.Org/DeleteUnion"
-	Org_TotalUnions_FullMethodName       = "/svc.biz.org.Org/TotalUnions"
+	Org_InitDB_FullMethodName                  = "/svc.biz.org.Org/InitDB"
+	Org_GetDepartment_FullMethodName           = "/svc.biz.org.Org/GetDepartment"
+	Org_ListDepartments_FullMethodName         = "/svc.biz.org.Org/ListDepartments"
+	Org_FilterDepartments_FullMethodName       = "/svc.biz.org.Org/FilterDepartments"
+	Org_AddDepartment_FullMethodName           = "/svc.biz.org.Org/AddDepartment"
+	Org_UpdateDepartment_FullMethodName        = "/svc.biz.org.Org/UpdateDepartment"
+	Org_DeleteDepartment_FullMethodName        = "/svc.biz.org.Org/DeleteDepartment"
+	Org_TotalDepartments_FullMethodName        = "/svc.biz.org.Org/TotalDepartments"
+	Org_DepartmentAdditionsSet_FullMethodName  = "/svc.biz.org.Org/DepartmentAdditionsSet"
+	Org_DepartmentAdditionsGet_FullMethodName  = "/svc.biz.org.Org/DepartmentAdditionsGet"
+	Org_DepartmentAdditionsDump_FullMethodName = "/svc.biz.org.Org/DepartmentAdditionsDump"
+	Org_GetMerchant_FullMethodName             = "/svc.biz.org.Org/GetMerchant"
+	Org_ListMerchants_FullMethodName           = "/svc.biz.org.Org/ListMerchants"
+	Org_FilterMerchants_FullMethodName         = "/svc.biz.org.Org/FilterMerchants"
+	Org_AddMerchant_FullMethodName             = "/svc.biz.org.Org/AddMerchant"
+	Org_UpdateMerchant_FullMethodName          = "/svc.biz.org.Org/UpdateMerchant"
+	Org_DeleteMerchant_FullMethodName          = "/svc.biz.org.Org/DeleteMerchant"
+	Org_TotalMerchants_FullMethodName          = "/svc.biz.org.Org/TotalMerchants"
+	Org_GetUnion_FullMethodName                = "/svc.biz.org.Org/GetUnion"
+	Org_ListUnions_FullMethodName              = "/svc.biz.org.Org/ListUnions"
+	Org_FilterUnions_FullMethodName            = "/svc.biz.org.Org/FilterUnions"
+	Org_AddUnion_FullMethodName                = "/svc.biz.org.Org/AddUnion"
+	Org_UpdateUnion_FullMethodName             = "/svc.biz.org.Org/UpdateUnion"
+	Org_DeleteUnion_FullMethodName             = "/svc.biz.org.Org/DeleteUnion"
+	Org_TotalUnions_FullMethodName             = "/svc.biz.org.Org/TotalUnions"
 )
 
 // OrgClient is the client API for Org service.
@@ -56,6 +59,9 @@ type OrgClient interface {
 	UpdateDepartment(ctx context.Context, in *UpdateDepartmentReq, opts ...grpc.CallOption) (*UpdateDepartmentResp, error)
 	DeleteDepartment(ctx context.Context, in *DeleteDepartmentReq, opts ...grpc.CallOption) (*DeleteDepartmentResp, error)
 	TotalDepartments(ctx context.Context, in *TotalDepartmentsReq, opts ...grpc.CallOption) (*TotalDepartmentsResp, error)
+	DepartmentAdditionsSet(ctx context.Context, in *DepartmentAdditionsSetReq, opts ...grpc.CallOption) (*DepartmentAdditionsSetResp, error)
+	DepartmentAdditionsGet(ctx context.Context, in *DepartmentAdditionsGetReq, opts ...grpc.CallOption) (*DepartmentAdditionsGetResp, error)
+	DepartmentAdditionsDump(ctx context.Context, in *DepartmentAdditionsDumpReq, opts ...grpc.CallOption) (*DepartmentAdditionsDumpResp, error)
 	GetMerchant(ctx context.Context, in *GetMerchantReq, opts ...grpc.CallOption) (*GetMerchantResp, error)
 	ListMerchants(ctx context.Context, in *ListMerchantsReq, opts ...grpc.CallOption) (*ListMerchantsResp, error)
 	FilterMerchants(ctx context.Context, in *FilterMerchantsReq, opts ...grpc.CallOption) (*FilterMerchantsResp, error)
@@ -154,6 +160,36 @@ func (c *orgClient) TotalDepartments(ctx context.Context, in *TotalDepartmentsRe
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(TotalDepartmentsResp)
 	err := c.cc.Invoke(ctx, Org_TotalDepartments_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *orgClient) DepartmentAdditionsSet(ctx context.Context, in *DepartmentAdditionsSetReq, opts ...grpc.CallOption) (*DepartmentAdditionsSetResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DepartmentAdditionsSetResp)
+	err := c.cc.Invoke(ctx, Org_DepartmentAdditionsSet_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *orgClient) DepartmentAdditionsGet(ctx context.Context, in *DepartmentAdditionsGetReq, opts ...grpc.CallOption) (*DepartmentAdditionsGetResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DepartmentAdditionsGetResp)
+	err := c.cc.Invoke(ctx, Org_DepartmentAdditionsGet_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *orgClient) DepartmentAdditionsDump(ctx context.Context, in *DepartmentAdditionsDumpReq, opts ...grpc.CallOption) (*DepartmentAdditionsDumpResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DepartmentAdditionsDumpResp)
+	err := c.cc.Invoke(ctx, Org_DepartmentAdditionsDump_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -312,6 +348,9 @@ type OrgServer interface {
 	UpdateDepartment(context.Context, *UpdateDepartmentReq) (*UpdateDepartmentResp, error)
 	DeleteDepartment(context.Context, *DeleteDepartmentReq) (*DeleteDepartmentResp, error)
 	TotalDepartments(context.Context, *TotalDepartmentsReq) (*TotalDepartmentsResp, error)
+	DepartmentAdditionsSet(context.Context, *DepartmentAdditionsSetReq) (*DepartmentAdditionsSetResp, error)
+	DepartmentAdditionsGet(context.Context, *DepartmentAdditionsGetReq) (*DepartmentAdditionsGetResp, error)
+	DepartmentAdditionsDump(context.Context, *DepartmentAdditionsDumpReq) (*DepartmentAdditionsDumpResp, error)
 	GetMerchant(context.Context, *GetMerchantReq) (*GetMerchantResp, error)
 	ListMerchants(context.Context, *ListMerchantsReq) (*ListMerchantsResp, error)
 	FilterMerchants(context.Context, *FilterMerchantsReq) (*FilterMerchantsResp, error)
@@ -356,6 +395,15 @@ func (UnimplementedOrgServer) DeleteDepartment(context.Context, *DeleteDepartmen
 }
 func (UnimplementedOrgServer) TotalDepartments(context.Context, *TotalDepartmentsReq) (*TotalDepartmentsResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TotalDepartments not implemented")
+}
+func (UnimplementedOrgServer) DepartmentAdditionsSet(context.Context, *DepartmentAdditionsSetReq) (*DepartmentAdditionsSetResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DepartmentAdditionsSet not implemented")
+}
+func (UnimplementedOrgServer) DepartmentAdditionsGet(context.Context, *DepartmentAdditionsGetReq) (*DepartmentAdditionsGetResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DepartmentAdditionsGet not implemented")
+}
+func (UnimplementedOrgServer) DepartmentAdditionsDump(context.Context, *DepartmentAdditionsDumpReq) (*DepartmentAdditionsDumpResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DepartmentAdditionsDump not implemented")
 }
 func (UnimplementedOrgServer) GetMerchant(context.Context, *GetMerchantReq) (*GetMerchantResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMerchant not implemented")
@@ -552,6 +600,60 @@ func _Org_TotalDepartments_Handler(srv interface{}, ctx context.Context, dec fun
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(OrgServer).TotalDepartments(ctx, req.(*TotalDepartmentsReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Org_DepartmentAdditionsSet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DepartmentAdditionsSetReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrgServer).DepartmentAdditionsSet(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Org_DepartmentAdditionsSet_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrgServer).DepartmentAdditionsSet(ctx, req.(*DepartmentAdditionsSetReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Org_DepartmentAdditionsGet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DepartmentAdditionsGetReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrgServer).DepartmentAdditionsGet(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Org_DepartmentAdditionsGet_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrgServer).DepartmentAdditionsGet(ctx, req.(*DepartmentAdditionsGetReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Org_DepartmentAdditionsDump_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DepartmentAdditionsDumpReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrgServer).DepartmentAdditionsDump(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Org_DepartmentAdditionsDump_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrgServer).DepartmentAdditionsDump(ctx, req.(*DepartmentAdditionsDumpReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -846,6 +948,18 @@ var Org_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "TotalDepartments",
 			Handler:    _Org_TotalDepartments_Handler,
+		},
+		{
+			MethodName: "DepartmentAdditionsSet",
+			Handler:    _Org_DepartmentAdditionsSet_Handler,
+		},
+		{
+			MethodName: "DepartmentAdditionsGet",
+			Handler:    _Org_DepartmentAdditionsGet_Handler,
+		},
+		{
+			MethodName: "DepartmentAdditionsDump",
+			Handler:    _Org_DepartmentAdditionsDump_Handler,
 		},
 		{
 			MethodName: "GetMerchant",
