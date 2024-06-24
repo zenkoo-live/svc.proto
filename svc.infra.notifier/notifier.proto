@@ -47,6 +47,7 @@ enum BizType {
   TYPE_RESET_PWD = 1; // 找回密码
   TYPE_RESET_MOBILE = 2; // 重置手机号
   TYPE_UNREGISTER = 3; // 注销
+  TYPE_FIND_PWD = 4; // 找回密码
 }
 
 message InitDBResp {
