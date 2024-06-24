@@ -57,6 +57,9 @@ type OrgService interface {
 	UpdateMerchant(ctx context.Context, in *UpdateMerchantReq, opts ...client.CallOption) (*UpdateMerchantResp, error)
 	DeleteMerchant(ctx context.Context, in *DeleteMerchantReq, opts ...client.CallOption) (*DeleteMerchantResp, error)
 	TotalMerchants(ctx context.Context, in *TotalMerchantsReq, opts ...client.CallOption) (*TotalMerchantsResp, error)
+	MerchantAdditionsSet(ctx context.Context, in *MerchantAdditionsSetReq, opts ...client.CallOption) (*MerchantAdditionsSetResp, error)
+	MerchantAdditionsGet(ctx context.Context, in *MerchantAdditionsGetReq, opts ...client.CallOption) (*MerchantAdditionsGetResp, error)
+	MerchantAdditionsDump(ctx context.Context, in *MerchantAdditionsDumpReq, opts ...client.CallOption) (*MerchantAdditionsDumpResp, error)
 	GetUnion(ctx context.Context, in *GetUnionReq, opts ...client.CallOption) (*GetUnionResp, error)
 	ListUnions(ctx context.Context, in *ListUnionsReq, opts ...client.CallOption) (*ListUnionsResp, error)
 	FilterUnions(ctx context.Context, in *FilterUnionsReq, opts ...client.CallOption) (*FilterUnionsResp, error)
@@ -64,6 +67,9 @@ type OrgService interface {
 	UpdateUnion(ctx context.Context, in *UpdateUnionReq, opts ...client.CallOption) (*UpdateUnionResp, error)
 	DeleteUnion(ctx context.Context, in *DeleteUnionReq, opts ...client.CallOption) (*DeleteUnionResp, error)
 	TotalUnions(ctx context.Context, in *TotalUnionsReq, opts ...client.CallOption) (*TotalUnionsResp, error)
+	UnionAdditionsSet(ctx context.Context, in *UnionAdditionsSetReq, opts ...client.CallOption) (*UnionAdditionsSetResp, error)
+	UnionAdditionsGet(ctx context.Context, in *UnionAdditionsGetReq, opts ...client.CallOption) (*UnionAdditionsGetResp, error)
+	UnionAdditionsDump(ctx context.Context, in *UnionAdditionsDumpReq, opts ...client.CallOption) (*UnionAdditionsDumpResp, error)
 }
 
 type orgService struct {
@@ -258,6 +264,36 @@ func (c *orgService) TotalMerchants(ctx context.Context, in *TotalMerchantsReq, 
 	return out, nil
 }
 
+func (c *orgService) MerchantAdditionsSet(ctx context.Context, in *MerchantAdditionsSetReq, opts ...client.CallOption) (*MerchantAdditionsSetResp, error) {
+	req := c.c.NewRequest(c.name, "Org.MerchantAdditionsSet", in)
+	out := new(MerchantAdditionsSetResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *orgService) MerchantAdditionsGet(ctx context.Context, in *MerchantAdditionsGetReq, opts ...client.CallOption) (*MerchantAdditionsGetResp, error) {
+	req := c.c.NewRequest(c.name, "Org.MerchantAdditionsGet", in)
+	out := new(MerchantAdditionsGetResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *orgService) MerchantAdditionsDump(ctx context.Context, in *MerchantAdditionsDumpReq, opts ...client.CallOption) (*MerchantAdditionsDumpResp, error) {
+	req := c.c.NewRequest(c.name, "Org.MerchantAdditionsDump", in)
+	out := new(MerchantAdditionsDumpResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *orgService) GetUnion(ctx context.Context, in *GetUnionReq, opts ...client.CallOption) (*GetUnionResp, error) {
 	req := c.c.NewRequest(c.name, "Org.GetUnion", in)
 	out := new(GetUnionResp)
@@ -328,6 +364,36 @@ func (c *orgService) TotalUnions(ctx context.Context, in *TotalUnionsReq, opts .
 	return out, nil
 }
 
+func (c *orgService) UnionAdditionsSet(ctx context.Context, in *UnionAdditionsSetReq, opts ...client.CallOption) (*UnionAdditionsSetResp, error) {
+	req := c.c.NewRequest(c.name, "Org.UnionAdditionsSet", in)
+	out := new(UnionAdditionsSetResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *orgService) UnionAdditionsGet(ctx context.Context, in *UnionAdditionsGetReq, opts ...client.CallOption) (*UnionAdditionsGetResp, error) {
+	req := c.c.NewRequest(c.name, "Org.UnionAdditionsGet", in)
+	out := new(UnionAdditionsGetResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *orgService) UnionAdditionsDump(ctx context.Context, in *UnionAdditionsDumpReq, opts ...client.CallOption) (*UnionAdditionsDumpResp, error) {
+	req := c.c.NewRequest(c.name, "Org.UnionAdditionsDump", in)
+	out := new(UnionAdditionsDumpResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for Org service
 
 type OrgHandler interface {
@@ -349,6 +415,9 @@ type OrgHandler interface {
 	UpdateMerchant(context.Context, *UpdateMerchantReq, *UpdateMerchantResp) error
 	DeleteMerchant(context.Context, *DeleteMerchantReq, *DeleteMerchantResp) error
 	TotalMerchants(context.Context, *TotalMerchantsReq, *TotalMerchantsResp) error
+	MerchantAdditionsSet(context.Context, *MerchantAdditionsSetReq, *MerchantAdditionsSetResp) error
+	MerchantAdditionsGet(context.Context, *MerchantAdditionsGetReq, *MerchantAdditionsGetResp) error
+	MerchantAdditionsDump(context.Context, *MerchantAdditionsDumpReq, *MerchantAdditionsDumpResp) error
 	GetUnion(context.Context, *GetUnionReq, *GetUnionResp) error
 	ListUnions(context.Context, *ListUnionsReq, *ListUnionsResp) error
 	FilterUnions(context.Context, *FilterUnionsReq, *FilterUnionsResp) error
@@ -356,6 +425,9 @@ type OrgHandler interface {
 	UpdateUnion(context.Context, *UpdateUnionReq, *UpdateUnionResp) error
 	DeleteUnion(context.Context, *DeleteUnionReq, *DeleteUnionResp) error
 	TotalUnions(context.Context, *TotalUnionsReq, *TotalUnionsResp) error
+	UnionAdditionsSet(context.Context, *UnionAdditionsSetReq, *UnionAdditionsSetResp) error
+	UnionAdditionsGet(context.Context, *UnionAdditionsGetReq, *UnionAdditionsGetResp) error
+	UnionAdditionsDump(context.Context, *UnionAdditionsDumpReq, *UnionAdditionsDumpResp) error
 }
 
 func RegisterOrgHandler(s server.Server, hdlr OrgHandler, opts ...server.HandlerOption) error {
@@ -378,6 +450,9 @@ func RegisterOrgHandler(s server.Server, hdlr OrgHandler, opts ...server.Handler
 		UpdateMerchant(ctx context.Context, in *UpdateMerchantReq, out *UpdateMerchantResp) error
 		DeleteMerchant(ctx context.Context, in *DeleteMerchantReq, out *DeleteMerchantResp) error
 		TotalMerchants(ctx context.Context, in *TotalMerchantsReq, out *TotalMerchantsResp) error
+		MerchantAdditionsSet(ctx context.Context, in *MerchantAdditionsSetReq, out *MerchantAdditionsSetResp) error
+		MerchantAdditionsGet(ctx context.Context, in *MerchantAdditionsGetReq, out *MerchantAdditionsGetResp) error
+		MerchantAdditionsDump(ctx context.Context, in *MerchantAdditionsDumpReq, out *MerchantAdditionsDumpResp) error
 		GetUnion(ctx context.Context, in *GetUnionReq, out *GetUnionResp) error
 		ListUnions(ctx context.Context, in *ListUnionsReq, out *ListUnionsResp) error
 		FilterUnions(ctx context.Context, in *FilterUnionsReq, out *FilterUnionsResp) error
@@ -385,6 +460,9 @@ func RegisterOrgHandler(s server.Server, hdlr OrgHandler, opts ...server.Handler
 		UpdateUnion(ctx context.Context, in *UpdateUnionReq, out *UpdateUnionResp) error
 		DeleteUnion(ctx context.Context, in *DeleteUnionReq, out *DeleteUnionResp) error
 		TotalUnions(ctx context.Context, in *TotalUnionsReq, out *TotalUnionsResp) error
+		UnionAdditionsSet(ctx context.Context, in *UnionAdditionsSetReq, out *UnionAdditionsSetResp) error
+		UnionAdditionsGet(ctx context.Context, in *UnionAdditionsGetReq, out *UnionAdditionsGetResp) error
+		UnionAdditionsDump(ctx context.Context, in *UnionAdditionsDumpReq, out *UnionAdditionsDumpResp) error
 	}
 	type Org struct {
 		org
@@ -469,6 +547,18 @@ func (h *orgHandler) TotalMerchants(ctx context.Context, in *TotalMerchantsReq, 
 	return h.OrgHandler.TotalMerchants(ctx, in, out)
 }
 
+func (h *orgHandler) MerchantAdditionsSet(ctx context.Context, in *MerchantAdditionsSetReq, out *MerchantAdditionsSetResp) error {
+	return h.OrgHandler.MerchantAdditionsSet(ctx, in, out)
+}
+
+func (h *orgHandler) MerchantAdditionsGet(ctx context.Context, in *MerchantAdditionsGetReq, out *MerchantAdditionsGetResp) error {
+	return h.OrgHandler.MerchantAdditionsGet(ctx, in, out)
+}
+
+func (h *orgHandler) MerchantAdditionsDump(ctx context.Context, in *MerchantAdditionsDumpReq, out *MerchantAdditionsDumpResp) error {
+	return h.OrgHandler.MerchantAdditionsDump(ctx, in, out)
+}
+
 func (h *orgHandler) GetUnion(ctx context.Context, in *GetUnionReq, out *GetUnionResp) error {
 	return h.OrgHandler.GetUnion(ctx, in, out)
 }
@@ -495,4 +585,16 @@ func (h *orgHandler) DeleteUnion(ctx context.Context, in *DeleteUnionReq, out *D
 
 func (h *orgHandler) TotalUnions(ctx context.Context, in *TotalUnionsReq, out *TotalUnionsResp) error {
 	return h.OrgHandler.TotalUnions(ctx, in, out)
+}
+
+func (h *orgHandler) UnionAdditionsSet(ctx context.Context, in *UnionAdditionsSetReq, out *UnionAdditionsSetResp) error {
+	return h.OrgHandler.UnionAdditionsSet(ctx, in, out)
+}
+
+func (h *orgHandler) UnionAdditionsGet(ctx context.Context, in *UnionAdditionsGetReq, out *UnionAdditionsGetResp) error {
+	return h.OrgHandler.UnionAdditionsGet(ctx, in, out)
+}
+
+func (h *orgHandler) UnionAdditionsDump(ctx context.Context, in *UnionAdditionsDumpReq, out *UnionAdditionsDumpResp) error {
+	return h.OrgHandler.UnionAdditionsDump(ctx, in, out)
 }

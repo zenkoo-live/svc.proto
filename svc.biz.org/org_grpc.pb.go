@@ -38,6 +38,9 @@ const (
 	Org_UpdateMerchant_FullMethodName          = "/svc.biz.org.Org/UpdateMerchant"
 	Org_DeleteMerchant_FullMethodName          = "/svc.biz.org.Org/DeleteMerchant"
 	Org_TotalMerchants_FullMethodName          = "/svc.biz.org.Org/TotalMerchants"
+	Org_MerchantAdditionsSet_FullMethodName    = "/svc.biz.org.Org/MerchantAdditionsSet"
+	Org_MerchantAdditionsGet_FullMethodName    = "/svc.biz.org.Org/MerchantAdditionsGet"
+	Org_MerchantAdditionsDump_FullMethodName   = "/svc.biz.org.Org/MerchantAdditionsDump"
 	Org_GetUnion_FullMethodName                = "/svc.biz.org.Org/GetUnion"
 	Org_ListUnions_FullMethodName              = "/svc.biz.org.Org/ListUnions"
 	Org_FilterUnions_FullMethodName            = "/svc.biz.org.Org/FilterUnions"
@@ -45,6 +48,9 @@ const (
 	Org_UpdateUnion_FullMethodName             = "/svc.biz.org.Org/UpdateUnion"
 	Org_DeleteUnion_FullMethodName             = "/svc.biz.org.Org/DeleteUnion"
 	Org_TotalUnions_FullMethodName             = "/svc.biz.org.Org/TotalUnions"
+	Org_UnionAdditionsSet_FullMethodName       = "/svc.biz.org.Org/UnionAdditionsSet"
+	Org_UnionAdditionsGet_FullMethodName       = "/svc.biz.org.Org/UnionAdditionsGet"
+	Org_UnionAdditionsDump_FullMethodName      = "/svc.biz.org.Org/UnionAdditionsDump"
 )
 
 // OrgClient is the client API for Org service.
@@ -69,6 +75,9 @@ type OrgClient interface {
 	UpdateMerchant(ctx context.Context, in *UpdateMerchantReq, opts ...grpc.CallOption) (*UpdateMerchantResp, error)
 	DeleteMerchant(ctx context.Context, in *DeleteMerchantReq, opts ...grpc.CallOption) (*DeleteMerchantResp, error)
 	TotalMerchants(ctx context.Context, in *TotalMerchantsReq, opts ...grpc.CallOption) (*TotalMerchantsResp, error)
+	MerchantAdditionsSet(ctx context.Context, in *MerchantAdditionsSetReq, opts ...grpc.CallOption) (*MerchantAdditionsSetResp, error)
+	MerchantAdditionsGet(ctx context.Context, in *MerchantAdditionsGetReq, opts ...grpc.CallOption) (*MerchantAdditionsGetResp, error)
+	MerchantAdditionsDump(ctx context.Context, in *MerchantAdditionsDumpReq, opts ...grpc.CallOption) (*MerchantAdditionsDumpResp, error)
 	GetUnion(ctx context.Context, in *GetUnionReq, opts ...grpc.CallOption) (*GetUnionResp, error)
 	ListUnions(ctx context.Context, in *ListUnionsReq, opts ...grpc.CallOption) (*ListUnionsResp, error)
 	FilterUnions(ctx context.Context, in *FilterUnionsReq, opts ...grpc.CallOption) (*FilterUnionsResp, error)
@@ -76,6 +85,9 @@ type OrgClient interface {
 	UpdateUnion(ctx context.Context, in *UpdateUnionReq, opts ...grpc.CallOption) (*UpdateUnionResp, error)
 	DeleteUnion(ctx context.Context, in *DeleteUnionReq, opts ...grpc.CallOption) (*DeleteUnionResp, error)
 	TotalUnions(ctx context.Context, in *TotalUnionsReq, opts ...grpc.CallOption) (*TotalUnionsResp, error)
+	UnionAdditionsSet(ctx context.Context, in *UnionAdditionsSetReq, opts ...grpc.CallOption) (*UnionAdditionsSetResp, error)
+	UnionAdditionsGet(ctx context.Context, in *UnionAdditionsGetReq, opts ...grpc.CallOption) (*UnionAdditionsGetResp, error)
+	UnionAdditionsDump(ctx context.Context, in *UnionAdditionsDumpReq, opts ...grpc.CallOption) (*UnionAdditionsDumpResp, error)
 }
 
 type orgClient struct {
@@ -266,6 +278,36 @@ func (c *orgClient) TotalMerchants(ctx context.Context, in *TotalMerchantsReq, o
 	return out, nil
 }
 
+func (c *orgClient) MerchantAdditionsSet(ctx context.Context, in *MerchantAdditionsSetReq, opts ...grpc.CallOption) (*MerchantAdditionsSetResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MerchantAdditionsSetResp)
+	err := c.cc.Invoke(ctx, Org_MerchantAdditionsSet_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *orgClient) MerchantAdditionsGet(ctx context.Context, in *MerchantAdditionsGetReq, opts ...grpc.CallOption) (*MerchantAdditionsGetResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MerchantAdditionsGetResp)
+	err := c.cc.Invoke(ctx, Org_MerchantAdditionsGet_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *orgClient) MerchantAdditionsDump(ctx context.Context, in *MerchantAdditionsDumpReq, opts ...grpc.CallOption) (*MerchantAdditionsDumpResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MerchantAdditionsDumpResp)
+	err := c.cc.Invoke(ctx, Org_MerchantAdditionsDump_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *orgClient) GetUnion(ctx context.Context, in *GetUnionReq, opts ...grpc.CallOption) (*GetUnionResp, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetUnionResp)
@@ -336,6 +378,36 @@ func (c *orgClient) TotalUnions(ctx context.Context, in *TotalUnionsReq, opts ..
 	return out, nil
 }
 
+func (c *orgClient) UnionAdditionsSet(ctx context.Context, in *UnionAdditionsSetReq, opts ...grpc.CallOption) (*UnionAdditionsSetResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UnionAdditionsSetResp)
+	err := c.cc.Invoke(ctx, Org_UnionAdditionsSet_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *orgClient) UnionAdditionsGet(ctx context.Context, in *UnionAdditionsGetReq, opts ...grpc.CallOption) (*UnionAdditionsGetResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UnionAdditionsGetResp)
+	err := c.cc.Invoke(ctx, Org_UnionAdditionsGet_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *orgClient) UnionAdditionsDump(ctx context.Context, in *UnionAdditionsDumpReq, opts ...grpc.CallOption) (*UnionAdditionsDumpResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UnionAdditionsDumpResp)
+	err := c.cc.Invoke(ctx, Org_UnionAdditionsDump_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // OrgServer is the server API for Org service.
 // All implementations must embed UnimplementedOrgServer
 // for forward compatibility
@@ -358,6 +430,9 @@ type OrgServer interface {
 	UpdateMerchant(context.Context, *UpdateMerchantReq) (*UpdateMerchantResp, error)
 	DeleteMerchant(context.Context, *DeleteMerchantReq) (*DeleteMerchantResp, error)
 	TotalMerchants(context.Context, *TotalMerchantsReq) (*TotalMerchantsResp, error)
+	MerchantAdditionsSet(context.Context, *MerchantAdditionsSetReq) (*MerchantAdditionsSetResp, error)
+	MerchantAdditionsGet(context.Context, *MerchantAdditionsGetReq) (*MerchantAdditionsGetResp, error)
+	MerchantAdditionsDump(context.Context, *MerchantAdditionsDumpReq) (*MerchantAdditionsDumpResp, error)
 	GetUnion(context.Context, *GetUnionReq) (*GetUnionResp, error)
 	ListUnions(context.Context, *ListUnionsReq) (*ListUnionsResp, error)
 	FilterUnions(context.Context, *FilterUnionsReq) (*FilterUnionsResp, error)
@@ -365,6 +440,9 @@ type OrgServer interface {
 	UpdateUnion(context.Context, *UpdateUnionReq) (*UpdateUnionResp, error)
 	DeleteUnion(context.Context, *DeleteUnionReq) (*DeleteUnionResp, error)
 	TotalUnions(context.Context, *TotalUnionsReq) (*TotalUnionsResp, error)
+	UnionAdditionsSet(context.Context, *UnionAdditionsSetReq) (*UnionAdditionsSetResp, error)
+	UnionAdditionsGet(context.Context, *UnionAdditionsGetReq) (*UnionAdditionsGetResp, error)
+	UnionAdditionsDump(context.Context, *UnionAdditionsDumpReq) (*UnionAdditionsDumpResp, error)
 	mustEmbedUnimplementedOrgServer()
 }
 
@@ -426,6 +504,15 @@ func (UnimplementedOrgServer) DeleteMerchant(context.Context, *DeleteMerchantReq
 func (UnimplementedOrgServer) TotalMerchants(context.Context, *TotalMerchantsReq) (*TotalMerchantsResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TotalMerchants not implemented")
 }
+func (UnimplementedOrgServer) MerchantAdditionsSet(context.Context, *MerchantAdditionsSetReq) (*MerchantAdditionsSetResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method MerchantAdditionsSet not implemented")
+}
+func (UnimplementedOrgServer) MerchantAdditionsGet(context.Context, *MerchantAdditionsGetReq) (*MerchantAdditionsGetResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method MerchantAdditionsGet not implemented")
+}
+func (UnimplementedOrgServer) MerchantAdditionsDump(context.Context, *MerchantAdditionsDumpReq) (*MerchantAdditionsDumpResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method MerchantAdditionsDump not implemented")
+}
 func (UnimplementedOrgServer) GetUnion(context.Context, *GetUnionReq) (*GetUnionResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUnion not implemented")
 }
@@ -446,6 +533,15 @@ func (UnimplementedOrgServer) DeleteUnion(context.Context, *DeleteUnionReq) (*De
 }
 func (UnimplementedOrgServer) TotalUnions(context.Context, *TotalUnionsReq) (*TotalUnionsResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TotalUnions not implemented")
+}
+func (UnimplementedOrgServer) UnionAdditionsSet(context.Context, *UnionAdditionsSetReq) (*UnionAdditionsSetResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UnionAdditionsSet not implemented")
+}
+func (UnimplementedOrgServer) UnionAdditionsGet(context.Context, *UnionAdditionsGetReq) (*UnionAdditionsGetResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UnionAdditionsGet not implemented")
+}
+func (UnimplementedOrgServer) UnionAdditionsDump(context.Context, *UnionAdditionsDumpReq) (*UnionAdditionsDumpResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UnionAdditionsDump not implemented")
 }
 func (UnimplementedOrgServer) mustEmbedUnimplementedOrgServer() {}
 
@@ -784,6 +880,60 @@ func _Org_TotalMerchants_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Org_MerchantAdditionsSet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MerchantAdditionsSetReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrgServer).MerchantAdditionsSet(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Org_MerchantAdditionsSet_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrgServer).MerchantAdditionsSet(ctx, req.(*MerchantAdditionsSetReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Org_MerchantAdditionsGet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MerchantAdditionsGetReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrgServer).MerchantAdditionsGet(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Org_MerchantAdditionsGet_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrgServer).MerchantAdditionsGet(ctx, req.(*MerchantAdditionsGetReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Org_MerchantAdditionsDump_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MerchantAdditionsDumpReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrgServer).MerchantAdditionsDump(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Org_MerchantAdditionsDump_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrgServer).MerchantAdditionsDump(ctx, req.(*MerchantAdditionsDumpReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Org_GetUnion_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetUnionReq)
 	if err := dec(in); err != nil {
@@ -910,6 +1060,60 @@ func _Org_TotalUnions_Handler(srv interface{}, ctx context.Context, dec func(int
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Org_UnionAdditionsSet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UnionAdditionsSetReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrgServer).UnionAdditionsSet(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Org_UnionAdditionsSet_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrgServer).UnionAdditionsSet(ctx, req.(*UnionAdditionsSetReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Org_UnionAdditionsGet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UnionAdditionsGetReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrgServer).UnionAdditionsGet(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Org_UnionAdditionsGet_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrgServer).UnionAdditionsGet(ctx, req.(*UnionAdditionsGetReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Org_UnionAdditionsDump_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UnionAdditionsDumpReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrgServer).UnionAdditionsDump(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Org_UnionAdditionsDump_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrgServer).UnionAdditionsDump(ctx, req.(*UnionAdditionsDumpReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Org_ServiceDesc is the grpc.ServiceDesc for Org service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -990,6 +1194,18 @@ var Org_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Org_TotalMerchants_Handler,
 		},
 		{
+			MethodName: "MerchantAdditionsSet",
+			Handler:    _Org_MerchantAdditionsSet_Handler,
+		},
+		{
+			MethodName: "MerchantAdditionsGet",
+			Handler:    _Org_MerchantAdditionsGet_Handler,
+		},
+		{
+			MethodName: "MerchantAdditionsDump",
+			Handler:    _Org_MerchantAdditionsDump_Handler,
+		},
+		{
 			MethodName: "GetUnion",
 			Handler:    _Org_GetUnion_Handler,
 		},
@@ -1016,6 +1232,18 @@ var Org_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "TotalUnions",
 			Handler:    _Org_TotalUnions_Handler,
+		},
+		{
+			MethodName: "UnionAdditionsSet",
+			Handler:    _Org_UnionAdditionsSet_Handler,
+		},
+		{
+			MethodName: "UnionAdditionsGet",
+			Handler:    _Org_UnionAdditionsGet_Handler,
+		},
+		{
+			MethodName: "UnionAdditionsDump",
+			Handler:    _Org_UnionAdditionsDump_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

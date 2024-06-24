@@ -279,6 +279,8 @@
     - [OnlineSessionListResponse](#svc-infra-link-OnlineSessionListResponse)
     - [RefreshStatRequest](#svc-infra-link-RefreshStatRequest)
     - [RefreshStatResponse](#svc-infra-link-RefreshStatResponse)
+    - [RoomLiveStatRequest](#svc-infra-link-RoomLiveStatRequest)
+    - [RoomLiveStatResponse](#svc-infra-link-RoomLiveStatResponse)
     - [online_detail](#svc-infra-link-online_detail)
     - [online_detail_list](#svc-infra-link-online_detail_list)
   
@@ -540,6 +542,13 @@
     - [ListUnionsReq](#svc-biz-org-ListUnionsReq)
     - [ListUnionsResp](#svc-biz-org-ListUnionsResp)
     - [Merchant](#svc-biz-org-Merchant)
+    - [MerchantAdditionsDumpReq](#svc-biz-org-MerchantAdditionsDumpReq)
+    - [MerchantAdditionsDumpResp](#svc-biz-org-MerchantAdditionsDumpResp)
+    - [MerchantAdditionsDumpResp.AllEntry](#svc-biz-org-MerchantAdditionsDumpResp-AllEntry)
+    - [MerchantAdditionsGetReq](#svc-biz-org-MerchantAdditionsGetReq)
+    - [MerchantAdditionsGetResp](#svc-biz-org-MerchantAdditionsGetResp)
+    - [MerchantAdditionsSetReq](#svc-biz-org-MerchantAdditionsSetReq)
+    - [MerchantAdditionsSetResp](#svc-biz-org-MerchantAdditionsSetResp)
     - [TotalDepartmentsReq](#svc-biz-org-TotalDepartmentsReq)
     - [TotalDepartmentsResp](#svc-biz-org-TotalDepartmentsResp)
     - [TotalMerchantsReq](#svc-biz-org-TotalMerchantsReq)
@@ -547,6 +556,13 @@
     - [TotalUnionsReq](#svc-biz-org-TotalUnionsReq)
     - [TotalUnionsResp](#svc-biz-org-TotalUnionsResp)
     - [Union](#svc-biz-org-Union)
+    - [UnionAdditionsDumpReq](#svc-biz-org-UnionAdditionsDumpReq)
+    - [UnionAdditionsDumpResp](#svc-biz-org-UnionAdditionsDumpResp)
+    - [UnionAdditionsDumpResp.AllEntry](#svc-biz-org-UnionAdditionsDumpResp-AllEntry)
+    - [UnionAdditionsGetReq](#svc-biz-org-UnionAdditionsGetReq)
+    - [UnionAdditionsGetResp](#svc-biz-org-UnionAdditionsGetResp)
+    - [UnionAdditionsSetReq](#svc-biz-org-UnionAdditionsSetReq)
+    - [UnionAdditionsSetResp](#svc-biz-org-UnionAdditionsSetResp)
     - [UpdateDepartmentReq](#svc-biz-org-UpdateDepartmentReq)
     - [UpdateDepartmentResp](#svc-biz-org-UpdateDepartmentResp)
     - [UpdateMerchantReq](#svc-biz-org-UpdateMerchantReq)
@@ -2906,6 +2922,7 @@ UpdatedSmsTemplateRequest 绑定操作
 | TYPE_RESET_PWD | 1 | 找回密码 |
 | TYPE_RESET_MOBILE | 2 | 重置手机号 |
 | TYPE_UNREGISTER | 3 | 注销 |
+| TYPE_FIND_PWD | 4 | 找回密码 |
 
 
 
@@ -5557,6 +5574,40 @@ Service of instruction
 
 
 
+<a name="svc-infra-link-RoomLiveStatRequest"></a>
+
+### RoomLiveStatRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| room_id | [string](#string) |  | 房间ID, 目前只会保留前三次直播数据 |
+| live_id | [string](#string) | optional | 开播ID, 如果为空将以直播间最后一次直播的数据. |
+
+
+
+
+
+
+<a name="svc-infra-link-RoomLiveStatResponse"></a>
+
+### RoomLiveStatResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| uv | [int64](#int64) |  | 总人次 |
+| pv | [int64](#int64) |  | 累计观看数 |
+| high | [int64](#int64) |  | 高峰人数 |
+| real_count | [int64](#int64) |  | 实时人数 |
+
+
+
+
+
+
 <a name="svc-infra-link-online_detail"></a>
 
 ### online_detail
@@ -5609,6 +5660,7 @@ Service of stat
 | CheckSession | [CheckSessionRequest](#svc-infra-link-CheckSessionRequest) | [CheckSessionResponse](#svc-infra-link-CheckSessionResponse) | 检查连接是否在线 |
 | CheckAccount | [CheckAccountRequest](#svc-infra-link-CheckAccountRequest) | [CheckAccountResponse](#svc-infra-link-CheckAccountResponse) | 检查账号是否在线 |
 | CheckDevice | [CheckDeviceRequest](#svc-infra-link-CheckDeviceRequest) | [CheckDeviceResponse](#svc-infra-link-CheckDeviceResponse) | 检查设备是否在线 |
+| RoomLiveStat | [RoomLiveStatRequest](#svc-infra-link-RoomLiveStatRequest) | [RoomLiveStatResponse](#svc-infra-link-RoomLiveStatResponse) | 直播间统计数据 |
 | Refresh | [RefreshStatRequest](#svc-infra-link-RefreshStatRequest) | [RefreshStatResponse](#svc-infra-link-RefreshStatResponse) | 刷新统计 |
 
  
@@ -9401,6 +9453,115 @@ Models
 
 
 
+<a name="svc-biz-org-MerchantAdditionsDumpReq"></a>
+
+### MerchantAdditionsDumpReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-MerchantAdditionsDumpResp"></a>
+
+### MerchantAdditionsDumpResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| all | [MerchantAdditionsDumpResp.AllEntry](#svc-biz-org-MerchantAdditionsDumpResp-AllEntry) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-org-MerchantAdditionsDumpResp-AllEntry"></a>
+
+### MerchantAdditionsDumpResp.AllEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [google.protobuf.Any](#google-protobuf-Any) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-MerchantAdditionsGetReq"></a>
+
+### MerchantAdditionsGetReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+| key | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-MerchantAdditionsGetResp"></a>
+
+### MerchantAdditionsGetResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| value | [google.protobuf.Any](#google-protobuf-Any) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-MerchantAdditionsSetReq"></a>
+
+### MerchantAdditionsSetReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+| key | [string](#string) |  |  |
+| value | [google.protobuf.Any](#google-protobuf-Any) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-MerchantAdditionsSetResp"></a>
+
+### MerchantAdditionsSetResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| result | [bool](#bool) |  |  |
+
+
+
+
+
+
 <a name="svc-biz-org-TotalDepartmentsReq"></a>
 
 ### TotalDepartmentsReq
@@ -9504,6 +9665,115 @@ Models
 | merchant_id | [string](#string) |  | 商户ID |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
 | additions | [string](#string) |  | 扩展属性 |
+
+
+
+
+
+
+<a name="svc-biz-org-UnionAdditionsDumpReq"></a>
+
+### UnionAdditionsDumpReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-UnionAdditionsDumpResp"></a>
+
+### UnionAdditionsDumpResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| all | [UnionAdditionsDumpResp.AllEntry](#svc-biz-org-UnionAdditionsDumpResp-AllEntry) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-org-UnionAdditionsDumpResp-AllEntry"></a>
+
+### UnionAdditionsDumpResp.AllEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [google.protobuf.Any](#google-protobuf-Any) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-UnionAdditionsGetReq"></a>
+
+### UnionAdditionsGetReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+| key | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-UnionAdditionsGetResp"></a>
+
+### UnionAdditionsGetResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| value | [google.protobuf.Any](#google-protobuf-Any) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-UnionAdditionsSetReq"></a>
+
+### UnionAdditionsSetReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+| key | [string](#string) |  |  |
+| value | [google.protobuf.Any](#google-protobuf-Any) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-UnionAdditionsSetResp"></a>
+
+### UnionAdditionsSetResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| result | [bool](#bool) |  |  |
 
 
 
@@ -9631,6 +9901,9 @@ Models
 | UpdateMerchant | [UpdateMerchantReq](#svc-biz-org-UpdateMerchantReq) | [UpdateMerchantResp](#svc-biz-org-UpdateMerchantResp) | 更新商户 |
 | DeleteMerchant | [DeleteMerchantReq](#svc-biz-org-DeleteMerchantReq) | [DeleteMerchantResp](#svc-biz-org-DeleteMerchantResp) | 删除商户 |
 | TotalMerchants | [TotalMerchantsReq](#svc-biz-org-TotalMerchantsReq) | [TotalMerchantsResp](#svc-biz-org-TotalMerchantsResp) | 获取商户总数 |
+| MerchantAdditionsSet | [MerchantAdditionsSetReq](#svc-biz-org-MerchantAdditionsSetReq) | [MerchantAdditionsSetResp](#svc-biz-org-MerchantAdditionsSetResp) | 设置商户的扩展属性 |
+| MerchantAdditionsGet | [MerchantAdditionsGetReq](#svc-biz-org-MerchantAdditionsGetReq) | [MerchantAdditionsGetResp](#svc-biz-org-MerchantAdditionsGetResp) | 通过key获取商户的扩展属性 |
+| MerchantAdditionsDump | [MerchantAdditionsDumpReq](#svc-biz-org-MerchantAdditionsDumpReq) | [MerchantAdditionsDumpResp](#svc-biz-org-MerchantAdditionsDumpResp) | 获取商户的所有扩展属性 |
 | GetUnion | [GetUnionReq](#svc-biz-org-GetUnionReq) | [GetUnionResp](#svc-biz-org-GetUnionResp) | 获取工会 |
 | ListUnions | [ListUnionsReq](#svc-biz-org-ListUnionsReq) | [ListUnionsResp](#svc-biz-org-ListUnionsResp) | 获取工会列表 |
 | FilterUnions | [FilterUnionsReq](#svc-biz-org-FilterUnionsReq) | [FilterUnionsResp](#svc-biz-org-FilterUnionsResp) | 通过ID列表获取工会 |
@@ -9638,6 +9911,9 @@ Models
 | UpdateUnion | [UpdateUnionReq](#svc-biz-org-UpdateUnionReq) | [UpdateUnionResp](#svc-biz-org-UpdateUnionResp) | 更新工会 |
 | DeleteUnion | [DeleteUnionReq](#svc-biz-org-DeleteUnionReq) | [DeleteUnionResp](#svc-biz-org-DeleteUnionResp) | 删除工会 |
 | TotalUnions | [TotalUnionsReq](#svc-biz-org-TotalUnionsReq) | [TotalUnionsResp](#svc-biz-org-TotalUnionsResp) | 获取工会总数 |
+| UnionAdditionsSet | [UnionAdditionsSetReq](#svc-biz-org-UnionAdditionsSetReq) | [UnionAdditionsSetResp](#svc-biz-org-UnionAdditionsSetResp) | 设置工会的扩展性 |
+| UnionAdditionsGet | [UnionAdditionsGetReq](#svc-biz-org-UnionAdditionsGetReq) | [UnionAdditionsGetResp](#svc-biz-org-UnionAdditionsGetResp) | 通过key获取工会的扩展属性 |
+| UnionAdditionsDump | [UnionAdditionsDumpReq](#svc-biz-org-UnionAdditionsDumpReq) | [UnionAdditionsDumpResp](#svc-biz-org-UnionAdditionsDumpResp) | 获取工会的所有扩展属性 |
 
  
 

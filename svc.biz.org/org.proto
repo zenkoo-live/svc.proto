@@ -28,6 +28,9 @@ service Org {
     rpc UpdateMerchant(UpdateMerchantReq) returns (UpdateMerchantResp); // 更新商户
     rpc DeleteMerchant(DeleteMerchantReq) returns (DeleteMerchantResp); // 删除商户
     rpc TotalMerchants(TotalMerchantsReq) returns (TotalMerchantsResp); // 获取商户总数
+    rpc MerchantAdditionsSet(MerchantAdditionsSetReq) returns (MerchantAdditionsSetResp); // 设置商户的扩展属性
+    rpc MerchantAdditionsGet(MerchantAdditionsGetReq) returns (MerchantAdditionsGetResp); // 通过key获取商户的扩展属性
+    rpc MerchantAdditionsDump(MerchantAdditionsDumpReq) returns (MerchantAdditionsDumpResp); // 获取商户的所有扩展属性
 
     rpc GetUnion(GetUnionReq) returns (GetUnionResp); // 获取工会
     rpc ListUnions(ListUnionsReq) returns (ListUnionsResp); // 获取工会列表
@@ -36,6 +39,9 @@ service Org {
     rpc UpdateUnion(UpdateUnionReq) returns (UpdateUnionResp); // 更新工会
     rpc DeleteUnion(DeleteUnionReq) returns (DeleteUnionResp); // 删除工会
     rpc TotalUnions(TotalUnionsReq) returns (TotalUnionsResp); // 获取工会总数
+    rpc UnionAdditionsSet(UnionAdditionsSetReq) returns (UnionAdditionsSetResp); // 设置工会的扩展性
+    rpc UnionAdditionsGet(UnionAdditionsGetReq) returns (UnionAdditionsGetResp); // 通过key获取工会的扩展属性
+    rpc UnionAdditionsDump(UnionAdditionsDumpReq) returns (UnionAdditionsDumpResp); // 获取工会的所有扩展属性
 }
 
 message InitDBResp {
@@ -199,6 +205,30 @@ message TotalMerchantsResp {
     int64 total = 1;
 };
 
+message MerchantAdditionsSetReq {
+    string id = 1;
+    string key = 2;
+    google.protobuf.Any value = 255;
+};
+message MerchantAdditionsSetResp {
+    bool result = 1;
+};
+
+message MerchantAdditionsGetReq {
+    string id = 1;
+    string key = 2;
+};
+message MerchantAdditionsGetResp {
+    google.protobuf.Any value = 1;
+};
+
+message MerchantAdditionsDumpReq {
+    string id = 1;
+};
+message MerchantAdditionsDumpResp {
+    map <string, google.protobuf.Any> all = 1;
+};
+
 /* }}} */
 
 /* {{{ [Union] */
@@ -253,6 +283,30 @@ message TotalUnionsReq {
 };
 message TotalUnionsResp {
     int64 total = 1;
+};
+
+message UnionAdditionsSetReq {
+    string id = 1;
+    string key = 2;
+    google.protobuf.Any value = 255;
+};
+message UnionAdditionsSetResp {
+    bool result = 1;
+};
+
+message UnionAdditionsGetReq {
+    string id = 1;
+    string key = 2;
+};
+message UnionAdditionsGetResp {
+    google.protobuf.Any value = 1;
+};
+
+message UnionAdditionsDumpReq {
+    string id = 1;
+};
+message UnionAdditionsDumpResp {
+    map <string, google.protobuf.Any> all = 1;
 };
 
 /* }}} */
