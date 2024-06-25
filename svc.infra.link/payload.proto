@@ -4,6 +4,15 @@ package svc.infra.link;
 
 option go_package = "./svc.infra.link;link";
 
+
+// PriorityType 消息权重
+enum PriorityType {
+  Low = 0; // 低
+  Middle = 5; // 中
+  High = 10; // 高
+  Ultra = 100; // 超高
+}
+
 // 消息命令类型
 enum CommandType {
   UnKnow = 0; // 未知
