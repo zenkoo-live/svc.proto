@@ -3,7 +3,6 @@ syntax = "proto3";
 package svc.biz.org;
 option go_package="./svc.biz.org;org";
 
-import "google/protobuf/any.proto";
 import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
 
@@ -54,26 +53,27 @@ message Department {
     string name = 3; // 名字
     string merchant_id = 254; // 商户ID
     google.protobuf.Timestamp created_at = 255; // 创建时间
-    map<string, google.protobuf.Any> additions = 256; // 扩展属性
+    map<string, string> additions = 256; // 扩展属性
 };
 message Merchant {
     string id = 1; // 内部ID
     string name = 3; // 名字
     google.protobuf.Timestamp created_at = 255; // 创建时间
-    string additions = 256; // 扩展属性
+    map<string, string> additions = 256; // 扩展属性
 };
 message Union {
     string id = 1; // 内部ID
     string name = 3; // 名字
     string merchant_id = 254; // 商户ID
     google.protobuf.Timestamp created_at = 255; // 创建时间
-    string additions = 256; // 扩展属性
+    map<string, string> additions = 256; // 扩展属性
 };
 
 // Parameters
 /* {{{ [Department] */
 message GetDepartmentReq {
     Department condition = 1;
+    bool include_additions = 127;
 };
 message GetDepartmentResp {
     Department department = 1;
@@ -83,6 +83,7 @@ message ListDepartmentsReq {
     Department condition = 1;
     int32 limit = 2;
     int32 offset = 3;
+    bool include_additions = 127;
 };
 message ListDepartmentsResp {
     repeated Department departments = 1;
@@ -91,6 +92,7 @@ message ListDepartmentsResp {
 
 message FilterDepartmentsReq {
     repeated string ids = 1;
+    bool include_additions = 127;
 };
 message FilterDepartmentsResp {
     repeated Department departments = 1;
@@ -128,7 +130,7 @@ message TotalDepartmentsResp {
 message DepartmentAdditionsSetReq {
     string id = 1;
     string key = 2;
-    google.protobuf.Any value = 255;
+    string value = 255;
 };
 message DepartmentAdditionsSetResp {
     bool result = 1;
@@ -139,14 +141,14 @@ message DepartmentAdditionsGetReq {
     string key = 2;
 };
 message DepartmentAdditionsGetResp {
-    google.protobuf.Any value = 1;
+    string value = 1;
 };
 
 message DepartmentAdditionsDumpReq {
     string id = 1;
 };
 message DepartmentAdditionsDumpResp {
-    map <string, google.protobuf.Any> all = 1;
+    map <string, string> all = 1;
 };
 
 /* }}} */
@@ -154,6 +156,7 @@ message DepartmentAdditionsDumpResp {
 /* {{{ [Merchant] */
 message GetMerchantReq {
     Merchant condition = 1;
+    bool include_additions = 127;
 };
 message GetMerchantResp {
     Merchant merchant = 1;
@@ -163,6 +166,7 @@ message ListMerchantsReq {
     Merchant condition = 1;
     int32 limit = 2;
     int32 offset = 3;
+    bool include_additions = 127;
 };
 message ListMerchantsResp {
     repeated Merchant merchants = 1;
@@ -171,6 +175,7 @@ message ListMerchantsResp {
 
 message FilterMerchantsReq {
     repeated string ids = 1;
+    bool include_additions = 127;
 };
 message FilterMerchantsResp {
     repeated Merchant merchants = 1;
@@ -208,7 +213,7 @@ message TotalMerchantsResp {
 message MerchantAdditionsSetReq {
     string id = 1;
     string key = 2;
-    google.protobuf.Any value = 255;
+    string value = 255;
 };
 message MerchantAdditionsSetResp {
     bool result = 1;
@@ -219,14 +224,14 @@ message MerchantAdditionsGetReq {
     string key = 2;
 };
 message MerchantAdditionsGetResp {
-    google.protobuf.Any value = 1;
+    string value = 1;
 };
 
 message MerchantAdditionsDumpReq {
     string id = 1;
 };
 message MerchantAdditionsDumpResp {
-    map <string, google.protobuf.Any> all = 1;
+    map <string, string> all = 1;
 };
 
 /* }}} */
@@ -234,6 +239,7 @@ message MerchantAdditionsDumpResp {
 /* {{{ [Union] */
 message GetUnionReq {
     Union condition = 1;
+    bool include_additions = 127;
 };
 message GetUnionResp {
     Union union = 1;
@@ -243,6 +249,7 @@ message ListUnionsReq {
     Union condition = 1;
     int32 limit = 2;
     int32 offset = 3;
+    bool include_additions = 127;
 };
 message ListUnionsResp {
     repeated Union unions = 1;
@@ -251,6 +258,7 @@ message ListUnionsResp {
 
 message FilterUnionsReq {
     repeated string ids = 1;
+    bool include_additions = 127;
 };
 message FilterUnionsResp {
     repeated Union unions = 1;
@@ -288,7 +296,7 @@ message TotalUnionsResp {
 message UnionAdditionsSetReq {
     string id = 1;
     string key = 2;
-    google.protobuf.Any value = 255;
+    string value = 255;
 };
 message UnionAdditionsSetResp {
     bool result = 1;
@@ -299,14 +307,14 @@ message UnionAdditionsGetReq {
     string key = 2;
 };
 message UnionAdditionsGetResp {
-    google.protobuf.Any value = 1;
+    string value = 1;
 };
 
 message UnionAdditionsDumpReq {
     string id = 1;
 };
 message UnionAdditionsDumpResp {
-    map <string, google.protobuf.Any> all = 1;
+    map <string, string> all = 1;
 };
 
 /* }}} */
