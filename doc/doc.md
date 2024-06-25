@@ -10385,6 +10385,8 @@ service started /////////////////
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| page | [int32](#int32) |  | 页数 |
+| limit | [int32](#int32) |  | 条数 |
 | streamer_id | [string](#string) |  | 主播id |
 
 

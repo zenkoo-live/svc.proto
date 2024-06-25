@@ -42,7 +42,9 @@ message GetNobleMemberResp {
 }
 
 message GetOnlineNobleMemberByStreamerIDReq {
-    string streamer_id = 1; // 主播id
+    int32 page = 1; // 页数
+    int32 limit = 2; // 条数
+    string streamer_id = 3; // 主播id
 }
 message GetOnlineNobleMemberByStreamerIDResp {
     repeated NobleMemberInfo items = 1;
