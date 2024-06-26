@@ -16,6 +16,10 @@ service Account {
     rpc UpdateViewer(UpdateViewerReq) returns (UpdateViewerResp); // 更新普通账号
     rpc DeleteViewer(DeleteViewerReq) returns (DeleteViewerResp); // 删除普通账号
     rpc TotalViewers(TotalViewersReq) returns (TotalViewersResp); // 获取账号总数
+    rpc ViewerAdditionsSet(ViewerAdditionsSetReq) returns (ViewerAdditionsSetResp); // 设置普通账号的扩展属性
+    rpc ViewerAdditionsGet(ViewerAdditionsGetReq) returns (ViewerAdditionsGetResp); // 通过key获取普通账号的扩展属性
+    rpc ViewerAdditionsDump(ViewerAdditionsDumpReq) returns (ViewerAdditionsDumpResp); // 获取普通账号的所有扩展属性
+    rpc ViewerAdditionsFilter(ViewerAdditionsFilterReq) returns (ViewerAdditionsFilterResp); // 获取普通账号下多个key对应的扩展属性
 
     rpc GetStreamer(GetStreamerReq) returns (GetStreamerResp); // 获取主播账号
     rpc ListStreamers(ListStreamersReq) returns (ListStreamersResp); // 获取主播账号列表
@@ -24,6 +28,10 @@ service Account {
     rpc UpdateStreamer(UpdateStreamerReq) returns (UpdateStreamerResp); // 更新主播账号
     rpc DeleteStreamer(DeleteStreamerReq) returns (DeleteStreamerResp); // 删除主播账号
     rpc TotalStreamers(TotalStreamersReq) returns (TotalStreamersResp); // 获取主播总数
+    rpc StreamerAdditionsSet(StreamerAdditionsSetReq) returns (StreamerAdditionsSetResp); // 设置主播的扩展属性
+    rpc StreamerAdditionsGet(StreamerAdditionsGetReq) returns (StreamerAdditionsGetResp); // 通过key获取主播的扩展属性
+    rpc StreamerAdditionsDump(StreamerAdditionsDumpReq) returns (StreamerAdditionsDumpResp); // 获取主播的所有扩展属性
+    rpc StreamerAdditionsFilter(StreamerAdditionsFilterReq) returns (StreamerAdditionsFilterResp); // 获取主播下多个key对应的扩展属性
 
     rpc GetManager(GetManagerReq) returns (GetManagerResp); // 获取管理账号
     rpc ListManagers(ListManagersReq) returns (ListManagersResp); // 获取管理账号列表
@@ -32,6 +40,10 @@ service Account {
     rpc UpdateManager(UpdateManagerReq) returns (UpdateManagerResp); // 更新管理账号
     rpc DeleteManager(DeleteManagerReq) returns (DeleteManagerResp); // 删除管理账号
     rpc TotalManagers(TotalManagersReq) returns (TotalManagersResp); // 获取管理总数
+    rpc ManagerAdditionsSet(ManagerAdditionsSetReq) returns (ManagerAdditionsSetResp); // 设置管理的扩展属性
+    rpc ManagerAdditionsGet(ManagerAdditionsGetReq) returns (ManagerAdditionsGetResp); // 通过key获取管理的扩展属性
+    rpc ManagerAdditionsDump(ManagerAdditionsDumpReq) returns (ManagerAdditionsDumpResp); // 获取管理的所有扩展属性
+    rpc ManagerAdditionsFilter(ManagerAdditionsFilterReq) returns (ManagerAdditionsFilterResp); // 获取管理下多个key对应的扩展属性
 
     rpc GetUnion(GetUnionReq) returns (GetUnionResp); // 获取工会账号
     rpc ListUnions(ListUnionsReq) returns (ListUnionsResp); // 获取工会账号列表
@@ -40,6 +52,10 @@ service Account {
     rpc UpdateUnion(UpdateUnionReq) returns (UpdateUnionResp); // 更新工会账号
     rpc DeleteUnion(DeleteUnionReq) returns (DeleteUnionResp); // 删除工会账号
     rpc TotalUnions(TotalUnionsReq) returns (TotalUnionsResp); // 获取工会总数
+    rpc UnionAdditionsSet(UnionAdditionsSetReq) returns (UnionAdditionsSetResp); // 设置工会的扩展属性
+    rpc UnionAdditionsGet(UnionAdditionsGetReq) returns (UnionAdditionsGetResp); // 通过key获取工会的扩展属性
+    rpc UnionAdditionsDump(UnionAdditionsDumpReq) returns (UnionAdditionsDumpResp); // 获取工会的所有扩展属性
+    rpc UnionAdditionsFilter(UnionAdditionsFilterReq) returns (UnionAdditionsFilterResp); // 获取工会下多个key对应的扩展属性
 }
 
 message InitDBResp {
@@ -60,7 +76,7 @@ message Viewer {
     optional string salt = 22; // 加密混淆
     string merchant_id = 254; // 商户ID
     google.protobuf.Timestamp created_at = 255; // 创建时间
-    string additions = 256; // 扩展属性
+    map<string, string> additions = 256; // 扩展属性
 };
 message Streamer {
     string id = 1; // 内部ID
@@ -74,7 +90,7 @@ message Streamer {
     optional string salt = 22; // 加密混淆
     string merchant_id = 254; // 商户ID
     google.protobuf.Timestamp created_at = 255; // 创建时间
-    string additions = 256; // 扩展属性
+    map<string, string> additions = 256; // 扩展属性
 };
 message Manager {
     string id = 1; // 内部ID
@@ -85,7 +101,7 @@ message Manager {
     optional string salt = 22; // 加密混淆
     string merchant_id = 254; // 商户ID
     google.protobuf.Timestamp created_at = 255; // 创建时间
-    string additions = 256; // 扩展属性
+    map<string, string> additions = 256; // 扩展属性
 };
 message Union {
     string id = 1; // 内部ID
@@ -96,13 +112,14 @@ message Union {
     optional string salt = 22; // 加密混淆
     string merchant_id = 254; // 商户ID
     google.protobuf.Timestamp created_at = 255; // 创建时间
-    string additions = 256; // 扩展属性
+    map<string, string> additions = 256; // 扩展属性
 }
 
 // Parameters
 /* {{{ [Viewer] */
 message GetViewerReq {
     Viewer condition = 1;
+    bool include_additions = 127;
 };
 message GetViewerResp {
     Viewer viewer = 1;
@@ -112,6 +129,7 @@ message ListViewersReq {
     Viewer condition = 1;
     int32 limit = 2;
     int32 offset = 3;
+    bool include_additions = 127;
     bool exclude_platform = 255;
 };
 message ListViewersResp {
@@ -121,11 +139,11 @@ message ListViewersResp {
 
 message FilterViewersReq {
     repeated string ids = 1;
-}
+    bool include_additions = 127;
+};
 message FilterViewersResp {
     repeated Viewer viewers = 1;
-    int64 total = 2;
-}
+};
 
 message AddViewerReq {
     Viewer viewer = 1;
@@ -151,9 +169,41 @@ message DeleteViewerResp {
 
 message TotalViewersReq {
     Viewer condition = 1;
-}
+};
 message TotalViewersResp {
     int64 total = 1;
+};
+
+message ViewerAdditionsSetReq {
+    string id = 1;
+    string key  = 2;
+    string value = 255;
+};
+message ViewerAdditionsSetResp {
+    bool result = 1;
+};
+
+message ViewerAdditionsGetReq {
+    string id = 1;
+    string key = 2;
+};
+message ViewerAdditionsGetResp {
+    string value = 1;
+};
+
+message ViewerAdditionsDumpReq {
+    string id = 1;
+};
+message ViewerAdditionsDumpResp {
+    map<string, string> all = 1;
+};
+
+message ViewerAdditionsFilterReq {
+    string id = 1;
+    repeated string keys = 2;
+};
+message ViewerAdditionsFilterResp {
+    map<string, string> additions = 1;
 }
 
 /* }}} */
@@ -161,6 +211,7 @@ message TotalViewersResp {
 /* {{{ [Streamer] */
 message GetStreamerReq {
     Streamer condition = 1;
+    bool include_additions = 127;
 };
 message GetStreamerResp {
     Streamer streamer = 1;
@@ -170,6 +221,7 @@ message ListStreamersReq {
     Streamer condition = 1;
     int32 limit = 2;
     int32 offset = 3;
+    bool include_additions = 127;
     bool exclude_platform = 255;
 };
 message ListStreamersResp {
@@ -179,11 +231,11 @@ message ListStreamersResp {
 
 message FilterStreamersReq {
     repeated string ids = 1;
-}
+    bool include_additions = 127;
+};
 message FilterStreamersResp {
     repeated Streamer streamers = 1;
-    int64 total = 2;
-}
+};
 
 message AddStreamerReq {
     Streamer streamer = 1;
@@ -209,16 +261,49 @@ message DeleteStreamerResp {
 
 message TotalStreamersReq {
     Streamer condition = 1;
-}
+};
 message TotalStreamersResp {
     int64 total = 1;
-}
+};
+
+message StreamerAdditionsSetReq {
+    string id = 1;
+    string key  = 2;
+    string value = 255;
+};
+message StreamerAdditionsSetResp {
+    bool result = 1;
+};
+
+message StreamerAdditionsGetReq {
+    string id = 1;
+    string key = 2;
+};
+message StreamerAdditionsGetResp {
+    string value = 1;
+};
+
+message StreamerAdditionsDumpReq {
+    string id = 1;
+};
+message StreamerAdditionsDumpResp {
+    map<string, string> all = 1;
+};
+
+message StreamerAdditionsFilterReq {
+    string id = 1;
+    repeated string keys = 2;
+};
+message StreamerAdditionsFilterResp {
+    map<string, string> additions = 1;
+};
 
 /* }}} */
 
 /* {{{ [Manager] */
 message GetManagerReq {
     Manager condition = 1;
+    bool include_additions = 127;
 };
 message GetManagerResp {
     Manager manager = 1;
@@ -228,6 +313,7 @@ message ListManagersReq {
     Manager condition = 1;
     int32 limit = 2;
     int32 offset = 3;
+    bool include_additions = 127;
     bool exclude_platform = 255;
 };
 message ListManagersResp {
@@ -237,11 +323,11 @@ message ListManagersResp {
 
 message FilterManagersReq {
     repeated string ids = 1;
-}
+    bool include_additions = 127;
+};
 message FilterManagersResp {
     repeated Manager managers = 1;
-    int64 total = 2;
-}
+};
 
 message AddManagerReq {
     Manager manager = 1;
@@ -267,16 +353,49 @@ message DeleteManagerResp {
 
 message TotalManagersReq {
     Manager condition = 1;
-}
+};
 message TotalManagersResp {
     int64 total = 1;
-}
+};
+
+message ManagerAdditionsSetReq {
+    string id = 1;
+    string key  = 2;
+    string value = 255;
+};
+message ManagerAdditionsSetResp {
+    bool result = 1;
+};
+
+message ManagerAdditionsGetReq {
+    string id = 1;
+    string key = 2;
+};
+message ManagerAdditionsGetResp {
+    string value = 1;
+};
+
+message ManagerAdditionsDumpReq {
+    string id = 1;
+};
+message ManagerAdditionsDumpResp {
+    map<string, string> all = 1;
+};
+
+message ManagerAdditionsFilterReq {
+    string id = 1;
+    repeated string keys = 2;
+};
+message ManagerAdditionsFilterResp {
+    map<string, string> additions = 1;
+};
 
 /* }}} */
 
 /* {{{ [Union] */
 message GetUnionReq {
     Union condition = 1;
+    bool include_additions = 127;
 };
 message GetUnionResp {
     Union union = 1;
@@ -286,6 +405,7 @@ message ListUnionsReq {
     Union condition = 1;
     int32 limit = 2;
     int32 offset = 3;
+    bool include_additions = 127;
     bool exclude_platform = 255;
 };
 message ListUnionsResp {
@@ -295,11 +415,11 @@ message ListUnionsResp {
 
 message FilterUnionsReq {
     repeated string ids = 1;
+    bool include_additions = 127;
 };
 message FilterUnionsResp {
     repeated Union unions = 1;
-    int64 total = 2;
-}
+};
 
 message AddUnionReq {
     Union union = 1;
@@ -325,9 +445,41 @@ message DeleteUnionResp {
 
 message TotalUnionsReq {
     Union condition = 1;
-}
+};
 message TotalUnionsResp {
     int64 total = 1;
-}
+};
+
+message UnionAdditionsSetReq {
+    string id = 1;
+    string key  = 2;
+    string value = 255;
+};
+message UnionAdditionsSetResp {
+    bool result = 1;
+};
+
+message UnionAdditionsGetReq {
+    string id = 1;
+    string key = 2;
+};
+message UnionAdditionsGetResp {
+    string value = 1;
+};
+
+message UnionAdditionsDumpReq {
+    string id = 1;
+};
+message UnionAdditionsDumpResp {
+    map<string, string> all = 1;
+};
+
+message UnionAdditionsFilterReq {
+    string id = 1;
+    repeated string keys = 2;
+};
+message UnionAdditionsFilterResp {
+    map<string, string> additions = 1;
+};
 
 /* }}} */

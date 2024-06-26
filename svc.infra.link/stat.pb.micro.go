@@ -54,6 +54,8 @@ type LinkStatService interface {
 	CheckAccount(ctx context.Context, in *CheckAccountRequest, opts ...client.CallOption) (*CheckAccountResponse, error)
 	// 检查设备是否在线
 	CheckDevice(ctx context.Context, in *CheckDeviceRequest, opts ...client.CallOption) (*CheckDeviceResponse, error)
+	// 直播间统计数据
+	RoomLiveStat(ctx context.Context, in *RoomLiveStatRequest, opts ...client.CallOption) (*RoomLiveStatResponse, error)
 	// 刷新统计
 	Refresh(ctx context.Context, in *RefreshStatRequest, opts ...client.CallOption) (*RefreshStatResponse, error)
 }
@@ -160,6 +162,16 @@ func (c *linkStatService) CheckDevice(ctx context.Context, in *CheckDeviceReques
 	return out, nil
 }
 
+func (c *linkStatService) RoomLiveStat(ctx context.Context, in *RoomLiveStatRequest, opts ...client.CallOption) (*RoomLiveStatResponse, error) {
+	req := c.c.NewRequest(c.name, "LinkStat.RoomLiveStat", in)
+	out := new(RoomLiveStatResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *linkStatService) Refresh(ctx context.Context, in *RefreshStatRequest, opts ...client.CallOption) (*RefreshStatResponse, error) {
 	req := c.c.NewRequest(c.name, "LinkStat.Refresh", in)
 	out := new(RefreshStatResponse)
@@ -191,6 +203,8 @@ type LinkStatHandler interface {
 	CheckAccount(context.Context, *CheckAccountRequest, *CheckAccountResponse) error
 	// 检查设备是否在线
 	CheckDevice(context.Context, *CheckDeviceRequest, *CheckDeviceResponse) error
+	// 直播间统计数据
+	RoomLiveStat(context.Context, *RoomLiveStatRequest, *RoomLiveStatResponse) error
 	// 刷新统计
 	Refresh(context.Context, *RefreshStatRequest, *RefreshStatResponse) error
 }
@@ -206,6 +220,7 @@ func RegisterLinkStatHandler(s server.Server, hdlr LinkStatHandler, opts ...serv
 		CheckSession(ctx context.Context, in *CheckSessionRequest, out *CheckSessionResponse) error
 		CheckAccount(ctx context.Context, in *CheckAccountRequest, out *CheckAccountResponse) error
 		CheckDevice(ctx context.Context, in *CheckDeviceRequest, out *CheckDeviceResponse) error
+		RoomLiveStat(ctx context.Context, in *RoomLiveStatRequest, out *RoomLiveStatResponse) error
 		Refresh(ctx context.Context, in *RefreshStatRequest, out *RefreshStatResponse) error
 	}
 	type LinkStat struct {
@@ -253,6 +268,10 @@ func (h *linkStatHandler) CheckAccount(ctx context.Context, in *CheckAccountRequ
 
 func (h *linkStatHandler) CheckDevice(ctx context.Context, in *CheckDeviceRequest, out *CheckDeviceResponse) error {
 	return h.LinkStatHandler.CheckDevice(ctx, in, out)
+}
+
+func (h *linkStatHandler) RoomLiveStat(ctx context.Context, in *RoomLiveStatRequest, out *RoomLiveStatResponse) error {
+	return h.LinkStatHandler.RoomLiveStat(ctx, in, out)
 }
 
 func (h *linkStatHandler) Refresh(ctx context.Context, in *RefreshStatRequest, out *RefreshStatResponse) error {
