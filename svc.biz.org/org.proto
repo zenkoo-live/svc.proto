@@ -19,6 +19,7 @@ service Org {
     rpc DepartmentAdditionsSet(DepartmentAdditionsSetReq) returns (DepartmentAdditionsSetResp); // 设置部门的扩展属性
     rpc DepartmentAdditionsGet(DepartmentAdditionsGetReq) returns (DepartmentAdditionsGetResp); // 通过key获取部门的扩展属性
     rpc DepartmentAdditionsDump(DepartmentAdditionsDumpReq) returns (DepartmentAdditionsDumpResp); // 获取部门的所有扩展属性
+    rpc DepartmentAdditionsFilter(DepartmentAdditionsFilterReq) returns (DepartmentAdditionsFilterResp); // 获取部门下多个key对应的扩展属性
 
     rpc GetMerchant(GetMerchantReq) returns (GetMerchantResp); // 获取商户
     rpc ListMerchants(ListMerchantsReq) returns (ListMerchantsResp); // 获取商户列表
@@ -30,6 +31,7 @@ service Org {
     rpc MerchantAdditionsSet(MerchantAdditionsSetReq) returns (MerchantAdditionsSetResp); // 设置商户的扩展属性
     rpc MerchantAdditionsGet(MerchantAdditionsGetReq) returns (MerchantAdditionsGetResp); // 通过key获取商户的扩展属性
     rpc MerchantAdditionsDump(MerchantAdditionsDumpReq) returns (MerchantAdditionsDumpResp); // 获取商户的所有扩展属性
+    rpc MerchantAdditionsFilter(MerchantAdditionsFilterReq) returns (MerchantAdditionsFilterResp); // 获取商户下多个key对应的扩展属性
 
     rpc GetUnion(GetUnionReq) returns (GetUnionResp); // 获取工会
     rpc ListUnions(ListUnionsReq) returns (ListUnionsResp); // 获取工会列表
@@ -41,6 +43,7 @@ service Org {
     rpc UnionAdditionsSet(UnionAdditionsSetReq) returns (UnionAdditionsSetResp); // 设置工会的扩展性
     rpc UnionAdditionsGet(UnionAdditionsGetReq) returns (UnionAdditionsGetResp); // 通过key获取工会的扩展属性
     rpc UnionAdditionsDump(UnionAdditionsDumpReq) returns (UnionAdditionsDumpResp); // 获取工会的所有扩展属性
+    rpc UnionAdditionsFilter(UnionAdditionsFilterReq) returns (UnionAdditionsFilterResp); // 获取工会下多个key对应的扩展属性
 }
 
 message InitDBResp {
@@ -151,6 +154,14 @@ message DepartmentAdditionsDumpResp {
     map <string, string> all = 1;
 };
 
+message DepartmentAdditionsFilterReq {
+    string id = 1;
+    repeated string keys = 2;
+};
+message DepartmentAdditionsFilterResp {
+    map<string, string> additions = 1;
+};
+
 /* }}} */
 
 /* {{{ [Merchant] */
@@ -234,6 +245,14 @@ message MerchantAdditionsDumpResp {
     map <string, string> all = 1;
 };
 
+message MerchantAdditionsFilterReq {
+    string id = 1;
+    repeated string keys = 2;
+};
+message MerchantAdditionsFilterResp {
+    map<string, string> additions = 1;
+};
+
 /* }}} */
 
 /* {{{ [Union] */
@@ -315,6 +334,14 @@ message UnionAdditionsDumpReq {
 };
 message UnionAdditionsDumpResp {
     map <string, string> all = 1;
+};
+
+message UnionAdditionsFilterReq {
+    string id = 1;
+    repeated string keys = 2;
+};
+message UnionAdditionsFilterResp {
+    map<string, string> additions = 1;
 };
 
 /* }}} */

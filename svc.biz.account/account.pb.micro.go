@@ -49,6 +49,7 @@ type AccountService interface {
 	ViewerAdditionsSet(ctx context.Context, in *ViewerAdditionsSetReq, opts ...client.CallOption) (*ViewerAdditionsSetResp, error)
 	ViewerAdditionsGet(ctx context.Context, in *ViewerAdditionsGetReq, opts ...client.CallOption) (*ViewerAdditionsGetResp, error)
 	ViewerAdditionsDump(ctx context.Context, in *ViewerAdditionsDumpReq, opts ...client.CallOption) (*ViewerAdditionsDumpResp, error)
+	ViewerAdditionsFilter(ctx context.Context, in *ViewerAdditionsFilterReq, opts ...client.CallOption) (*ViewerAdditionsFilterResp, error)
 	GetStreamer(ctx context.Context, in *GetStreamerReq, opts ...client.CallOption) (*GetStreamerResp, error)
 	ListStreamers(ctx context.Context, in *ListStreamersReq, opts ...client.CallOption) (*ListStreamersResp, error)
 	FilterStreamers(ctx context.Context, in *FilterStreamersReq, opts ...client.CallOption) (*FilterStreamersResp, error)
@@ -59,6 +60,7 @@ type AccountService interface {
 	StreamerAdditionsSet(ctx context.Context, in *StreamerAdditionsSetReq, opts ...client.CallOption) (*StreamerAdditionsSetResp, error)
 	StreamerAdditionsGet(ctx context.Context, in *StreamerAdditionsGetReq, opts ...client.CallOption) (*StreamerAdditionsGetResp, error)
 	StreamerAdditionsDump(ctx context.Context, in *StreamerAdditionsDumpReq, opts ...client.CallOption) (*StreamerAdditionsDumpResp, error)
+	StreamerAdditionsFilter(ctx context.Context, in *StreamerAdditionsFilterReq, opts ...client.CallOption) (*StreamerAdditionsFilterResp, error)
 	GetManager(ctx context.Context, in *GetManagerReq, opts ...client.CallOption) (*GetManagerResp, error)
 	ListManagers(ctx context.Context, in *ListManagersReq, opts ...client.CallOption) (*ListManagersResp, error)
 	FilterManagers(ctx context.Context, in *FilterManagersReq, opts ...client.CallOption) (*FilterManagersResp, error)
@@ -69,6 +71,7 @@ type AccountService interface {
 	ManagerAdditionsSet(ctx context.Context, in *ManagerAdditionsSetReq, opts ...client.CallOption) (*ManagerAdditionsSetResp, error)
 	ManagerAdditionsGet(ctx context.Context, in *ManagerAdditionsGetReq, opts ...client.CallOption) (*ManagerAdditionsGetResp, error)
 	ManagerAdditionsDump(ctx context.Context, in *ManagerAdditionsDumpReq, opts ...client.CallOption) (*ManagerAdditionsDumpResp, error)
+	ManagerAdditionsFilter(ctx context.Context, in *ManagerAdditionsFilterReq, opts ...client.CallOption) (*ManagerAdditionsFilterResp, error)
 	GetUnion(ctx context.Context, in *GetUnionReq, opts ...client.CallOption) (*GetUnionResp, error)
 	ListUnions(ctx context.Context, in *ListUnionsReq, opts ...client.CallOption) (*ListUnionsResp, error)
 	FilterUnions(ctx context.Context, in *FilterUnionsReq, opts ...client.CallOption) (*FilterUnionsResp, error)
@@ -79,6 +82,7 @@ type AccountService interface {
 	UnionAdditionsSet(ctx context.Context, in *UnionAdditionsSetReq, opts ...client.CallOption) (*UnionAdditionsSetResp, error)
 	UnionAdditionsGet(ctx context.Context, in *UnionAdditionsGetReq, opts ...client.CallOption) (*UnionAdditionsGetResp, error)
 	UnionAdditionsDump(ctx context.Context, in *UnionAdditionsDumpReq, opts ...client.CallOption) (*UnionAdditionsDumpResp, error)
+	UnionAdditionsFilter(ctx context.Context, in *UnionAdditionsFilterReq, opts ...client.CallOption) (*UnionAdditionsFilterResp, error)
 }
 
 type accountService struct {
@@ -203,6 +207,16 @@ func (c *accountService) ViewerAdditionsDump(ctx context.Context, in *ViewerAddi
 	return out, nil
 }
 
+func (c *accountService) ViewerAdditionsFilter(ctx context.Context, in *ViewerAdditionsFilterReq, opts ...client.CallOption) (*ViewerAdditionsFilterResp, error) {
+	req := c.c.NewRequest(c.name, "Account.ViewerAdditionsFilter", in)
+	out := new(ViewerAdditionsFilterResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *accountService) GetStreamer(ctx context.Context, in *GetStreamerReq, opts ...client.CallOption) (*GetStreamerResp, error) {
 	req := c.c.NewRequest(c.name, "Account.GetStreamer", in)
 	out := new(GetStreamerResp)
@@ -296,6 +310,16 @@ func (c *accountService) StreamerAdditionsGet(ctx context.Context, in *StreamerA
 func (c *accountService) StreamerAdditionsDump(ctx context.Context, in *StreamerAdditionsDumpReq, opts ...client.CallOption) (*StreamerAdditionsDumpResp, error) {
 	req := c.c.NewRequest(c.name, "Account.StreamerAdditionsDump", in)
 	out := new(StreamerAdditionsDumpResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *accountService) StreamerAdditionsFilter(ctx context.Context, in *StreamerAdditionsFilterReq, opts ...client.CallOption) (*StreamerAdditionsFilterResp, error) {
+	req := c.c.NewRequest(c.name, "Account.StreamerAdditionsFilter", in)
+	out := new(StreamerAdditionsFilterResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -403,6 +427,16 @@ func (c *accountService) ManagerAdditionsDump(ctx context.Context, in *ManagerAd
 	return out, nil
 }
 
+func (c *accountService) ManagerAdditionsFilter(ctx context.Context, in *ManagerAdditionsFilterReq, opts ...client.CallOption) (*ManagerAdditionsFilterResp, error) {
+	req := c.c.NewRequest(c.name, "Account.ManagerAdditionsFilter", in)
+	out := new(ManagerAdditionsFilterResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *accountService) GetUnion(ctx context.Context, in *GetUnionReq, opts ...client.CallOption) (*GetUnionResp, error) {
 	req := c.c.NewRequest(c.name, "Account.GetUnion", in)
 	out := new(GetUnionResp)
@@ -503,6 +537,16 @@ func (c *accountService) UnionAdditionsDump(ctx context.Context, in *UnionAdditi
 	return out, nil
 }
 
+func (c *accountService) UnionAdditionsFilter(ctx context.Context, in *UnionAdditionsFilterReq, opts ...client.CallOption) (*UnionAdditionsFilterResp, error) {
+	req := c.c.NewRequest(c.name, "Account.UnionAdditionsFilter", in)
+	out := new(UnionAdditionsFilterResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for Account service
 
 type AccountHandler interface {
@@ -517,6 +561,7 @@ type AccountHandler interface {
 	ViewerAdditionsSet(context.Context, *ViewerAdditionsSetReq, *ViewerAdditionsSetResp) error
 	ViewerAdditionsGet(context.Context, *ViewerAdditionsGetReq, *ViewerAdditionsGetResp) error
 	ViewerAdditionsDump(context.Context, *ViewerAdditionsDumpReq, *ViewerAdditionsDumpResp) error
+	ViewerAdditionsFilter(context.Context, *ViewerAdditionsFilterReq, *ViewerAdditionsFilterResp) error
 	GetStreamer(context.Context, *GetStreamerReq, *GetStreamerResp) error
 	ListStreamers(context.Context, *ListStreamersReq, *ListStreamersResp) error
 	FilterStreamers(context.Context, *FilterStreamersReq, *FilterStreamersResp) error
@@ -527,6 +572,7 @@ type AccountHandler interface {
 	StreamerAdditionsSet(context.Context, *StreamerAdditionsSetReq, *StreamerAdditionsSetResp) error
 	StreamerAdditionsGet(context.Context, *StreamerAdditionsGetReq, *StreamerAdditionsGetResp) error
 	StreamerAdditionsDump(context.Context, *StreamerAdditionsDumpReq, *StreamerAdditionsDumpResp) error
+	StreamerAdditionsFilter(context.Context, *StreamerAdditionsFilterReq, *StreamerAdditionsFilterResp) error
 	GetManager(context.Context, *GetManagerReq, *GetManagerResp) error
 	ListManagers(context.Context, *ListManagersReq, *ListManagersResp) error
 	FilterManagers(context.Context, *FilterManagersReq, *FilterManagersResp) error
@@ -537,6 +583,7 @@ type AccountHandler interface {
 	ManagerAdditionsSet(context.Context, *ManagerAdditionsSetReq, *ManagerAdditionsSetResp) error
 	ManagerAdditionsGet(context.Context, *ManagerAdditionsGetReq, *ManagerAdditionsGetResp) error
 	ManagerAdditionsDump(context.Context, *ManagerAdditionsDumpReq, *ManagerAdditionsDumpResp) error
+	ManagerAdditionsFilter(context.Context, *ManagerAdditionsFilterReq, *ManagerAdditionsFilterResp) error
 	GetUnion(context.Context, *GetUnionReq, *GetUnionResp) error
 	ListUnions(context.Context, *ListUnionsReq, *ListUnionsResp) error
 	FilterUnions(context.Context, *FilterUnionsReq, *FilterUnionsResp) error
@@ -547,6 +594,7 @@ type AccountHandler interface {
 	UnionAdditionsSet(context.Context, *UnionAdditionsSetReq, *UnionAdditionsSetResp) error
 	UnionAdditionsGet(context.Context, *UnionAdditionsGetReq, *UnionAdditionsGetResp) error
 	UnionAdditionsDump(context.Context, *UnionAdditionsDumpReq, *UnionAdditionsDumpResp) error
+	UnionAdditionsFilter(context.Context, *UnionAdditionsFilterReq, *UnionAdditionsFilterResp) error
 }
 
 func RegisterAccountHandler(s server.Server, hdlr AccountHandler, opts ...server.HandlerOption) error {
@@ -562,6 +610,7 @@ func RegisterAccountHandler(s server.Server, hdlr AccountHandler, opts ...server
 		ViewerAdditionsSet(ctx context.Context, in *ViewerAdditionsSetReq, out *ViewerAdditionsSetResp) error
 		ViewerAdditionsGet(ctx context.Context, in *ViewerAdditionsGetReq, out *ViewerAdditionsGetResp) error
 		ViewerAdditionsDump(ctx context.Context, in *ViewerAdditionsDumpReq, out *ViewerAdditionsDumpResp) error
+		ViewerAdditionsFilter(ctx context.Context, in *ViewerAdditionsFilterReq, out *ViewerAdditionsFilterResp) error
 		GetStreamer(ctx context.Context, in *GetStreamerReq, out *GetStreamerResp) error
 		ListStreamers(ctx context.Context, in *ListStreamersReq, out *ListStreamersResp) error
 		FilterStreamers(ctx context.Context, in *FilterStreamersReq, out *FilterStreamersResp) error
@@ -572,6 +621,7 @@ func RegisterAccountHandler(s server.Server, hdlr AccountHandler, opts ...server
 		StreamerAdditionsSet(ctx context.Context, in *StreamerAdditionsSetReq, out *StreamerAdditionsSetResp) error
 		StreamerAdditionsGet(ctx context.Context, in *StreamerAdditionsGetReq, out *StreamerAdditionsGetResp) error
 		StreamerAdditionsDump(ctx context.Context, in *StreamerAdditionsDumpReq, out *StreamerAdditionsDumpResp) error
+		StreamerAdditionsFilter(ctx context.Context, in *StreamerAdditionsFilterReq, out *StreamerAdditionsFilterResp) error
 		GetManager(ctx context.Context, in *GetManagerReq, out *GetManagerResp) error
 		ListManagers(ctx context.Context, in *ListManagersReq, out *ListManagersResp) error
 		FilterManagers(ctx context.Context, in *FilterManagersReq, out *FilterManagersResp) error
@@ -582,6 +632,7 @@ func RegisterAccountHandler(s server.Server, hdlr AccountHandler, opts ...server
 		ManagerAdditionsSet(ctx context.Context, in *ManagerAdditionsSetReq, out *ManagerAdditionsSetResp) error
 		ManagerAdditionsGet(ctx context.Context, in *ManagerAdditionsGetReq, out *ManagerAdditionsGetResp) error
 		ManagerAdditionsDump(ctx context.Context, in *ManagerAdditionsDumpReq, out *ManagerAdditionsDumpResp) error
+		ManagerAdditionsFilter(ctx context.Context, in *ManagerAdditionsFilterReq, out *ManagerAdditionsFilterResp) error
 		GetUnion(ctx context.Context, in *GetUnionReq, out *GetUnionResp) error
 		ListUnions(ctx context.Context, in *ListUnionsReq, out *ListUnionsResp) error
 		FilterUnions(ctx context.Context, in *FilterUnionsReq, out *FilterUnionsResp) error
@@ -592,6 +643,7 @@ func RegisterAccountHandler(s server.Server, hdlr AccountHandler, opts ...server
 		UnionAdditionsSet(ctx context.Context, in *UnionAdditionsSetReq, out *UnionAdditionsSetResp) error
 		UnionAdditionsGet(ctx context.Context, in *UnionAdditionsGetReq, out *UnionAdditionsGetResp) error
 		UnionAdditionsDump(ctx context.Context, in *UnionAdditionsDumpReq, out *UnionAdditionsDumpResp) error
+		UnionAdditionsFilter(ctx context.Context, in *UnionAdditionsFilterReq, out *UnionAdditionsFilterResp) error
 	}
 	type Account struct {
 		account
@@ -648,6 +700,10 @@ func (h *accountHandler) ViewerAdditionsDump(ctx context.Context, in *ViewerAddi
 	return h.AccountHandler.ViewerAdditionsDump(ctx, in, out)
 }
 
+func (h *accountHandler) ViewerAdditionsFilter(ctx context.Context, in *ViewerAdditionsFilterReq, out *ViewerAdditionsFilterResp) error {
+	return h.AccountHandler.ViewerAdditionsFilter(ctx, in, out)
+}
+
 func (h *accountHandler) GetStreamer(ctx context.Context, in *GetStreamerReq, out *GetStreamerResp) error {
 	return h.AccountHandler.GetStreamer(ctx, in, out)
 }
@@ -686,6 +742,10 @@ func (h *accountHandler) StreamerAdditionsGet(ctx context.Context, in *StreamerA
 
 func (h *accountHandler) StreamerAdditionsDump(ctx context.Context, in *StreamerAdditionsDumpReq, out *StreamerAdditionsDumpResp) error {
 	return h.AccountHandler.StreamerAdditionsDump(ctx, in, out)
+}
+
+func (h *accountHandler) StreamerAdditionsFilter(ctx context.Context, in *StreamerAdditionsFilterReq, out *StreamerAdditionsFilterResp) error {
+	return h.AccountHandler.StreamerAdditionsFilter(ctx, in, out)
 }
 
 func (h *accountHandler) GetManager(ctx context.Context, in *GetManagerReq, out *GetManagerResp) error {
@@ -728,6 +788,10 @@ func (h *accountHandler) ManagerAdditionsDump(ctx context.Context, in *ManagerAd
 	return h.AccountHandler.ManagerAdditionsDump(ctx, in, out)
 }
 
+func (h *accountHandler) ManagerAdditionsFilter(ctx context.Context, in *ManagerAdditionsFilterReq, out *ManagerAdditionsFilterResp) error {
+	return h.AccountHandler.ManagerAdditionsFilter(ctx, in, out)
+}
+
 func (h *accountHandler) GetUnion(ctx context.Context, in *GetUnionReq, out *GetUnionResp) error {
 	return h.AccountHandler.GetUnion(ctx, in, out)
 }
@@ -766,4 +830,8 @@ func (h *accountHandler) UnionAdditionsGet(ctx context.Context, in *UnionAdditio
 
 func (h *accountHandler) UnionAdditionsDump(ctx context.Context, in *UnionAdditionsDumpReq, out *UnionAdditionsDumpResp) error {
 	return h.AccountHandler.UnionAdditionsDump(ctx, in, out)
+}
+
+func (h *accountHandler) UnionAdditionsFilter(ctx context.Context, in *UnionAdditionsFilterReq, out *UnionAdditionsFilterResp) error {
+	return h.AccountHandler.UnionAdditionsFilter(ctx, in, out)
 }

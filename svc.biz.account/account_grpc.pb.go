@@ -20,47 +20,51 @@ import (
 const _ = grpc.SupportPackageIsVersion8
 
 const (
-	Account_InitDB_FullMethodName                = "/svc.biz.account.Account/InitDB"
-	Account_GetViewer_FullMethodName             = "/svc.biz.account.Account/GetViewer"
-	Account_ListViewers_FullMethodName           = "/svc.biz.account.Account/ListViewers"
-	Account_FilterViewers_FullMethodName         = "/svc.biz.account.Account/FilterViewers"
-	Account_AddViewer_FullMethodName             = "/svc.biz.account.Account/AddViewer"
-	Account_UpdateViewer_FullMethodName          = "/svc.biz.account.Account/UpdateViewer"
-	Account_DeleteViewer_FullMethodName          = "/svc.biz.account.Account/DeleteViewer"
-	Account_TotalViewers_FullMethodName          = "/svc.biz.account.Account/TotalViewers"
-	Account_ViewerAdditionsSet_FullMethodName    = "/svc.biz.account.Account/ViewerAdditionsSet"
-	Account_ViewerAdditionsGet_FullMethodName    = "/svc.biz.account.Account/ViewerAdditionsGet"
-	Account_ViewerAdditionsDump_FullMethodName   = "/svc.biz.account.Account/ViewerAdditionsDump"
-	Account_GetStreamer_FullMethodName           = "/svc.biz.account.Account/GetStreamer"
-	Account_ListStreamers_FullMethodName         = "/svc.biz.account.Account/ListStreamers"
-	Account_FilterStreamers_FullMethodName       = "/svc.biz.account.Account/FilterStreamers"
-	Account_AddStreamer_FullMethodName           = "/svc.biz.account.Account/AddStreamer"
-	Account_UpdateStreamer_FullMethodName        = "/svc.biz.account.Account/UpdateStreamer"
-	Account_DeleteStreamer_FullMethodName        = "/svc.biz.account.Account/DeleteStreamer"
-	Account_TotalStreamers_FullMethodName        = "/svc.biz.account.Account/TotalStreamers"
-	Account_StreamerAdditionsSet_FullMethodName  = "/svc.biz.account.Account/StreamerAdditionsSet"
-	Account_StreamerAdditionsGet_FullMethodName  = "/svc.biz.account.Account/StreamerAdditionsGet"
-	Account_StreamerAdditionsDump_FullMethodName = "/svc.biz.account.Account/StreamerAdditionsDump"
-	Account_GetManager_FullMethodName            = "/svc.biz.account.Account/GetManager"
-	Account_ListManagers_FullMethodName          = "/svc.biz.account.Account/ListManagers"
-	Account_FilterManagers_FullMethodName        = "/svc.biz.account.Account/FilterManagers"
-	Account_AddManager_FullMethodName            = "/svc.biz.account.Account/AddManager"
-	Account_UpdateManager_FullMethodName         = "/svc.biz.account.Account/UpdateManager"
-	Account_DeleteManager_FullMethodName         = "/svc.biz.account.Account/DeleteManager"
-	Account_TotalManagers_FullMethodName         = "/svc.biz.account.Account/TotalManagers"
-	Account_ManagerAdditionsSet_FullMethodName   = "/svc.biz.account.Account/ManagerAdditionsSet"
-	Account_ManagerAdditionsGet_FullMethodName   = "/svc.biz.account.Account/ManagerAdditionsGet"
-	Account_ManagerAdditionsDump_FullMethodName  = "/svc.biz.account.Account/ManagerAdditionsDump"
-	Account_GetUnion_FullMethodName              = "/svc.biz.account.Account/GetUnion"
-	Account_ListUnions_FullMethodName            = "/svc.biz.account.Account/ListUnions"
-	Account_FilterUnions_FullMethodName          = "/svc.biz.account.Account/FilterUnions"
-	Account_AddUnion_FullMethodName              = "/svc.biz.account.Account/AddUnion"
-	Account_UpdateUnion_FullMethodName           = "/svc.biz.account.Account/UpdateUnion"
-	Account_DeleteUnion_FullMethodName           = "/svc.biz.account.Account/DeleteUnion"
-	Account_TotalUnions_FullMethodName           = "/svc.biz.account.Account/TotalUnions"
-	Account_UnionAdditionsSet_FullMethodName     = "/svc.biz.account.Account/UnionAdditionsSet"
-	Account_UnionAdditionsGet_FullMethodName     = "/svc.biz.account.Account/UnionAdditionsGet"
-	Account_UnionAdditionsDump_FullMethodName    = "/svc.biz.account.Account/UnionAdditionsDump"
+	Account_InitDB_FullMethodName                  = "/svc.biz.account.Account/InitDB"
+	Account_GetViewer_FullMethodName               = "/svc.biz.account.Account/GetViewer"
+	Account_ListViewers_FullMethodName             = "/svc.biz.account.Account/ListViewers"
+	Account_FilterViewers_FullMethodName           = "/svc.biz.account.Account/FilterViewers"
+	Account_AddViewer_FullMethodName               = "/svc.biz.account.Account/AddViewer"
+	Account_UpdateViewer_FullMethodName            = "/svc.biz.account.Account/UpdateViewer"
+	Account_DeleteViewer_FullMethodName            = "/svc.biz.account.Account/DeleteViewer"
+	Account_TotalViewers_FullMethodName            = "/svc.biz.account.Account/TotalViewers"
+	Account_ViewerAdditionsSet_FullMethodName      = "/svc.biz.account.Account/ViewerAdditionsSet"
+	Account_ViewerAdditionsGet_FullMethodName      = "/svc.biz.account.Account/ViewerAdditionsGet"
+	Account_ViewerAdditionsDump_FullMethodName     = "/svc.biz.account.Account/ViewerAdditionsDump"
+	Account_ViewerAdditionsFilter_FullMethodName   = "/svc.biz.account.Account/ViewerAdditionsFilter"
+	Account_GetStreamer_FullMethodName             = "/svc.biz.account.Account/GetStreamer"
+	Account_ListStreamers_FullMethodName           = "/svc.biz.account.Account/ListStreamers"
+	Account_FilterStreamers_FullMethodName         = "/svc.biz.account.Account/FilterStreamers"
+	Account_AddStreamer_FullMethodName             = "/svc.biz.account.Account/AddStreamer"
+	Account_UpdateStreamer_FullMethodName          = "/svc.biz.account.Account/UpdateStreamer"
+	Account_DeleteStreamer_FullMethodName          = "/svc.biz.account.Account/DeleteStreamer"
+	Account_TotalStreamers_FullMethodName          = "/svc.biz.account.Account/TotalStreamers"
+	Account_StreamerAdditionsSet_FullMethodName    = "/svc.biz.account.Account/StreamerAdditionsSet"
+	Account_StreamerAdditionsGet_FullMethodName    = "/svc.biz.account.Account/StreamerAdditionsGet"
+	Account_StreamerAdditionsDump_FullMethodName   = "/svc.biz.account.Account/StreamerAdditionsDump"
+	Account_StreamerAdditionsFilter_FullMethodName = "/svc.biz.account.Account/StreamerAdditionsFilter"
+	Account_GetManager_FullMethodName              = "/svc.biz.account.Account/GetManager"
+	Account_ListManagers_FullMethodName            = "/svc.biz.account.Account/ListManagers"
+	Account_FilterManagers_FullMethodName          = "/svc.biz.account.Account/FilterManagers"
+	Account_AddManager_FullMethodName              = "/svc.biz.account.Account/AddManager"
+	Account_UpdateManager_FullMethodName           = "/svc.biz.account.Account/UpdateManager"
+	Account_DeleteManager_FullMethodName           = "/svc.biz.account.Account/DeleteManager"
+	Account_TotalManagers_FullMethodName           = "/svc.biz.account.Account/TotalManagers"
+	Account_ManagerAdditionsSet_FullMethodName     = "/svc.biz.account.Account/ManagerAdditionsSet"
+	Account_ManagerAdditionsGet_FullMethodName     = "/svc.biz.account.Account/ManagerAdditionsGet"
+	Account_ManagerAdditionsDump_FullMethodName    = "/svc.biz.account.Account/ManagerAdditionsDump"
+	Account_ManagerAdditionsFilter_FullMethodName  = "/svc.biz.account.Account/ManagerAdditionsFilter"
+	Account_GetUnion_FullMethodName                = "/svc.biz.account.Account/GetUnion"
+	Account_ListUnions_FullMethodName              = "/svc.biz.account.Account/ListUnions"
+	Account_FilterUnions_FullMethodName            = "/svc.biz.account.Account/FilterUnions"
+	Account_AddUnion_FullMethodName                = "/svc.biz.account.Account/AddUnion"
+	Account_UpdateUnion_FullMethodName             = "/svc.biz.account.Account/UpdateUnion"
+	Account_DeleteUnion_FullMethodName             = "/svc.biz.account.Account/DeleteUnion"
+	Account_TotalUnions_FullMethodName             = "/svc.biz.account.Account/TotalUnions"
+	Account_UnionAdditionsSet_FullMethodName       = "/svc.biz.account.Account/UnionAdditionsSet"
+	Account_UnionAdditionsGet_FullMethodName       = "/svc.biz.account.Account/UnionAdditionsGet"
+	Account_UnionAdditionsDump_FullMethodName      = "/svc.biz.account.Account/UnionAdditionsDump"
+	Account_UnionAdditionsFilter_FullMethodName    = "/svc.biz.account.Account/UnionAdditionsFilter"
 )
 
 // AccountClient is the client API for Account service.
@@ -78,6 +82,7 @@ type AccountClient interface {
 	ViewerAdditionsSet(ctx context.Context, in *ViewerAdditionsSetReq, opts ...grpc.CallOption) (*ViewerAdditionsSetResp, error)
 	ViewerAdditionsGet(ctx context.Context, in *ViewerAdditionsGetReq, opts ...grpc.CallOption) (*ViewerAdditionsGetResp, error)
 	ViewerAdditionsDump(ctx context.Context, in *ViewerAdditionsDumpReq, opts ...grpc.CallOption) (*ViewerAdditionsDumpResp, error)
+	ViewerAdditionsFilter(ctx context.Context, in *ViewerAdditionsFilterReq, opts ...grpc.CallOption) (*ViewerAdditionsFilterResp, error)
 	GetStreamer(ctx context.Context, in *GetStreamerReq, opts ...grpc.CallOption) (*GetStreamerResp, error)
 	ListStreamers(ctx context.Context, in *ListStreamersReq, opts ...grpc.CallOption) (*ListStreamersResp, error)
 	FilterStreamers(ctx context.Context, in *FilterStreamersReq, opts ...grpc.CallOption) (*FilterStreamersResp, error)
@@ -88,6 +93,7 @@ type AccountClient interface {
 	StreamerAdditionsSet(ctx context.Context, in *StreamerAdditionsSetReq, opts ...grpc.CallOption) (*StreamerAdditionsSetResp, error)
 	StreamerAdditionsGet(ctx context.Context, in *StreamerAdditionsGetReq, opts ...grpc.CallOption) (*StreamerAdditionsGetResp, error)
 	StreamerAdditionsDump(ctx context.Context, in *StreamerAdditionsDumpReq, opts ...grpc.CallOption) (*StreamerAdditionsDumpResp, error)
+	StreamerAdditionsFilter(ctx context.Context, in *StreamerAdditionsFilterReq, opts ...grpc.CallOption) (*StreamerAdditionsFilterResp, error)
 	GetManager(ctx context.Context, in *GetManagerReq, opts ...grpc.CallOption) (*GetManagerResp, error)
 	ListManagers(ctx context.Context, in *ListManagersReq, opts ...grpc.CallOption) (*ListManagersResp, error)
 	FilterManagers(ctx context.Context, in *FilterManagersReq, opts ...grpc.CallOption) (*FilterManagersResp, error)
@@ -98,6 +104,7 @@ type AccountClient interface {
 	ManagerAdditionsSet(ctx context.Context, in *ManagerAdditionsSetReq, opts ...grpc.CallOption) (*ManagerAdditionsSetResp, error)
 	ManagerAdditionsGet(ctx context.Context, in *ManagerAdditionsGetReq, opts ...grpc.CallOption) (*ManagerAdditionsGetResp, error)
 	ManagerAdditionsDump(ctx context.Context, in *ManagerAdditionsDumpReq, opts ...grpc.CallOption) (*ManagerAdditionsDumpResp, error)
+	ManagerAdditionsFilter(ctx context.Context, in *ManagerAdditionsFilterReq, opts ...grpc.CallOption) (*ManagerAdditionsFilterResp, error)
 	GetUnion(ctx context.Context, in *GetUnionReq, opts ...grpc.CallOption) (*GetUnionResp, error)
 	ListUnions(ctx context.Context, in *ListUnionsReq, opts ...grpc.CallOption) (*ListUnionsResp, error)
 	FilterUnions(ctx context.Context, in *FilterUnionsReq, opts ...grpc.CallOption) (*FilterUnionsResp, error)
@@ -108,6 +115,7 @@ type AccountClient interface {
 	UnionAdditionsSet(ctx context.Context, in *UnionAdditionsSetReq, opts ...grpc.CallOption) (*UnionAdditionsSetResp, error)
 	UnionAdditionsGet(ctx context.Context, in *UnionAdditionsGetReq, opts ...grpc.CallOption) (*UnionAdditionsGetResp, error)
 	UnionAdditionsDump(ctx context.Context, in *UnionAdditionsDumpReq, opts ...grpc.CallOption) (*UnionAdditionsDumpResp, error)
+	UnionAdditionsFilter(ctx context.Context, in *UnionAdditionsFilterReq, opts ...grpc.CallOption) (*UnionAdditionsFilterResp, error)
 }
 
 type accountClient struct {
@@ -228,6 +236,16 @@ func (c *accountClient) ViewerAdditionsDump(ctx context.Context, in *ViewerAddit
 	return out, nil
 }
 
+func (c *accountClient) ViewerAdditionsFilter(ctx context.Context, in *ViewerAdditionsFilterReq, opts ...grpc.CallOption) (*ViewerAdditionsFilterResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ViewerAdditionsFilterResp)
+	err := c.cc.Invoke(ctx, Account_ViewerAdditionsFilter_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *accountClient) GetStreamer(ctx context.Context, in *GetStreamerReq, opts ...grpc.CallOption) (*GetStreamerResp, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetStreamerResp)
@@ -322,6 +340,16 @@ func (c *accountClient) StreamerAdditionsDump(ctx context.Context, in *StreamerA
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(StreamerAdditionsDumpResp)
 	err := c.cc.Invoke(ctx, Account_StreamerAdditionsDump_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *accountClient) StreamerAdditionsFilter(ctx context.Context, in *StreamerAdditionsFilterReq, opts ...grpc.CallOption) (*StreamerAdditionsFilterResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(StreamerAdditionsFilterResp)
+	err := c.cc.Invoke(ctx, Account_StreamerAdditionsFilter_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -428,6 +456,16 @@ func (c *accountClient) ManagerAdditionsDump(ctx context.Context, in *ManagerAdd
 	return out, nil
 }
 
+func (c *accountClient) ManagerAdditionsFilter(ctx context.Context, in *ManagerAdditionsFilterReq, opts ...grpc.CallOption) (*ManagerAdditionsFilterResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ManagerAdditionsFilterResp)
+	err := c.cc.Invoke(ctx, Account_ManagerAdditionsFilter_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *accountClient) GetUnion(ctx context.Context, in *GetUnionReq, opts ...grpc.CallOption) (*GetUnionResp, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetUnionResp)
@@ -528,6 +566,16 @@ func (c *accountClient) UnionAdditionsDump(ctx context.Context, in *UnionAdditio
 	return out, nil
 }
 
+func (c *accountClient) UnionAdditionsFilter(ctx context.Context, in *UnionAdditionsFilterReq, opts ...grpc.CallOption) (*UnionAdditionsFilterResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UnionAdditionsFilterResp)
+	err := c.cc.Invoke(ctx, Account_UnionAdditionsFilter_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AccountServer is the server API for Account service.
 // All implementations must embed UnimplementedAccountServer
 // for forward compatibility
@@ -543,6 +591,7 @@ type AccountServer interface {
 	ViewerAdditionsSet(context.Context, *ViewerAdditionsSetReq) (*ViewerAdditionsSetResp, error)
 	ViewerAdditionsGet(context.Context, *ViewerAdditionsGetReq) (*ViewerAdditionsGetResp, error)
 	ViewerAdditionsDump(context.Context, *ViewerAdditionsDumpReq) (*ViewerAdditionsDumpResp, error)
+	ViewerAdditionsFilter(context.Context, *ViewerAdditionsFilterReq) (*ViewerAdditionsFilterResp, error)
 	GetStreamer(context.Context, *GetStreamerReq) (*GetStreamerResp, error)
 	ListStreamers(context.Context, *ListStreamersReq) (*ListStreamersResp, error)
 	FilterStreamers(context.Context, *FilterStreamersReq) (*FilterStreamersResp, error)
@@ -553,6 +602,7 @@ type AccountServer interface {
 	StreamerAdditionsSet(context.Context, *StreamerAdditionsSetReq) (*StreamerAdditionsSetResp, error)
 	StreamerAdditionsGet(context.Context, *StreamerAdditionsGetReq) (*StreamerAdditionsGetResp, error)
 	StreamerAdditionsDump(context.Context, *StreamerAdditionsDumpReq) (*StreamerAdditionsDumpResp, error)
+	StreamerAdditionsFilter(context.Context, *StreamerAdditionsFilterReq) (*StreamerAdditionsFilterResp, error)
 	GetManager(context.Context, *GetManagerReq) (*GetManagerResp, error)
 	ListManagers(context.Context, *ListManagersReq) (*ListManagersResp, error)
 	FilterManagers(context.Context, *FilterManagersReq) (*FilterManagersResp, error)
@@ -563,6 +613,7 @@ type AccountServer interface {
 	ManagerAdditionsSet(context.Context, *ManagerAdditionsSetReq) (*ManagerAdditionsSetResp, error)
 	ManagerAdditionsGet(context.Context, *ManagerAdditionsGetReq) (*ManagerAdditionsGetResp, error)
 	ManagerAdditionsDump(context.Context, *ManagerAdditionsDumpReq) (*ManagerAdditionsDumpResp, error)
+	ManagerAdditionsFilter(context.Context, *ManagerAdditionsFilterReq) (*ManagerAdditionsFilterResp, error)
 	GetUnion(context.Context, *GetUnionReq) (*GetUnionResp, error)
 	ListUnions(context.Context, *ListUnionsReq) (*ListUnionsResp, error)
 	FilterUnions(context.Context, *FilterUnionsReq) (*FilterUnionsResp, error)
@@ -573,6 +624,7 @@ type AccountServer interface {
 	UnionAdditionsSet(context.Context, *UnionAdditionsSetReq) (*UnionAdditionsSetResp, error)
 	UnionAdditionsGet(context.Context, *UnionAdditionsGetReq) (*UnionAdditionsGetResp, error)
 	UnionAdditionsDump(context.Context, *UnionAdditionsDumpReq) (*UnionAdditionsDumpResp, error)
+	UnionAdditionsFilter(context.Context, *UnionAdditionsFilterReq) (*UnionAdditionsFilterResp, error)
 	mustEmbedUnimplementedAccountServer()
 }
 
@@ -613,6 +665,9 @@ func (UnimplementedAccountServer) ViewerAdditionsGet(context.Context, *ViewerAdd
 func (UnimplementedAccountServer) ViewerAdditionsDump(context.Context, *ViewerAdditionsDumpReq) (*ViewerAdditionsDumpResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ViewerAdditionsDump not implemented")
 }
+func (UnimplementedAccountServer) ViewerAdditionsFilter(context.Context, *ViewerAdditionsFilterReq) (*ViewerAdditionsFilterResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ViewerAdditionsFilter not implemented")
+}
 func (UnimplementedAccountServer) GetStreamer(context.Context, *GetStreamerReq) (*GetStreamerResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetStreamer not implemented")
 }
@@ -642,6 +697,9 @@ func (UnimplementedAccountServer) StreamerAdditionsGet(context.Context, *Streame
 }
 func (UnimplementedAccountServer) StreamerAdditionsDump(context.Context, *StreamerAdditionsDumpReq) (*StreamerAdditionsDumpResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method StreamerAdditionsDump not implemented")
+}
+func (UnimplementedAccountServer) StreamerAdditionsFilter(context.Context, *StreamerAdditionsFilterReq) (*StreamerAdditionsFilterResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StreamerAdditionsFilter not implemented")
 }
 func (UnimplementedAccountServer) GetManager(context.Context, *GetManagerReq) (*GetManagerResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetManager not implemented")
@@ -673,6 +731,9 @@ func (UnimplementedAccountServer) ManagerAdditionsGet(context.Context, *ManagerA
 func (UnimplementedAccountServer) ManagerAdditionsDump(context.Context, *ManagerAdditionsDumpReq) (*ManagerAdditionsDumpResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ManagerAdditionsDump not implemented")
 }
+func (UnimplementedAccountServer) ManagerAdditionsFilter(context.Context, *ManagerAdditionsFilterReq) (*ManagerAdditionsFilterResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ManagerAdditionsFilter not implemented")
+}
 func (UnimplementedAccountServer) GetUnion(context.Context, *GetUnionReq) (*GetUnionResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUnion not implemented")
 }
@@ -702,6 +763,9 @@ func (UnimplementedAccountServer) UnionAdditionsGet(context.Context, *UnionAddit
 }
 func (UnimplementedAccountServer) UnionAdditionsDump(context.Context, *UnionAdditionsDumpReq) (*UnionAdditionsDumpResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UnionAdditionsDump not implemented")
+}
+func (UnimplementedAccountServer) UnionAdditionsFilter(context.Context, *UnionAdditionsFilterReq) (*UnionAdditionsFilterResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UnionAdditionsFilter not implemented")
 }
 func (UnimplementedAccountServer) mustEmbedUnimplementedAccountServer() {}
 
@@ -914,6 +978,24 @@ func _Account_ViewerAdditionsDump_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Account_ViewerAdditionsFilter_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ViewerAdditionsFilterReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AccountServer).ViewerAdditionsFilter(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Account_ViewerAdditionsFilter_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AccountServer).ViewerAdditionsFilter(ctx, req.(*ViewerAdditionsFilterReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Account_GetStreamer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetStreamerReq)
 	if err := dec(in); err != nil {
@@ -1090,6 +1172,24 @@ func _Account_StreamerAdditionsDump_Handler(srv interface{}, ctx context.Context
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AccountServer).StreamerAdditionsDump(ctx, req.(*StreamerAdditionsDumpReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Account_StreamerAdditionsFilter_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(StreamerAdditionsFilterReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AccountServer).StreamerAdditionsFilter(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Account_StreamerAdditionsFilter_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AccountServer).StreamerAdditionsFilter(ctx, req.(*StreamerAdditionsFilterReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1274,6 +1374,24 @@ func _Account_ManagerAdditionsDump_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Account_ManagerAdditionsFilter_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ManagerAdditionsFilterReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AccountServer).ManagerAdditionsFilter(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Account_ManagerAdditionsFilter_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AccountServer).ManagerAdditionsFilter(ctx, req.(*ManagerAdditionsFilterReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Account_GetUnion_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetUnionReq)
 	if err := dec(in); err != nil {
@@ -1454,6 +1572,24 @@ func _Account_UnionAdditionsDump_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Account_UnionAdditionsFilter_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UnionAdditionsFilterReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AccountServer).UnionAdditionsFilter(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Account_UnionAdditionsFilter_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AccountServer).UnionAdditionsFilter(ctx, req.(*UnionAdditionsFilterReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Account_ServiceDesc is the grpc.ServiceDesc for Account service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1506,6 +1642,10 @@ var Account_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Account_ViewerAdditionsDump_Handler,
 		},
 		{
+			MethodName: "ViewerAdditionsFilter",
+			Handler:    _Account_ViewerAdditionsFilter_Handler,
+		},
+		{
 			MethodName: "GetStreamer",
 			Handler:    _Account_GetStreamer_Handler,
 		},
@@ -1544,6 +1684,10 @@ var Account_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "StreamerAdditionsDump",
 			Handler:    _Account_StreamerAdditionsDump_Handler,
+		},
+		{
+			MethodName: "StreamerAdditionsFilter",
+			Handler:    _Account_StreamerAdditionsFilter_Handler,
 		},
 		{
 			MethodName: "GetManager",
@@ -1586,6 +1730,10 @@ var Account_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Account_ManagerAdditionsDump_Handler,
 		},
 		{
+			MethodName: "ManagerAdditionsFilter",
+			Handler:    _Account_ManagerAdditionsFilter_Handler,
+		},
+		{
 			MethodName: "GetUnion",
 			Handler:    _Account_GetUnion_Handler,
 		},
@@ -1624,6 +1772,10 @@ var Account_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UnionAdditionsDump",
 			Handler:    _Account_UnionAdditionsDump_Handler,
+		},
+		{
+			MethodName: "UnionAdditionsFilter",
+			Handler:    _Account_UnionAdditionsFilter_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -49,6 +49,7 @@ type OrgService interface {
 	DepartmentAdditionsSet(ctx context.Context, in *DepartmentAdditionsSetReq, opts ...client.CallOption) (*DepartmentAdditionsSetResp, error)
 	DepartmentAdditionsGet(ctx context.Context, in *DepartmentAdditionsGetReq, opts ...client.CallOption) (*DepartmentAdditionsGetResp, error)
 	DepartmentAdditionsDump(ctx context.Context, in *DepartmentAdditionsDumpReq, opts ...client.CallOption) (*DepartmentAdditionsDumpResp, error)
+	DepartmentAdditionsFilter(ctx context.Context, in *DepartmentAdditionsFilterReq, opts ...client.CallOption) (*DepartmentAdditionsFilterResp, error)
 	GetMerchant(ctx context.Context, in *GetMerchantReq, opts ...client.CallOption) (*GetMerchantResp, error)
 	ListMerchants(ctx context.Context, in *ListMerchantsReq, opts ...client.CallOption) (*ListMerchantsResp, error)
 	FilterMerchants(ctx context.Context, in *FilterMerchantsReq, opts ...client.CallOption) (*FilterMerchantsResp, error)
@@ -59,6 +60,7 @@ type OrgService interface {
 	MerchantAdditionsSet(ctx context.Context, in *MerchantAdditionsSetReq, opts ...client.CallOption) (*MerchantAdditionsSetResp, error)
 	MerchantAdditionsGet(ctx context.Context, in *MerchantAdditionsGetReq, opts ...client.CallOption) (*MerchantAdditionsGetResp, error)
 	MerchantAdditionsDump(ctx context.Context, in *MerchantAdditionsDumpReq, opts ...client.CallOption) (*MerchantAdditionsDumpResp, error)
+	MerchantAdditionsFilter(ctx context.Context, in *MerchantAdditionsFilterReq, opts ...client.CallOption) (*MerchantAdditionsFilterResp, error)
 	GetUnion(ctx context.Context, in *GetUnionReq, opts ...client.CallOption) (*GetUnionResp, error)
 	ListUnions(ctx context.Context, in *ListUnionsReq, opts ...client.CallOption) (*ListUnionsResp, error)
 	FilterUnions(ctx context.Context, in *FilterUnionsReq, opts ...client.CallOption) (*FilterUnionsResp, error)
@@ -69,6 +71,7 @@ type OrgService interface {
 	UnionAdditionsSet(ctx context.Context, in *UnionAdditionsSetReq, opts ...client.CallOption) (*UnionAdditionsSetResp, error)
 	UnionAdditionsGet(ctx context.Context, in *UnionAdditionsGetReq, opts ...client.CallOption) (*UnionAdditionsGetResp, error)
 	UnionAdditionsDump(ctx context.Context, in *UnionAdditionsDumpReq, opts ...client.CallOption) (*UnionAdditionsDumpResp, error)
+	UnionAdditionsFilter(ctx context.Context, in *UnionAdditionsFilterReq, opts ...client.CallOption) (*UnionAdditionsFilterResp, error)
 }
 
 type orgService struct {
@@ -193,6 +196,16 @@ func (c *orgService) DepartmentAdditionsDump(ctx context.Context, in *Department
 	return out, nil
 }
 
+func (c *orgService) DepartmentAdditionsFilter(ctx context.Context, in *DepartmentAdditionsFilterReq, opts ...client.CallOption) (*DepartmentAdditionsFilterResp, error) {
+	req := c.c.NewRequest(c.name, "Org.DepartmentAdditionsFilter", in)
+	out := new(DepartmentAdditionsFilterResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *orgService) GetMerchant(ctx context.Context, in *GetMerchantReq, opts ...client.CallOption) (*GetMerchantResp, error) {
 	req := c.c.NewRequest(c.name, "Org.GetMerchant", in)
 	out := new(GetMerchantResp)
@@ -286,6 +299,16 @@ func (c *orgService) MerchantAdditionsGet(ctx context.Context, in *MerchantAddit
 func (c *orgService) MerchantAdditionsDump(ctx context.Context, in *MerchantAdditionsDumpReq, opts ...client.CallOption) (*MerchantAdditionsDumpResp, error) {
 	req := c.c.NewRequest(c.name, "Org.MerchantAdditionsDump", in)
 	out := new(MerchantAdditionsDumpResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *orgService) MerchantAdditionsFilter(ctx context.Context, in *MerchantAdditionsFilterReq, opts ...client.CallOption) (*MerchantAdditionsFilterResp, error) {
+	req := c.c.NewRequest(c.name, "Org.MerchantAdditionsFilter", in)
+	out := new(MerchantAdditionsFilterResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -393,6 +416,16 @@ func (c *orgService) UnionAdditionsDump(ctx context.Context, in *UnionAdditionsD
 	return out, nil
 }
 
+func (c *orgService) UnionAdditionsFilter(ctx context.Context, in *UnionAdditionsFilterReq, opts ...client.CallOption) (*UnionAdditionsFilterResp, error) {
+	req := c.c.NewRequest(c.name, "Org.UnionAdditionsFilter", in)
+	out := new(UnionAdditionsFilterResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for Org service
 
 type OrgHandler interface {
@@ -407,6 +440,7 @@ type OrgHandler interface {
 	DepartmentAdditionsSet(context.Context, *DepartmentAdditionsSetReq, *DepartmentAdditionsSetResp) error
 	DepartmentAdditionsGet(context.Context, *DepartmentAdditionsGetReq, *DepartmentAdditionsGetResp) error
 	DepartmentAdditionsDump(context.Context, *DepartmentAdditionsDumpReq, *DepartmentAdditionsDumpResp) error
+	DepartmentAdditionsFilter(context.Context, *DepartmentAdditionsFilterReq, *DepartmentAdditionsFilterResp) error
 	GetMerchant(context.Context, *GetMerchantReq, *GetMerchantResp) error
 	ListMerchants(context.Context, *ListMerchantsReq, *ListMerchantsResp) error
 	FilterMerchants(context.Context, *FilterMerchantsReq, *FilterMerchantsResp) error
@@ -417,6 +451,7 @@ type OrgHandler interface {
 	MerchantAdditionsSet(context.Context, *MerchantAdditionsSetReq, *MerchantAdditionsSetResp) error
 	MerchantAdditionsGet(context.Context, *MerchantAdditionsGetReq, *MerchantAdditionsGetResp) error
 	MerchantAdditionsDump(context.Context, *MerchantAdditionsDumpReq, *MerchantAdditionsDumpResp) error
+	MerchantAdditionsFilter(context.Context, *MerchantAdditionsFilterReq, *MerchantAdditionsFilterResp) error
 	GetUnion(context.Context, *GetUnionReq, *GetUnionResp) error
 	ListUnions(context.Context, *ListUnionsReq, *ListUnionsResp) error
 	FilterUnions(context.Context, *FilterUnionsReq, *FilterUnionsResp) error
@@ -427,6 +462,7 @@ type OrgHandler interface {
 	UnionAdditionsSet(context.Context, *UnionAdditionsSetReq, *UnionAdditionsSetResp) error
 	UnionAdditionsGet(context.Context, *UnionAdditionsGetReq, *UnionAdditionsGetResp) error
 	UnionAdditionsDump(context.Context, *UnionAdditionsDumpReq, *UnionAdditionsDumpResp) error
+	UnionAdditionsFilter(context.Context, *UnionAdditionsFilterReq, *UnionAdditionsFilterResp) error
 }
 
 func RegisterOrgHandler(s server.Server, hdlr OrgHandler, opts ...server.HandlerOption) error {
@@ -442,6 +478,7 @@ func RegisterOrgHandler(s server.Server, hdlr OrgHandler, opts ...server.Handler
 		DepartmentAdditionsSet(ctx context.Context, in *DepartmentAdditionsSetReq, out *DepartmentAdditionsSetResp) error
 		DepartmentAdditionsGet(ctx context.Context, in *DepartmentAdditionsGetReq, out *DepartmentAdditionsGetResp) error
 		DepartmentAdditionsDump(ctx context.Context, in *DepartmentAdditionsDumpReq, out *DepartmentAdditionsDumpResp) error
+		DepartmentAdditionsFilter(ctx context.Context, in *DepartmentAdditionsFilterReq, out *DepartmentAdditionsFilterResp) error
 		GetMerchant(ctx context.Context, in *GetMerchantReq, out *GetMerchantResp) error
 		ListMerchants(ctx context.Context, in *ListMerchantsReq, out *ListMerchantsResp) error
 		FilterMerchants(ctx context.Context, in *FilterMerchantsReq, out *FilterMerchantsResp) error
@@ -452,6 +489,7 @@ func RegisterOrgHandler(s server.Server, hdlr OrgHandler, opts ...server.Handler
 		MerchantAdditionsSet(ctx context.Context, in *MerchantAdditionsSetReq, out *MerchantAdditionsSetResp) error
 		MerchantAdditionsGet(ctx context.Context, in *MerchantAdditionsGetReq, out *MerchantAdditionsGetResp) error
 		MerchantAdditionsDump(ctx context.Context, in *MerchantAdditionsDumpReq, out *MerchantAdditionsDumpResp) error
+		MerchantAdditionsFilter(ctx context.Context, in *MerchantAdditionsFilterReq, out *MerchantAdditionsFilterResp) error
 		GetUnion(ctx context.Context, in *GetUnionReq, out *GetUnionResp) error
 		ListUnions(ctx context.Context, in *ListUnionsReq, out *ListUnionsResp) error
 		FilterUnions(ctx context.Context, in *FilterUnionsReq, out *FilterUnionsResp) error
@@ -462,6 +500,7 @@ func RegisterOrgHandler(s server.Server, hdlr OrgHandler, opts ...server.Handler
 		UnionAdditionsSet(ctx context.Context, in *UnionAdditionsSetReq, out *UnionAdditionsSetResp) error
 		UnionAdditionsGet(ctx context.Context, in *UnionAdditionsGetReq, out *UnionAdditionsGetResp) error
 		UnionAdditionsDump(ctx context.Context, in *UnionAdditionsDumpReq, out *UnionAdditionsDumpResp) error
+		UnionAdditionsFilter(ctx context.Context, in *UnionAdditionsFilterReq, out *UnionAdditionsFilterResp) error
 	}
 	type Org struct {
 		org
@@ -518,6 +557,10 @@ func (h *orgHandler) DepartmentAdditionsDump(ctx context.Context, in *Department
 	return h.OrgHandler.DepartmentAdditionsDump(ctx, in, out)
 }
 
+func (h *orgHandler) DepartmentAdditionsFilter(ctx context.Context, in *DepartmentAdditionsFilterReq, out *DepartmentAdditionsFilterResp) error {
+	return h.OrgHandler.DepartmentAdditionsFilter(ctx, in, out)
+}
+
 func (h *orgHandler) GetMerchant(ctx context.Context, in *GetMerchantReq, out *GetMerchantResp) error {
 	return h.OrgHandler.GetMerchant(ctx, in, out)
 }
@@ -558,6 +601,10 @@ func (h *orgHandler) MerchantAdditionsDump(ctx context.Context, in *MerchantAddi
 	return h.OrgHandler.MerchantAdditionsDump(ctx, in, out)
 }
 
+func (h *orgHandler) MerchantAdditionsFilter(ctx context.Context, in *MerchantAdditionsFilterReq, out *MerchantAdditionsFilterResp) error {
+	return h.OrgHandler.MerchantAdditionsFilter(ctx, in, out)
+}
+
 func (h *orgHandler) GetUnion(ctx context.Context, in *GetUnionReq, out *GetUnionResp) error {
 	return h.OrgHandler.GetUnion(ctx, in, out)
 }
@@ -596,4 +643,8 @@ func (h *orgHandler) UnionAdditionsGet(ctx context.Context, in *UnionAdditionsGe
 
 func (h *orgHandler) UnionAdditionsDump(ctx context.Context, in *UnionAdditionsDumpReq, out *UnionAdditionsDumpResp) error {
 	return h.OrgHandler.UnionAdditionsDump(ctx, in, out)
+}
+
+func (h *orgHandler) UnionAdditionsFilter(ctx context.Context, in *UnionAdditionsFilterReq, out *UnionAdditionsFilterResp) error {
+	return h.OrgHandler.UnionAdditionsFilter(ctx, in, out)
 }
