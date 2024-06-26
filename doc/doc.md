@@ -705,6 +705,7 @@
     - [CountFanbaseMemberByStreamerIDReq](#svc-biz-vip-CountFanbaseMemberByStreamerIDReq)
     - [CountFanbaseMemberByStreamerIDResp](#svc-biz-vip-CountFanbaseMemberByStreamerIDResp)
     - [FanbaseMemberInfo](#svc-biz-vip-FanbaseMemberInfo)
+    - [FanbaseRights](#svc-biz-vip-FanbaseRights)
     - [GetFanbaseMemberByStreamerIDReq](#svc-biz-vip-GetFanbaseMemberByStreamerIDReq)
     - [GetFanbaseMemberReq](#svc-biz-vip-GetFanbaseMemberReq)
     - [GetFanbaseMemberResp](#svc-biz-vip-GetFanbaseMemberResp)
@@ -726,6 +727,7 @@
     - [GetNobleListReq](#svc-biz-vip-GetNobleListReq)
     - [GetNobleListResp](#svc-biz-vip-GetNobleListResp)
     - [NobleInfo](#svc-biz-vip-NobleInfo)
+    - [NobleRights](#svc-biz-vip-NobleRights)
     - [NobleRightsDiscountGift](#svc-biz-vip-NobleRightsDiscountGift)
     - [NobleRightsFreeGift](#svc-biz-vip-NobleRightsFreeGift)
     - [UpdateNobleByLevelReq](#svc-biz-vip-UpdateNobleByLevelReq)
@@ -12151,13 +12153,28 @@ service started /////////////////
 | level | [FanbaseLevel](#svc-biz-vip-FanbaseLevel) |  |  |
 | join_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 加入时间 |
 | score | [int32](#int32) |  |  |
+| rights | [FanbaseRights](#svc-biz-vip-FanbaseRights) |  |  |
+| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+| updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 更新时间 |
+
+
+
+
+
+
+<a name="svc-biz-vip-FanbaseRights"></a>
+
+### FanbaseRights
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
 | rights_icon | [bool](#bool) |  | 专属勋章 |
 | rights_gift | [bool](#bool) |  | 专属礼物 |
 | rights_inroom_effect | [bool](#bool) |  | 进场特效 |
 | rights_avoid_kick | [bool](#bool) |  | 防踢 |
 | rights_avoid_ban_speaking | [bool](#bool) |  | 防禁言 |
-| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
-| updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 更新时间 |
 
 
 
@@ -12440,7 +12457,24 @@ service started /////////////////
 | first_remand_diamond | [int32](#int32) |  | 首次开通奖励金 |
 | renew_price | [int32](#int32) |  | 续费价格 |
 | renew_remand_diamond | [int32](#int32) |  | 续费奖励金 |
-| icon | [string](#string) |  | 身份标签 |
+| rights | [NobleRights](#svc-biz-vip-NobleRights) |  | 权益 |
+| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+| updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 更新时间 |
+
+
+
+
+
+
+<a name="svc-biz-vip-NobleRights"></a>
+
+### NobleRights
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| rights_icon | [string](#string) |  | 身份标签 |
 | rights_avoid_kick | [bool](#bool) |  | 防踢 |
 | rights_avoid_ban_speaking | [bool](#bool) |  | 防禁言 |
 | rights_identity_icon | [bool](#bool) |  | 身份标签（所有贵族都有，此字段不入库默认为true） |
@@ -12454,8 +12488,6 @@ service started /////////////////
 | rights_into_room_hide | [bool](#bool) |  | 进场隐身 |
 | rights_rank_hide | [bool](#bool) |  | 榜单隐身 |
 | rights_discount_gifts | [NobleRightsDiscountGift](#svc-biz-vip-NobleRightsDiscountGift) | repeated | 特价礼物 |
-| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
-| updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 更新时间 |
 
 
 
