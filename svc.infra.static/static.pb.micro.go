@@ -41,6 +41,7 @@ type StaticService interface {
 	Configuration(ctx context.Context, in *ConfigurationMessage, opts ...client.CallOption) (*ConfigurationResponseMessage, error)
 	UploadAvatar(ctx context.Context, in *UploadRequestMessage, opts ...client.CallOption) (*UploadResponseMessage, error)
 	UploadCover(ctx context.Context, in *UploadRequestMessage, opts ...client.CallOption) (*UploadResponseMessage, error)
+	UploadAudio(ctx context.Context, in *UploadRequestMessage, opts ...client.CallOption) (*UploadResponseMessage, error)
 	UploadVideo(ctx context.Context, in *UploadRequestMessage, opts ...client.CallOption) (*UploadResponseMessage, error)
 	UploadImage(ctx context.Context, in *UploadRequestMessage, opts ...client.CallOption) (*UploadResponseMessage, error)
 	UploadFile(ctx context.Context, in *UploadRequestMessage, opts ...client.CallOption) (*UploadResponseMessage, error)
@@ -91,6 +92,16 @@ func (c *staticService) UploadAvatar(ctx context.Context, in *UploadRequestMessa
 
 func (c *staticService) UploadCover(ctx context.Context, in *UploadRequestMessage, opts ...client.CallOption) (*UploadResponseMessage, error) {
 	req := c.c.NewRequest(c.name, "Static.UploadCover", in)
+	out := new(UploadResponseMessage)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *staticService) UploadAudio(ctx context.Context, in *UploadRequestMessage, opts ...client.CallOption) (*UploadResponseMessage, error) {
+	req := c.c.NewRequest(c.name, "Static.UploadAudio", in)
 	out := new(UploadResponseMessage)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
@@ -177,6 +188,7 @@ type StaticHandler interface {
 	Configuration(context.Context, *ConfigurationMessage, *ConfigurationResponseMessage) error
 	UploadAvatar(context.Context, *UploadRequestMessage, *UploadResponseMessage) error
 	UploadCover(context.Context, *UploadRequestMessage, *UploadResponseMessage) error
+	UploadAudio(context.Context, *UploadRequestMessage, *UploadResponseMessage) error
 	UploadVideo(context.Context, *UploadRequestMessage, *UploadResponseMessage) error
 	UploadImage(context.Context, *UploadRequestMessage, *UploadResponseMessage) error
 	UploadFile(context.Context, *UploadRequestMessage, *UploadResponseMessage) error
@@ -189,6 +201,7 @@ func RegisterStaticHandler(s server.Server, hdlr StaticHandler, opts ...server.H
 		Configuration(ctx context.Context, in *ConfigurationMessage, out *ConfigurationResponseMessage) error
 		UploadAvatar(ctx context.Context, in *UploadRequestMessage, out *UploadResponseMessage) error
 		UploadCover(ctx context.Context, in *UploadRequestMessage, out *UploadResponseMessage) error
+		UploadAudio(ctx context.Context, in *UploadRequestMessage, out *UploadResponseMessage) error
 		UploadVideo(ctx context.Context, in *UploadRequestMessage, out *UploadResponseMessage) error
 		UploadImage(ctx context.Context, in *UploadRequestMessage, out *UploadResponseMessage) error
 		UploadFile(ctx context.Context, in *UploadRequestMessage, out *UploadResponseMessage) error
@@ -219,6 +232,10 @@ func (h *staticHandler) UploadAvatar(ctx context.Context, in *UploadRequestMessa
 
 func (h *staticHandler) UploadCover(ctx context.Context, in *UploadRequestMessage, out *UploadResponseMessage) error {
 	return h.StaticHandler.UploadCover(ctx, in, out)
+}
+
+func (h *staticHandler) UploadAudio(ctx context.Context, in *UploadRequestMessage, out *UploadResponseMessage) error {
+	return h.StaticHandler.UploadAudio(ctx, in, out)
 }
 
 func (h *staticHandler) UploadVideo(ctx context.Context, in *UploadRequestMessage, out *UploadResponseMessage) error {

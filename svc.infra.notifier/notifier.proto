@@ -6,6 +6,34 @@ option go_package = "./svc.infra.notifier;notifier";
 import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
 
+///////////// service started /////////////////
+service Notifier {
+  rpc InitDB(google.protobuf.Empty) returns (InitDBResp); // 初始化数据库
+  // sms channel
+  rpc GetSmsChannelList(SmsChannelListRequest) returns (SmsChannelListResponse);
+  rpc CreatedSmsChannel(CreatedSmsChannelRequest) returns (CommonResponse);
+  rpc UpdatedSmsChannel(UpdatedSmsChannelRequest) returns (CommonResponse);
+  rpc DeletedSmsChannel (DeletedSmsChannelRequest) returns (CommonResponse);
+  // sms template
+  rpc GetSmsTemplateList(SmsTemplateListRequest) returns (SmsTemplateListResponse);
+  rpc CreatedSmsTemplate(CreatedSmsTemplateRequest) returns (CommonResponse);
+  rpc UpdatedSmsTemplate(UpdatedSmsTemplateRequest) returns (CommonResponse);
+  rpc DeletedSmsTemplate(DeletedSmsTemplateRequest) returns (CommonResponse);
+  // sms biz send
+  rpc GetSmsBizLogList(SmsBizSendLogListRequest) returns (SmsBizSendLogListResponse);
+  rpc CreatedSmsBizLog(CreatedSmsBizSendLogRequest) returns (CommonResponse);
+  // send sms operation
+  rpc CreatedSmsSend(CreatedSmsSendRequest) returns (CreatedSmsSendResponse);
+  rpc CreatedSmsVerify(CreatedSmsVerifyRequest) returns (CommonResponse);
+  rpc GetCloudSmsTemplate(GetCloudSmsTemplateRequest) returns (GetCloudSmsTemplateResponse);
+  rpc CreatedSmsCodeBind(CreatedSmsCodeBindRequest) returns (CommonResponse);
+  // 获取签名列表
+  rpc GetCloudSmsSign(GetCloudSmsSignRequest) returns (GetCloudSmsSignResponse);
+
+  // merchant created channel need init system template
+  rpc CreatedMerchantInitTemplate(CreatedMerchantInitTemplateRequest) returns (CommonResponse);
+}
+
 ///////////////// enum ////////////////
 
 // 系统预设模板类型
@@ -19,9 +47,8 @@ enum BizType {
   TYPE_RESET_PWD = 1; // 找回密码
   TYPE_RESET_MOBILE = 2; // 重置手机号
   TYPE_UNREGISTER = 3; // 注销
-
+  TYPE_FIND_PWD = 4; // 找回密码
 }
-
 
 message InitDBResp {
   bool result = 1;
@@ -37,6 +64,7 @@ message CommonResponse {
     string uuid = 3; // ID
     int64 lid = 4;
   }
+  bool success = 5; // success or not, for update or deleted
 }
 
 message SmsChannelListRequest {
@@ -45,6 +73,7 @@ message SmsChannelListRequest {
   string name = 3;
   google.protobuf.Timestamp start_time = 4;
   google.protobuf.Timestamp end_time = 5;
+  string merchant_id = 6;
 }
 
 message SmsChannel {
@@ -52,13 +81,14 @@ message SmsChannel {
   int64 scope = 2;
   string merchant_id = 3;
   string channel = 4;
-  string  access_id = 5;
-  string  access_key = 6;
+  string access_id = 5;
+  string access_key = 6;
   string endpoint = 7;
   int32 status = 8;
-  bool  is_platform = 9;
+  bool is_platform = 9;
   string creator = 10;
-  google.protobuf.Timestamp created_at = 11;
+  int64 id = 11;
+  google.protobuf.Timestamp created_at = 12;
 }
 
 message SmsChannelListResponse {
@@ -71,21 +101,21 @@ message CreatedSmsChannelRequest {
   int64 scope = 2;
   string merchant_id = 3;
   string channel = 4;
-  string  access_id = 5;
-  string  access_key = 6;
+  string access_id = 5;
+  string access_key = 6;
   string endpoint = 7;
   int32 status = 8;
-  bool  is_platform = 9;
+  bool is_platform = 9;
   string creator = 10;
 }
 
 message UpdatedSmsChannelRequest {
-  int64  id = 1;
+  int64 id = 1;
   string merchant_id = 2;
   string name = 3;
   int64 scope = 4;
-  string  access_id = 5;
-  string  access_key = 6;
+  string access_id = 5;
+  string access_key = 6;
   string endpoint = 7;
   int32 status = 8;
 }
@@ -295,31 +325,3 @@ message CreatedMerchantInitTemplateRequest {
   int64 channel_id = 2;
 }
 
-
-///////////// service started /////////////////
-service Notifier {
-  rpc InitDB(google.protobuf.Empty) returns (InitDBResp); // 初始化数据库
-  // sms channel
-  rpc GetSmsChannelList(SmsChannelListRequest) returns (SmsChannelListResponse);
-  rpc CreatedSmsChannel(CreatedSmsChannelRequest) returns (CommonResponse);
-  rpc UpdatedSmsChannel(UpdatedSmsChannelRequest) returns (CommonResponse);
-  rpc DeletedSmsChannel (DeletedSmsChannelRequest) returns (CommonResponse);
-  // sms template
-  rpc GetSmsTemplateList(SmsTemplateListRequest) returns (SmsTemplateListResponse);
-  rpc CreatedSmsTemplate(CreatedSmsTemplateRequest) returns (CommonResponse);
-  rpc UpdatedSmsTemplate(UpdatedSmsTemplateRequest) returns (CommonResponse);
-  rpc DeletedSmsTemplate(DeletedSmsTemplateRequest) returns (CommonResponse);
-  // sms biz send
-  rpc GetSmsBizLogList(SmsBizSendLogListRequest) returns (SmsBizSendLogListResponse);
-  rpc CreatedSmsBizLog(CreatedSmsBizSendLogRequest) returns (CommonResponse);
-  // send sms operation
-  rpc CreatedSmsSend(CreatedSmsSendRequest) returns (CreatedSmsSendResponse);
-  rpc CreatedSmsVerify(CreatedSmsVerifyRequest) returns (CommonResponse);
-  rpc GetCloudSmsTemplate(GetCloudSmsTemplateRequest) returns (GetCloudSmsTemplateResponse);
-  rpc CreatedSmsCodeBind(CreatedSmsCodeBindRequest) returns (CommonResponse);
-  // 获取签名列表
-  rpc GetCloudSmsSign(GetCloudSmsSignRequest) returns (GetCloudSmsSignResponse);
-
-  // merchant created channel need init system template
-  rpc CreatedMerchantInitTemplate(CreatedMerchantInitTemplateRequest) returns (CommonResponse);
-}

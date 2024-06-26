@@ -20,6 +20,14 @@
     - [DeleteUnionResp](#svc-biz-account-DeleteUnionResp)
     - [DeleteViewerReq](#svc-biz-account-DeleteViewerReq)
     - [DeleteViewerResp](#svc-biz-account-DeleteViewerResp)
+    - [FilterManagersReq](#svc-biz-account-FilterManagersReq)
+    - [FilterManagersResp](#svc-biz-account-FilterManagersResp)
+    - [FilterStreamersReq](#svc-biz-account-FilterStreamersReq)
+    - [FilterStreamersResp](#svc-biz-account-FilterStreamersResp)
+    - [FilterUnionsReq](#svc-biz-account-FilterUnionsReq)
+    - [FilterUnionsResp](#svc-biz-account-FilterUnionsResp)
+    - [FilterViewersReq](#svc-biz-account-FilterViewersReq)
+    - [FilterViewersResp](#svc-biz-account-FilterViewersResp)
     - [GetManagerReq](#svc-biz-account-GetManagerReq)
     - [GetManagerResp](#svc-biz-account-GetManagerResp)
     - [GetStreamerReq](#svc-biz-account-GetStreamerReq)
@@ -38,8 +46,49 @@
     - [ListViewersReq](#svc-biz-account-ListViewersReq)
     - [ListViewersResp](#svc-biz-account-ListViewersResp)
     - [Manager](#svc-biz-account-Manager)
+    - [Manager.AdditionsEntry](#svc-biz-account-Manager-AdditionsEntry)
+    - [ManagerAdditionsDumpReq](#svc-biz-account-ManagerAdditionsDumpReq)
+    - [ManagerAdditionsDumpResp](#svc-biz-account-ManagerAdditionsDumpResp)
+    - [ManagerAdditionsDumpResp.AllEntry](#svc-biz-account-ManagerAdditionsDumpResp-AllEntry)
+    - [ManagerAdditionsFilterReq](#svc-biz-account-ManagerAdditionsFilterReq)
+    - [ManagerAdditionsFilterResp](#svc-biz-account-ManagerAdditionsFilterResp)
+    - [ManagerAdditionsFilterResp.AdditionsEntry](#svc-biz-account-ManagerAdditionsFilterResp-AdditionsEntry)
+    - [ManagerAdditionsGetReq](#svc-biz-account-ManagerAdditionsGetReq)
+    - [ManagerAdditionsGetResp](#svc-biz-account-ManagerAdditionsGetResp)
+    - [ManagerAdditionsSetReq](#svc-biz-account-ManagerAdditionsSetReq)
+    - [ManagerAdditionsSetResp](#svc-biz-account-ManagerAdditionsSetResp)
     - [Streamer](#svc-biz-account-Streamer)
+    - [Streamer.AdditionsEntry](#svc-biz-account-Streamer-AdditionsEntry)
+    - [StreamerAdditionsDumpReq](#svc-biz-account-StreamerAdditionsDumpReq)
+    - [StreamerAdditionsDumpResp](#svc-biz-account-StreamerAdditionsDumpResp)
+    - [StreamerAdditionsDumpResp.AllEntry](#svc-biz-account-StreamerAdditionsDumpResp-AllEntry)
+    - [StreamerAdditionsFilterReq](#svc-biz-account-StreamerAdditionsFilterReq)
+    - [StreamerAdditionsFilterResp](#svc-biz-account-StreamerAdditionsFilterResp)
+    - [StreamerAdditionsFilterResp.AdditionsEntry](#svc-biz-account-StreamerAdditionsFilterResp-AdditionsEntry)
+    - [StreamerAdditionsGetReq](#svc-biz-account-StreamerAdditionsGetReq)
+    - [StreamerAdditionsGetResp](#svc-biz-account-StreamerAdditionsGetResp)
+    - [StreamerAdditionsSetReq](#svc-biz-account-StreamerAdditionsSetReq)
+    - [StreamerAdditionsSetResp](#svc-biz-account-StreamerAdditionsSetResp)
+    - [TotalManagersReq](#svc-biz-account-TotalManagersReq)
+    - [TotalManagersResp](#svc-biz-account-TotalManagersResp)
+    - [TotalStreamersReq](#svc-biz-account-TotalStreamersReq)
+    - [TotalStreamersResp](#svc-biz-account-TotalStreamersResp)
+    - [TotalUnionsReq](#svc-biz-account-TotalUnionsReq)
+    - [TotalUnionsResp](#svc-biz-account-TotalUnionsResp)
+    - [TotalViewersReq](#svc-biz-account-TotalViewersReq)
+    - [TotalViewersResp](#svc-biz-account-TotalViewersResp)
     - [Union](#svc-biz-account-Union)
+    - [Union.AdditionsEntry](#svc-biz-account-Union-AdditionsEntry)
+    - [UnionAdditionsDumpReq](#svc-biz-account-UnionAdditionsDumpReq)
+    - [UnionAdditionsDumpResp](#svc-biz-account-UnionAdditionsDumpResp)
+    - [UnionAdditionsDumpResp.AllEntry](#svc-biz-account-UnionAdditionsDumpResp-AllEntry)
+    - [UnionAdditionsFilterReq](#svc-biz-account-UnionAdditionsFilterReq)
+    - [UnionAdditionsFilterResp](#svc-biz-account-UnionAdditionsFilterResp)
+    - [UnionAdditionsFilterResp.AdditionsEntry](#svc-biz-account-UnionAdditionsFilterResp-AdditionsEntry)
+    - [UnionAdditionsGetReq](#svc-biz-account-UnionAdditionsGetReq)
+    - [UnionAdditionsGetResp](#svc-biz-account-UnionAdditionsGetResp)
+    - [UnionAdditionsSetReq](#svc-biz-account-UnionAdditionsSetReq)
+    - [UnionAdditionsSetResp](#svc-biz-account-UnionAdditionsSetResp)
     - [UpdateManagerReq](#svc-biz-account-UpdateManagerReq)
     - [UpdateManagerResp](#svc-biz-account-UpdateManagerResp)
     - [UpdateStreamerReq](#svc-biz-account-UpdateStreamerReq)
@@ -49,6 +98,17 @@
     - [UpdateViewerReq](#svc-biz-account-UpdateViewerReq)
     - [UpdateViewerResp](#svc-biz-account-UpdateViewerResp)
     - [Viewer](#svc-biz-account-Viewer)
+    - [Viewer.AdditionsEntry](#svc-biz-account-Viewer-AdditionsEntry)
+    - [ViewerAdditionsDumpReq](#svc-biz-account-ViewerAdditionsDumpReq)
+    - [ViewerAdditionsDumpResp](#svc-biz-account-ViewerAdditionsDumpResp)
+    - [ViewerAdditionsDumpResp.AllEntry](#svc-biz-account-ViewerAdditionsDumpResp-AllEntry)
+    - [ViewerAdditionsFilterReq](#svc-biz-account-ViewerAdditionsFilterReq)
+    - [ViewerAdditionsFilterResp](#svc-biz-account-ViewerAdditionsFilterResp)
+    - [ViewerAdditionsFilterResp.AdditionsEntry](#svc-biz-account-ViewerAdditionsFilterResp-AdditionsEntry)
+    - [ViewerAdditionsGetReq](#svc-biz-account-ViewerAdditionsGetReq)
+    - [ViewerAdditionsGetResp](#svc-biz-account-ViewerAdditionsGetResp)
+    - [ViewerAdditionsSetReq](#svc-biz-account-ViewerAdditionsSetReq)
+    - [ViewerAdditionsSetResp](#svc-biz-account-ViewerAdditionsSetResp)
   
     - [Account](#svc-biz-account-Account)
   
@@ -231,10 +291,12 @@
     - [Stream](#svc-biz-room-Stream)
     - [StreamPull](#svc-biz-room-StreamPull)
     - [StreamPush](#svc-biz-room-StreamPush)
+    - [TrtcConf](#svc-biz-room-TrtcConf)
     - [UpdateRoomReq](#svc-biz-room-UpdateRoomReq)
   
     - [LiveDisplayType](#svc-biz-room-LiveDisplayType)
     - [LiveStatus](#svc-biz-room-LiveStatus)
+    - [ShowStatus](#svc-biz-room-ShowStatus)
     - [SortType](#svc-biz-room-SortType)
   
     - [Room](#svc-biz-room-Room)
@@ -367,6 +429,8 @@
     - [OnlineSessionListResponse](#svc-infra-link-OnlineSessionListResponse)
     - [RefreshStatRequest](#svc-infra-link-RefreshStatRequest)
     - [RefreshStatResponse](#svc-infra-link-RefreshStatResponse)
+    - [RoomLiveStatRequest](#svc-infra-link-RoomLiveStatRequest)
+    - [RoomLiveStatResponse](#svc-infra-link-RoomLiveStatResponse)
     - [online_detail](#svc-infra-link-online_detail)
     - [online_detail_list](#svc-infra-link-online_detail_list)
   
@@ -381,6 +445,18 @@
     - [StartTraceRequest.TracerType](#svc-infra-link-StartTraceRequest-TracerType)
   
     - [LinkTrace](#svc-infra-link-LinkTrace)
+  
+- [svc.infra.link/payload.proto](#svc-infra-link_payload-proto)
+    - [PayloadCharm](#svc-infra-link-PayloadCharm)
+    - [PayloadFans](#svc-infra-link-PayloadFans)
+    - [PayloadGuard](#svc-infra-link-PayloadGuard)
+    - [PayloadStreamerDm](#svc-infra-link-PayloadStreamerDm)
+    - [PayloadUserCommDm](#svc-infra-link-PayloadUserCommDm)
+    - [PayloadWrap](#svc-infra-link-PayloadWrap)
+  
+    - [CommandType](#svc-infra-link-CommandType)
+    - [PayloadType](#svc-infra-link-PayloadType)
+    - [PriorityType](#svc-infra-link-PriorityType)
   
 - [svc.infra.link/gateway.proto](#svc-infra-link_gateway-proto)
     - [GetGatewayRequest](#svc-infra-link-GetGatewayRequest)
@@ -503,6 +579,23 @@
     - [DeleteUnionReq](#svc-biz-org-DeleteUnionReq)
     - [DeleteUnionResp](#svc-biz-org-DeleteUnionResp)
     - [Department](#svc-biz-org-Department)
+    - [Department.AdditionsEntry](#svc-biz-org-Department-AdditionsEntry)
+    - [DepartmentAdditionsDumpReq](#svc-biz-org-DepartmentAdditionsDumpReq)
+    - [DepartmentAdditionsDumpResp](#svc-biz-org-DepartmentAdditionsDumpResp)
+    - [DepartmentAdditionsDumpResp.AllEntry](#svc-biz-org-DepartmentAdditionsDumpResp-AllEntry)
+    - [DepartmentAdditionsFilterReq](#svc-biz-org-DepartmentAdditionsFilterReq)
+    - [DepartmentAdditionsFilterResp](#svc-biz-org-DepartmentAdditionsFilterResp)
+    - [DepartmentAdditionsFilterResp.AdditionsEntry](#svc-biz-org-DepartmentAdditionsFilterResp-AdditionsEntry)
+    - [DepartmentAdditionsGetReq](#svc-biz-org-DepartmentAdditionsGetReq)
+    - [DepartmentAdditionsGetResp](#svc-biz-org-DepartmentAdditionsGetResp)
+    - [DepartmentAdditionsSetReq](#svc-biz-org-DepartmentAdditionsSetReq)
+    - [DepartmentAdditionsSetResp](#svc-biz-org-DepartmentAdditionsSetResp)
+    - [FilterDepartmentsReq](#svc-biz-org-FilterDepartmentsReq)
+    - [FilterDepartmentsResp](#svc-biz-org-FilterDepartmentsResp)
+    - [FilterMerchantsReq](#svc-biz-org-FilterMerchantsReq)
+    - [FilterMerchantsResp](#svc-biz-org-FilterMerchantsResp)
+    - [FilterUnionsReq](#svc-biz-org-FilterUnionsReq)
+    - [FilterUnionsResp](#svc-biz-org-FilterUnionsResp)
     - [GetDepartmentReq](#svc-biz-org-GetDepartmentReq)
     - [GetDepartmentResp](#svc-biz-org-GetDepartmentResp)
     - [GetMerchantReq](#svc-biz-org-GetMerchantReq)
@@ -517,7 +610,35 @@
     - [ListUnionsReq](#svc-biz-org-ListUnionsReq)
     - [ListUnionsResp](#svc-biz-org-ListUnionsResp)
     - [Merchant](#svc-biz-org-Merchant)
+    - [Merchant.AdditionsEntry](#svc-biz-org-Merchant-AdditionsEntry)
+    - [MerchantAdditionsDumpReq](#svc-biz-org-MerchantAdditionsDumpReq)
+    - [MerchantAdditionsDumpResp](#svc-biz-org-MerchantAdditionsDumpResp)
+    - [MerchantAdditionsDumpResp.AllEntry](#svc-biz-org-MerchantAdditionsDumpResp-AllEntry)
+    - [MerchantAdditionsFilterReq](#svc-biz-org-MerchantAdditionsFilterReq)
+    - [MerchantAdditionsFilterResp](#svc-biz-org-MerchantAdditionsFilterResp)
+    - [MerchantAdditionsFilterResp.AdditionsEntry](#svc-biz-org-MerchantAdditionsFilterResp-AdditionsEntry)
+    - [MerchantAdditionsGetReq](#svc-biz-org-MerchantAdditionsGetReq)
+    - [MerchantAdditionsGetResp](#svc-biz-org-MerchantAdditionsGetResp)
+    - [MerchantAdditionsSetReq](#svc-biz-org-MerchantAdditionsSetReq)
+    - [MerchantAdditionsSetResp](#svc-biz-org-MerchantAdditionsSetResp)
+    - [TotalDepartmentsReq](#svc-biz-org-TotalDepartmentsReq)
+    - [TotalDepartmentsResp](#svc-biz-org-TotalDepartmentsResp)
+    - [TotalMerchantsReq](#svc-biz-org-TotalMerchantsReq)
+    - [TotalMerchantsResp](#svc-biz-org-TotalMerchantsResp)
+    - [TotalUnionsReq](#svc-biz-org-TotalUnionsReq)
+    - [TotalUnionsResp](#svc-biz-org-TotalUnionsResp)
     - [Union](#svc-biz-org-Union)
+    - [Union.AdditionsEntry](#svc-biz-org-Union-AdditionsEntry)
+    - [UnionAdditionsDumpReq](#svc-biz-org-UnionAdditionsDumpReq)
+    - [UnionAdditionsDumpResp](#svc-biz-org-UnionAdditionsDumpResp)
+    - [UnionAdditionsDumpResp.AllEntry](#svc-biz-org-UnionAdditionsDumpResp-AllEntry)
+    - [UnionAdditionsFilterReq](#svc-biz-org-UnionAdditionsFilterReq)
+    - [UnionAdditionsFilterResp](#svc-biz-org-UnionAdditionsFilterResp)
+    - [UnionAdditionsFilterResp.AdditionsEntry](#svc-biz-org-UnionAdditionsFilterResp-AdditionsEntry)
+    - [UnionAdditionsGetReq](#svc-biz-org-UnionAdditionsGetReq)
+    - [UnionAdditionsGetResp](#svc-biz-org-UnionAdditionsGetResp)
+    - [UnionAdditionsSetReq](#svc-biz-org-UnionAdditionsSetReq)
+    - [UnionAdditionsSetResp](#svc-biz-org-UnionAdditionsSetResp)
     - [UpdateDepartmentReq](#svc-biz-org-UpdateDepartmentReq)
     - [UpdateDepartmentResp](#svc-biz-org-UpdateDepartmentResp)
     - [UpdateMerchantReq](#svc-biz-org-UpdateMerchantReq)
@@ -578,11 +699,13 @@
     - [Fanbase](#svc-biz-vip-Fanbase)
   
 - [svc.biz.vip/fanbase_member.proto](#svc-biz-vip_fanbase_member-proto)
+    - [CountFanbaseMemberByStreamerIDReq](#svc-biz-vip-CountFanbaseMemberByStreamerIDReq)
+    - [CountFanbaseMemberByStreamerIDResp](#svc-biz-vip-CountFanbaseMemberByStreamerIDResp)
     - [FanbaseMemberInfo](#svc-biz-vip-FanbaseMemberInfo)
     - [GetFanbaseMemberByStreamerIDReq](#svc-biz-vip-GetFanbaseMemberByStreamerIDReq)
     - [GetFanbaseMemberReq](#svc-biz-vip-GetFanbaseMemberReq)
     - [GetFanbaseMemberResp](#svc-biz-vip-GetFanbaseMemberResp)
-    - [GetFanbaseMembertByMemberIDResp](#svc-biz-vip-GetFanbaseMembertByMemberIDResp)
+    - [GetFanbaseMembertByMemberIDReq](#svc-biz-vip-GetFanbaseMembertByMemberIDReq)
     - [GetListResp](#svc-biz-vip-GetListResp)
     - [GetOnlineFanbaseMemberByStreamerIDReq](#svc-biz-vip-GetOnlineFanbaseMemberByStreamerIDReq)
     - [JoinFanbaseReq](#svc-biz-vip-JoinFanbaseReq)
@@ -886,6 +1009,130 @@
 
 
 
+<a name="svc-biz-account-FilterManagersReq"></a>
+
+### FilterManagersReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| ids | [string](#string) | repeated |  |
+| include_additions | [bool](#bool) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-FilterManagersResp"></a>
+
+### FilterManagersResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| managers | [Manager](#svc-biz-account-Manager) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-account-FilterStreamersReq"></a>
+
+### FilterStreamersReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| ids | [string](#string) | repeated |  |
+| include_additions | [bool](#bool) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-FilterStreamersResp"></a>
+
+### FilterStreamersResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamers | [Streamer](#svc-biz-account-Streamer) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-account-FilterUnionsReq"></a>
+
+### FilterUnionsReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| ids | [string](#string) | repeated |  |
+| include_additions | [bool](#bool) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-FilterUnionsResp"></a>
+
+### FilterUnionsResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| unions | [Union](#svc-biz-account-Union) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-account-FilterViewersReq"></a>
+
+### FilterViewersReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| ids | [string](#string) | repeated |  |
+| include_additions | [bool](#bool) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-FilterViewersResp"></a>
+
+### FilterViewersResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| viewers | [Viewer](#svc-biz-account-Viewer) | repeated |  |
+
+
+
+
+
+
 <a name="svc-biz-account-GetManagerReq"></a>
 
 ### GetManagerReq
@@ -895,6 +1142,7 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | condition | [Manager](#svc-biz-account-Manager) |  |  |
+| include_additions | [bool](#bool) |  |  |
 
 
 
@@ -925,6 +1173,7 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | condition | [Streamer](#svc-biz-account-Streamer) |  |  |
+| include_additions | [bool](#bool) |  |  |
 
 
 
@@ -955,6 +1204,7 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | condition | [Union](#svc-biz-account-Union) |  |  |
+| include_additions | [bool](#bool) |  |  |
 
 
 
@@ -985,6 +1235,7 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | condition | [Viewer](#svc-biz-account-Viewer) |  |  |
+| include_additions | [bool](#bool) |  |  |
 
 
 
@@ -1032,6 +1283,8 @@
 | condition | [Manager](#svc-biz-account-Manager) |  |  |
 | limit | [int32](#int32) |  |  |
 | offset | [int32](#int32) |  |  |
+| include_additions | [bool](#bool) |  |  |
+| exclude_platform | [bool](#bool) |  |  |
 
 
 
@@ -1047,6 +1300,7 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | managers | [Manager](#svc-biz-account-Manager) | repeated |  |
+| total | [int64](#int64) |  |  |
 
 
 
@@ -1064,6 +1318,8 @@
 | condition | [Streamer](#svc-biz-account-Streamer) |  |  |
 | limit | [int32](#int32) |  |  |
 | offset | [int32](#int32) |  |  |
+| include_additions | [bool](#bool) |  |  |
+| exclude_platform | [bool](#bool) |  |  |
 
 
 
@@ -1079,6 +1335,7 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | streamers | [Streamer](#svc-biz-account-Streamer) | repeated |  |
+| total | [int64](#int64) |  |  |
 
 
 
@@ -1096,6 +1353,8 @@
 | condition | [Union](#svc-biz-account-Union) |  |  |
 | limit | [int32](#int32) |  |  |
 | offset | [int32](#int32) |  |  |
+| include_additions | [bool](#bool) |  |  |
+| exclude_platform | [bool](#bool) |  |  |
 
 
 
@@ -1111,6 +1370,7 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | unions | [Union](#svc-biz-account-Union) | repeated |  |
+| total | [int64](#int64) |  |  |
 
 
 
@@ -1128,6 +1388,8 @@
 | condition | [Viewer](#svc-biz-account-Viewer) |  |  |
 | limit | [int32](#int32) |  |  |
 | offset | [int32](#int32) |  |  |
+| include_additions | [bool](#bool) |  |  |
+| exclude_platform | [bool](#bool) |  |  |
 
 
 
@@ -1143,6 +1405,7 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | viewers | [Viewer](#svc-biz-account-Viewer) | repeated |  |
+| total | [int64](#int64) |  |  |
 
 
 
@@ -1165,7 +1428,179 @@
 | salt | [string](#string) | optional | 加密混淆 |
 | merchant_id | [string](#string) |  | 商户ID |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
-| additions | [string](#string) |  | 扩展属性 |
+| additions | [Manager.AdditionsEntry](#svc-biz-account-Manager-AdditionsEntry) | repeated | 扩展属性 |
+
+
+
+
+
+
+<a name="svc-biz-account-Manager-AdditionsEntry"></a>
+
+### Manager.AdditionsEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-ManagerAdditionsDumpReq"></a>
+
+### ManagerAdditionsDumpReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-ManagerAdditionsDumpResp"></a>
+
+### ManagerAdditionsDumpResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| all | [ManagerAdditionsDumpResp.AllEntry](#svc-biz-account-ManagerAdditionsDumpResp-AllEntry) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-account-ManagerAdditionsDumpResp-AllEntry"></a>
+
+### ManagerAdditionsDumpResp.AllEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-ManagerAdditionsFilterReq"></a>
+
+### ManagerAdditionsFilterReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+| keys | [string](#string) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-account-ManagerAdditionsFilterResp"></a>
+
+### ManagerAdditionsFilterResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| additions | [ManagerAdditionsFilterResp.AdditionsEntry](#svc-biz-account-ManagerAdditionsFilterResp-AdditionsEntry) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-account-ManagerAdditionsFilterResp-AdditionsEntry"></a>
+
+### ManagerAdditionsFilterResp.AdditionsEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-ManagerAdditionsGetReq"></a>
+
+### ManagerAdditionsGetReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+| key | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-ManagerAdditionsGetResp"></a>
+
+### ManagerAdditionsGetResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| value | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-ManagerAdditionsSetReq"></a>
+
+### ManagerAdditionsSetReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+| key | [string](#string) |  |  |
+| value | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-ManagerAdditionsSetResp"></a>
+
+### ManagerAdditionsSetResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| result | [bool](#bool) |  |  |
 
 
 
@@ -1191,7 +1626,299 @@
 | salt | [string](#string) | optional | 加密混淆 |
 | merchant_id | [string](#string) |  | 商户ID |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
-| additions | [string](#string) |  | 扩展属性 |
+| additions | [Streamer.AdditionsEntry](#svc-biz-account-Streamer-AdditionsEntry) | repeated | 扩展属性 |
+
+
+
+
+
+
+<a name="svc-biz-account-Streamer-AdditionsEntry"></a>
+
+### Streamer.AdditionsEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-StreamerAdditionsDumpReq"></a>
+
+### StreamerAdditionsDumpReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-StreamerAdditionsDumpResp"></a>
+
+### StreamerAdditionsDumpResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| all | [StreamerAdditionsDumpResp.AllEntry](#svc-biz-account-StreamerAdditionsDumpResp-AllEntry) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-account-StreamerAdditionsDumpResp-AllEntry"></a>
+
+### StreamerAdditionsDumpResp.AllEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-StreamerAdditionsFilterReq"></a>
+
+### StreamerAdditionsFilterReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+| keys | [string](#string) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-account-StreamerAdditionsFilterResp"></a>
+
+### StreamerAdditionsFilterResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| additions | [StreamerAdditionsFilterResp.AdditionsEntry](#svc-biz-account-StreamerAdditionsFilterResp-AdditionsEntry) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-account-StreamerAdditionsFilterResp-AdditionsEntry"></a>
+
+### StreamerAdditionsFilterResp.AdditionsEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-StreamerAdditionsGetReq"></a>
+
+### StreamerAdditionsGetReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+| key | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-StreamerAdditionsGetResp"></a>
+
+### StreamerAdditionsGetResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| value | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-StreamerAdditionsSetReq"></a>
+
+### StreamerAdditionsSetReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+| key | [string](#string) |  |  |
+| value | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-StreamerAdditionsSetResp"></a>
+
+### StreamerAdditionsSetResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| result | [bool](#bool) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-TotalManagersReq"></a>
+
+### TotalManagersReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Manager](#svc-biz-account-Manager) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-TotalManagersResp"></a>
+
+### TotalManagersResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| total | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-TotalStreamersReq"></a>
+
+### TotalStreamersReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Streamer](#svc-biz-account-Streamer) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-TotalStreamersResp"></a>
+
+### TotalStreamersResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| total | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-TotalUnionsReq"></a>
+
+### TotalUnionsReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Union](#svc-biz-account-Union) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-TotalUnionsResp"></a>
+
+### TotalUnionsResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| total | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-TotalViewersReq"></a>
+
+### TotalViewersReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Viewer](#svc-biz-account-Viewer) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-TotalViewersResp"></a>
+
+### TotalViewersResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| total | [int64](#int64) |  |  |
 
 
 
@@ -1214,7 +1941,179 @@
 | salt | [string](#string) | optional | 加密混淆 |
 | merchant_id | [string](#string) |  | 商户ID |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
-| additions | [string](#string) |  | 扩展属性 |
+| additions | [Union.AdditionsEntry](#svc-biz-account-Union-AdditionsEntry) | repeated | 扩展属性 |
+
+
+
+
+
+
+<a name="svc-biz-account-Union-AdditionsEntry"></a>
+
+### Union.AdditionsEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-UnionAdditionsDumpReq"></a>
+
+### UnionAdditionsDumpReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-UnionAdditionsDumpResp"></a>
+
+### UnionAdditionsDumpResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| all | [UnionAdditionsDumpResp.AllEntry](#svc-biz-account-UnionAdditionsDumpResp-AllEntry) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-account-UnionAdditionsDumpResp-AllEntry"></a>
+
+### UnionAdditionsDumpResp.AllEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-UnionAdditionsFilterReq"></a>
+
+### UnionAdditionsFilterReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+| keys | [string](#string) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-account-UnionAdditionsFilterResp"></a>
+
+### UnionAdditionsFilterResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| additions | [UnionAdditionsFilterResp.AdditionsEntry](#svc-biz-account-UnionAdditionsFilterResp-AdditionsEntry) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-account-UnionAdditionsFilterResp-AdditionsEntry"></a>
+
+### UnionAdditionsFilterResp.AdditionsEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-UnionAdditionsGetReq"></a>
+
+### UnionAdditionsGetReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+| key | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-UnionAdditionsGetResp"></a>
+
+### UnionAdditionsGetResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| value | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-UnionAdditionsSetReq"></a>
+
+### UnionAdditionsSetReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+| key | [string](#string) |  |  |
+| value | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-UnionAdditionsSetResp"></a>
+
+### UnionAdditionsSetResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| result | [bool](#bool) |  |  |
 
 
 
@@ -1361,7 +2260,179 @@ Models
 | salt | [string](#string) | optional | 加密混淆 |
 | merchant_id | [string](#string) |  | 商户ID |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
-| additions | [string](#string) |  | 扩展属性 |
+| additions | [Viewer.AdditionsEntry](#svc-biz-account-Viewer-AdditionsEntry) | repeated | 扩展属性 |
+
+
+
+
+
+
+<a name="svc-biz-account-Viewer-AdditionsEntry"></a>
+
+### Viewer.AdditionsEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-ViewerAdditionsDumpReq"></a>
+
+### ViewerAdditionsDumpReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-ViewerAdditionsDumpResp"></a>
+
+### ViewerAdditionsDumpResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| all | [ViewerAdditionsDumpResp.AllEntry](#svc-biz-account-ViewerAdditionsDumpResp-AllEntry) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-account-ViewerAdditionsDumpResp-AllEntry"></a>
+
+### ViewerAdditionsDumpResp.AllEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-ViewerAdditionsFilterReq"></a>
+
+### ViewerAdditionsFilterReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+| keys | [string](#string) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-account-ViewerAdditionsFilterResp"></a>
+
+### ViewerAdditionsFilterResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| additions | [ViewerAdditionsFilterResp.AdditionsEntry](#svc-biz-account-ViewerAdditionsFilterResp-AdditionsEntry) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-account-ViewerAdditionsFilterResp-AdditionsEntry"></a>
+
+### ViewerAdditionsFilterResp.AdditionsEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-ViewerAdditionsGetReq"></a>
+
+### ViewerAdditionsGetReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+| key | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-ViewerAdditionsGetResp"></a>
+
+### ViewerAdditionsGetResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| value | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-ViewerAdditionsSetReq"></a>
+
+### ViewerAdditionsSetReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+| key | [string](#string) |  |  |
+| value | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-ViewerAdditionsSetResp"></a>
+
+### ViewerAdditionsSetResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| result | [bool](#bool) |  |  |
 
 
 
@@ -1384,24 +2455,48 @@ Models
 | InitDB | [.google.protobuf.Empty](#google-protobuf-Empty) | [InitDBResp](#svc-biz-account-InitDBResp) | 初始化数据库 |
 | GetViewer | [GetViewerReq](#svc-biz-account-GetViewerReq) | [GetViewerResp](#svc-biz-account-GetViewerResp) | 获取普通账号 |
 | ListViewers | [ListViewersReq](#svc-biz-account-ListViewersReq) | [ListViewersResp](#svc-biz-account-ListViewersResp) | 获取普通账号列表 |
+| FilterViewers | [FilterViewersReq](#svc-biz-account-FilterViewersReq) | [FilterViewersResp](#svc-biz-account-FilterViewersResp) | 通过ID列表获取普通账号列表 |
 | AddViewer | [AddViewerReq](#svc-biz-account-AddViewerReq) | [AddViewerResp](#svc-biz-account-AddViewerResp) | 添加普通账号 |
 | UpdateViewer | [UpdateViewerReq](#svc-biz-account-UpdateViewerReq) | [UpdateViewerResp](#svc-biz-account-UpdateViewerResp) | 更新普通账号 |
 | DeleteViewer | [DeleteViewerReq](#svc-biz-account-DeleteViewerReq) | [DeleteViewerResp](#svc-biz-account-DeleteViewerResp) | 删除普通账号 |
+| TotalViewers | [TotalViewersReq](#svc-biz-account-TotalViewersReq) | [TotalViewersResp](#svc-biz-account-TotalViewersResp) | 获取账号总数 |
+| ViewerAdditionsSet | [ViewerAdditionsSetReq](#svc-biz-account-ViewerAdditionsSetReq) | [ViewerAdditionsSetResp](#svc-biz-account-ViewerAdditionsSetResp) | 设置普通账号的扩展属性 |
+| ViewerAdditionsGet | [ViewerAdditionsGetReq](#svc-biz-account-ViewerAdditionsGetReq) | [ViewerAdditionsGetResp](#svc-biz-account-ViewerAdditionsGetResp) | 通过key获取普通账号的扩展属性 |
+| ViewerAdditionsDump | [ViewerAdditionsDumpReq](#svc-biz-account-ViewerAdditionsDumpReq) | [ViewerAdditionsDumpResp](#svc-biz-account-ViewerAdditionsDumpResp) | 获取普通账号的所有扩展属性 |
+| ViewerAdditionsFilter | [ViewerAdditionsFilterReq](#svc-biz-account-ViewerAdditionsFilterReq) | [ViewerAdditionsFilterResp](#svc-biz-account-ViewerAdditionsFilterResp) | 获取普通账号下多个key对应的扩展属性 |
 | GetStreamer | [GetStreamerReq](#svc-biz-account-GetStreamerReq) | [GetStreamerResp](#svc-biz-account-GetStreamerResp) | 获取主播账号 |
 | ListStreamers | [ListStreamersReq](#svc-biz-account-ListStreamersReq) | [ListStreamersResp](#svc-biz-account-ListStreamersResp) | 获取主播账号列表 |
+| FilterStreamers | [FilterStreamersReq](#svc-biz-account-FilterStreamersReq) | [FilterStreamersResp](#svc-biz-account-FilterStreamersResp) | 通过ID列表获取主播账号列表 |
 | AddStreamer | [AddStreamerReq](#svc-biz-account-AddStreamerReq) | [AddStreamerResp](#svc-biz-account-AddStreamerResp) | 添加普通账号 |
 | UpdateStreamer | [UpdateStreamerReq](#svc-biz-account-UpdateStreamerReq) | [UpdateStreamerResp](#svc-biz-account-UpdateStreamerResp) | 更新主播账号 |
 | DeleteStreamer | [DeleteStreamerReq](#svc-biz-account-DeleteStreamerReq) | [DeleteStreamerResp](#svc-biz-account-DeleteStreamerResp) | 删除主播账号 |
+| TotalStreamers | [TotalStreamersReq](#svc-biz-account-TotalStreamersReq) | [TotalStreamersResp](#svc-biz-account-TotalStreamersResp) | 获取主播总数 |
+| StreamerAdditionsSet | [StreamerAdditionsSetReq](#svc-biz-account-StreamerAdditionsSetReq) | [StreamerAdditionsSetResp](#svc-biz-account-StreamerAdditionsSetResp) | 设置主播的扩展属性 |
+| StreamerAdditionsGet | [StreamerAdditionsGetReq](#svc-biz-account-StreamerAdditionsGetReq) | [StreamerAdditionsGetResp](#svc-biz-account-StreamerAdditionsGetResp) | 通过key获取主播的扩展属性 |
+| StreamerAdditionsDump | [StreamerAdditionsDumpReq](#svc-biz-account-StreamerAdditionsDumpReq) | [StreamerAdditionsDumpResp](#svc-biz-account-StreamerAdditionsDumpResp) | 获取主播的所有扩展属性 |
+| StreamerAdditionsFilter | [StreamerAdditionsFilterReq](#svc-biz-account-StreamerAdditionsFilterReq) | [StreamerAdditionsFilterResp](#svc-biz-account-StreamerAdditionsFilterResp) | 获取主播下多个key对应的扩展属性 |
 | GetManager | [GetManagerReq](#svc-biz-account-GetManagerReq) | [GetManagerResp](#svc-biz-account-GetManagerResp) | 获取管理账号 |
 | ListManagers | [ListManagersReq](#svc-biz-account-ListManagersReq) | [ListManagersResp](#svc-biz-account-ListManagersResp) | 获取管理账号列表 |
+| FilterManagers | [FilterManagersReq](#svc-biz-account-FilterManagersReq) | [FilterManagersResp](#svc-biz-account-FilterManagersResp) | 通过ID列表获取管理账号列表 |
 | AddManager | [AddManagerReq](#svc-biz-account-AddManagerReq) | [AddManagerResp](#svc-biz-account-AddManagerResp) | 添加管理账号 |
 | UpdateManager | [UpdateManagerReq](#svc-biz-account-UpdateManagerReq) | [UpdateManagerResp](#svc-biz-account-UpdateManagerResp) | 更新管理账号 |
 | DeleteManager | [DeleteManagerReq](#svc-biz-account-DeleteManagerReq) | [DeleteManagerResp](#svc-biz-account-DeleteManagerResp) | 删除管理账号 |
+| TotalManagers | [TotalManagersReq](#svc-biz-account-TotalManagersReq) | [TotalManagersResp](#svc-biz-account-TotalManagersResp) | 获取管理总数 |
+| ManagerAdditionsSet | [ManagerAdditionsSetReq](#svc-biz-account-ManagerAdditionsSetReq) | [ManagerAdditionsSetResp](#svc-biz-account-ManagerAdditionsSetResp) | 设置管理的扩展属性 |
+| ManagerAdditionsGet | [ManagerAdditionsGetReq](#svc-biz-account-ManagerAdditionsGetReq) | [ManagerAdditionsGetResp](#svc-biz-account-ManagerAdditionsGetResp) | 通过key获取管理的扩展属性 |
+| ManagerAdditionsDump | [ManagerAdditionsDumpReq](#svc-biz-account-ManagerAdditionsDumpReq) | [ManagerAdditionsDumpResp](#svc-biz-account-ManagerAdditionsDumpResp) | 获取管理的所有扩展属性 |
+| ManagerAdditionsFilter | [ManagerAdditionsFilterReq](#svc-biz-account-ManagerAdditionsFilterReq) | [ManagerAdditionsFilterResp](#svc-biz-account-ManagerAdditionsFilterResp) | 获取管理下多个key对应的扩展属性 |
 | GetUnion | [GetUnionReq](#svc-biz-account-GetUnionReq) | [GetUnionResp](#svc-biz-account-GetUnionResp) | 获取工会账号 |
 | ListUnions | [ListUnionsReq](#svc-biz-account-ListUnionsReq) | [ListUnionsResp](#svc-biz-account-ListUnionsResp) | 获取工会账号列表 |
+| FilterUnions | [FilterUnionsReq](#svc-biz-account-FilterUnionsReq) | [FilterUnionsResp](#svc-biz-account-FilterUnionsResp) | 通过ID列表获取工会账号列表 |
 | AddUnion | [AddUnionReq](#svc-biz-account-AddUnionReq) | [AddUnionResp](#svc-biz-account-AddUnionResp) | 添加工会账号 |
 | UpdateUnion | [UpdateUnionReq](#svc-biz-account-UpdateUnionReq) | [UpdateUnionResp](#svc-biz-account-UpdateUnionResp) | 更新工会账号 |
 | DeleteUnion | [DeleteUnionReq](#svc-biz-account-DeleteUnionReq) | [DeleteUnionResp](#svc-biz-account-DeleteUnionResp) | 删除工会账号 |
+| TotalUnions | [TotalUnionsReq](#svc-biz-account-TotalUnionsReq) | [TotalUnionsResp](#svc-biz-account-TotalUnionsResp) | 获取工会总数 |
+| UnionAdditionsSet | [UnionAdditionsSetReq](#svc-biz-account-UnionAdditionsSetReq) | [UnionAdditionsSetResp](#svc-biz-account-UnionAdditionsSetResp) | 设置工会的扩展属性 |
+| UnionAdditionsGet | [UnionAdditionsGetReq](#svc-biz-account-UnionAdditionsGetReq) | [UnionAdditionsGetResp](#svc-biz-account-UnionAdditionsGetResp) | 通过key获取工会的扩展属性 |
+| UnionAdditionsDump | [UnionAdditionsDumpReq](#svc-biz-account-UnionAdditionsDumpReq) | [UnionAdditionsDumpResp](#svc-biz-account-UnionAdditionsDumpResp) | 获取工会的所有扩展属性 |
+| UnionAdditionsFilter | [UnionAdditionsFilterReq](#svc-biz-account-UnionAdditionsFilterReq) | [UnionAdditionsFilterResp](#svc-biz-account-UnionAdditionsFilterResp) | 获取工会下多个key对应的扩展属性 |
 
  
 
@@ -2950,6 +4045,7 @@ UpdatedChannelTypeRequest 更新渠道
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | s3 | [S3](#svc-infra-static-S3) |  | s3配置 |
+| domains | [string](#string) | repeated | 静态域名 |
 | merchant_id | [string](#string) |  | 商户id |
 
 
@@ -3055,6 +4151,9 @@ UpdatedChannelTypeRequest 更新渠道
 | path | [string](#string) |  | 返回文件路径 ，如果是预写模式该值就是token 或者地址 |
 | domain | [string](#string) |  | 域 |
 | provider | [string](#string) |  | oss 提供商 |
+| certificate | [string](#string) |  | 预写凭证 |
+| bucket | [string](#string) |  |  |
+| region | [string](#string) |  |  |
 
 
 
@@ -3094,6 +4193,7 @@ UpdatedChannelTypeRequest 更新渠道
 | Configuration | [ConfigurationMessage](#svc-infra-static-ConfigurationMessage) | [ConfigurationResponseMessage](#svc-infra-static-ConfigurationResponseMessage) | 服务配置 |
 | UploadAvatar | [UploadRequestMessage](#svc-infra-static-UploadRequestMessage) | [UploadResponseMessage](#svc-infra-static-UploadResponseMessage) | 上传头像 |
 | UploadCover | [UploadRequestMessage](#svc-infra-static-UploadRequestMessage) | [UploadResponseMessage](#svc-infra-static-UploadResponseMessage) | 上传封面 |
+| UploadAudio | [UploadRequestMessage](#svc-infra-static-UploadRequestMessage) | [UploadResponseMessage](#svc-infra-static-UploadResponseMessage) | 上传音频 |
 | UploadVideo | [UploadRequestMessage](#svc-infra-static-UploadRequestMessage) | [UploadResponseMessage](#svc-infra-static-UploadResponseMessage) | 上传视频 |
 | UploadImage | [UploadRequestMessage](#svc-infra-static-UploadRequestMessage) | [UploadResponseMessage](#svc-infra-static-UploadResponseMessage) | 上传图片 |
 | UploadFile | [UploadRequestMessage](#svc-infra-static-UploadRequestMessage) | [UploadResponseMessage](#svc-infra-static-UploadResponseMessage) | 上传文件 |
@@ -3792,6 +4892,7 @@ CategoryInfo 分类详情
 | ----- | ---- | ----- | ----------- |
 | streamer_id | [string](#string) |  | 主播id |
 | with_stream | [bool](#bool) |  | 是否带流信息 |
+| user_id | [string](#string) |  | 如果需要带流信息，需要传递user_id |
 
 
 
@@ -3808,6 +4909,7 @@ CategoryInfo 分类详情
 | ----- | ---- | ----- | ----------- |
 | room | [RoomInfo](#svc-biz-room-RoomInfo) |  | 房间信息 |
 | stream | [Stream](#svc-biz-room-Stream) |  | 流信息 |
+| trtc_conf | [TrtcConf](#svc-biz-room-TrtcConf) |  | trtc信息 |
 
 
 
@@ -3856,6 +4958,7 @@ CategoryInfo 分类详情
 | ----- | ---- | ----- | ----------- |
 | room_id | [string](#string) |  | id |
 | with_stream | [bool](#bool) |  | 是否带流信息 |
+| user_id | [string](#string) |  | 如果需要带流信息，需要传递user_id |
 
 
 
@@ -3872,6 +4975,7 @@ CategoryInfo 分类详情
 | ----- | ---- | ----- | ----------- |
 | room | [RoomInfo](#svc-biz-room-RoomInfo) |  | 房间信息 |
 | stream | [Stream](#svc-biz-room-Stream) |  | 流信息 |
+| trtc_conf | [TrtcConf](#svc-biz-room-TrtcConf) |  | trtc信息 |
 
 
 
@@ -4013,7 +5117,7 @@ CategoryInfo 分类详情
 | video | [string](#string) |  | 视频 |
 | forbid_expire | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 封禁到期时间 |
 | forbid_reason | [string](#string) |  | 封禁原因 |
-| hidden | [bool](#bool) |  | 是否隐藏 |
+| show_status | [ShowStatus](#svc-biz-room-ShowStatus) |  | 展示状态 |
 | merchants | [string](#string) | repeated | 商户id |
 | bind_tags | [string](#string) | repeated | 标签 |
 | live_id | [string](#string) |  | 直播id（开播状态时才会有，关播时清空） |
@@ -4063,6 +5167,7 @@ CategoryInfo 分类详情
 | ----- | ---- | ----- | ----------- |
 | room | [RoomInfo](#svc-biz-room-RoomInfo) |  | 房间信息 |
 | stream | [Stream](#svc-biz-room-Stream) |  | 流信息 |
+| trtc_conf | [TrtcConf](#svc-biz-room-TrtcConf) |  | trtc信息 |
 
 
 
@@ -4088,6 +5193,11 @@ CategoryInfo 分类详情
 
 ### StopLiveResp
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| live | [LiveInfo](#svc-biz-room-LiveInfo) |  |  |
 
 
 
@@ -4146,6 +5256,25 @@ CategoryInfo 分类详情
 
 
 
+<a name="svc-biz-room-TrtcConf"></a>
+
+### TrtcConf
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| sdk_app_id | [string](#string) |  |  |
+| trtc_user_id | [string](#string) |  |  |
+| trtc_room_id | [string](#string) |  |  |
+| user_sig | [string](#string) |  |  |
+| private_map_key | [string](#string) |  |  |
+
+
+
+
+
+
 <a name="svc-biz-room-UpdateRoomReq"></a>
 
 ### UpdateRoomReq
@@ -4188,6 +5317,19 @@ CategoryInfo 分类详情
 | LiveStatusUnknown | 0 | 未知 |
 | LiveStatusOnline | 1 | 上线 |
 | LiveStatusOffline | 2 | 下线 |
+
+
+
+<a name="svc-biz-room-ShowStatus"></a>
+
+### ShowStatus
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| ShowStatusUnknown | 0 | 未知 |
+| ShowStatusHidden | 1 | 隐藏 |
+| ShowStatusShow | 2 | 展示 |
 
 
 
@@ -6047,6 +7189,7 @@ Room 房间
 | user_id | [string](#string) |  |  |
 | merchant_id | [string](#string) |  |  |
 | online_count | [int64](#int64) |  | 当前直播间的在人数数量 |
+| streamer_id | [string](#string) |  | 主播ID |
 | action | [UserEnterQuitAction](#svc-infra-link-UserEnterQuitAction) |  |  |
 
 
@@ -6342,6 +7485,40 @@ Room 房间
 
 
 
+<a name="svc-infra-link-RoomLiveStatRequest"></a>
+
+### RoomLiveStatRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| room_id | [string](#string) |  | 房间ID, 目前只会保留前三次直播数据 |
+| live_id | [string](#string) | optional | 开播ID, 如果为空将以直播间最后一次直播的数据. |
+
+
+
+
+
+
+<a name="svc-infra-link-RoomLiveStatResponse"></a>
+
+### RoomLiveStatResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| uv | [int64](#int64) |  | 总人次 |
+| pv | [int64](#int64) |  | 累计观看数 |
+| high | [int64](#int64) |  | 高峰人数 |
+| real_count | [int64](#int64) |  | 实时人数 |
+
+
+
+
+
+
 <a name="svc-infra-link-online_detail"></a>
 
 ### online_detail
@@ -6394,6 +7571,7 @@ Service of stat
 | CheckSession | [CheckSessionRequest](#svc-infra-link-CheckSessionRequest) | [CheckSessionResponse](#svc-infra-link-CheckSessionResponse) | 检查连接是否在线 |
 | CheckAccount | [CheckAccountRequest](#svc-infra-link-CheckAccountRequest) | [CheckAccountResponse](#svc-infra-link-CheckAccountResponse) | 检查账号是否在线 |
 | CheckDevice | [CheckDeviceRequest](#svc-infra-link-CheckDeviceRequest) | [CheckDeviceResponse](#svc-infra-link-CheckDeviceResponse) | 检查设备是否在线 |
+| RoomLiveStat | [RoomLiveStatRequest](#svc-infra-link-RoomLiveStatRequest) | [RoomLiveStatResponse](#svc-infra-link-RoomLiveStatResponse) | 直播间统计数据 |
 | Refresh | [RefreshStatRequest](#svc-infra-link-RefreshStatRequest) | [RefreshStatResponse](#svc-infra-link-RefreshStatResponse) | 刷新统计 |
 
  
@@ -6498,6 +7676,156 @@ Service of stat
 | ----------- | ------------ | ------------- | ------------|
 | Start | [StartTraceRequest](#svc-infra-link-StartTraceRequest) | [StartTraceResponse](#svc-infra-link-StartTraceResponse) | 设置Trace |
 | Stop | [StopTraceRequest](#svc-infra-link-StopTraceRequest) | [StopTraceResponse](#svc-infra-link-StopTraceResponse) | 关闭Trace |
+
+ 
+
+
+
+<a name="svc-infra-link_payload-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.infra.link/payload.proto
+
+
+
+<a name="svc-infra-link-PayloadCharm"></a>
+
+### PayloadCharm
+魅力值
+
+
+
+
+
+
+<a name="svc-infra-link-PayloadFans"></a>
+
+### PayloadFans
+粉丝消息
+
+
+
+
+
+
+<a name="svc-infra-link-PayloadGuard"></a>
+
+### PayloadGuard
+守护消息
+
+
+
+
+
+
+<a name="svc-infra-link-PayloadStreamerDm"></a>
+
+### PayloadStreamerDm
+主播聊天弹幕消息
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| uid | [string](#string) |  | 用户UID |
+| nickname | [string](#string) |  | 昵称 |
+| text | [string](#string) |  | 聊天内容 |
+| avatar | [string](#string) |  | 头像地址 |
+
+
+
+
+
+
+<a name="svc-infra-link-PayloadUserCommDm"></a>
+
+### PayloadUserCommDm
+用户普通聊天消息
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| uid | [string](#string) |  | 用户UID |
+| nickname | [string](#string) |  | 昵称 |
+| text | [string](#string) |  | 聊天内容 |
+| avatar | [string](#string) |  | 头像地址 |
+| is_room_adm | [bool](#bool) |  | 房管 |
+| is_super_adm | [bool](#bool) |  | 是否超管 |
+| charm | [PayloadCharm](#svc-infra-link-PayloadCharm) |  | 魅力值 |
+| fans | [PayloadFans](#svc-infra-link-PayloadFans) |  | 粉丝信息 |
+| guard | [PayloadGuard](#svc-infra-link-PayloadGuard) |  | 守护信息 |
+
+
+
+
+
+
+<a name="svc-infra-link-PayloadWrap"></a>
+
+### PayloadWrap
+Payload容器
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| i | [int64](#int64) |  |  |
+| t | [int32](#int32) |  |  |
+| p | [int32](#int32) |  |  |
+| d | [string](#string) |  |  |
+
+
+
+
+
+ 
+
+
+<a name="svc-infra-link-CommandType"></a>
+
+### CommandType
+消息命令类型
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| UnKnow | 0 | 未知 |
+| CommandMsgDownward | 10 | 通用下行消息 |
+
+
+
+<a name="svc-infra-link-PayloadType"></a>
+
+### PayloadType
+业务消息类型
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| StreamerDm | 0 | 主播弹幕 |
+| UserCommDm | 1 | 普通弹幕 |
+| UserVipDm | 2 | 付费弹幕 |
+| UserGift | 3 | 用户送礼 |
+| UserOpenFans | 4 | 开通粉丝团 |
+| UserOpenGz | 5 | 开通贵族 |
+| UserKickRoom | 6 | 提出房间 |
+| StreamerOnline | 7 | 主播开播 |
+| StreamerOffline | 8 | 主播下播 |
+
+
+
+<a name="svc-infra-link-PriorityType"></a>
+
+### PriorityType
+PriorityType 消息权重
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| Low | 0 | 低 |
+| Middle | 5 | 中 |
+| High | 10 | 高 |
+| Ultra | 100 | 超高 |
+
+
+ 
+
+ 
 
  
 
@@ -7022,6 +8350,8 @@ Service of instruction
 | ----- | ---- | ----- | ----------- |
 | relation_type | [RelationType](#svc-biz-relation-RelationType) |  |  |
 | member_id | [string](#string) |  |  |
+| build_start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+| build_end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
 
 
 
@@ -8777,7 +10107,272 @@ Models
 | name | [string](#string) |  | 名字 |
 | merchant_id | [string](#string) |  | 商户ID |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
-| additions | [string](#string) |  | 扩展属性 |
+| additions | [Department.AdditionsEntry](#svc-biz-org-Department-AdditionsEntry) | repeated | 扩展属性 |
+
+
+
+
+
+
+<a name="svc-biz-org-Department-AdditionsEntry"></a>
+
+### Department.AdditionsEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-DepartmentAdditionsDumpReq"></a>
+
+### DepartmentAdditionsDumpReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-DepartmentAdditionsDumpResp"></a>
+
+### DepartmentAdditionsDumpResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| all | [DepartmentAdditionsDumpResp.AllEntry](#svc-biz-org-DepartmentAdditionsDumpResp-AllEntry) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-org-DepartmentAdditionsDumpResp-AllEntry"></a>
+
+### DepartmentAdditionsDumpResp.AllEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-DepartmentAdditionsFilterReq"></a>
+
+### DepartmentAdditionsFilterReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+| keys | [string](#string) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-org-DepartmentAdditionsFilterResp"></a>
+
+### DepartmentAdditionsFilterResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| additions | [DepartmentAdditionsFilterResp.AdditionsEntry](#svc-biz-org-DepartmentAdditionsFilterResp-AdditionsEntry) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-org-DepartmentAdditionsFilterResp-AdditionsEntry"></a>
+
+### DepartmentAdditionsFilterResp.AdditionsEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-DepartmentAdditionsGetReq"></a>
+
+### DepartmentAdditionsGetReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+| key | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-DepartmentAdditionsGetResp"></a>
+
+### DepartmentAdditionsGetResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| value | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-DepartmentAdditionsSetReq"></a>
+
+### DepartmentAdditionsSetReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+| key | [string](#string) |  |  |
+| value | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-DepartmentAdditionsSetResp"></a>
+
+### DepartmentAdditionsSetResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| result | [bool](#bool) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-FilterDepartmentsReq"></a>
+
+### FilterDepartmentsReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| ids | [string](#string) | repeated |  |
+| include_additions | [bool](#bool) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-FilterDepartmentsResp"></a>
+
+### FilterDepartmentsResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| departments | [Department](#svc-biz-org-Department) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-org-FilterMerchantsReq"></a>
+
+### FilterMerchantsReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| ids | [string](#string) | repeated |  |
+| include_additions | [bool](#bool) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-FilterMerchantsResp"></a>
+
+### FilterMerchantsResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| merchants | [Merchant](#svc-biz-org-Merchant) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-org-FilterUnionsReq"></a>
+
+### FilterUnionsReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| ids | [string](#string) | repeated |  |
+| include_additions | [bool](#bool) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-FilterUnionsResp"></a>
+
+### FilterUnionsResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| unions | [Union](#svc-biz-org-Union) | repeated |  |
 
 
 
@@ -8793,6 +10388,7 @@ Models
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | condition | [Department](#svc-biz-org-Department) |  |  |
+| include_additions | [bool](#bool) |  |  |
 
 
 
@@ -8823,6 +10419,7 @@ Models
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | condition | [Merchant](#svc-biz-org-Merchant) |  |  |
+| include_additions | [bool](#bool) |  |  |
 
 
 
@@ -8853,6 +10450,7 @@ Models
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | condition | [Union](#svc-biz-org-Union) |  |  |
+| include_additions | [bool](#bool) |  |  |
 
 
 
@@ -8900,6 +10498,7 @@ Models
 | condition | [Department](#svc-biz-org-Department) |  |  |
 | limit | [int32](#int32) |  |  |
 | offset | [int32](#int32) |  |  |
+| include_additions | [bool](#bool) |  |  |
 
 
 
@@ -8915,6 +10514,7 @@ Models
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | departments | [Department](#svc-biz-org-Department) | repeated |  |
+| total | [int64](#int64) |  |  |
 
 
 
@@ -8932,6 +10532,7 @@ Models
 | condition | [Merchant](#svc-biz-org-Merchant) |  |  |
 | limit | [int32](#int32) |  |  |
 | offset | [int32](#int32) |  |  |
+| include_additions | [bool](#bool) |  |  |
 
 
 
@@ -8947,6 +10548,7 @@ Models
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | merchants | [Merchant](#svc-biz-org-Merchant) | repeated |  |
+| total | [int64](#int64) |  |  |
 
 
 
@@ -8964,6 +10566,7 @@ Models
 | condition | [Union](#svc-biz-org-Union) |  |  |
 | limit | [int32](#int32) |  |  |
 | offset | [int32](#int32) |  |  |
+| include_additions | [bool](#bool) |  |  |
 
 
 
@@ -8979,6 +10582,7 @@ Models
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | unions | [Union](#svc-biz-org-Union) | repeated |  |
+| total | [int64](#int64) |  |  |
 
 
 
@@ -8996,7 +10600,269 @@ Models
 | id | [string](#string) |  | 内部ID |
 | name | [string](#string) |  | 名字 |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
-| additions | [string](#string) |  | 扩展属性 |
+| additions | [Merchant.AdditionsEntry](#svc-biz-org-Merchant-AdditionsEntry) | repeated | 扩展属性 |
+
+
+
+
+
+
+<a name="svc-biz-org-Merchant-AdditionsEntry"></a>
+
+### Merchant.AdditionsEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-MerchantAdditionsDumpReq"></a>
+
+### MerchantAdditionsDumpReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-MerchantAdditionsDumpResp"></a>
+
+### MerchantAdditionsDumpResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| all | [MerchantAdditionsDumpResp.AllEntry](#svc-biz-org-MerchantAdditionsDumpResp-AllEntry) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-org-MerchantAdditionsDumpResp-AllEntry"></a>
+
+### MerchantAdditionsDumpResp.AllEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-MerchantAdditionsFilterReq"></a>
+
+### MerchantAdditionsFilterReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+| keys | [string](#string) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-org-MerchantAdditionsFilterResp"></a>
+
+### MerchantAdditionsFilterResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| additions | [MerchantAdditionsFilterResp.AdditionsEntry](#svc-biz-org-MerchantAdditionsFilterResp-AdditionsEntry) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-org-MerchantAdditionsFilterResp-AdditionsEntry"></a>
+
+### MerchantAdditionsFilterResp.AdditionsEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-MerchantAdditionsGetReq"></a>
+
+### MerchantAdditionsGetReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+| key | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-MerchantAdditionsGetResp"></a>
+
+### MerchantAdditionsGetResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| value | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-MerchantAdditionsSetReq"></a>
+
+### MerchantAdditionsSetReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+| key | [string](#string) |  |  |
+| value | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-MerchantAdditionsSetResp"></a>
+
+### MerchantAdditionsSetResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| result | [bool](#bool) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-TotalDepartmentsReq"></a>
+
+### TotalDepartmentsReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Department](#svc-biz-org-Department) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-TotalDepartmentsResp"></a>
+
+### TotalDepartmentsResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| total | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-TotalMerchantsReq"></a>
+
+### TotalMerchantsReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Merchant](#svc-biz-org-Merchant) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-TotalMerchantsResp"></a>
+
+### TotalMerchantsResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| total | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-TotalUnionsReq"></a>
+
+### TotalUnionsReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Union](#svc-biz-org-Union) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-TotalUnionsResp"></a>
+
+### TotalUnionsResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| total | [int64](#int64) |  |  |
 
 
 
@@ -9015,7 +10881,179 @@ Models
 | name | [string](#string) |  | 名字 |
 | merchant_id | [string](#string) |  | 商户ID |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
-| additions | [string](#string) |  | 扩展属性 |
+| additions | [Union.AdditionsEntry](#svc-biz-org-Union-AdditionsEntry) | repeated | 扩展属性 |
+
+
+
+
+
+
+<a name="svc-biz-org-Union-AdditionsEntry"></a>
+
+### Union.AdditionsEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-UnionAdditionsDumpReq"></a>
+
+### UnionAdditionsDumpReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-UnionAdditionsDumpResp"></a>
+
+### UnionAdditionsDumpResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| all | [UnionAdditionsDumpResp.AllEntry](#svc-biz-org-UnionAdditionsDumpResp-AllEntry) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-org-UnionAdditionsDumpResp-AllEntry"></a>
+
+### UnionAdditionsDumpResp.AllEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-UnionAdditionsFilterReq"></a>
+
+### UnionAdditionsFilterReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+| keys | [string](#string) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-org-UnionAdditionsFilterResp"></a>
+
+### UnionAdditionsFilterResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| additions | [UnionAdditionsFilterResp.AdditionsEntry](#svc-biz-org-UnionAdditionsFilterResp-AdditionsEntry) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-org-UnionAdditionsFilterResp-AdditionsEntry"></a>
+
+### UnionAdditionsFilterResp.AdditionsEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-UnionAdditionsGetReq"></a>
+
+### UnionAdditionsGetReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+| key | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-UnionAdditionsGetResp"></a>
+
+### UnionAdditionsGetResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| value | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-UnionAdditionsSetReq"></a>
+
+### UnionAdditionsSetReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+| key | [string](#string) |  |  |
+| value | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-UnionAdditionsSetResp"></a>
+
+### UnionAdditionsSetResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| result | [bool](#bool) |  |  |
 
 
 
@@ -9128,19 +11166,37 @@ Models
 | InitDB | [.google.protobuf.Empty](#google-protobuf-Empty) | [InitDBResp](#svc-biz-org-InitDBResp) | 初始化数据库 |
 | GetDepartment | [GetDepartmentReq](#svc-biz-org-GetDepartmentReq) | [GetDepartmentResp](#svc-biz-org-GetDepartmentResp) | 获取部门 |
 | ListDepartments | [ListDepartmentsReq](#svc-biz-org-ListDepartmentsReq) | [ListDepartmentsResp](#svc-biz-org-ListDepartmentsResp) | 获取部门列表 |
+| FilterDepartments | [FilterDepartmentsReq](#svc-biz-org-FilterDepartmentsReq) | [FilterDepartmentsResp](#svc-biz-org-FilterDepartmentsResp) | 通过ID列表获取部门 |
 | AddDepartment | [AddDepartmentReq](#svc-biz-org-AddDepartmentReq) | [AddDepartmentResp](#svc-biz-org-AddDepartmentResp) | 添加部门 |
 | UpdateDepartment | [UpdateDepartmentReq](#svc-biz-org-UpdateDepartmentReq) | [UpdateDepartmentResp](#svc-biz-org-UpdateDepartmentResp) | 更新部门 |
 | DeleteDepartment | [DeleteDepartmentReq](#svc-biz-org-DeleteDepartmentReq) | [DeleteDepartmentResp](#svc-biz-org-DeleteDepartmentResp) | 删除部门 |
+| TotalDepartments | [TotalDepartmentsReq](#svc-biz-org-TotalDepartmentsReq) | [TotalDepartmentsResp](#svc-biz-org-TotalDepartmentsResp) | 获取波门总数 |
+| DepartmentAdditionsSet | [DepartmentAdditionsSetReq](#svc-biz-org-DepartmentAdditionsSetReq) | [DepartmentAdditionsSetResp](#svc-biz-org-DepartmentAdditionsSetResp) | 设置部门的扩展属性 |
+| DepartmentAdditionsGet | [DepartmentAdditionsGetReq](#svc-biz-org-DepartmentAdditionsGetReq) | [DepartmentAdditionsGetResp](#svc-biz-org-DepartmentAdditionsGetResp) | 通过key获取部门的扩展属性 |
+| DepartmentAdditionsDump | [DepartmentAdditionsDumpReq](#svc-biz-org-DepartmentAdditionsDumpReq) | [DepartmentAdditionsDumpResp](#svc-biz-org-DepartmentAdditionsDumpResp) | 获取部门的所有扩展属性 |
+| DepartmentAdditionsFilter | [DepartmentAdditionsFilterReq](#svc-biz-org-DepartmentAdditionsFilterReq) | [DepartmentAdditionsFilterResp](#svc-biz-org-DepartmentAdditionsFilterResp) | 获取部门下多个key对应的扩展属性 |
 | GetMerchant | [GetMerchantReq](#svc-biz-org-GetMerchantReq) | [GetMerchantResp](#svc-biz-org-GetMerchantResp) | 获取商户 |
 | ListMerchants | [ListMerchantsReq](#svc-biz-org-ListMerchantsReq) | [ListMerchantsResp](#svc-biz-org-ListMerchantsResp) | 获取商户列表 |
+| FilterMerchants | [FilterMerchantsReq](#svc-biz-org-FilterMerchantsReq) | [FilterMerchantsResp](#svc-biz-org-FilterMerchantsResp) | 通过ID列表获取商户 |
 | AddMerchant | [AddMerchantReq](#svc-biz-org-AddMerchantReq) | [AddMerchantResp](#svc-biz-org-AddMerchantResp) | 添加商户 |
 | UpdateMerchant | [UpdateMerchantReq](#svc-biz-org-UpdateMerchantReq) | [UpdateMerchantResp](#svc-biz-org-UpdateMerchantResp) | 更新商户 |
 | DeleteMerchant | [DeleteMerchantReq](#svc-biz-org-DeleteMerchantReq) | [DeleteMerchantResp](#svc-biz-org-DeleteMerchantResp) | 删除商户 |
+| TotalMerchants | [TotalMerchantsReq](#svc-biz-org-TotalMerchantsReq) | [TotalMerchantsResp](#svc-biz-org-TotalMerchantsResp) | 获取商户总数 |
+| MerchantAdditionsSet | [MerchantAdditionsSetReq](#svc-biz-org-MerchantAdditionsSetReq) | [MerchantAdditionsSetResp](#svc-biz-org-MerchantAdditionsSetResp) | 设置商户的扩展属性 |
+| MerchantAdditionsGet | [MerchantAdditionsGetReq](#svc-biz-org-MerchantAdditionsGetReq) | [MerchantAdditionsGetResp](#svc-biz-org-MerchantAdditionsGetResp) | 通过key获取商户的扩展属性 |
+| MerchantAdditionsDump | [MerchantAdditionsDumpReq](#svc-biz-org-MerchantAdditionsDumpReq) | [MerchantAdditionsDumpResp](#svc-biz-org-MerchantAdditionsDumpResp) | 获取商户的所有扩展属性 |
+| MerchantAdditionsFilter | [MerchantAdditionsFilterReq](#svc-biz-org-MerchantAdditionsFilterReq) | [MerchantAdditionsFilterResp](#svc-biz-org-MerchantAdditionsFilterResp) | 获取商户下多个key对应的扩展属性 |
 | GetUnion | [GetUnionReq](#svc-biz-org-GetUnionReq) | [GetUnionResp](#svc-biz-org-GetUnionResp) | 获取工会 |
 | ListUnions | [ListUnionsReq](#svc-biz-org-ListUnionsReq) | [ListUnionsResp](#svc-biz-org-ListUnionsResp) | 获取工会列表 |
+| FilterUnions | [FilterUnionsReq](#svc-biz-org-FilterUnionsReq) | [FilterUnionsResp](#svc-biz-org-FilterUnionsResp) | 通过ID列表获取工会 |
 | AddUnion | [AddUnionReq](#svc-biz-org-AddUnionReq) | [AddUnionResp](#svc-biz-org-AddUnionResp) | 添加工会 |
 | UpdateUnion | [UpdateUnionReq](#svc-biz-org-UpdateUnionReq) | [UpdateUnionResp](#svc-biz-org-UpdateUnionResp) | 更新工会 |
 | DeleteUnion | [DeleteUnionReq](#svc-biz-org-DeleteUnionReq) | [DeleteUnionResp](#svc-biz-org-DeleteUnionResp) | 删除工会 |
+| TotalUnions | [TotalUnionsReq](#svc-biz-org-TotalUnionsReq) | [TotalUnionsResp](#svc-biz-org-TotalUnionsResp) | 获取工会总数 |
+| UnionAdditionsSet | [UnionAdditionsSetReq](#svc-biz-org-UnionAdditionsSetReq) | [UnionAdditionsSetResp](#svc-biz-org-UnionAdditionsSetResp) | 设置工会的扩展性 |
+| UnionAdditionsGet | [UnionAdditionsGetReq](#svc-biz-org-UnionAdditionsGetReq) | [UnionAdditionsGetResp](#svc-biz-org-UnionAdditionsGetResp) | 通过key获取工会的扩展属性 |
+| UnionAdditionsDump | [UnionAdditionsDumpReq](#svc-biz-org-UnionAdditionsDumpReq) | [UnionAdditionsDumpResp](#svc-biz-org-UnionAdditionsDumpResp) | 获取工会的所有扩展属性 |
+| UnionAdditionsFilter | [UnionAdditionsFilterReq](#svc-biz-org-UnionAdditionsFilterReq) | [UnionAdditionsFilterResp](#svc-biz-org-UnionAdditionsFilterResp) | 获取工会下多个key对应的扩展属性 |
 
  
 
@@ -9165,6 +11221,7 @@ CommonResponse
 | message | [string](#string) |  | message |
 | uuid | [string](#string) |  | ID |
 | lid | [int64](#int64) |  |  |
+| success | [bool](#bool) |  | success or not, for update or deleted |
 
 
 
@@ -9585,6 +11642,7 @@ biz sms send /////////////
 | status | [int32](#int32) |  |  |
 | is_platform | [bool](#bool) |  |  |
 | creator | [string](#string) |  |  |
+| id | [int64](#int64) |  |  |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
 
 
@@ -9605,6 +11663,7 @@ biz sms send /////////////
 | name | [string](#string) |  |  |
 | start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
 | end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+| merchant_id | [string](#string) |  |  |
 
 
 
@@ -9767,6 +11826,7 @@ UpdatedSmsTemplateRequest 绑定操作
 | TYPE_RESET_PWD | 1 | 找回密码 |
 | TYPE_RESET_MOBILE | 2 | 重置手机号 |
 | TYPE_UNREGISTER | 3 | 注销 |
+| TYPE_FIND_PWD | 4 | 找回密码 |
 
 
 
@@ -9977,6 +12037,39 @@ service started /////////////////
 
 
 
+<a name="svc-biz-vip-CountFanbaseMemberByStreamerIDReq"></a>
+
+### CountFanbaseMemberByStreamerIDReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer_id | [string](#string) |  | 主播id |
+| level | [FanbaseLevel](#svc-biz-vip-FanbaseLevel) |  | 等级 |
+| start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开始时间 |
+| end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 结束时间 |
+
+
+
+
+
+
+<a name="svc-biz-vip-CountFanbaseMemberByStreamerIDResp"></a>
+
+### CountFanbaseMemberByStreamerIDResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| total | [int64](#int64) |  | 总数 |
+
+
+
+
+
+
 <a name="svc-biz-vip-FanbaseMemberInfo"></a>
 
 ### FanbaseMemberInfo
@@ -9990,7 +12083,6 @@ service started /////////////////
 | member_id | [string](#string) |  |  |
 | level | [FanbaseLevel](#svc-biz-vip-FanbaseLevel) |  |  |
 | join_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 加入时间 |
-| expire_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 过期时间 |
 | score | [int32](#int32) |  |  |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
 | updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 更新时间 |
@@ -10049,9 +12141,9 @@ service started /////////////////
 
 
 
-<a name="svc-biz-vip-GetFanbaseMembertByMemberIDResp"></a>
+<a name="svc-biz-vip-GetFanbaseMembertByMemberIDReq"></a>
 
-### GetFanbaseMembertByMemberIDResp
+### GetFanbaseMembertByMemberIDReq
 
 
 
@@ -10109,7 +12201,6 @@ service started /////////////////
 | streamer_id | [string](#string) |  |  |
 | member_id | [string](#string) |  |  |
 | level | [FanbaseLevel](#svc-biz-vip-FanbaseLevel) |  |  |
-| expire_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 过期时间 |
 
 
 
@@ -10162,9 +12253,10 @@ service started /////////////////
 | JoinFanbase | [JoinFanbaseReq](#svc-biz-vip-JoinFanbaseReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | JoinFanbase 加入粉丝团 |
 | LeaveFanbase | [LeaveFanbaseReq](#svc-biz-vip-LeaveFanbaseReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | LeaveFanbase 离开粉丝团 |
 | GetFanbaseMember | [GetFanbaseMemberReq](#svc-biz-vip-GetFanbaseMemberReq) | [GetFanbaseMemberResp](#svc-biz-vip-GetFanbaseMemberResp) | GetFanbaseMember 获取粉丝团成员信息 |
-| GetFanbaseMemberByStreamerID | [GetFanbaseMemberByStreamerIDReq](#svc-biz-vip-GetFanbaseMemberByStreamerIDReq) | [GetListResp](#svc-biz-vip-GetListResp) | GeFanbaseMemberByStreamerID 获取主播粉丝团成员列表 |
+| GetFanbaseMemberByStreamerID | [GetFanbaseMemberByStreamerIDReq](#svc-biz-vip-GetFanbaseMemberByStreamerIDReq) | [GetListResp](#svc-biz-vip-GetListResp) | GetFanbaseMemberByStreamerID 获取主播粉丝团成员列表 |
+| CountFanbaseMemberByStreamerID | [CountFanbaseMemberByStreamerIDReq](#svc-biz-vip-CountFanbaseMemberByStreamerIDReq) | [CountFanbaseMemberByStreamerIDResp](#svc-biz-vip-CountFanbaseMemberByStreamerIDResp) | CountFanbaseMemberByStreamerID 获取主播粉丝团成员总数 |
 | GetOnlineFanbaseMemberByStreamerID | [GetOnlineFanbaseMemberByStreamerIDReq](#svc-biz-vip-GetOnlineFanbaseMemberByStreamerIDReq) | [GetListResp](#svc-biz-vip-GetListResp) | GetOnlineFanbaseMemberByStreamerID 获取主播粉丝团在线成员列表 |
-| GetFanbaseMembertByMemberID | [GetFanbaseMembertByMemberIDResp](#svc-biz-vip-GetFanbaseMembertByMemberIDResp) | [GetListResp](#svc-biz-vip-GetListResp) | GetFanbaseMembertByMemberID 获取用户加入的粉丝团列表 |
+| GetFanbaseMembertByMemberID | [GetFanbaseMembertByMemberIDReq](#svc-biz-vip-GetFanbaseMembertByMemberIDReq) | [GetListResp](#svc-biz-vip-GetListResp) | GetFanbaseMembertByMemberID 获取用户加入的粉丝团列表 |
 
  
 
@@ -10222,6 +12314,7 @@ topic: topic.gift.send
 | live_id | [string](#string) |  | 直播ID |
 | combo | [int32](#int32) |  | 礼物combo |
 | group | [string](#string) |  | 礼物combogroup |
+| glamour_rate | [int32](#int32) |  | 魅力值比例 |
 | send_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 赠送时间 |
 
 
@@ -10350,6 +12443,7 @@ topic: topic.gift.send
 | streamer_id | [string](#string) |  | 主播uid |
 | room_id | [string](#string) |  | 房间id |
 | live_id | [string](#string) |  | 直播id |
+| glamour_rate | [int32](#int32) |  | 魅力值比例 |
 
 
 
@@ -10610,7 +12704,9 @@ topic: topic.gift.send
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| total_price | [int32](#int32) |  |  |
+| total_num | [int32](#int32) |  | 礼物总数 |
+| total_price | [int32](#int32) |  | 礼物代币总数 |
+| total_user | [int32](#int32) |  | 礼物用户总数 |
 
 
 
