@@ -545,6 +545,11 @@
   
     - [Trade](#svc-biz-trade-Trade)
   
+- [svc.infra.generator/generator.proto](#svc-infra-generator_generator-proto)
+    - [InitDBResp](#svc-infra-generator-InitDBResp)
+  
+    - [Generator](#svc-infra-generator-Generator)
+  
 - [svc.biz.org/org.proto](#svc-biz-org_org-proto)
     - [AddDepartmentReq](#svc-biz-org-AddDepartmentReq)
     - [AddDepartmentResp](#svc-biz-org-AddDepartmentResp)
@@ -9588,6 +9593,47 @@ Models
 | MoneyRecharge | [MoneyRechargeReq](#svc-biz-trade-MoneyRechargeReq) | [MoneyRechargeResp](#svc-biz-trade-MoneyRechargeResp) |  |
 | MoneyWithdraw | [MoneyWithdrawReq](#svc-biz-trade-MoneyWithdrawReq) | [MoneyWithdrawResp](#svc-biz-trade-MoneyWithdrawResp) |  |
 | MoneyExchangeCoin | [MoneyExchangeCoinReq](#svc-biz-trade-MoneyExchangeCoinReq) | [MoneyExchangeCoinResp](#svc-biz-trade-MoneyExchangeCoinResp) |  |
+
+ 
+
+
+
+<a name="svc-infra-generator_generator-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.infra.generator/generator.proto
+
+
+
+<a name="svc-infra-generator-InitDBResp"></a>
+
+### InitDBResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| result | [bool](#bool) |  |  |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="svc-infra-generator-Generator"></a>
+
+### Generator
+
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| InitDB | [.google.protobuf.Empty](#google-protobuf-Empty) | [InitDBResp](#svc-infra-generator-InitDBResp) | 初始化数据库 |
 
  
 
