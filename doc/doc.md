@@ -478,6 +478,8 @@
     - [ViewerAdditionsSetReq](#svc-biz-account-ViewerAdditionsSetReq)
     - [ViewerAdditionsSetResp](#svc-biz-account-ViewerAdditionsSetResp)
   
+    - [StatusMask](#svc-biz-account-StatusMask)
+  
     - [Account](#svc-biz-account-Account)
   
 - [svc.biz.relation/relation.proto](#svc-biz-relation_relation-proto)
@@ -630,6 +632,8 @@
     - [UpdateMerchantResp](#svc-biz-org-UpdateMerchantResp)
     - [UpdateUnionReq](#svc-biz-org-UpdateUnionReq)
     - [UpdateUnionResp](#svc-biz-org-UpdateUnionResp)
+  
+    - [StatusMask](#svc-biz-org-StatusMask)
   
     - [Org](#svc-biz-org-Org)
   
@@ -7529,8 +7533,10 @@ topic: topic.gift.send
 | email | [string](#string) |  | 邮箱 |
 | password | [string](#string) | optional | 密码 |
 | salt | [string](#string) | optional | 加密混淆 |
+| status | [int64](#int64) |  | 状态 |
 | merchant_id | [string](#string) |  | 商户ID |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+| updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 更新时间 |
 | additions | [Manager.AdditionsEntry](#svc-biz-account-Manager-AdditionsEntry) | repeated | 扩展属性 |
 
 
@@ -7727,8 +7733,10 @@ topic: topic.gift.send
 | email | [string](#string) |  | 邮箱 |
 | password | [string](#string) | optional | 密码 |
 | salt | [string](#string) | optional | 加密混淆 |
+| status | [int64](#int64) |  | 状态 |
 | merchant_id | [string](#string) |  | 商户ID |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+| updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 更新时间 |
 | additions | [Streamer.AdditionsEntry](#svc-biz-account-Streamer-AdditionsEntry) | repeated | 扩展属性 |
 
 
@@ -8042,8 +8050,10 @@ topic: topic.gift.send
 | email | [string](#string) |  | 邮箱 |
 | password | [string](#string) | optional | 密码 |
 | salt | [string](#string) | optional | 加密混淆 |
+| status | [int64](#int64) |  | 状态 |
 | merchant_id | [string](#string) |  | 商户ID |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+| updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 更新时间 |
 | additions | [Union.AdditionsEntry](#svc-biz-account-Union-AdditionsEntry) | repeated | 扩展属性 |
 
 
@@ -8361,8 +8371,10 @@ Models
 | device_ident | [string](#string) |  | 设备号 / 指纹 |
 | password | [string](#string) | optional | 密码 |
 | salt | [string](#string) | optional | 加密混淆 |
+| status | [int64](#int64) |  | 状态 |
 | merchant_id | [string](#string) |  | 商户ID |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+| updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 更新时间 |
 | additions | [Viewer.AdditionsEntry](#svc-biz-account-Viewer-AdditionsEntry) | repeated | 扩展属性 |
 
 
@@ -8542,6 +8554,18 @@ Models
 
 
  
+
+
+<a name="svc-biz-account-StatusMask"></a>
+
+### StatusMask
+Masks
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| DISABLED | 0 |  |
+| MUTED | 1 |  |
+
 
  
 
@@ -9839,8 +9863,10 @@ Models
 | ----- | ---- | ----- | ----------- |
 | id | [string](#string) |  | 内部ID |
 | name | [string](#string) |  | 名字 |
+| status | [int64](#int64) |  | 状态 |
 | merchant_id | [string](#string) |  | 商户ID |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+| updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 更新时间 |
 | additions | [Department.AdditionsEntry](#svc-biz-org-Department-AdditionsEntry) | repeated | 扩展属性 |
 
 
@@ -10333,7 +10359,9 @@ Models
 | ----- | ---- | ----- | ----------- |
 | id | [string](#string) |  | 内部ID |
 | name | [string](#string) |  | 名字 |
+| status | [int64](#int64) |  | 状态 |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+| updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 更新时间 |
 | additions | [Merchant.AdditionsEntry](#svc-biz-org-Merchant-AdditionsEntry) | repeated | 扩展属性 |
 
 
@@ -10613,8 +10641,10 @@ Models
 | ----- | ---- | ----- | ----------- |
 | id | [string](#string) |  | 内部ID |
 | name | [string](#string) |  | 名字 |
+| status | [int64](#int64) |  | 状态 |
 | merchant_id | [string](#string) |  | 商户ID |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+| updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 更新时间 |
 | additions | [Union.AdditionsEntry](#svc-biz-org-Union-AdditionsEntry) | repeated | 扩展属性 |
 
 
@@ -10884,6 +10914,17 @@ Models
 
 
  
+
+
+<a name="svc-biz-org-StatusMask"></a>
+
+### StatusMask
+Masks
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| DISABLED | 0 |  |
+
 
  
 

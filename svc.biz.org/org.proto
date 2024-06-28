@@ -54,22 +54,33 @@ message InitDBResp {
 message Department {
     string id = 1; // 内部ID
     string name = 3; // 名字
+    int64 status = 23; // 状态
     string merchant_id = 254; // 商户ID
     google.protobuf.Timestamp created_at = 255; // 创建时间
-    map<string, string> additions = 256; // 扩展属性
+    google.protobuf.Timestamp updated_at = 256; // 更新时间
+    map<string, string> additions = 511; // 扩展属性
 };
 message Merchant {
     string id = 1; // 内部ID
     string name = 3; // 名字
+    int64 status = 23; // 状态
     google.protobuf.Timestamp created_at = 255; // 创建时间
-    map<string, string> additions = 256; // 扩展属性
+    google.protobuf.Timestamp updated_at = 256; // 更新时间
+    map<string, string> additions = 511; // 扩展属性
 };
 message Union {
     string id = 1; // 内部ID
     string name = 3; // 名字
+    int64 status = 23; // 状态
     string merchant_id = 254; // 商户ID
     google.protobuf.Timestamp created_at = 255; // 创建时间
-    map<string, string> additions = 256; // 扩展属性
+    google.protobuf.Timestamp updated_at = 256; // 更新时间
+    map<string, string> additions = 511; // 扩展属性
+};
+
+// Masks
+enum StatusMask {
+    DISABLED = 0;
 };
 
 // Parameters
