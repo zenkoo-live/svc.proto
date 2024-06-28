@@ -690,6 +690,13 @@
   
     - [NobleMember](#svc-biz-vip-NobleMember)
   
+- [svc.biz.vip/level.proto](#svc-biz-vip_level-proto)
+    - [GetMemberLevelReq](#svc-biz-vip-GetMemberLevelReq)
+    - [GetMemberLevelResp](#svc-biz-vip-GetMemberLevelResp)
+    - [LevelInfo](#svc-biz-vip-LevelInfo)
+  
+    - [Level](#svc-biz-vip-Level)
+  
 - [svc.biz.vip/fanbase.proto](#svc-biz-vip_fanbase-proto)
     - [CreateFanbaseReq](#svc-biz-vip-CreateFanbaseReq)
     - [CreateFanbaseResp](#svc-biz-vip-CreateFanbaseResp)
@@ -11954,6 +11961,79 @@ service started /////////////////
 | JoinNoble | [JoinNobleReq](#svc-biz-vip-JoinNobleReq) | [JoinNobleResp](#svc-biz-vip-JoinNobleResp) | JoinNoble 加入贵族 |
 | GetNobleMember | [GetNobleMemberReq](#svc-biz-vip-GetNobleMemberReq) | [GetNobleMemberResp](#svc-biz-vip-GetNobleMemberResp) | GetNobleMember 获取成员贵族信息 |
 | GetOnlineNobleMemberByStreamerID | [GetOnlineNobleMemberByStreamerIDReq](#svc-biz-vip-GetOnlineNobleMemberByStreamerIDReq) | [GetOnlineNobleMemberByStreamerIDResp](#svc-biz-vip-GetOnlineNobleMemberByStreamerIDResp) | GetOnlineNobleMemberByStreamerID 获取主播贵族在线成员列表 |
+
+ 
+
+
+
+<a name="svc-biz-vip_level-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.biz.vip/level.proto
+
+
+
+<a name="svc-biz-vip-GetMemberLevelReq"></a>
+
+### GetMemberLevelReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| member_id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-GetMemberLevelResp"></a>
+
+### GetMemberLevelResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| level_info | [LevelInfo](#svc-biz-vip-LevelInfo) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-LevelInfo"></a>
+
+### LevelInfo
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| member_id | [string](#string) |  |  |
+| level | [int32](#int32) |  |  |
+| exp | [int64](#int64) |  |  |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="svc-biz-vip-Level"></a>
+
+### Level
+等级
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| GetMemberLevel | [GetMemberLevelReq](#svc-biz-vip-GetMemberLevelReq) | [GetMemberLevelResp](#svc-biz-vip-GetMemberLevelResp) | GetMemberLevel 获取成员等级 |
 
  
 

@@ -74,6 +74,7 @@ message NobleRights {
     bool rights_rank_hide = 13; // 榜单隐身
     repeated NobleRightsDiscountGift rights_discount_gifts = 14; // 特价礼物
 }
+
 message NobleInfo {
     NobleLevel level = 1; // 等级
     string name = 2; // 名称
