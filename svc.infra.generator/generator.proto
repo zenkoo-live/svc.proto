@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package svc.infra.generator;
+option go_package="./svc.infra.generator;generator";
+
+import "google/protobuf/empty.proto";
+
+service Generator {
+    rpc InitDB(google.protobuf.Empty) returns (InitDBResp); // 初始化数据库
+}
+
+message InitDBResp {
+    bool result = 1;
+}
+
+// Models
+
+// Parameters
