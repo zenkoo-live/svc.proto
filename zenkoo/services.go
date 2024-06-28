@@ -79,4 +79,7 @@ var (
 	SvcWebViewerViewer         = svcWebViewer.NewViewerService(AppName+"::"+SvcWebViewer+runtime.AppendEnv(), clt)
 	SvcBizVipFanbase           = svcBizVip.NewFanbaseService(AppName+"::"+SvcBizVip+runtime.AppendEnv(), clt)
 	SvcBizVipFanbase_member    = svcBizVip.NewFanbaseMemberService(AppName+"::"+SvcBizVip+runtime.AppendEnv(), clt)
+	SvcBizVipLevel             = svcBizVip.NewLevelService(AppName+"::"+SvcBizVip+runtime.AppendEnv(), clt)
+	SvcBizVipNoble             = svcBizVip.NewNobleService(AppName+"::"+SvcBizVip+runtime.AppendEnv(), clt)
+	SvcBizVipNoble_member      = svcBizVip.NewNobleMemberService(AppName+"::"+SvcBizVip+runtime.AppendEnv(), clt)
 )

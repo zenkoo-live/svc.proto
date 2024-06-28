@@ -1,5 +1,0 @@
-syntax = "proto3";
-
-package svc.biz.vip;
-
-option go_package="./svc.biz.vip;vip";
