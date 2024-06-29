@@ -1,11 +1,14 @@
 syntax = "proto3";
 
 package svc.biz.vip;
+import "google/protobuf/empty.proto";
 
 option go_package="./svc.biz.vip;vip";
 
 // 等级
 service Level {
+	// ReLoadLevelConf 重载等级配置
+	rpc ReLoadLevelConf (google.protobuf.Empty) returns (google.protobuf.Empty) {}
     // GetMemberLevel 获取成员等级
     rpc GetMemberLevel (GetMemberLevelReq) returns (GetMemberLevelResp) {}
 }

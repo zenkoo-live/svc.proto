@@ -689,10 +689,13 @@
     - [Notifier](#svc-infra-notifier-Notifier)
   
 - [svc.biz.vip/noble_member.proto](#svc-biz-vip_noble_member-proto)
+    - [CountNobleMemberReq](#svc-biz-vip-CountNobleMemberReq)
+    - [CountNobleMemberResp](#svc-biz-vip-CountNobleMemberResp)
+    - [GetNobleMemberListReq](#svc-biz-vip-GetNobleMemberListReq)
+    - [GetNobleMemberListResp](#svc-biz-vip-GetNobleMemberListResp)
     - [GetNobleMemberReq](#svc-biz-vip-GetNobleMemberReq)
     - [GetNobleMemberResp](#svc-biz-vip-GetNobleMemberResp)
-    - [GetOnlineNobleMemberByStreamerIDReq](#svc-biz-vip-GetOnlineNobleMemberByStreamerIDReq)
-    - [GetOnlineNobleMemberByStreamerIDResp](#svc-biz-vip-GetOnlineNobleMemberByStreamerIDResp)
+    - [GetOnlineNobleMemberListByStreamerIDReq](#svc-biz-vip-GetOnlineNobleMemberListByStreamerIDReq)
     - [JoinNobleReq](#svc-biz-vip-JoinNobleReq)
     - [JoinNobleResp](#svc-biz-vip-JoinNobleResp)
     - [NobleMemberInfo](#svc-biz-vip-NobleMemberInfo)
@@ -11924,6 +11927,72 @@ service started /////////////////
 
 
 
+<a name="svc-biz-vip-CountNobleMemberReq"></a>
+
+### CountNobleMemberReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer_id | [string](#string) |  | 主播id |
+| join_time_start | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开通贵族的开始时间 |
+| join_time_end | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开通贵族的结束时间 |
+
+
+
+
+
+
+<a name="svc-biz-vip-CountNobleMemberResp"></a>
+
+### CountNobleMemberResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| count | [int64](#int64) |  | 总数 |
+
+
+
+
+
+
+<a name="svc-biz-vip-GetNobleMemberListReq"></a>
+
+### GetNobleMemberListReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| page | [int32](#int32) |  | 页数 |
+| limit | [int32](#int32) |  | 条数 |
+| streamer_id | [string](#string) |  | 主播id |
+| join_time_start | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开通贵族的开始时间 |
+| join_time_end | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开通贵族的结束时间 |
+
+
+
+
+
+
+<a name="svc-biz-vip-GetNobleMemberListResp"></a>
+
+### GetNobleMemberListResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [NobleMemberInfo](#svc-biz-vip-NobleMemberInfo) | repeated |  |
+
+
+
+
+
+
 <a name="svc-biz-vip-GetNobleMemberReq"></a>
 
 ### GetNobleMemberReq
@@ -11954,9 +12023,9 @@ service started /////////////////
 
 
 
-<a name="svc-biz-vip-GetOnlineNobleMemberByStreamerIDReq"></a>
+<a name="svc-biz-vip-GetOnlineNobleMemberListByStreamerIDReq"></a>
 
-### GetOnlineNobleMemberByStreamerIDReq
+### GetOnlineNobleMemberListByStreamerIDReq
 
 
 
@@ -11965,21 +12034,6 @@ service started /////////////////
 | page | [int32](#int32) |  | 页数 |
 | limit | [int32](#int32) |  | 条数 |
 | streamer_id | [string](#string) |  | 主播id |
-
-
-
-
-
-
-<a name="svc-biz-vip-GetOnlineNobleMemberByStreamerIDResp"></a>
-
-### GetOnlineNobleMemberByStreamerIDResp
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| items | [NobleMemberInfo](#svc-biz-vip-NobleMemberInfo) | repeated |  |
 
 
 
@@ -12047,7 +12101,9 @@ service started /////////////////
 | ----------- | ------------ | ------------- | ------------|
 | JoinNoble | [JoinNobleReq](#svc-biz-vip-JoinNobleReq) | [JoinNobleResp](#svc-biz-vip-JoinNobleResp) | JoinNoble 加入贵族 |
 | GetNobleMember | [GetNobleMemberReq](#svc-biz-vip-GetNobleMemberReq) | [GetNobleMemberResp](#svc-biz-vip-GetNobleMemberResp) | GetNobleMember 获取成员贵族信息 |
-| GetOnlineNobleMemberByStreamerID | [GetOnlineNobleMemberByStreamerIDReq](#svc-biz-vip-GetOnlineNobleMemberByStreamerIDReq) | [GetOnlineNobleMemberByStreamerIDResp](#svc-biz-vip-GetOnlineNobleMemberByStreamerIDResp) | GetOnlineNobleMemberByStreamerID 获取主播贵族在线成员列表 |
+| GetNobleMemberList | [GetNobleMemberListReq](#svc-biz-vip-GetNobleMemberListReq) | [GetNobleMemberListResp](#svc-biz-vip-GetNobleMemberListResp) | GetNobleMemberList 获取贵族成员列表（streamer_id传空字符串取所有） |
+| CountNobleMember | [CountNobleMemberReq](#svc-biz-vip-CountNobleMemberReq) | [CountNobleMemberResp](#svc-biz-vip-CountNobleMemberResp) | CountNobleMember 获取成员总数 |
+| GetOnlineNobleMemberListByStreamerID | [GetOnlineNobleMemberListByStreamerIDReq](#svc-biz-vip-GetOnlineNobleMemberListByStreamerIDReq) | [GetNobleMemberListResp](#svc-biz-vip-GetNobleMemberListResp) | GetOnlineNobleMemberListByStreamerID 获取主播贵族在线成员列表 |
 
  
 
@@ -12120,6 +12176,7 @@ service started /////////////////
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
+| ReLoadLevelConf | [.google.protobuf.Empty](#google-protobuf-Empty) | [.google.protobuf.Empty](#google-protobuf-Empty) | ReLoadLevelConf 重载等级配置 |
 | GetMemberLevel | [GetMemberLevelReq](#svc-biz-vip-GetMemberLevelReq) | [GetMemberLevelResp](#svc-biz-vip-GetMemberLevelResp) | GetMemberLevel 获取成员等级 |
 
  

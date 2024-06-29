@@ -19,9 +19,11 @@ import (
 const _ = grpc.SupportPackageIsVersion8
 
 const (
-	NobleMember_JoinNoble_FullMethodName                        = "/svc.biz.vip.NobleMember/JoinNoble"
-	NobleMember_GetNobleMember_FullMethodName                   = "/svc.biz.vip.NobleMember/GetNobleMember"
-	NobleMember_GetOnlineNobleMemberByStreamerID_FullMethodName = "/svc.biz.vip.NobleMember/GetOnlineNobleMemberByStreamerID"
+	NobleMember_JoinNoble_FullMethodName                            = "/svc.biz.vip.NobleMember/JoinNoble"
+	NobleMember_GetNobleMember_FullMethodName                       = "/svc.biz.vip.NobleMember/GetNobleMember"
+	NobleMember_GetNobleMemberList_FullMethodName                   = "/svc.biz.vip.NobleMember/GetNobleMemberList"
+	NobleMember_CountNobleMember_FullMethodName                     = "/svc.biz.vip.NobleMember/CountNobleMember"
+	NobleMember_GetOnlineNobleMemberListByStreamerID_FullMethodName = "/svc.biz.vip.NobleMember/GetOnlineNobleMemberListByStreamerID"
 )
 
 // NobleMemberClient is the client API for NobleMember service.
@@ -34,8 +36,12 @@ type NobleMemberClient interface {
 	JoinNoble(ctx context.Context, in *JoinNobleReq, opts ...grpc.CallOption) (*JoinNobleResp, error)
 	// GetNobleMember 获取成员贵族信息
 	GetNobleMember(ctx context.Context, in *GetNobleMemberReq, opts ...grpc.CallOption) (*GetNobleMemberResp, error)
-	// GetOnlineNobleMemberByStreamerID 获取主播贵族在线成员列表
-	GetOnlineNobleMemberByStreamerID(ctx context.Context, in *GetOnlineNobleMemberByStreamerIDReq, opts ...grpc.CallOption) (*GetOnlineNobleMemberByStreamerIDResp, error)
+	// GetNobleMemberList 获取贵族成员列表（streamer_id传空字符串取所有）
+	GetNobleMemberList(ctx context.Context, in *GetNobleMemberListReq, opts ...grpc.CallOption) (*GetNobleMemberListResp, error)
+	// CountNobleMember 获取成员总数
+	CountNobleMember(ctx context.Context, in *CountNobleMemberReq, opts ...grpc.CallOption) (*CountNobleMemberResp, error)
+	// GetOnlineNobleMemberListByStreamerID 获取主播贵族在线成员列表
+	GetOnlineNobleMemberListByStreamerID(ctx context.Context, in *GetOnlineNobleMemberListByStreamerIDReq, opts ...grpc.CallOption) (*GetNobleMemberListResp, error)
 }
 
 type nobleMemberClient struct {
@@ -66,10 +72,30 @@ func (c *nobleMemberClient) GetNobleMember(ctx context.Context, in *GetNobleMemb
 	return out, nil
 }
 
-func (c *nobleMemberClient) GetOnlineNobleMemberByStreamerID(ctx context.Context, in *GetOnlineNobleMemberByStreamerIDReq, opts ...grpc.CallOption) (*GetOnlineNobleMemberByStreamerIDResp, error) {
+func (c *nobleMemberClient) GetNobleMemberList(ctx context.Context, in *GetNobleMemberListReq, opts ...grpc.CallOption) (*GetNobleMemberListResp, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetOnlineNobleMemberByStreamerIDResp)
-	err := c.cc.Invoke(ctx, NobleMember_GetOnlineNobleMemberByStreamerID_FullMethodName, in, out, cOpts...)
+	out := new(GetNobleMemberListResp)
+	err := c.cc.Invoke(ctx, NobleMember_GetNobleMemberList_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *nobleMemberClient) CountNobleMember(ctx context.Context, in *CountNobleMemberReq, opts ...grpc.CallOption) (*CountNobleMemberResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CountNobleMemberResp)
+	err := c.cc.Invoke(ctx, NobleMember_CountNobleMember_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *nobleMemberClient) GetOnlineNobleMemberListByStreamerID(ctx context.Context, in *GetOnlineNobleMemberListByStreamerIDReq, opts ...grpc.CallOption) (*GetNobleMemberListResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetNobleMemberListResp)
+	err := c.cc.Invoke(ctx, NobleMember_GetOnlineNobleMemberListByStreamerID_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -86,8 +112,12 @@ type NobleMemberServer interface {
 	JoinNoble(context.Context, *JoinNobleReq) (*JoinNobleResp, error)
 	// GetNobleMember 获取成员贵族信息
 	GetNobleMember(context.Context, *GetNobleMemberReq) (*GetNobleMemberResp, error)
-	// GetOnlineNobleMemberByStreamerID 获取主播贵族在线成员列表
-	GetOnlineNobleMemberByStreamerID(context.Context, *GetOnlineNobleMemberByStreamerIDReq) (*GetOnlineNobleMemberByStreamerIDResp, error)
+	// GetNobleMemberList 获取贵族成员列表（streamer_id传空字符串取所有）
+	GetNobleMemberList(context.Context, *GetNobleMemberListReq) (*GetNobleMemberListResp, error)
+	// CountNobleMember 获取成员总数
+	CountNobleMember(context.Context, *CountNobleMemberReq) (*CountNobleMemberResp, error)
+	// GetOnlineNobleMemberListByStreamerID 获取主播贵族在线成员列表
+	GetOnlineNobleMemberListByStreamerID(context.Context, *GetOnlineNobleMemberListByStreamerIDReq) (*GetNobleMemberListResp, error)
 	mustEmbedUnimplementedNobleMemberServer()
 }
 
@@ -101,8 +131,14 @@ func (UnimplementedNobleMemberServer) JoinNoble(context.Context, *JoinNobleReq) 
 func (UnimplementedNobleMemberServer) GetNobleMember(context.Context, *GetNobleMemberReq) (*GetNobleMemberResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetNobleMember not implemented")
 }
-func (UnimplementedNobleMemberServer) GetOnlineNobleMemberByStreamerID(context.Context, *GetOnlineNobleMemberByStreamerIDReq) (*GetOnlineNobleMemberByStreamerIDResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetOnlineNobleMemberByStreamerID not implemented")
+func (UnimplementedNobleMemberServer) GetNobleMemberList(context.Context, *GetNobleMemberListReq) (*GetNobleMemberListResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetNobleMemberList not implemented")
+}
+func (UnimplementedNobleMemberServer) CountNobleMember(context.Context, *CountNobleMemberReq) (*CountNobleMemberResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CountNobleMember not implemented")
+}
+func (UnimplementedNobleMemberServer) GetOnlineNobleMemberListByStreamerID(context.Context, *GetOnlineNobleMemberListByStreamerIDReq) (*GetNobleMemberListResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetOnlineNobleMemberListByStreamerID not implemented")
 }
 func (UnimplementedNobleMemberServer) mustEmbedUnimplementedNobleMemberServer() {}
 
@@ -153,20 +189,56 @@ func _NobleMember_GetNobleMember_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
-func _NobleMember_GetOnlineNobleMemberByStreamerID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetOnlineNobleMemberByStreamerIDReq)
+func _NobleMember_GetNobleMemberList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetNobleMemberListReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(NobleMemberServer).GetOnlineNobleMemberByStreamerID(ctx, in)
+		return srv.(NobleMemberServer).GetNobleMemberList(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: NobleMember_GetOnlineNobleMemberByStreamerID_FullMethodName,
+		FullMethod: NobleMember_GetNobleMemberList_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NobleMemberServer).GetOnlineNobleMemberByStreamerID(ctx, req.(*GetOnlineNobleMemberByStreamerIDReq))
+		return srv.(NobleMemberServer).GetNobleMemberList(ctx, req.(*GetNobleMemberListReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NobleMember_CountNobleMember_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CountNobleMemberReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NobleMemberServer).CountNobleMember(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: NobleMember_CountNobleMember_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NobleMemberServer).CountNobleMember(ctx, req.(*CountNobleMemberReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NobleMember_GetOnlineNobleMemberListByStreamerID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetOnlineNobleMemberListByStreamerIDReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NobleMemberServer).GetOnlineNobleMemberListByStreamerID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: NobleMember_GetOnlineNobleMemberListByStreamerID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NobleMemberServer).GetOnlineNobleMemberListByStreamerID(ctx, req.(*GetOnlineNobleMemberListByStreamerIDReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -187,8 +259,16 @@ var NobleMember_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _NobleMember_GetNobleMember_Handler,
 		},
 		{
-			MethodName: "GetOnlineNobleMemberByStreamerID",
-			Handler:    _NobleMember_GetOnlineNobleMemberByStreamerID_Handler,
+			MethodName: "GetNobleMemberList",
+			Handler:    _NobleMember_GetNobleMemberList_Handler,
+		},
+		{
+			MethodName: "CountNobleMember",
+			Handler:    _NobleMember_CountNobleMember_Handler,
+		},
+		{
+			MethodName: "GetOnlineNobleMemberListByStreamerID",
+			Handler:    _NobleMember_GetOnlineNobleMemberListByStreamerID_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

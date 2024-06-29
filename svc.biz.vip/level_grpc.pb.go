@@ -11,6 +11,7 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -19,7 +20,8 @@ import (
 const _ = grpc.SupportPackageIsVersion8
 
 const (
-	Level_GetMemberLevel_FullMethodName = "/svc.biz.vip.Level/GetMemberLevel"
+	Level_ReLoadLevelConf_FullMethodName = "/svc.biz.vip.Level/ReLoadLevelConf"
+	Level_GetMemberLevel_FullMethodName  = "/svc.biz.vip.Level/GetMemberLevel"
 )
 
 // LevelClient is the client API for Level service.
@@ -28,6 +30,8 @@ const (
 //
 // 等级
 type LevelClient interface {
+	// ReLoadLevelConf 重载等级配置
+	ReLoadLevelConf(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// GetMemberLevel 获取成员等级
 	GetMemberLevel(ctx context.Context, in *GetMemberLevelReq, opts ...grpc.CallOption) (*GetMemberLevelResp, error)
 }
@@ -38,6 +42,16 @@ type levelClient struct {
 
 func NewLevelClient(cc grpc.ClientConnInterface) LevelClient {
 	return &levelClient{cc}
+}
+
+func (c *levelClient) ReLoadLevelConf(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Level_ReLoadLevelConf_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *levelClient) GetMemberLevel(ctx context.Context, in *GetMemberLevelReq, opts ...grpc.CallOption) (*GetMemberLevelResp, error) {
@@ -56,6 +70,8 @@ func (c *levelClient) GetMemberLevel(ctx context.Context, in *GetMemberLevelReq,
 //
 // 等级
 type LevelServer interface {
+	// ReLoadLevelConf 重载等级配置
+	ReLoadLevelConf(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
 	// GetMemberLevel 获取成员等级
 	GetMemberLevel(context.Context, *GetMemberLevelReq) (*GetMemberLevelResp, error)
 	mustEmbedUnimplementedLevelServer()
@@ -65,6 +81,9 @@ type LevelServer interface {
 type UnimplementedLevelServer struct {
 }
 
+func (UnimplementedLevelServer) ReLoadLevelConf(context.Context, *emptypb.Empty) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReLoadLevelConf not implemented")
+}
 func (UnimplementedLevelServer) GetMemberLevel(context.Context, *GetMemberLevelReq) (*GetMemberLevelResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMemberLevel not implemented")
 }
@@ -79,6 +98,24 @@ type UnsafeLevelServer interface {
 
 func RegisterLevelServer(s grpc.ServiceRegistrar, srv LevelServer) {
 	s.RegisterService(&Level_ServiceDesc, srv)
+}
+
+func _Level_ReLoadLevelConf_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LevelServer).ReLoadLevelConf(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Level_ReLoadLevelConf_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LevelServer).ReLoadLevelConf(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _Level_GetMemberLevel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -106,6 +143,10 @@ var Level_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "svc.biz.vip.Level",
 	HandlerType: (*LevelServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "ReLoadLevelConf",
+			Handler:    _Level_ReLoadLevelConf_Handler,
+		},
 		{
 			MethodName: "GetMemberLevel",
 			Handler:    _Level_GetMemberLevel_Handler,
