@@ -11936,6 +11936,7 @@ service started /////////////////
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | streamer_id | [string](#string) |  | 主播id |
+| level | [NobleLevel](#svc-biz-vip-NobleLevel) |  | 贵族等级 |
 | join_time_start | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开通贵族的开始时间 |
 | join_time_end | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开通贵族的结束时间 |
 
@@ -11969,6 +11970,7 @@ service started /////////////////
 | ----- | ---- | ----- | ----------- |
 | page | [int32](#int32) |  | 页数 |
 | limit | [int32](#int32) |  | 条数 |
+| level | [NobleLevel](#svc-biz-vip-NobleLevel) |  | 贵族等级 |
 | streamer_id | [string](#string) |  | 主播id |
 | join_time_start | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开通贵族的开始时间 |
 | join_time_end | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开通贵族的结束时间 |
