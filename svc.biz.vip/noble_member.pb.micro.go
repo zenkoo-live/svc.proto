@@ -41,8 +41,12 @@ type NobleMemberService interface {
 	JoinNoble(ctx context.Context, in *JoinNobleReq, opts ...client.CallOption) (*JoinNobleResp, error)
 	// GetNobleMember 获取成员贵族信息
 	GetNobleMember(ctx context.Context, in *GetNobleMemberReq, opts ...client.CallOption) (*GetNobleMemberResp, error)
-	// GetOnlineNobleMemberByStreamerID 获取主播贵族在线成员列表
-	GetOnlineNobleMemberByStreamerID(ctx context.Context, in *GetOnlineNobleMemberByStreamerIDReq, opts ...client.CallOption) (*GetOnlineNobleMemberByStreamerIDResp, error)
+	// GetNobleMemberList 获取贵族成员列表（streamer_id传空字符串取所有）
+	GetNobleMemberList(ctx context.Context, in *GetNobleMemberListReq, opts ...client.CallOption) (*GetNobleMemberListResp, error)
+	// CountNobleMember 获取成员总数
+	CountNobleMember(ctx context.Context, in *CountNobleMemberReq, opts ...client.CallOption) (*CountNobleMemberResp, error)
+	// GetOnlineNobleMemberListByStreamerID 获取主播贵族在线成员列表
+	GetOnlineNobleMemberListByStreamerID(ctx context.Context, in *GetOnlineNobleMemberListByStreamerIDReq, opts ...client.CallOption) (*GetNobleMemberListResp, error)
 }
 
 type nobleMemberService struct {
@@ -77,9 +81,29 @@ func (c *nobleMemberService) GetNobleMember(ctx context.Context, in *GetNobleMem
 	return out, nil
 }
 
-func (c *nobleMemberService) GetOnlineNobleMemberByStreamerID(ctx context.Context, in *GetOnlineNobleMemberByStreamerIDReq, opts ...client.CallOption) (*GetOnlineNobleMemberByStreamerIDResp, error) {
-	req := c.c.NewRequest(c.name, "NobleMember.GetOnlineNobleMemberByStreamerID", in)
-	out := new(GetOnlineNobleMemberByStreamerIDResp)
+func (c *nobleMemberService) GetNobleMemberList(ctx context.Context, in *GetNobleMemberListReq, opts ...client.CallOption) (*GetNobleMemberListResp, error) {
+	req := c.c.NewRequest(c.name, "NobleMember.GetNobleMemberList", in)
+	out := new(GetNobleMemberListResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *nobleMemberService) CountNobleMember(ctx context.Context, in *CountNobleMemberReq, opts ...client.CallOption) (*CountNobleMemberResp, error) {
+	req := c.c.NewRequest(c.name, "NobleMember.CountNobleMember", in)
+	out := new(CountNobleMemberResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *nobleMemberService) GetOnlineNobleMemberListByStreamerID(ctx context.Context, in *GetOnlineNobleMemberListByStreamerIDReq, opts ...client.CallOption) (*GetNobleMemberListResp, error) {
+	req := c.c.NewRequest(c.name, "NobleMember.GetOnlineNobleMemberListByStreamerID", in)
+	out := new(GetNobleMemberListResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -94,15 +118,21 @@ type NobleMemberHandler interface {
 	JoinNoble(context.Context, *JoinNobleReq, *JoinNobleResp) error
 	// GetNobleMember 获取成员贵族信息
 	GetNobleMember(context.Context, *GetNobleMemberReq, *GetNobleMemberResp) error
-	// GetOnlineNobleMemberByStreamerID 获取主播贵族在线成员列表
-	GetOnlineNobleMemberByStreamerID(context.Context, *GetOnlineNobleMemberByStreamerIDReq, *GetOnlineNobleMemberByStreamerIDResp) error
+	// GetNobleMemberList 获取贵族成员列表（streamer_id传空字符串取所有）
+	GetNobleMemberList(context.Context, *GetNobleMemberListReq, *GetNobleMemberListResp) error
+	// CountNobleMember 获取成员总数
+	CountNobleMember(context.Context, *CountNobleMemberReq, *CountNobleMemberResp) error
+	// GetOnlineNobleMemberListByStreamerID 获取主播贵族在线成员列表
+	GetOnlineNobleMemberListByStreamerID(context.Context, *GetOnlineNobleMemberListByStreamerIDReq, *GetNobleMemberListResp) error
 }
 
 func RegisterNobleMemberHandler(s server.Server, hdlr NobleMemberHandler, opts ...server.HandlerOption) error {
 	type nobleMember interface {
 		JoinNoble(ctx context.Context, in *JoinNobleReq, out *JoinNobleResp) error
 		GetNobleMember(ctx context.Context, in *GetNobleMemberReq, out *GetNobleMemberResp) error
-		GetOnlineNobleMemberByStreamerID(ctx context.Context, in *GetOnlineNobleMemberByStreamerIDReq, out *GetOnlineNobleMemberByStreamerIDResp) error
+		GetNobleMemberList(ctx context.Context, in *GetNobleMemberListReq, out *GetNobleMemberListResp) error
+		CountNobleMember(ctx context.Context, in *CountNobleMemberReq, out *CountNobleMemberResp) error
+		GetOnlineNobleMemberListByStreamerID(ctx context.Context, in *GetOnlineNobleMemberListByStreamerIDReq, out *GetNobleMemberListResp) error
 	}
 	type NobleMember struct {
 		nobleMember
@@ -123,6 +153,14 @@ func (h *nobleMemberHandler) GetNobleMember(ctx context.Context, in *GetNobleMem
 	return h.NobleMemberHandler.GetNobleMember(ctx, in, out)
 }
 
-func (h *nobleMemberHandler) GetOnlineNobleMemberByStreamerID(ctx context.Context, in *GetOnlineNobleMemberByStreamerIDReq, out *GetOnlineNobleMemberByStreamerIDResp) error {
-	return h.NobleMemberHandler.GetOnlineNobleMemberByStreamerID(ctx, in, out)
+func (h *nobleMemberHandler) GetNobleMemberList(ctx context.Context, in *GetNobleMemberListReq, out *GetNobleMemberListResp) error {
+	return h.NobleMemberHandler.GetNobleMemberList(ctx, in, out)
+}
+
+func (h *nobleMemberHandler) CountNobleMember(ctx context.Context, in *CountNobleMemberReq, out *CountNobleMemberResp) error {
+	return h.NobleMemberHandler.CountNobleMember(ctx, in, out)
+}
+
+func (h *nobleMemberHandler) GetOnlineNobleMemberListByStreamerID(ctx context.Context, in *GetOnlineNobleMemberListByStreamerIDReq, out *GetNobleMemberListResp) error {
+	return h.NobleMemberHandler.GetOnlineNobleMemberListByStreamerID(ctx, in, out)
 }

@@ -6,6 +6,7 @@ package vip
 import (
 	fmt "fmt"
 	proto "google.golang.org/protobuf/proto"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	math "math"
 )
 
@@ -36,6 +37,8 @@ func NewLevelEndpoints() []*api.Endpoint {
 // Client API for Level service
 
 type LevelService interface {
+	// ReLoadLevelConf 重载等级配置
+	ReLoadLevelConf(ctx context.Context, in *emptypb.Empty, opts ...client.CallOption) (*emptypb.Empty, error)
 	// GetMemberLevel 获取成员等级
 	GetMemberLevel(ctx context.Context, in *GetMemberLevelReq, opts ...client.CallOption) (*GetMemberLevelResp, error)
 }
@@ -52,6 +55,16 @@ func NewLevelService(name string, c client.Client) LevelService {
 	}
 }
 
+func (c *levelService) ReLoadLevelConf(ctx context.Context, in *emptypb.Empty, opts ...client.CallOption) (*emptypb.Empty, error) {
+	req := c.c.NewRequest(c.name, "Level.ReLoadLevelConf", in)
+	out := new(emptypb.Empty)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *levelService) GetMemberLevel(ctx context.Context, in *GetMemberLevelReq, opts ...client.CallOption) (*GetMemberLevelResp, error) {
 	req := c.c.NewRequest(c.name, "Level.GetMemberLevel", in)
 	out := new(GetMemberLevelResp)
@@ -65,12 +78,15 @@ func (c *levelService) GetMemberLevel(ctx context.Context, in *GetMemberLevelReq
 // Server API for Level service
 
 type LevelHandler interface {
+	// ReLoadLevelConf 重载等级配置
+	ReLoadLevelConf(context.Context, *emptypb.Empty, *emptypb.Empty) error
 	// GetMemberLevel 获取成员等级
 	GetMemberLevel(context.Context, *GetMemberLevelReq, *GetMemberLevelResp) error
 }
 
 func RegisterLevelHandler(s server.Server, hdlr LevelHandler, opts ...server.HandlerOption) error {
 	type level interface {
+		ReLoadLevelConf(ctx context.Context, in *emptypb.Empty, out *emptypb.Empty) error
 		GetMemberLevel(ctx context.Context, in *GetMemberLevelReq, out *GetMemberLevelResp) error
 	}
 	type Level struct {
@@ -82,6 +98,10 @@ func RegisterLevelHandler(s server.Server, hdlr LevelHandler, opts ...server.Han
 
 type levelHandler struct {
 	LevelHandler
+}
+
+func (h *levelHandler) ReLoadLevelConf(ctx context.Context, in *emptypb.Empty, out *emptypb.Empty) error {
+	return h.LevelHandler.ReLoadLevelConf(ctx, in, out)
 }
 
 func (h *levelHandler) GetMemberLevel(ctx context.Context, in *GetMemberLevelReq, out *GetMemberLevelResp) error {

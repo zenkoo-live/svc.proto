@@ -14,8 +14,14 @@ service NobleMember {
     // GetNobleMember 获取成员贵族信息
     rpc GetNobleMember (GetNobleMemberReq) returns (GetNobleMemberResp) {}
 
-    // GetOnlineNobleMemberByStreamerID 获取主播贵族在线成员列表
-    rpc GetOnlineNobleMemberByStreamerID (GetOnlineNobleMemberByStreamerIDReq) returns (GetOnlineNobleMemberByStreamerIDResp) {}
+
+    // GetNobleMemberList 获取贵族成员列表（streamer_id传空字符串取所有）
+    rpc GetNobleMemberList (GetNobleMemberListReq) returns (GetNobleMemberListResp) {}
+    // CountNobleMember 获取成员总数
+    rpc CountNobleMember (CountNobleMemberReq) returns (CountNobleMemberResp) {}
+    // GetOnlineNobleMemberListByStreamerID 获取主播贵族在线成员列表
+    rpc GetOnlineNobleMemberListByStreamerID (GetOnlineNobleMemberListByStreamerIDReq) returns (GetNobleMemberListResp) {}
+
 }
 
 message NobleMemberInfo {
@@ -41,11 +47,30 @@ message GetNobleMemberResp {
     NobleMemberInfo noble_member = 1;
 }
 
-message GetOnlineNobleMemberByStreamerIDReq {
+
+message GetNobleMemberListReq {
+    int32 page = 1; // 页数
+    int32 limit = 2; // 条数
+    NobleLevel level = 3; // 贵族等级
+    string streamer_id = 4; // 主播id
+    google.protobuf.Timestamp join_time_start = 5; // 开通贵族的开始时间
+    google.protobuf.Timestamp join_time_end = 6; // 开通贵族的结束时间
+}
+message GetOnlineNobleMemberListByStreamerIDReq {
     int32 page = 1; // 页数
     int32 limit = 2; // 条数
     string streamer_id = 3; // 主播id
 }
-message GetOnlineNobleMemberByStreamerIDResp {
+message GetNobleMemberListResp {
     repeated NobleMemberInfo items = 1;
+}
+
+message CountNobleMemberReq {
+    string streamer_id = 1; // 主播id
+    NobleLevel level = 2; // 贵族等级
+    google.protobuf.Timestamp join_time_start = 3; // 开通贵族的开始时间
+    google.protobuf.Timestamp join_time_end = 4; // 开通贵族的结束时间
+}
+message CountNobleMemberResp {
+    int64 count = 1; // 总数
 }
