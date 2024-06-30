@@ -30,22 +30,22 @@ message RankMemberInfo {
 
 message GetStreamerViewerOnlineMemberReq {
     int32 page = 1;
-    int32 limie = 2;
+    int32 limit = 2;
     string streamer_id = 3; // 主播id
 }
 
 message GetStreamerViewerGiftMemberReq {
     int32 page = 1;
-    int32 limie = 2;
-    string streamer_id = 3; // 主播id
-    StreamerViewerRankPeriod rank_period = 4; // 排行榜周期
+    int32 limit = 2;
+    StreamerViewerRankPeriod rank_period = 3; // 排行榜周期
+    string streamer_id = 4; // 主播id
 }
 
 message GetStreamerViewerGlamourMemberReq {
     int32 page = 1;
-    int32 limie = 20;
-    string streamer_id = 3; // 主播id
-    StreamerViewerRankPeriod rank_period = 4; // 排行榜周期
+    int32 limit = 20;
+    StreamerViewerRankPeriod rank_period = 3; // 排行榜周期
+    string streamer_id = 4; // 主播id
 }
 
 message GetStreamerViewerRankResp {

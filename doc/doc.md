@@ -9936,9 +9936,9 @@ WellKnownRegex contain some well-known patterns.
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | page | [int32](#int32) |  |  |
-| limie | [int32](#int32) |  |  |
-| streamer_id | [string](#string) |  | 主播id |
+| limit | [int32](#int32) |  |  |
 | rank_period | [StreamerViewerRankPeriod](#svc-biz-rank-StreamerViewerRankPeriod) |  | 排行榜周期 |
+| streamer_id | [string](#string) |  | 主播id |
 
 
 
@@ -9954,9 +9954,9 @@ WellKnownRegex contain some well-known patterns.
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | page | [int32](#int32) |  |  |
-| limie | [int32](#int32) |  |  |
-| streamer_id | [string](#string) |  | 主播id |
+| limit | [int32](#int32) |  |  |
 | rank_period | [StreamerViewerRankPeriod](#svc-biz-rank-StreamerViewerRankPeriod) |  | 排行榜周期 |
+| streamer_id | [string](#string) |  | 主播id |
 
 
 
@@ -9972,7 +9972,7 @@ WellKnownRegex contain some well-known patterns.
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | page | [int32](#int32) |  |  |
-| limie | [int32](#int32) |  |  |
+| limit | [int32](#int32) |  |  |
 | streamer_id | [string](#string) |  | 主播id |
 
 
