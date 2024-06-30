@@ -1,0 +1,76 @@
+syntax = "proto3";
+
+package svc.biz.vip;
+
+import "google/protobuf/timestamp.proto";
+import "svc.biz.vip/noble.proto";
+
+option go_package="./svc.biz.vip;vip";
+
+// 贵族
+service NobleMember {
+    // JoinNoble 加入贵族
+    rpc JoinNoble (JoinNobleReq) returns (JoinNobleResp) {}
+    // GetNobleMember 获取成员贵族信息
+    rpc GetNobleMember (GetNobleMemberReq) returns (GetNobleMemberResp) {}
+
+
+    // GetNobleMemberList 获取贵族成员列表（streamer_id传空字符串取所有）
+    rpc GetNobleMemberList (GetNobleMemberListReq) returns (GetNobleMemberListResp) {}
+    // CountNobleMember 获取成员总数
+    rpc CountNobleMember (CountNobleMemberReq) returns (CountNobleMemberResp) {}
+    // GetOnlineNobleMemberListByStreamerID 获取主播贵族在线成员列表
+    rpc GetOnlineNobleMemberListByStreamerID (GetOnlineNobleMemberListByStreamerIDReq) returns (GetNobleMemberListResp) {}
+
+}
+
+message NobleMemberInfo {
+    NobleLevel level = 1; // 贵族等级
+    string member_id = 2; // 用户id
+    string streamer_id = 3; // 主播id（可为空）
+    google.protobuf.Timestamp join_time = 4; // 加入时间
+    google.protobuf.Timestamp expire_time = 5; // 过期时间
+}
+
+message JoinNobleReq {
+    NobleLevel level = 1; // 贵族等级
+    string member_id = 2; // 用户id
+    string streamer_id = 3; // 主播id（可为空；贵族可直接开通，也可在某个直播间开通）
+}
+message JoinNobleResp {
+}
+
+message GetNobleMemberReq {
+    string member_id = 1; // 用户id
+}
+message GetNobleMemberResp {
+    NobleMemberInfo noble_member = 1;
+}
+
+
+message GetNobleMemberListReq {
+    int32 page = 1; // 页数
+    int32 limit = 2; // 条数
+    NobleLevel level = 3; // 贵族等级
+    string streamer_id = 4; // 主播id
+    google.protobuf.Timestamp join_time_start = 5; // 开通贵族的开始时间
+    google.protobuf.Timestamp join_time_end = 6; // 开通贵族的结束时间
+}
+message GetOnlineNobleMemberListByStreamerIDReq {
+    int32 page = 1; // 页数
+    int32 limit = 2; // 条数
+    string streamer_id = 3; // 主播id
+}
+message GetNobleMemberListResp {
+    repeated NobleMemberInfo items = 1;
+}
+
+message CountNobleMemberReq {
+    string streamer_id = 1; // 主播id
+    NobleLevel level = 2; // 贵族等级
+    google.protobuf.Timestamp join_time_start = 3; // 开通贵族的开始时间
+    google.protobuf.Timestamp join_time_end = 4; // 开通贵族的结束时间
+}
+message CountNobleMemberResp {
+    int64 count = 1; // 总数
+}

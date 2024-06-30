@@ -52,6 +52,13 @@ message GetFanbaseMemberResp {
     FanbaseMemberInfo fanbase_member = 1;
 }
 
+message FanbaseRights {
+    bool rights_icon = 1; // 专属勋章
+    bool rights_gift = 2; // 专属礼物
+    bool rights_inroom_effect = 3; // 进场特效
+    bool rights_avoid_kick = 4; // 防踢
+    bool rights_avoid_ban_speaking = 5; // 防禁言
+}
 message FanbaseMemberInfo {
     string fanbase_id = 1;
     string streamer_id = 2;
@@ -60,8 +67,10 @@ message FanbaseMemberInfo {
     google.protobuf.Timestamp join_time = 5; // 加入时间
     int32 score = 6;
 
-    google.protobuf.Timestamp created_at = 101; // 创建时间
-    google.protobuf.Timestamp updated_at = 102; // 更新时间
+    FanbaseRights rights = 101;
+
+    google.protobuf.Timestamp created_at = 201; // 创建时间
+    google.protobuf.Timestamp updated_at = 202; // 更新时间
 }
 
 message GetFanbaseMemberByStreamerIDReq {

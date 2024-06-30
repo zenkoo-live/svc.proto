@@ -74,9 +74,11 @@ message Viewer {
     string device_ident = 13; // 设备号 / 指纹
     optional string password = 21; // 密码
     optional string salt = 22; // 加密混淆
+    int64 status = 23; // 状态
     string merchant_id = 254; // 商户ID
     google.protobuf.Timestamp created_at = 255; // 创建时间
-    map<string, string> additions = 256; // 扩展属性
+    google.protobuf.Timestamp updated_at = 256; // 更新时间
+    map<string, string> additions = 511; // 扩展属性
 };
 message Streamer {
     string id = 1; // 内部ID
@@ -88,9 +90,11 @@ message Streamer {
     string email = 12; // 邮箱
     optional string password = 21; // 密码
     optional string salt = 22; // 加密混淆
+    int64 status = 23; // 状态
     string merchant_id = 254; // 商户ID
     google.protobuf.Timestamp created_at = 255; // 创建时间
-    map<string, string> additions = 256; // 扩展属性
+    google.protobuf.Timestamp updated_at = 256; // 更新时间
+    map<string, string> additions = 511; // 扩展属性
 };
 message Manager {
     string id = 1; // 内部ID
@@ -99,9 +103,11 @@ message Manager {
     string email = 12; // 邮箱
     optional string password = 21; // 密码
     optional string salt = 22; // 加密混淆
+    int64 status = 23; // 状态
     string merchant_id = 254; // 商户ID
     google.protobuf.Timestamp created_at = 255; // 创建时间
-    map<string, string> additions = 256; // 扩展属性
+    google.protobuf.Timestamp updated_at = 256; // 更新时间
+    map<string, string> additions = 511; // 扩展属性
 };
 message Union {
     string id = 1; // 内部ID
@@ -110,10 +116,18 @@ message Union {
     string email = 12; // 邮箱
     optional string password = 21; // 密码
     optional string salt = 22; // 加密混淆
+    int64 status = 23; // 状态
     string merchant_id = 254; // 商户ID
     google.protobuf.Timestamp created_at = 255; // 创建时间
-    map<string, string> additions = 256; // 扩展属性
+    google.protobuf.Timestamp updated_at = 256; // 更新时间
+    map<string, string> additions = 511; // 扩展属性
 }
+
+// Masks
+enum StatusMask {
+    DISABLED = 0;
+    MUTED = 1;
+};
 
 // Parameters
 /* {{{ [Viewer] */

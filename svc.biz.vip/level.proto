@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package svc.biz.vip;
+import "google/protobuf/empty.proto";
+
+option go_package="./svc.biz.vip;vip";
+
+// 等级
+service Level {
+	// ReLoadLevelConf 重载等级配置
+	rpc ReLoadLevelConf (google.protobuf.Empty) returns (google.protobuf.Empty) {}
+    // GetMemberLevel 获取成员等级
+    rpc GetMemberLevel (GetMemberLevelReq) returns (GetMemberLevelResp) {}
+}
+
+message LevelInfo {
+	string member_id = 1;
+	int32 level = 2;
+	int64 exp = 3;
+}
+
+message GetMemberLevelReq {
+	string member_id = 1;
+}
+message GetMemberLevelResp {
+	LevelInfo level_info = 1;
+}

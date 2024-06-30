@@ -110,6 +110,8 @@
     - [ViewerAdditionsSetReq](#svc-biz-account-ViewerAdditionsSetReq)
     - [ViewerAdditionsSetResp](#svc-biz-account-ViewerAdditionsSetResp)
   
+    - [StatusMask](#svc-biz-account-StatusMask)
+  
     - [Account](#svc-biz-account-Account)
   
 - [svc.biz.trade/trade.proto](#svc-biz-trade_trade-proto)
@@ -555,12 +557,21 @@
     - [File-level Extensions](#third_party_buf_validate_validate-proto-extensions)
     - [File-level Extensions](#third_party_buf_validate_validate-proto-extensions)
   
-- [svc.biz.rank/rank.proto](#svc-biz-rank_rank-proto)
-    - [GetLiveOnlineRankMemberReq](#svc-biz-rank-GetLiveOnlineRankMemberReq)
-    - [GetLiveOnlineRankMemberResp](#svc-biz-rank-GetLiveOnlineRankMemberResp)
+- [svc.infra.generator/generator.proto](#svc-infra-generator_generator-proto)
+    - [InitDBResp](#svc-infra-generator-InitDBResp)
+  
+    - [Generator](#svc-infra-generator-Generator)
+  
+- [svc.biz.rank/streamer_viewer_rank.proto](#svc-biz-rank_streamer_viewer_rank-proto)
+    - [GetStreamerViewerGiftMemberReq](#svc-biz-rank-GetStreamerViewerGiftMemberReq)
+    - [GetStreamerViewerGlamourMemberReq](#svc-biz-rank-GetStreamerViewerGlamourMemberReq)
+    - [GetStreamerViewerOnlineMemberReq](#svc-biz-rank-GetStreamerViewerOnlineMemberReq)
+    - [GetStreamerViewerRankResp](#svc-biz-rank-GetStreamerViewerRankResp)
     - [RankMemberInfo](#svc-biz-rank-RankMemberInfo)
   
-    - [Rank](#svc-biz-rank-Rank)
+    - [StreamerViewerRankType](#svc-biz-rank-StreamerViewerRankType)
+  
+    - [StreamerViewerRank](#svc-biz-rank-StreamerViewerRank)
   
 - [svc.web.dashboard/dashboard.proto](#svc-web-dashboard_dashboard-proto)
     - [Dashboard](#svc-web-dashboard-Dashboard)
@@ -646,6 +657,8 @@
     - [UpdateUnionReq](#svc-biz-org-UpdateUnionReq)
     - [UpdateUnionResp](#svc-biz-org-UpdateUnionResp)
   
+    - [StatusMask](#svc-biz-org-StatusMask)
+  
     - [Org](#svc-biz-org-Org)
   
 - [svc.infra.notifier/notifier.proto](#svc-infra-notifier_notifier-proto)
@@ -686,7 +699,27 @@
   
     - [Notifier](#svc-infra-notifier-Notifier)
   
-- [svc.biz.vip/right.proto](#svc-biz-vip_right-proto)
+- [svc.biz.vip/noble_member.proto](#svc-biz-vip_noble_member-proto)
+    - [CountNobleMemberReq](#svc-biz-vip-CountNobleMemberReq)
+    - [CountNobleMemberResp](#svc-biz-vip-CountNobleMemberResp)
+    - [GetNobleMemberListReq](#svc-biz-vip-GetNobleMemberListReq)
+    - [GetNobleMemberListResp](#svc-biz-vip-GetNobleMemberListResp)
+    - [GetNobleMemberReq](#svc-biz-vip-GetNobleMemberReq)
+    - [GetNobleMemberResp](#svc-biz-vip-GetNobleMemberResp)
+    - [GetOnlineNobleMemberListByStreamerIDReq](#svc-biz-vip-GetOnlineNobleMemberListByStreamerIDReq)
+    - [JoinNobleReq](#svc-biz-vip-JoinNobleReq)
+    - [JoinNobleResp](#svc-biz-vip-JoinNobleResp)
+    - [NobleMemberInfo](#svc-biz-vip-NobleMemberInfo)
+  
+    - [NobleMember](#svc-biz-vip-NobleMember)
+  
+- [svc.biz.vip/level.proto](#svc-biz-vip_level-proto)
+    - [GetMemberLevelReq](#svc-biz-vip-GetMemberLevelReq)
+    - [GetMemberLevelResp](#svc-biz-vip-GetMemberLevelResp)
+    - [LevelInfo](#svc-biz-vip-LevelInfo)
+  
+    - [Level](#svc-biz-vip-Level)
+  
 - [svc.biz.vip/fanbase.proto](#svc-biz-vip_fanbase-proto)
     - [CreateFanbaseReq](#svc-biz-vip-CreateFanbaseReq)
     - [CreateFanbaseResp](#svc-biz-vip-CreateFanbaseResp)
@@ -702,6 +735,7 @@
     - [CountFanbaseMemberByStreamerIDReq](#svc-biz-vip-CountFanbaseMemberByStreamerIDReq)
     - [CountFanbaseMemberByStreamerIDResp](#svc-biz-vip-CountFanbaseMemberByStreamerIDResp)
     - [FanbaseMemberInfo](#svc-biz-vip-FanbaseMemberInfo)
+    - [FanbaseRights](#svc-biz-vip-FanbaseRights)
     - [GetFanbaseMemberByStreamerIDReq](#svc-biz-vip-GetFanbaseMemberByStreamerIDReq)
     - [GetFanbaseMemberReq](#svc-biz-vip-GetFanbaseMemberReq)
     - [GetFanbaseMemberResp](#svc-biz-vip-GetFanbaseMemberResp)
@@ -714,6 +748,24 @@
     - [FanbaseLevel](#svc-biz-vip-FanbaseLevel)
   
     - [FanbaseMember](#svc-biz-vip-FanbaseMember)
+  
+- [svc.biz.vip/noble.proto](#svc-biz-vip_noble-proto)
+    - [CreateNobleReq](#svc-biz-vip-CreateNobleReq)
+    - [CreateNobleResp](#svc-biz-vip-CreateNobleResp)
+    - [GetNobleByLevelReq](#svc-biz-vip-GetNobleByLevelReq)
+    - [GetNobleByLevelResp](#svc-biz-vip-GetNobleByLevelResp)
+    - [GetNobleListReq](#svc-biz-vip-GetNobleListReq)
+    - [GetNobleListResp](#svc-biz-vip-GetNobleListResp)
+    - [NobleInfo](#svc-biz-vip-NobleInfo)
+    - [NobleRights](#svc-biz-vip-NobleRights)
+    - [NobleRightsDiscountGift](#svc-biz-vip-NobleRightsDiscountGift)
+    - [NobleRightsFreeGift](#svc-biz-vip-NobleRightsFreeGift)
+    - [UpdateNobleByLevelReq](#svc-biz-vip-UpdateNobleByLevelReq)
+    - [UpdateNobleByLevelResp](#svc-biz-vip-UpdateNobleByLevelResp)
+  
+    - [NobleLevel](#svc-biz-vip-NobleLevel)
+  
+    - [Noble](#svc-biz-vip-Noble)
   
 - [svc.web.streamer/streamer.proto](#svc-web-streamer_streamer-proto)
     - [Streamer](#svc-web-streamer-Streamer)
@@ -1426,8 +1478,10 @@
 | email | [string](#string) |  | 邮箱 |
 | password | [string](#string) | optional | 密码 |
 | salt | [string](#string) | optional | 加密混淆 |
+| status | [int64](#int64) |  | 状态 |
 | merchant_id | [string](#string) |  | 商户ID |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+| updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 更新时间 |
 | additions | [Manager.AdditionsEntry](#svc-biz-account-Manager-AdditionsEntry) | repeated | 扩展属性 |
 
 
@@ -1624,8 +1678,10 @@
 | email | [string](#string) |  | 邮箱 |
 | password | [string](#string) | optional | 密码 |
 | salt | [string](#string) | optional | 加密混淆 |
+| status | [int64](#int64) |  | 状态 |
 | merchant_id | [string](#string) |  | 商户ID |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+| updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 更新时间 |
 | additions | [Streamer.AdditionsEntry](#svc-biz-account-Streamer-AdditionsEntry) | repeated | 扩展属性 |
 
 
@@ -1939,8 +1995,10 @@
 | email | [string](#string) |  | 邮箱 |
 | password | [string](#string) | optional | 密码 |
 | salt | [string](#string) | optional | 加密混淆 |
+| status | [int64](#int64) |  | 状态 |
 | merchant_id | [string](#string) |  | 商户ID |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+| updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 更新时间 |
 | additions | [Union.AdditionsEntry](#svc-biz-account-Union-AdditionsEntry) | repeated | 扩展属性 |
 
 
@@ -2258,8 +2316,10 @@ Models
 | device_ident | [string](#string) |  | 设备号 / 指纹 |
 | password | [string](#string) | optional | 密码 |
 | salt | [string](#string) | optional | 加密混淆 |
+| status | [int64](#int64) |  | 状态 |
 | merchant_id | [string](#string) |  | 商户ID |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+| updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 更新时间 |
 | additions | [Viewer.AdditionsEntry](#svc-biz-account-Viewer-AdditionsEntry) | repeated | 扩展属性 |
 
 
@@ -2439,6 +2499,18 @@ Models
 
 
  
+
+
+<a name="svc-biz-account-StatusMask"></a>
+
+### StatusMask
+Masks
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| DISABLED | 0 |  |
+| MUTED | 1 |  |
+
 
  
 
@@ -9807,32 +9879,104 @@ WellKnownRegex contain some well-known patterns.
 
 
 
-<a name="svc-biz-rank_rank-proto"></a>
+<a name="svc-infra-generator_generator-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## svc.biz.rank/rank.proto
+## svc.infra.generator/generator.proto
 
 
 
-<a name="svc-biz-rank-GetLiveOnlineRankMemberReq"></a>
+<a name="svc-infra-generator-InitDBResp"></a>
 
-### GetLiveOnlineRankMemberReq
+### InitDBResp
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| streamer_id | [string](#string) |  | 主播uid |
-| live_id | [string](#string) |  | 直播id |
+| result | [bool](#bool) |  |  |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="svc-infra-generator-Generator"></a>
+
+### Generator
+
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| InitDB | [.google.protobuf.Empty](#google-protobuf-Empty) | [InitDBResp](#svc-infra-generator-InitDBResp) | 初始化数据库 |
+
+ 
+
+
+
+<a name="svc-biz-rank_streamer_viewer_rank-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.biz.rank/streamer_viewer_rank.proto
+
+
+
+<a name="svc-biz-rank-GetStreamerViewerGiftMemberReq"></a>
+
+### GetStreamerViewerGiftMemberReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer_id | [string](#string) |  | 主播id |
+| rank_type | [StreamerViewerRankType](#svc-biz-rank-StreamerViewerRankType) |  | 排行榜类型 |
 
 
 
 
 
 
-<a name="svc-biz-rank-GetLiveOnlineRankMemberResp"></a>
+<a name="svc-biz-rank-GetStreamerViewerGlamourMemberReq"></a>
 
-### GetLiveOnlineRankMemberResp
+### GetStreamerViewerGlamourMemberReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer_id | [string](#string) |  | 主播id |
+| rank_type | [StreamerViewerRankType](#svc-biz-rank-StreamerViewerRankType) |  | 排行榜类型 |
+
+
+
+
+
+
+<a name="svc-biz-rank-GetStreamerViewerOnlineMemberReq"></a>
+
+### GetStreamerViewerOnlineMemberReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer_id | [string](#string) |  | 主播id |
+
+
+
+
+
+
+<a name="svc-biz-rank-GetStreamerViewerRankResp"></a>
+
+### GetStreamerViewerRankResp
 
 
 
@@ -9862,19 +10006,35 @@ RankMemberInfo 排行榜成员信息
 
  
 
- 
+
+<a name="svc-biz-rank-StreamerViewerRankType"></a>
+
+### StreamerViewerRankType
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| StreamerViewerRankTypeUnknown | 0 | 未知 |
+| StreamerViewerRankTypeDay | 1 | 日榜 |
+| StreamerViewerRankTypeWeek | 2 | 周榜 |
+| StreamerViewerRankTypeMonth | 3 | 月榜 |
+
 
  
 
+ 
 
-<a name="svc-biz-rank-Rank"></a>
 
-### Rank
+<a name="svc-biz-rank-StreamerViewerRank"></a>
+
+### StreamerViewerRank
 排行
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| GetLiveOnlineRankMember | [GetLiveOnlineRankMemberReq](#svc-biz-rank-GetLiveOnlineRankMemberReq) | [GetLiveOnlineRankMemberResp](#svc-biz-rank-GetLiveOnlineRankMemberResp) | 获取直播在线的排行榜成员 |
+| GetStreamerViewerOnlineMember | [GetStreamerViewerOnlineMemberReq](#svc-biz-rank-GetStreamerViewerOnlineMemberReq) | [GetStreamerViewerRankResp](#svc-biz-rank-GetStreamerViewerRankResp) | 获取主播在线的排行榜成员 |
+| GetStreamerViewerGiftMember | [GetStreamerViewerGiftMemberReq](#svc-biz-rank-GetStreamerViewerGiftMemberReq) | [GetStreamerViewerRankResp](#svc-biz-rank-GetStreamerViewerRankResp) | 获取给主播贡献礼物的排行榜成员 |
+| GetStreamerViewerGlamourMember | [GetStreamerViewerGlamourMemberReq](#svc-biz-rank-GetStreamerViewerGlamourMemberReq) | [GetStreamerViewerRankResp](#svc-biz-rank-GetStreamerViewerRankResp) | 获取给主播贡献魅力值的排行榜成员 |
 
  
 
@@ -10105,8 +10265,10 @@ Models
 | ----- | ---- | ----- | ----------- |
 | id | [string](#string) |  | 内部ID |
 | name | [string](#string) |  | 名字 |
+| status | [int64](#int64) |  | 状态 |
 | merchant_id | [string](#string) |  | 商户ID |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+| updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 更新时间 |
 | additions | [Department.AdditionsEntry](#svc-biz-org-Department-AdditionsEntry) | repeated | 扩展属性 |
 
 
@@ -10599,7 +10761,9 @@ Models
 | ----- | ---- | ----- | ----------- |
 | id | [string](#string) |  | 内部ID |
 | name | [string](#string) |  | 名字 |
+| status | [int64](#int64) |  | 状态 |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+| updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 更新时间 |
 | additions | [Merchant.AdditionsEntry](#svc-biz-org-Merchant-AdditionsEntry) | repeated | 扩展属性 |
 
 
@@ -10879,8 +11043,10 @@ Models
 | ----- | ---- | ----- | ----------- |
 | id | [string](#string) |  | 内部ID |
 | name | [string](#string) |  | 名字 |
+| status | [int64](#int64) |  | 状态 |
 | merchant_id | [string](#string) |  | 商户ID |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+| updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 更新时间 |
 | additions | [Union.AdditionsEntry](#svc-biz-org-Union-AdditionsEntry) | repeated | 扩展属性 |
 
 
@@ -11150,6 +11316,17 @@ Models
 
 
  
+
+
+<a name="svc-biz-org-StatusMask"></a>
+
+### StatusMask
+Masks
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| DISABLED | 0 |  |
+
 
  
 
@@ -11874,10 +12051,171 @@ service started /////////////////
 
 
 
-<a name="svc-biz-vip_right-proto"></a>
+<a name="svc-biz-vip_noble_member-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## svc.biz.vip/right.proto
+## svc.biz.vip/noble_member.proto
+
+
+
+<a name="svc-biz-vip-CountNobleMemberReq"></a>
+
+### CountNobleMemberReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer_id | [string](#string) |  | 主播id |
+| level | [NobleLevel](#svc-biz-vip-NobleLevel) |  | 贵族等级 |
+| join_time_start | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开通贵族的开始时间 |
+| join_time_end | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开通贵族的结束时间 |
+
+
+
+
+
+
+<a name="svc-biz-vip-CountNobleMemberResp"></a>
+
+### CountNobleMemberResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| count | [int64](#int64) |  | 总数 |
+
+
+
+
+
+
+<a name="svc-biz-vip-GetNobleMemberListReq"></a>
+
+### GetNobleMemberListReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| page | [int32](#int32) |  | 页数 |
+| limit | [int32](#int32) |  | 条数 |
+| level | [NobleLevel](#svc-biz-vip-NobleLevel) |  | 贵族等级 |
+| streamer_id | [string](#string) |  | 主播id |
+| join_time_start | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开通贵族的开始时间 |
+| join_time_end | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开通贵族的结束时间 |
+
+
+
+
+
+
+<a name="svc-biz-vip-GetNobleMemberListResp"></a>
+
+### GetNobleMemberListResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [NobleMemberInfo](#svc-biz-vip-NobleMemberInfo) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-GetNobleMemberReq"></a>
+
+### GetNobleMemberReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| member_id | [string](#string) |  | 用户id |
+
+
+
+
+
+
+<a name="svc-biz-vip-GetNobleMemberResp"></a>
+
+### GetNobleMemberResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| noble_member | [NobleMemberInfo](#svc-biz-vip-NobleMemberInfo) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-GetOnlineNobleMemberListByStreamerIDReq"></a>
+
+### GetOnlineNobleMemberListByStreamerIDReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| page | [int32](#int32) |  | 页数 |
+| limit | [int32](#int32) |  | 条数 |
+| streamer_id | [string](#string) |  | 主播id |
+
+
+
+
+
+
+<a name="svc-biz-vip-JoinNobleReq"></a>
+
+### JoinNobleReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| level | [NobleLevel](#svc-biz-vip-NobleLevel) |  | 贵族等级 |
+| member_id | [string](#string) |  | 用户id |
+| streamer_id | [string](#string) |  | 主播id（可为空；贵族可直接开通，也可在某个直播间开通） |
+
+
+
+
+
+
+<a name="svc-biz-vip-JoinNobleResp"></a>
+
+### JoinNobleResp
+
+
+
+
+
+
+
+<a name="svc-biz-vip-NobleMemberInfo"></a>
+
+### NobleMemberInfo
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| level | [NobleLevel](#svc-biz-vip-NobleLevel) |  | 贵族等级 |
+| member_id | [string](#string) |  | 用户id |
+| streamer_id | [string](#string) |  | 主播id（可为空） |
+| join_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 加入时间 |
+| expire_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 过期时间 |
+
+
+
 
 
  
@@ -11885,6 +12223,94 @@ service started /////////////////
  
 
  
+
+
+<a name="svc-biz-vip-NobleMember"></a>
+
+### NobleMember
+贵族
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| JoinNoble | [JoinNobleReq](#svc-biz-vip-JoinNobleReq) | [JoinNobleResp](#svc-biz-vip-JoinNobleResp) | JoinNoble 加入贵族 |
+| GetNobleMember | [GetNobleMemberReq](#svc-biz-vip-GetNobleMemberReq) | [GetNobleMemberResp](#svc-biz-vip-GetNobleMemberResp) | GetNobleMember 获取成员贵族信息 |
+| GetNobleMemberList | [GetNobleMemberListReq](#svc-biz-vip-GetNobleMemberListReq) | [GetNobleMemberListResp](#svc-biz-vip-GetNobleMemberListResp) | GetNobleMemberList 获取贵族成员列表（streamer_id传空字符串取所有） |
+| CountNobleMember | [CountNobleMemberReq](#svc-biz-vip-CountNobleMemberReq) | [CountNobleMemberResp](#svc-biz-vip-CountNobleMemberResp) | CountNobleMember 获取成员总数 |
+| GetOnlineNobleMemberListByStreamerID | [GetOnlineNobleMemberListByStreamerIDReq](#svc-biz-vip-GetOnlineNobleMemberListByStreamerIDReq) | [GetNobleMemberListResp](#svc-biz-vip-GetNobleMemberListResp) | GetOnlineNobleMemberListByStreamerID 获取主播贵族在线成员列表 |
+
+ 
+
+
+
+<a name="svc-biz-vip_level-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.biz.vip/level.proto
+
+
+
+<a name="svc-biz-vip-GetMemberLevelReq"></a>
+
+### GetMemberLevelReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| member_id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-GetMemberLevelResp"></a>
+
+### GetMemberLevelResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| level_info | [LevelInfo](#svc-biz-vip-LevelInfo) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-LevelInfo"></a>
+
+### LevelInfo
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| member_id | [string](#string) |  |  |
+| level | [int32](#int32) |  |  |
+| exp | [int64](#int64) |  |  |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="svc-biz-vip-Level"></a>
+
+### Level
+等级
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| ReLoadLevelConf | [.google.protobuf.Empty](#google-protobuf-Empty) | [.google.protobuf.Empty](#google-protobuf-Empty) | ReLoadLevelConf 重载等级配置 |
+| GetMemberLevel | [GetMemberLevelReq](#svc-biz-vip-GetMemberLevelReq) | [GetMemberLevelResp](#svc-biz-vip-GetMemberLevelResp) | GetMemberLevel 获取成员等级 |
 
  
 
@@ -12084,8 +12510,28 @@ service started /////////////////
 | level | [FanbaseLevel](#svc-biz-vip-FanbaseLevel) |  |  |
 | join_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 加入时间 |
 | score | [int32](#int32) |  |  |
+| rights | [FanbaseRights](#svc-biz-vip-FanbaseRights) |  |  |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
 | updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 更新时间 |
+
+
+
+
+
+
+<a name="svc-biz-vip-FanbaseRights"></a>
+
+### FanbaseRights
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| rights_icon | [bool](#bool) |  | 专属勋章 |
+| rights_gift | [bool](#bool) |  | 专属礼物 |
+| rights_inroom_effect | [bool](#bool) |  | 进场特效 |
+| rights_avoid_kick | [bool](#bool) |  | 防踢 |
+| rights_avoid_ban_speaking | [bool](#bool) |  | 防禁言 |
 
 
 
@@ -12257,6 +12703,247 @@ service started /////////////////
 | CountFanbaseMemberByStreamerID | [CountFanbaseMemberByStreamerIDReq](#svc-biz-vip-CountFanbaseMemberByStreamerIDReq) | [CountFanbaseMemberByStreamerIDResp](#svc-biz-vip-CountFanbaseMemberByStreamerIDResp) | CountFanbaseMemberByStreamerID 获取主播粉丝团成员总数 |
 | GetOnlineFanbaseMemberByStreamerID | [GetOnlineFanbaseMemberByStreamerIDReq](#svc-biz-vip-GetOnlineFanbaseMemberByStreamerIDReq) | [GetListResp](#svc-biz-vip-GetListResp) | GetOnlineFanbaseMemberByStreamerID 获取主播粉丝团在线成员列表 |
 | GetFanbaseMembertByMemberID | [GetFanbaseMembertByMemberIDReq](#svc-biz-vip-GetFanbaseMembertByMemberIDReq) | [GetListResp](#svc-biz-vip-GetListResp) | GetFanbaseMembertByMemberID 获取用户加入的粉丝团列表 |
+
+ 
+
+
+
+<a name="svc-biz-vip_noble-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.biz.vip/noble.proto
+
+
+
+<a name="svc-biz-vip-CreateNobleReq"></a>
+
+### CreateNobleReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| noble | [NobleInfo](#svc-biz-vip-NobleInfo) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-CreateNobleResp"></a>
+
+### CreateNobleResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| noble | [NobleInfo](#svc-biz-vip-NobleInfo) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-GetNobleByLevelReq"></a>
+
+### GetNobleByLevelReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| level | [NobleLevel](#svc-biz-vip-NobleLevel) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-GetNobleByLevelResp"></a>
+
+### GetNobleByLevelResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| noble | [NobleInfo](#svc-biz-vip-NobleInfo) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-GetNobleListReq"></a>
+
+### GetNobleListReq
+
+
+
+
+
+
+
+<a name="svc-biz-vip-GetNobleListResp"></a>
+
+### GetNobleListResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [NobleInfo](#svc-biz-vip-NobleInfo) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-NobleInfo"></a>
+
+### NobleInfo
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| level | [NobleLevel](#svc-biz-vip-NobleLevel) |  | 等级 |
+| name | [string](#string) |  | 名称 |
+| first_open_price | [int32](#int32) |  | 首次开通价格 |
+| first_remand_diamond | [int32](#int32) |  | 首次开通奖励金 |
+| renew_price | [int32](#int32) |  | 续费价格 |
+| renew_remand_diamond | [int32](#int32) |  | 续费奖励金 |
+| rights | [NobleRights](#svc-biz-vip-NobleRights) |  | 权益 |
+| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+| updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 更新时间 |
+
+
+
+
+
+
+<a name="svc-biz-vip-NobleRights"></a>
+
+### NobleRights
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| rights_icon | [string](#string) |  | 身份标签 |
+| rights_avoid_kick | [bool](#bool) |  | 防踢 |
+| rights_avoid_ban_speaking | [bool](#bool) |  | 防禁言 |
+| rights_identity_icon | [bool](#bool) |  | 身份标签（所有贵族都有，此字段不入库默认为true） |
+| rights_upgrade_addition | [int32](#int32) |  | 升级加成（保存的是加成比例，20%的话，存的是数字20） |
+| rights_inroom_effect | [bool](#bool) |  | 进场特效（所有贵族都有，此字段不入库默认为true） |
+| rights_barrage_colors | [string](#string) | repeated | 弹幕颜色 |
+| rights_remand_diamond | [bool](#bool) |  | 专属俸禄（所有贵族都有，此字段不入库默认为true） |
+| rights_mounts | [string](#string) | repeated | 坐骑（进场特效） |
+| rights_free_gifts | [NobleRightsFreeGift](#svc-biz-vip-NobleRightsFreeGift) | repeated | 免费礼物 |
+| rights_noble_gift | [bool](#bool) |  | 专属礼物（所有贵族都有，此字段不入库默认为true） |
+| rights_into_room_hide | [bool](#bool) |  | 进场隐身 |
+| rights_rank_hide | [bool](#bool) |  | 榜单隐身 |
+| rights_discount_gifts | [NobleRightsDiscountGift](#svc-biz-vip-NobleRightsDiscountGift) | repeated | 特价礼物 |
+
+
+
+
+
+
+<a name="svc-biz-vip-NobleRightsDiscountGift"></a>
+
+### NobleRightsDiscountGift
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| gift_id | [string](#string) |  | 礼物id |
+| discount_price | [int32](#int32) |  | 折扣价格 |
+
+
+
+
+
+
+<a name="svc-biz-vip-NobleRightsFreeGift"></a>
+
+### NobleRightsFreeGift
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| gift_id | [string](#string) |  | 礼物id |
+| num | [int32](#int32) |  | 个数 |
+
+
+
+
+
+
+<a name="svc-biz-vip-UpdateNobleByLevelReq"></a>
+
+### UpdateNobleByLevelReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| level | [NobleLevel](#svc-biz-vip-NobleLevel) |  |  |
+| noble | [NobleInfo](#svc-biz-vip-NobleInfo) |  |  |
+| update_mask | [google.protobuf.FieldMask](#google-protobuf-FieldMask) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-UpdateNobleByLevelResp"></a>
+
+### UpdateNobleByLevelResp
+
+
+
+
+
+
+ 
+
+
+<a name="svc-biz-vip-NobleLevel"></a>
+
+### NobleLevel
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| NobleLevelUnknown | 0 | 未知 |
+| NobleLevelKnight | 1 | 骑士 |
+| NobleLevelViscount | 2 | 子爵 |
+| NobleLevelEarl | 3 | 伯爵 |
+| NobleLevelMarquis | 4 | 侯爵 |
+| NobleLevelDuke | 5 | 公爵 |
+| NobleLevelKing | 6 | 国王 |
+
+
+ 
+
+ 
+
+
+<a name="svc-biz-vip-Noble"></a>
+
+### Noble
+贵族
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| CreateNoble | [CreateNobleReq](#svc-biz-vip-CreateNobleReq) | [CreateNobleResp](#svc-biz-vip-CreateNobleResp) | CreateNoble 创建 |
+| GetNobleByLevel | [GetNobleByLevelReq](#svc-biz-vip-GetNobleByLevelReq) | [GetNobleByLevelResp](#svc-biz-vip-GetNobleByLevelResp) | GetNobleByLevel 查询 |
+| GetNobleList | [GetNobleListReq](#svc-biz-vip-GetNobleListReq) | [GetNobleListResp](#svc-biz-vip-GetNobleListResp) | CreateNoble 查询列表 |
+| UpdateNobleByLevel | [UpdateNobleByLevelReq](#svc-biz-vip-UpdateNobleByLevelReq) | [UpdateNobleByLevelResp](#svc-biz-vip-UpdateNobleByLevelResp) | UpdateNobleByLevel 更新 |
 
  
 
