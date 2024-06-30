@@ -15,11 +15,11 @@ service StreamerViewerRank {
     rpc GetStreamerViewerGlamourMember(GetStreamerViewerGlamourMemberReq) returns (GetStreamerViewerRankResp) {}
 }
 
-enum StreamerViewerRankType {
-    StreamerViewerRankTypeUnknown = 0; // 未知
-    StreamerViewerRankTypeDay = 1; // 日榜
-    StreamerViewerRankTypeWeek = 2; // 周榜
-    StreamerViewerRankTypeMonth = 3; // 月榜
+enum StreamerViewerRankPeriod {
+    StreamerViewerRankPeriodUnknown = 0; // 未知
+    StreamerViewerRankPeriodDay = 1; // 日榜
+    StreamerViewerRankPeriodWeek = 2; // 周榜
+    StreamerViewerRankPeriodMonth = 3; // 月榜
 }
 
 // RankMemberInfo 排行榜成员信息
@@ -29,17 +29,23 @@ message RankMemberInfo {
 }
 
 message GetStreamerViewerOnlineMemberReq {
-    string streamer_id = 1; // 主播id
+    int32 page = 1;
+    int32 limie = 2;
+    string streamer_id = 3; // 主播id
 }
 
 message GetStreamerViewerGiftMemberReq {
-    string streamer_id = 1; // 主播id
-    StreamerViewerRankType rank_type = 2; // 排行榜类型
+    int32 page = 1;
+    int32 limie = 2;
+    string streamer_id = 3; // 主播id
+    StreamerViewerRankPeriod rank_period = 4; // 排行榜周期
 }
 
 message GetStreamerViewerGlamourMemberReq {
-    string streamer_id = 1; // 主播id
-    StreamerViewerRankType rank_type = 2; // 排行榜类型
+    int32 page = 1;
+    int32 limie = 20;
+    string streamer_id = 3; // 主播id
+    StreamerViewerRankPeriod rank_period = 4; // 排行榜周期
 }
 
 message GetStreamerViewerRankResp {

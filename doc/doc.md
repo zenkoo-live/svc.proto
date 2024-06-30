@@ -569,7 +569,7 @@
     - [GetStreamerViewerRankResp](#svc-biz-rank-GetStreamerViewerRankResp)
     - [RankMemberInfo](#svc-biz-rank-RankMemberInfo)
   
-    - [StreamerViewerRankType](#svc-biz-rank-StreamerViewerRankType)
+    - [StreamerViewerRankPeriod](#svc-biz-rank-StreamerViewerRankPeriod)
   
     - [StreamerViewerRank](#svc-biz-rank-StreamerViewerRank)
   
@@ -9935,8 +9935,10 @@ WellKnownRegex contain some well-known patterns.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| page | [int32](#int32) |  |  |
+| limie | [int32](#int32) |  |  |
 | streamer_id | [string](#string) |  | 主播id |
-| rank_type | [StreamerViewerRankType](#svc-biz-rank-StreamerViewerRankType) |  | 排行榜类型 |
+| rank_period | [StreamerViewerRankPeriod](#svc-biz-rank-StreamerViewerRankPeriod) |  | 排行榜周期 |
 
 
 
@@ -9951,8 +9953,10 @@ WellKnownRegex contain some well-known patterns.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| page | [int32](#int32) |  |  |
+| limie | [int32](#int32) |  |  |
 | streamer_id | [string](#string) |  | 主播id |
-| rank_type | [StreamerViewerRankType](#svc-biz-rank-StreamerViewerRankType) |  | 排行榜类型 |
+| rank_period | [StreamerViewerRankPeriod](#svc-biz-rank-StreamerViewerRankPeriod) |  | 排行榜周期 |
 
 
 
@@ -9967,6 +9971,8 @@ WellKnownRegex contain some well-known patterns.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| page | [int32](#int32) |  |  |
+| limie | [int32](#int32) |  |  |
 | streamer_id | [string](#string) |  | 主播id |
 
 
@@ -10007,17 +10013,17 @@ RankMemberInfo 排行榜成员信息
  
 
 
-<a name="svc-biz-rank-StreamerViewerRankType"></a>
+<a name="svc-biz-rank-StreamerViewerRankPeriod"></a>
 
-### StreamerViewerRankType
+### StreamerViewerRankPeriod
 
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| StreamerViewerRankTypeUnknown | 0 | 未知 |
-| StreamerViewerRankTypeDay | 1 | 日榜 |
-| StreamerViewerRankTypeWeek | 2 | 周榜 |
-| StreamerViewerRankTypeMonth | 3 | 月榜 |
+| StreamerViewerRankPeriodUnknown | 0 | 未知 |
+| StreamerViewerRankPeriodDay | 1 | 日榜 |
+| StreamerViewerRankPeriodWeek | 2 | 周榜 |
+| StreamerViewerRankPeriodMonth | 3 | 月榜 |
 
 
  
