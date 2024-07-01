@@ -78,10 +78,11 @@ message NobleRights {
 message NobleInfo {
     NobleLevel level = 1; // 等级
     string name = 2; // 名称
-    int32 first_open_price = 3; // 首次开通价格
-    int32 first_remand_diamond = 4; // 首次开通奖励金
-    int32 renew_price = 5; // 续费价格
-    int32 renew_remand_diamond = 6; // 续费奖励金
+    string icon = 3; // 贵族图标
+    int32 first_open_price = 4; // 首次开通价格
+    int32 first_remand_diamond = 5; // 首次开通奖励金
+    int32 renew_price = 6; // 续费价格
+    int32 renew_remand_diamond = 7; // 续费奖励金
     
     NobleRights rights = 100; // 权益
 

@@ -30,6 +30,8 @@ message NobleMemberInfo {
     string streamer_id = 3; // 主播id（可为空）
     google.protobuf.Timestamp join_time = 4; // 加入时间
     google.protobuf.Timestamp expire_time = 5; // 过期时间
+
+    NobleInfo noble = 100; // 仅在请求时带了with_noble_info时返回
 }
 
 message JoinNobleReq {
@@ -42,6 +44,7 @@ message JoinNobleResp {
 
 message GetNobleMemberReq {
     string member_id = 1; // 用户id
+    bool with_noble_info = 2; // 是否返回贵族信息
 }
 message GetNobleMemberResp {
     NobleMemberInfo noble_member = 1;
@@ -51,15 +54,17 @@ message GetNobleMemberResp {
 message GetNobleMemberListReq {
     int32 page = 1; // 页数
     int32 limit = 2; // 条数
-    NobleLevel level = 3; // 贵族等级
-    string streamer_id = 4; // 主播id
-    google.protobuf.Timestamp join_time_start = 5; // 开通贵族的开始时间
-    google.protobuf.Timestamp join_time_end = 6; // 开通贵族的结束时间
+    bool with_noble_info = 3; // 是否返回贵族信息
+    NobleLevel level = 4; // 贵族等级
+    string streamer_id = 5; // 主播id
+    google.protobuf.Timestamp join_time_start = 6; // 开通贵族的开始时间
+    google.protobuf.Timestamp join_time_end = 7; // 开通贵族的结束时间
 }
 message GetOnlineNobleMemberListByStreamerIDReq {
     int32 page = 1; // 页数
     int32 limit = 2; // 条数
-    string streamer_id = 3; // 主播id
+    bool with_noble_info = 3; // 是否返回贵族信息
+    string streamer_id = 4; // 主播id
 }
 message GetNobleMemberListResp {
     repeated NobleMemberInfo items = 1;

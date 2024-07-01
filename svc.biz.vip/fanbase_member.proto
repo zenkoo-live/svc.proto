@@ -4,6 +4,7 @@ package svc.biz.vip;
 
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/empty.proto";
+import "svc.biz.vip/fanbase.proto";
 
 option go_package="./svc.biz.vip;vip";
 
@@ -24,13 +25,16 @@ service FanbaseMember {
     rpc GetFanbaseMember (GetFanbaseMemberReq) returns (GetFanbaseMemberResp) {}
 
     // GetFanbaseMemberByStreamerID 获取主播粉丝团成员列表
-    rpc GetFanbaseMemberByStreamerID (GetFanbaseMemberByStreamerIDReq) returns (GetListResp) {}
+    rpc GetFanbaseMemberByStreamerID (GetFanbaseMemberByStreamerIDReq) returns (GetFanbaseMemberByStreamerIDResp) {}
     // CountFanbaseMemberByStreamerID 获取主播粉丝团成员总数
     rpc CountFanbaseMemberByStreamerID (CountFanbaseMemberByStreamerIDReq) returns (CountFanbaseMemberByStreamerIDResp) {}
     // GetOnlineFanbaseMemberByStreamerID 获取主播粉丝团在线成员列表
-    rpc GetOnlineFanbaseMemberByStreamerID (GetOnlineFanbaseMemberByStreamerIDReq) returns (GetListResp) {}
+    rpc GetOnlineFanbaseMemberByStreamerID (GetOnlineFanbaseMemberByStreamerIDReq) returns (GetOnlineFanbaseMemberByStreamerIDResp) {}
+
     // GetFanbaseMembertByMemberID 获取用户加入的粉丝团列表
-    rpc GetFanbaseMembertByMemberID (GetFanbaseMembertByMemberIDReq) returns (GetListResp) {}
+    rpc GetFanbaseMembertByMemberID (GetFanbaseMembertByMemberIDReq) returns (GetFanbaseMembertByMemberIDResp) {}
+    // CountFanbaseMembertByMemberID 获取用户加入的粉丝团数量
+    rpc CountFanbaseMembertByMemberID (CountFanbaseMembertByMemberIDReq) returns (CountFanbaseMembertByMemberIDResp) {}
 }
 
 message JoinFanbaseReq {
@@ -47,6 +51,7 @@ message LeaveFanbaseReq {
 message GetFanbaseMemberReq {
     string streamer_id = 1;
     string member_id = 2;
+    bool with_fanbase_info = 3; // 是否返回粉丝团信息
 }
 message GetFanbaseMemberResp {
     FanbaseMemberInfo fanbase_member = 1;
@@ -67,6 +72,7 @@ message FanbaseMemberInfo {
     google.protobuf.Timestamp join_time = 5; // 加入时间
     int32 score = 6;
 
+    FanbaseInfo fanbase = 100; // 粉丝团详情，仅在请求时传递了with_fanbase_info时返回
     FanbaseRights rights = 101;
 
     google.protobuf.Timestamp created_at = 201; // 创建时间
@@ -76,9 +82,13 @@ message FanbaseMemberInfo {
 message GetFanbaseMemberByStreamerIDReq {
     int32 page = 1; // 页数
     int32 limit = 2; // 条数
-    string streamer_id = 3; // 主播id
-    FanbaseLevel level = 4; // 等级
+    bool with_fanbase_info = 3; // 是否返回粉丝团信息
+    string streamer_id = 4; // 主播id
+    FanbaseLevel level = 5; // 等级
 }
+message GetFanbaseMemberByStreamerIDResp {
+    repeated FanbaseMemberInfo items = 1;
+} 
 
 message CountFanbaseMemberByStreamerIDReq {
     string streamer_id = 1; // 主播id
@@ -90,18 +100,29 @@ message CountFanbaseMemberByStreamerIDResp {
     int64 total = 1; // 总数
 }
 
-message GetFanbaseMembertByMemberIDReq {
-    int32 page = 1; // 页数
-    int32 limit = 2; // 条数
-    string member_id = 3; // 成员id
-}
-
 message GetOnlineFanbaseMemberByStreamerIDReq {
     int32 page = 1; // 页数
     int32 limit = 2; // 条数
-    string streamer_id = 3; // 主播id
+    bool with_fanbase_info = 3; // 是否返回粉丝团信息
+    string streamer_id = 4; // 主播id
+}
+message GetOnlineFanbaseMemberByStreamerIDResp {
+    repeated FanbaseMemberInfo items = 1;
 }
 
-message GetListResp {
+message GetFanbaseMembertByMemberIDReq {
+    int32 page = 1; // 页数
+    int32 limit = 2; // 条数
+    bool with_fanbase_info = 3; // 是否返回粉丝团信息
+    string member_id = 4; // 成员id
+}
+message GetFanbaseMembertByMemberIDResp {
     repeated FanbaseMemberInfo items = 1;
-} 
+}
+
+message CountFanbaseMembertByMemberIDReq {
+    string member_id = 1;
+}
+message CountFanbaseMembertByMemberIDResp {
+    int64 total = 1; // 总数
+}

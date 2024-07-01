@@ -748,14 +748,18 @@
 - [svc.biz.vip/fanbase_member.proto](#svc-biz-vip_fanbase_member-proto)
     - [CountFanbaseMemberByStreamerIDReq](#svc-biz-vip-CountFanbaseMemberByStreamerIDReq)
     - [CountFanbaseMemberByStreamerIDResp](#svc-biz-vip-CountFanbaseMemberByStreamerIDResp)
+    - [CountFanbaseMembertByMemberIDReq](#svc-biz-vip-CountFanbaseMembertByMemberIDReq)
+    - [CountFanbaseMembertByMemberIDResp](#svc-biz-vip-CountFanbaseMembertByMemberIDResp)
     - [FanbaseMemberInfo](#svc-biz-vip-FanbaseMemberInfo)
     - [FanbaseRights](#svc-biz-vip-FanbaseRights)
     - [GetFanbaseMemberByStreamerIDReq](#svc-biz-vip-GetFanbaseMemberByStreamerIDReq)
+    - [GetFanbaseMemberByStreamerIDResp](#svc-biz-vip-GetFanbaseMemberByStreamerIDResp)
     - [GetFanbaseMemberReq](#svc-biz-vip-GetFanbaseMemberReq)
     - [GetFanbaseMemberResp](#svc-biz-vip-GetFanbaseMemberResp)
     - [GetFanbaseMembertByMemberIDReq](#svc-biz-vip-GetFanbaseMembertByMemberIDReq)
-    - [GetListResp](#svc-biz-vip-GetListResp)
+    - [GetFanbaseMembertByMemberIDResp](#svc-biz-vip-GetFanbaseMembertByMemberIDResp)
     - [GetOnlineFanbaseMemberByStreamerIDReq](#svc-biz-vip-GetOnlineFanbaseMemberByStreamerIDReq)
+    - [GetOnlineFanbaseMemberByStreamerIDResp](#svc-biz-vip-GetOnlineFanbaseMemberByStreamerIDResp)
     - [JoinFanbaseReq](#svc-biz-vip-JoinFanbaseReq)
     - [LeaveFanbaseReq](#svc-biz-vip-LeaveFanbaseReq)
   
@@ -12364,6 +12368,7 @@ service started /////////////////
 | ----- | ---- | ----- | ----------- |
 | page | [int32](#int32) |  | 页数 |
 | limit | [int32](#int32) |  | 条数 |
+| with_noble_info | [bool](#bool) |  | 是否返回贵族信息 |
 | level | [NobleLevel](#svc-biz-vip-NobleLevel) |  | 贵族等级 |
 | streamer_id | [string](#string) |  | 主播id |
 | join_time_start | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开通贵族的开始时间 |
@@ -12398,6 +12403,7 @@ service started /////////////////
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | member_id | [string](#string) |  | 用户id |
+| with_noble_info | [bool](#bool) |  | 是否返回贵族信息 |
 
 
 
@@ -12429,6 +12435,7 @@ service started /////////////////
 | ----- | ---- | ----- | ----------- |
 | page | [int32](#int32) |  | 页数 |
 | limit | [int32](#int32) |  | 条数 |
+| with_noble_info | [bool](#bool) |  | 是否返回贵族信息 |
 | streamer_id | [string](#string) |  | 主播id |
 
 
@@ -12476,6 +12483,7 @@ service started /////////////////
 | streamer_id | [string](#string) |  | 主播id（可为空） |
 | join_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 加入时间 |
 | expire_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 过期时间 |
+| noble | [NobleInfo](#svc-biz-vip-NobleInfo) |  | 仅在请求时带了with_noble_info时返回 |
 
 
 
@@ -12759,6 +12767,36 @@ service started /////////////////
 
 
 
+<a name="svc-biz-vip-CountFanbaseMembertByMemberIDReq"></a>
+
+### CountFanbaseMembertByMemberIDReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| member_id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-CountFanbaseMembertByMemberIDResp"></a>
+
+### CountFanbaseMembertByMemberIDResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| total | [int64](#int64) |  | 总数 |
+
+
+
+
+
+
 <a name="svc-biz-vip-FanbaseMemberInfo"></a>
 
 ### FanbaseMemberInfo
@@ -12773,6 +12811,7 @@ service started /////////////////
 | level | [FanbaseLevel](#svc-biz-vip-FanbaseLevel) |  |  |
 | join_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 加入时间 |
 | score | [int32](#int32) |  |  |
+| fanbase | [FanbaseInfo](#svc-biz-vip-FanbaseInfo) |  | 粉丝团详情，仅在请求时传递了with_fanbase_info时返回 |
 | rights | [FanbaseRights](#svc-biz-vip-FanbaseRights) |  |  |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
 | updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 更新时间 |
@@ -12811,8 +12850,24 @@ service started /////////////////
 | ----- | ---- | ----- | ----------- |
 | page | [int32](#int32) |  | 页数 |
 | limit | [int32](#int32) |  | 条数 |
+| with_fanbase_info | [bool](#bool) |  | 是否返回粉丝团信息 |
 | streamer_id | [string](#string) |  | 主播id |
 | level | [FanbaseLevel](#svc-biz-vip-FanbaseLevel) |  | 等级 |
+
+
+
+
+
+
+<a name="svc-biz-vip-GetFanbaseMemberByStreamerIDResp"></a>
+
+### GetFanbaseMemberByStreamerIDResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [FanbaseMemberInfo](#svc-biz-vip-FanbaseMemberInfo) | repeated |  |
 
 
 
@@ -12829,6 +12884,7 @@ service started /////////////////
 | ----- | ---- | ----- | ----------- |
 | streamer_id | [string](#string) |  |  |
 | member_id | [string](#string) |  |  |
+| with_fanbase_info | [bool](#bool) |  | 是否返回粉丝团信息 |
 
 
 
@@ -12860,6 +12916,7 @@ service started /////////////////
 | ----- | ---- | ----- | ----------- |
 | page | [int32](#int32) |  | 页数 |
 | limit | [int32](#int32) |  | 条数 |
+| with_fanbase_info | [bool](#bool) |  | 是否返回粉丝团信息 |
 | member_id | [string](#string) |  | 成员id |
 
 
@@ -12867,9 +12924,9 @@ service started /////////////////
 
 
 
-<a name="svc-biz-vip-GetListResp"></a>
+<a name="svc-biz-vip-GetFanbaseMembertByMemberIDResp"></a>
 
-### GetListResp
+### GetFanbaseMembertByMemberIDResp
 
 
 
@@ -12892,7 +12949,23 @@ service started /////////////////
 | ----- | ---- | ----- | ----------- |
 | page | [int32](#int32) |  | 页数 |
 | limit | [int32](#int32) |  | 条数 |
+| with_fanbase_info | [bool](#bool) |  | 是否返回粉丝团信息 |
 | streamer_id | [string](#string) |  | 主播id |
+
+
+
+
+
+
+<a name="svc-biz-vip-GetOnlineFanbaseMemberByStreamerIDResp"></a>
+
+### GetOnlineFanbaseMemberByStreamerIDResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [FanbaseMemberInfo](#svc-biz-vip-FanbaseMemberInfo) | repeated |  |
 
 
 
@@ -12962,10 +13035,11 @@ service started /////////////////
 | JoinFanbase | [JoinFanbaseReq](#svc-biz-vip-JoinFanbaseReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | JoinFanbase 加入粉丝团 |
 | LeaveFanbase | [LeaveFanbaseReq](#svc-biz-vip-LeaveFanbaseReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | LeaveFanbase 离开粉丝团 |
 | GetFanbaseMember | [GetFanbaseMemberReq](#svc-biz-vip-GetFanbaseMemberReq) | [GetFanbaseMemberResp](#svc-biz-vip-GetFanbaseMemberResp) | GetFanbaseMember 获取粉丝团成员信息 |
-| GetFanbaseMemberByStreamerID | [GetFanbaseMemberByStreamerIDReq](#svc-biz-vip-GetFanbaseMemberByStreamerIDReq) | [GetListResp](#svc-biz-vip-GetListResp) | GetFanbaseMemberByStreamerID 获取主播粉丝团成员列表 |
+| GetFanbaseMemberByStreamerID | [GetFanbaseMemberByStreamerIDReq](#svc-biz-vip-GetFanbaseMemberByStreamerIDReq) | [GetFanbaseMemberByStreamerIDResp](#svc-biz-vip-GetFanbaseMemberByStreamerIDResp) | GetFanbaseMemberByStreamerID 获取主播粉丝团成员列表 |
 | CountFanbaseMemberByStreamerID | [CountFanbaseMemberByStreamerIDReq](#svc-biz-vip-CountFanbaseMemberByStreamerIDReq) | [CountFanbaseMemberByStreamerIDResp](#svc-biz-vip-CountFanbaseMemberByStreamerIDResp) | CountFanbaseMemberByStreamerID 获取主播粉丝团成员总数 |
-| GetOnlineFanbaseMemberByStreamerID | [GetOnlineFanbaseMemberByStreamerIDReq](#svc-biz-vip-GetOnlineFanbaseMemberByStreamerIDReq) | [GetListResp](#svc-biz-vip-GetListResp) | GetOnlineFanbaseMemberByStreamerID 获取主播粉丝团在线成员列表 |
-| GetFanbaseMembertByMemberID | [GetFanbaseMembertByMemberIDReq](#svc-biz-vip-GetFanbaseMembertByMemberIDReq) | [GetListResp](#svc-biz-vip-GetListResp) | GetFanbaseMembertByMemberID 获取用户加入的粉丝团列表 |
+| GetOnlineFanbaseMemberByStreamerID | [GetOnlineFanbaseMemberByStreamerIDReq](#svc-biz-vip-GetOnlineFanbaseMemberByStreamerIDReq) | [GetOnlineFanbaseMemberByStreamerIDResp](#svc-biz-vip-GetOnlineFanbaseMemberByStreamerIDResp) | GetOnlineFanbaseMemberByStreamerID 获取主播粉丝团在线成员列表 |
+| GetFanbaseMembertByMemberID | [GetFanbaseMembertByMemberIDReq](#svc-biz-vip-GetFanbaseMembertByMemberIDReq) | [GetFanbaseMembertByMemberIDResp](#svc-biz-vip-GetFanbaseMembertByMemberIDResp) | GetFanbaseMembertByMemberID 获取用户加入的粉丝团列表 |
+| CountFanbaseMembertByMemberID | [CountFanbaseMembertByMemberIDReq](#svc-biz-vip-CountFanbaseMembertByMemberIDReq) | [CountFanbaseMembertByMemberIDResp](#svc-biz-vip-CountFanbaseMembertByMemberIDResp) | CountFanbaseMembertByMemberID 获取用户加入的粉丝团数量 |
 
  
 
@@ -13073,6 +13147,7 @@ service started /////////////////
 | ----- | ---- | ----- | ----------- |
 | level | [NobleLevel](#svc-biz-vip-NobleLevel) |  | 等级 |
 | name | [string](#string) |  | 名称 |
+| icon | [string](#string) |  | 贵族图标 |
 | first_open_price | [int32](#int32) |  | 首次开通价格 |
 | first_remand_diamond | [int32](#int32) |  | 首次开通奖励金 |
 | renew_price | [int32](#int32) |  | 续费价格 |
