@@ -6,8 +6,10 @@ option go_package="./svc.biz.rank;rank";
 
 // 排行
 service StreamerViewerRank {
-    // 获取主播在线的排行榜成员
-    rpc GetStreamerViewerOnlineMember(GetStreamerViewerOnlineMemberReq) returns (GetStreamerViewerRankResp) {}
+    // 获取主播某场直播的排行榜成员
+    rpc GetStreamerViewerLiveMember(GetStreamerViewerLiveMemberReq) returns (GetStreamerViewerRankResp) {}
+    // 获取主播某场直播的在线排行榜成员
+    rpc GetStreamerViewerLiveOnlineMember(GetStreamerViewerLiveMemberReq) returns (GetStreamerViewerRankResp) {}
 
     // 获取给主播贡献礼物的排行榜成员
     rpc GetStreamerViewerGiftMember(GetStreamerViewerGiftMemberReq) returns (GetStreamerViewerRankResp) {}
@@ -20,6 +22,7 @@ enum StreamerViewerRankPeriod {
     StreamerViewerRankPeriodDay = 1; // 日榜
     StreamerViewerRankPeriodWeek = 2; // 周榜
     StreamerViewerRankPeriodMonth = 3; // 月榜
+    StreamerViewerRankPeriodAll = 4; // 总榜
 }
 
 // RankMemberInfo 排行榜成员信息
@@ -28,10 +31,11 @@ message RankMemberInfo {
     int64 score = 2;
 }
 
-message GetStreamerViewerOnlineMemberReq {
+message GetStreamerViewerLiveMemberReq {
     int32 page = 1;
     int32 limit = 2;
     string streamer_id = 3; // 主播id
+    string live_id = 4; // 直播id
 }
 
 message GetStreamerViewerGiftMemberReq {

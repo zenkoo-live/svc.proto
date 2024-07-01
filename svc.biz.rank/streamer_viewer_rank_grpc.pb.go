@@ -19,9 +19,10 @@ import (
 const _ = grpc.SupportPackageIsVersion8
 
 const (
-	StreamerViewerRank_GetStreamerViewerOnlineMember_FullMethodName  = "/svc.biz.rank.StreamerViewerRank/GetStreamerViewerOnlineMember"
-	StreamerViewerRank_GetStreamerViewerGiftMember_FullMethodName    = "/svc.biz.rank.StreamerViewerRank/GetStreamerViewerGiftMember"
-	StreamerViewerRank_GetStreamerViewerGlamourMember_FullMethodName = "/svc.biz.rank.StreamerViewerRank/GetStreamerViewerGlamourMember"
+	StreamerViewerRank_GetStreamerViewerLiveMember_FullMethodName       = "/svc.biz.rank.StreamerViewerRank/GetStreamerViewerLiveMember"
+	StreamerViewerRank_GetStreamerViewerLiveOnlineMember_FullMethodName = "/svc.biz.rank.StreamerViewerRank/GetStreamerViewerLiveOnlineMember"
+	StreamerViewerRank_GetStreamerViewerGiftMember_FullMethodName       = "/svc.biz.rank.StreamerViewerRank/GetStreamerViewerGiftMember"
+	StreamerViewerRank_GetStreamerViewerGlamourMember_FullMethodName    = "/svc.biz.rank.StreamerViewerRank/GetStreamerViewerGlamourMember"
 )
 
 // StreamerViewerRankClient is the client API for StreamerViewerRank service.
@@ -30,8 +31,10 @@ const (
 //
 // 排行
 type StreamerViewerRankClient interface {
-	// 获取主播在线的排行榜成员
-	GetStreamerViewerOnlineMember(ctx context.Context, in *GetStreamerViewerOnlineMemberReq, opts ...grpc.CallOption) (*GetStreamerViewerRankResp, error)
+	// 获取主播某场直播的排行榜成员
+	GetStreamerViewerLiveMember(ctx context.Context, in *GetStreamerViewerLiveMemberReq, opts ...grpc.CallOption) (*GetStreamerViewerRankResp, error)
+	// 获取主播某场直播的在线排行榜成员
+	GetStreamerViewerLiveOnlineMember(ctx context.Context, in *GetStreamerViewerLiveMemberReq, opts ...grpc.CallOption) (*GetStreamerViewerRankResp, error)
 	// 获取给主播贡献礼物的排行榜成员
 	GetStreamerViewerGiftMember(ctx context.Context, in *GetStreamerViewerGiftMemberReq, opts ...grpc.CallOption) (*GetStreamerViewerRankResp, error)
 	// 获取给主播贡献魅力值的排行榜成员
@@ -46,10 +49,20 @@ func NewStreamerViewerRankClient(cc grpc.ClientConnInterface) StreamerViewerRank
 	return &streamerViewerRankClient{cc}
 }
 
-func (c *streamerViewerRankClient) GetStreamerViewerOnlineMember(ctx context.Context, in *GetStreamerViewerOnlineMemberReq, opts ...grpc.CallOption) (*GetStreamerViewerRankResp, error) {
+func (c *streamerViewerRankClient) GetStreamerViewerLiveMember(ctx context.Context, in *GetStreamerViewerLiveMemberReq, opts ...grpc.CallOption) (*GetStreamerViewerRankResp, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetStreamerViewerRankResp)
-	err := c.cc.Invoke(ctx, StreamerViewerRank_GetStreamerViewerOnlineMember_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, StreamerViewerRank_GetStreamerViewerLiveMember_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *streamerViewerRankClient) GetStreamerViewerLiveOnlineMember(ctx context.Context, in *GetStreamerViewerLiveMemberReq, opts ...grpc.CallOption) (*GetStreamerViewerRankResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetStreamerViewerRankResp)
+	err := c.cc.Invoke(ctx, StreamerViewerRank_GetStreamerViewerLiveOnlineMember_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -82,8 +95,10 @@ func (c *streamerViewerRankClient) GetStreamerViewerGlamourMember(ctx context.Co
 //
 // 排行
 type StreamerViewerRankServer interface {
-	// 获取主播在线的排行榜成员
-	GetStreamerViewerOnlineMember(context.Context, *GetStreamerViewerOnlineMemberReq) (*GetStreamerViewerRankResp, error)
+	// 获取主播某场直播的排行榜成员
+	GetStreamerViewerLiveMember(context.Context, *GetStreamerViewerLiveMemberReq) (*GetStreamerViewerRankResp, error)
+	// 获取主播某场直播的在线排行榜成员
+	GetStreamerViewerLiveOnlineMember(context.Context, *GetStreamerViewerLiveMemberReq) (*GetStreamerViewerRankResp, error)
 	// 获取给主播贡献礼物的排行榜成员
 	GetStreamerViewerGiftMember(context.Context, *GetStreamerViewerGiftMemberReq) (*GetStreamerViewerRankResp, error)
 	// 获取给主播贡献魅力值的排行榜成员
@@ -95,8 +110,11 @@ type StreamerViewerRankServer interface {
 type UnimplementedStreamerViewerRankServer struct {
 }
 
-func (UnimplementedStreamerViewerRankServer) GetStreamerViewerOnlineMember(context.Context, *GetStreamerViewerOnlineMemberReq) (*GetStreamerViewerRankResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetStreamerViewerOnlineMember not implemented")
+func (UnimplementedStreamerViewerRankServer) GetStreamerViewerLiveMember(context.Context, *GetStreamerViewerLiveMemberReq) (*GetStreamerViewerRankResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStreamerViewerLiveMember not implemented")
+}
+func (UnimplementedStreamerViewerRankServer) GetStreamerViewerLiveOnlineMember(context.Context, *GetStreamerViewerLiveMemberReq) (*GetStreamerViewerRankResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStreamerViewerLiveOnlineMember not implemented")
 }
 func (UnimplementedStreamerViewerRankServer) GetStreamerViewerGiftMember(context.Context, *GetStreamerViewerGiftMemberReq) (*GetStreamerViewerRankResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetStreamerViewerGiftMember not implemented")
@@ -117,20 +135,38 @@ func RegisterStreamerViewerRankServer(s grpc.ServiceRegistrar, srv StreamerViewe
 	s.RegisterService(&StreamerViewerRank_ServiceDesc, srv)
 }
 
-func _StreamerViewerRank_GetStreamerViewerOnlineMember_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetStreamerViewerOnlineMemberReq)
+func _StreamerViewerRank_GetStreamerViewerLiveMember_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetStreamerViewerLiveMemberReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(StreamerViewerRankServer).GetStreamerViewerOnlineMember(ctx, in)
+		return srv.(StreamerViewerRankServer).GetStreamerViewerLiveMember(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: StreamerViewerRank_GetStreamerViewerOnlineMember_FullMethodName,
+		FullMethod: StreamerViewerRank_GetStreamerViewerLiveMember_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StreamerViewerRankServer).GetStreamerViewerOnlineMember(ctx, req.(*GetStreamerViewerOnlineMemberReq))
+		return srv.(StreamerViewerRankServer).GetStreamerViewerLiveMember(ctx, req.(*GetStreamerViewerLiveMemberReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _StreamerViewerRank_GetStreamerViewerLiveOnlineMember_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetStreamerViewerLiveMemberReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StreamerViewerRankServer).GetStreamerViewerLiveOnlineMember(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: StreamerViewerRank_GetStreamerViewerLiveOnlineMember_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StreamerViewerRankServer).GetStreamerViewerLiveOnlineMember(ctx, req.(*GetStreamerViewerLiveMemberReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -179,8 +215,12 @@ var StreamerViewerRank_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*StreamerViewerRankServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetStreamerViewerOnlineMember",
-			Handler:    _StreamerViewerRank_GetStreamerViewerOnlineMember_Handler,
+			MethodName: "GetStreamerViewerLiveMember",
+			Handler:    _StreamerViewerRank_GetStreamerViewerLiveMember_Handler,
+		},
+		{
+			MethodName: "GetStreamerViewerLiveOnlineMember",
+			Handler:    _StreamerViewerRank_GetStreamerViewerLiveOnlineMember_Handler,
 		},
 		{
 			MethodName: "GetStreamerViewerGiftMember",
