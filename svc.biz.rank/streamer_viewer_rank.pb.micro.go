@@ -36,8 +36,10 @@ func NewStreamerViewerRankEndpoints() []*api.Endpoint {
 // Client API for StreamerViewerRank service
 
 type StreamerViewerRankService interface {
-	// 获取主播在线的排行榜成员
-	GetStreamerViewerOnlineMember(ctx context.Context, in *GetStreamerViewerOnlineMemberReq, opts ...client.CallOption) (*GetStreamerViewerRankResp, error)
+	// 获取主播某场直播的排行榜成员
+	GetStreamerViewerLiveMember(ctx context.Context, in *GetStreamerViewerLiveMemberReq, opts ...client.CallOption) (*GetStreamerViewerRankResp, error)
+	// 获取主播某场直播的在线排行榜成员
+	GetStreamerViewerLiveOnlineMember(ctx context.Context, in *GetStreamerViewerLiveMemberReq, opts ...client.CallOption) (*GetStreamerViewerRankResp, error)
 	// 获取给主播贡献礼物的排行榜成员
 	GetStreamerViewerGiftMember(ctx context.Context, in *GetStreamerViewerGiftMemberReq, opts ...client.CallOption) (*GetStreamerViewerRankResp, error)
 	// 获取给主播贡献魅力值的排行榜成员
@@ -56,8 +58,18 @@ func NewStreamerViewerRankService(name string, c client.Client) StreamerViewerRa
 	}
 }
 
-func (c *streamerViewerRankService) GetStreamerViewerOnlineMember(ctx context.Context, in *GetStreamerViewerOnlineMemberReq, opts ...client.CallOption) (*GetStreamerViewerRankResp, error) {
-	req := c.c.NewRequest(c.name, "StreamerViewerRank.GetStreamerViewerOnlineMember", in)
+func (c *streamerViewerRankService) GetStreamerViewerLiveMember(ctx context.Context, in *GetStreamerViewerLiveMemberReq, opts ...client.CallOption) (*GetStreamerViewerRankResp, error) {
+	req := c.c.NewRequest(c.name, "StreamerViewerRank.GetStreamerViewerLiveMember", in)
+	out := new(GetStreamerViewerRankResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *streamerViewerRankService) GetStreamerViewerLiveOnlineMember(ctx context.Context, in *GetStreamerViewerLiveMemberReq, opts ...client.CallOption) (*GetStreamerViewerRankResp, error) {
+	req := c.c.NewRequest(c.name, "StreamerViewerRank.GetStreamerViewerLiveOnlineMember", in)
 	out := new(GetStreamerViewerRankResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
@@ -89,8 +101,10 @@ func (c *streamerViewerRankService) GetStreamerViewerGlamourMember(ctx context.C
 // Server API for StreamerViewerRank service
 
 type StreamerViewerRankHandler interface {
-	// 获取主播在线的排行榜成员
-	GetStreamerViewerOnlineMember(context.Context, *GetStreamerViewerOnlineMemberReq, *GetStreamerViewerRankResp) error
+	// 获取主播某场直播的排行榜成员
+	GetStreamerViewerLiveMember(context.Context, *GetStreamerViewerLiveMemberReq, *GetStreamerViewerRankResp) error
+	// 获取主播某场直播的在线排行榜成员
+	GetStreamerViewerLiveOnlineMember(context.Context, *GetStreamerViewerLiveMemberReq, *GetStreamerViewerRankResp) error
 	// 获取给主播贡献礼物的排行榜成员
 	GetStreamerViewerGiftMember(context.Context, *GetStreamerViewerGiftMemberReq, *GetStreamerViewerRankResp) error
 	// 获取给主播贡献魅力值的排行榜成员
@@ -99,7 +113,8 @@ type StreamerViewerRankHandler interface {
 
 func RegisterStreamerViewerRankHandler(s server.Server, hdlr StreamerViewerRankHandler, opts ...server.HandlerOption) error {
 	type streamerViewerRank interface {
-		GetStreamerViewerOnlineMember(ctx context.Context, in *GetStreamerViewerOnlineMemberReq, out *GetStreamerViewerRankResp) error
+		GetStreamerViewerLiveMember(ctx context.Context, in *GetStreamerViewerLiveMemberReq, out *GetStreamerViewerRankResp) error
+		GetStreamerViewerLiveOnlineMember(ctx context.Context, in *GetStreamerViewerLiveMemberReq, out *GetStreamerViewerRankResp) error
 		GetStreamerViewerGiftMember(ctx context.Context, in *GetStreamerViewerGiftMemberReq, out *GetStreamerViewerRankResp) error
 		GetStreamerViewerGlamourMember(ctx context.Context, in *GetStreamerViewerGlamourMemberReq, out *GetStreamerViewerRankResp) error
 	}
@@ -114,8 +129,12 @@ type streamerViewerRankHandler struct {
 	StreamerViewerRankHandler
 }
 
-func (h *streamerViewerRankHandler) GetStreamerViewerOnlineMember(ctx context.Context, in *GetStreamerViewerOnlineMemberReq, out *GetStreamerViewerRankResp) error {
-	return h.StreamerViewerRankHandler.GetStreamerViewerOnlineMember(ctx, in, out)
+func (h *streamerViewerRankHandler) GetStreamerViewerLiveMember(ctx context.Context, in *GetStreamerViewerLiveMemberReq, out *GetStreamerViewerRankResp) error {
+	return h.StreamerViewerRankHandler.GetStreamerViewerLiveMember(ctx, in, out)
+}
+
+func (h *streamerViewerRankHandler) GetStreamerViewerLiveOnlineMember(ctx context.Context, in *GetStreamerViewerLiveMemberReq, out *GetStreamerViewerRankResp) error {
+	return h.StreamerViewerRankHandler.GetStreamerViewerLiveOnlineMember(ctx, in, out)
 }
 
 func (h *streamerViewerRankHandler) GetStreamerViewerGiftMember(ctx context.Context, in *GetStreamerViewerGiftMemberReq, out *GetStreamerViewerRankResp) error {

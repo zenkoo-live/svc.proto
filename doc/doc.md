@@ -565,7 +565,7 @@
 - [svc.biz.rank/streamer_viewer_rank.proto](#svc-biz-rank_streamer_viewer_rank-proto)
     - [GetStreamerViewerGiftMemberReq](#svc-biz-rank-GetStreamerViewerGiftMemberReq)
     - [GetStreamerViewerGlamourMemberReq](#svc-biz-rank-GetStreamerViewerGlamourMemberReq)
-    - [GetStreamerViewerOnlineMemberReq](#svc-biz-rank-GetStreamerViewerOnlineMemberReq)
+    - [GetStreamerViewerLiveMemberReq](#svc-biz-rank-GetStreamerViewerLiveMemberReq)
     - [GetStreamerViewerRankResp](#svc-biz-rank-GetStreamerViewerRankResp)
     - [RankMemberInfo](#svc-biz-rank-RankMemberInfo)
   
@@ -9963,9 +9963,9 @@ WellKnownRegex contain some well-known patterns.
 
 
 
-<a name="svc-biz-rank-GetStreamerViewerOnlineMemberReq"></a>
+<a name="svc-biz-rank-GetStreamerViewerLiveMemberReq"></a>
 
-### GetStreamerViewerOnlineMemberReq
+### GetStreamerViewerLiveMemberReq
 
 
 
@@ -9974,6 +9974,7 @@ WellKnownRegex contain some well-known patterns.
 | page | [int32](#int32) |  |  |
 | limit | [int32](#int32) |  |  |
 | streamer_id | [string](#string) |  | 主播id |
+| live_id | [string](#string) |  | 直播id |
 
 
 
@@ -10024,6 +10025,7 @@ RankMemberInfo 排行榜成员信息
 | StreamerViewerRankPeriodDay | 1 | 日榜 |
 | StreamerViewerRankPeriodWeek | 2 | 周榜 |
 | StreamerViewerRankPeriodMonth | 3 | 月榜 |
+| StreamerViewerRankPeriodAll | 4 | 总榜 |
 
 
  
@@ -10038,7 +10040,8 @@ RankMemberInfo 排行榜成员信息
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| GetStreamerViewerOnlineMember | [GetStreamerViewerOnlineMemberReq](#svc-biz-rank-GetStreamerViewerOnlineMemberReq) | [GetStreamerViewerRankResp](#svc-biz-rank-GetStreamerViewerRankResp) | 获取主播在线的排行榜成员 |
+| GetStreamerViewerLiveMember | [GetStreamerViewerLiveMemberReq](#svc-biz-rank-GetStreamerViewerLiveMemberReq) | [GetStreamerViewerRankResp](#svc-biz-rank-GetStreamerViewerRankResp) | 获取主播某场直播的排行榜成员 |
+| GetStreamerViewerLiveOnlineMember | [GetStreamerViewerLiveMemberReq](#svc-biz-rank-GetStreamerViewerLiveMemberReq) | [GetStreamerViewerRankResp](#svc-biz-rank-GetStreamerViewerRankResp) | 获取主播某场直播的在线排行榜成员 |
 | GetStreamerViewerGiftMember | [GetStreamerViewerGiftMemberReq](#svc-biz-rank-GetStreamerViewerGiftMemberReq) | [GetStreamerViewerRankResp](#svc-biz-rank-GetStreamerViewerRankResp) | 获取给主播贡献礼物的排行榜成员 |
 | GetStreamerViewerGlamourMember | [GetStreamerViewerGlamourMemberReq](#svc-biz-rank-GetStreamerViewerGlamourMemberReq) | [GetStreamerViewerRankResp](#svc-biz-rank-GetStreamerViewerRankResp) | 获取给主播贡献魅力值的排行榜成员 |
 
