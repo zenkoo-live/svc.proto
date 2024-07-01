@@ -20,6 +20,7 @@ service Account {
     rpc ViewerAdditionsGet(ViewerAdditionsGetReq) returns (ViewerAdditionsGetResp); // 通过key获取普通账号的扩展属性
     rpc ViewerAdditionsDump(ViewerAdditionsDumpReq) returns (ViewerAdditionsDumpResp); // 获取普通账号的所有扩展属性
     rpc ViewerAdditionsFilter(ViewerAdditionsFilterReq) returns (ViewerAdditionsFilterResp); // 获取普通账号下多个key对应的扩展属性
+    rpc ViewerStatusSet(ViewerStatusSetReq) returns (ViewerStatusSetResp); // 设置普通账号的状态位
 
     rpc GetStreamer(GetStreamerReq) returns (GetStreamerResp); // 获取主播账号
     rpc ListStreamers(ListStreamersReq) returns (ListStreamersResp); // 获取主播账号列表
@@ -32,6 +33,7 @@ service Account {
     rpc StreamerAdditionsGet(StreamerAdditionsGetReq) returns (StreamerAdditionsGetResp); // 通过key获取主播的扩展属性
     rpc StreamerAdditionsDump(StreamerAdditionsDumpReq) returns (StreamerAdditionsDumpResp); // 获取主播的所有扩展属性
     rpc StreamerAdditionsFilter(StreamerAdditionsFilterReq) returns (StreamerAdditionsFilterResp); // 获取主播下多个key对应的扩展属性
+    rpc StreamerStatusSet(StreamerStatusSetReq) returns (StreamerStatusSetResp); // 设置主播的状态位
 
     rpc GetManager(GetManagerReq) returns (GetManagerResp); // 获取管理账号
     rpc ListManagers(ListManagersReq) returns (ListManagersResp); // 获取管理账号列表
@@ -44,6 +46,7 @@ service Account {
     rpc ManagerAdditionsGet(ManagerAdditionsGetReq) returns (ManagerAdditionsGetResp); // 通过key获取管理的扩展属性
     rpc ManagerAdditionsDump(ManagerAdditionsDumpReq) returns (ManagerAdditionsDumpResp); // 获取管理的所有扩展属性
     rpc ManagerAdditionsFilter(ManagerAdditionsFilterReq) returns (ManagerAdditionsFilterResp); // 获取管理下多个key对应的扩展属性
+    rpc ManagerStatusSet(ManagerStatusSetReq) returns (ManagerStatusSetResp); // 设置管理的状态位
 
     rpc GetUnion(GetUnionReq) returns (GetUnionResp); // 获取工会账号
     rpc ListUnions(ListUnionsReq) returns (ListUnionsResp); // 获取工会账号列表
@@ -56,6 +59,7 @@ service Account {
     rpc UnionAdditionsGet(UnionAdditionsGetReq) returns (UnionAdditionsGetResp); // 通过key获取工会的扩展属性
     rpc UnionAdditionsDump(UnionAdditionsDumpReq) returns (UnionAdditionsDumpResp); // 获取工会的所有扩展属性
     rpc UnionAdditionsFilter(UnionAdditionsFilterReq) returns (UnionAdditionsFilterResp); // 获取工会下多个key对应的扩展属性
+    rpc UnionStatusSet(UnionStatusSetReq) returns (UnionStatusSetResp); // 设置工会的状态位
 }
 
 message InitDBResp {
@@ -220,6 +224,16 @@ message ViewerAdditionsFilterResp {
     map<string, string> additions = 1;
 }
 
+message ViewerStatusSetReq {
+    string id = 1;
+    int64 bit = 2;
+    int64 value = 3;
+}
+message ViewerStatusSetResp {
+    bool result = 1;
+    int64 status = 2;
+}
+
 /* }}} */
 
 /* {{{ [Streamer] */
@@ -311,6 +325,16 @@ message StreamerAdditionsFilterReq {
 message StreamerAdditionsFilterResp {
     map<string, string> additions = 1;
 };
+
+message StreamerStatusSetReq {
+    string id = 1;
+    int64 bit = 2;
+    int64 value = 3;
+}
+message StreamerStatusSetResp {
+    bool result = 1;
+    int64 status = 2;
+}
 
 /* }}} */
 
@@ -404,6 +428,16 @@ message ManagerAdditionsFilterResp {
     map<string, string> additions = 1;
 };
 
+message ManagerStatusSetReq {
+    string id = 1;
+    int64 bit = 2;
+    int64 value = 3;
+}
+message ManagerStatusSetResp {
+    bool result = 1;
+    int64 status = 2;
+}
+
 /* }}} */
 
 /* {{{ [Union] */
@@ -495,5 +529,15 @@ message UnionAdditionsFilterReq {
 message UnionAdditionsFilterResp {
     map<string, string> additions = 1;
 };
+
+message UnionStatusSetReq {
+    string id = 1;
+    int64 bit = 2;
+    int64 value = 3;
+}
+message UnionStatusSetResp {
+    bool result = 1;
+    int64 status = 2;
+}
 
 /* }}} */
