@@ -32,6 +32,7 @@ const (
 	Org_DepartmentAdditionsGet_FullMethodName    = "/svc.biz.org.Org/DepartmentAdditionsGet"
 	Org_DepartmentAdditionsDump_FullMethodName   = "/svc.biz.org.Org/DepartmentAdditionsDump"
 	Org_DepartmentAdditionsFilter_FullMethodName = "/svc.biz.org.Org/DepartmentAdditionsFilter"
+	Org_DepartmentStatusSet_FullMethodName       = "/svc.biz.org.Org/DepartmentStatusSet"
 	Org_GetMerchant_FullMethodName               = "/svc.biz.org.Org/GetMerchant"
 	Org_ListMerchants_FullMethodName             = "/svc.biz.org.Org/ListMerchants"
 	Org_FilterMerchants_FullMethodName           = "/svc.biz.org.Org/FilterMerchants"
@@ -43,6 +44,7 @@ const (
 	Org_MerchantAdditionsGet_FullMethodName      = "/svc.biz.org.Org/MerchantAdditionsGet"
 	Org_MerchantAdditionsDump_FullMethodName     = "/svc.biz.org.Org/MerchantAdditionsDump"
 	Org_MerchantAdditionsFilter_FullMethodName   = "/svc.biz.org.Org/MerchantAdditionsFilter"
+	Org_MerchantStatusSet_FullMethodName         = "/svc.biz.org.Org/MerchantStatusSet"
 	Org_GetUnion_FullMethodName                  = "/svc.biz.org.Org/GetUnion"
 	Org_ListUnions_FullMethodName                = "/svc.biz.org.Org/ListUnions"
 	Org_FilterUnions_FullMethodName              = "/svc.biz.org.Org/FilterUnions"
@@ -54,6 +56,7 @@ const (
 	Org_UnionAdditionsGet_FullMethodName         = "/svc.biz.org.Org/UnionAdditionsGet"
 	Org_UnionAdditionsDump_FullMethodName        = "/svc.biz.org.Org/UnionAdditionsDump"
 	Org_UnionAdditionsFilter_FullMethodName      = "/svc.biz.org.Org/UnionAdditionsFilter"
+	Org_UnionStatusSet_FullMethodName            = "/svc.biz.org.Org/UnionStatusSet"
 )
 
 // OrgClient is the client API for Org service.
@@ -72,6 +75,7 @@ type OrgClient interface {
 	DepartmentAdditionsGet(ctx context.Context, in *DepartmentAdditionsGetReq, opts ...grpc.CallOption) (*DepartmentAdditionsGetResp, error)
 	DepartmentAdditionsDump(ctx context.Context, in *DepartmentAdditionsDumpReq, opts ...grpc.CallOption) (*DepartmentAdditionsDumpResp, error)
 	DepartmentAdditionsFilter(ctx context.Context, in *DepartmentAdditionsFilterReq, opts ...grpc.CallOption) (*DepartmentAdditionsFilterResp, error)
+	DepartmentStatusSet(ctx context.Context, in *DepartmentStatusSetReq, opts ...grpc.CallOption) (*DepartmentStatusSetResp, error)
 	GetMerchant(ctx context.Context, in *GetMerchantReq, opts ...grpc.CallOption) (*GetMerchantResp, error)
 	ListMerchants(ctx context.Context, in *ListMerchantsReq, opts ...grpc.CallOption) (*ListMerchantsResp, error)
 	FilterMerchants(ctx context.Context, in *FilterMerchantsReq, opts ...grpc.CallOption) (*FilterMerchantsResp, error)
@@ -83,6 +87,7 @@ type OrgClient interface {
 	MerchantAdditionsGet(ctx context.Context, in *MerchantAdditionsGetReq, opts ...grpc.CallOption) (*MerchantAdditionsGetResp, error)
 	MerchantAdditionsDump(ctx context.Context, in *MerchantAdditionsDumpReq, opts ...grpc.CallOption) (*MerchantAdditionsDumpResp, error)
 	MerchantAdditionsFilter(ctx context.Context, in *MerchantAdditionsFilterReq, opts ...grpc.CallOption) (*MerchantAdditionsFilterResp, error)
+	MerchantStatusSet(ctx context.Context, in *MerchantStatusSetReq, opts ...grpc.CallOption) (*MerchantStatusSetResp, error)
 	GetUnion(ctx context.Context, in *GetUnionReq, opts ...grpc.CallOption) (*GetUnionResp, error)
 	ListUnions(ctx context.Context, in *ListUnionsReq, opts ...grpc.CallOption) (*ListUnionsResp, error)
 	FilterUnions(ctx context.Context, in *FilterUnionsReq, opts ...grpc.CallOption) (*FilterUnionsResp, error)
@@ -94,6 +99,7 @@ type OrgClient interface {
 	UnionAdditionsGet(ctx context.Context, in *UnionAdditionsGetReq, opts ...grpc.CallOption) (*UnionAdditionsGetResp, error)
 	UnionAdditionsDump(ctx context.Context, in *UnionAdditionsDumpReq, opts ...grpc.CallOption) (*UnionAdditionsDumpResp, error)
 	UnionAdditionsFilter(ctx context.Context, in *UnionAdditionsFilterReq, opts ...grpc.CallOption) (*UnionAdditionsFilterResp, error)
+	UnionStatusSet(ctx context.Context, in *UnionStatusSetReq, opts ...grpc.CallOption) (*UnionStatusSetResp, error)
 }
 
 type orgClient struct {
@@ -224,6 +230,16 @@ func (c *orgClient) DepartmentAdditionsFilter(ctx context.Context, in *Departmen
 	return out, nil
 }
 
+func (c *orgClient) DepartmentStatusSet(ctx context.Context, in *DepartmentStatusSetReq, opts ...grpc.CallOption) (*DepartmentStatusSetResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DepartmentStatusSetResp)
+	err := c.cc.Invoke(ctx, Org_DepartmentStatusSet_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *orgClient) GetMerchant(ctx context.Context, in *GetMerchantReq, opts ...grpc.CallOption) (*GetMerchantResp, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetMerchantResp)
@@ -328,6 +344,16 @@ func (c *orgClient) MerchantAdditionsFilter(ctx context.Context, in *MerchantAdd
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(MerchantAdditionsFilterResp)
 	err := c.cc.Invoke(ctx, Org_MerchantAdditionsFilter_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *orgClient) MerchantStatusSet(ctx context.Context, in *MerchantStatusSetReq, opts ...grpc.CallOption) (*MerchantStatusSetResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MerchantStatusSetResp)
+	err := c.cc.Invoke(ctx, Org_MerchantStatusSet_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -444,6 +470,16 @@ func (c *orgClient) UnionAdditionsFilter(ctx context.Context, in *UnionAdditions
 	return out, nil
 }
 
+func (c *orgClient) UnionStatusSet(ctx context.Context, in *UnionStatusSetReq, opts ...grpc.CallOption) (*UnionStatusSetResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UnionStatusSetResp)
+	err := c.cc.Invoke(ctx, Org_UnionStatusSet_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // OrgServer is the server API for Org service.
 // All implementations must embed UnimplementedOrgServer
 // for forward compatibility
@@ -460,6 +496,7 @@ type OrgServer interface {
 	DepartmentAdditionsGet(context.Context, *DepartmentAdditionsGetReq) (*DepartmentAdditionsGetResp, error)
 	DepartmentAdditionsDump(context.Context, *DepartmentAdditionsDumpReq) (*DepartmentAdditionsDumpResp, error)
 	DepartmentAdditionsFilter(context.Context, *DepartmentAdditionsFilterReq) (*DepartmentAdditionsFilterResp, error)
+	DepartmentStatusSet(context.Context, *DepartmentStatusSetReq) (*DepartmentStatusSetResp, error)
 	GetMerchant(context.Context, *GetMerchantReq) (*GetMerchantResp, error)
 	ListMerchants(context.Context, *ListMerchantsReq) (*ListMerchantsResp, error)
 	FilterMerchants(context.Context, *FilterMerchantsReq) (*FilterMerchantsResp, error)
@@ -471,6 +508,7 @@ type OrgServer interface {
 	MerchantAdditionsGet(context.Context, *MerchantAdditionsGetReq) (*MerchantAdditionsGetResp, error)
 	MerchantAdditionsDump(context.Context, *MerchantAdditionsDumpReq) (*MerchantAdditionsDumpResp, error)
 	MerchantAdditionsFilter(context.Context, *MerchantAdditionsFilterReq) (*MerchantAdditionsFilterResp, error)
+	MerchantStatusSet(context.Context, *MerchantStatusSetReq) (*MerchantStatusSetResp, error)
 	GetUnion(context.Context, *GetUnionReq) (*GetUnionResp, error)
 	ListUnions(context.Context, *ListUnionsReq) (*ListUnionsResp, error)
 	FilterUnions(context.Context, *FilterUnionsReq) (*FilterUnionsResp, error)
@@ -482,6 +520,7 @@ type OrgServer interface {
 	UnionAdditionsGet(context.Context, *UnionAdditionsGetReq) (*UnionAdditionsGetResp, error)
 	UnionAdditionsDump(context.Context, *UnionAdditionsDumpReq) (*UnionAdditionsDumpResp, error)
 	UnionAdditionsFilter(context.Context, *UnionAdditionsFilterReq) (*UnionAdditionsFilterResp, error)
+	UnionStatusSet(context.Context, *UnionStatusSetReq) (*UnionStatusSetResp, error)
 	mustEmbedUnimplementedOrgServer()
 }
 
@@ -525,6 +564,9 @@ func (UnimplementedOrgServer) DepartmentAdditionsDump(context.Context, *Departme
 func (UnimplementedOrgServer) DepartmentAdditionsFilter(context.Context, *DepartmentAdditionsFilterReq) (*DepartmentAdditionsFilterResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DepartmentAdditionsFilter not implemented")
 }
+func (UnimplementedOrgServer) DepartmentStatusSet(context.Context, *DepartmentStatusSetReq) (*DepartmentStatusSetResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DepartmentStatusSet not implemented")
+}
 func (UnimplementedOrgServer) GetMerchant(context.Context, *GetMerchantReq) (*GetMerchantResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMerchant not implemented")
 }
@@ -558,6 +600,9 @@ func (UnimplementedOrgServer) MerchantAdditionsDump(context.Context, *MerchantAd
 func (UnimplementedOrgServer) MerchantAdditionsFilter(context.Context, *MerchantAdditionsFilterReq) (*MerchantAdditionsFilterResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method MerchantAdditionsFilter not implemented")
 }
+func (UnimplementedOrgServer) MerchantStatusSet(context.Context, *MerchantStatusSetReq) (*MerchantStatusSetResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method MerchantStatusSet not implemented")
+}
 func (UnimplementedOrgServer) GetUnion(context.Context, *GetUnionReq) (*GetUnionResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUnion not implemented")
 }
@@ -590,6 +635,9 @@ func (UnimplementedOrgServer) UnionAdditionsDump(context.Context, *UnionAddition
 }
 func (UnimplementedOrgServer) UnionAdditionsFilter(context.Context, *UnionAdditionsFilterReq) (*UnionAdditionsFilterResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UnionAdditionsFilter not implemented")
+}
+func (UnimplementedOrgServer) UnionStatusSet(context.Context, *UnionStatusSetReq) (*UnionStatusSetResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UnionStatusSet not implemented")
 }
 func (UnimplementedOrgServer) mustEmbedUnimplementedOrgServer() {}
 
@@ -820,6 +868,24 @@ func _Org_DepartmentAdditionsFilter_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Org_DepartmentStatusSet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DepartmentStatusSetReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrgServer).DepartmentStatusSet(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Org_DepartmentStatusSet_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrgServer).DepartmentStatusSet(ctx, req.(*DepartmentStatusSetReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Org_GetMerchant_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetMerchantReq)
 	if err := dec(in); err != nil {
@@ -1014,6 +1080,24 @@ func _Org_MerchantAdditionsFilter_Handler(srv interface{}, ctx context.Context, 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(OrgServer).MerchantAdditionsFilter(ctx, req.(*MerchantAdditionsFilterReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Org_MerchantStatusSet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MerchantStatusSetReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrgServer).MerchantStatusSet(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Org_MerchantStatusSet_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrgServer).MerchantStatusSet(ctx, req.(*MerchantStatusSetReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1216,6 +1300,24 @@ func _Org_UnionAdditionsFilter_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Org_UnionStatusSet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UnionStatusSetReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrgServer).UnionStatusSet(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Org_UnionStatusSet_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrgServer).UnionStatusSet(ctx, req.(*UnionStatusSetReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Org_ServiceDesc is the grpc.ServiceDesc for Org service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1272,6 +1374,10 @@ var Org_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Org_DepartmentAdditionsFilter_Handler,
 		},
 		{
+			MethodName: "DepartmentStatusSet",
+			Handler:    _Org_DepartmentStatusSet_Handler,
+		},
+		{
 			MethodName: "GetMerchant",
 			Handler:    _Org_GetMerchant_Handler,
 		},
@@ -1316,6 +1422,10 @@ var Org_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Org_MerchantAdditionsFilter_Handler,
 		},
 		{
+			MethodName: "MerchantStatusSet",
+			Handler:    _Org_MerchantStatusSet_Handler,
+		},
+		{
 			MethodName: "GetUnion",
 			Handler:    _Org_GetUnion_Handler,
 		},
@@ -1358,6 +1468,10 @@ var Org_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UnionAdditionsFilter",
 			Handler:    _Org_UnionAdditionsFilter_Handler,
+		},
+		{
+			MethodName: "UnionStatusSet",
+			Handler:    _Org_UnionStatusSet_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

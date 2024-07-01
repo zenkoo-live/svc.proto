@@ -57,6 +57,8 @@
     - [ManagerAdditionsGetResp](#svc-biz-account-ManagerAdditionsGetResp)
     - [ManagerAdditionsSetReq](#svc-biz-account-ManagerAdditionsSetReq)
     - [ManagerAdditionsSetResp](#svc-biz-account-ManagerAdditionsSetResp)
+    - [ManagerStatusSetReq](#svc-biz-account-ManagerStatusSetReq)
+    - [ManagerStatusSetResp](#svc-biz-account-ManagerStatusSetResp)
     - [Streamer](#svc-biz-account-Streamer)
     - [Streamer.AdditionsEntry](#svc-biz-account-Streamer-AdditionsEntry)
     - [StreamerAdditionsDumpReq](#svc-biz-account-StreamerAdditionsDumpReq)
@@ -69,6 +71,8 @@
     - [StreamerAdditionsGetResp](#svc-biz-account-StreamerAdditionsGetResp)
     - [StreamerAdditionsSetReq](#svc-biz-account-StreamerAdditionsSetReq)
     - [StreamerAdditionsSetResp](#svc-biz-account-StreamerAdditionsSetResp)
+    - [StreamerStatusSetReq](#svc-biz-account-StreamerStatusSetReq)
+    - [StreamerStatusSetResp](#svc-biz-account-StreamerStatusSetResp)
     - [TotalManagersReq](#svc-biz-account-TotalManagersReq)
     - [TotalManagersResp](#svc-biz-account-TotalManagersResp)
     - [TotalStreamersReq](#svc-biz-account-TotalStreamersReq)
@@ -89,6 +93,8 @@
     - [UnionAdditionsGetResp](#svc-biz-account-UnionAdditionsGetResp)
     - [UnionAdditionsSetReq](#svc-biz-account-UnionAdditionsSetReq)
     - [UnionAdditionsSetResp](#svc-biz-account-UnionAdditionsSetResp)
+    - [UnionStatusSetReq](#svc-biz-account-UnionStatusSetReq)
+    - [UnionStatusSetResp](#svc-biz-account-UnionStatusSetResp)
     - [UpdateManagerReq](#svc-biz-account-UpdateManagerReq)
     - [UpdateManagerResp](#svc-biz-account-UpdateManagerResp)
     - [UpdateStreamerReq](#svc-biz-account-UpdateStreamerReq)
@@ -109,6 +115,8 @@
     - [ViewerAdditionsGetResp](#svc-biz-account-ViewerAdditionsGetResp)
     - [ViewerAdditionsSetReq](#svc-biz-account-ViewerAdditionsSetReq)
     - [ViewerAdditionsSetResp](#svc-biz-account-ViewerAdditionsSetResp)
+    - [ViewerStatusSetReq](#svc-biz-account-ViewerStatusSetReq)
+    - [ViewerStatusSetResp](#svc-biz-account-ViewerStatusSetResp)
   
     - [StatusMask](#svc-biz-account-StatusMask)
   
@@ -601,6 +609,8 @@
     - [DepartmentAdditionsGetResp](#svc-biz-org-DepartmentAdditionsGetResp)
     - [DepartmentAdditionsSetReq](#svc-biz-org-DepartmentAdditionsSetReq)
     - [DepartmentAdditionsSetResp](#svc-biz-org-DepartmentAdditionsSetResp)
+    - [DepartmentStatusSetReq](#svc-biz-org-DepartmentStatusSetReq)
+    - [DepartmentStatusSetResp](#svc-biz-org-DepartmentStatusSetResp)
     - [FilterDepartmentsReq](#svc-biz-org-FilterDepartmentsReq)
     - [FilterDepartmentsResp](#svc-biz-org-FilterDepartmentsResp)
     - [FilterMerchantsReq](#svc-biz-org-FilterMerchantsReq)
@@ -632,6 +642,8 @@
     - [MerchantAdditionsGetResp](#svc-biz-org-MerchantAdditionsGetResp)
     - [MerchantAdditionsSetReq](#svc-biz-org-MerchantAdditionsSetReq)
     - [MerchantAdditionsSetResp](#svc-biz-org-MerchantAdditionsSetResp)
+    - [MerchantStatusSetReq](#svc-biz-org-MerchantStatusSetReq)
+    - [MerchantStatusSetResp](#svc-biz-org-MerchantStatusSetResp)
     - [TotalDepartmentsReq](#svc-biz-org-TotalDepartmentsReq)
     - [TotalDepartmentsResp](#svc-biz-org-TotalDepartmentsResp)
     - [TotalMerchantsReq](#svc-biz-org-TotalMerchantsReq)
@@ -650,6 +662,8 @@
     - [UnionAdditionsGetResp](#svc-biz-org-UnionAdditionsGetResp)
     - [UnionAdditionsSetReq](#svc-biz-org-UnionAdditionsSetReq)
     - [UnionAdditionsSetResp](#svc-biz-org-UnionAdditionsSetResp)
+    - [UnionStatusSetReq](#svc-biz-org-UnionStatusSetReq)
+    - [UnionStatusSetResp](#svc-biz-org-UnionStatusSetResp)
     - [UpdateDepartmentReq](#svc-biz-org-UpdateDepartmentReq)
     - [UpdateDepartmentResp](#svc-biz-org-UpdateDepartmentResp)
     - [UpdateMerchantReq](#svc-biz-org-UpdateMerchantReq)
@@ -1661,6 +1675,39 @@
 
 
 
+<a name="svc-biz-account-ManagerStatusSetReq"></a>
+
+### ManagerStatusSetReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+| bit | [int64](#int64) |  |  |
+| value | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-ManagerStatusSetResp"></a>
+
+### ManagerStatusSetResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| result | [bool](#bool) |  |  |
+| status | [int64](#int64) |  |  |
+
+
+
+
+
+
 <a name="svc-biz-account-Streamer"></a>
 
 ### Streamer
@@ -1855,6 +1902,39 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | result | [bool](#bool) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-StreamerStatusSetReq"></a>
+
+### StreamerStatusSetReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+| bit | [int64](#int64) |  |  |
+| value | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-StreamerStatusSetResp"></a>
+
+### StreamerStatusSetResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| result | [bool](#bool) |  |  |
+| status | [int64](#int64) |  |  |
 
 
 
@@ -2172,6 +2252,39 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | result | [bool](#bool) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-UnionStatusSetReq"></a>
+
+### UnionStatusSetReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+| bit | [int64](#int64) |  |  |
+| value | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-UnionStatusSetResp"></a>
+
+### UnionStatusSetResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| result | [bool](#bool) |  |  |
+| status | [int64](#int64) |  |  |
 
 
 
@@ -2498,6 +2611,39 @@ Models
 
 
 
+
+<a name="svc-biz-account-ViewerStatusSetReq"></a>
+
+### ViewerStatusSetReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+| bit | [int64](#int64) |  |  |
+| value | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-account-ViewerStatusSetResp"></a>
+
+### ViewerStatusSetResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| result | [bool](#bool) |  |  |
+| status | [int64](#int64) |  |  |
+
+
+
+
+
  
 
 
@@ -2536,6 +2682,7 @@ Masks
 | ViewerAdditionsGet | [ViewerAdditionsGetReq](#svc-biz-account-ViewerAdditionsGetReq) | [ViewerAdditionsGetResp](#svc-biz-account-ViewerAdditionsGetResp) | 通过key获取普通账号的扩展属性 |
 | ViewerAdditionsDump | [ViewerAdditionsDumpReq](#svc-biz-account-ViewerAdditionsDumpReq) | [ViewerAdditionsDumpResp](#svc-biz-account-ViewerAdditionsDumpResp) | 获取普通账号的所有扩展属性 |
 | ViewerAdditionsFilter | [ViewerAdditionsFilterReq](#svc-biz-account-ViewerAdditionsFilterReq) | [ViewerAdditionsFilterResp](#svc-biz-account-ViewerAdditionsFilterResp) | 获取普通账号下多个key对应的扩展属性 |
+| ViewerStatusSet | [ViewerStatusSetReq](#svc-biz-account-ViewerStatusSetReq) | [ViewerStatusSetResp](#svc-biz-account-ViewerStatusSetResp) | 设置普通账号的状态位 |
 | GetStreamer | [GetStreamerReq](#svc-biz-account-GetStreamerReq) | [GetStreamerResp](#svc-biz-account-GetStreamerResp) | 获取主播账号 |
 | ListStreamers | [ListStreamersReq](#svc-biz-account-ListStreamersReq) | [ListStreamersResp](#svc-biz-account-ListStreamersResp) | 获取主播账号列表 |
 | FilterStreamers | [FilterStreamersReq](#svc-biz-account-FilterStreamersReq) | [FilterStreamersResp](#svc-biz-account-FilterStreamersResp) | 通过ID列表获取主播账号列表 |
@@ -2547,6 +2694,7 @@ Masks
 | StreamerAdditionsGet | [StreamerAdditionsGetReq](#svc-biz-account-StreamerAdditionsGetReq) | [StreamerAdditionsGetResp](#svc-biz-account-StreamerAdditionsGetResp) | 通过key获取主播的扩展属性 |
 | StreamerAdditionsDump | [StreamerAdditionsDumpReq](#svc-biz-account-StreamerAdditionsDumpReq) | [StreamerAdditionsDumpResp](#svc-biz-account-StreamerAdditionsDumpResp) | 获取主播的所有扩展属性 |
 | StreamerAdditionsFilter | [StreamerAdditionsFilterReq](#svc-biz-account-StreamerAdditionsFilterReq) | [StreamerAdditionsFilterResp](#svc-biz-account-StreamerAdditionsFilterResp) | 获取主播下多个key对应的扩展属性 |
+| StreamerStatusSet | [StreamerStatusSetReq](#svc-biz-account-StreamerStatusSetReq) | [StreamerStatusSetResp](#svc-biz-account-StreamerStatusSetResp) | 设置主播的状态位 |
 | GetManager | [GetManagerReq](#svc-biz-account-GetManagerReq) | [GetManagerResp](#svc-biz-account-GetManagerResp) | 获取管理账号 |
 | ListManagers | [ListManagersReq](#svc-biz-account-ListManagersReq) | [ListManagersResp](#svc-biz-account-ListManagersResp) | 获取管理账号列表 |
 | FilterManagers | [FilterManagersReq](#svc-biz-account-FilterManagersReq) | [FilterManagersResp](#svc-biz-account-FilterManagersResp) | 通过ID列表获取管理账号列表 |
@@ -2558,6 +2706,7 @@ Masks
 | ManagerAdditionsGet | [ManagerAdditionsGetReq](#svc-biz-account-ManagerAdditionsGetReq) | [ManagerAdditionsGetResp](#svc-biz-account-ManagerAdditionsGetResp) | 通过key获取管理的扩展属性 |
 | ManagerAdditionsDump | [ManagerAdditionsDumpReq](#svc-biz-account-ManagerAdditionsDumpReq) | [ManagerAdditionsDumpResp](#svc-biz-account-ManagerAdditionsDumpResp) | 获取管理的所有扩展属性 |
 | ManagerAdditionsFilter | [ManagerAdditionsFilterReq](#svc-biz-account-ManagerAdditionsFilterReq) | [ManagerAdditionsFilterResp](#svc-biz-account-ManagerAdditionsFilterResp) | 获取管理下多个key对应的扩展属性 |
+| ManagerStatusSet | [ManagerStatusSetReq](#svc-biz-account-ManagerStatusSetReq) | [ManagerStatusSetResp](#svc-biz-account-ManagerStatusSetResp) | 设置管理的状态位 |
 | GetUnion | [GetUnionReq](#svc-biz-account-GetUnionReq) | [GetUnionResp](#svc-biz-account-GetUnionResp) | 获取工会账号 |
 | ListUnions | [ListUnionsReq](#svc-biz-account-ListUnionsReq) | [ListUnionsResp](#svc-biz-account-ListUnionsResp) | 获取工会账号列表 |
 | FilterUnions | [FilterUnionsReq](#svc-biz-account-FilterUnionsReq) | [FilterUnionsResp](#svc-biz-account-FilterUnionsResp) | 通过ID列表获取工会账号列表 |
@@ -2569,6 +2718,7 @@ Masks
 | UnionAdditionsGet | [UnionAdditionsGetReq](#svc-biz-account-UnionAdditionsGetReq) | [UnionAdditionsGetResp](#svc-biz-account-UnionAdditionsGetResp) | 通过key获取工会的扩展属性 |
 | UnionAdditionsDump | [UnionAdditionsDumpReq](#svc-biz-account-UnionAdditionsDumpReq) | [UnionAdditionsDumpResp](#svc-biz-account-UnionAdditionsDumpResp) | 获取工会的所有扩展属性 |
 | UnionAdditionsFilter | [UnionAdditionsFilterReq](#svc-biz-account-UnionAdditionsFilterReq) | [UnionAdditionsFilterResp](#svc-biz-account-UnionAdditionsFilterResp) | 获取工会下多个key对应的扩展属性 |
+| UnionStatusSet | [UnionStatusSetReq](#svc-biz-account-UnionStatusSetReq) | [UnionStatusSetResp](#svc-biz-account-UnionStatusSetResp) | 设置工会的状态位 |
 
  
 
@@ -10459,6 +10609,39 @@ Models
 
 
 
+<a name="svc-biz-org-DepartmentStatusSetReq"></a>
+
+### DepartmentStatusSetReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+| bit | [int64](#int64) |  |  |
+| value | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-DepartmentStatusSetResp"></a>
+
+### DepartmentStatusSetResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| result | [bool](#bool) |  |  |
+| status | [int64](#int64) |  |  |
+
+
+
+
+
+
 <a name="svc-biz-org-FilterDepartmentsReq"></a>
 
 ### FilterDepartmentsReq
@@ -10954,6 +11137,39 @@ Models
 
 
 
+<a name="svc-biz-org-MerchantStatusSetReq"></a>
+
+### MerchantStatusSetReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+| bit | [int64](#int64) |  |  |
+| value | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-MerchantStatusSetResp"></a>
+
+### MerchantStatusSetResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| result | [bool](#bool) |  |  |
+| status | [int64](#int64) |  |  |
+
+
+
+
+
+
 <a name="svc-biz-org-TotalDepartmentsReq"></a>
 
 ### TotalDepartmentsReq
@@ -11237,6 +11453,39 @@ Models
 
 
 
+<a name="svc-biz-org-UnionStatusSetReq"></a>
+
+### UnionStatusSetReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+| bit | [int64](#int64) |  |  |
+| value | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-org-UnionStatusSetResp"></a>
+
+### UnionStatusSetResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| result | [bool](#bool) |  |  |
+| status | [int64](#int64) |  |  |
+
+
+
+
+
+
 <a name="svc-biz-org-UpdateDepartmentReq"></a>
 
 ### UpdateDepartmentReq
@@ -11363,6 +11612,7 @@ Masks
 | DepartmentAdditionsGet | [DepartmentAdditionsGetReq](#svc-biz-org-DepartmentAdditionsGetReq) | [DepartmentAdditionsGetResp](#svc-biz-org-DepartmentAdditionsGetResp) | 通过key获取部门的扩展属性 |
 | DepartmentAdditionsDump | [DepartmentAdditionsDumpReq](#svc-biz-org-DepartmentAdditionsDumpReq) | [DepartmentAdditionsDumpResp](#svc-biz-org-DepartmentAdditionsDumpResp) | 获取部门的所有扩展属性 |
 | DepartmentAdditionsFilter | [DepartmentAdditionsFilterReq](#svc-biz-org-DepartmentAdditionsFilterReq) | [DepartmentAdditionsFilterResp](#svc-biz-org-DepartmentAdditionsFilterResp) | 获取部门下多个key对应的扩展属性 |
+| DepartmentStatusSet | [DepartmentStatusSetReq](#svc-biz-org-DepartmentStatusSetReq) | [DepartmentStatusSetResp](#svc-biz-org-DepartmentStatusSetResp) | 设置部门的状态位 |
 | GetMerchant | [GetMerchantReq](#svc-biz-org-GetMerchantReq) | [GetMerchantResp](#svc-biz-org-GetMerchantResp) | 获取商户 |
 | ListMerchants | [ListMerchantsReq](#svc-biz-org-ListMerchantsReq) | [ListMerchantsResp](#svc-biz-org-ListMerchantsResp) | 获取商户列表 |
 | FilterMerchants | [FilterMerchantsReq](#svc-biz-org-FilterMerchantsReq) | [FilterMerchantsResp](#svc-biz-org-FilterMerchantsResp) | 通过ID列表获取商户 |
@@ -11374,6 +11624,7 @@ Masks
 | MerchantAdditionsGet | [MerchantAdditionsGetReq](#svc-biz-org-MerchantAdditionsGetReq) | [MerchantAdditionsGetResp](#svc-biz-org-MerchantAdditionsGetResp) | 通过key获取商户的扩展属性 |
 | MerchantAdditionsDump | [MerchantAdditionsDumpReq](#svc-biz-org-MerchantAdditionsDumpReq) | [MerchantAdditionsDumpResp](#svc-biz-org-MerchantAdditionsDumpResp) | 获取商户的所有扩展属性 |
 | MerchantAdditionsFilter | [MerchantAdditionsFilterReq](#svc-biz-org-MerchantAdditionsFilterReq) | [MerchantAdditionsFilterResp](#svc-biz-org-MerchantAdditionsFilterResp) | 获取商户下多个key对应的扩展属性 |
+| MerchantStatusSet | [MerchantStatusSetReq](#svc-biz-org-MerchantStatusSetReq) | [MerchantStatusSetResp](#svc-biz-org-MerchantStatusSetResp) | 设置商户的状态位 |
 | GetUnion | [GetUnionReq](#svc-biz-org-GetUnionReq) | [GetUnionResp](#svc-biz-org-GetUnionResp) | 获取工会 |
 | ListUnions | [ListUnionsReq](#svc-biz-org-ListUnionsReq) | [ListUnionsResp](#svc-biz-org-ListUnionsResp) | 获取工会列表 |
 | FilterUnions | [FilterUnionsReq](#svc-biz-org-FilterUnionsReq) | [FilterUnionsResp](#svc-biz-org-FilterUnionsResp) | 通过ID列表获取工会 |
@@ -11385,6 +11636,7 @@ Masks
 | UnionAdditionsGet | [UnionAdditionsGetReq](#svc-biz-org-UnionAdditionsGetReq) | [UnionAdditionsGetResp](#svc-biz-org-UnionAdditionsGetResp) | 通过key获取工会的扩展属性 |
 | UnionAdditionsDump | [UnionAdditionsDumpReq](#svc-biz-org-UnionAdditionsDumpReq) | [UnionAdditionsDumpResp](#svc-biz-org-UnionAdditionsDumpResp) | 获取工会的所有扩展属性 |
 | UnionAdditionsFilter | [UnionAdditionsFilterReq](#svc-biz-org-UnionAdditionsFilterReq) | [UnionAdditionsFilterResp](#svc-biz-org-UnionAdditionsFilterResp) | 获取工会下多个key对应的扩展属性 |
+| UnionStatusSet | [UnionStatusSetReq](#svc-biz-org-UnionStatusSetReq) | [UnionStatusSetResp](#svc-biz-org-UnionStatusSetResp) | 设置工会的状态位 |
 
  
 

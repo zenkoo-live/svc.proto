@@ -20,6 +20,7 @@ service Org {
     rpc DepartmentAdditionsGet(DepartmentAdditionsGetReq) returns (DepartmentAdditionsGetResp); // 通过key获取部门的扩展属性
     rpc DepartmentAdditionsDump(DepartmentAdditionsDumpReq) returns (DepartmentAdditionsDumpResp); // 获取部门的所有扩展属性
     rpc DepartmentAdditionsFilter(DepartmentAdditionsFilterReq) returns (DepartmentAdditionsFilterResp); // 获取部门下多个key对应的扩展属性
+    rpc DepartmentStatusSet(DepartmentStatusSetReq) returns (DepartmentStatusSetResp); // 设置部门的状态位
 
     rpc GetMerchant(GetMerchantReq) returns (GetMerchantResp); // 获取商户
     rpc ListMerchants(ListMerchantsReq) returns (ListMerchantsResp); // 获取商户列表
@@ -32,6 +33,7 @@ service Org {
     rpc MerchantAdditionsGet(MerchantAdditionsGetReq) returns (MerchantAdditionsGetResp); // 通过key获取商户的扩展属性
     rpc MerchantAdditionsDump(MerchantAdditionsDumpReq) returns (MerchantAdditionsDumpResp); // 获取商户的所有扩展属性
     rpc MerchantAdditionsFilter(MerchantAdditionsFilterReq) returns (MerchantAdditionsFilterResp); // 获取商户下多个key对应的扩展属性
+    rpc MerchantStatusSet(MerchantStatusSetReq) returns (MerchantStatusSetResp); // 设置商户的状态位
 
     rpc GetUnion(GetUnionReq) returns (GetUnionResp); // 获取工会
     rpc ListUnions(ListUnionsReq) returns (ListUnionsResp); // 获取工会列表
@@ -44,6 +46,7 @@ service Org {
     rpc UnionAdditionsGet(UnionAdditionsGetReq) returns (UnionAdditionsGetResp); // 通过key获取工会的扩展属性
     rpc UnionAdditionsDump(UnionAdditionsDumpReq) returns (UnionAdditionsDumpResp); // 获取工会的所有扩展属性
     rpc UnionAdditionsFilter(UnionAdditionsFilterReq) returns (UnionAdditionsFilterResp); // 获取工会下多个key对应的扩展属性
+    rpc UnionStatusSet(UnionStatusSetReq) returns (UnionStatusSetResp); // 设置工会的状态位
 }
 
 message InitDBResp {
@@ -173,6 +176,16 @@ message DepartmentAdditionsFilterResp {
     map<string, string> additions = 1;
 };
 
+message DepartmentStatusSetReq {
+    string id = 1;
+    int64 bit = 2;
+    int64 value = 3;
+}
+message DepartmentStatusSetResp {
+    bool result = 1;
+    int64 status = 2;
+}
+
 /* }}} */
 
 /* {{{ [Merchant] */
@@ -264,6 +277,16 @@ message MerchantAdditionsFilterResp {
     map<string, string> additions = 1;
 };
 
+message MerchantStatusSetReq {
+    string id = 1;
+    int64 bit = 2;
+    int64 value = 3;
+}
+message MerchantStatusSetResp {
+    bool result = 1;
+    int64 status = 2;
+}
+
 /* }}} */
 
 /* {{{ [Union] */
@@ -354,5 +377,15 @@ message UnionAdditionsFilterReq {
 message UnionAdditionsFilterResp {
     map<string, string> additions = 1;
 };
+
+message UnionStatusSetReq {
+    string id = 1;
+    int64 bit = 2;
+    int64 value = 3;
+}
+message UnionStatusSetResp {
+    bool result = 1;
+    int64 status = 2;
+}
 
 /* }}} */
