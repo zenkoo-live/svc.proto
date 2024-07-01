@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+package svc.biz.rank;
+
+option go_package="./svc.biz.rank;rank";
+
+// 排行
+service StreamerViewerRank {
+    // 获取主播在线的排行榜成员
+    rpc GetStreamerViewerOnlineMember(GetStreamerViewerOnlineMemberReq) returns (GetStreamerViewerRankResp) {}
+
+    // 获取给主播贡献礼物的排行榜成员
+    rpc GetStreamerViewerGiftMember(GetStreamerViewerGiftMemberReq) returns (GetStreamerViewerRankResp) {}
+    // 获取给主播贡献魅力值的排行榜成员
+    rpc GetStreamerViewerGlamourMember(GetStreamerViewerGlamourMemberReq) returns (GetStreamerViewerRankResp) {}
+}
+
+enum StreamerViewerRankPeriod {
+    StreamerViewerRankPeriodUnknown = 0; // 未知
+    StreamerViewerRankPeriodDay = 1; // 日榜
+    StreamerViewerRankPeriodWeek = 2; // 周榜
+    StreamerViewerRankPeriodMonth = 3; // 月榜
+}
+
+// RankMemberInfo 排行榜成员信息
+message RankMemberInfo {
+    string member_id = 1; 
+    int64 score = 2;
+}
+
+message GetStreamerViewerOnlineMemberReq {
+    int32 page = 1;
+    int32 limit = 2;
+    string streamer_id = 3; // 主播id
+}
+
+message GetStreamerViewerGiftMemberReq {
+    int32 page = 1;
+    int32 limit = 2;
+    StreamerViewerRankPeriod rank_period = 3; // 排行榜周期
+    string streamer_id = 4; // 主播id
+}
+
+message GetStreamerViewerGlamourMemberReq {
+    int32 page = 1;
+    int32 limit = 20;
+    StreamerViewerRankPeriod rank_period = 3; // 排行榜周期
+    string streamer_id = 4; // 主播id
+}
+
+message GetStreamerViewerRankResp {
+    repeated RankMemberInfo items = 1;
+}

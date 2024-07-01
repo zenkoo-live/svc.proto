@@ -562,6 +562,17 @@
   
     - [Generator](#svc-infra-generator-Generator)
   
+- [svc.biz.rank/streamer_viewer_rank.proto](#svc-biz-rank_streamer_viewer_rank-proto)
+    - [GetStreamerViewerGiftMemberReq](#svc-biz-rank-GetStreamerViewerGiftMemberReq)
+    - [GetStreamerViewerGlamourMemberReq](#svc-biz-rank-GetStreamerViewerGlamourMemberReq)
+    - [GetStreamerViewerOnlineMemberReq](#svc-biz-rank-GetStreamerViewerOnlineMemberReq)
+    - [GetStreamerViewerRankResp](#svc-biz-rank-GetStreamerViewerRankResp)
+    - [RankMemberInfo](#svc-biz-rank-RankMemberInfo)
+  
+    - [StreamerViewerRankPeriod](#svc-biz-rank-StreamerViewerRankPeriod)
+  
+    - [StreamerViewerRank](#svc-biz-rank-StreamerViewerRank)
+  
 - [svc.web.dashboard/dashboard.proto](#svc-web-dashboard_dashboard-proto)
     - [Dashboard](#svc-web-dashboard-Dashboard)
   
@@ -9904,6 +9915,132 @@ WellKnownRegex contain some well-known patterns.
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
 | InitDB | [.google.protobuf.Empty](#google-protobuf-Empty) | [InitDBResp](#svc-infra-generator-InitDBResp) | 初始化数据库 |
+
+ 
+
+
+
+<a name="svc-biz-rank_streamer_viewer_rank-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.biz.rank/streamer_viewer_rank.proto
+
+
+
+<a name="svc-biz-rank-GetStreamerViewerGiftMemberReq"></a>
+
+### GetStreamerViewerGiftMemberReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| page | [int32](#int32) |  |  |
+| limit | [int32](#int32) |  |  |
+| rank_period | [StreamerViewerRankPeriod](#svc-biz-rank-StreamerViewerRankPeriod) |  | 排行榜周期 |
+| streamer_id | [string](#string) |  | 主播id |
+
+
+
+
+
+
+<a name="svc-biz-rank-GetStreamerViewerGlamourMemberReq"></a>
+
+### GetStreamerViewerGlamourMemberReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| page | [int32](#int32) |  |  |
+| limit | [int32](#int32) |  |  |
+| rank_period | [StreamerViewerRankPeriod](#svc-biz-rank-StreamerViewerRankPeriod) |  | 排行榜周期 |
+| streamer_id | [string](#string) |  | 主播id |
+
+
+
+
+
+
+<a name="svc-biz-rank-GetStreamerViewerOnlineMemberReq"></a>
+
+### GetStreamerViewerOnlineMemberReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| page | [int32](#int32) |  |  |
+| limit | [int32](#int32) |  |  |
+| streamer_id | [string](#string) |  | 主播id |
+
+
+
+
+
+
+<a name="svc-biz-rank-GetStreamerViewerRankResp"></a>
+
+### GetStreamerViewerRankResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [RankMemberInfo](#svc-biz-rank-RankMemberInfo) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-rank-RankMemberInfo"></a>
+
+### RankMemberInfo
+RankMemberInfo 排行榜成员信息
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| member_id | [string](#string) |  |  |
+| score | [int64](#int64) |  |  |
+
+
+
+
+
+ 
+
+
+<a name="svc-biz-rank-StreamerViewerRankPeriod"></a>
+
+### StreamerViewerRankPeriod
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| StreamerViewerRankPeriodUnknown | 0 | 未知 |
+| StreamerViewerRankPeriodDay | 1 | 日榜 |
+| StreamerViewerRankPeriodWeek | 2 | 周榜 |
+| StreamerViewerRankPeriodMonth | 3 | 月榜 |
+
+
+ 
+
+ 
+
+
+<a name="svc-biz-rank-StreamerViewerRank"></a>
+
+### StreamerViewerRank
+排行
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| GetStreamerViewerOnlineMember | [GetStreamerViewerOnlineMemberReq](#svc-biz-rank-GetStreamerViewerOnlineMemberReq) | [GetStreamerViewerRankResp](#svc-biz-rank-GetStreamerViewerRankResp) | 获取主播在线的排行榜成员 |
+| GetStreamerViewerGiftMember | [GetStreamerViewerGiftMemberReq](#svc-biz-rank-GetStreamerViewerGiftMemberReq) | [GetStreamerViewerRankResp](#svc-biz-rank-GetStreamerViewerRankResp) | 获取给主播贡献礼物的排行榜成员 |
+| GetStreamerViewerGlamourMember | [GetStreamerViewerGlamourMemberReq](#svc-biz-rank-GetStreamerViewerGlamourMemberReq) | [GetStreamerViewerRankResp](#svc-biz-rank-GetStreamerViewerRankResp) | 获取给主播贡献魅力值的排行榜成员 |
 
  
 
