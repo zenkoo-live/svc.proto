@@ -43,7 +43,7 @@ message GetStreamerViewerGiftMemberReq {
     int32 limit = 2;
     StreamerViewerRankPeriod rank_period = 3; // 排行榜周期
     string streamer_id = 4; // 主播id
-    string time = 5; // 传空则按照当前时间计算（日2006-01-02，月2006-01，周2006-1、使用"-"拼接time.ISOWeek返回值）
+    string period_time = 5; // 传空则按照当前时间计算（日2006-01-02，月2006-01，周2006-1、使用"-"拼接time.ISOWeek返回值）
 }
 
 message GetStreamerViewerGlamourMemberReq {
@@ -51,7 +51,7 @@ message GetStreamerViewerGlamourMemberReq {
     int32 limit = 2;
     StreamerViewerRankPeriod rank_period = 3; // 排行榜周期
     string streamer_id = 4; // 主播id
-    string time = 5; // 传空则按照当前时间计算（日2006-01-02，月2006-01，周2006-1、使用"-"拼接time.ISOWeek返回值）
+    string period_time = 5; // 传空则按照当前时间计算（日2006-01-02，月2006-01，周2006-1、使用"-"拼接time.ISOWeek返回值）
 }
 
 message GetStreamerViewerRankResp {
