@@ -9939,6 +9939,7 @@ WellKnownRegex contain some well-known patterns.
 | limit | [int32](#int32) |  |  |
 | rank_period | [StreamerViewerRankPeriod](#svc-biz-rank-StreamerViewerRankPeriod) |  | 排行榜周期 |
 | streamer_id | [string](#string) |  | 主播id |
+| time | [string](#string) |  | 传空则按照当前时间计算（日2006-01-02，月2006-01，周2006-1、使用&#34;-&#34;拼接time.ISOWeek返回值） |
 
 
 
@@ -9957,6 +9958,7 @@ WellKnownRegex contain some well-known patterns.
 | limit | [int32](#int32) |  |  |
 | rank_period | [StreamerViewerRankPeriod](#svc-biz-rank-StreamerViewerRankPeriod) |  | 排行榜周期 |
 | streamer_id | [string](#string) |  | 主播id |
+| time | [string](#string) |  | 传空则按照当前时间计算（日2006-01-02，月2006-01，周2006-1、使用&#34;-&#34;拼接time.ISOWeek返回值） |
 
 
 
