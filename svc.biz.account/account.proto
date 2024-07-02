@@ -60,11 +60,11 @@ service Account {
     rpc UnionAdditionsDump(UnionAdditionsDumpReq) returns (UnionAdditionsDumpResp); // 获取工会的所有扩展属性
     rpc UnionAdditionsFilter(UnionAdditionsFilterReq) returns (UnionAdditionsFilterResp); // 获取工会下多个key对应的扩展属性
     rpc UnionStatusSet(UnionStatusSetReq) returns (UnionStatusSetResp); // 设置工会的状态位
-}
+};
 
 message InitDBResp {
     bool result = 1;
-}
+};
 
 // Models
 message Viewer {
@@ -125,7 +125,7 @@ message Union {
     google.protobuf.Timestamp created_at = 255; // 创建时间
     google.protobuf.Timestamp updated_at = 256; // 更新时间
     map<string, string> additions = 511; // 扩展属性
-}
+};
 
 // Masks
 enum StatusMask {
@@ -222,17 +222,17 @@ message ViewerAdditionsFilterReq {
 };
 message ViewerAdditionsFilterResp {
     map<string, string> additions = 1;
-}
+};
 
 message ViewerStatusSetReq {
     string id = 1;
     int64 bit = 2;
     int64 value = 3;
-}
+};
 message ViewerStatusSetResp {
     bool result = 1;
     int64 status = 2;
-}
+};
 
 /* }}} */
 
@@ -330,11 +330,11 @@ message StreamerStatusSetReq {
     string id = 1;
     int64 bit = 2;
     int64 value = 3;
-}
+};
 message StreamerStatusSetResp {
     bool result = 1;
     int64 status = 2;
-}
+};
 
 /* }}} */
 
@@ -432,11 +432,11 @@ message ManagerStatusSetReq {
     string id = 1;
     int64 bit = 2;
     int64 value = 3;
-}
+};
 message ManagerStatusSetResp {
     bool result = 1;
     int64 status = 2;
-}
+};
 
 /* }}} */
 
@@ -534,10 +534,10 @@ message UnionStatusSetReq {
     string id = 1;
     int64 bit = 2;
     int64 value = 3;
-}
+};
 message UnionStatusSetResp {
     bool result = 1;
     int64 status = 2;
-}
+};
 
 /* }}} */
