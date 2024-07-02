@@ -24,6 +24,7 @@ const (
 	Relation_RelationGet_FullMethodName      = "/svc.biz.relation.Relation/RelationGet"
 	Relation_RelationDel_FullMethodName      = "/svc.biz.relation.Relation/RelationDel"
 	Relation_RelationCheck_FullMethodName    = "/svc.biz.relation.Relation/RelationCheck"
+	Relation_RelationMCheck_FullMethodName   = "/svc.biz.relation.Relation/RelationMCheck"
 	Relation_GetRelationCount_FullMethodName = "/svc.biz.relation.Relation/GetRelationCount"
 	Relation_GetRelationList_FullMethodName  = "/svc.biz.relation.Relation/GetRelationList"
 )
@@ -32,11 +33,19 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type RelationClient interface {
+	// RelationAdd 新建关系
 	RelationAdd(ctx context.Context, in *RelationAddReq, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// RelationGet 获取关系
 	RelationGet(ctx context.Context, in *RelationGetReq, opts ...grpc.CallOption) (*RelationGetResp, error)
+	// RelationDel 删除关系
 	RelationDel(ctx context.Context, in *RelationDelReq, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// RelationCheck 关系检测
 	RelationCheck(ctx context.Context, in *RelationCheckReq, opts ...grpc.CallOption) (*RelationCheckResp, error)
+	// RelationMCheck 批量关系检测
+	RelationMCheck(ctx context.Context, in *RelationMCheckReq, opts ...grpc.CallOption) (*RelationMCheckResp, error)
+	// GetRelationCount 获取关系数量
 	GetRelationCount(ctx context.Context, in *GetRelationCountReq, opts ...grpc.CallOption) (*GetRelationCountResp, error)
+	// GetRelationList 获取关系列表
 	GetRelationList(ctx context.Context, in *GetRelationListReq, opts ...grpc.CallOption) (*GetRelationListResp, error)
 }
 
@@ -88,6 +97,16 @@ func (c *relationClient) RelationCheck(ctx context.Context, in *RelationCheckReq
 	return out, nil
 }
 
+func (c *relationClient) RelationMCheck(ctx context.Context, in *RelationMCheckReq, opts ...grpc.CallOption) (*RelationMCheckResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RelationMCheckResp)
+	err := c.cc.Invoke(ctx, Relation_RelationMCheck_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *relationClient) GetRelationCount(ctx context.Context, in *GetRelationCountReq, opts ...grpc.CallOption) (*GetRelationCountResp, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetRelationCountResp)
@@ -112,11 +131,19 @@ func (c *relationClient) GetRelationList(ctx context.Context, in *GetRelationLis
 // All implementations must embed UnimplementedRelationServer
 // for forward compatibility
 type RelationServer interface {
+	// RelationAdd 新建关系
 	RelationAdd(context.Context, *RelationAddReq) (*emptypb.Empty, error)
+	// RelationGet 获取关系
 	RelationGet(context.Context, *RelationGetReq) (*RelationGetResp, error)
+	// RelationDel 删除关系
 	RelationDel(context.Context, *RelationDelReq) (*emptypb.Empty, error)
+	// RelationCheck 关系检测
 	RelationCheck(context.Context, *RelationCheckReq) (*RelationCheckResp, error)
+	// RelationMCheck 批量关系检测
+	RelationMCheck(context.Context, *RelationMCheckReq) (*RelationMCheckResp, error)
+	// GetRelationCount 获取关系数量
 	GetRelationCount(context.Context, *GetRelationCountReq) (*GetRelationCountResp, error)
+	// GetRelationList 获取关系列表
 	GetRelationList(context.Context, *GetRelationListReq) (*GetRelationListResp, error)
 	mustEmbedUnimplementedRelationServer()
 }
@@ -136,6 +163,9 @@ func (UnimplementedRelationServer) RelationDel(context.Context, *RelationDelReq)
 }
 func (UnimplementedRelationServer) RelationCheck(context.Context, *RelationCheckReq) (*RelationCheckResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RelationCheck not implemented")
+}
+func (UnimplementedRelationServer) RelationMCheck(context.Context, *RelationMCheckReq) (*RelationMCheckResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RelationMCheck not implemented")
 }
 func (UnimplementedRelationServer) GetRelationCount(context.Context, *GetRelationCountReq) (*GetRelationCountResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetRelationCount not implemented")
@@ -228,6 +258,24 @@ func _Relation_RelationCheck_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Relation_RelationMCheck_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RelationMCheckReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RelationServer).RelationMCheck(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Relation_RelationMCheck_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RelationServer).RelationMCheck(ctx, req.(*RelationMCheckReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Relation_GetRelationCount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetRelationCountReq)
 	if err := dec(in); err != nil {
@@ -286,6 +334,10 @@ var Relation_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RelationCheck",
 			Handler:    _Relation_RelationCheck_Handler,
+		},
+		{
+			MethodName: "RelationMCheck",
+			Handler:    _Relation_RelationMCheck_Handler,
 		},
 		{
 			MethodName: "GetRelationCount",

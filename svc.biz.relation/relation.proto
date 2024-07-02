@@ -8,11 +8,19 @@ import "google/protobuf/timestamp.proto";
 option go_package="./svc.biz.relation;relation";
 
 service Relation {
+    // RelationAdd 新建关系
     rpc RelationAdd (RelationAddReq) returns (google.protobuf.Empty);
+    // RelationGet 获取关系
     rpc RelationGet (RelationGetReq) returns (RelationGetResp);
+    // RelationDel 删除关系
     rpc RelationDel (RelationDelReq) returns (google.protobuf.Empty);
+    // RelationCheck 关系检测
     rpc RelationCheck (RelationCheckReq) returns (RelationCheckResp);
+    // RelationMCheck 批量关系检测
+    rpc RelationMCheck (RelationMCheckReq) returns (RelationMCheckResp);
+    // GetRelationCount 获取关系数量
     rpc GetRelationCount (GetRelationCountReq) returns (GetRelationCountResp);
+    // GetRelationList 获取关系列表
     rpc GetRelationList (GetRelationListReq) returns (GetRelationListResp);
 }
 
@@ -67,6 +75,15 @@ message RelationCheckReq {
 }
 message RelationCheckResp {
     bool result = 1;
+}
+
+message RelationMCheckReq {
+    RelationType relation_type = 1;
+    string member_id = 2; // 成员
+    repeated string r_member_ids = 3; // 产生关系的成员列表
+}
+message RelationMCheckResp {
+    map<string, bool> result = 1;
 }
 
 message GetRelationCountReq  {
