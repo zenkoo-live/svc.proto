@@ -516,6 +516,9 @@
     - [RelationGetReq](#svc-biz-relation-RelationGetReq)
     - [RelationGetResp](#svc-biz-relation-RelationGetResp)
     - [RelationInfo](#svc-biz-relation-RelationInfo)
+    - [RelationMCheckReq](#svc-biz-relation-RelationMCheckReq)
+    - [RelationMCheckResp](#svc-biz-relation-RelationMCheckResp)
+    - [RelationMCheckResp.ResultEntry](#svc-biz-relation-RelationMCheckResp-ResultEntry)
   
     - [RelationType](#svc-biz-relation-RelationType)
   
@@ -8751,6 +8754,54 @@ Service of instruction
 
 
 
+
+<a name="svc-biz-relation-RelationMCheckReq"></a>
+
+### RelationMCheckReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| relation_type | [RelationType](#svc-biz-relation-RelationType) |  |  |
+| member_id | [string](#string) |  | 成员 |
+| r_member_ids | [string](#string) | repeated | 产生关系的成员列表 |
+
+
+
+
+
+
+<a name="svc-biz-relation-RelationMCheckResp"></a>
+
+### RelationMCheckResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| result | [RelationMCheckResp.ResultEntry](#svc-biz-relation-RelationMCheckResp-ResultEntry) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-relation-RelationMCheckResp-ResultEntry"></a>
+
+### RelationMCheckResp.ResultEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [bool](#bool) |  |  |
+
+
+
+
+
  
 
 
@@ -8783,12 +8834,13 @@ Service of instruction
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| RelationAdd | [RelationAddReq](#svc-biz-relation-RelationAddReq) | [.google.protobuf.Empty](#google-protobuf-Empty) |  |
-| RelationGet | [RelationGetReq](#svc-biz-relation-RelationGetReq) | [RelationGetResp](#svc-biz-relation-RelationGetResp) |  |
-| RelationDel | [RelationDelReq](#svc-biz-relation-RelationDelReq) | [.google.protobuf.Empty](#google-protobuf-Empty) |  |
-| RelationCheck | [RelationCheckReq](#svc-biz-relation-RelationCheckReq) | [RelationCheckResp](#svc-biz-relation-RelationCheckResp) |  |
-| GetRelationCount | [GetRelationCountReq](#svc-biz-relation-GetRelationCountReq) | [GetRelationCountResp](#svc-biz-relation-GetRelationCountResp) |  |
-| GetRelationList | [GetRelationListReq](#svc-biz-relation-GetRelationListReq) | [GetRelationListResp](#svc-biz-relation-GetRelationListResp) |  |
+| RelationAdd | [RelationAddReq](#svc-biz-relation-RelationAddReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | RelationAdd 新建关系 |
+| RelationGet | [RelationGetReq](#svc-biz-relation-RelationGetReq) | [RelationGetResp](#svc-biz-relation-RelationGetResp) | RelationGet 获取关系 |
+| RelationDel | [RelationDelReq](#svc-biz-relation-RelationDelReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | RelationDel 删除关系 |
+| RelationCheck | [RelationCheckReq](#svc-biz-relation-RelationCheckReq) | [RelationCheckResp](#svc-biz-relation-RelationCheckResp) | RelationCheck 关系检测 |
+| RelationMCheck | [RelationMCheckReq](#svc-biz-relation-RelationMCheckReq) | [RelationMCheckResp](#svc-biz-relation-RelationMCheckResp) | RelationMCheck 批量关系检测 |
+| GetRelationCount | [GetRelationCountReq](#svc-biz-relation-GetRelationCountReq) | [GetRelationCountResp](#svc-biz-relation-GetRelationCountResp) | GetRelationCount 获取关系数量 |
+| GetRelationList | [GetRelationListReq](#svc-biz-relation-GetRelationListReq) | [GetRelationListResp](#svc-biz-relation-GetRelationListResp) | GetRelationList 获取关系列表 |
 
  
 
