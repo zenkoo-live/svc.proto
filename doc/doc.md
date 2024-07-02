@@ -5377,6 +5377,7 @@ CategoryInfo 分类详情
 | ----- | ---- | ----- | ----------- |
 | streamer_id | [string](#string) |  | 主播id |
 | display_type | [LiveDisplayType](#svc-biz-room-LiveDisplayType) |  | 横竖屏类型 |
+| force_close_exist | [bool](#bool) |  | 是否强制关闭当前正在进行的直播 |
 
 
 
