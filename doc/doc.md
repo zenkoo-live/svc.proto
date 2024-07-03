@@ -4999,6 +4999,7 @@ CategoryInfo 分类详情
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| streamer_id | [string](#string) |  | 主播id |
 | start_at | [TimeBeginEnd](#svc-biz-room-TimeBeginEnd) |  |  |
 | end_at | [TimeBeginEnd](#svc-biz-room-TimeBeginEnd) |  |  |
 

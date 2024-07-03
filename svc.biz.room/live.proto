@@ -58,8 +58,9 @@ message ListLiveResp {
 }
 
 message StatLiveReq {
-    TimeBeginEnd start_at = 1;
-    TimeBeginEnd end_at = 2;
+    string streamer_id = 1; // 主播id
+    TimeBeginEnd start_at = 2;
+    TimeBeginEnd end_at = 3;
 }
 message StatLiveResp {
     int64 count = 1; // 直播次数
