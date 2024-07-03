@@ -64,5 +64,5 @@ message StatLiveReq {
 }
 message StatLiveResp {
     int64 count = 1; // 直播次数
-    int64 duration = 2; // 直播时长
+    float duration = 2; // 直播时长
 }

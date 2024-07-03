@@ -5020,7 +5020,7 @@ CategoryInfo 分类详情
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | count | [int64](#int64) |  | 直播次数 |
-| duration | [int64](#int64) |  | 直播时长 |
+| duration | [float](#float) |  | 直播时长 |
 
 
 
