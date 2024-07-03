@@ -8,12 +8,30 @@ option go_package="./svc.biz.room;room";
 
 // 直播
 service Live {
-    // 查询直播间信息
+    // GetLive 查询直播间信息
     rpc GetLive(GetLiveReq) returns(GetLiveResp);
-    // 批量获取直播间信息
+    // MGetLive 批量获取直播间信息
     rpc MGetLive(MGetLiveReq) returns(MGetLiveResp);
-    // 获取在播直播间列表
+    // ListLive 获取在播直播间列表
     rpc ListLive(ListLiveReq) returns (ListLiveResp);
+    // StatLive 获取直播统计信息
+    rpc StatLive(StatLiveReq) returns (StatLiveResp);
+}
+
+message TimeBeginEnd {
+    google.protobuf.Timestamp beigin = 1;
+    google.protobuf.Timestamp end = 2;
+}
+
+message LiveInfo {
+    string live_id = 1; // id
+    string streamer_id = 2; // 主播id
+    string room_id = 3; // 房间id
+    string category_id = 4; // 分类id
+    google.protobuf.Timestamp start_at = 5; // 开播时间
+    google.protobuf.Timestamp end_at = 6; // 结束时间
+    google.protobuf.Timestamp created_at = 255; // 创建时间
+    google.protobuf.Timestamp updated_at = 256; // 更新时间
 }
 
 message GetLiveReq {
@@ -39,14 +57,12 @@ message ListLiveResp {
     repeated LiveInfo items = 1; // 直播信息
 }
 
-
-message LiveInfo {
-    string live_id = 1; // id
-    string streamer_id = 2; // 主播id
-    string room_id = 3; // 房间id
-    string category_id = 4; // 分类id
-    google.protobuf.Timestamp start_at = 5; // 开播时间
-    google.protobuf.Timestamp end_at = 6; // 结束时间
-    google.protobuf.Timestamp created_at = 255; // 创建时间
-    google.protobuf.Timestamp updated_at = 256; // 更新时间
+message StatLiveReq {
+    string streamer_id = 1; // 主播id
+    TimeBeginEnd start_at = 2;
+    TimeBeginEnd end_at = 3;
+}
+message StatLiveResp {
+    int64 count = 1; // 直播次数
+    int64 duration = 2; // 直播时长
 }
