@@ -816,10 +816,10 @@
 - [svc.biz.gift/gift_record.proto](#svc-biz-gift_gift_record-proto)
     - [GetGetRecordListReq](#svc-biz-gift-GetGetRecordListReq)
     - [GetGetRecordListResp](#svc-biz-gift-GetGetRecordListResp)
-    - [GetLiveStatReq](#svc-biz-gift-GetLiveStatReq)
-    - [GetLiveStatResp](#svc-biz-gift-GetLiveStatResp)
     - [GetSendRecordListReq](#svc-biz-gift-GetSendRecordListReq)
     - [GetSendRecordListResp](#svc-biz-gift-GetSendRecordListResp)
+    - [GetStatReq](#svc-biz-gift-GetStatReq)
+    - [GetStatResp](#svc-biz-gift-GetStatResp)
     - [GiftRecordInfo](#svc-biz-gift-GiftRecordInfo)
   
     - [GiftRecord](#svc-biz-gift-GiftRecord)
@@ -13706,39 +13706,6 @@ topic: topic.gift.send
 
 
 
-<a name="svc-biz-gift-GetLiveStatReq"></a>
-
-### GetLiveStatReq
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| streamer_id | [string](#string) |  | 主播uid |
-| live_id | [string](#string) |  | 直播id |
-
-
-
-
-
-
-<a name="svc-biz-gift-GetLiveStatResp"></a>
-
-### GetLiveStatResp
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| total_num | [int32](#int32) |  | 礼物总数 |
-| total_price | [int32](#int32) |  | 礼物代币总数 |
-| total_user | [int32](#int32) |  | 礼物用户总数 |
-
-
-
-
-
-
 <a name="svc-biz-gift-GetSendRecordListReq"></a>
 
 ### GetSendRecordListReq
@@ -13767,6 +13734,41 @@ topic: topic.gift.send
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | items | [GiftRecordInfo](#svc-biz-gift-GiftRecordInfo) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-gift-GetStatReq"></a>
+
+### GetStatReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer_id | [string](#string) |  | 主播uid |
+| live_id | [string](#string) |  | 直播id |
+| start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开始时间 |
+| end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 结束时间 |
+
+
+
+
+
+
+<a name="svc-biz-gift-GetStatResp"></a>
+
+### GetStatResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| total_num | [int32](#int32) |  | 礼物总数 |
+| total_price | [int32](#int32) |  | 礼物代币总数 |
+| total_user | [int32](#int32) |  | 礼物用户总数 |
 
 
 
@@ -13811,7 +13813,7 @@ topic: topic.gift.send
 | ----------- | ------------ | ------------- | ------------|
 | GetSendRecordList | [GetSendRecordListReq](#svc-biz-gift-GetSendRecordListReq) | [GetSendRecordListResp](#svc-biz-gift-GetSendRecordListResp) | GetSendRecordList 送礼记录 |
 | GetGetRecordList | [GetGetRecordListReq](#svc-biz-gift-GetGetRecordListReq) | [GetGetRecordListResp](#svc-biz-gift-GetGetRecordListResp) | GetGetRecordList 收礼记录 |
-| GetLiveStat | [GetLiveStatReq](#svc-biz-gift-GetLiveStatReq) | [GetLiveStatResp](#svc-biz-gift-GetLiveStatResp) | GetLiveStat 直播统计 |
+| GetStat | [GetStatReq](#svc-biz-gift-GetStatReq) | [GetStatResp](#svc-biz-gift-GetStatResp) | GetStat 礼物统计 |
 
  
 
