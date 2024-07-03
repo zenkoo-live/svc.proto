@@ -8,6 +8,7 @@ import "google/protobuf/empty.proto";
 service Static {
     rpc InitDB(google.protobuf.Empty) returns (InitDBResp); // 初始化数据库
 
+    rpc Domains(google.protobuf.Empty) returns (DomainsResponse); // 服务配置
     rpc Configuration(ConfigurationMessage) returns (ConfigurationResponseMessage); // 服务配置
     rpc UploadAvatar(UploadRequestMessage) returns (UploadResponseMessage); // 上传头像
     rpc UploadCover(UploadRequestMessage) returns (UploadResponseMessage); // 上传封面
@@ -40,6 +41,10 @@ message ConfigurationMessage {
 
 message ConfigurationResponseMessage {
     bool result = 1;
+}
+
+message DomainsResponse {
+    repeated string domains = 1;
 }
 
 message UploadRequestMessage {
