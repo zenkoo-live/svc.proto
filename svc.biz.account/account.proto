@@ -76,6 +76,7 @@ message Viewer {
     string mobile = 11; // 手机
     string email = 12; // 邮箱
     string device_ident = 13; // 设备号 / 指纹
+    string install_flag = 14; // 安装标识
     optional string password = 21; // 密码
     optional string salt = 22; // 加密混淆
     int64 status = 23; // 状态
