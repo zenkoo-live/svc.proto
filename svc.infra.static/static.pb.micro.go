@@ -38,6 +38,7 @@ func NewStaticEndpoints() []*api.Endpoint {
 
 type StaticService interface {
 	InitDB(ctx context.Context, in *emptypb.Empty, opts ...client.CallOption) (*InitDBResp, error)
+	Domains(ctx context.Context, in *emptypb.Empty, opts ...client.CallOption) (*DomainsResponse, error)
 	Configuration(ctx context.Context, in *ConfigurationMessage, opts ...client.CallOption) (*ConfigurationResponseMessage, error)
 	UploadAvatar(ctx context.Context, in *UploadRequestMessage, opts ...client.CallOption) (*UploadResponseMessage, error)
 	UploadCover(ctx context.Context, in *UploadRequestMessage, opts ...client.CallOption) (*UploadResponseMessage, error)
@@ -63,6 +64,16 @@ func NewStaticService(name string, c client.Client) StaticService {
 func (c *staticService) InitDB(ctx context.Context, in *emptypb.Empty, opts ...client.CallOption) (*InitDBResp, error) {
 	req := c.c.NewRequest(c.name, "Static.InitDB", in)
 	out := new(InitDBResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *staticService) Domains(ctx context.Context, in *emptypb.Empty, opts ...client.CallOption) (*DomainsResponse, error) {
+	req := c.c.NewRequest(c.name, "Static.Domains", in)
+	out := new(DomainsResponse)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -185,6 +196,7 @@ func (x *staticServiceUploadStreamFile) Send(m *UploadStreamRequestMessage) erro
 
 type StaticHandler interface {
 	InitDB(context.Context, *emptypb.Empty, *InitDBResp) error
+	Domains(context.Context, *emptypb.Empty, *DomainsResponse) error
 	Configuration(context.Context, *ConfigurationMessage, *ConfigurationResponseMessage) error
 	UploadAvatar(context.Context, *UploadRequestMessage, *UploadResponseMessage) error
 	UploadCover(context.Context, *UploadRequestMessage, *UploadResponseMessage) error
@@ -198,6 +210,7 @@ type StaticHandler interface {
 func RegisterStaticHandler(s server.Server, hdlr StaticHandler, opts ...server.HandlerOption) error {
 	type static interface {
 		InitDB(ctx context.Context, in *emptypb.Empty, out *InitDBResp) error
+		Domains(ctx context.Context, in *emptypb.Empty, out *DomainsResponse) error
 		Configuration(ctx context.Context, in *ConfigurationMessage, out *ConfigurationResponseMessage) error
 		UploadAvatar(ctx context.Context, in *UploadRequestMessage, out *UploadResponseMessage) error
 		UploadCover(ctx context.Context, in *UploadRequestMessage, out *UploadResponseMessage) error
@@ -220,6 +233,10 @@ type staticHandler struct {
 
 func (h *staticHandler) InitDB(ctx context.Context, in *emptypb.Empty, out *InitDBResp) error {
 	return h.StaticHandler.InitDB(ctx, in, out)
+}
+
+func (h *staticHandler) Domains(ctx context.Context, in *emptypb.Empty, out *DomainsResponse) error {
+	return h.StaticHandler.Domains(ctx, in, out)
 }
 
 func (h *staticHandler) Configuration(ctx context.Context, in *ConfigurationMessage, out *ConfigurationResponseMessage) error {

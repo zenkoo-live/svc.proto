@@ -41,8 +41,8 @@ type GiftRecordService interface {
 	GetSendRecordList(ctx context.Context, in *GetSendRecordListReq, opts ...client.CallOption) (*GetSendRecordListResp, error)
 	// GetGetRecordList 收礼记录
 	GetGetRecordList(ctx context.Context, in *GetGetRecordListReq, opts ...client.CallOption) (*GetGetRecordListResp, error)
-	// GetLiveStat 直播统计
-	GetLiveStat(ctx context.Context, in *GetLiveStatReq, opts ...client.CallOption) (*GetLiveStatResp, error)
+	// GetStat 礼物统计
+	GetStat(ctx context.Context, in *GetStatReq, opts ...client.CallOption) (*GetStatResp, error)
 }
 
 type giftRecordService struct {
@@ -77,9 +77,9 @@ func (c *giftRecordService) GetGetRecordList(ctx context.Context, in *GetGetReco
 	return out, nil
 }
 
-func (c *giftRecordService) GetLiveStat(ctx context.Context, in *GetLiveStatReq, opts ...client.CallOption) (*GetLiveStatResp, error) {
-	req := c.c.NewRequest(c.name, "GiftRecord.GetLiveStat", in)
-	out := new(GetLiveStatResp)
+func (c *giftRecordService) GetStat(ctx context.Context, in *GetStatReq, opts ...client.CallOption) (*GetStatResp, error) {
+	req := c.c.NewRequest(c.name, "GiftRecord.GetStat", in)
+	out := new(GetStatResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -94,15 +94,15 @@ type GiftRecordHandler interface {
 	GetSendRecordList(context.Context, *GetSendRecordListReq, *GetSendRecordListResp) error
 	// GetGetRecordList 收礼记录
 	GetGetRecordList(context.Context, *GetGetRecordListReq, *GetGetRecordListResp) error
-	// GetLiveStat 直播统计
-	GetLiveStat(context.Context, *GetLiveStatReq, *GetLiveStatResp) error
+	// GetStat 礼物统计
+	GetStat(context.Context, *GetStatReq, *GetStatResp) error
 }
 
 func RegisterGiftRecordHandler(s server.Server, hdlr GiftRecordHandler, opts ...server.HandlerOption) error {
 	type giftRecord interface {
 		GetSendRecordList(ctx context.Context, in *GetSendRecordListReq, out *GetSendRecordListResp) error
 		GetGetRecordList(ctx context.Context, in *GetGetRecordListReq, out *GetGetRecordListResp) error
-		GetLiveStat(ctx context.Context, in *GetLiveStatReq, out *GetLiveStatResp) error
+		GetStat(ctx context.Context, in *GetStatReq, out *GetStatResp) error
 	}
 	type GiftRecord struct {
 		giftRecord
@@ -123,6 +123,6 @@ func (h *giftRecordHandler) GetGetRecordList(ctx context.Context, in *GetGetReco
 	return h.GiftRecordHandler.GetGetRecordList(ctx, in, out)
 }
 
-func (h *giftRecordHandler) GetLiveStat(ctx context.Context, in *GetLiveStatReq, out *GetLiveStatResp) error {
-	return h.GiftRecordHandler.GetLiveStat(ctx, in, out)
+func (h *giftRecordHandler) GetStat(ctx context.Context, in *GetStatReq, out *GetStatResp) error {
+	return h.GiftRecordHandler.GetStat(ctx, in, out)
 }

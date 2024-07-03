@@ -11,8 +11,8 @@ service GiftRecord {
     rpc GetSendRecordList(GetSendRecordListReq) returns (GetSendRecordListResp) {}
     // GetGetRecordList 收礼记录
     rpc GetGetRecordList(GetGetRecordListReq) returns (GetGetRecordListResp) {}
-    // GetLiveStat 直播统计
-    rpc GetLiveStat(GetLiveStatReq) returns (GetLiveStatResp) {}
+    // GetStat 礼物统计
+    rpc GetStat(GetStatReq) returns (GetStatResp) {}
 }
 
 
@@ -52,12 +52,14 @@ message GetGetRecordListResp {
     repeated GiftRecordInfo items = 1;
 }
 
-message GetLiveStatReq {
+message GetStatReq {
     string streamer_id = 1; // 主播uid
     string live_id = 2; // 直播id
+    google.protobuf.Timestamp  start_time = 6; // 开始时间
+    google.protobuf.Timestamp  end_time = 7; // 结束时间
 }
 
-message GetLiveStatResp {
+message GetStatResp {
     int32 total_num = 1; // 礼物总数
     int32 total_price = 2; // 礼物代币总数
     int32 total_user = 3; // 礼物用户总数

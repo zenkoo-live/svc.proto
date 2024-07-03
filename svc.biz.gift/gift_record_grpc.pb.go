@@ -21,7 +21,7 @@ const _ = grpc.SupportPackageIsVersion8
 const (
 	GiftRecord_GetSendRecordList_FullMethodName = "/svc.biz.gift.GiftRecord/GetSendRecordList"
 	GiftRecord_GetGetRecordList_FullMethodName  = "/svc.biz.gift.GiftRecord/GetGetRecordList"
-	GiftRecord_GetLiveStat_FullMethodName       = "/svc.biz.gift.GiftRecord/GetLiveStat"
+	GiftRecord_GetStat_FullMethodName           = "/svc.biz.gift.GiftRecord/GetStat"
 )
 
 // GiftRecordClient is the client API for GiftRecord service.
@@ -32,8 +32,8 @@ type GiftRecordClient interface {
 	GetSendRecordList(ctx context.Context, in *GetSendRecordListReq, opts ...grpc.CallOption) (*GetSendRecordListResp, error)
 	// GetGetRecordList 收礼记录
 	GetGetRecordList(ctx context.Context, in *GetGetRecordListReq, opts ...grpc.CallOption) (*GetGetRecordListResp, error)
-	// GetLiveStat 直播统计
-	GetLiveStat(ctx context.Context, in *GetLiveStatReq, opts ...grpc.CallOption) (*GetLiveStatResp, error)
+	// GetStat 礼物统计
+	GetStat(ctx context.Context, in *GetStatReq, opts ...grpc.CallOption) (*GetStatResp, error)
 }
 
 type giftRecordClient struct {
@@ -64,10 +64,10 @@ func (c *giftRecordClient) GetGetRecordList(ctx context.Context, in *GetGetRecor
 	return out, nil
 }
 
-func (c *giftRecordClient) GetLiveStat(ctx context.Context, in *GetLiveStatReq, opts ...grpc.CallOption) (*GetLiveStatResp, error) {
+func (c *giftRecordClient) GetStat(ctx context.Context, in *GetStatReq, opts ...grpc.CallOption) (*GetStatResp, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetLiveStatResp)
-	err := c.cc.Invoke(ctx, GiftRecord_GetLiveStat_FullMethodName, in, out, cOpts...)
+	out := new(GetStatResp)
+	err := c.cc.Invoke(ctx, GiftRecord_GetStat_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -82,8 +82,8 @@ type GiftRecordServer interface {
 	GetSendRecordList(context.Context, *GetSendRecordListReq) (*GetSendRecordListResp, error)
 	// GetGetRecordList 收礼记录
 	GetGetRecordList(context.Context, *GetGetRecordListReq) (*GetGetRecordListResp, error)
-	// GetLiveStat 直播统计
-	GetLiveStat(context.Context, *GetLiveStatReq) (*GetLiveStatResp, error)
+	// GetStat 礼物统计
+	GetStat(context.Context, *GetStatReq) (*GetStatResp, error)
 	mustEmbedUnimplementedGiftRecordServer()
 }
 
@@ -97,8 +97,8 @@ func (UnimplementedGiftRecordServer) GetSendRecordList(context.Context, *GetSend
 func (UnimplementedGiftRecordServer) GetGetRecordList(context.Context, *GetGetRecordListReq) (*GetGetRecordListResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetGetRecordList not implemented")
 }
-func (UnimplementedGiftRecordServer) GetLiveStat(context.Context, *GetLiveStatReq) (*GetLiveStatResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetLiveStat not implemented")
+func (UnimplementedGiftRecordServer) GetStat(context.Context, *GetStatReq) (*GetStatResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStat not implemented")
 }
 func (UnimplementedGiftRecordServer) mustEmbedUnimplementedGiftRecordServer() {}
 
@@ -149,20 +149,20 @@ func _GiftRecord_GetGetRecordList_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GiftRecord_GetLiveStat_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetLiveStatReq)
+func _GiftRecord_GetStat_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetStatReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GiftRecordServer).GetLiveStat(ctx, in)
+		return srv.(GiftRecordServer).GetStat(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: GiftRecord_GetLiveStat_FullMethodName,
+		FullMethod: GiftRecord_GetStat_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GiftRecordServer).GetLiveStat(ctx, req.(*GetLiveStatReq))
+		return srv.(GiftRecordServer).GetStat(ctx, req.(*GetStatReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -183,8 +183,8 @@ var GiftRecord_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _GiftRecord_GetGetRecordList_Handler,
 		},
 		{
-			MethodName: "GetLiveStat",
-			Handler:    _GiftRecord_GetLiveStat_Handler,
+			MethodName: "GetStat",
+			Handler:    _GiftRecord_GetStat_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
