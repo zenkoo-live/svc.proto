@@ -8,13 +8,13 @@ option go_package="./svc.biz.room;room";
 
 // 直播
 service Live {
-    // 查询直播间信息
+    // GetLive 查询直播间信息
     rpc GetLive(GetLiveReq) returns(GetLiveResp);
-    // 批量获取直播间信息
+    // MGetLive 批量获取直播间信息
     rpc MGetLive(MGetLiveReq) returns(MGetLiveResp);
-    // 获取在播直播间列表
+    // ListLive 获取在播直播间列表
     rpc ListLive(ListLiveReq) returns (ListLiveResp);
-    // StatLive 
+    // StatLive 获取直播统计信息
     rpc StatLive(StatLiveReq) returns (StatLiveResp);
 }
 

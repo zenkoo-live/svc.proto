@@ -37,12 +37,14 @@ func NewLiveEndpoints() []*api.Endpoint {
 // Client API for Live service
 
 type LiveService interface {
-	// 查询直播间信息
+	// GetLive 查询直播间信息
 	GetLive(ctx context.Context, in *GetLiveReq, opts ...client.CallOption) (*GetLiveResp, error)
-	// 批量获取直播间信息
+	// MGetLive 批量获取直播间信息
 	MGetLive(ctx context.Context, in *MGetLiveReq, opts ...client.CallOption) (*MGetLiveResp, error)
-	// 获取在播直播间列表
+	// ListLive 获取在播直播间列表
 	ListLive(ctx context.Context, in *ListLiveReq, opts ...client.CallOption) (*ListLiveResp, error)
+	// StatLive 获取直播统计信息
+	StatLive(ctx context.Context, in *StatLiveReq, opts ...client.CallOption) (*StatLiveResp, error)
 }
 
 type liveService struct {
@@ -87,15 +89,27 @@ func (c *liveService) ListLive(ctx context.Context, in *ListLiveReq, opts ...cli
 	return out, nil
 }
 
+func (c *liveService) StatLive(ctx context.Context, in *StatLiveReq, opts ...client.CallOption) (*StatLiveResp, error) {
+	req := c.c.NewRequest(c.name, "Live.StatLive", in)
+	out := new(StatLiveResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for Live service
 
 type LiveHandler interface {
-	// 查询直播间信息
+	// GetLive 查询直播间信息
 	GetLive(context.Context, *GetLiveReq, *GetLiveResp) error
-	// 批量获取直播间信息
+	// MGetLive 批量获取直播间信息
 	MGetLive(context.Context, *MGetLiveReq, *MGetLiveResp) error
-	// 获取在播直播间列表
+	// ListLive 获取在播直播间列表
 	ListLive(context.Context, *ListLiveReq, *ListLiveResp) error
+	// StatLive 获取直播统计信息
+	StatLive(context.Context, *StatLiveReq, *StatLiveResp) error
 }
 
 func RegisterLiveHandler(s server.Server, hdlr LiveHandler, opts ...server.HandlerOption) error {
@@ -103,6 +117,7 @@ func RegisterLiveHandler(s server.Server, hdlr LiveHandler, opts ...server.Handl
 		GetLive(ctx context.Context, in *GetLiveReq, out *GetLiveResp) error
 		MGetLive(ctx context.Context, in *MGetLiveReq, out *MGetLiveResp) error
 		ListLive(ctx context.Context, in *ListLiveReq, out *ListLiveResp) error
+		StatLive(ctx context.Context, in *StatLiveReq, out *StatLiveResp) error
 	}
 	type Live struct {
 		live
@@ -125,4 +140,8 @@ func (h *liveHandler) MGetLive(ctx context.Context, in *MGetLiveReq, out *MGetLi
 
 func (h *liveHandler) ListLive(ctx context.Context, in *ListLiveReq, out *ListLiveResp) error {
 	return h.LiveHandler.ListLive(ctx, in, out)
+}
+
+func (h *liveHandler) StatLive(ctx context.Context, in *StatLiveReq, out *StatLiveResp) error {
+	return h.LiveHandler.StatLive(ctx, in, out)
 }

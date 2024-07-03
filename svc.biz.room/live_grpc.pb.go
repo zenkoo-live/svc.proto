@@ -22,6 +22,7 @@ const (
 	Live_GetLive_FullMethodName  = "/svc.biz.room.Live/GetLive"
 	Live_MGetLive_FullMethodName = "/svc.biz.room.Live/MGetLive"
 	Live_ListLive_FullMethodName = "/svc.biz.room.Live/ListLive"
+	Live_StatLive_FullMethodName = "/svc.biz.room.Live/StatLive"
 )
 
 // LiveClient is the client API for Live service.
@@ -30,12 +31,14 @@ const (
 //
 // 直播
 type LiveClient interface {
-	// 查询直播间信息
+	// GetLive 查询直播间信息
 	GetLive(ctx context.Context, in *GetLiveReq, opts ...grpc.CallOption) (*GetLiveResp, error)
-	// 批量获取直播间信息
+	// MGetLive 批量获取直播间信息
 	MGetLive(ctx context.Context, in *MGetLiveReq, opts ...grpc.CallOption) (*MGetLiveResp, error)
-	// 获取在播直播间列表
+	// ListLive 获取在播直播间列表
 	ListLive(ctx context.Context, in *ListLiveReq, opts ...grpc.CallOption) (*ListLiveResp, error)
+	// StatLive 获取直播统计信息
+	StatLive(ctx context.Context, in *StatLiveReq, opts ...grpc.CallOption) (*StatLiveResp, error)
 }
 
 type liveClient struct {
@@ -76,18 +79,30 @@ func (c *liveClient) ListLive(ctx context.Context, in *ListLiveReq, opts ...grpc
 	return out, nil
 }
 
+func (c *liveClient) StatLive(ctx context.Context, in *StatLiveReq, opts ...grpc.CallOption) (*StatLiveResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(StatLiveResp)
+	err := c.cc.Invoke(ctx, Live_StatLive_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // LiveServer is the server API for Live service.
 // All implementations must embed UnimplementedLiveServer
 // for forward compatibility
 //
 // 直播
 type LiveServer interface {
-	// 查询直播间信息
+	// GetLive 查询直播间信息
 	GetLive(context.Context, *GetLiveReq) (*GetLiveResp, error)
-	// 批量获取直播间信息
+	// MGetLive 批量获取直播间信息
 	MGetLive(context.Context, *MGetLiveReq) (*MGetLiveResp, error)
-	// 获取在播直播间列表
+	// ListLive 获取在播直播间列表
 	ListLive(context.Context, *ListLiveReq) (*ListLiveResp, error)
+	// StatLive 获取直播统计信息
+	StatLive(context.Context, *StatLiveReq) (*StatLiveResp, error)
 	mustEmbedUnimplementedLiveServer()
 }
 
@@ -103,6 +118,9 @@ func (UnimplementedLiveServer) MGetLive(context.Context, *MGetLiveReq) (*MGetLiv
 }
 func (UnimplementedLiveServer) ListLive(context.Context, *ListLiveReq) (*ListLiveResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListLive not implemented")
+}
+func (UnimplementedLiveServer) StatLive(context.Context, *StatLiveReq) (*StatLiveResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StatLive not implemented")
 }
 func (UnimplementedLiveServer) mustEmbedUnimplementedLiveServer() {}
 
@@ -171,6 +189,24 @@ func _Live_ListLive_Handler(srv interface{}, ctx context.Context, dec func(inter
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Live_StatLive_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(StatLiveReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LiveServer).StatLive(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Live_StatLive_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LiveServer).StatLive(ctx, req.(*StatLiveReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Live_ServiceDesc is the grpc.ServiceDesc for Live service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -189,6 +225,10 @@ var Live_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListLive",
 			Handler:    _Live_ListLive_Handler,
+		},
+		{
+			MethodName: "StatLive",
+			Handler:    _Live_StatLive_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
