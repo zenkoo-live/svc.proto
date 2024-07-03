@@ -18,6 +18,11 @@ service Live {
     rpc StatLive(StatLiveReq) returns (StatLiveResp);
 }
 
+message TimeBeginEnd {
+    google.protobuf.Timestamp beigin = 1;
+    google.protobuf.Timestamp end = 2;
+}
+
 message LiveInfo {
     string live_id = 1; // id
     string streamer_id = 2; // 主播id
@@ -53,8 +58,8 @@ message ListLiveResp {
 }
 
 message StatLiveReq {
-    google.protobuf.Timestamp start_at_beigin = 1;
-    google.protobuf.Timestamp start_at_end = 2;
+    TimeBeginEnd start_at = 1;
+    TimeBeginEnd end_at = 2;
 }
 message StatLiveResp {
     int64 count = 1; // 直播次数

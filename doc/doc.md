@@ -271,6 +271,7 @@
     - [MGetLiveResp.ItemsEntry](#svc-biz-room-MGetLiveResp-ItemsEntry)
     - [StatLiveReq](#svc-biz-room-StatLiveReq)
     - [StatLiveResp](#svc-biz-room-StatLiveResp)
+    - [TimeBeginEnd](#svc-biz-room-TimeBeginEnd)
   
     - [Live](#svc-biz-room-Live)
   
@@ -4998,8 +4999,8 @@ CategoryInfo 分类详情
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| start_at_beigin | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
-| start_at_end | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+| start_at | [TimeBeginEnd](#svc-biz-room-TimeBeginEnd) |  |  |
+| end_at | [TimeBeginEnd](#svc-biz-room-TimeBeginEnd) |  |  |
 
 
 
@@ -5016,6 +5017,22 @@ CategoryInfo 分类详情
 | ----- | ---- | ----- | ----------- |
 | count | [int64](#int64) |  | 直播次数 |
 | duration | [int64](#int64) |  | 直播时长 |
+
+
+
+
+
+
+<a name="svc-biz-room-TimeBeginEnd"></a>
+
+### TimeBeginEnd
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| beigin | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+| end | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
 
 
 
