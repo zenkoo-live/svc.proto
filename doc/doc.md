@@ -5402,6 +5402,7 @@ CategoryInfo 分类详情
 | show_status | [ShowStatus](#svc-biz-room-ShowStatus) |  | 展示状态 |
 | merchants | [string](#string) | repeated | 商户id |
 | bind_tags | [string](#string) | repeated | 标签 |
+| view_other | [bool](#bool) |  | 是否允许观众查看他人信息 |
 | live_id | [string](#string) |  | 直播id（开播状态时才会有，关播时清空） |
 | live_region | [int32](#int32) |  | 直播区域（开播状态时才会有，关播时清空） |
 | live_status | [LiveStatus](#svc-biz-room-LiveStatus) |  | 房间状态：1关播，2开播 |
