@@ -203,6 +203,86 @@ func (PayloadType) EnumDescriptor() ([]byte, []int) {
 	return file_svc_infra_link_payload_proto_rawDescGZIP(), []int{2}
 }
 
+// 用户送礼
+type PayloadUserGift struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Uid      string `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`
+	Nickname string `protobuf:"bytes,2,opt,name=nickname,proto3" json:"nickname,omitempty"`
+	Avatar   string `protobuf:"bytes,3,opt,name=avatar,proto3" json:"avatar,omitempty"`
+	Count    int32  `protobuf:"varint,4,opt,name=count,proto3" json:"count,omitempty"`
+	Name     string `protobuf:"bytes,5,opt,name=name,proto3" json:"name,omitempty"`
+}
+
+func (x *PayloadUserGift) Reset() {
+	*x = PayloadUserGift{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_infra_link_payload_proto_msgTypes[0]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *PayloadUserGift) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PayloadUserGift) ProtoMessage() {}
+
+func (x *PayloadUserGift) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_infra_link_payload_proto_msgTypes[0]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PayloadUserGift.ProtoReflect.Descriptor instead.
+func (*PayloadUserGift) Descriptor() ([]byte, []int) {
+	return file_svc_infra_link_payload_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *PayloadUserGift) GetUid() string {
+	if x != nil {
+		return x.Uid
+	}
+	return ""
+}
+
+func (x *PayloadUserGift) GetNickname() string {
+	if x != nil {
+		return x.Nickname
+	}
+	return ""
+}
+
+func (x *PayloadUserGift) GetAvatar() string {
+	if x != nil {
+		return x.Avatar
+	}
+	return ""
+}
+
+func (x *PayloadUserGift) GetCount() int32 {
+	if x != nil {
+		return x.Count
+	}
+	return 0
+}
+
+func (x *PayloadUserGift) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
 // 进入房间
 type PayloadEnterRoom struct {
 	state         protoimpl.MessageState
@@ -211,19 +291,18 @@ type PayloadEnterRoom struct {
 
 	Uid        string        `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`                                    // 用户UID
 	Nickname   string        `protobuf:"bytes,2,opt,name=nickname,proto3" json:"nickname,omitempty"`                          // 昵称
-	Text       string        `protobuf:"bytes,3,opt,name=text,proto3" json:"text,omitempty"`                                  // 聊天内容
-	Avatar     string        `protobuf:"bytes,4,opt,name=avatar,proto3" json:"avatar,omitempty"`                              // 头像地址
-	IsRoomAdm  bool          `protobuf:"varint,5,opt,name=is_room_adm,json=isRoomAdm,proto3" json:"is_room_adm,omitempty"`    // 房管
-	IsSuperAdm bool          `protobuf:"varint,6,opt,name=is_super_adm,json=isSuperAdm,proto3" json:"is_super_adm,omitempty"` // 是否超管
-	Charm      *PayloadCharm `protobuf:"bytes,7,opt,name=charm,proto3" json:"charm,omitempty"`                                // 魅力值
-	Fans       *PayloadFans  `protobuf:"bytes,8,opt,name=fans,proto3" json:"fans,omitempty"`                                  // 粉丝信息
-	Guard      *PayloadGuard `protobuf:"bytes,9,opt,name=guard,proto3" json:"guard,omitempty"`                                // 守护信息
+	Avatar     string        `protobuf:"bytes,3,opt,name=avatar,proto3" json:"avatar,omitempty"`                              // 头像地址
+	IsRoomAdm  bool          `protobuf:"varint,4,opt,name=is_room_adm,json=isRoomAdm,proto3" json:"is_room_adm,omitempty"`    // 房管
+	IsSuperAdm bool          `protobuf:"varint,5,opt,name=is_super_adm,json=isSuperAdm,proto3" json:"is_super_adm,omitempty"` // 是否超管
+	Charm      *PayloadCharm `protobuf:"bytes,6,opt,name=charm,proto3" json:"charm,omitempty"`                                // 魅力值
+	Fans       *PayloadFans  `protobuf:"bytes,7,opt,name=fans,proto3" json:"fans,omitempty"`                                  // 粉丝信息
+	Guard      *PayloadGuard `protobuf:"bytes,8,opt,name=guard,proto3" json:"guard,omitempty"`                                // 守护信息
 }
 
 func (x *PayloadEnterRoom) Reset() {
 	*x = PayloadEnterRoom{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_svc_infra_link_payload_proto_msgTypes[0]
+		mi := &file_svc_infra_link_payload_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -236,7 +315,7 @@ func (x *PayloadEnterRoom) String() string {
 func (*PayloadEnterRoom) ProtoMessage() {}
 
 func (x *PayloadEnterRoom) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_infra_link_payload_proto_msgTypes[0]
+	mi := &file_svc_infra_link_payload_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -249,7 +328,7 @@ func (x *PayloadEnterRoom) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PayloadEnterRoom.ProtoReflect.Descriptor instead.
 func (*PayloadEnterRoom) Descriptor() ([]byte, []int) {
-	return file_svc_infra_link_payload_proto_rawDescGZIP(), []int{0}
+	return file_svc_infra_link_payload_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *PayloadEnterRoom) GetUid() string {
@@ -262,13 +341,6 @@ func (x *PayloadEnterRoom) GetUid() string {
 func (x *PayloadEnterRoom) GetNickname() string {
 	if x != nil {
 		return x.Nickname
-	}
-	return ""
-}
-
-func (x *PayloadEnterRoom) GetText() string {
-	if x != nil {
-		return x.Text
 	}
 	return ""
 }
@@ -327,7 +399,7 @@ type PayloadStreamNotice struct {
 func (x *PayloadStreamNotice) Reset() {
 	*x = PayloadStreamNotice{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_svc_infra_link_payload_proto_msgTypes[1]
+		mi := &file_svc_infra_link_payload_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -340,7 +412,7 @@ func (x *PayloadStreamNotice) String() string {
 func (*PayloadStreamNotice) ProtoMessage() {}
 
 func (x *PayloadStreamNotice) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_infra_link_payload_proto_msgTypes[1]
+	mi := &file_svc_infra_link_payload_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -353,7 +425,7 @@ func (x *PayloadStreamNotice) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PayloadStreamNotice.ProtoReflect.Descriptor instead.
 func (*PayloadStreamNotice) Descriptor() ([]byte, []int) {
-	return file_svc_infra_link_payload_proto_rawDescGZIP(), []int{1}
+	return file_svc_infra_link_payload_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *PayloadStreamNotice) GetText() string {
@@ -373,7 +445,7 @@ type PayloadStreamerCard struct {
 func (x *PayloadStreamerCard) Reset() {
 	*x = PayloadStreamerCard{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_svc_infra_link_payload_proto_msgTypes[2]
+		mi := &file_svc_infra_link_payload_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -386,7 +458,7 @@ func (x *PayloadStreamerCard) String() string {
 func (*PayloadStreamerCard) ProtoMessage() {}
 
 func (x *PayloadStreamerCard) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_infra_link_payload_proto_msgTypes[2]
+	mi := &file_svc_infra_link_payload_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -399,7 +471,7 @@ func (x *PayloadStreamerCard) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PayloadStreamerCard.ProtoReflect.Descriptor instead.
 func (*PayloadStreamerCard) Descriptor() ([]byte, []int) {
-	return file_svc_infra_link_payload_proto_rawDescGZIP(), []int{2}
+	return file_svc_infra_link_payload_proto_rawDescGZIP(), []int{3}
 }
 
 type PayloadStreamerOffline struct {
@@ -413,7 +485,7 @@ type PayloadStreamerOffline struct {
 func (x *PayloadStreamerOffline) Reset() {
 	*x = PayloadStreamerOffline{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_svc_infra_link_payload_proto_msgTypes[3]
+		mi := &file_svc_infra_link_payload_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -426,7 +498,7 @@ func (x *PayloadStreamerOffline) String() string {
 func (*PayloadStreamerOffline) ProtoMessage() {}
 
 func (x *PayloadStreamerOffline) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_infra_link_payload_proto_msgTypes[3]
+	mi := &file_svc_infra_link_payload_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -439,7 +511,7 @@ func (x *PayloadStreamerOffline) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PayloadStreamerOffline.ProtoReflect.Descriptor instead.
 func (*PayloadStreamerOffline) Descriptor() ([]byte, []int) {
-	return file_svc_infra_link_payload_proto_rawDescGZIP(), []int{3}
+	return file_svc_infra_link_payload_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *PayloadStreamerOffline) GetForbid() string {
@@ -464,7 +536,7 @@ type PayloadWrap struct {
 func (x *PayloadWrap) Reset() {
 	*x = PayloadWrap{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_svc_infra_link_payload_proto_msgTypes[4]
+		mi := &file_svc_infra_link_payload_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -477,7 +549,7 @@ func (x *PayloadWrap) String() string {
 func (*PayloadWrap) ProtoMessage() {}
 
 func (x *PayloadWrap) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_infra_link_payload_proto_msgTypes[4]
+	mi := &file_svc_infra_link_payload_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -490,7 +562,7 @@ func (x *PayloadWrap) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PayloadWrap.ProtoReflect.Descriptor instead.
 func (*PayloadWrap) Descriptor() ([]byte, []int) {
-	return file_svc_infra_link_payload_proto_rawDescGZIP(), []int{4}
+	return file_svc_infra_link_payload_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *PayloadWrap) GetI() int64 {
@@ -531,7 +603,7 @@ type PayloadGuard struct {
 func (x *PayloadGuard) Reset() {
 	*x = PayloadGuard{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_svc_infra_link_payload_proto_msgTypes[5]
+		mi := &file_svc_infra_link_payload_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -544,7 +616,7 @@ func (x *PayloadGuard) String() string {
 func (*PayloadGuard) ProtoMessage() {}
 
 func (x *PayloadGuard) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_infra_link_payload_proto_msgTypes[5]
+	mi := &file_svc_infra_link_payload_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -557,7 +629,7 @@ func (x *PayloadGuard) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PayloadGuard.ProtoReflect.Descriptor instead.
 func (*PayloadGuard) Descriptor() ([]byte, []int) {
-	return file_svc_infra_link_payload_proto_rawDescGZIP(), []int{5}
+	return file_svc_infra_link_payload_proto_rawDescGZIP(), []int{6}
 }
 
 // 粉丝消息
@@ -570,7 +642,7 @@ type PayloadFans struct {
 func (x *PayloadFans) Reset() {
 	*x = PayloadFans{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_svc_infra_link_payload_proto_msgTypes[6]
+		mi := &file_svc_infra_link_payload_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -583,7 +655,7 @@ func (x *PayloadFans) String() string {
 func (*PayloadFans) ProtoMessage() {}
 
 func (x *PayloadFans) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_infra_link_payload_proto_msgTypes[6]
+	mi := &file_svc_infra_link_payload_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -596,7 +668,7 @@ func (x *PayloadFans) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PayloadFans.ProtoReflect.Descriptor instead.
 func (*PayloadFans) Descriptor() ([]byte, []int) {
-	return file_svc_infra_link_payload_proto_rawDescGZIP(), []int{6}
+	return file_svc_infra_link_payload_proto_rawDescGZIP(), []int{7}
 }
 
 // 魅力值
@@ -609,7 +681,7 @@ type PayloadCharm struct {
 func (x *PayloadCharm) Reset() {
 	*x = PayloadCharm{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_svc_infra_link_payload_proto_msgTypes[7]
+		mi := &file_svc_infra_link_payload_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -622,7 +694,7 @@ func (x *PayloadCharm) String() string {
 func (*PayloadCharm) ProtoMessage() {}
 
 func (x *PayloadCharm) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_infra_link_payload_proto_msgTypes[7]
+	mi := &file_svc_infra_link_payload_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -635,7 +707,7 @@ func (x *PayloadCharm) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PayloadCharm.ProtoReflect.Descriptor instead.
 func (*PayloadCharm) Descriptor() ([]byte, []int) {
-	return file_svc_infra_link_payload_proto_rawDescGZIP(), []int{7}
+	return file_svc_infra_link_payload_proto_rawDescGZIP(), []int{8}
 }
 
 // 主播聊天弹幕消息
@@ -653,7 +725,7 @@ type PayloadStreamerDm struct {
 func (x *PayloadStreamerDm) Reset() {
 	*x = PayloadStreamerDm{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_svc_infra_link_payload_proto_msgTypes[8]
+		mi := &file_svc_infra_link_payload_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -666,7 +738,7 @@ func (x *PayloadStreamerDm) String() string {
 func (*PayloadStreamerDm) ProtoMessage() {}
 
 func (x *PayloadStreamerDm) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_infra_link_payload_proto_msgTypes[8]
+	mi := &file_svc_infra_link_payload_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -679,7 +751,7 @@ func (x *PayloadStreamerDm) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PayloadStreamerDm.ProtoReflect.Descriptor instead.
 func (*PayloadStreamerDm) Descriptor() ([]byte, []int) {
-	return file_svc_infra_link_payload_proto_rawDescGZIP(), []int{8}
+	return file_svc_infra_link_payload_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *PayloadStreamerDm) GetUid() string {
@@ -718,8 +790,8 @@ type PayloadUserCommDm struct {
 
 	Uid        string        `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`                                    // 用户UID
 	Nickname   string        `protobuf:"bytes,2,opt,name=nickname,proto3" json:"nickname,omitempty"`                          // 昵称
-	Text       string        `protobuf:"bytes,3,opt,name=text,proto3" json:"text,omitempty"`                                  // 聊天内容
-	Avatar     string        `protobuf:"bytes,4,opt,name=avatar,proto3" json:"avatar,omitempty"`                              // 头像地址
+	Avatar     string        `protobuf:"bytes,3,opt,name=avatar,proto3" json:"avatar,omitempty"`                              // 头像地址
+	Text       string        `protobuf:"bytes,4,opt,name=text,proto3" json:"text,omitempty"`                                  // 聊天内容
 	IsRoomAdm  bool          `protobuf:"varint,5,opt,name=is_room_adm,json=isRoomAdm,proto3" json:"is_room_adm,omitempty"`    // 房管
 	IsSuperAdm bool          `protobuf:"varint,6,opt,name=is_super_adm,json=isSuperAdm,proto3" json:"is_super_adm,omitempty"` // 是否超管
 	Charm      *PayloadCharm `protobuf:"bytes,7,opt,name=charm,proto3" json:"charm,omitempty"`                                // 魅力值
@@ -730,7 +802,7 @@ type PayloadUserCommDm struct {
 func (x *PayloadUserCommDm) Reset() {
 	*x = PayloadUserCommDm{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_svc_infra_link_payload_proto_msgTypes[9]
+		mi := &file_svc_infra_link_payload_proto_msgTypes[10]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -743,7 +815,7 @@ func (x *PayloadUserCommDm) String() string {
 func (*PayloadUserCommDm) ProtoMessage() {}
 
 func (x *PayloadUserCommDm) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_infra_link_payload_proto_msgTypes[9]
+	mi := &file_svc_infra_link_payload_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -756,7 +828,7 @@ func (x *PayloadUserCommDm) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PayloadUserCommDm.ProtoReflect.Descriptor instead.
 func (*PayloadUserCommDm) Descriptor() ([]byte, []int) {
-	return file_svc_infra_link_payload_proto_rawDescGZIP(), []int{9}
+	return file_svc_infra_link_payload_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *PayloadUserCommDm) GetUid() string {
@@ -773,16 +845,16 @@ func (x *PayloadUserCommDm) GetNickname() string {
 	return ""
 }
 
-func (x *PayloadUserCommDm) GetText() string {
+func (x *PayloadUserCommDm) GetAvatar() string {
 	if x != nil {
-		return x.Text
+		return x.Avatar
 	}
 	return ""
 }
 
-func (x *PayloadUserCommDm) GetAvatar() string {
+func (x *PayloadUserCommDm) GetText() string {
 	if x != nil {
-		return x.Avatar
+		return x.Text
 	}
 	return ""
 }
@@ -827,25 +899,32 @@ var File_svc_infra_link_payload_proto protoreflect.FileDescriptor
 var file_svc_infra_link_payload_proto_rawDesc = []byte{
 	0x0a, 0x1c, 0x73, 0x76, 0x63, 0x2e, 0x69, 0x6e, 0x66, 0x72, 0x61, 0x2e, 0x6c, 0x69, 0x6e, 0x6b,
 	0x2f, 0x70, 0x61, 0x79, 0x6c, 0x6f, 0x61, 0x64, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x0e,
-	0x73, 0x76, 0x63, 0x2e, 0x69, 0x6e, 0x66, 0x72, 0x61, 0x2e, 0x6c, 0x69, 0x6e, 0x6b, 0x22, 0xc7,
-	0x02, 0x0a, 0x10, 0x50, 0x61, 0x79, 0x6c, 0x6f, 0x61, 0x64, 0x45, 0x6e, 0x74, 0x65, 0x72, 0x52,
-	0x6f, 0x6f, 0x6d, 0x12, 0x10, 0x0a, 0x03, 0x75, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
-	0x52, 0x03, 0x75, 0x69, 0x64, 0x12, 0x1a, 0x0a, 0x08, 0x6e, 0x69, 0x63, 0x6b, 0x6e, 0x61, 0x6d,
-	0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x6e, 0x69, 0x63, 0x6b, 0x6e, 0x61, 0x6d,
-	0x65, 0x12, 0x12, 0x0a, 0x04, 0x74, 0x65, 0x78, 0x74, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52,
-	0x04, 0x74, 0x65, 0x78, 0x74, 0x12, 0x16, 0x0a, 0x06, 0x61, 0x76, 0x61, 0x74, 0x61, 0x72, 0x18,
-	0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x61, 0x76, 0x61, 0x74, 0x61, 0x72, 0x12, 0x1e, 0x0a,
-	0x0b, 0x69, 0x73, 0x5f, 0x72, 0x6f, 0x6f, 0x6d, 0x5f, 0x61, 0x64, 0x6d, 0x18, 0x05, 0x20, 0x01,
+	0x73, 0x76, 0x63, 0x2e, 0x69, 0x6e, 0x66, 0x72, 0x61, 0x2e, 0x6c, 0x69, 0x6e, 0x6b, 0x22, 0x81,
+	0x01, 0x0a, 0x0f, 0x50, 0x61, 0x79, 0x6c, 0x6f, 0x61, 0x64, 0x55, 0x73, 0x65, 0x72, 0x47, 0x69,
+	0x66, 0x74, 0x12, 0x10, 0x0a, 0x03, 0x75, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x03, 0x75, 0x69, 0x64, 0x12, 0x1a, 0x0a, 0x08, 0x6e, 0x69, 0x63, 0x6b, 0x6e, 0x61, 0x6d, 0x65,
+	0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x6e, 0x69, 0x63, 0x6b, 0x6e, 0x61, 0x6d, 0x65,
+	0x12, 0x16, 0x0a, 0x06, 0x61, 0x76, 0x61, 0x74, 0x61, 0x72, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x06, 0x61, 0x76, 0x61, 0x74, 0x61, 0x72, 0x12, 0x14, 0x0a, 0x05, 0x63, 0x6f, 0x75, 0x6e,
+	0x74, 0x18, 0x04, 0x20, 0x01, 0x28, 0x05, 0x52, 0x05, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x12,
+	0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61,
+	0x6d, 0x65, 0x22, 0xb3, 0x02, 0x0a, 0x10, 0x50, 0x61, 0x79, 0x6c, 0x6f, 0x61, 0x64, 0x45, 0x6e,
+	0x74, 0x65, 0x72, 0x52, 0x6f, 0x6f, 0x6d, 0x12, 0x10, 0x0a, 0x03, 0x75, 0x69, 0x64, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x75, 0x69, 0x64, 0x12, 0x1a, 0x0a, 0x08, 0x6e, 0x69, 0x63,
+	0x6b, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x6e, 0x69, 0x63,
+	0x6b, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x61, 0x76, 0x61, 0x74, 0x61, 0x72, 0x18,
+	0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x61, 0x76, 0x61, 0x74, 0x61, 0x72, 0x12, 0x1e, 0x0a,
+	0x0b, 0x69, 0x73, 0x5f, 0x72, 0x6f, 0x6f, 0x6d, 0x5f, 0x61, 0x64, 0x6d, 0x18, 0x04, 0x20, 0x01,
 	0x28, 0x08, 0x52, 0x09, 0x69, 0x73, 0x52, 0x6f, 0x6f, 0x6d, 0x41, 0x64, 0x6d, 0x12, 0x20, 0x0a,
-	0x0c, 0x69, 0x73, 0x5f, 0x73, 0x75, 0x70, 0x65, 0x72, 0x5f, 0x61, 0x64, 0x6d, 0x18, 0x06, 0x20,
+	0x0c, 0x69, 0x73, 0x5f, 0x73, 0x75, 0x70, 0x65, 0x72, 0x5f, 0x61, 0x64, 0x6d, 0x18, 0x05, 0x20,
 	0x01, 0x28, 0x08, 0x52, 0x0a, 0x69, 0x73, 0x53, 0x75, 0x70, 0x65, 0x72, 0x41, 0x64, 0x6d, 0x12,
-	0x32, 0x0a, 0x05, 0x63, 0x68, 0x61, 0x72, 0x6d, 0x18, 0x07, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1c,
+	0x32, 0x0a, 0x05, 0x63, 0x68, 0x61, 0x72, 0x6d, 0x18, 0x06, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1c,
 	0x2e, 0x73, 0x76, 0x63, 0x2e, 0x69, 0x6e, 0x66, 0x72, 0x61, 0x2e, 0x6c, 0x69, 0x6e, 0x6b, 0x2e,
 	0x50, 0x61, 0x79, 0x6c, 0x6f, 0x61, 0x64, 0x43, 0x68, 0x61, 0x72, 0x6d, 0x52, 0x05, 0x63, 0x68,
-	0x61, 0x72, 0x6d, 0x12, 0x2f, 0x0a, 0x04, 0x66, 0x61, 0x6e, 0x73, 0x18, 0x08, 0x20, 0x01, 0x28,
+	0x61, 0x72, 0x6d, 0x12, 0x2f, 0x0a, 0x04, 0x66, 0x61, 0x6e, 0x73, 0x18, 0x07, 0x20, 0x01, 0x28,
 	0x0b, 0x32, 0x1b, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x69, 0x6e, 0x66, 0x72, 0x61, 0x2e, 0x6c, 0x69,
 	0x6e, 0x6b, 0x2e, 0x50, 0x61, 0x79, 0x6c, 0x6f, 0x61, 0x64, 0x46, 0x61, 0x6e, 0x73, 0x52, 0x04,
-	0x66, 0x61, 0x6e, 0x73, 0x12, 0x32, 0x0a, 0x05, 0x67, 0x75, 0x61, 0x72, 0x64, 0x18, 0x09, 0x20,
+	0x66, 0x61, 0x6e, 0x73, 0x12, 0x32, 0x0a, 0x05, 0x67, 0x75, 0x61, 0x72, 0x64, 0x18, 0x08, 0x20,
 	0x01, 0x28, 0x0b, 0x32, 0x1c, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x69, 0x6e, 0x66, 0x72, 0x61, 0x2e,
 	0x6c, 0x69, 0x6e, 0x6b, 0x2e, 0x50, 0x61, 0x79, 0x6c, 0x6f, 0x61, 0x64, 0x47, 0x75, 0x61, 0x72,
 	0x64, 0x52, 0x05, 0x67, 0x75, 0x61, 0x72, 0x64, 0x22, 0x29, 0x0a, 0x13, 0x50, 0x61, 0x79, 0x6c,
@@ -874,10 +953,10 @@ var file_svc_infra_link_payload_proto_rawDesc = []byte{
 	0x72, 0x43, 0x6f, 0x6d, 0x6d, 0x44, 0x6d, 0x12, 0x10, 0x0a, 0x03, 0x75, 0x69, 0x64, 0x18, 0x01,
 	0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x75, 0x69, 0x64, 0x12, 0x1a, 0x0a, 0x08, 0x6e, 0x69, 0x63,
 	0x6b, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x6e, 0x69, 0x63,
-	0x6b, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x74, 0x65, 0x78, 0x74, 0x18, 0x03, 0x20,
-	0x01, 0x28, 0x09, 0x52, 0x04, 0x74, 0x65, 0x78, 0x74, 0x12, 0x16, 0x0a, 0x06, 0x61, 0x76, 0x61,
-	0x74, 0x61, 0x72, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x61, 0x76, 0x61, 0x74, 0x61,
-	0x72, 0x12, 0x1e, 0x0a, 0x0b, 0x69, 0x73, 0x5f, 0x72, 0x6f, 0x6f, 0x6d, 0x5f, 0x61, 0x64, 0x6d,
+	0x6b, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x61, 0x76, 0x61, 0x74, 0x61, 0x72, 0x18,
+	0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x61, 0x76, 0x61, 0x74, 0x61, 0x72, 0x12, 0x12, 0x0a,
+	0x04, 0x74, 0x65, 0x78, 0x74, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x74, 0x65, 0x78,
+	0x74, 0x12, 0x1e, 0x0a, 0x0b, 0x69, 0x73, 0x5f, 0x72, 0x6f, 0x6f, 0x6d, 0x5f, 0x61, 0x64, 0x6d,
 	0x18, 0x05, 0x20, 0x01, 0x28, 0x08, 0x52, 0x09, 0x69, 0x73, 0x52, 0x6f, 0x6f, 0x6d, 0x41, 0x64,
 	0x6d, 0x12, 0x20, 0x0a, 0x0c, 0x69, 0x73, 0x5f, 0x73, 0x75, 0x70, 0x65, 0x72, 0x5f, 0x61, 0x64,
 	0x6d, 0x18, 0x06, 0x20, 0x01, 0x28, 0x08, 0x52, 0x0a, 0x69, 0x73, 0x53, 0x75, 0x70, 0x65, 0x72,
@@ -931,29 +1010,30 @@ func file_svc_infra_link_payload_proto_rawDescGZIP() []byte {
 }
 
 var file_svc_infra_link_payload_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
-var file_svc_infra_link_payload_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
+var file_svc_infra_link_payload_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
 var file_svc_infra_link_payload_proto_goTypes = []any{
 	(PriorityType)(0),              // 0: svc.infra.link.PriorityType
 	(CommandType)(0),               // 1: svc.infra.link.CommandType
 	(PayloadType)(0),               // 2: svc.infra.link.PayloadType
-	(*PayloadEnterRoom)(nil),       // 3: svc.infra.link.PayloadEnterRoom
-	(*PayloadStreamNotice)(nil),    // 4: svc.infra.link.PayloadStreamNotice
-	(*PayloadStreamerCard)(nil),    // 5: svc.infra.link.PayloadStreamerCard
-	(*PayloadStreamerOffline)(nil), // 6: svc.infra.link.PayloadStreamerOffline
-	(*PayloadWrap)(nil),            // 7: svc.infra.link.PayloadWrap
-	(*PayloadGuard)(nil),           // 8: svc.infra.link.PayloadGuard
-	(*PayloadFans)(nil),            // 9: svc.infra.link.PayloadFans
-	(*PayloadCharm)(nil),           // 10: svc.infra.link.PayloadCharm
-	(*PayloadStreamerDm)(nil),      // 11: svc.infra.link.PayloadStreamerDm
-	(*PayloadUserCommDm)(nil),      // 12: svc.infra.link.PayloadUserCommDm
+	(*PayloadUserGift)(nil),        // 3: svc.infra.link.PayloadUserGift
+	(*PayloadEnterRoom)(nil),       // 4: svc.infra.link.PayloadEnterRoom
+	(*PayloadStreamNotice)(nil),    // 5: svc.infra.link.PayloadStreamNotice
+	(*PayloadStreamerCard)(nil),    // 6: svc.infra.link.PayloadStreamerCard
+	(*PayloadStreamerOffline)(nil), // 7: svc.infra.link.PayloadStreamerOffline
+	(*PayloadWrap)(nil),            // 8: svc.infra.link.PayloadWrap
+	(*PayloadGuard)(nil),           // 9: svc.infra.link.PayloadGuard
+	(*PayloadFans)(nil),            // 10: svc.infra.link.PayloadFans
+	(*PayloadCharm)(nil),           // 11: svc.infra.link.PayloadCharm
+	(*PayloadStreamerDm)(nil),      // 12: svc.infra.link.PayloadStreamerDm
+	(*PayloadUserCommDm)(nil),      // 13: svc.infra.link.PayloadUserCommDm
 }
 var file_svc_infra_link_payload_proto_depIdxs = []int32{
-	10, // 0: svc.infra.link.PayloadEnterRoom.charm:type_name -> svc.infra.link.PayloadCharm
-	9,  // 1: svc.infra.link.PayloadEnterRoom.fans:type_name -> svc.infra.link.PayloadFans
-	8,  // 2: svc.infra.link.PayloadEnterRoom.guard:type_name -> svc.infra.link.PayloadGuard
-	10, // 3: svc.infra.link.PayloadUserCommDm.charm:type_name -> svc.infra.link.PayloadCharm
-	9,  // 4: svc.infra.link.PayloadUserCommDm.fans:type_name -> svc.infra.link.PayloadFans
-	8,  // 5: svc.infra.link.PayloadUserCommDm.guard:type_name -> svc.infra.link.PayloadGuard
+	11, // 0: svc.infra.link.PayloadEnterRoom.charm:type_name -> svc.infra.link.PayloadCharm
+	10, // 1: svc.infra.link.PayloadEnterRoom.fans:type_name -> svc.infra.link.PayloadFans
+	9,  // 2: svc.infra.link.PayloadEnterRoom.guard:type_name -> svc.infra.link.PayloadGuard
+	11, // 3: svc.infra.link.PayloadUserCommDm.charm:type_name -> svc.infra.link.PayloadCharm
+	10, // 4: svc.infra.link.PayloadUserCommDm.fans:type_name -> svc.infra.link.PayloadFans
+	9,  // 5: svc.infra.link.PayloadUserCommDm.guard:type_name -> svc.infra.link.PayloadGuard
 	6,  // [6:6] is the sub-list for method output_type
 	6,  // [6:6] is the sub-list for method input_type
 	6,  // [6:6] is the sub-list for extension type_name
@@ -968,7 +1048,7 @@ func file_svc_infra_link_payload_proto_init() {
 	}
 	if !protoimpl.UnsafeEnabled {
 		file_svc_infra_link_payload_proto_msgTypes[0].Exporter = func(v any, i int) any {
-			switch v := v.(*PayloadEnterRoom); i {
+			switch v := v.(*PayloadUserGift); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -980,7 +1060,7 @@ func file_svc_infra_link_payload_proto_init() {
 			}
 		}
 		file_svc_infra_link_payload_proto_msgTypes[1].Exporter = func(v any, i int) any {
-			switch v := v.(*PayloadStreamNotice); i {
+			switch v := v.(*PayloadEnterRoom); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -992,7 +1072,7 @@ func file_svc_infra_link_payload_proto_init() {
 			}
 		}
 		file_svc_infra_link_payload_proto_msgTypes[2].Exporter = func(v any, i int) any {
-			switch v := v.(*PayloadStreamerCard); i {
+			switch v := v.(*PayloadStreamNotice); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1004,7 +1084,7 @@ func file_svc_infra_link_payload_proto_init() {
 			}
 		}
 		file_svc_infra_link_payload_proto_msgTypes[3].Exporter = func(v any, i int) any {
-			switch v := v.(*PayloadStreamerOffline); i {
+			switch v := v.(*PayloadStreamerCard); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1016,7 +1096,7 @@ func file_svc_infra_link_payload_proto_init() {
 			}
 		}
 		file_svc_infra_link_payload_proto_msgTypes[4].Exporter = func(v any, i int) any {
-			switch v := v.(*PayloadWrap); i {
+			switch v := v.(*PayloadStreamerOffline); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1028,7 +1108,7 @@ func file_svc_infra_link_payload_proto_init() {
 			}
 		}
 		file_svc_infra_link_payload_proto_msgTypes[5].Exporter = func(v any, i int) any {
-			switch v := v.(*PayloadGuard); i {
+			switch v := v.(*PayloadWrap); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1040,7 +1120,7 @@ func file_svc_infra_link_payload_proto_init() {
 			}
 		}
 		file_svc_infra_link_payload_proto_msgTypes[6].Exporter = func(v any, i int) any {
-			switch v := v.(*PayloadFans); i {
+			switch v := v.(*PayloadGuard); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1052,7 +1132,7 @@ func file_svc_infra_link_payload_proto_init() {
 			}
 		}
 		file_svc_infra_link_payload_proto_msgTypes[7].Exporter = func(v any, i int) any {
-			switch v := v.(*PayloadCharm); i {
+			switch v := v.(*PayloadFans); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1064,7 +1144,7 @@ func file_svc_infra_link_payload_proto_init() {
 			}
 		}
 		file_svc_infra_link_payload_proto_msgTypes[8].Exporter = func(v any, i int) any {
-			switch v := v.(*PayloadStreamerDm); i {
+			switch v := v.(*PayloadCharm); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1076,6 +1156,18 @@ func file_svc_infra_link_payload_proto_init() {
 			}
 		}
 		file_svc_infra_link_payload_proto_msgTypes[9].Exporter = func(v any, i int) any {
+			switch v := v.(*PayloadStreamerDm); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_infra_link_payload_proto_msgTypes[10].Exporter = func(v any, i int) any {
 			switch v := v.(*PayloadUserCommDm); i {
 			case 0:
 				return &v.state
@@ -1094,7 +1186,7 @@ func file_svc_infra_link_payload_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_svc_infra_link_payload_proto_rawDesc,
 			NumEnums:      3,
-			NumMessages:   10,
+			NumMessages:   11,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
