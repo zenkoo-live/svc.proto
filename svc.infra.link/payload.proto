@@ -62,6 +62,10 @@ message PayloadStreamerCard {
 
 }
 
+message PayloadStreamerOffline {
+  string forbid = 1; // 被封禁下播的原因
+}
+
 
 // Payload容器
 message PayloadWrap  {
