@@ -462,10 +462,15 @@
   
 - [svc.infra.link/payload.proto](#svc-infra-link_payload-proto)
     - [PayloadCharm](#svc-infra-link-PayloadCharm)
+    - [PayloadEnterRoom](#svc-infra-link-PayloadEnterRoom)
     - [PayloadFans](#svc-infra-link-PayloadFans)
     - [PayloadGuard](#svc-infra-link-PayloadGuard)
+    - [PayloadStreamNotice](#svc-infra-link-PayloadStreamNotice)
+    - [PayloadStreamerCard](#svc-infra-link-PayloadStreamerCard)
     - [PayloadStreamerDm](#svc-infra-link-PayloadStreamerDm)
+    - [PayloadStreamerOffline](#svc-infra-link-PayloadStreamerOffline)
     - [PayloadUserCommDm](#svc-infra-link-PayloadUserCommDm)
+    - [PayloadUserGift](#svc-infra-link-PayloadUserGift)
     - [PayloadWrap](#svc-infra-link-PayloadWrap)
   
     - [CommandType](#svc-infra-link-CommandType)
@@ -8000,6 +8005,28 @@ Service of stat
 
 
 
+<a name="svc-infra-link-PayloadEnterRoom"></a>
+
+### PayloadEnterRoom
+进入房间
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| uid | [string](#string) |  | 用户UID |
+| nickname | [string](#string) |  | 昵称 |
+| avatar | [string](#string) |  | 头像地址 |
+| is_room_adm | [bool](#bool) |  | 房管 |
+| is_super_adm | [bool](#bool) |  | 是否超管 |
+| charm | [PayloadCharm](#svc-infra-link-PayloadCharm) |  | 魅力值 |
+| fans | [PayloadFans](#svc-infra-link-PayloadFans) |  | 粉丝信息 |
+| guard | [PayloadGuard](#svc-infra-link-PayloadGuard) |  | 守护信息 |
+
+
+
+
+
+
 <a name="svc-infra-link-PayloadFans"></a>
 
 ### PayloadFans
@@ -8014,6 +8041,31 @@ Service of stat
 
 ### PayloadGuard
 守护消息
+
+
+
+
+
+
+<a name="svc-infra-link-PayloadStreamNotice"></a>
+
+### PayloadStreamNotice
+公告
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| text | [string](#string) |  | 公告内容 |
+
+
+
+
+
+
+<a name="svc-infra-link-PayloadStreamerCard"></a>
+
+### PayloadStreamerCard
+名片包装
 
 
 
@@ -8038,6 +8090,21 @@ Service of stat
 
 
 
+<a name="svc-infra-link-PayloadStreamerOffline"></a>
+
+### PayloadStreamerOffline
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| forbid | [string](#string) |  | 被封禁下播的原因 |
+
+
+
+
+
+
 <a name="svc-infra-link-PayloadUserCommDm"></a>
 
 ### PayloadUserCommDm
@@ -8048,13 +8115,32 @@ Service of stat
 | ----- | ---- | ----- | ----------- |
 | uid | [string](#string) |  | 用户UID |
 | nickname | [string](#string) |  | 昵称 |
-| text | [string](#string) |  | 聊天内容 |
 | avatar | [string](#string) |  | 头像地址 |
+| text | [string](#string) |  | 聊天内容 |
 | is_room_adm | [bool](#bool) |  | 房管 |
 | is_super_adm | [bool](#bool) |  | 是否超管 |
 | charm | [PayloadCharm](#svc-infra-link-PayloadCharm) |  | 魅力值 |
 | fans | [PayloadFans](#svc-infra-link-PayloadFans) |  | 粉丝信息 |
 | guard | [PayloadGuard](#svc-infra-link-PayloadGuard) |  | 守护信息 |
+
+
+
+
+
+
+<a name="svc-infra-link-PayloadUserGift"></a>
+
+### PayloadUserGift
+用户送礼
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| uid | [string](#string) |  |  |
+| nickname | [string](#string) |  |  |
+| avatar | [string](#string) |  |  |
+| count | [int32](#int32) |  |  |
+| name | [string](#string) |  |  |
 
 
 
@@ -8106,9 +8192,14 @@ Payload容器
 | UserGift | 3 | 用户送礼 |
 | UserOpenFans | 4 | 开通粉丝团 |
 | UserOpenGz | 5 | 开通贵族 |
-| UserKickRoom | 6 | 提出房间 |
-| StreamerOnline | 7 | 主播开播 |
-| StreamerOffline | 8 | 主播下播 |
+| EnterRoom | 6 | 用户进入房间 |
+| StreamerNotice | 7 | 主播公告通知 |
+| StreamerCard | 8 | 主播名片通知 |
+| UserKickRoom | 13 | 踢出房间 |
+| StreamerOffline | 14 | 主播下播 |
+| StreamerOnline | 15 | 主播开播 |
+| StreamerPause | 16 | 主播暂停 |
+| StreamerResume | 17 | 主播恢复 |
 
 
 
@@ -8325,8 +8416,8 @@ Services of gateway
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| type | [int32](#int32) |  | 消息类型 |
-| priority | [int32](#int32) |  | 消息优先级 |
+| type | [PayloadType](#svc-infra-link-PayloadType) |  | 消息类型 |
+| priority | [PriorityType](#svc-infra-link-PriorityType) |  | 消息优先级 |
 | payload | [string](#string) |  | 消息内容 |
 | to_account | [string](#string) |  | 接收账号 |
 | to_group | [string](#string) |  | 接收群组（可留空）（如不为空，标识只发给该群组下的对应账号） |
@@ -8361,8 +8452,8 @@ Services of gateway
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| type | [int32](#int32) |  | 消息类型 |
-| priority | [int32](#int32) |  | 消息优先级 |
+| type | [PayloadType](#svc-infra-link-PayloadType) |  | 消息类型 |
+| priority | [PriorityType](#svc-infra-link-PriorityType) |  | 消息优先级 |
 | payload | [string](#string) |  | 消息内容 |
 | to_device | [string](#string) |  | 接收设备 |
 | from | [string](#string) |  | 发送者 |
@@ -8396,8 +8487,8 @@ Services of gateway
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| type | [int32](#int32) |  | 消息类型 |
-| priority | [int32](#int32) |  | 消息优先级 |
+| type | [PayloadType](#svc-infra-link-PayloadType) |  | 消息类型 |
+| priority | [PriorityType](#svc-infra-link-PriorityType) |  | 消息优先级 |
 | payload | [string](#string) |  | 消息内容 |
 | to_group | [string](#string) |  | 组别（大于0：所有在组中的连接、0：所有连接、小于0：所有不在组中的连接） |
 | from | [string](#string) |  | 发送者（账号ID） |
@@ -8431,8 +8522,8 @@ Services of gateway
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| type | [int32](#int32) |  | 消息类型 |
-| priority | [int32](#int32) |  | 消息优先级 |
+| type | [PayloadType](#svc-infra-link-PayloadType) |  | 消息类型 |
+| priority | [PriorityType](#svc-infra-link-PriorityType) |  | 消息优先级 |
 | payload | [string](#string) |  | 消息内容 |
 | to_group | [string](#string) |  | 接收群组 |
 | from | [string](#string) |  | 发送者 |
@@ -8466,8 +8557,8 @@ Services of gateway
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| type | [int32](#int32) |  |  |
-| priority | [int32](#int32) |  |  |
+| type | [PayloadType](#svc-infra-link-PayloadType) |  |  |
+| priority | [PriorityType](#svc-infra-link-PriorityType) |  |  |
 | payload | [string](#string) |  |  |
 | to_session | [string](#string) |  |  |
 | from | [string](#string) |  |  |
