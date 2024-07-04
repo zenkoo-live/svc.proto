@@ -3,6 +3,9 @@ syntax = "proto3";
 package svc.infra.link;
 option go_package = "./svc.infra.link;link";
 
+import "svc.infra.link/payload.proto";
+
+
 // Service of message
 service LinkMessage {
   // 发送全局消息
@@ -18,8 +21,8 @@ service LinkMessage {
 };
 
 message SendGlobalRequest {
-  int32 type = 1;                             // 消息类型
-  int32 priority = 2;                         // 消息优先级
+  PayloadType type = 1;                             // 消息类型
+  PriorityType priority = 2;                         // 消息优先级
   string payload = 3;                         // 消息内容
 
   string to_group = 17;                        // 组别（大于0：所有在组中的连接、0：所有连接、小于0：所有不在组中的连接）
@@ -32,8 +35,8 @@ message SendGlobalResponse {
 };
 
 message SendGroupRequest {
-  int32 type = 1;                             // 消息类型
-  int32 priority = 2;                         // 消息优先级
+  PayloadType type = 1;                             // 消息类型
+  PriorityType priority = 2;                         // 消息优先级
   string payload = 3;                         // 消息内容
 
   string to_group = 17;                        // 接收群组
@@ -45,8 +48,8 @@ message SendGroupResponse {
 };
 
 message SendAccountRequest {
-  int32 type = 1;                             // 消息类型
-  int32 priority = 2;                         // 消息优先级
+  PayloadType type = 1;                             // 消息类型
+  PriorityType priority = 2;                         // 消息优先级
   string payload = 3;                         // 消息内容
 
   string to_account = 16;                      // 接收账号
@@ -59,8 +62,8 @@ message SendAccountResponse {
 };
 
 message SendDeviceRequest {
-  int32 type = 1;                             // 消息类型
-  int32 priority = 2;                         // 消息优先级
+  PayloadType type = 1;                             // 消息类型
+  PriorityType priority = 2;                         // 消息优先级
   string payload = 3;                         // 消息内容
 
   string to_device = 18;                      // 接收设备
@@ -72,8 +75,8 @@ message SendDeviceResponse {
 };
 
 message SendSessionRequest {
-  int32 type = 1;
-  int32 priority = 2;
+  PayloadType type = 1;
+  PriorityType priority = 2;
   string payload = 3;
 
   string to_session = 15;

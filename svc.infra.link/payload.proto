@@ -32,8 +32,11 @@ enum PayloadType {
   StreamerCard = 8; // 主播名片通知
 
   UserKickRoom = 13; // 踢出房间
+
   StreamerOffline = 14; // 主播下播
   StreamerOnline = 15; // 主播开播
+  StreamerPause = 16; // 主播暂停
+  StreamerResume = 17; // 主播恢复
 }
 
 // 进入房间
