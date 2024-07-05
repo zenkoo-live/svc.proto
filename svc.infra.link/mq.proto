@@ -2,22 +2,107 @@ syntax = "proto3";
 
 package svc.infra.link;
 option go_package = "./svc.infra.link;link";
+import "google/protobuf/timestamp.proto";
+import "svc.infra.link/payload.proto";
+
+// 从ws中公开的topic
+// 1. msg@activity   活动行为topic, 比如在线，离线，绑定，解绑
+
+enum ActivityEventType {
+  EventUnknown = 0;
+  EventOnline = 1;
+  EventOffline = 2;
+  EventBind = 3;
+  EventUnbind = 4;
+  EventActive = 5;
+}
+
+message ActivityMessage {
+  int64 id = 1     [json_name = "i"];
+  string token = 2   [json_name = "t"];
+  ActivityEventType event = 3 [json_name = "e"];
+  string svc = 4 [json_name = "c"];
+  string gateway_id = 5 [json_name = "n"];
+  string session_id = 6 [json_name = "s"];
+  string remote_addr = 7  [json_name = "r"];
+  string addition = 8  [json_name = "x"];
+  string merchant_id = 9 [json_name = "m"];
+  string account_id = 10  [json_name = "a"];
+  string group_id = 11  [json_name = "g"];
+  string last_group_id = 12 [json_name = "l"];
+  string device = 13 [json_name = "d"];
+  string close_cause = 14 [json_name = "o"];
+  int64  timestamp = 15 [json_name = "v"];
+}
+
+// ws订阅的topic
+// 1. msg@all   全服消息
+// 2. msg@group   组消息
+// 3. msg@device   设备消息
+// 4. msg@account    账号消息
+// 5. msg@session   会话消息
+
+// 6. ins@all   操作全部
+// 7. ins@group   操作组
+// 8. ins@device  操作设备
+// 9. ins@account   操作账号
+// 10. ins@session   操作会话
+
+enum ScopeType {
+  ScopeGlobal = 0;
+  ScopeGroup = 1;
+  ScopeAccount = 2;
+  ScopeDevice = 3;
+  ScopeSession = 4;
+  ScopeKick = 125;
+  ScopeBlackhole = 126;
+  ScopeUnknown = 127;
+}
+
+
+message MsgMessage {
+  int64 id = 1  [json_name = "i"];
+  PayloadType type = 2    [json_name = "t"] ;
+  PriorityType priority = 3 [json_name = "p"] ;
+  google.protobuf.Timestamp time = 4 [json_name = "s"] ;
+  ScopeType scope = 5 [json_name = "e"] ;
+  string from = 6   [json_name = "f"] ;
+  string to_session = 7   [json_name = "ts"];
+  string to_account = 8   [json_name = "ta"];
+  string to_group = 9   [json_name = "tg"];
+  string to_device = 10  [json_name = "td"];
+  string payload = 11  [json_name = "d"];
+}
+
+message MsgInstruction {
+  int64 id = 1  [json_name = "i"];
+  google.protobuf.Timestamp time = 2 [json_name = "s"] ;
+  ScopeType scope = 3 [json_name = "e"] ;
+  string from = 4   [json_name = "f"] ;
+  string to_session = 5   [json_name = "ts"];
+  string to_account = 6   [json_name = "ta"];
+  string to_group = 7   [json_name = "tg"];
+  string to_device = 8  [json_name = "td"];
+}
+
+
 
 enum UserEnterQuitAction {
   Enter = 0;
   Quit = 1;
 }
 
+
 // 用户进出房间topic: topic.user.room.enter_quit
 message UserEnterQuitRoomTopic {
-    // 房间ID
-    string room_id = 1;
-    string user_id = 2;
-    string merchant_id = 3;
-    // 当前直播间的在人数数量
-    int64 online_count = 4;
-    // 主播ID
-    string streamer_id = 5;
+  // 房间ID
+  string room_id = 1;
+  string user_id = 2;
+  string merchant_id = 3;
+  // 当前直播间的在人数数量
+  int64 online_count = 4;
+  // 主播ID
+  string streamer_id = 5;
 
-    UserEnterQuitAction action = 255;
+  UserEnterQuitAction action = 255;
 }
