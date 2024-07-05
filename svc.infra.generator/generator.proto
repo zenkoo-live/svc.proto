@@ -7,11 +7,45 @@ import "google/protobuf/empty.proto";
 
 service Generator {
     rpc InitDB(google.protobuf.Empty) returns (InitDBResp); // 初始化数据库
-}
+
+    rpc InitIDGenerator(InitIDGeneratorReq) returns (InitIDGeneratorResp); // 初始化ID生成器
+    rpc OrdianID(OrdianIDReq) returns (OrdianIDResp); // 预定（占用）ID
+    rpc NextID(NextIDReq) returns (NextIDResp); // 顺序获取ID（跳过靓号）
+    rpc IsPrettyID(IsPrettyIDReq) returns (IsPrettyIDResp); // 判断ID是否靓号
+};
 
 message InitDBResp {
     bool result = 1;
-}
+};
+
+message InitIDGeneratorReq {
+    string generator = 1;
+};
+message InitIDGeneratorResp {
+    bool result = 1;
+};
+
+message OrdianIDReq {
+    string generator = 1;
+    int64 id = 2;
+};
+message OrdianIDResp {
+    bool result = 1;
+};
+
+message NextIDReq {
+    string generator = 1;
+};
+message NextIDResp {
+    int64 id = 1;
+};
+
+message IsPrettyIDReq {
+    int64 id = 1;
+};
+message IsPrettyIDResp {
+    bool result = 1;
+};
 
 // Models
 

@@ -38,6 +38,10 @@ func NewGeneratorEndpoints() []*api.Endpoint {
 
 type GeneratorService interface {
 	InitDB(ctx context.Context, in *emptypb.Empty, opts ...client.CallOption) (*InitDBResp, error)
+	InitIDGenerator(ctx context.Context, in *InitIDGeneratorReq, opts ...client.CallOption) (*InitIDGeneratorResp, error)
+	OrdianID(ctx context.Context, in *OrdianIDReq, opts ...client.CallOption) (*OrdianIDResp, error)
+	NextID(ctx context.Context, in *NextIDReq, opts ...client.CallOption) (*NextIDResp, error)
+	IsPrettyID(ctx context.Context, in *IsPrettyIDReq, opts ...client.CallOption) (*IsPrettyIDResp, error)
 }
 
 type generatorService struct {
@@ -62,15 +66,63 @@ func (c *generatorService) InitDB(ctx context.Context, in *emptypb.Empty, opts .
 	return out, nil
 }
 
+func (c *generatorService) InitIDGenerator(ctx context.Context, in *InitIDGeneratorReq, opts ...client.CallOption) (*InitIDGeneratorResp, error) {
+	req := c.c.NewRequest(c.name, "Generator.InitIDGenerator", in)
+	out := new(InitIDGeneratorResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *generatorService) OrdianID(ctx context.Context, in *OrdianIDReq, opts ...client.CallOption) (*OrdianIDResp, error) {
+	req := c.c.NewRequest(c.name, "Generator.OrdianID", in)
+	out := new(OrdianIDResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *generatorService) NextID(ctx context.Context, in *NextIDReq, opts ...client.CallOption) (*NextIDResp, error) {
+	req := c.c.NewRequest(c.name, "Generator.NextID", in)
+	out := new(NextIDResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *generatorService) IsPrettyID(ctx context.Context, in *IsPrettyIDReq, opts ...client.CallOption) (*IsPrettyIDResp, error) {
+	req := c.c.NewRequest(c.name, "Generator.IsPrettyID", in)
+	out := new(IsPrettyIDResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for Generator service
 
 type GeneratorHandler interface {
 	InitDB(context.Context, *emptypb.Empty, *InitDBResp) error
+	InitIDGenerator(context.Context, *InitIDGeneratorReq, *InitIDGeneratorResp) error
+	OrdianID(context.Context, *OrdianIDReq, *OrdianIDResp) error
+	NextID(context.Context, *NextIDReq, *NextIDResp) error
+	IsPrettyID(context.Context, *IsPrettyIDReq, *IsPrettyIDResp) error
 }
 
 func RegisterGeneratorHandler(s server.Server, hdlr GeneratorHandler, opts ...server.HandlerOption) error {
 	type generator interface {
 		InitDB(ctx context.Context, in *emptypb.Empty, out *InitDBResp) error
+		InitIDGenerator(ctx context.Context, in *InitIDGeneratorReq, out *InitIDGeneratorResp) error
+		OrdianID(ctx context.Context, in *OrdianIDReq, out *OrdianIDResp) error
+		NextID(ctx context.Context, in *NextIDReq, out *NextIDResp) error
+		IsPrettyID(ctx context.Context, in *IsPrettyIDReq, out *IsPrettyIDResp) error
 	}
 	type Generator struct {
 		generator
@@ -85,4 +137,20 @@ type generatorHandler struct {
 
 func (h *generatorHandler) InitDB(ctx context.Context, in *emptypb.Empty, out *InitDBResp) error {
 	return h.GeneratorHandler.InitDB(ctx, in, out)
+}
+
+func (h *generatorHandler) InitIDGenerator(ctx context.Context, in *InitIDGeneratorReq, out *InitIDGeneratorResp) error {
+	return h.GeneratorHandler.InitIDGenerator(ctx, in, out)
+}
+
+func (h *generatorHandler) OrdianID(ctx context.Context, in *OrdianIDReq, out *OrdianIDResp) error {
+	return h.GeneratorHandler.OrdianID(ctx, in, out)
+}
+
+func (h *generatorHandler) NextID(ctx context.Context, in *NextIDReq, out *NextIDResp) error {
+	return h.GeneratorHandler.NextID(ctx, in, out)
+}
+
+func (h *generatorHandler) IsPrettyID(ctx context.Context, in *IsPrettyIDReq, out *IsPrettyIDResp) error {
+	return h.GeneratorHandler.IsPrettyID(ctx, in, out)
 }
