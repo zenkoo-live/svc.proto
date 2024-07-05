@@ -10,10 +10,10 @@ service Trade {
 
   // 用户消费行为交易
 
-  rpc SendGiftInLive(SendGiftInLiveReq) returns (SendGiftInLiveResp) {} // 送礼物(直播间)
-  rpc BuyLiveTicket(BuyLiveTicketReq) returns (BuyLiveTicketResp) {} // 直播间门票
-  rpc PayLiveDurationFee(PayLiveDurationFeeReq) returns (PayLiveDurationFeeResp) {} // 直播间计时费
-  rpc JoinAnchorFansGroup(JoinAnchorFansGroupReq) returns (JoinAnchorFansGroupResp) {} // 加入粉丝团
+  rpc SendGiftInRoom(SendGiftInRoomReq) returns (SendGiftInRoomResp) {} // 送礼物(直播间)
+  rpc BuyRoomTicket(BuyRoomTicketReq) returns (BuyRoomTicketResp) {} // 直播间门票
+  rpc PayRoomDurationFee(PayRoomDurationFeeReq) returns (PayRoomDurationFeeResp) {} // 直播间计时费
+  rpc JoinStreamerFansGroup(JoinStreamerFansGroupReq) returns (JoinStreamerFansGroupResp) {} // 加入粉丝团
   rpc PayBulletChat(PayBulletChatReq) returns (PayBulletChatResp) {} // 付费弹幕
   rpc VipActivate(VipActivateReq) returns (VipActivateResp) {} // vip激活
   rpc VipExtend(VipExtendReq) returns (VipExtendResp) {} // vip续费
@@ -54,14 +54,13 @@ message UserInfo {
   string avatar = 5;
   string union_id = 6;
 }
-message LiveInfo {
+message RoomInfo {
   string merchant_id = 1;
   string app_id = 2;
   string room_id = 3;
-  string anchor_id = 4;
-  string live_id = 5;
-  int64 live_type = 6;// 直播类型
-  int64 live_category = 7;// 直播分类
+  string room_type = 8; // 直播类型
+  string room_category = 9; // 直播分类
+  string streamer_id = 10; // 主播id
 }
 message GiftInfo {
   string gift_id = 1;
@@ -71,13 +70,13 @@ message GiftInfo {
   int64 num = 7;
   string icon = 8;
 }
-message LiveTicketInfo {
+message RoomTicketInfo {
   int64 price = 6;
 }
-message LiveDurationFeeInfo {
+message RoomDurationFeeInfo {
   int64 price = 6;
 }
-message JoinAnchorFansGroupInfo {
+message JoinStreamerFansGroupInfo {
   int64 price = 6;
 }
 message PayBulletChatInfo {
@@ -110,47 +109,47 @@ message UserCoinValue {// 总余额=value+limited_value
 
 // end ------------公共参数--------------
 
-message SendGiftInLiveReq {
+message SendGiftInRoomReq {
   TradeInfo trade_info = 1 ;
   UserInfo sender = 2;
   UserInfo receiver = 3;
   GiftInfo gift = 4;
-  LiveInfo live_info = 5;
+  RoomInfo room_info = 6;
 }
-message SendGiftInLiveResp {
+message SendGiftInRoomResp {
   TradeResult trade_result = 1;
 }
-message BuyLiveTicketReq {
+message BuyRoomTicketReq {
   TradeInfo trade_info = 1;
   UserInfo buyer = 2;
-  LiveInfo live_info = 4;
-  LiveTicketInfo ticket = 5;
+  RoomInfo room_info = 6;
+  RoomTicketInfo ticket = 5;
 }
-message BuyLiveTicketResp {
+message BuyRoomTicketResp {
   TradeResult trade_result = 1;
 }
-message PayLiveDurationFeeReq {
+message PayRoomDurationFeeReq {
   TradeInfo trade_info = 1;
   UserInfo buyer = 2;
-  LiveInfo live_info = 4;
-  LiveDurationFeeInfo duration_fee = 5;
+  RoomInfo room_info = 6;
+  RoomDurationFeeInfo duration_fee = 5;
 }
-message PayLiveDurationFeeResp {
+message PayRoomDurationFeeResp {
   TradeResult trade_result = 1;
 }
-message JoinAnchorFansGroupReq {
+message JoinStreamerFansGroupReq {
   TradeInfo trade_info = 1;
   UserInfo buyer = 2;
-  LiveInfo live_info = 4;
-  JoinAnchorFansGroupInfo fans_group = 5;
+  RoomInfo room_info = 6;
+  JoinStreamerFansGroupInfo fans_group = 7;
 }
-message JoinAnchorFansGroupResp {
+message JoinStreamerFansGroupResp {
   TradeResult trade_result = 1;
 }
 message PayBulletChatReq {
   TradeInfo trade_info = 1;
   UserInfo buyer = 2;
-  LiveInfo live_info = 4;
+  RoomInfo room_info = 6;
   PayBulletChatInfo bullet_chat = 5;
 }
 message PayBulletChatResp {

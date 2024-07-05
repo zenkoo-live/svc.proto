@@ -37,10 +37,10 @@ func NewTradeEndpoints() []*api.Endpoint {
 // Client API for Trade service
 
 type TradeService interface {
-	SendGiftInLive(ctx context.Context, in *SendGiftInLiveReq, opts ...client.CallOption) (*SendGiftInLiveResp, error)
-	BuyLiveTicket(ctx context.Context, in *BuyLiveTicketReq, opts ...client.CallOption) (*BuyLiveTicketResp, error)
-	PayLiveDurationFee(ctx context.Context, in *PayLiveDurationFeeReq, opts ...client.CallOption) (*PayLiveDurationFeeResp, error)
-	JoinAnchorFansGroup(ctx context.Context, in *JoinAnchorFansGroupReq, opts ...client.CallOption) (*JoinAnchorFansGroupResp, error)
+	SendGiftInRoom(ctx context.Context, in *SendGiftInRoomReq, opts ...client.CallOption) (*SendGiftInRoomResp, error)
+	BuyRoomTicket(ctx context.Context, in *BuyRoomTicketReq, opts ...client.CallOption) (*BuyRoomTicketResp, error)
+	PayRoomDurationFee(ctx context.Context, in *PayRoomDurationFeeReq, opts ...client.CallOption) (*PayRoomDurationFeeResp, error)
+	JoinStreamerFansGroup(ctx context.Context, in *JoinStreamerFansGroupReq, opts ...client.CallOption) (*JoinStreamerFansGroupResp, error)
 	PayBulletChat(ctx context.Context, in *PayBulletChatReq, opts ...client.CallOption) (*PayBulletChatResp, error)
 	VipActivate(ctx context.Context, in *VipActivateReq, opts ...client.CallOption) (*VipActivateResp, error)
 	VipExtend(ctx context.Context, in *VipExtendReq, opts ...client.CallOption) (*VipExtendResp, error)
@@ -64,9 +64,9 @@ func NewTradeService(name string, c client.Client) TradeService {
 	}
 }
 
-func (c *tradeService) SendGiftInLive(ctx context.Context, in *SendGiftInLiveReq, opts ...client.CallOption) (*SendGiftInLiveResp, error) {
-	req := c.c.NewRequest(c.name, "Trade.SendGiftInLive", in)
-	out := new(SendGiftInLiveResp)
+func (c *tradeService) SendGiftInRoom(ctx context.Context, in *SendGiftInRoomReq, opts ...client.CallOption) (*SendGiftInRoomResp, error) {
+	req := c.c.NewRequest(c.name, "Trade.SendGiftInRoom", in)
+	out := new(SendGiftInRoomResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -74,9 +74,9 @@ func (c *tradeService) SendGiftInLive(ctx context.Context, in *SendGiftInLiveReq
 	return out, nil
 }
 
-func (c *tradeService) BuyLiveTicket(ctx context.Context, in *BuyLiveTicketReq, opts ...client.CallOption) (*BuyLiveTicketResp, error) {
-	req := c.c.NewRequest(c.name, "Trade.BuyLiveTicket", in)
-	out := new(BuyLiveTicketResp)
+func (c *tradeService) BuyRoomTicket(ctx context.Context, in *BuyRoomTicketReq, opts ...client.CallOption) (*BuyRoomTicketResp, error) {
+	req := c.c.NewRequest(c.name, "Trade.BuyRoomTicket", in)
+	out := new(BuyRoomTicketResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -84,9 +84,9 @@ func (c *tradeService) BuyLiveTicket(ctx context.Context, in *BuyLiveTicketReq, 
 	return out, nil
 }
 
-func (c *tradeService) PayLiveDurationFee(ctx context.Context, in *PayLiveDurationFeeReq, opts ...client.CallOption) (*PayLiveDurationFeeResp, error) {
-	req := c.c.NewRequest(c.name, "Trade.PayLiveDurationFee", in)
-	out := new(PayLiveDurationFeeResp)
+func (c *tradeService) PayRoomDurationFee(ctx context.Context, in *PayRoomDurationFeeReq, opts ...client.CallOption) (*PayRoomDurationFeeResp, error) {
+	req := c.c.NewRequest(c.name, "Trade.PayRoomDurationFee", in)
+	out := new(PayRoomDurationFeeResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -94,9 +94,9 @@ func (c *tradeService) PayLiveDurationFee(ctx context.Context, in *PayLiveDurati
 	return out, nil
 }
 
-func (c *tradeService) JoinAnchorFansGroup(ctx context.Context, in *JoinAnchorFansGroupReq, opts ...client.CallOption) (*JoinAnchorFansGroupResp, error) {
-	req := c.c.NewRequest(c.name, "Trade.JoinAnchorFansGroup", in)
-	out := new(JoinAnchorFansGroupResp)
+func (c *tradeService) JoinStreamerFansGroup(ctx context.Context, in *JoinStreamerFansGroupReq, opts ...client.CallOption) (*JoinStreamerFansGroupResp, error) {
+	req := c.c.NewRequest(c.name, "Trade.JoinStreamerFansGroup", in)
+	out := new(JoinStreamerFansGroupResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -197,10 +197,10 @@ func (c *tradeService) MoneyExchangeCoin(ctx context.Context, in *MoneyExchangeC
 // Server API for Trade service
 
 type TradeHandler interface {
-	SendGiftInLive(context.Context, *SendGiftInLiveReq, *SendGiftInLiveResp) error
-	BuyLiveTicket(context.Context, *BuyLiveTicketReq, *BuyLiveTicketResp) error
-	PayLiveDurationFee(context.Context, *PayLiveDurationFeeReq, *PayLiveDurationFeeResp) error
-	JoinAnchorFansGroup(context.Context, *JoinAnchorFansGroupReq, *JoinAnchorFansGroupResp) error
+	SendGiftInRoom(context.Context, *SendGiftInRoomReq, *SendGiftInRoomResp) error
+	BuyRoomTicket(context.Context, *BuyRoomTicketReq, *BuyRoomTicketResp) error
+	PayRoomDurationFee(context.Context, *PayRoomDurationFeeReq, *PayRoomDurationFeeResp) error
+	JoinStreamerFansGroup(context.Context, *JoinStreamerFansGroupReq, *JoinStreamerFansGroupResp) error
 	PayBulletChat(context.Context, *PayBulletChatReq, *PayBulletChatResp) error
 	VipActivate(context.Context, *VipActivateReq, *VipActivateResp) error
 	VipExtend(context.Context, *VipExtendReq, *VipExtendResp) error
@@ -214,10 +214,10 @@ type TradeHandler interface {
 
 func RegisterTradeHandler(s server.Server, hdlr TradeHandler, opts ...server.HandlerOption) error {
 	type trade interface {
-		SendGiftInLive(ctx context.Context, in *SendGiftInLiveReq, out *SendGiftInLiveResp) error
-		BuyLiveTicket(ctx context.Context, in *BuyLiveTicketReq, out *BuyLiveTicketResp) error
-		PayLiveDurationFee(ctx context.Context, in *PayLiveDurationFeeReq, out *PayLiveDurationFeeResp) error
-		JoinAnchorFansGroup(ctx context.Context, in *JoinAnchorFansGroupReq, out *JoinAnchorFansGroupResp) error
+		SendGiftInRoom(ctx context.Context, in *SendGiftInRoomReq, out *SendGiftInRoomResp) error
+		BuyRoomTicket(ctx context.Context, in *BuyRoomTicketReq, out *BuyRoomTicketResp) error
+		PayRoomDurationFee(ctx context.Context, in *PayRoomDurationFeeReq, out *PayRoomDurationFeeResp) error
+		JoinStreamerFansGroup(ctx context.Context, in *JoinStreamerFansGroupReq, out *JoinStreamerFansGroupResp) error
 		PayBulletChat(ctx context.Context, in *PayBulletChatReq, out *PayBulletChatResp) error
 		VipActivate(ctx context.Context, in *VipActivateReq, out *VipActivateResp) error
 		VipExtend(ctx context.Context, in *VipExtendReq, out *VipExtendResp) error
@@ -239,20 +239,20 @@ type tradeHandler struct {
 	TradeHandler
 }
 
-func (h *tradeHandler) SendGiftInLive(ctx context.Context, in *SendGiftInLiveReq, out *SendGiftInLiveResp) error {
-	return h.TradeHandler.SendGiftInLive(ctx, in, out)
+func (h *tradeHandler) SendGiftInRoom(ctx context.Context, in *SendGiftInRoomReq, out *SendGiftInRoomResp) error {
+	return h.TradeHandler.SendGiftInRoom(ctx, in, out)
 }
 
-func (h *tradeHandler) BuyLiveTicket(ctx context.Context, in *BuyLiveTicketReq, out *BuyLiveTicketResp) error {
-	return h.TradeHandler.BuyLiveTicket(ctx, in, out)
+func (h *tradeHandler) BuyRoomTicket(ctx context.Context, in *BuyRoomTicketReq, out *BuyRoomTicketResp) error {
+	return h.TradeHandler.BuyRoomTicket(ctx, in, out)
 }
 
-func (h *tradeHandler) PayLiveDurationFee(ctx context.Context, in *PayLiveDurationFeeReq, out *PayLiveDurationFeeResp) error {
-	return h.TradeHandler.PayLiveDurationFee(ctx, in, out)
+func (h *tradeHandler) PayRoomDurationFee(ctx context.Context, in *PayRoomDurationFeeReq, out *PayRoomDurationFeeResp) error {
+	return h.TradeHandler.PayRoomDurationFee(ctx, in, out)
 }
 
-func (h *tradeHandler) JoinAnchorFansGroup(ctx context.Context, in *JoinAnchorFansGroupReq, out *JoinAnchorFansGroupResp) error {
-	return h.TradeHandler.JoinAnchorFansGroup(ctx, in, out)
+func (h *tradeHandler) JoinStreamerFansGroup(ctx context.Context, in *JoinStreamerFansGroupReq, out *JoinStreamerFansGroupResp) error {
+	return h.TradeHandler.JoinStreamerFansGroup(ctx, in, out)
 }
 
 func (h *tradeHandler) PayBulletChat(ctx context.Context, in *PayBulletChatReq, out *PayBulletChatResp) error {
