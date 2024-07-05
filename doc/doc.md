@@ -123,21 +123,18 @@
     - [Account](#svc-biz-account-Account)
   
 - [svc.biz.trade/trade.proto](#svc-biz-trade_trade-proto)
-    - [BuyLiveTicketReq](#svc-biz-trade-BuyLiveTicketReq)
-    - [BuyLiveTicketResp](#svc-biz-trade-BuyLiveTicketResp)
     - [BuyLuckyIdInfo](#svc-biz-trade-BuyLuckyIdInfo)
     - [BuyLuckyIdReq](#svc-biz-trade-BuyLuckyIdReq)
     - [BuyLuckyIdResp](#svc-biz-trade-BuyLuckyIdResp)
     - [BuyRideInfo](#svc-biz-trade-BuyRideInfo)
     - [BuyRideReq](#svc-biz-trade-BuyRideReq)
     - [BuyRideResp](#svc-biz-trade-BuyRideResp)
+    - [BuyRoomTicketReq](#svc-biz-trade-BuyRoomTicketReq)
+    - [BuyRoomTicketResp](#svc-biz-trade-BuyRoomTicketResp)
     - [GiftInfo](#svc-biz-trade-GiftInfo)
-    - [JoinAnchorFansGroupInfo](#svc-biz-trade-JoinAnchorFansGroupInfo)
-    - [JoinAnchorFansGroupReq](#svc-biz-trade-JoinAnchorFansGroupReq)
-    - [JoinAnchorFansGroupResp](#svc-biz-trade-JoinAnchorFansGroupResp)
-    - [LiveDurationFeeInfo](#svc-biz-trade-LiveDurationFeeInfo)
-    - [LiveInfo](#svc-biz-trade-LiveInfo)
-    - [LiveTicketInfo](#svc-biz-trade-LiveTicketInfo)
+    - [JoinStreamerFansGroupInfo](#svc-biz-trade-JoinStreamerFansGroupInfo)
+    - [JoinStreamerFansGroupReq](#svc-biz-trade-JoinStreamerFansGroupReq)
+    - [JoinStreamerFansGroupResp](#svc-biz-trade-JoinStreamerFansGroupResp)
     - [MoneyExchangeCoinInfo](#svc-biz-trade-MoneyExchangeCoinInfo)
     - [MoneyExchangeCoinReq](#svc-biz-trade-MoneyExchangeCoinReq)
     - [MoneyExchangeCoinResp](#svc-biz-trade-MoneyExchangeCoinResp)
@@ -150,10 +147,13 @@
     - [PayBulletChatInfo](#svc-biz-trade-PayBulletChatInfo)
     - [PayBulletChatReq](#svc-biz-trade-PayBulletChatReq)
     - [PayBulletChatResp](#svc-biz-trade-PayBulletChatResp)
-    - [PayLiveDurationFeeReq](#svc-biz-trade-PayLiveDurationFeeReq)
-    - [PayLiveDurationFeeResp](#svc-biz-trade-PayLiveDurationFeeResp)
-    - [SendGiftInLiveReq](#svc-biz-trade-SendGiftInLiveReq)
-    - [SendGiftInLiveResp](#svc-biz-trade-SendGiftInLiveResp)
+    - [PayRoomDurationFeeReq](#svc-biz-trade-PayRoomDurationFeeReq)
+    - [PayRoomDurationFeeResp](#svc-biz-trade-PayRoomDurationFeeResp)
+    - [RoomDurationFeeInfo](#svc-biz-trade-RoomDurationFeeInfo)
+    - [RoomInfo](#svc-biz-trade-RoomInfo)
+    - [RoomTicketInfo](#svc-biz-trade-RoomTicketInfo)
+    - [SendGiftInRoomReq](#svc-biz-trade-SendGiftInRoomReq)
+    - [SendGiftInRoomResp](#svc-biz-trade-SendGiftInRoomResp)
     - [TradeInfo](#svc-biz-trade-TradeInfo)
     - [TradeResult](#svc-biz-trade-TradeResult)
     - [UserCoinValue](#svc-biz-trade-UserCoinValue)
@@ -421,8 +421,13 @@
     - [Asset](#svc-biz-asset-Asset)
   
 - [svc.infra.link/mq.proto](#svc-infra-link_mq-proto)
+    - [ActivityMessage](#svc-infra-link-ActivityMessage)
+    - [MsgInstruction](#svc-infra-link-MsgInstruction)
+    - [MsgMessage](#svc-infra-link-MsgMessage)
     - [UserEnterQuitRoomTopic](#svc-infra-link-UserEnterQuitRoomTopic)
   
+    - [ActivityEventType](#svc-infra-link-ActivityEventType)
+    - [ScopeType](#svc-infra-link-ScopeType)
     - [UserEnterQuitAction](#svc-infra-link-UserEnterQuitAction)
   
 - [svc.infra.link/stat.proto](#svc-infra-link_stat-proto)
@@ -2748,39 +2753,6 @@ Masks
 
 
 
-<a name="svc-biz-trade-BuyLiveTicketReq"></a>
-
-### BuyLiveTicketReq
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| trade_info | [TradeInfo](#svc-biz-trade-TradeInfo) |  |  |
-| buyer | [UserInfo](#svc-biz-trade-UserInfo) |  |  |
-| live_info | [LiveInfo](#svc-biz-trade-LiveInfo) |  |  |
-| ticket | [LiveTicketInfo](#svc-biz-trade-LiveTicketInfo) |  |  |
-
-
-
-
-
-
-<a name="svc-biz-trade-BuyLiveTicketResp"></a>
-
-### BuyLiveTicketResp
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| trade_result | [TradeResult](#svc-biz-trade-TradeResult) |  |  |
-
-
-
-
-
-
 <a name="svc-biz-trade-BuyLuckyIdInfo"></a>
 
 ### BuyLuckyIdInfo
@@ -2875,6 +2847,39 @@ Masks
 
 
 
+<a name="svc-biz-trade-BuyRoomTicketReq"></a>
+
+### BuyRoomTicketReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| trade_info | [TradeInfo](#svc-biz-trade-TradeInfo) |  |  |
+| buyer | [UserInfo](#svc-biz-trade-UserInfo) |  |  |
+| room_info | [RoomInfo](#svc-biz-trade-RoomInfo) |  |  |
+| ticket | [RoomTicketInfo](#svc-biz-trade-RoomTicketInfo) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-trade-BuyRoomTicketResp"></a>
+
+### BuyRoomTicketResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| trade_result | [TradeResult](#svc-biz-trade-TradeResult) |  |  |
+
+
+
+
+
+
 <a name="svc-biz-trade-GiftInfo"></a>
 
 ### GiftInfo
@@ -2895,9 +2900,9 @@ Masks
 
 
 
-<a name="svc-biz-trade-JoinAnchorFansGroupInfo"></a>
+<a name="svc-biz-trade-JoinStreamerFansGroupInfo"></a>
 
-### JoinAnchorFansGroupInfo
+### JoinStreamerFansGroupInfo
 
 
 
@@ -2910,9 +2915,9 @@ Masks
 
 
 
-<a name="svc-biz-trade-JoinAnchorFansGroupReq"></a>
+<a name="svc-biz-trade-JoinStreamerFansGroupReq"></a>
 
-### JoinAnchorFansGroupReq
+### JoinStreamerFansGroupReq
 
 
 
@@ -2920,74 +2925,23 @@ Masks
 | ----- | ---- | ----- | ----------- |
 | trade_info | [TradeInfo](#svc-biz-trade-TradeInfo) |  |  |
 | buyer | [UserInfo](#svc-biz-trade-UserInfo) |  |  |
-| live_info | [LiveInfo](#svc-biz-trade-LiveInfo) |  |  |
-| fans_group | [JoinAnchorFansGroupInfo](#svc-biz-trade-JoinAnchorFansGroupInfo) |  |  |
+| room_info | [RoomInfo](#svc-biz-trade-RoomInfo) |  |  |
+| fans_group | [JoinStreamerFansGroupInfo](#svc-biz-trade-JoinStreamerFansGroupInfo) |  |  |
 
 
 
 
 
 
-<a name="svc-biz-trade-JoinAnchorFansGroupResp"></a>
+<a name="svc-biz-trade-JoinStreamerFansGroupResp"></a>
 
-### JoinAnchorFansGroupResp
+### JoinStreamerFansGroupResp
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | trade_result | [TradeResult](#svc-biz-trade-TradeResult) |  |  |
-
-
-
-
-
-
-<a name="svc-biz-trade-LiveDurationFeeInfo"></a>
-
-### LiveDurationFeeInfo
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| price | [int64](#int64) |  |  |
-
-
-
-
-
-
-<a name="svc-biz-trade-LiveInfo"></a>
-
-### LiveInfo
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| merchant_id | [string](#string) |  |  |
-| app_id | [string](#string) |  |  |
-| room_id | [string](#string) |  |  |
-| anchor_id | [string](#string) |  |  |
-| live_id | [string](#string) |  |  |
-| live_type | [int64](#int64) |  | 直播类型 |
-| live_category | [int64](#int64) |  | 直播分类 |
-
-
-
-
-
-
-<a name="svc-biz-trade-LiveTicketInfo"></a>
-
-### LiveTicketInfo
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| price | [int64](#int64) |  |  |
 
 
 
@@ -3168,7 +3122,7 @@ Masks
 | ----- | ---- | ----- | ----------- |
 | trade_info | [TradeInfo](#svc-biz-trade-TradeInfo) |  |  |
 | buyer | [UserInfo](#svc-biz-trade-UserInfo) |  |  |
-| live_info | [LiveInfo](#svc-biz-trade-LiveInfo) |  |  |
+| room_info | [RoomInfo](#svc-biz-trade-RoomInfo) |  |  |
 | bullet_chat | [PayBulletChatInfo](#svc-biz-trade-PayBulletChatInfo) |  |  |
 
 
@@ -3191,9 +3145,9 @@ Masks
 
 
 
-<a name="svc-biz-trade-PayLiveDurationFeeReq"></a>
+<a name="svc-biz-trade-PayRoomDurationFeeReq"></a>
 
-### PayLiveDurationFeeReq
+### PayRoomDurationFeeReq
 
 
 
@@ -3201,17 +3155,17 @@ Masks
 | ----- | ---- | ----- | ----------- |
 | trade_info | [TradeInfo](#svc-biz-trade-TradeInfo) |  |  |
 | buyer | [UserInfo](#svc-biz-trade-UserInfo) |  |  |
-| live_info | [LiveInfo](#svc-biz-trade-LiveInfo) |  |  |
-| duration_fee | [LiveDurationFeeInfo](#svc-biz-trade-LiveDurationFeeInfo) |  |  |
+| room_info | [RoomInfo](#svc-biz-trade-RoomInfo) |  |  |
+| duration_fee | [RoomDurationFeeInfo](#svc-biz-trade-RoomDurationFeeInfo) |  |  |
 
 
 
 
 
 
-<a name="svc-biz-trade-PayLiveDurationFeeResp"></a>
+<a name="svc-biz-trade-PayRoomDurationFeeResp"></a>
 
-### PayLiveDurationFeeResp
+### PayRoomDurationFeeResp
 
 
 
@@ -3224,9 +3178,59 @@ Masks
 
 
 
-<a name="svc-biz-trade-SendGiftInLiveReq"></a>
+<a name="svc-biz-trade-RoomDurationFeeInfo"></a>
 
-### SendGiftInLiveReq
+### RoomDurationFeeInfo
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| price | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-trade-RoomInfo"></a>
+
+### RoomInfo
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| merchant_id | [string](#string) |  |  |
+| app_id | [string](#string) |  |  |
+| room_id | [string](#string) |  |  |
+| room_type | [string](#string) |  | 直播类型 |
+| room_category | [string](#string) |  | 直播分类 |
+| streamer_id | [string](#string) |  | 主播id |
+
+
+
+
+
+
+<a name="svc-biz-trade-RoomTicketInfo"></a>
+
+### RoomTicketInfo
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| price | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-trade-SendGiftInRoomReq"></a>
+
+### SendGiftInRoomReq
 
 
 
@@ -3236,16 +3240,16 @@ Masks
 | sender | [UserInfo](#svc-biz-trade-UserInfo) |  |  |
 | receiver | [UserInfo](#svc-biz-trade-UserInfo) |  |  |
 | gift | [GiftInfo](#svc-biz-trade-GiftInfo) |  |  |
-| live_info | [LiveInfo](#svc-biz-trade-LiveInfo) |  |  |
+| room_info | [RoomInfo](#svc-biz-trade-RoomInfo) |  |  |
 
 
 
 
 
 
-<a name="svc-biz-trade-SendGiftInLiveResp"></a>
+<a name="svc-biz-trade-SendGiftInRoomResp"></a>
 
-### SendGiftInLiveResp
+### SendGiftInRoomResp
 
 
 
@@ -3482,10 +3486,10 @@ Masks
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| SendGiftInLive | [SendGiftInLiveReq](#svc-biz-trade-SendGiftInLiveReq) | [SendGiftInLiveResp](#svc-biz-trade-SendGiftInLiveResp) |  |
-| BuyLiveTicket | [BuyLiveTicketReq](#svc-biz-trade-BuyLiveTicketReq) | [BuyLiveTicketResp](#svc-biz-trade-BuyLiveTicketResp) |  |
-| PayLiveDurationFee | [PayLiveDurationFeeReq](#svc-biz-trade-PayLiveDurationFeeReq) | [PayLiveDurationFeeResp](#svc-biz-trade-PayLiveDurationFeeResp) |  |
-| JoinAnchorFansGroup | [JoinAnchorFansGroupReq](#svc-biz-trade-JoinAnchorFansGroupReq) | [JoinAnchorFansGroupResp](#svc-biz-trade-JoinAnchorFansGroupResp) |  |
+| SendGiftInRoom | [SendGiftInRoomReq](#svc-biz-trade-SendGiftInRoomReq) | [SendGiftInRoomResp](#svc-biz-trade-SendGiftInRoomResp) |  |
+| BuyRoomTicket | [BuyRoomTicketReq](#svc-biz-trade-BuyRoomTicketReq) | [BuyRoomTicketResp](#svc-biz-trade-BuyRoomTicketResp) |  |
+| PayRoomDurationFee | [PayRoomDurationFeeReq](#svc-biz-trade-PayRoomDurationFeeReq) | [PayRoomDurationFeeResp](#svc-biz-trade-PayRoomDurationFeeResp) |  |
+| JoinStreamerFansGroup | [JoinStreamerFansGroupReq](#svc-biz-trade-JoinStreamerFansGroupReq) | [JoinStreamerFansGroupResp](#svc-biz-trade-JoinStreamerFansGroupResp) |  |
 | PayBulletChat | [PayBulletChatReq](#svc-biz-trade-PayBulletChatReq) | [PayBulletChatResp](#svc-biz-trade-PayBulletChatResp) |  |
 | VipActivate | [VipActivateReq](#svc-biz-trade-VipActivateReq) | [VipActivateResp](#svc-biz-trade-VipActivateResp) |  |
 | VipExtend | [VipExtendReq](#svc-biz-trade-VipExtendReq) | [VipExtendResp](#svc-biz-trade-VipExtendResp) |  |
@@ -7484,6 +7488,82 @@ Room 房间
 
 
 
+<a name="svc-infra-link-ActivityMessage"></a>
+
+### ActivityMessage
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [int64](#int64) |  |  |
+| token | [string](#string) |  |  |
+| event | [ActivityEventType](#svc-infra-link-ActivityEventType) |  |  |
+| svc | [string](#string) |  |  |
+| gateway_id | [string](#string) |  |  |
+| session_id | [string](#string) |  |  |
+| remote_addr | [string](#string) |  |  |
+| addition | [string](#string) |  |  |
+| merchant_id | [string](#string) |  |  |
+| account_id | [string](#string) |  |  |
+| group_id | [string](#string) |  |  |
+| last_group_id | [string](#string) |  |  |
+| device | [string](#string) |  |  |
+| close_cause | [string](#string) |  |  |
+| timestamp | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-link-MsgInstruction"></a>
+
+### MsgInstruction
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [int64](#int64) |  |  |
+| time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+| scope | [ScopeType](#svc-infra-link-ScopeType) |  |  |
+| from | [string](#string) |  |  |
+| to_session | [string](#string) |  |  |
+| to_account | [string](#string) |  |  |
+| to_group | [string](#string) |  |  |
+| to_device | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-link-MsgMessage"></a>
+
+### MsgMessage
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [int64](#int64) |  |  |
+| type | [PayloadType](#svc-infra-link-PayloadType) |  |  |
+| priority | [PriorityType](#svc-infra-link-PriorityType) |  |  |
+| time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+| scope | [ScopeType](#svc-infra-link-ScopeType) |  |  |
+| from | [string](#string) |  |  |
+| to_session | [string](#string) |  |  |
+| to_account | [string](#string) |  |  |
+| to_group | [string](#string) |  |  |
+| to_device | [string](#string) |  |  |
+| payload | [string](#string) |  |  |
+
+
+
+
+
+
 <a name="svc-infra-link-UserEnterQuitRoomTopic"></a>
 
 ### UserEnterQuitRoomTopic
@@ -7504,6 +7584,40 @@ Room 房间
 
 
  
+
+
+<a name="svc-infra-link-ActivityEventType"></a>
+
+### ActivityEventType
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| EventUnknown | 0 |  |
+| EventOnline | 1 |  |
+| EventOffline | 2 |  |
+| EventBind | 3 |  |
+| EventUnbind | 4 |  |
+| EventActive | 5 |  |
+
+
+
+<a name="svc-infra-link-ScopeType"></a>
+
+### ScopeType
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| ScopeGlobal | 0 |  |
+| ScopeGroup | 1 |  |
+| ScopeAccount | 2 |  |
+| ScopeDevice | 3 |  |
+| ScopeSession | 4 |  |
+| ScopeKick | 125 |  |
+| ScopeBlackhole | 126 |  |
+| ScopeUnknown | 127 |  |
+
 
 
 <a name="svc-infra-link-UserEnterQuitAction"></a>
@@ -8136,11 +8250,14 @@ Service of stat
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| uid | [string](#string) |  |  |
-| nickname | [string](#string) |  |  |
-| avatar | [string](#string) |  |  |
-| count | [int32](#int32) |  |  |
-| name | [string](#string) |  |  |
+| uid | [string](#string) |  | 送礼人ID |
+| nickname | [string](#string) |  | 送礼人昵称 |
+| avatar | [string](#string) |  | 送礼人头像 |
+| count | [int32](#int32) |  | 礼物数量 |
+| combo | [int32](#int32) |  | combo数 |
+| name | [string](#string) |  | 礼物名称 |
+| icon | [string](#string) |  | 礼物icon |
+| gift_id | [string](#string) |  | 礼物ID |
 
 
 
