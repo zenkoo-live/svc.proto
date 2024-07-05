@@ -63,11 +63,14 @@ enum PayloadType {
 
 // 用户送礼
 message PayloadUserGift {
-    string uid = 1;
-    string nickname = 2;
-    string avatar = 3;
-    int32 count = 4;
-    string name = 5;
+    string uid = 1; // 送礼人ID
+    string nickname = 2; // 送礼人昵称
+    string avatar = 3; // 送礼人头像
+    int32 count = 4; // 礼物数量
+    int32 combo = 5; // combo数
+    string name = 6; // 礼物名称
+    string icon = 7; // 礼物icon
+    string gift_id = 8; // 礼物ID
 }
 
 
