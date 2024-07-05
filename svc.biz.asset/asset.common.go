@@ -11,21 +11,21 @@ const (
 type TransType int64
 
 const (
-	TransTypeSendGiftInLive    TransType = 1
-	TransTypeReceiveGiftInLive TransType = 2
+	TransTypeSendGiftInRoom    TransType = 1
+	TransTypeReceiveGiftInRoom TransType = 2
 	TransTypeGiftCommission    TransType = 3
 
-	TransTypeBuyLiveTicket        TransType = 4
-	TransTypeReceiveLiveTicket    TransType = 5
-	TransTypeLiveTicketCommission TransType = 6
+	TransTypeBuyRoomTicket        TransType = 4
+	TransTypeReceiveRoomTicket    TransType = 5
+	TransTypeRoomTicketCommission TransType = 6
 
-	TransTypePayLiveDurationFee        TransType = 7
-	TransTypeReceiveLiveDurationFee    TransType = 8
-	TransTypeLiveDurationFeeCommission TransType = 9
+	TransTypePayRoomDurationFee        TransType = 7
+	TransTypeReceiveRoomDurationFee    TransType = 8
+	TransTypeRoomDurationFeeCommission TransType = 9
 
-	TransTypeJoinAnchorFansGroup       TransType = 10
-	TransTypeReceiveAnchorFansGroup    TransType = 11
-	TransTypeAnchorFansGroupCommission TransType = 12
+	TransTypeJoinStreamerFansGroup       TransType = 10
+	TransTypeReceiveStreamerFansGroup    TransType = 11
+	TransTypeStreamerFansGroupCommission TransType = 12
 
 	TransTypePayBulletChat        TransType = 13
 	TransTypeReceiveBulletChat    TransType = 14
