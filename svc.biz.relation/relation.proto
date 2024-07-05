@@ -26,13 +26,19 @@ service Relation {
 
 enum RelationType {
     RelationTypeUnknown = 0; // 未知
-    RelationTypeFollow = 1; // 关注主播
-    RelationTypeHistory = 2; // 观看历史
-    RelationTypeMuzzle = 3; // 禁言
-    RelationTypeBlacklistViewer = 4; // 用户黑名单
-    RelationTypeBlacklistStreamer = 5; // 主播黑名单
-    RelationTypeBlacklistIP = 6; // ip黑名单
-    RelationTypeBlacklistDevice = 7; // 设备黑名单
+
+    RelationTypeFollow = 101; // 关注主播
+    RelationTypeHistory = 102; // 观看历史
+
+    RelationTypeMuzzle = 201; // 禁言
+
+    RelationTypeBlacklistViewer = 301; // 用户黑名单
+    RelationTypeBlacklistStreamer = 302; // 主播黑名单
+    RelationTypeBlacklistIP = 303; // ip黑名单
+    RelationTypeBlacklistDevice = 304; // 设备黑名单
+
+    RelationTypeSuperManager = 401; // 超级管理员
+    RelationTypeRoomManager = 402; // 房间管理员
 }
 
 message RelationInfo {

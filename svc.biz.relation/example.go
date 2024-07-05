@@ -113,4 +113,28 @@ func example() {
 			BuildTime: timestamppb.Now(),
 		},
 	})
+
+	// 超级管理员
+	relationClient.RelationAdd(ctx, &RelationAddReq{
+		RelationInfo: &RelationInfo{
+			RelationType: RelationType_RelationTypeSuperManager,
+			MemberId:     RelationMemberPlatform,
+			RMemberId:    "超级管理员用户id",
+			ExpireTime:   timestamppb.New(time.Now().Add(24 * time.Hour)), // 超管24个小时有效
+			// ExpireTime:   nil, // 永久有效
+			BuildTime: timestamppb.Now(),
+		},
+	})
+
+	// 房间管路
+	relationClient.RelationAdd(ctx, &RelationAddReq{
+		RelationInfo: &RelationInfo{
+			RelationType: RelationType_RelationTypeRoomManager,
+			MemberId:     "主播id",
+			RMemberId:    "房管用户id",
+			ExpireTime:   timestamppb.New(time.Now().Add(24 * time.Hour)), // 房管24个小时有效
+			// ExpireTime:   nil, // 永久有效
+			BuildTime: timestamppb.Now(),
+		},
+	})
 }
