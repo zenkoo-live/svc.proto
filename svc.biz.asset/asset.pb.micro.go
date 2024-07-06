@@ -63,6 +63,7 @@ type AssetService interface {
 	IncrStreamerCoin(ctx context.Context, in *IncrStreamerCoinReq, opts ...client.CallOption) (*ChangeStreamerCoinResp, error)
 	DecrStreamerCoin(ctx context.Context, in *DecrStreamerCoinReq, opts ...client.CallOption) (*ChangeStreamerCoinResp, error)
 	ListStreamerCoinDetail(ctx context.Context, in *ListStreamerCoinDetailReq, opts ...client.CallOption) (*ListStreamerCoinDetailResp, error)
+	GetStreamerCoinTotal(ctx context.Context, in *GetStreamerCoinTotalReq, opts ...client.CallOption) (*GetStreamerCoinTotalResp, error)
 	// ---------------Union工会资产---------------
 	// 余额 money --
 	GetUnionMoney(ctx context.Context, in *GetUnionMoneyReq, opts ...client.CallOption) (*GetUnionMoneyResp, error)
@@ -296,6 +297,16 @@ func (c *assetService) ListStreamerCoinDetail(ctx context.Context, in *ListStrea
 	return out, nil
 }
 
+func (c *assetService) GetStreamerCoinTotal(ctx context.Context, in *GetStreamerCoinTotalReq, opts ...client.CallOption) (*GetStreamerCoinTotalResp, error) {
+	req := c.c.NewRequest(c.name, "Asset.GetStreamerCoinTotal", in)
+	out := new(GetStreamerCoinTotalResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *assetService) GetUnionMoney(ctx context.Context, in *GetUnionMoneyReq, opts ...client.CallOption) (*GetUnionMoneyResp, error) {
 	req := c.c.NewRequest(c.name, "Asset.GetUnionMoney", in)
 	out := new(GetUnionMoneyResp)
@@ -474,6 +485,7 @@ type AssetHandler interface {
 	IncrStreamerCoin(context.Context, *IncrStreamerCoinReq, *ChangeStreamerCoinResp) error
 	DecrStreamerCoin(context.Context, *DecrStreamerCoinReq, *ChangeStreamerCoinResp) error
 	ListStreamerCoinDetail(context.Context, *ListStreamerCoinDetailReq, *ListStreamerCoinDetailResp) error
+	GetStreamerCoinTotal(context.Context, *GetStreamerCoinTotalReq, *GetStreamerCoinTotalResp) error
 	// ---------------Union工会资产---------------
 	// 余额 money --
 	GetUnionMoney(context.Context, *GetUnionMoneyReq, *GetUnionMoneyResp) error
@@ -517,6 +529,7 @@ func RegisterAssetHandler(s server.Server, hdlr AssetHandler, opts ...server.Han
 		IncrStreamerCoin(ctx context.Context, in *IncrStreamerCoinReq, out *ChangeStreamerCoinResp) error
 		DecrStreamerCoin(ctx context.Context, in *DecrStreamerCoinReq, out *ChangeStreamerCoinResp) error
 		ListStreamerCoinDetail(ctx context.Context, in *ListStreamerCoinDetailReq, out *ListStreamerCoinDetailResp) error
+		GetStreamerCoinTotal(ctx context.Context, in *GetStreamerCoinTotalReq, out *GetStreamerCoinTotalResp) error
 		GetUnionMoney(ctx context.Context, in *GetUnionMoneyReq, out *GetUnionMoneyResp) error
 		GetUnionMoneyMulti(ctx context.Context, in *GetUnionMoneyMultiReq, out *GetUnionMoneyMultiResp) error
 		IncrUnionMoney(ctx context.Context, in *IncrUnionMoneyReq, out *ChangeUnionMoneyResp) error
@@ -622,6 +635,10 @@ func (h *assetHandler) DecrStreamerCoin(ctx context.Context, in *DecrStreamerCoi
 
 func (h *assetHandler) ListStreamerCoinDetail(ctx context.Context, in *ListStreamerCoinDetailReq, out *ListStreamerCoinDetailResp) error {
 	return h.AssetHandler.ListStreamerCoinDetail(ctx, in, out)
+}
+
+func (h *assetHandler) GetStreamerCoinTotal(ctx context.Context, in *GetStreamerCoinTotalReq, out *GetStreamerCoinTotalResp) error {
+	return h.AssetHandler.GetStreamerCoinTotal(ctx, in, out)
 }
 
 func (h *assetHandler) GetUnionMoney(ctx context.Context, in *GetUnionMoneyReq, out *GetUnionMoneyResp) error {

@@ -37,6 +37,7 @@ service Asset {
   rpc IncrStreamerCoin(IncrStreamerCoinReq) returns (ChangeStreamerCoinResp) {} // 增
   rpc DecrStreamerCoin(DecrStreamerCoinReq) returns (ChangeStreamerCoinResp) {} // 减
   rpc ListStreamerCoinDetail(ListStreamerCoinDetailReq) returns (ListStreamerCoinDetailResp) {} // 查询明细
+  rpc GetStreamerCoinTotal(GetStreamerCoinTotalReq) returns (GetStreamerCoinTotalResp) {} // 查询总额
 
   // ---------------Union工会资产---------------
   // 余额 money --
@@ -355,7 +356,14 @@ message StreamerCoinDetail {
   google.protobuf.Timestamp trans_time = 11; // 业务时间
   string summary = 12;//摘要,json 实际会做格式和核心字段校验
 }
-
+message GetStreamerCoinTotalReq {
+  string streamer_id = 3;
+  google.protobuf.Timestamp start_time = 6; // 开始时间(含)
+  google.protobuf.Timestamp end_time = 7; // 结束时间(不含)
+}
+message GetStreamerCoinTotalResp {
+  map<int64,int64> value_map  = 3; // trans_type->value,增加的为正数,减少的为负数
+}
 // --------------Union工会资产---------------
 
 // 余额 money-----------------
