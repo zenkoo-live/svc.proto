@@ -13081,6 +13081,8 @@ service started /////////////////
 | member_id | [string](#string) |  |  |
 | level | [int32](#int32) |  |  |
 | exp | [int64](#int64) |  |  |
+| exp_current_level | [int64](#int64) |  | 当前等级所需经验 |
+| exp_next_level | [int64](#int64) |  | 下一等级所需经验 |
 
 
 
