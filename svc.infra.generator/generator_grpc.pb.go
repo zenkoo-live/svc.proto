@@ -20,11 +20,11 @@ import (
 const _ = grpc.SupportPackageIsVersion8
 
 const (
-	Generator_InitDB_FullMethodName          = "/svc.infra.generator.Generator/InitDB"
-	Generator_InitIDGenerator_FullMethodName = "/svc.infra.generator.Generator/InitIDGenerator"
-	Generator_OrdianID_FullMethodName        = "/svc.infra.generator.Generator/OrdianID"
-	Generator_NextID_FullMethodName          = "/svc.infra.generator.Generator/NextID"
-	Generator_IsPrettyID_FullMethodName      = "/svc.infra.generator.Generator/IsPrettyID"
+	Generator_InitDB_FullMethodName     = "/svc.infra.generator.Generator/InitDB"
+	Generator_AddID_FullMethodName      = "/svc.infra.generator.Generator/AddID"
+	Generator_OrdianID_FullMethodName   = "/svc.infra.generator.Generator/OrdianID"
+	Generator_NextID_FullMethodName     = "/svc.infra.generator.Generator/NextID"
+	Generator_IsPrettyID_FullMethodName = "/svc.infra.generator.Generator/IsPrettyID"
 )
 
 // GeneratorClient is the client API for Generator service.
@@ -32,7 +32,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type GeneratorClient interface {
 	InitDB(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*InitDBResp, error)
-	InitIDGenerator(ctx context.Context, in *InitIDGeneratorReq, opts ...grpc.CallOption) (*InitIDGeneratorResp, error)
+	AddID(ctx context.Context, in *AddIDReq, opts ...grpc.CallOption) (*AddIDResp, error)
 	OrdianID(ctx context.Context, in *OrdianIDReq, opts ...grpc.CallOption) (*OrdianIDResp, error)
 	NextID(ctx context.Context, in *NextIDReq, opts ...grpc.CallOption) (*NextIDResp, error)
 	IsPrettyID(ctx context.Context, in *IsPrettyIDReq, opts ...grpc.CallOption) (*IsPrettyIDResp, error)
@@ -56,10 +56,10 @@ func (c *generatorClient) InitDB(ctx context.Context, in *emptypb.Empty, opts ..
 	return out, nil
 }
 
-func (c *generatorClient) InitIDGenerator(ctx context.Context, in *InitIDGeneratorReq, opts ...grpc.CallOption) (*InitIDGeneratorResp, error) {
+func (c *generatorClient) AddID(ctx context.Context, in *AddIDReq, opts ...grpc.CallOption) (*AddIDResp, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(InitIDGeneratorResp)
-	err := c.cc.Invoke(ctx, Generator_InitIDGenerator_FullMethodName, in, out, cOpts...)
+	out := new(AddIDResp)
+	err := c.cc.Invoke(ctx, Generator_AddID_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -101,7 +101,7 @@ func (c *generatorClient) IsPrettyID(ctx context.Context, in *IsPrettyIDReq, opt
 // for forward compatibility
 type GeneratorServer interface {
 	InitDB(context.Context, *emptypb.Empty) (*InitDBResp, error)
-	InitIDGenerator(context.Context, *InitIDGeneratorReq) (*InitIDGeneratorResp, error)
+	AddID(context.Context, *AddIDReq) (*AddIDResp, error)
 	OrdianID(context.Context, *OrdianIDReq) (*OrdianIDResp, error)
 	NextID(context.Context, *NextIDReq) (*NextIDResp, error)
 	IsPrettyID(context.Context, *IsPrettyIDReq) (*IsPrettyIDResp, error)
@@ -115,8 +115,8 @@ type UnimplementedGeneratorServer struct {
 func (UnimplementedGeneratorServer) InitDB(context.Context, *emptypb.Empty) (*InitDBResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method InitDB not implemented")
 }
-func (UnimplementedGeneratorServer) InitIDGenerator(context.Context, *InitIDGeneratorReq) (*InitIDGeneratorResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method InitIDGenerator not implemented")
+func (UnimplementedGeneratorServer) AddID(context.Context, *AddIDReq) (*AddIDResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddID not implemented")
 }
 func (UnimplementedGeneratorServer) OrdianID(context.Context, *OrdianIDReq) (*OrdianIDResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method OrdianID not implemented")
@@ -158,20 +158,20 @@ func _Generator_InitDB_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Generator_InitIDGenerator_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(InitIDGeneratorReq)
+func _Generator_AddID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddIDReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GeneratorServer).InitIDGenerator(ctx, in)
+		return srv.(GeneratorServer).AddID(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Generator_InitIDGenerator_FullMethodName,
+		FullMethod: Generator_AddID_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GeneratorServer).InitIDGenerator(ctx, req.(*InitIDGeneratorReq))
+		return srv.(GeneratorServer).AddID(ctx, req.(*AddIDReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -242,8 +242,8 @@ var Generator_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Generator_InitDB_Handler,
 		},
 		{
-			MethodName: "InitIDGenerator",
-			Handler:    _Generator_InitIDGenerator_Handler,
+			MethodName: "AddID",
+			Handler:    _Generator_AddID_Handler,
 		},
 		{
 			MethodName: "OrdianID",
