@@ -17,6 +17,8 @@ message LevelInfo {
 	string member_id = 1;
 	int32 level = 2;
 	int64 exp = 3;
+	int64 exp_current_level = 4; // 当前等级所需经验
+	int64 exp_next_level = 5; // 下一等级所需经验
 }
 
 message GetMemberLevelReq {
