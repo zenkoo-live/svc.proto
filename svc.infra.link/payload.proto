@@ -33,7 +33,7 @@ enum PayloadType {
   UserVipDm = 2; // 付费弹幕
   UserGift = 3; // 用户送礼
   UserOpenFans = 4; // 开通粉丝团
-  UserOpenGz = 5; // 开通贵族
+  UserOpenGuard = 5; // 开通贵族
   EnterRoom = 6; // 用户进入房间
 
   StreamerNotice = 7; // 主播公告通知
@@ -45,16 +45,16 @@ enum PayloadType {
   StreamerPause = 16; // 主播暂停
   StreamerResume = 17; // 主播恢复
 
-  UserSubscribe = 1000; // 用户关注主播
-  UserUnSubscribe = 1001; // 用户取消关注主播
-  UserForbid = 1002; // 用户禁言
-  UserResetForbid = 1003; // 用户解除禁言
-  UserRoomAdm = 1004; // 用户房管
-  UserRoomResetAdm = 1005; // 用户撤销房管
+  UserSubscribe = 18; // 用户关注主播
+  UserUnSubscribe = 19; // 用户取消关注主播
+  UserForbid = 20; // 用户禁言
+  UserResetForbid = 21; // 用户解除禁言
+  UserRoomAdm = 22; // 用户房管
+  UserRoomResetAdm = 23; // 用户撤销房管
 
 
 
-  PlatformNotice = 10000; // 全平台通知
+  PlatformNotice = 1000; // 全平台通知
 }
 
 // enum PayloadUserType {
@@ -163,7 +163,7 @@ message PayloadEnterRoom {
   PayloadGuard guard = 8; // 守护信息
 }
 
-// PayloadOpenGuard 开通贵族信息 消息为全站消息
+// PayloadOpenGz 开通贵族信息 消息为全站消息
 // 根据streamer_id判断是否当前房间
 message PayloadOpenGuard {
   string uid = 1; // 用户UID
