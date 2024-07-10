@@ -30,20 +30,20 @@ enum LevelType {
 enum PayloadType {
   StreamerDm = 0; // 主播弹幕
   UserCommDm = 1; // 普通弹幕
-  UserVipDm = 2; // 付费弹幕
+
   UserGift = 3; // 用户送礼
   UserOpenFans = 4; // 开通粉丝团
-  UserOpenGuard = 5; // 开通贵族
+  UserOpenNoble = 5; // 开通贵族
   EnterRoom = 6; // 用户进入房间
 
   StreamerNotice = 7; // 主播公告通知
-  StreamerCard = 8; // 主播名片通知
 
   UserKickRoom = 13; // 踢出房间
   StreamerOffline = 14; // 主播下播
   StreamerOnline = 15; // 主播开播
-  StreamerPause = 16; // 主播暂停
-  StreamerResume = 17; // 主播恢复
+
+  StreamerRoomCharm = 16; // 主播房间魅力值变化
+  StreamerRoomRank = 17; // 主播房间粉丝榜单变化
 
   UserSubscribe = 18; // 用户关注主播
   UserUnSubscribe = 19; // 用户取消关注主播
@@ -53,189 +53,137 @@ enum PayloadType {
   UserRoomResetAdm = 23; // 用户撤销房管
 
 
-
-  PlatformNotice = 1000; // 全平台通知
+  PlatformUserOpenNoble = 100; // 全平台开通贵族通知
+  PlatformUserSendGift = 101; // 全平台用户送礼通知
 }
 
-// enum PayloadUserType {
-//     PayloadUserTypeUnknown = 0; // 未知
-//     PayloadUserTypeViewer = 1; // 观众
-//     PayloadUserTypeStreamer = 2; // 主播
-// }
-
-// message PayloadUser {
-//     PayloadUserType user_type = 1;
-//     string uid = 2;
-//     string nickname = 3;
-//     string avatar = 4;
-// }
-
-// message PayloadUserGift {
-//     PayloadUser From = 1; // 送礼人
-//     PayloadUser To = 2; // 收礼人
-//     string gift_id = 3; // 礼物id（礼物图片、动画均使用此id匹配）
-//     int32 combo = 4; // combo值
-//     string group = 5; // combo分组
-//     int32 num = 6; // 礼物数量
-// }
-
-// Payload容器
-message PayloadWrap  {
-  int64 i = 1 ;
-  int32 t = 2 ;
-  int32 p = 3;
-  string d = 11;
-}
-
-// 贵族消息
-message PayloadGuard {
-  int32 exp = 1;  // 贵族类型
-  int64 level = 2; // 贵族等级
-}
-
-// 粉丝消息
-message PayloadFans {
-  int32 level = 1; // 粉丝等级
-  int64 exp = 2;  // 粉丝经验
-}
-
-// 魅力值
-message PayloadCharm {
-  int32 level = 1; // 魅力值等级
-  int64 exp = 2;  // 魅力值
-}
-
-///////////////////////// 消息下发 payload //////////////////////////////
-
-// PayloadUserComm 通用用户信息
-// 发送提出房间， 禁言，房管，超管等信息
-message PayloadUserComm {
+// 基础用户信息, 弹幕，送礼，进房房间开通贵族，粉丝都需要用户基础信息
+message BasicUser {
   string uid = 1; // 用户UID
   string nickname = 2; // 昵称
   string avatar = 3; // 头像地址
   bool is_room_adm = 4; // 房管
   bool is_super_adm = 5; // 是否超管
-  PayloadCharm charm = 6; // 魅力值
-  PayloadFans fans = 7; // 粉丝信息
-  PayloadGuard guard = 8; // 守护信息
+  int32 level = 6; // 用户等级
+  int32 fans_group = 7; // 粉丝团阶段, 0代表无粉团, 1代表初级, 2超级, 3至尊
+  int32 noble = 8; // 贵族阶段 0代表无, 1 骑士， 2子爵，3伯爵，4侯爵，5公爵，6国王
 }
 
-// 全平台公告信息
-message PayloadPlatformNotice {
-  string text = 1; // 公告消息
+message Sender {
+  string uid = 1; // 用户UID
+  string nickname = 2; // 昵称
+  string avatar = 3; // 头像地址
 }
 
-// 公告
+message Receiver {
+  string uid = 1; // 用户UID
+  string nickname = 2; // 昵称
+  string avatar = 3; // 头像地址
+}
+///////////////////////// 消息下发 payload //////////////////////////////
+// 主播弹幕
+message PayloadStreamerDm {
+  string uid = 1; // 用户UID
+  string nickname = 2; // 昵称
+  string avatar = 3; // 头像地址
+  string text = 4; // 聊天内容
+}
+// 用户弹幕
+message PayloadUserDm {
+  BasicUser user = 1; // 基础信息
+  bool is_paid = 2; // 是否是付费弹幕
+  string text = 3; // 聊天内容
+}
+// 用户送礼
+message PayloadUserGift {
+  BasicUser user = 1; // 基础信息
+  int32 count = 2; // 礼物数量
+  int32 combo = 3; // combo数
+  string combo_group = 4; // combo组
+  string name = 5; // 礼物名称
+  string icon = 6; // 礼物icon
+  string gift_id = 7; // 礼物ID
+  bool is_animation = 8; // 是否动画礼物
+}
+// 用户开通粉丝团
+message PayloadOpenFansGroup {
+  BasicUser user = 1; // 基础信息
+  int64 rank = 2; // 开通的排名
+}
+// 用户开通贵族
+message PayloadOpenNoble {
+  BasicUser user = 1; // 基础信息
+}
+// 用户进入房间
+message PayloadEnterRoom {
+  BasicUser user = 1; // 基础信息
+}
+
+// 主播房间公告
 message PayloadStreamNotice {
   string text = 1; // 公告内容
 }
 
-// 名片包装
-message PayloadStreamerCard {
+// 主播开播
+message PayloadStreamerStartLive {
 
 }
 
+// 主播下播
 message PayloadStreamerOffline {
-  string forbid = 1; // 被封禁下播的原因
+  string forbid = 1; // 被封禁下播的原因, 为空说明正常下播
+}
+// 主播房间魅力值变化
+message PayloadStreamerRoomCharm {
+  int64 charm = 1;
+}
+// 主播房间粉丝榜单变化
+message PayloadStreamerRoomRank {
+  int64 rank = 1;
+  string uid = 2;
+  string nickname = 3;
+  string avatar = 4;
 }
 
-// 用户送礼
-message PayloadUserGift {
-  string uid = 1; // 送礼人ID
-  string nickname = 2; // 送礼人昵称
-  string avatar = 3; // 送礼人头像
-  int32 count = 4; // 礼物数量
-  int32 combo = 5; // combo数
-  string name = 6; // 礼物名称
-  string icon = 7; // 礼物icon
-  string gift_id = 8; // 礼物ID
-}
-
-// 进入房间
-message PayloadEnterRoom {
-  string uid = 1; // 用户UID
-  string nickname = 2; // 昵称
-  string avatar = 3; // 头像地址
-  bool is_room_adm = 4; // 房管
-  bool is_super_adm = 5; // 是否超管
-  PayloadCharm charm = 6; // 魅力值
-  PayloadFans fans = 7; // 粉丝信息
-  PayloadGuard guard = 8; // 守护信息
-}
-
-// PayloadOpenGz 开通贵族信息 消息为全站消息
-// 根据streamer_id判断是否当前房间
-message PayloadOpenGuard {
-  string uid = 1; // 用户UID
-  string nickname = 2; // 昵称
-  string avatar = 3; // 头像地址
-  bool is_room_adm = 4; // 房管
-  bool is_super_adm = 5; // 是否超管
-  PayloadCharm charm = 6; // 魅力值
-  PayloadFans fans = 7; // 粉丝信息
-  PayloadGuard guard = 8; // 守护信息
-  string room_id = 9; // 对应直播间
-  string streamer_id = 10; // 对应直播间,
-  string streamer_name = 11; // 对应主播名称
-}
-
-// PayloadInOutFansGroup 用户加入退出粉丝团
-message PayloadOpenFansGroup {
-  string uid = 1; // 用户UID
-  string nickname = 2; // 昵称
-  string avatar = 3; // 头像地址
-  string streamer_id = 4; // 对应直播间,
-  string streamer_name = 5; // 对应主播名称
-  PayloadCharm charm = 6; // 魅力值
-  PayloadFans fans = 7; // 粉丝信息
-  PayloadGuard guard = 8; // 守护信息
-  int64 rank = 9; // 排名
-}
-
-// PayloadUserLevelUp 用户等级升级，根据类型区分
+// 用户等级升级
 message PayloadUserLevelUp {
-  string uid = 1; // 用户UID
-  string nickname = 2; // 昵称
-  string avatar = 3; // 头像地址
-  LevelType level_type = 4; // 等级升级类型
-  PayloadCharm charm = 5; // 魅力值
-  PayloadFans fans = 6; // 粉丝
-  PayloadGuard guard = 7; // 贵族
+  BasicUser user = 1; // 基础信息
 }
 
-// PayloadUserSubUnSubscribe 用户关注或取消关注
+// 用户关注主播
 message PayloadUserSubUnSubscribe {
-  string uid = 1; // 用户UID
-  string nickname = 2; // 昵称
-  string avatar = 3; // 头像地址
-  bool is_room_adm = 4; // 房管
-  bool is_super_adm = 5; // 是否超管
-  PayloadCharm charm = 6; // 魅力值
-  PayloadFans fans = 7; // 粉丝信息
-  PayloadGuard guard = 8; // 守护信息
-  string streamer_id = 9; // 主播ID
-  string streamer_name = 10; // 主播名称
+  BasicUser user = 1; // 基础信息
 }
 
-// 主播聊天弹幕消息
-message PayloadStreamerDm {
-  string uid = 1; // 用户UID
-  string nickname = 2; // 昵称
-  string text = 3; // 聊天内容
-  string avatar = 4; // 头像地址
-
+// 用户被踢出房间
+message PayloadUserKickRoom {
+  BasicUser user = 1; // 基础信息
 }
 
-// 用户普通聊天消息
-message PayloadUserCommDm {
-  string uid = 1; // 用户UID
-  string nickname = 2; // 昵称
-  string avatar = 3; // 头像地址
-  bool is_room_adm = 4; // 房管
-  bool is_super_adm = 5; // 是否超管
-  PayloadCharm charm = 6; // 魅力值
-  PayloadFans fans = 7; // 粉丝信息
-  PayloadGuard guard = 8; // 守护信息
-  bool is_paid_dm = 9; // 付费弹幕
-  string text = 10; // 聊天内容
+// 用户被禁言
+message PayloadUserForbid {
+  BasicUser user = 1; // 基础信息
 }
+
+// 用户被设置成房管
+message PayloadUserRoomAdm {
+  BasicUser user = 1; // 基础信息
+}
+// 用户被取消房管
+message PayloadUserRoomCancelAdm {
+  BasicUser user = 1; // 基础信息
+}
+
+
+// 平台开通贵族通知
+message PayloadPlatformUserOpenNoble {
+  Sender sender = 1; // 发送者基础信息
+  Receiver receiver = 2; //  接收者信息
+}
+
+// 平台礼物通知
+message PayloadPlatformUserSendGift {
+  Sender sender = 1; // 发送者基础信息
+  Receiver receiver = 2; //  接收者信息
+}
+
