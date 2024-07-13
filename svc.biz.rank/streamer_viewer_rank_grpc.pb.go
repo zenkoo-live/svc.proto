@@ -29,7 +29,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 //
-// 排行
+// 主播观众排行
 type StreamerViewerRankClient interface {
 	// 获取主播某场直播的排行榜成员
 	GetStreamerViewerLiveMember(ctx context.Context, in *GetStreamerViewerLiveMemberReq, opts ...grpc.CallOption) (*GetStreamerViewerRankResp, error)
@@ -93,7 +93,7 @@ func (c *streamerViewerRankClient) GetStreamerViewerGlamourMember(ctx context.Co
 // All implementations must embed UnimplementedStreamerViewerRankServer
 // for forward compatibility
 //
-// 排行
+// 主播观众排行
 type StreamerViewerRankServer interface {
 	// 获取主播某场直播的排行榜成员
 	GetStreamerViewerLiveMember(context.Context, *GetStreamerViewerLiveMemberReq) (*GetStreamerViewerRankResp, error)

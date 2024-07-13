@@ -611,6 +611,14 @@
   
     - [Generator](#svc-infra-generator-Generator)
   
+- [svc.biz.rank/streamer_rank.proto](#svc-biz-rank_streamer_rank-proto)
+    - [GetStreamerRankReq](#svc-biz-rank-GetStreamerRankReq)
+    - [GetStreamerRankResp](#svc-biz-rank-GetStreamerRankResp)
+  
+    - [StreamerRankPeriod](#svc-biz-rank-StreamerRankPeriod)
+  
+    - [StreamerRank](#svc-biz-rank-StreamerRank)
+  
 - [svc.biz.rank/streamer_viewer_rank.proto](#svc-biz-rank_streamer_viewer_rank-proto)
     - [GetStreamerViewerGiftMemberReq](#svc-biz-rank-GetStreamerViewerGiftMemberReq)
     - [GetStreamerViewerGlamourMemberReq](#svc-biz-rank-GetStreamerViewerGlamourMemberReq)
@@ -10828,6 +10836,76 @@ Models
 
 
 
+<a name="svc-biz-rank_streamer_rank-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.biz.rank/streamer_rank.proto
+
+
+
+<a name="svc-biz-rank-GetStreamerRankReq"></a>
+
+### GetStreamerRankReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| page | [int32](#int32) |  |  |
+| limit | [int32](#int32) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-rank-GetStreamerRankResp"></a>
+
+### GetStreamerRankResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [RankMemberInfo](#svc-biz-rank-RankMemberInfo) | repeated |  |
+
+
+
+
+
+ 
+
+
+<a name="svc-biz-rank-StreamerRankPeriod"></a>
+
+### StreamerRankPeriod
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| StreamerRankPeriodUnknown | 0 | 未知 |
+| StreamerRankPeriodDay | 1 | 日榜 |
+| StreamerRankPeriodWeek | 2 | 周榜 |
+
+
+ 
+
+ 
+
+
+<a name="svc-biz-rank-StreamerRank"></a>
+
+### StreamerRank
+主播排行
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| GetStreamerRank | [GetStreamerRankReq](#svc-biz-rank-GetStreamerRankReq) | [GetStreamerRankResp](#svc-biz-rank-GetStreamerRankResp) | 获取主播排行榜成员 |
+
+ 
+
+
+
 <a name="svc-biz-rank_streamer_viewer_rank-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
@@ -10946,7 +11024,7 @@ RankMemberInfo 排行榜成员信息
 <a name="svc-biz-rank-StreamerViewerRank"></a>
 
 ### StreamerViewerRank
-排行
+主播观众排行
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|

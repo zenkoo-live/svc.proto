@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package svc.biz.rank;
+
+import "svc.biz.rank/streamer_viewer_rank.proto";
+
+option go_package="./svc.biz.rank;rank";
+
+// 主播排行
+service StreamerRank {
+    // 获取主播排行榜成员
+    rpc GetStreamerRank(GetStreamerRankReq) returns (GetStreamerRankResp) {}
+}
+
+enum StreamerRankPeriod {
+    StreamerRankPeriodUnknown = 0; // 未知
+    StreamerRankPeriodDay = 1; // 日榜
+    StreamerRankPeriodWeek = 2; // 周榜
+}
+
+message GetStreamerRankReq {
+    int32 page = 1;
+    int32 limit = 2;
+}
+
+message GetStreamerRankResp {
+    repeated RankMemberInfo items = 1;
+}
