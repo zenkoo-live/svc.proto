@@ -20,6 +20,7 @@ const _ = grpc.SupportPackageIsVersion8
 
 const (
 	NobleMember_JoinNoble_FullMethodName                            = "/svc.biz.vip.NobleMember/JoinNoble"
+	NobleMember_RenewNoble_FullMethodName                           = "/svc.biz.vip.NobleMember/RenewNoble"
 	NobleMember_UpgradeNoble_FullMethodName                         = "/svc.biz.vip.NobleMember/UpgradeNoble"
 	NobleMember_GetNobleMember_FullMethodName                       = "/svc.biz.vip.NobleMember/GetNobleMember"
 	NobleMember_GetNobleMemberList_FullMethodName                   = "/svc.biz.vip.NobleMember/GetNobleMemberList"
@@ -35,6 +36,8 @@ const (
 type NobleMemberClient interface {
 	// JoinNoble 加入贵族
 	JoinNoble(ctx context.Context, in *JoinNobleReq, opts ...grpc.CallOption) (*JoinNobleResp, error)
+	// RenewNoble 续费贵族
+	RenewNoble(ctx context.Context, in *RenewNobleReq, opts ...grpc.CallOption) (*RenewNobleResp, error)
 	// UpgradeNoble 升级贵族
 	UpgradeNoble(ctx context.Context, in *UpgradeNobleReq, opts ...grpc.CallOption) (*UpgradeNobleResp, error)
 	// GetNobleMember 获取成员贵族信息
@@ -59,6 +62,16 @@ func (c *nobleMemberClient) JoinNoble(ctx context.Context, in *JoinNobleReq, opt
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(JoinNobleResp)
 	err := c.cc.Invoke(ctx, NobleMember_JoinNoble_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *nobleMemberClient) RenewNoble(ctx context.Context, in *RenewNobleReq, opts ...grpc.CallOption) (*RenewNobleResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RenewNobleResp)
+	err := c.cc.Invoke(ctx, NobleMember_RenewNoble_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -123,6 +136,8 @@ func (c *nobleMemberClient) GetOnlineNobleMemberListByStreamerID(ctx context.Con
 type NobleMemberServer interface {
 	// JoinNoble 加入贵族
 	JoinNoble(context.Context, *JoinNobleReq) (*JoinNobleResp, error)
+	// RenewNoble 续费贵族
+	RenewNoble(context.Context, *RenewNobleReq) (*RenewNobleResp, error)
 	// UpgradeNoble 升级贵族
 	UpgradeNoble(context.Context, *UpgradeNobleReq) (*UpgradeNobleResp, error)
 	// GetNobleMember 获取成员贵族信息
@@ -142,6 +157,9 @@ type UnimplementedNobleMemberServer struct {
 
 func (UnimplementedNobleMemberServer) JoinNoble(context.Context, *JoinNobleReq) (*JoinNobleResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method JoinNoble not implemented")
+}
+func (UnimplementedNobleMemberServer) RenewNoble(context.Context, *RenewNobleReq) (*RenewNobleResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RenewNoble not implemented")
 }
 func (UnimplementedNobleMemberServer) UpgradeNoble(context.Context, *UpgradeNobleReq) (*UpgradeNobleResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpgradeNoble not implemented")
@@ -185,6 +203,24 @@ func _NobleMember_JoinNoble_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(NobleMemberServer).JoinNoble(ctx, req.(*JoinNobleReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NobleMember_RenewNoble_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RenewNobleReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NobleMemberServer).RenewNoble(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: NobleMember_RenewNoble_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NobleMemberServer).RenewNoble(ctx, req.(*RenewNobleReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -289,6 +325,10 @@ var NobleMember_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "JoinNoble",
 			Handler:    _NobleMember_JoinNoble_Handler,
+		},
+		{
+			MethodName: "RenewNoble",
+			Handler:    _NobleMember_RenewNoble_Handler,
 		},
 		{
 			MethodName: "UpgradeNoble",

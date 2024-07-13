@@ -11,6 +11,8 @@ option go_package="./svc.biz.vip;vip";
 service NobleMember {
     // JoinNoble 加入贵族
     rpc JoinNoble (JoinNobleReq) returns (JoinNobleResp) {}
+    // RenewNoble 续费贵族
+    rpc RenewNoble (RenewNobleReq) returns (RenewNobleResp) {}
     // UpgradeNoble 升级贵族
     rpc UpgradeNoble (UpgradeNobleReq) returns (UpgradeNobleResp) {}
     // GetNobleMember 获取成员贵族信息
@@ -46,10 +48,20 @@ message JoinNobleReq {
 message JoinNobleResp {
 }
 
+message RenewNobleReq {
+    NobleLevel level = 1; // 贵族等级
+    string member_id = 2; // 用户id
+    // string streamer_id = 3; // 主播id（可为空；贵族可直接开通，也可在某个直播间开通）
+    string order_id = 4; // 支付订单id
+    string order_price = 5; // 支付订单价格
+}
+message RenewNobleResp {
+}
+
 message UpgradeNobleReq {
     NobleLevel level = 1; // 贵族等级
     string member_id = 2; // 用户id
-    string streamer_id = 3; // 主播id（可为空；贵族可直接开通，也可在某个直播间开通）
+    // string streamer_id = 3; // 主播id（可为空；贵族可直接开通，也可在某个直播间开通）
     string order_id = 4; // 支付订单id
     string order_price = 5; // 支付订单价格
 }

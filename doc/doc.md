@@ -773,6 +773,8 @@
     - [JoinNobleReq](#svc-biz-vip-JoinNobleReq)
     - [JoinNobleResp](#svc-biz-vip-JoinNobleResp)
     - [NobleMemberInfo](#svc-biz-vip-NobleMemberInfo)
+    - [RenewNobleReq](#svc-biz-vip-RenewNobleReq)
+    - [RenewNobleResp](#svc-biz-vip-RenewNobleResp)
     - [UpgradeNobleReq](#svc-biz-vip-UpgradeNobleReq)
     - [UpgradeNobleResp](#svc-biz-vip-UpgradeNobleResp)
   
@@ -13328,6 +13330,36 @@ service started /////////////////
 
 
 
+<a name="svc-biz-vip-RenewNobleReq"></a>
+
+### RenewNobleReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| level | [NobleLevel](#svc-biz-vip-NobleLevel) |  | 贵族等级 |
+| member_id | [string](#string) |  | 用户id |
+| order_id | [string](#string) |  | string streamer_id = 3; // 主播id（可为空；贵族可直接开通，也可在某个直播间开通）
+
+支付订单id |
+| order_price | [string](#string) |  | 支付订单价格 |
+
+
+
+
+
+
+<a name="svc-biz-vip-RenewNobleResp"></a>
+
+### RenewNobleResp
+
+
+
+
+
+
+
 <a name="svc-biz-vip-UpgradeNobleReq"></a>
 
 ### UpgradeNobleReq
@@ -13338,8 +13370,9 @@ service started /////////////////
 | ----- | ---- | ----- | ----------- |
 | level | [NobleLevel](#svc-biz-vip-NobleLevel) |  | 贵族等级 |
 | member_id | [string](#string) |  | 用户id |
-| streamer_id | [string](#string) |  | 主播id（可为空；贵族可直接开通，也可在某个直播间开通） |
-| order_id | [string](#string) |  | 支付订单id |
+| order_id | [string](#string) |  | string streamer_id = 3; // 主播id（可为空；贵族可直接开通，也可在某个直播间开通）
+
+支付订单id |
 | order_price | [string](#string) |  | 支付订单价格 |
 
 
@@ -13371,6 +13404,7 @@ service started /////////////////
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
 | JoinNoble | [JoinNobleReq](#svc-biz-vip-JoinNobleReq) | [JoinNobleResp](#svc-biz-vip-JoinNobleResp) | JoinNoble 加入贵族 |
+| RenewNoble | [RenewNobleReq](#svc-biz-vip-RenewNobleReq) | [RenewNobleResp](#svc-biz-vip-RenewNobleResp) | RenewNoble 续费贵族 |
 | UpgradeNoble | [UpgradeNobleReq](#svc-biz-vip-UpgradeNobleReq) | [UpgradeNobleResp](#svc-biz-vip-UpgradeNobleResp) | UpgradeNoble 升级贵族 |
 | GetNobleMember | [GetNobleMemberReq](#svc-biz-vip-GetNobleMemberReq) | [GetNobleMemberResp](#svc-biz-vip-GetNobleMemberResp) | GetNobleMember 获取成员贵族信息 |
 | GetNobleMemberList | [GetNobleMemberListReq](#svc-biz-vip-GetNobleMemberListReq) | [GetNobleMemberListResp](#svc-biz-vip-GetNobleMemberListResp) | GetNobleMemberList 获取贵族成员列表（streamer_id传空字符串取所有） |
