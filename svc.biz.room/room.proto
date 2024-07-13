@@ -121,13 +121,21 @@ message RoomInfo {
     google.protobuf.Timestamp live_start_at = 25; // 开播时间（开播状态时才会有，关播时清空）
 
     int32 score_recommend = 41; // 推荐分数（后台配置）
-    int32 score_search = 42; // 搜索分数（后台配置）
-    int32 score_subscribe = 43; // 关注分数（后台配置）
-    int32 score_hot = 44; // 热度分数（后台配置）
-    int32 score_glamour = 45; // 魅力值
-    int32 score_online = 46; // 在线人数
-    int32 score_selected_gift = 47; // 精选礼物最后赠送时间戳
-    int32 score_gift = 48; // 纯礼物收益
+    google.protobuf.Timestamp score_recommend_start_at = 42;
+    google.protobuf.Timestamp score_recommend_end_at = 43;
+    int32 score_search = 44; // 搜索分数（后台配置）
+    google.protobuf.Timestamp score_search_start_at = 45;
+    google.protobuf.Timestamp score_search_end_at = 46;
+    int32 score_subscribe = 47; // 关注分数（后台配置）
+    google.protobuf.Timestamp score_subscribe_start_at = 48;
+    google.protobuf.Timestamp score_subscribe_end_at = 49;
+    int32 score_hot = 50; // 热度分数（后台配置）
+    google.protobuf.Timestamp score_hot_start_at = 51;
+    google.protobuf.Timestamp score_hot_end_at = 52;
+    int32 score_glamour = 61; // 魅力值
+    int32 score_online = 62; // 在线人数
+    int32 score_selected_gift = 64; // 精选礼物最后赠送时间戳
+    int32 score_gift = 65; // 纯礼物收益
 
     google.protobuf.Timestamp created_at = 101; // 创建时间
     google.protobuf.Timestamp updated_at = 102; // 更新时间

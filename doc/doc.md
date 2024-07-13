@@ -5001,6 +5001,14 @@ CategoryInfo 分类详情
 | category_id | [string](#string) |  | 分类id |
 | start_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开播时间 |
 | end_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 结束时间 |
+| gift_total_num | [int64](#int64) |  | 礼物总数 |
+| gift_total_price | [int64](#int64) |  | 礼物代币总数 |
+| gift_total_user | [int64](#int64) |  | 礼物用户总数 |
+| total_viewer | [int64](#int64) |  | 观看人数 |
+| new_follow | [int64](#int64) |  | 新增订阅 |
+| new_fanbse | [int64](#int64) |  | 新增粉丝团 |
+| new_nobble | [int64](#int64) |  | 新增贵族 |
+| new_nobble_price | [int64](#int64) |  | 新增贵族代币数 |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
 | updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 更新时间 |
 
@@ -5502,9 +5510,17 @@ CategoryInfo 分类详情
 | live_display_type | [LiveDisplayType](#svc-biz-room-LiveDisplayType) |  | 横竖屏类型（开播状态时才会有，关播时清空） |
 | live_start_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开播时间（开播状态时才会有，关播时清空） |
 | score_recommend | [int32](#int32) |  | 推荐分数（后台配置） |
+| score_recommend_start_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+| score_recommend_end_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
 | score_search | [int32](#int32) |  | 搜索分数（后台配置） |
+| score_search_start_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+| score_search_end_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
 | score_subscribe | [int32](#int32) |  | 关注分数（后台配置） |
+| score_subscribe_start_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+| score_subscribe_end_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
 | score_hot | [int32](#int32) |  | 热度分数（后台配置） |
+| score_hot_start_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+| score_hot_end_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
 | score_glamour | [int32](#int32) |  | 魅力值 |
 | score_online | [int32](#int32) |  | 在线人数 |
 | score_selected_gift | [int32](#int32) |  | 精选礼物最后赠送时间戳 |
@@ -14636,9 +14652,9 @@ topic: topic.gift.send
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| total_num | [int32](#int32) |  | 礼物总数 |
-| total_price | [int32](#int32) |  | 礼物代币总数 |
-| total_user | [int32](#int32) |  | 礼物用户总数 |
+| total_num | [int64](#int64) |  | 礼物总数 |
+| total_price | [int64](#int64) |  | 礼物代币总数 |
+| total_user | [int64](#int64) |  | 礼物用户总数 |
 
 
 
