@@ -41,6 +41,8 @@ message JoinFanbaseReq {
     string streamer_id = 1;
     string member_id = 2;
     FanbaseLevel level = 3;
+    string order_id = 4; // 支付订单id
+    string order_price = 5; // 支付订单价格
 }
 
 message LeaveFanbaseReq {

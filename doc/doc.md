@@ -773,6 +773,8 @@
     - [JoinNobleReq](#svc-biz-vip-JoinNobleReq)
     - [JoinNobleResp](#svc-biz-vip-JoinNobleResp)
     - [NobleMemberInfo](#svc-biz-vip-NobleMemberInfo)
+    - [UpgradeNobleReq](#svc-biz-vip-UpgradeNobleReq)
+    - [UpgradeNobleResp](#svc-biz-vip-UpgradeNobleResp)
   
     - [NobleMember](#svc-biz-vip-NobleMember)
   
@@ -13288,6 +13290,8 @@ service started /////////////////
 | level | [NobleLevel](#svc-biz-vip-NobleLevel) |  | 贵族等级 |
 | member_id | [string](#string) |  | 用户id |
 | streamer_id | [string](#string) |  | 主播id（可为空；贵族可直接开通，也可在某个直播间开通） |
+| order_id | [string](#string) |  | 支付订单id |
+| order_price | [string](#string) |  | 支付订单价格 |
 
 
 
@@ -13323,6 +13327,35 @@ service started /////////////////
 
 
 
+
+<a name="svc-biz-vip-UpgradeNobleReq"></a>
+
+### UpgradeNobleReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| level | [NobleLevel](#svc-biz-vip-NobleLevel) |  | 贵族等级 |
+| member_id | [string](#string) |  | 用户id |
+| streamer_id | [string](#string) |  | 主播id（可为空；贵族可直接开通，也可在某个直播间开通） |
+| order_id | [string](#string) |  | 支付订单id |
+| order_price | [string](#string) |  | 支付订单价格 |
+
+
+
+
+
+
+<a name="svc-biz-vip-UpgradeNobleResp"></a>
+
+### UpgradeNobleResp
+
+
+
+
+
+
  
 
  
@@ -13338,6 +13371,7 @@ service started /////////////////
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
 | JoinNoble | [JoinNobleReq](#svc-biz-vip-JoinNobleReq) | [JoinNobleResp](#svc-biz-vip-JoinNobleResp) | JoinNoble 加入贵族 |
+| UpgradeNoble | [UpgradeNobleReq](#svc-biz-vip-UpgradeNobleReq) | [UpgradeNobleResp](#svc-biz-vip-UpgradeNobleResp) | UpgradeNoble 升级贵族 |
 | GetNobleMember | [GetNobleMemberReq](#svc-biz-vip-GetNobleMemberReq) | [GetNobleMemberResp](#svc-biz-vip-GetNobleMemberResp) | GetNobleMember 获取成员贵族信息 |
 | GetNobleMemberList | [GetNobleMemberListReq](#svc-biz-vip-GetNobleMemberListReq) | [GetNobleMemberListResp](#svc-biz-vip-GetNobleMemberListResp) | GetNobleMemberList 获取贵族成员列表（streamer_id传空字符串取所有） |
 | CountNobleMember | [CountNobleMemberReq](#svc-biz-vip-CountNobleMemberReq) | [CountNobleMemberResp](#svc-biz-vip-CountNobleMemberResp) | CountNobleMember 获取成员总数 |
@@ -13819,6 +13853,8 @@ service started /////////////////
 | streamer_id | [string](#string) |  |  |
 | member_id | [string](#string) |  |  |
 | level | [FanbaseLevel](#svc-biz-vip-FanbaseLevel) |  |  |
+| order_id | [string](#string) |  | 支付订单id |
+| order_price | [string](#string) |  | 支付订单价格 |
 
 
 
@@ -13984,10 +14020,12 @@ service started /////////////////
 | level | [NobleLevel](#svc-biz-vip-NobleLevel) |  | 等级 |
 | name | [string](#string) |  | 名称 |
 | icon | [string](#string) |  | 贵族图标 |
-| first_open_price | [int32](#int32) |  | 首次开通价格 |
-| first_remand_diamond | [int32](#int32) |  | 首次开通奖励金 |
+| open_price | [int32](#int32) |  | 开通价格 |
+| remand_diamond | [int32](#int32) |  | 开通奖励金 |
 | renew_price | [int32](#int32) |  | 续费价格 |
 | renew_remand_diamond | [int32](#int32) |  | 续费奖励金 |
+| upgrade_price | [int32](#int32) |  | 升级价格 |
+| upgrade_remand_diamond | [int32](#int32) |  | 升级奖励金 |
 | rights | [NobleRights](#svc-biz-vip-NobleRights) |  | 权益 |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
 | updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 更新时间 |

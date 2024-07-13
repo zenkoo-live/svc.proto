@@ -39,6 +39,8 @@ func NewNobleMemberEndpoints() []*api.Endpoint {
 type NobleMemberService interface {
 	// JoinNoble 加入贵族
 	JoinNoble(ctx context.Context, in *JoinNobleReq, opts ...client.CallOption) (*JoinNobleResp, error)
+	// UpgradeNoble 升级贵族
+	UpgradeNoble(ctx context.Context, in *UpgradeNobleReq, opts ...client.CallOption) (*UpgradeNobleResp, error)
 	// GetNobleMember 获取成员贵族信息
 	GetNobleMember(ctx context.Context, in *GetNobleMemberReq, opts ...client.CallOption) (*GetNobleMemberResp, error)
 	// GetNobleMemberList 获取贵族成员列表（streamer_id传空字符串取所有）
@@ -64,6 +66,16 @@ func NewNobleMemberService(name string, c client.Client) NobleMemberService {
 func (c *nobleMemberService) JoinNoble(ctx context.Context, in *JoinNobleReq, opts ...client.CallOption) (*JoinNobleResp, error) {
 	req := c.c.NewRequest(c.name, "NobleMember.JoinNoble", in)
 	out := new(JoinNobleResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *nobleMemberService) UpgradeNoble(ctx context.Context, in *UpgradeNobleReq, opts ...client.CallOption) (*UpgradeNobleResp, error) {
+	req := c.c.NewRequest(c.name, "NobleMember.UpgradeNoble", in)
+	out := new(UpgradeNobleResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -116,6 +128,8 @@ func (c *nobleMemberService) GetOnlineNobleMemberListByStreamerID(ctx context.Co
 type NobleMemberHandler interface {
 	// JoinNoble 加入贵族
 	JoinNoble(context.Context, *JoinNobleReq, *JoinNobleResp) error
+	// UpgradeNoble 升级贵族
+	UpgradeNoble(context.Context, *UpgradeNobleReq, *UpgradeNobleResp) error
 	// GetNobleMember 获取成员贵族信息
 	GetNobleMember(context.Context, *GetNobleMemberReq, *GetNobleMemberResp) error
 	// GetNobleMemberList 获取贵族成员列表（streamer_id传空字符串取所有）
@@ -129,6 +143,7 @@ type NobleMemberHandler interface {
 func RegisterNobleMemberHandler(s server.Server, hdlr NobleMemberHandler, opts ...server.HandlerOption) error {
 	type nobleMember interface {
 		JoinNoble(ctx context.Context, in *JoinNobleReq, out *JoinNobleResp) error
+		UpgradeNoble(ctx context.Context, in *UpgradeNobleReq, out *UpgradeNobleResp) error
 		GetNobleMember(ctx context.Context, in *GetNobleMemberReq, out *GetNobleMemberResp) error
 		GetNobleMemberList(ctx context.Context, in *GetNobleMemberListReq, out *GetNobleMemberListResp) error
 		CountNobleMember(ctx context.Context, in *CountNobleMemberReq, out *CountNobleMemberResp) error
@@ -147,6 +162,10 @@ type nobleMemberHandler struct {
 
 func (h *nobleMemberHandler) JoinNoble(ctx context.Context, in *JoinNobleReq, out *JoinNobleResp) error {
 	return h.NobleMemberHandler.JoinNoble(ctx, in, out)
+}
+
+func (h *nobleMemberHandler) UpgradeNoble(ctx context.Context, in *UpgradeNobleReq, out *UpgradeNobleResp) error {
+	return h.NobleMemberHandler.UpgradeNoble(ctx, in, out)
 }
 
 func (h *nobleMemberHandler) GetNobleMember(ctx context.Context, in *GetNobleMemberReq, out *GetNobleMemberResp) error {
