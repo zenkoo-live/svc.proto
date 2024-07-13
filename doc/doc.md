@@ -471,19 +471,31 @@
     - [LinkTrace](#svc-infra-link-LinkTrace)
   
 - [svc.infra.link/payload.proto](#svc-infra-link_payload-proto)
-    - [PayloadCharm](#svc-infra-link-PayloadCharm)
+    - [BasicUser](#svc-infra-link-BasicUser)
     - [PayloadEnterRoom](#svc-infra-link-PayloadEnterRoom)
-    - [PayloadFans](#svc-infra-link-PayloadFans)
-    - [PayloadGuard](#svc-infra-link-PayloadGuard)
+    - [PayloadOpenFansGroup](#svc-infra-link-PayloadOpenFansGroup)
+    - [PayloadOpenNoble](#svc-infra-link-PayloadOpenNoble)
+    - [PayloadPlatformUserOpenNoble](#svc-infra-link-PayloadPlatformUserOpenNoble)
+    - [PayloadPlatformUserSendGift](#svc-infra-link-PayloadPlatformUserSendGift)
     - [PayloadStreamNotice](#svc-infra-link-PayloadStreamNotice)
-    - [PayloadStreamerCard](#svc-infra-link-PayloadStreamerCard)
     - [PayloadStreamerDm](#svc-infra-link-PayloadStreamerDm)
     - [PayloadStreamerOffline](#svc-infra-link-PayloadStreamerOffline)
-    - [PayloadUserCommDm](#svc-infra-link-PayloadUserCommDm)
+    - [PayloadStreamerRoomCharm](#svc-infra-link-PayloadStreamerRoomCharm)
+    - [PayloadStreamerRoomRank](#svc-infra-link-PayloadStreamerRoomRank)
+    - [PayloadStreamerStartLive](#svc-infra-link-PayloadStreamerStartLive)
+    - [PayloadUserDm](#svc-infra-link-PayloadUserDm)
+    - [PayloadUserForbid](#svc-infra-link-PayloadUserForbid)
     - [PayloadUserGift](#svc-infra-link-PayloadUserGift)
-    - [PayloadWrap](#svc-infra-link-PayloadWrap)
+    - [PayloadUserKickRoom](#svc-infra-link-PayloadUserKickRoom)
+    - [PayloadUserLevelUp](#svc-infra-link-PayloadUserLevelUp)
+    - [PayloadUserRoomAdm](#svc-infra-link-PayloadUserRoomAdm)
+    - [PayloadUserRoomCancelAdm](#svc-infra-link-PayloadUserRoomCancelAdm)
+    - [PayloadUserSubUnSubscribe](#svc-infra-link-PayloadUserSubUnSubscribe)
+    - [Receiver](#svc-infra-link-Receiver)
+    - [Sender](#svc-infra-link-Sender)
   
     - [CommandType](#svc-infra-link-CommandType)
+    - [LevelType](#svc-infra-link-LevelType)
     - [PayloadType](#svc-infra-link-PayloadType)
     - [PriorityType](#svc-infra-link-PriorityType)
   
@@ -588,9 +600,10 @@
     - [File-level Extensions](#third_party_buf_validate_validate-proto-extensions)
   
 - [svc.infra.generator/generator.proto](#svc-infra-generator_generator-proto)
+    - [AddIDReq](#svc-infra-generator-AddIDReq)
+    - [AddIDResp](#svc-infra-generator-AddIDResp)
+    - [ID](#svc-infra-generator-ID)
     - [InitDBResp](#svc-infra-generator-InitDBResp)
-    - [InitIDGeneratorReq](#svc-infra-generator-InitIDGeneratorReq)
-    - [InitIDGeneratorResp](#svc-infra-generator-InitIDGeneratorResp)
     - [IsPrettyIDReq](#svc-infra-generator-IsPrettyIDReq)
     - [IsPrettyIDResp](#svc-infra-generator-IsPrettyIDResp)
     - [NextIDReq](#svc-infra-generator-NextIDReq)
@@ -599,6 +612,14 @@
     - [OrdianIDResp](#svc-infra-generator-OrdianIDResp)
   
     - [Generator](#svc-infra-generator-Generator)
+  
+- [svc.biz.rank/streamer_rank.proto](#svc-biz-rank_streamer_rank-proto)
+    - [GetStreamerRankReq](#svc-biz-rank-GetStreamerRankReq)
+    - [GetStreamerRankResp](#svc-biz-rank-GetStreamerRankResp)
+  
+    - [StreamerRankPeriod](#svc-biz-rank-StreamerRankPeriod)
+  
+    - [StreamerRank](#svc-biz-rank-StreamerRank)
   
 - [svc.biz.rank/streamer_viewer_rank.proto](#svc-biz-rank_streamer_viewer_rank-proto)
     - [GetStreamerViewerGiftMemberReq](#svc-biz-rank-GetStreamerViewerGiftMemberReq)
@@ -8204,20 +8225,10 @@ Service of stat
 
 
 
-<a name="svc-infra-link-PayloadCharm"></a>
+<a name="svc-infra-link-BasicUser"></a>
 
-### PayloadCharm
-魅力值
-
-
-
-
-
-
-<a name="svc-infra-link-PayloadEnterRoom"></a>
-
-### PayloadEnterRoom
-进入房间
+### BasicUser
+基础用户信息, 弹幕，送礼，进房房间开通贵族，粉丝都需要用户基础信息
 
 
 | Field | Type | Label | Description |
@@ -8227,29 +8238,87 @@ Service of stat
 | avatar | [string](#string) |  | 头像地址 |
 | is_room_adm | [bool](#bool) |  | 房管 |
 | is_super_adm | [bool](#bool) |  | 是否超管 |
-| charm | [PayloadCharm](#svc-infra-link-PayloadCharm) |  | 魅力值 |
-| fans | [PayloadFans](#svc-infra-link-PayloadFans) |  | 粉丝信息 |
-| guard | [PayloadGuard](#svc-infra-link-PayloadGuard) |  | 守护信息 |
+| level | [int32](#int32) |  | 用户等级 |
+| fans_group | [int32](#int32) |  | 粉丝团阶段, 0代表无粉团, 1代表初级, 2超级, 3至尊 |
+| noble | [int32](#int32) |  | 贵族阶段 0代表无, 1 骑士， 2子爵，3伯爵，4侯爵，5公爵，6国王 |
 
 
 
 
 
 
-<a name="svc-infra-link-PayloadFans"></a>
+<a name="svc-infra-link-PayloadEnterRoom"></a>
 
-### PayloadFans
-粉丝消息
-
-
+### PayloadEnterRoom
+用户进入房间
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| user | [BasicUser](#svc-infra-link-BasicUser) |  | 基础信息 |
 
 
-<a name="svc-infra-link-PayloadGuard"></a>
 
-### PayloadGuard
-守护消息
+
+
+
+<a name="svc-infra-link-PayloadOpenFansGroup"></a>
+
+### PayloadOpenFansGroup
+用户开通粉丝团
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| user | [BasicUser](#svc-infra-link-BasicUser) |  | 基础信息 |
+| rank | [int64](#int64) |  | 开通的排名 |
+
+
+
+
+
+
+<a name="svc-infra-link-PayloadOpenNoble"></a>
+
+### PayloadOpenNoble
+用户开通贵族
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| user | [BasicUser](#svc-infra-link-BasicUser) |  | 基础信息 |
+
+
+
+
+
+
+<a name="svc-infra-link-PayloadPlatformUserOpenNoble"></a>
+
+### PayloadPlatformUserOpenNoble
+平台开通贵族通知
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| sender | [Sender](#svc-infra-link-Sender) |  | 发送者基础信息 |
+| receiver | [Receiver](#svc-infra-link-Receiver) |  | 接收者信息 |
+
+
+
+
+
+
+<a name="svc-infra-link-PayloadPlatformUserSendGift"></a>
+
+### PayloadPlatformUserSendGift
+平台礼物通知
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| sender | [Sender](#svc-infra-link-Sender) |  | 发送者基础信息 |
+| receiver | [Receiver](#svc-infra-link-Receiver) |  | 接收者信息 |
 
 
 
@@ -8259,7 +8328,7 @@ Service of stat
 <a name="svc-infra-link-PayloadStreamNotice"></a>
 
 ### PayloadStreamNotice
-公告
+主播房间公告
 
 
 | Field | Type | Label | Description |
@@ -8271,28 +8340,19 @@ Service of stat
 
 
 
-<a name="svc-infra-link-PayloadStreamerCard"></a>
-
-### PayloadStreamerCard
-名片包装
-
-
-
-
-
-
 <a name="svc-infra-link-PayloadStreamerDm"></a>
 
 ### PayloadStreamerDm
-主播聊天弹幕消息
+消息下发 payload //////////////////////////////
+主播弹幕
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | uid | [string](#string) |  | 用户UID |
 | nickname | [string](#string) |  | 昵称 |
-| text | [string](#string) |  | 聊天内容 |
 | avatar | [string](#string) |  | 头像地址 |
+| text | [string](#string) |  | 聊天内容 |
 
 
 
@@ -8302,35 +8362,87 @@ Service of stat
 <a name="svc-infra-link-PayloadStreamerOffline"></a>
 
 ### PayloadStreamerOffline
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| forbid | [string](#string) |  | 被封禁下播的原因 |
-
-
-
-
-
-
-<a name="svc-infra-link-PayloadUserCommDm"></a>
-
-### PayloadUserCommDm
-用户普通聊天消息
+主播下播
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| uid | [string](#string) |  | 用户UID |
-| nickname | [string](#string) |  | 昵称 |
-| avatar | [string](#string) |  | 头像地址 |
+| forbid | [string](#string) |  | 被封禁下播的原因, 为空说明正常下播 |
+
+
+
+
+
+
+<a name="svc-infra-link-PayloadStreamerRoomCharm"></a>
+
+### PayloadStreamerRoomCharm
+主播房间魅力值变化
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| charm | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-link-PayloadStreamerRoomRank"></a>
+
+### PayloadStreamerRoomRank
+主播房间粉丝榜单变化
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| rank | [int64](#int64) |  |  |
+| uid | [string](#string) |  |  |
+| nickname | [string](#string) |  |  |
+| avatar | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-link-PayloadStreamerStartLive"></a>
+
+### PayloadStreamerStartLive
+主播开播
+
+
+
+
+
+
+<a name="svc-infra-link-PayloadUserDm"></a>
+
+### PayloadUserDm
+用户弹幕
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| user | [BasicUser](#svc-infra-link-BasicUser) |  | 基础信息 |
+| is_paid | [bool](#bool) |  | 是否是付费弹幕 |
 | text | [string](#string) |  | 聊天内容 |
-| is_room_adm | [bool](#bool) |  | 房管 |
-| is_super_adm | [bool](#bool) |  | 是否超管 |
-| charm | [PayloadCharm](#svc-infra-link-PayloadCharm) |  | 魅力值 |
-| fans | [PayloadFans](#svc-infra-link-PayloadFans) |  | 粉丝信息 |
-| guard | [PayloadGuard](#svc-infra-link-PayloadGuard) |  | 守护信息 |
+
+
+
+
+
+
+<a name="svc-infra-link-PayloadUserForbid"></a>
+
+### PayloadUserForbid
+用户被禁言
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| user | [BasicUser](#svc-infra-link-BasicUser) |  | 基础信息 |
 
 
 
@@ -8345,32 +8457,123 @@ Service of stat
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| uid | [string](#string) |  | 送礼人ID |
-| nickname | [string](#string) |  | 送礼人昵称 |
-| avatar | [string](#string) |  | 送礼人头像 |
+| user | [BasicUser](#svc-infra-link-BasicUser) |  | 基础信息 |
 | count | [int32](#int32) |  | 礼物数量 |
 | combo | [int32](#int32) |  | combo数 |
+| combo_group | [string](#string) |  | combo组 |
 | name | [string](#string) |  | 礼物名称 |
 | icon | [string](#string) |  | 礼物icon |
 | gift_id | [string](#string) |  | 礼物ID |
+| is_animation | [bool](#bool) |  | 是否动画礼物 |
 
 
 
 
 
 
-<a name="svc-infra-link-PayloadWrap"></a>
+<a name="svc-infra-link-PayloadUserKickRoom"></a>
 
-### PayloadWrap
-Payload容器
+### PayloadUserKickRoom
+用户被踢出房间
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| i | [int64](#int64) |  |  |
-| t | [int32](#int32) |  |  |
-| p | [int32](#int32) |  |  |
-| d | [string](#string) |  |  |
+| user | [BasicUser](#svc-infra-link-BasicUser) |  | 基础信息 |
+
+
+
+
+
+
+<a name="svc-infra-link-PayloadUserLevelUp"></a>
+
+### PayloadUserLevelUp
+用户等级升级
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| user | [BasicUser](#svc-infra-link-BasicUser) |  | 基础信息 |
+
+
+
+
+
+
+<a name="svc-infra-link-PayloadUserRoomAdm"></a>
+
+### PayloadUserRoomAdm
+用户被设置成房管
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| user | [BasicUser](#svc-infra-link-BasicUser) |  | 基础信息 |
+
+
+
+
+
+
+<a name="svc-infra-link-PayloadUserRoomCancelAdm"></a>
+
+### PayloadUserRoomCancelAdm
+用户被取消房管
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| user | [BasicUser](#svc-infra-link-BasicUser) |  | 基础信息 |
+
+
+
+
+
+
+<a name="svc-infra-link-PayloadUserSubUnSubscribe"></a>
+
+### PayloadUserSubUnSubscribe
+用户关注主播
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| user | [BasicUser](#svc-infra-link-BasicUser) |  | 基础信息 |
+
+
+
+
+
+
+<a name="svc-infra-link-Receiver"></a>
+
+### Receiver
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| uid | [string](#string) |  | 用户UID |
+| nickname | [string](#string) |  | 昵称 |
+| avatar | [string](#string) |  | 头像地址 |
+
+
+
+
+
+
+<a name="svc-infra-link-Sender"></a>
+
+### Sender
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| uid | [string](#string) |  | 用户UID |
+| nickname | [string](#string) |  | 昵称 |
+| avatar | [string](#string) |  | 头像地址 |
 
 
 
@@ -8391,6 +8594,20 @@ Payload容器
 
 
 
+<a name="svc-infra-link-LevelType"></a>
+
+### LevelType
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| LevelUnKnow | 0 |  |
+| Charm | 1 |  |
+| Fans | 2 |  |
+| Guard | 3 |  |
+
+
+
 <a name="svc-infra-link-PayloadType"></a>
 
 ### PayloadType
@@ -8400,18 +8617,24 @@ Payload容器
 | ---- | ------ | ----------- |
 | StreamerDm | 0 | 主播弹幕 |
 | UserCommDm | 1 | 普通弹幕 |
-| UserVipDm | 2 | 付费弹幕 |
 | UserGift | 3 | 用户送礼 |
 | UserOpenFans | 4 | 开通粉丝团 |
-| UserOpenGz | 5 | 开通贵族 |
+| UserOpenNoble | 5 | 开通贵族 |
 | EnterRoom | 6 | 用户进入房间 |
 | StreamerNotice | 7 | 主播公告通知 |
-| StreamerCard | 8 | 主播名片通知 |
 | UserKickRoom | 13 | 踢出房间 |
 | StreamerOffline | 14 | 主播下播 |
 | StreamerOnline | 15 | 主播开播 |
-| StreamerPause | 16 | 主播暂停 |
-| StreamerResume | 17 | 主播恢复 |
+| StreamerRoomCharm | 16 | 主播房间魅力值变化 |
+| StreamerRoomRank | 17 | 主播房间粉丝榜单变化 |
+| UserSubscribe | 18 | 用户关注主播 |
+| UserUnSubscribe | 19 | 用户取消关注主播 |
+| UserForbid | 20 | 用户禁言 |
+| UserResetForbid | 21 | 用户解除禁言 |
+| UserRoomAdm | 22 | 用户房管 |
+| UserRoomResetAdm | 23 | 用户撤销房管 |
+| PlatformUserOpenNoble | 100 | 全平台开通贵族通知 |
+| PlatformUserSendGift | 101 | 全平台用户送礼通知 |
 
 
 
@@ -10470,14 +10693,30 @@ WellKnownRegex contain some well-known patterns.
 
 
 
-<a name="svc-infra-generator-InitDBResp"></a>
+<a name="svc-infra-generator-AddIDReq"></a>
 
-### InitDBResp
+### AddIDReq
+Parameters
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| generator | [ID](#svc-infra-generator-ID) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-generator-AddIDResp"></a>
+
+### AddIDResp
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| generator | [ID](#svc-infra-generator-ID) |  |  |
 | result | [bool](#bool) |  |  |
 
 
@@ -10485,24 +10724,27 @@ WellKnownRegex contain some well-known patterns.
 
 
 
-<a name="svc-infra-generator-InitIDGeneratorReq"></a>
+<a name="svc-infra-generator-ID"></a>
 
-### InitIDGeneratorReq
-
+### ID
+Models
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| generator | [string](#string) |  |  |
+| id | [string](#string) |  | 内部ID |
+| name | [string](#string) |  | 生成器名字 |
+| start_numeric | [int64](#int64) |  | 初始ID |
+| current_numeric | [int64](#int64) |  | 当前分配到的ID |
 
 
 
 
 
 
-<a name="svc-infra-generator-InitIDGeneratorResp"></a>
+<a name="svc-infra-generator-InitDBResp"></a>
 
-### InitIDGeneratorResp
+### InitDBResp
 
 
 
@@ -10620,10 +10862,82 @@ WellKnownRegex contain some well-known patterns.
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
 | InitDB | [.google.protobuf.Empty](#google-protobuf-Empty) | [InitDBResp](#svc-infra-generator-InitDBResp) | 初始化数据库 |
-| InitIDGenerator | [InitIDGeneratorReq](#svc-infra-generator-InitIDGeneratorReq) | [InitIDGeneratorResp](#svc-infra-generator-InitIDGeneratorResp) | 初始化ID生成器 |
+| AddID | [AddIDReq](#svc-infra-generator-AddIDReq) | [AddIDResp](#svc-infra-generator-AddIDResp) | 初始化ID生成器 |
 | OrdianID | [OrdianIDReq](#svc-infra-generator-OrdianIDReq) | [OrdianIDResp](#svc-infra-generator-OrdianIDResp) | 预定（占用）ID |
 | NextID | [NextIDReq](#svc-infra-generator-NextIDReq) | [NextIDResp](#svc-infra-generator-NextIDResp) | 顺序获取ID（跳过靓号） |
 | IsPrettyID | [IsPrettyIDReq](#svc-infra-generator-IsPrettyIDReq) | [IsPrettyIDResp](#svc-infra-generator-IsPrettyIDResp) | 判断ID是否靓号 |
+
+ 
+
+
+
+<a name="svc-biz-rank_streamer_rank-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.biz.rank/streamer_rank.proto
+
+
+
+<a name="svc-biz-rank-GetStreamerRankReq"></a>
+
+### GetStreamerRankReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| page | [int32](#int32) |  |  |
+| limit | [int32](#int32) |  |  |
+| rank_period | [StreamerRankPeriod](#svc-biz-rank-StreamerRankPeriod) |  | 排行榜周期 |
+| period_time | [string](#string) |  | 传空则按照当前时间计算（日2006-01-02，月2006-01，周2006-1、使用&#34;-&#34;拼接time.ISOWeek返回值） |
+
+
+
+
+
+
+<a name="svc-biz-rank-GetStreamerRankResp"></a>
+
+### GetStreamerRankResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [RankMemberInfo](#svc-biz-rank-RankMemberInfo) | repeated |  |
+
+
+
+
+
+ 
+
+
+<a name="svc-biz-rank-StreamerRankPeriod"></a>
+
+### StreamerRankPeriod
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| StreamerRankPeriodUnknown | 0 | 未知 |
+| StreamerRankPeriodDay | 1 | 日榜 |
+| StreamerRankPeriodWeek | 2 | 周榜 |
+
+
+ 
+
+ 
+
+
+<a name="svc-biz-rank-StreamerRank"></a>
+
+### StreamerRank
+主播排行
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| GetStreamerRank | [GetStreamerRankReq](#svc-biz-rank-GetStreamerRankReq) | [GetStreamerRankResp](#svc-biz-rank-GetStreamerRankResp) | 获取主播排行榜成员 |
 
  
 
@@ -10747,7 +11061,7 @@ RankMemberInfo 排行榜成员信息
 <a name="svc-biz-rank-StreamerViewerRank"></a>
 
 ### StreamerViewerRank
-排行
+主播观众排行
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|

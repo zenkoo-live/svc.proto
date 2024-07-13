@@ -8,7 +8,7 @@ import "google/protobuf/empty.proto";
 service Generator {
     rpc InitDB(google.protobuf.Empty) returns (InitDBResp); // 初始化数据库
 
-    rpc InitIDGenerator(InitIDGeneratorReq) returns (InitIDGeneratorResp); // 初始化ID生成器
+    rpc AddID(AddIDReq) returns (AddIDResp); // 初始化ID生成器
     rpc OrdianID(OrdianIDReq) returns (OrdianIDResp); // 预定（占用）ID
     rpc NextID(NextIDReq) returns (NextIDResp); // 顺序获取ID（跳过靓号）
     rpc IsPrettyID(IsPrettyIDReq) returns (IsPrettyIDResp); // 判断ID是否靓号
@@ -18,11 +18,21 @@ message InitDBResp {
     bool result = 1;
 };
 
-message InitIDGeneratorReq {
-    string generator = 1;
+// Models
+message ID {
+    string id = 1; // 内部ID
+    string name = 2; // 生成器名字
+    int64 start_numeric = 3; // 初始ID
+    int64 current_numeric = 4; // 当前分配到的ID
 };
-message InitIDGeneratorResp {
-    bool result = 1;
+
+// Parameters
+message AddIDReq {
+    ID generator = 1; 
+};
+message AddIDResp {
+    ID generator = 1;
+    bool result = 255;
 };
 
 message OrdianIDReq {

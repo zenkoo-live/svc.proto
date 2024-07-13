@@ -120,59 +120,129 @@ func (CommandType) EnumDescriptor() ([]byte, []int) {
 	return file_svc_infra_link_payload_proto_rawDescGZIP(), []int{1}
 }
 
+type LevelType int32
+
+const (
+	LevelType_LevelUnKnow LevelType = 0
+	LevelType_Charm       LevelType = 1
+	LevelType_Fans        LevelType = 2
+	LevelType_Guard       LevelType = 3
+)
+
+// Enum value maps for LevelType.
+var (
+	LevelType_name = map[int32]string{
+		0: "LevelUnKnow",
+		1: "Charm",
+		2: "Fans",
+		3: "Guard",
+	}
+	LevelType_value = map[string]int32{
+		"LevelUnKnow": 0,
+		"Charm":       1,
+		"Fans":        2,
+		"Guard":       3,
+	}
+)
+
+func (x LevelType) Enum() *LevelType {
+	p := new(LevelType)
+	*p = x
+	return p
+}
+
+func (x LevelType) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (LevelType) Descriptor() protoreflect.EnumDescriptor {
+	return file_svc_infra_link_payload_proto_enumTypes[2].Descriptor()
+}
+
+func (LevelType) Type() protoreflect.EnumType {
+	return &file_svc_infra_link_payload_proto_enumTypes[2]
+}
+
+func (x LevelType) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use LevelType.Descriptor instead.
+func (LevelType) EnumDescriptor() ([]byte, []int) {
+	return file_svc_infra_link_payload_proto_rawDescGZIP(), []int{2}
+}
+
 // 业务消息类型
 type PayloadType int32
 
 const (
-	PayloadType_StreamerDm      PayloadType = 0  // 主播弹幕
-	PayloadType_UserCommDm      PayloadType = 1  // 普通弹幕
-	PayloadType_UserVipDm       PayloadType = 2  // 付费弹幕
-	PayloadType_UserGift        PayloadType = 3  // 用户送礼
-	PayloadType_UserOpenFans    PayloadType = 4  // 开通粉丝团
-	PayloadType_UserOpenGz      PayloadType = 5  // 开通贵族
-	PayloadType_EnterRoom       PayloadType = 6  // 用户进入房间
-	PayloadType_StreamerNotice  PayloadType = 7  // 主播公告通知
-	PayloadType_StreamerCard    PayloadType = 8  // 主播名片通知
-	PayloadType_UserKickRoom    PayloadType = 13 // 踢出房间
-	PayloadType_StreamerOffline PayloadType = 14 // 主播下播
-	PayloadType_StreamerOnline  PayloadType = 15 // 主播开播
-	PayloadType_StreamerPause   PayloadType = 16 // 主播暂停
-	PayloadType_StreamerResume  PayloadType = 17 // 主播恢复
+	PayloadType_StreamerDm            PayloadType = 0   // 主播弹幕
+	PayloadType_UserCommDm            PayloadType = 1   // 普通弹幕
+	PayloadType_UserGift              PayloadType = 3   // 用户送礼
+	PayloadType_UserOpenFans          PayloadType = 4   // 开通粉丝团
+	PayloadType_UserOpenNoble         PayloadType = 5   // 开通贵族
+	PayloadType_EnterRoom             PayloadType = 6   // 用户进入房间
+	PayloadType_StreamerNotice        PayloadType = 7   // 主播公告通知
+	PayloadType_UserKickRoom          PayloadType = 13  // 踢出房间
+	PayloadType_StreamerOffline       PayloadType = 14  // 主播下播
+	PayloadType_StreamerOnline        PayloadType = 15  // 主播开播
+	PayloadType_StreamerRoomCharm     PayloadType = 16  // 主播房间魅力值变化
+	PayloadType_StreamerRoomRank      PayloadType = 17  // 主播房间粉丝榜单变化
+	PayloadType_UserSubscribe         PayloadType = 18  // 用户关注主播
+	PayloadType_UserUnSubscribe       PayloadType = 19  // 用户取消关注主播
+	PayloadType_UserForbid            PayloadType = 20  // 用户禁言
+	PayloadType_UserResetForbid       PayloadType = 21  // 用户解除禁言
+	PayloadType_UserRoomAdm           PayloadType = 22  // 用户房管
+	PayloadType_UserRoomResetAdm      PayloadType = 23  // 用户撤销房管
+	PayloadType_PlatformUserOpenNoble PayloadType = 100 // 全平台开通贵族通知
+	PayloadType_PlatformUserSendGift  PayloadType = 101 // 全平台用户送礼通知
 )
 
 // Enum value maps for PayloadType.
 var (
 	PayloadType_name = map[int32]string{
-		0:  "StreamerDm",
-		1:  "UserCommDm",
-		2:  "UserVipDm",
-		3:  "UserGift",
-		4:  "UserOpenFans",
-		5:  "UserOpenGz",
-		6:  "EnterRoom",
-		7:  "StreamerNotice",
-		8:  "StreamerCard",
-		13: "UserKickRoom",
-		14: "StreamerOffline",
-		15: "StreamerOnline",
-		16: "StreamerPause",
-		17: "StreamerResume",
+		0:   "StreamerDm",
+		1:   "UserCommDm",
+		3:   "UserGift",
+		4:   "UserOpenFans",
+		5:   "UserOpenNoble",
+		6:   "EnterRoom",
+		7:   "StreamerNotice",
+		13:  "UserKickRoom",
+		14:  "StreamerOffline",
+		15:  "StreamerOnline",
+		16:  "StreamerRoomCharm",
+		17:  "StreamerRoomRank",
+		18:  "UserSubscribe",
+		19:  "UserUnSubscribe",
+		20:  "UserForbid",
+		21:  "UserResetForbid",
+		22:  "UserRoomAdm",
+		23:  "UserRoomResetAdm",
+		100: "PlatformUserOpenNoble",
+		101: "PlatformUserSendGift",
 	}
 	PayloadType_value = map[string]int32{
-		"StreamerDm":      0,
-		"UserCommDm":      1,
-		"UserVipDm":       2,
-		"UserGift":        3,
-		"UserOpenFans":    4,
-		"UserOpenGz":      5,
-		"EnterRoom":       6,
-		"StreamerNotice":  7,
-		"StreamerCard":    8,
-		"UserKickRoom":    13,
-		"StreamerOffline": 14,
-		"StreamerOnline":  15,
-		"StreamerPause":   16,
-		"StreamerResume":  17,
+		"StreamerDm":            0,
+		"UserCommDm":            1,
+		"UserGift":              3,
+		"UserOpenFans":          4,
+		"UserOpenNoble":         5,
+		"EnterRoom":             6,
+		"StreamerNotice":        7,
+		"UserKickRoom":          13,
+		"StreamerOffline":       14,
+		"StreamerOnline":        15,
+		"StreamerRoomCharm":     16,
+		"StreamerRoomRank":      17,
+		"UserSubscribe":         18,
+		"UserUnSubscribe":       19,
+		"UserForbid":            20,
+		"UserResetForbid":       21,
+		"UserRoomAdm":           22,
+		"UserRoomResetAdm":      23,
+		"PlatformUserOpenNoble": 100,
+		"PlatformUserSendGift":  101,
 	}
 )
 
@@ -187,11 +257,11 @@ func (x PayloadType) String() string {
 }
 
 func (PayloadType) Descriptor() protoreflect.EnumDescriptor {
-	return file_svc_infra_link_payload_proto_enumTypes[2].Descriptor()
+	return file_svc_infra_link_payload_proto_enumTypes[3].Descriptor()
 }
 
 func (PayloadType) Type() protoreflect.EnumType {
-	return &file_svc_infra_link_payload_proto_enumTypes[2]
+	return &file_svc_infra_link_payload_proto_enumTypes[3]
 }
 
 func (x PayloadType) Number() protoreflect.EnumNumber {
@@ -200,7 +270,374 @@ func (x PayloadType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use PayloadType.Descriptor instead.
 func (PayloadType) EnumDescriptor() ([]byte, []int) {
+	return file_svc_infra_link_payload_proto_rawDescGZIP(), []int{3}
+}
+
+// 基础用户信息, 弹幕，送礼，进房房间开通贵族，粉丝都需要用户基础信息
+type BasicUser struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Uid        string `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`                                    // 用户UID
+	Nickname   string `protobuf:"bytes,2,opt,name=nickname,proto3" json:"nickname,omitempty"`                          // 昵称
+	Avatar     string `protobuf:"bytes,3,opt,name=avatar,proto3" json:"avatar,omitempty"`                              // 头像地址
+	IsRoomAdm  bool   `protobuf:"varint,4,opt,name=is_room_adm,json=isRoomAdm,proto3" json:"is_room_adm,omitempty"`    // 房管
+	IsSuperAdm bool   `protobuf:"varint,5,opt,name=is_super_adm,json=isSuperAdm,proto3" json:"is_super_adm,omitempty"` // 是否超管
+	Level      int32  `protobuf:"varint,6,opt,name=level,proto3" json:"level,omitempty"`                               // 用户等级
+	FansGroup  int32  `protobuf:"varint,7,opt,name=fans_group,json=fansGroup,proto3" json:"fans_group,omitempty"`      // 粉丝团阶段, 0代表无粉团, 1代表初级, 2超级, 3至尊
+	Noble      int32  `protobuf:"varint,8,opt,name=noble,proto3" json:"noble,omitempty"`                               // 贵族阶段 0代表无, 1 骑士， 2子爵，3伯爵，4侯爵，5公爵，6国王
+}
+
+func (x *BasicUser) Reset() {
+	*x = BasicUser{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_infra_link_payload_proto_msgTypes[0]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *BasicUser) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BasicUser) ProtoMessage() {}
+
+func (x *BasicUser) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_infra_link_payload_proto_msgTypes[0]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BasicUser.ProtoReflect.Descriptor instead.
+func (*BasicUser) Descriptor() ([]byte, []int) {
+	return file_svc_infra_link_payload_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *BasicUser) GetUid() string {
+	if x != nil {
+		return x.Uid
+	}
+	return ""
+}
+
+func (x *BasicUser) GetNickname() string {
+	if x != nil {
+		return x.Nickname
+	}
+	return ""
+}
+
+func (x *BasicUser) GetAvatar() string {
+	if x != nil {
+		return x.Avatar
+	}
+	return ""
+}
+
+func (x *BasicUser) GetIsRoomAdm() bool {
+	if x != nil {
+		return x.IsRoomAdm
+	}
+	return false
+}
+
+func (x *BasicUser) GetIsSuperAdm() bool {
+	if x != nil {
+		return x.IsSuperAdm
+	}
+	return false
+}
+
+func (x *BasicUser) GetLevel() int32 {
+	if x != nil {
+		return x.Level
+	}
+	return 0
+}
+
+func (x *BasicUser) GetFansGroup() int32 {
+	if x != nil {
+		return x.FansGroup
+	}
+	return 0
+}
+
+func (x *BasicUser) GetNoble() int32 {
+	if x != nil {
+		return x.Noble
+	}
+	return 0
+}
+
+type Sender struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Uid      string `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`           // 用户UID
+	Nickname string `protobuf:"bytes,2,opt,name=nickname,proto3" json:"nickname,omitempty"` // 昵称
+	Avatar   string `protobuf:"bytes,3,opt,name=avatar,proto3" json:"avatar,omitempty"`     // 头像地址
+}
+
+func (x *Sender) Reset() {
+	*x = Sender{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_infra_link_payload_proto_msgTypes[1]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Sender) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Sender) ProtoMessage() {}
+
+func (x *Sender) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_infra_link_payload_proto_msgTypes[1]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Sender.ProtoReflect.Descriptor instead.
+func (*Sender) Descriptor() ([]byte, []int) {
+	return file_svc_infra_link_payload_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *Sender) GetUid() string {
+	if x != nil {
+		return x.Uid
+	}
+	return ""
+}
+
+func (x *Sender) GetNickname() string {
+	if x != nil {
+		return x.Nickname
+	}
+	return ""
+}
+
+func (x *Sender) GetAvatar() string {
+	if x != nil {
+		return x.Avatar
+	}
+	return ""
+}
+
+type Receiver struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Uid      string `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`           // 用户UID
+	Nickname string `protobuf:"bytes,2,opt,name=nickname,proto3" json:"nickname,omitempty"` // 昵称
+	Avatar   string `protobuf:"bytes,3,opt,name=avatar,proto3" json:"avatar,omitempty"`     // 头像地址
+}
+
+func (x *Receiver) Reset() {
+	*x = Receiver{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_infra_link_payload_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Receiver) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Receiver) ProtoMessage() {}
+
+func (x *Receiver) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_infra_link_payload_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Receiver.ProtoReflect.Descriptor instead.
+func (*Receiver) Descriptor() ([]byte, []int) {
 	return file_svc_infra_link_payload_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *Receiver) GetUid() string {
+	if x != nil {
+		return x.Uid
+	}
+	return ""
+}
+
+func (x *Receiver) GetNickname() string {
+	if x != nil {
+		return x.Nickname
+	}
+	return ""
+}
+
+func (x *Receiver) GetAvatar() string {
+	if x != nil {
+		return x.Avatar
+	}
+	return ""
+}
+
+// /////////////////////// 消息下发 payload //////////////////////////////
+// 主播弹幕
+type PayloadStreamerDm struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Uid      string `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`           // 用户UID
+	Nickname string `protobuf:"bytes,2,opt,name=nickname,proto3" json:"nickname,omitempty"` // 昵称
+	Avatar   string `protobuf:"bytes,3,opt,name=avatar,proto3" json:"avatar,omitempty"`     // 头像地址
+	Text     string `protobuf:"bytes,4,opt,name=text,proto3" json:"text,omitempty"`         // 聊天内容
+}
+
+func (x *PayloadStreamerDm) Reset() {
+	*x = PayloadStreamerDm{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_infra_link_payload_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *PayloadStreamerDm) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PayloadStreamerDm) ProtoMessage() {}
+
+func (x *PayloadStreamerDm) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_infra_link_payload_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PayloadStreamerDm.ProtoReflect.Descriptor instead.
+func (*PayloadStreamerDm) Descriptor() ([]byte, []int) {
+	return file_svc_infra_link_payload_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *PayloadStreamerDm) GetUid() string {
+	if x != nil {
+		return x.Uid
+	}
+	return ""
+}
+
+func (x *PayloadStreamerDm) GetNickname() string {
+	if x != nil {
+		return x.Nickname
+	}
+	return ""
+}
+
+func (x *PayloadStreamerDm) GetAvatar() string {
+	if x != nil {
+		return x.Avatar
+	}
+	return ""
+}
+
+func (x *PayloadStreamerDm) GetText() string {
+	if x != nil {
+		return x.Text
+	}
+	return ""
+}
+
+// 用户弹幕
+type PayloadUserDm struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	User   *BasicUser `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`                    // 基础信息
+	IsPaid bool       `protobuf:"varint,2,opt,name=is_paid,json=isPaid,proto3" json:"is_paid,omitempty"` // 是否是付费弹幕
+	Text   string     `protobuf:"bytes,3,opt,name=text,proto3" json:"text,omitempty"`                    // 聊天内容
+}
+
+func (x *PayloadUserDm) Reset() {
+	*x = PayloadUserDm{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_infra_link_payload_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *PayloadUserDm) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PayloadUserDm) ProtoMessage() {}
+
+func (x *PayloadUserDm) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_infra_link_payload_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PayloadUserDm.ProtoReflect.Descriptor instead.
+func (*PayloadUserDm) Descriptor() ([]byte, []int) {
+	return file_svc_infra_link_payload_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *PayloadUserDm) GetUser() *BasicUser {
+	if x != nil {
+		return x.User
+	}
+	return nil
+}
+
+func (x *PayloadUserDm) GetIsPaid() bool {
+	if x != nil {
+		return x.IsPaid
+	}
+	return false
+}
+
+func (x *PayloadUserDm) GetText() string {
+	if x != nil {
+		return x.Text
+	}
+	return ""
 }
 
 // 用户送礼
@@ -209,20 +646,20 @@ type PayloadUserGift struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Uid      string `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`                     // 送礼人ID
-	Nickname string `protobuf:"bytes,2,opt,name=nickname,proto3" json:"nickname,omitempty"`           // 送礼人昵称
-	Avatar   string `protobuf:"bytes,3,opt,name=avatar,proto3" json:"avatar,omitempty"`               // 送礼人头像
-	Count    int32  `protobuf:"varint,4,opt,name=count,proto3" json:"count,omitempty"`                // 礼物数量
-	Combo    int32  `protobuf:"varint,5,opt,name=combo,proto3" json:"combo,omitempty"`                // combo数
-	Name     string `protobuf:"bytes,6,opt,name=name,proto3" json:"name,omitempty"`                   // 礼物名称
-	Icon     string `protobuf:"bytes,7,opt,name=icon,proto3" json:"icon,omitempty"`                   // 礼物icon
-	GiftId   string `protobuf:"bytes,8,opt,name=gift_id,json=giftId,proto3" json:"gift_id,omitempty"` // 礼物ID
+	User        *BasicUser `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`                                   // 基础信息
+	Count       int32      `protobuf:"varint,2,opt,name=count,proto3" json:"count,omitempty"`                                // 礼物数量
+	Combo       int32      `protobuf:"varint,3,opt,name=combo,proto3" json:"combo,omitempty"`                                // combo数
+	ComboGroup  string     `protobuf:"bytes,4,opt,name=combo_group,json=comboGroup,proto3" json:"combo_group,omitempty"`     // combo组
+	Name        string     `protobuf:"bytes,5,opt,name=name,proto3" json:"name,omitempty"`                                   // 礼物名称
+	Icon        string     `protobuf:"bytes,6,opt,name=icon,proto3" json:"icon,omitempty"`                                   // 礼物icon
+	GiftId      string     `protobuf:"bytes,7,opt,name=gift_id,json=giftId,proto3" json:"gift_id,omitempty"`                 // 礼物ID
+	IsAnimation bool       `protobuf:"varint,8,opt,name=is_animation,json=isAnimation,proto3" json:"is_animation,omitempty"` // 是否动画礼物
 }
 
 func (x *PayloadUserGift) Reset() {
 	*x = PayloadUserGift{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_svc_infra_link_payload_proto_msgTypes[0]
+		mi := &file_svc_infra_link_payload_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -235,7 +672,7 @@ func (x *PayloadUserGift) String() string {
 func (*PayloadUserGift) ProtoMessage() {}
 
 func (x *PayloadUserGift) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_infra_link_payload_proto_msgTypes[0]
+	mi := &file_svc_infra_link_payload_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -248,28 +685,14 @@ func (x *PayloadUserGift) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PayloadUserGift.ProtoReflect.Descriptor instead.
 func (*PayloadUserGift) Descriptor() ([]byte, []int) {
-	return file_svc_infra_link_payload_proto_rawDescGZIP(), []int{0}
+	return file_svc_infra_link_payload_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *PayloadUserGift) GetUid() string {
+func (x *PayloadUserGift) GetUser() *BasicUser {
 	if x != nil {
-		return x.Uid
+		return x.User
 	}
-	return ""
-}
-
-func (x *PayloadUserGift) GetNickname() string {
-	if x != nil {
-		return x.Nickname
-	}
-	return ""
-}
-
-func (x *PayloadUserGift) GetAvatar() string {
-	if x != nil {
-		return x.Avatar
-	}
-	return ""
+	return nil
 }
 
 func (x *PayloadUserGift) GetCount() int32 {
@@ -284,6 +707,13 @@ func (x *PayloadUserGift) GetCombo() int32 {
 		return x.Combo
 	}
 	return 0
+}
+
+func (x *PayloadUserGift) GetComboGroup() string {
+	if x != nil {
+		return x.ComboGroup
+	}
+	return ""
 }
 
 func (x *PayloadUserGift) GetName() string {
@@ -307,26 +737,130 @@ func (x *PayloadUserGift) GetGiftId() string {
 	return ""
 }
 
-// 进入房间
+func (x *PayloadUserGift) GetIsAnimation() bool {
+	if x != nil {
+		return x.IsAnimation
+	}
+	return false
+}
+
+// 用户开通粉丝团
+type PayloadOpenFansGroup struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	User *BasicUser `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`  // 基础信息
+	Rank int64      `protobuf:"varint,2,opt,name=rank,proto3" json:"rank,omitempty"` // 开通的排名
+}
+
+func (x *PayloadOpenFansGroup) Reset() {
+	*x = PayloadOpenFansGroup{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_infra_link_payload_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *PayloadOpenFansGroup) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PayloadOpenFansGroup) ProtoMessage() {}
+
+func (x *PayloadOpenFansGroup) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_infra_link_payload_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PayloadOpenFansGroup.ProtoReflect.Descriptor instead.
+func (*PayloadOpenFansGroup) Descriptor() ([]byte, []int) {
+	return file_svc_infra_link_payload_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *PayloadOpenFansGroup) GetUser() *BasicUser {
+	if x != nil {
+		return x.User
+	}
+	return nil
+}
+
+func (x *PayloadOpenFansGroup) GetRank() int64 {
+	if x != nil {
+		return x.Rank
+	}
+	return 0
+}
+
+// 用户开通贵族
+type PayloadOpenNoble struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	User *BasicUser `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"` // 基础信息
+}
+
+func (x *PayloadOpenNoble) Reset() {
+	*x = PayloadOpenNoble{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_infra_link_payload_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *PayloadOpenNoble) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PayloadOpenNoble) ProtoMessage() {}
+
+func (x *PayloadOpenNoble) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_infra_link_payload_proto_msgTypes[7]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PayloadOpenNoble.ProtoReflect.Descriptor instead.
+func (*PayloadOpenNoble) Descriptor() ([]byte, []int) {
+	return file_svc_infra_link_payload_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *PayloadOpenNoble) GetUser() *BasicUser {
+	if x != nil {
+		return x.User
+	}
+	return nil
+}
+
+// 用户进入房间
 type PayloadEnterRoom struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Uid        string        `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`                                    // 用户UID
-	Nickname   string        `protobuf:"bytes,2,opt,name=nickname,proto3" json:"nickname,omitempty"`                          // 昵称
-	Avatar     string        `protobuf:"bytes,3,opt,name=avatar,proto3" json:"avatar,omitempty"`                              // 头像地址
-	IsRoomAdm  bool          `protobuf:"varint,4,opt,name=is_room_adm,json=isRoomAdm,proto3" json:"is_room_adm,omitempty"`    // 房管
-	IsSuperAdm bool          `protobuf:"varint,5,opt,name=is_super_adm,json=isSuperAdm,proto3" json:"is_super_adm,omitempty"` // 是否超管
-	Charm      *PayloadCharm `protobuf:"bytes,6,opt,name=charm,proto3" json:"charm,omitempty"`                                // 魅力值
-	Fans       *PayloadFans  `protobuf:"bytes,7,opt,name=fans,proto3" json:"fans,omitempty"`                                  // 粉丝信息
-	Guard      *PayloadGuard `protobuf:"bytes,8,opt,name=guard,proto3" json:"guard,omitempty"`                                // 守护信息
+	User *BasicUser `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"` // 基础信息
 }
 
 func (x *PayloadEnterRoom) Reset() {
 	*x = PayloadEnterRoom{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_svc_infra_link_payload_proto_msgTypes[1]
+		mi := &file_svc_infra_link_payload_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -339,7 +873,7 @@ func (x *PayloadEnterRoom) String() string {
 func (*PayloadEnterRoom) ProtoMessage() {}
 
 func (x *PayloadEnterRoom) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_infra_link_payload_proto_msgTypes[1]
+	mi := &file_svc_infra_link_payload_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -352,66 +886,17 @@ func (x *PayloadEnterRoom) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PayloadEnterRoom.ProtoReflect.Descriptor instead.
 func (*PayloadEnterRoom) Descriptor() ([]byte, []int) {
-	return file_svc_infra_link_payload_proto_rawDescGZIP(), []int{1}
+	return file_svc_infra_link_payload_proto_rawDescGZIP(), []int{8}
 }
 
-func (x *PayloadEnterRoom) GetUid() string {
+func (x *PayloadEnterRoom) GetUser() *BasicUser {
 	if x != nil {
-		return x.Uid
-	}
-	return ""
-}
-
-func (x *PayloadEnterRoom) GetNickname() string {
-	if x != nil {
-		return x.Nickname
-	}
-	return ""
-}
-
-func (x *PayloadEnterRoom) GetAvatar() string {
-	if x != nil {
-		return x.Avatar
-	}
-	return ""
-}
-
-func (x *PayloadEnterRoom) GetIsRoomAdm() bool {
-	if x != nil {
-		return x.IsRoomAdm
-	}
-	return false
-}
-
-func (x *PayloadEnterRoom) GetIsSuperAdm() bool {
-	if x != nil {
-		return x.IsSuperAdm
-	}
-	return false
-}
-
-func (x *PayloadEnterRoom) GetCharm() *PayloadCharm {
-	if x != nil {
-		return x.Charm
+		return x.User
 	}
 	return nil
 }
 
-func (x *PayloadEnterRoom) GetFans() *PayloadFans {
-	if x != nil {
-		return x.Fans
-	}
-	return nil
-}
-
-func (x *PayloadEnterRoom) GetGuard() *PayloadGuard {
-	if x != nil {
-		return x.Guard
-	}
-	return nil
-}
-
-// 公告
+// 主播房间公告
 type PayloadStreamNotice struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -423,7 +908,7 @@ type PayloadStreamNotice struct {
 func (x *PayloadStreamNotice) Reset() {
 	*x = PayloadStreamNotice{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_svc_infra_link_payload_proto_msgTypes[2]
+		mi := &file_svc_infra_link_payload_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -436,7 +921,7 @@ func (x *PayloadStreamNotice) String() string {
 func (*PayloadStreamNotice) ProtoMessage() {}
 
 func (x *PayloadStreamNotice) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_infra_link_payload_proto_msgTypes[2]
+	mi := &file_svc_infra_link_payload_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -449,7 +934,7 @@ func (x *PayloadStreamNotice) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PayloadStreamNotice.ProtoReflect.Descriptor instead.
 func (*PayloadStreamNotice) Descriptor() ([]byte, []int) {
-	return file_svc_infra_link_payload_proto_rawDescGZIP(), []int{2}
+	return file_svc_infra_link_payload_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *PayloadStreamNotice) GetText() string {
@@ -459,30 +944,30 @@ func (x *PayloadStreamNotice) GetText() string {
 	return ""
 }
 
-// 名片包装
-type PayloadStreamerCard struct {
+// 主播开播
+type PayloadStreamerStartLive struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 }
 
-func (x *PayloadStreamerCard) Reset() {
-	*x = PayloadStreamerCard{}
+func (x *PayloadStreamerStartLive) Reset() {
+	*x = PayloadStreamerStartLive{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_svc_infra_link_payload_proto_msgTypes[3]
+		mi := &file_svc_infra_link_payload_proto_msgTypes[10]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
 }
 
-func (x *PayloadStreamerCard) String() string {
+func (x *PayloadStreamerStartLive) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*PayloadStreamerCard) ProtoMessage() {}
+func (*PayloadStreamerStartLive) ProtoMessage() {}
 
-func (x *PayloadStreamerCard) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_infra_link_payload_proto_msgTypes[3]
+func (x *PayloadStreamerStartLive) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_infra_link_payload_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -493,23 +978,24 @@ func (x *PayloadStreamerCard) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use PayloadStreamerCard.ProtoReflect.Descriptor instead.
-func (*PayloadStreamerCard) Descriptor() ([]byte, []int) {
-	return file_svc_infra_link_payload_proto_rawDescGZIP(), []int{3}
+// Deprecated: Use PayloadStreamerStartLive.ProtoReflect.Descriptor instead.
+func (*PayloadStreamerStartLive) Descriptor() ([]byte, []int) {
+	return file_svc_infra_link_payload_proto_rawDescGZIP(), []int{10}
 }
 
+// 主播下播
 type PayloadStreamerOffline struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Forbid string `protobuf:"bytes,1,opt,name=forbid,proto3" json:"forbid,omitempty"` // 被封禁下播的原因
+	Forbid string `protobuf:"bytes,1,opt,name=forbid,proto3" json:"forbid,omitempty"` // 被封禁下播的原因, 为空说明正常下播
 }
 
 func (x *PayloadStreamerOffline) Reset() {
 	*x = PayloadStreamerOffline{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_svc_infra_link_payload_proto_msgTypes[4]
+		mi := &file_svc_infra_link_payload_proto_msgTypes[11]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -522,7 +1008,7 @@ func (x *PayloadStreamerOffline) String() string {
 func (*PayloadStreamerOffline) ProtoMessage() {}
 
 func (x *PayloadStreamerOffline) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_infra_link_payload_proto_msgTypes[4]
+	mi := &file_svc_infra_link_payload_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -535,7 +1021,7 @@ func (x *PayloadStreamerOffline) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PayloadStreamerOffline.ProtoReflect.Descriptor instead.
 func (*PayloadStreamerOffline) Descriptor() ([]byte, []int) {
-	return file_svc_infra_link_payload_proto_rawDescGZIP(), []int{4}
+	return file_svc_infra_link_payload_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *PayloadStreamerOffline) GetForbid() string {
@@ -545,35 +1031,32 @@ func (x *PayloadStreamerOffline) GetForbid() string {
 	return ""
 }
 
-// Payload容器
-type PayloadWrap struct {
+// 主播房间魅力值变化
+type PayloadStreamerRoomCharm struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	I int64  `protobuf:"varint,1,opt,name=i,proto3" json:"i,omitempty"`
-	T int32  `protobuf:"varint,2,opt,name=t,proto3" json:"t,omitempty"`
-	P int32  `protobuf:"varint,3,opt,name=p,proto3" json:"p,omitempty"`
-	D string `protobuf:"bytes,11,opt,name=d,proto3" json:"d,omitempty"`
+	Charm int64 `protobuf:"varint,1,opt,name=charm,proto3" json:"charm,omitempty"`
 }
 
-func (x *PayloadWrap) Reset() {
-	*x = PayloadWrap{}
+func (x *PayloadStreamerRoomCharm) Reset() {
+	*x = PayloadStreamerRoomCharm{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_svc_infra_link_payload_proto_msgTypes[5]
+		mi := &file_svc_infra_link_payload_proto_msgTypes[12]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
 }
 
-func (x *PayloadWrap) String() string {
+func (x *PayloadStreamerRoomCharm) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*PayloadWrap) ProtoMessage() {}
+func (*PayloadStreamerRoomCharm) ProtoMessage() {}
 
-func (x *PayloadWrap) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_infra_link_payload_proto_msgTypes[5]
+func (x *PayloadStreamerRoomCharm) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_infra_link_payload_proto_msgTypes[12]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -584,336 +1067,486 @@ func (x *PayloadWrap) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use PayloadWrap.ProtoReflect.Descriptor instead.
-func (*PayloadWrap) Descriptor() ([]byte, []int) {
-	return file_svc_infra_link_payload_proto_rawDescGZIP(), []int{5}
+// Deprecated: Use PayloadStreamerRoomCharm.ProtoReflect.Descriptor instead.
+func (*PayloadStreamerRoomCharm) Descriptor() ([]byte, []int) {
+	return file_svc_infra_link_payload_proto_rawDescGZIP(), []int{12}
 }
 
-func (x *PayloadWrap) GetI() int64 {
-	if x != nil {
-		return x.I
-	}
-	return 0
-}
-
-func (x *PayloadWrap) GetT() int32 {
-	if x != nil {
-		return x.T
-	}
-	return 0
-}
-
-func (x *PayloadWrap) GetP() int32 {
-	if x != nil {
-		return x.P
-	}
-	return 0
-}
-
-func (x *PayloadWrap) GetD() string {
-	if x != nil {
-		return x.D
-	}
-	return ""
-}
-
-// 守护消息
-type PayloadGuard struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-}
-
-func (x *PayloadGuard) Reset() {
-	*x = PayloadGuard{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_svc_infra_link_payload_proto_msgTypes[6]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *PayloadGuard) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*PayloadGuard) ProtoMessage() {}
-
-func (x *PayloadGuard) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_infra_link_payload_proto_msgTypes[6]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use PayloadGuard.ProtoReflect.Descriptor instead.
-func (*PayloadGuard) Descriptor() ([]byte, []int) {
-	return file_svc_infra_link_payload_proto_rawDescGZIP(), []int{6}
-}
-
-// 粉丝消息
-type PayloadFans struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-}
-
-func (x *PayloadFans) Reset() {
-	*x = PayloadFans{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_svc_infra_link_payload_proto_msgTypes[7]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *PayloadFans) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*PayloadFans) ProtoMessage() {}
-
-func (x *PayloadFans) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_infra_link_payload_proto_msgTypes[7]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use PayloadFans.ProtoReflect.Descriptor instead.
-func (*PayloadFans) Descriptor() ([]byte, []int) {
-	return file_svc_infra_link_payload_proto_rawDescGZIP(), []int{7}
-}
-
-// 魅力值
-type PayloadCharm struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-}
-
-func (x *PayloadCharm) Reset() {
-	*x = PayloadCharm{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_svc_infra_link_payload_proto_msgTypes[8]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *PayloadCharm) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*PayloadCharm) ProtoMessage() {}
-
-func (x *PayloadCharm) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_infra_link_payload_proto_msgTypes[8]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use PayloadCharm.ProtoReflect.Descriptor instead.
-func (*PayloadCharm) Descriptor() ([]byte, []int) {
-	return file_svc_infra_link_payload_proto_rawDescGZIP(), []int{8}
-}
-
-// 主播聊天弹幕消息
-type PayloadStreamerDm struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Uid      string `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`           // 用户UID
-	Nickname string `protobuf:"bytes,2,opt,name=nickname,proto3" json:"nickname,omitempty"` // 昵称
-	Text     string `protobuf:"bytes,3,opt,name=text,proto3" json:"text,omitempty"`         // 聊天内容
-	Avatar   string `protobuf:"bytes,4,opt,name=avatar,proto3" json:"avatar,omitempty"`     // 头像地址
-}
-
-func (x *PayloadStreamerDm) Reset() {
-	*x = PayloadStreamerDm{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_svc_infra_link_payload_proto_msgTypes[9]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *PayloadStreamerDm) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*PayloadStreamerDm) ProtoMessage() {}
-
-func (x *PayloadStreamerDm) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_infra_link_payload_proto_msgTypes[9]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use PayloadStreamerDm.ProtoReflect.Descriptor instead.
-func (*PayloadStreamerDm) Descriptor() ([]byte, []int) {
-	return file_svc_infra_link_payload_proto_rawDescGZIP(), []int{9}
-}
-
-func (x *PayloadStreamerDm) GetUid() string {
-	if x != nil {
-		return x.Uid
-	}
-	return ""
-}
-
-func (x *PayloadStreamerDm) GetNickname() string {
-	if x != nil {
-		return x.Nickname
-	}
-	return ""
-}
-
-func (x *PayloadStreamerDm) GetText() string {
-	if x != nil {
-		return x.Text
-	}
-	return ""
-}
-
-func (x *PayloadStreamerDm) GetAvatar() string {
-	if x != nil {
-		return x.Avatar
-	}
-	return ""
-}
-
-// 用户普通聊天消息
-type PayloadUserCommDm struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Uid        string        `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`                                    // 用户UID
-	Nickname   string        `protobuf:"bytes,2,opt,name=nickname,proto3" json:"nickname,omitempty"`                          // 昵称
-	Avatar     string        `protobuf:"bytes,3,opt,name=avatar,proto3" json:"avatar,omitempty"`                              // 头像地址
-	Text       string        `protobuf:"bytes,4,opt,name=text,proto3" json:"text,omitempty"`                                  // 聊天内容
-	IsRoomAdm  bool          `protobuf:"varint,5,opt,name=is_room_adm,json=isRoomAdm,proto3" json:"is_room_adm,omitempty"`    // 房管
-	IsSuperAdm bool          `protobuf:"varint,6,opt,name=is_super_adm,json=isSuperAdm,proto3" json:"is_super_adm,omitempty"` // 是否超管
-	Charm      *PayloadCharm `protobuf:"bytes,7,opt,name=charm,proto3" json:"charm,omitempty"`                                // 魅力值
-	Fans       *PayloadFans  `protobuf:"bytes,8,opt,name=fans,proto3" json:"fans,omitempty"`                                  // 粉丝信息
-	Guard      *PayloadGuard `protobuf:"bytes,9,opt,name=guard,proto3" json:"guard,omitempty"`                                // 守护信息
-}
-
-func (x *PayloadUserCommDm) Reset() {
-	*x = PayloadUserCommDm{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_svc_infra_link_payload_proto_msgTypes[10]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *PayloadUserCommDm) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*PayloadUserCommDm) ProtoMessage() {}
-
-func (x *PayloadUserCommDm) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_infra_link_payload_proto_msgTypes[10]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use PayloadUserCommDm.ProtoReflect.Descriptor instead.
-func (*PayloadUserCommDm) Descriptor() ([]byte, []int) {
-	return file_svc_infra_link_payload_proto_rawDescGZIP(), []int{10}
-}
-
-func (x *PayloadUserCommDm) GetUid() string {
-	if x != nil {
-		return x.Uid
-	}
-	return ""
-}
-
-func (x *PayloadUserCommDm) GetNickname() string {
-	if x != nil {
-		return x.Nickname
-	}
-	return ""
-}
-
-func (x *PayloadUserCommDm) GetAvatar() string {
-	if x != nil {
-		return x.Avatar
-	}
-	return ""
-}
-
-func (x *PayloadUserCommDm) GetText() string {
-	if x != nil {
-		return x.Text
-	}
-	return ""
-}
-
-func (x *PayloadUserCommDm) GetIsRoomAdm() bool {
-	if x != nil {
-		return x.IsRoomAdm
-	}
-	return false
-}
-
-func (x *PayloadUserCommDm) GetIsSuperAdm() bool {
-	if x != nil {
-		return x.IsSuperAdm
-	}
-	return false
-}
-
-func (x *PayloadUserCommDm) GetCharm() *PayloadCharm {
+func (x *PayloadStreamerRoomCharm) GetCharm() int64 {
 	if x != nil {
 		return x.Charm
 	}
-	return nil
+	return 0
 }
 
-func (x *PayloadUserCommDm) GetFans() *PayloadFans {
+// 主播房间粉丝榜单变化
+type PayloadStreamerRoomRank struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Rank     int64  `protobuf:"varint,1,opt,name=rank,proto3" json:"rank,omitempty"`
+	Uid      string `protobuf:"bytes,2,opt,name=uid,proto3" json:"uid,omitempty"`
+	Nickname string `protobuf:"bytes,3,opt,name=nickname,proto3" json:"nickname,omitempty"`
+	Avatar   string `protobuf:"bytes,4,opt,name=avatar,proto3" json:"avatar,omitempty"`
+}
+
+func (x *PayloadStreamerRoomRank) Reset() {
+	*x = PayloadStreamerRoomRank{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_infra_link_payload_proto_msgTypes[13]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *PayloadStreamerRoomRank) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PayloadStreamerRoomRank) ProtoMessage() {}
+
+func (x *PayloadStreamerRoomRank) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_infra_link_payload_proto_msgTypes[13]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PayloadStreamerRoomRank.ProtoReflect.Descriptor instead.
+func (*PayloadStreamerRoomRank) Descriptor() ([]byte, []int) {
+	return file_svc_infra_link_payload_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *PayloadStreamerRoomRank) GetRank() int64 {
 	if x != nil {
-		return x.Fans
+		return x.Rank
+	}
+	return 0
+}
+
+func (x *PayloadStreamerRoomRank) GetUid() string {
+	if x != nil {
+		return x.Uid
+	}
+	return ""
+}
+
+func (x *PayloadStreamerRoomRank) GetNickname() string {
+	if x != nil {
+		return x.Nickname
+	}
+	return ""
+}
+
+func (x *PayloadStreamerRoomRank) GetAvatar() string {
+	if x != nil {
+		return x.Avatar
+	}
+	return ""
+}
+
+// 用户等级升级
+type PayloadUserLevelUp struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	User *BasicUser `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"` // 基础信息
+}
+
+func (x *PayloadUserLevelUp) Reset() {
+	*x = PayloadUserLevelUp{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_infra_link_payload_proto_msgTypes[14]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *PayloadUserLevelUp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PayloadUserLevelUp) ProtoMessage() {}
+
+func (x *PayloadUserLevelUp) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_infra_link_payload_proto_msgTypes[14]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PayloadUserLevelUp.ProtoReflect.Descriptor instead.
+func (*PayloadUserLevelUp) Descriptor() ([]byte, []int) {
+	return file_svc_infra_link_payload_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *PayloadUserLevelUp) GetUser() *BasicUser {
+	if x != nil {
+		return x.User
 	}
 	return nil
 }
 
-func (x *PayloadUserCommDm) GetGuard() *PayloadGuard {
+// 用户关注主播
+type PayloadUserSubUnSubscribe struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	User *BasicUser `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"` // 基础信息
+}
+
+func (x *PayloadUserSubUnSubscribe) Reset() {
+	*x = PayloadUserSubUnSubscribe{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_infra_link_payload_proto_msgTypes[15]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *PayloadUserSubUnSubscribe) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PayloadUserSubUnSubscribe) ProtoMessage() {}
+
+func (x *PayloadUserSubUnSubscribe) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_infra_link_payload_proto_msgTypes[15]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PayloadUserSubUnSubscribe.ProtoReflect.Descriptor instead.
+func (*PayloadUserSubUnSubscribe) Descriptor() ([]byte, []int) {
+	return file_svc_infra_link_payload_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *PayloadUserSubUnSubscribe) GetUser() *BasicUser {
 	if x != nil {
-		return x.Guard
+		return x.User
+	}
+	return nil
+}
+
+// 用户被踢出房间
+type PayloadUserKickRoom struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	User *BasicUser `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"` // 基础信息
+}
+
+func (x *PayloadUserKickRoom) Reset() {
+	*x = PayloadUserKickRoom{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_infra_link_payload_proto_msgTypes[16]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *PayloadUserKickRoom) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PayloadUserKickRoom) ProtoMessage() {}
+
+func (x *PayloadUserKickRoom) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_infra_link_payload_proto_msgTypes[16]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PayloadUserKickRoom.ProtoReflect.Descriptor instead.
+func (*PayloadUserKickRoom) Descriptor() ([]byte, []int) {
+	return file_svc_infra_link_payload_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *PayloadUserKickRoom) GetUser() *BasicUser {
+	if x != nil {
+		return x.User
+	}
+	return nil
+}
+
+// 用户被禁言
+type PayloadUserForbid struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	User *BasicUser `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"` // 基础信息
+}
+
+func (x *PayloadUserForbid) Reset() {
+	*x = PayloadUserForbid{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_infra_link_payload_proto_msgTypes[17]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *PayloadUserForbid) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PayloadUserForbid) ProtoMessage() {}
+
+func (x *PayloadUserForbid) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_infra_link_payload_proto_msgTypes[17]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PayloadUserForbid.ProtoReflect.Descriptor instead.
+func (*PayloadUserForbid) Descriptor() ([]byte, []int) {
+	return file_svc_infra_link_payload_proto_rawDescGZIP(), []int{17}
+}
+
+func (x *PayloadUserForbid) GetUser() *BasicUser {
+	if x != nil {
+		return x.User
+	}
+	return nil
+}
+
+// 用户被设置成房管
+type PayloadUserRoomAdm struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	User *BasicUser `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"` // 基础信息
+}
+
+func (x *PayloadUserRoomAdm) Reset() {
+	*x = PayloadUserRoomAdm{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_infra_link_payload_proto_msgTypes[18]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *PayloadUserRoomAdm) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PayloadUserRoomAdm) ProtoMessage() {}
+
+func (x *PayloadUserRoomAdm) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_infra_link_payload_proto_msgTypes[18]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PayloadUserRoomAdm.ProtoReflect.Descriptor instead.
+func (*PayloadUserRoomAdm) Descriptor() ([]byte, []int) {
+	return file_svc_infra_link_payload_proto_rawDescGZIP(), []int{18}
+}
+
+func (x *PayloadUserRoomAdm) GetUser() *BasicUser {
+	if x != nil {
+		return x.User
+	}
+	return nil
+}
+
+// 用户被取消房管
+type PayloadUserRoomCancelAdm struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	User *BasicUser `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"` // 基础信息
+}
+
+func (x *PayloadUserRoomCancelAdm) Reset() {
+	*x = PayloadUserRoomCancelAdm{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_infra_link_payload_proto_msgTypes[19]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *PayloadUserRoomCancelAdm) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PayloadUserRoomCancelAdm) ProtoMessage() {}
+
+func (x *PayloadUserRoomCancelAdm) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_infra_link_payload_proto_msgTypes[19]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PayloadUserRoomCancelAdm.ProtoReflect.Descriptor instead.
+func (*PayloadUserRoomCancelAdm) Descriptor() ([]byte, []int) {
+	return file_svc_infra_link_payload_proto_rawDescGZIP(), []int{19}
+}
+
+func (x *PayloadUserRoomCancelAdm) GetUser() *BasicUser {
+	if x != nil {
+		return x.User
+	}
+	return nil
+}
+
+// 平台开通贵族通知
+type PayloadPlatformUserOpenNoble struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Sender   *Sender   `protobuf:"bytes,1,opt,name=sender,proto3" json:"sender,omitempty"`     // 发送者基础信息
+	Receiver *Receiver `protobuf:"bytes,2,opt,name=receiver,proto3" json:"receiver,omitempty"` //  接收者信息
+}
+
+func (x *PayloadPlatformUserOpenNoble) Reset() {
+	*x = PayloadPlatformUserOpenNoble{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_infra_link_payload_proto_msgTypes[20]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *PayloadPlatformUserOpenNoble) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PayloadPlatformUserOpenNoble) ProtoMessage() {}
+
+func (x *PayloadPlatformUserOpenNoble) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_infra_link_payload_proto_msgTypes[20]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PayloadPlatformUserOpenNoble.ProtoReflect.Descriptor instead.
+func (*PayloadPlatformUserOpenNoble) Descriptor() ([]byte, []int) {
+	return file_svc_infra_link_payload_proto_rawDescGZIP(), []int{20}
+}
+
+func (x *PayloadPlatformUserOpenNoble) GetSender() *Sender {
+	if x != nil {
+		return x.Sender
+	}
+	return nil
+}
+
+func (x *PayloadPlatformUserOpenNoble) GetReceiver() *Receiver {
+	if x != nil {
+		return x.Receiver
+	}
+	return nil
+}
+
+// 平台礼物通知
+type PayloadPlatformUserSendGift struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Sender   *Sender   `protobuf:"bytes,1,opt,name=sender,proto3" json:"sender,omitempty"`     // 发送者基础信息
+	Receiver *Receiver `protobuf:"bytes,2,opt,name=receiver,proto3" json:"receiver,omitempty"` //  接收者信息
+}
+
+func (x *PayloadPlatformUserSendGift) Reset() {
+	*x = PayloadPlatformUserSendGift{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_infra_link_payload_proto_msgTypes[21]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *PayloadPlatformUserSendGift) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PayloadPlatformUserSendGift) ProtoMessage() {}
+
+func (x *PayloadPlatformUserSendGift) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_infra_link_payload_proto_msgTypes[21]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PayloadPlatformUserSendGift.ProtoReflect.Descriptor instead.
+func (*PayloadPlatformUserSendGift) Descriptor() ([]byte, []int) {
+	return file_svc_infra_link_payload_proto_rawDescGZIP(), []int{21}
+}
+
+func (x *PayloadPlatformUserSendGift) GetSender() *Sender {
+	if x != nil {
+		return x.Sender
+	}
+	return nil
+}
+
+func (x *PayloadPlatformUserSendGift) GetReceiver() *Receiver {
+	if x != nil {
+		return x.Receiver
 	}
 	return nil
 }
@@ -923,107 +1556,174 @@ var File_svc_infra_link_payload_proto protoreflect.FileDescriptor
 var file_svc_infra_link_payload_proto_rawDesc = []byte{
 	0x0a, 0x1c, 0x73, 0x76, 0x63, 0x2e, 0x69, 0x6e, 0x66, 0x72, 0x61, 0x2e, 0x6c, 0x69, 0x6e, 0x6b,
 	0x2f, 0x70, 0x61, 0x79, 0x6c, 0x6f, 0x61, 0x64, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x0e,
-	0x73, 0x76, 0x63, 0x2e, 0x69, 0x6e, 0x66, 0x72, 0x61, 0x2e, 0x6c, 0x69, 0x6e, 0x6b, 0x22, 0xc4,
-	0x01, 0x0a, 0x0f, 0x50, 0x61, 0x79, 0x6c, 0x6f, 0x61, 0x64, 0x55, 0x73, 0x65, 0x72, 0x47, 0x69,
-	0x66, 0x74, 0x12, 0x10, 0x0a, 0x03, 0x75, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
-	0x03, 0x75, 0x69, 0x64, 0x12, 0x1a, 0x0a, 0x08, 0x6e, 0x69, 0x63, 0x6b, 0x6e, 0x61, 0x6d, 0x65,
-	0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x6e, 0x69, 0x63, 0x6b, 0x6e, 0x61, 0x6d, 0x65,
-	0x12, 0x16, 0x0a, 0x06, 0x61, 0x76, 0x61, 0x74, 0x61, 0x72, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09,
-	0x52, 0x06, 0x61, 0x76, 0x61, 0x74, 0x61, 0x72, 0x12, 0x14, 0x0a, 0x05, 0x63, 0x6f, 0x75, 0x6e,
-	0x74, 0x18, 0x04, 0x20, 0x01, 0x28, 0x05, 0x52, 0x05, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x14,
-	0x0a, 0x05, 0x63, 0x6f, 0x6d, 0x62, 0x6f, 0x18, 0x05, 0x20, 0x01, 0x28, 0x05, 0x52, 0x05, 0x63,
-	0x6f, 0x6d, 0x62, 0x6f, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x06, 0x20, 0x01,
-	0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x69, 0x63, 0x6f, 0x6e,
-	0x18, 0x07, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x69, 0x63, 0x6f, 0x6e, 0x12, 0x17, 0x0a, 0x07,
-	0x67, 0x69, 0x66, 0x74, 0x5f, 0x69, 0x64, 0x18, 0x08, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x67,
-	0x69, 0x66, 0x74, 0x49, 0x64, 0x22, 0xb3, 0x02, 0x0a, 0x10, 0x50, 0x61, 0x79, 0x6c, 0x6f, 0x61,
-	0x64, 0x45, 0x6e, 0x74, 0x65, 0x72, 0x52, 0x6f, 0x6f, 0x6d, 0x12, 0x10, 0x0a, 0x03, 0x75, 0x69,
-	0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x75, 0x69, 0x64, 0x12, 0x1a, 0x0a, 0x08,
-	0x6e, 0x69, 0x63, 0x6b, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08,
-	0x6e, 0x69, 0x63, 0x6b, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x61, 0x76, 0x61, 0x74,
-	0x61, 0x72, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x61, 0x76, 0x61, 0x74, 0x61, 0x72,
-	0x12, 0x1e, 0x0a, 0x0b, 0x69, 0x73, 0x5f, 0x72, 0x6f, 0x6f, 0x6d, 0x5f, 0x61, 0x64, 0x6d, 0x18,
-	0x04, 0x20, 0x01, 0x28, 0x08, 0x52, 0x09, 0x69, 0x73, 0x52, 0x6f, 0x6f, 0x6d, 0x41, 0x64, 0x6d,
-	0x12, 0x20, 0x0a, 0x0c, 0x69, 0x73, 0x5f, 0x73, 0x75, 0x70, 0x65, 0x72, 0x5f, 0x61, 0x64, 0x6d,
-	0x18, 0x05, 0x20, 0x01, 0x28, 0x08, 0x52, 0x0a, 0x69, 0x73, 0x53, 0x75, 0x70, 0x65, 0x72, 0x41,
-	0x64, 0x6d, 0x12, 0x32, 0x0a, 0x05, 0x63, 0x68, 0x61, 0x72, 0x6d, 0x18, 0x06, 0x20, 0x01, 0x28,
-	0x0b, 0x32, 0x1c, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x69, 0x6e, 0x66, 0x72, 0x61, 0x2e, 0x6c, 0x69,
-	0x6e, 0x6b, 0x2e, 0x50, 0x61, 0x79, 0x6c, 0x6f, 0x61, 0x64, 0x43, 0x68, 0x61, 0x72, 0x6d, 0x52,
-	0x05, 0x63, 0x68, 0x61, 0x72, 0x6d, 0x12, 0x2f, 0x0a, 0x04, 0x66, 0x61, 0x6e, 0x73, 0x18, 0x07,
-	0x20, 0x01, 0x28, 0x0b, 0x32, 0x1b, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x69, 0x6e, 0x66, 0x72, 0x61,
-	0x2e, 0x6c, 0x69, 0x6e, 0x6b, 0x2e, 0x50, 0x61, 0x79, 0x6c, 0x6f, 0x61, 0x64, 0x46, 0x61, 0x6e,
-	0x73, 0x52, 0x04, 0x66, 0x61, 0x6e, 0x73, 0x12, 0x32, 0x0a, 0x05, 0x67, 0x75, 0x61, 0x72, 0x64,
-	0x18, 0x08, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1c, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x69, 0x6e, 0x66,
-	0x72, 0x61, 0x2e, 0x6c, 0x69, 0x6e, 0x6b, 0x2e, 0x50, 0x61, 0x79, 0x6c, 0x6f, 0x61, 0x64, 0x47,
-	0x75, 0x61, 0x72, 0x64, 0x52, 0x05, 0x67, 0x75, 0x61, 0x72, 0x64, 0x22, 0x29, 0x0a, 0x13, 0x50,
-	0x61, 0x79, 0x6c, 0x6f, 0x61, 0x64, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x4e, 0x6f, 0x74, 0x69,
-	0x63, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x74, 0x65, 0x78, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
-	0x52, 0x04, 0x74, 0x65, 0x78, 0x74, 0x22, 0x15, 0x0a, 0x13, 0x50, 0x61, 0x79, 0x6c, 0x6f, 0x61,
-	0x64, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x65, 0x72, 0x43, 0x61, 0x72, 0x64, 0x22, 0x30, 0x0a,
-	0x16, 0x50, 0x61, 0x79, 0x6c, 0x6f, 0x61, 0x64, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x65, 0x72,
-	0x4f, 0x66, 0x66, 0x6c, 0x69, 0x6e, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x66, 0x6f, 0x72, 0x62, 0x69,
-	0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x66, 0x6f, 0x72, 0x62, 0x69, 0x64, 0x22,
-	0x45, 0x0a, 0x0b, 0x50, 0x61, 0x79, 0x6c, 0x6f, 0x61, 0x64, 0x57, 0x72, 0x61, 0x70, 0x12, 0x0c,
-	0x0a, 0x01, 0x69, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x01, 0x69, 0x12, 0x0c, 0x0a, 0x01,
-	0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x05, 0x52, 0x01, 0x74, 0x12, 0x0c, 0x0a, 0x01, 0x70, 0x18,
-	0x03, 0x20, 0x01, 0x28, 0x05, 0x52, 0x01, 0x70, 0x12, 0x0c, 0x0a, 0x01, 0x64, 0x18, 0x0b, 0x20,
-	0x01, 0x28, 0x09, 0x52, 0x01, 0x64, 0x22, 0x0e, 0x0a, 0x0c, 0x50, 0x61, 0x79, 0x6c, 0x6f, 0x61,
-	0x64, 0x47, 0x75, 0x61, 0x72, 0x64, 0x22, 0x0d, 0x0a, 0x0b, 0x50, 0x61, 0x79, 0x6c, 0x6f, 0x61,
-	0x64, 0x46, 0x61, 0x6e, 0x73, 0x22, 0x0e, 0x0a, 0x0c, 0x50, 0x61, 0x79, 0x6c, 0x6f, 0x61, 0x64,
-	0x43, 0x68, 0x61, 0x72, 0x6d, 0x22, 0x6d, 0x0a, 0x11, 0x50, 0x61, 0x79, 0x6c, 0x6f, 0x61, 0x64,
-	0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x65, 0x72, 0x44, 0x6d, 0x12, 0x10, 0x0a, 0x03, 0x75, 0x69,
-	0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x75, 0x69, 0x64, 0x12, 0x1a, 0x0a, 0x08,
-	0x6e, 0x69, 0x63, 0x6b, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08,
-	0x6e, 0x69, 0x63, 0x6b, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x74, 0x65, 0x78, 0x74,
-	0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x74, 0x65, 0x78, 0x74, 0x12, 0x16, 0x0a, 0x06,
-	0x61, 0x76, 0x61, 0x74, 0x61, 0x72, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x61, 0x76,
-	0x61, 0x74, 0x61, 0x72, 0x22, 0xc8, 0x02, 0x0a, 0x11, 0x50, 0x61, 0x79, 0x6c, 0x6f, 0x61, 0x64,
-	0x55, 0x73, 0x65, 0x72, 0x43, 0x6f, 0x6d, 0x6d, 0x44, 0x6d, 0x12, 0x10, 0x0a, 0x03, 0x75, 0x69,
-	0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x75, 0x69, 0x64, 0x12, 0x1a, 0x0a, 0x08,
-	0x6e, 0x69, 0x63, 0x6b, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08,
-	0x6e, 0x69, 0x63, 0x6b, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x61, 0x76, 0x61, 0x74,
-	0x61, 0x72, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x61, 0x76, 0x61, 0x74, 0x61, 0x72,
-	0x12, 0x12, 0x0a, 0x04, 0x74, 0x65, 0x78, 0x74, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04,
-	0x74, 0x65, 0x78, 0x74, 0x12, 0x1e, 0x0a, 0x0b, 0x69, 0x73, 0x5f, 0x72, 0x6f, 0x6f, 0x6d, 0x5f,
-	0x61, 0x64, 0x6d, 0x18, 0x05, 0x20, 0x01, 0x28, 0x08, 0x52, 0x09, 0x69, 0x73, 0x52, 0x6f, 0x6f,
-	0x6d, 0x41, 0x64, 0x6d, 0x12, 0x20, 0x0a, 0x0c, 0x69, 0x73, 0x5f, 0x73, 0x75, 0x70, 0x65, 0x72,
-	0x5f, 0x61, 0x64, 0x6d, 0x18, 0x06, 0x20, 0x01, 0x28, 0x08, 0x52, 0x0a, 0x69, 0x73, 0x53, 0x75,
-	0x70, 0x65, 0x72, 0x41, 0x64, 0x6d, 0x12, 0x32, 0x0a, 0x05, 0x63, 0x68, 0x61, 0x72, 0x6d, 0x18,
-	0x07, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1c, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x69, 0x6e, 0x66, 0x72,
-	0x61, 0x2e, 0x6c, 0x69, 0x6e, 0x6b, 0x2e, 0x50, 0x61, 0x79, 0x6c, 0x6f, 0x61, 0x64, 0x43, 0x68,
-	0x61, 0x72, 0x6d, 0x52, 0x05, 0x63, 0x68, 0x61, 0x72, 0x6d, 0x12, 0x2f, 0x0a, 0x04, 0x66, 0x61,
-	0x6e, 0x73, 0x18, 0x08, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1b, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x69,
-	0x6e, 0x66, 0x72, 0x61, 0x2e, 0x6c, 0x69, 0x6e, 0x6b, 0x2e, 0x50, 0x61, 0x79, 0x6c, 0x6f, 0x61,
-	0x64, 0x46, 0x61, 0x6e, 0x73, 0x52, 0x04, 0x66, 0x61, 0x6e, 0x73, 0x12, 0x32, 0x0a, 0x05, 0x67,
-	0x75, 0x61, 0x72, 0x64, 0x18, 0x09, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1c, 0x2e, 0x73, 0x76, 0x63,
-	0x2e, 0x69, 0x6e, 0x66, 0x72, 0x61, 0x2e, 0x6c, 0x69, 0x6e, 0x6b, 0x2e, 0x50, 0x61, 0x79, 0x6c,
-	0x6f, 0x61, 0x64, 0x47, 0x75, 0x61, 0x72, 0x64, 0x52, 0x05, 0x67, 0x75, 0x61, 0x72, 0x64, 0x2a,
-	0x38, 0x0a, 0x0c, 0x50, 0x72, 0x69, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x54, 0x79, 0x70, 0x65, 0x12,
-	0x07, 0x0a, 0x03, 0x4c, 0x6f, 0x77, 0x10, 0x00, 0x12, 0x0a, 0x0a, 0x06, 0x4d, 0x69, 0x64, 0x64,
-	0x6c, 0x65, 0x10, 0x05, 0x12, 0x08, 0x0a, 0x04, 0x48, 0x69, 0x67, 0x68, 0x10, 0x0a, 0x12, 0x09,
-	0x0a, 0x05, 0x55, 0x6c, 0x74, 0x72, 0x61, 0x10, 0x64, 0x2a, 0x31, 0x0a, 0x0b, 0x43, 0x6f, 0x6d,
-	0x6d, 0x61, 0x6e, 0x64, 0x54, 0x79, 0x70, 0x65, 0x12, 0x0a, 0x0a, 0x06, 0x55, 0x6e, 0x4b, 0x6e,
-	0x6f, 0x77, 0x10, 0x00, 0x12, 0x16, 0x0a, 0x12, 0x43, 0x6f, 0x6d, 0x6d, 0x61, 0x6e, 0x64, 0x4d,
-	0x73, 0x67, 0x44, 0x6f, 0x77, 0x6e, 0x77, 0x61, 0x72, 0x64, 0x10, 0x0a, 0x2a, 0x83, 0x02, 0x0a,
-	0x0b, 0x50, 0x61, 0x79, 0x6c, 0x6f, 0x61, 0x64, 0x54, 0x79, 0x70, 0x65, 0x12, 0x0e, 0x0a, 0x0a,
-	0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x65, 0x72, 0x44, 0x6d, 0x10, 0x00, 0x12, 0x0e, 0x0a, 0x0a,
-	0x55, 0x73, 0x65, 0x72, 0x43, 0x6f, 0x6d, 0x6d, 0x44, 0x6d, 0x10, 0x01, 0x12, 0x0d, 0x0a, 0x09,
-	0x55, 0x73, 0x65, 0x72, 0x56, 0x69, 0x70, 0x44, 0x6d, 0x10, 0x02, 0x12, 0x0c, 0x0a, 0x08, 0x55,
-	0x73, 0x65, 0x72, 0x47, 0x69, 0x66, 0x74, 0x10, 0x03, 0x12, 0x10, 0x0a, 0x0c, 0x55, 0x73, 0x65,
-	0x72, 0x4f, 0x70, 0x65, 0x6e, 0x46, 0x61, 0x6e, 0x73, 0x10, 0x04, 0x12, 0x0e, 0x0a, 0x0a, 0x55,
-	0x73, 0x65, 0x72, 0x4f, 0x70, 0x65, 0x6e, 0x47, 0x7a, 0x10, 0x05, 0x12, 0x0d, 0x0a, 0x09, 0x45,
-	0x6e, 0x74, 0x65, 0x72, 0x52, 0x6f, 0x6f, 0x6d, 0x10, 0x06, 0x12, 0x12, 0x0a, 0x0e, 0x53, 0x74,
-	0x72, 0x65, 0x61, 0x6d, 0x65, 0x72, 0x4e, 0x6f, 0x74, 0x69, 0x63, 0x65, 0x10, 0x07, 0x12, 0x10,
-	0x0a, 0x0c, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x65, 0x72, 0x43, 0x61, 0x72, 0x64, 0x10, 0x08,
-	0x12, 0x10, 0x0a, 0x0c, 0x55, 0x73, 0x65, 0x72, 0x4b, 0x69, 0x63, 0x6b, 0x52, 0x6f, 0x6f, 0x6d,
-	0x10, 0x0d, 0x12, 0x13, 0x0a, 0x0f, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x65, 0x72, 0x4f, 0x66,
-	0x66, 0x6c, 0x69, 0x6e, 0x65, 0x10, 0x0e, 0x12, 0x12, 0x0a, 0x0e, 0x53, 0x74, 0x72, 0x65, 0x61,
-	0x6d, 0x65, 0x72, 0x4f, 0x6e, 0x6c, 0x69, 0x6e, 0x65, 0x10, 0x0f, 0x12, 0x11, 0x0a, 0x0d, 0x53,
-	0x74, 0x72, 0x65, 0x61, 0x6d, 0x65, 0x72, 0x50, 0x61, 0x75, 0x73, 0x65, 0x10, 0x10, 0x12, 0x12,
-	0x0a, 0x0e, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x65, 0x72, 0x52, 0x65, 0x73, 0x75, 0x6d, 0x65,
-	0x10, 0x11, 0x42, 0x17, 0x5a, 0x15, 0x2e, 0x2f, 0x73, 0x76, 0x63, 0x2e, 0x69, 0x6e, 0x66, 0x72,
-	0x61, 0x2e, 0x6c, 0x69, 0x6e, 0x6b, 0x3b, 0x6c, 0x69, 0x6e, 0x6b, 0x62, 0x06, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x33,
+	0x73, 0x76, 0x63, 0x2e, 0x69, 0x6e, 0x66, 0x72, 0x61, 0x2e, 0x6c, 0x69, 0x6e, 0x6b, 0x22, 0xde,
+	0x01, 0x0a, 0x09, 0x42, 0x61, 0x73, 0x69, 0x63, 0x55, 0x73, 0x65, 0x72, 0x12, 0x10, 0x0a, 0x03,
+	0x75, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x75, 0x69, 0x64, 0x12, 0x1a,
+	0x0a, 0x08, 0x6e, 0x69, 0x63, 0x6b, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x08, 0x6e, 0x69, 0x63, 0x6b, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x61, 0x76,
+	0x61, 0x74, 0x61, 0x72, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x61, 0x76, 0x61, 0x74,
+	0x61, 0x72, 0x12, 0x1e, 0x0a, 0x0b, 0x69, 0x73, 0x5f, 0x72, 0x6f, 0x6f, 0x6d, 0x5f, 0x61, 0x64,
+	0x6d, 0x18, 0x04, 0x20, 0x01, 0x28, 0x08, 0x52, 0x09, 0x69, 0x73, 0x52, 0x6f, 0x6f, 0x6d, 0x41,
+	0x64, 0x6d, 0x12, 0x20, 0x0a, 0x0c, 0x69, 0x73, 0x5f, 0x73, 0x75, 0x70, 0x65, 0x72, 0x5f, 0x61,
+	0x64, 0x6d, 0x18, 0x05, 0x20, 0x01, 0x28, 0x08, 0x52, 0x0a, 0x69, 0x73, 0x53, 0x75, 0x70, 0x65,
+	0x72, 0x41, 0x64, 0x6d, 0x12, 0x14, 0x0a, 0x05, 0x6c, 0x65, 0x76, 0x65, 0x6c, 0x18, 0x06, 0x20,
+	0x01, 0x28, 0x05, 0x52, 0x05, 0x6c, 0x65, 0x76, 0x65, 0x6c, 0x12, 0x1d, 0x0a, 0x0a, 0x66, 0x61,
+	0x6e, 0x73, 0x5f, 0x67, 0x72, 0x6f, 0x75, 0x70, 0x18, 0x07, 0x20, 0x01, 0x28, 0x05, 0x52, 0x09,
+	0x66, 0x61, 0x6e, 0x73, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x12, 0x14, 0x0a, 0x05, 0x6e, 0x6f, 0x62,
+	0x6c, 0x65, 0x18, 0x08, 0x20, 0x01, 0x28, 0x05, 0x52, 0x05, 0x6e, 0x6f, 0x62, 0x6c, 0x65, 0x22,
+	0x4e, 0x0a, 0x06, 0x53, 0x65, 0x6e, 0x64, 0x65, 0x72, 0x12, 0x10, 0x0a, 0x03, 0x75, 0x69, 0x64,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x75, 0x69, 0x64, 0x12, 0x1a, 0x0a, 0x08, 0x6e,
+	0x69, 0x63, 0x6b, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x6e,
+	0x69, 0x63, 0x6b, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x61, 0x76, 0x61, 0x74, 0x61,
+	0x72, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x61, 0x76, 0x61, 0x74, 0x61, 0x72, 0x22,
+	0x50, 0x0a, 0x08, 0x52, 0x65, 0x63, 0x65, 0x69, 0x76, 0x65, 0x72, 0x12, 0x10, 0x0a, 0x03, 0x75,
+	0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x75, 0x69, 0x64, 0x12, 0x1a, 0x0a,
+	0x08, 0x6e, 0x69, 0x63, 0x6b, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x08, 0x6e, 0x69, 0x63, 0x6b, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x61, 0x76, 0x61,
+	0x74, 0x61, 0x72, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x61, 0x76, 0x61, 0x74, 0x61,
+	0x72, 0x22, 0x6d, 0x0a, 0x11, 0x50, 0x61, 0x79, 0x6c, 0x6f, 0x61, 0x64, 0x53, 0x74, 0x72, 0x65,
+	0x61, 0x6d, 0x65, 0x72, 0x44, 0x6d, 0x12, 0x10, 0x0a, 0x03, 0x75, 0x69, 0x64, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x03, 0x75, 0x69, 0x64, 0x12, 0x1a, 0x0a, 0x08, 0x6e, 0x69, 0x63, 0x6b,
+	0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x6e, 0x69, 0x63, 0x6b,
+	0x6e, 0x61, 0x6d, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x61, 0x76, 0x61, 0x74, 0x61, 0x72, 0x18, 0x03,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x61, 0x76, 0x61, 0x74, 0x61, 0x72, 0x12, 0x12, 0x0a, 0x04,
+	0x74, 0x65, 0x78, 0x74, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x74, 0x65, 0x78, 0x74,
+	0x22, 0x6b, 0x0a, 0x0d, 0x50, 0x61, 0x79, 0x6c, 0x6f, 0x61, 0x64, 0x55, 0x73, 0x65, 0x72, 0x44,
+	0x6d, 0x12, 0x2d, 0x0a, 0x04, 0x75, 0x73, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32,
+	0x19, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x69, 0x6e, 0x66, 0x72, 0x61, 0x2e, 0x6c, 0x69, 0x6e, 0x6b,
+	0x2e, 0x42, 0x61, 0x73, 0x69, 0x63, 0x55, 0x73, 0x65, 0x72, 0x52, 0x04, 0x75, 0x73, 0x65, 0x72,
+	0x12, 0x17, 0x0a, 0x07, 0x69, 0x73, 0x5f, 0x70, 0x61, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28,
+	0x08, 0x52, 0x06, 0x69, 0x73, 0x50, 0x61, 0x69, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x74, 0x65, 0x78,
+	0x74, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x74, 0x65, 0x78, 0x74, 0x22, 0xf1, 0x01,
+	0x0a, 0x0f, 0x50, 0x61, 0x79, 0x6c, 0x6f, 0x61, 0x64, 0x55, 0x73, 0x65, 0x72, 0x47, 0x69, 0x66,
+	0x74, 0x12, 0x2d, 0x0a, 0x04, 0x75, 0x73, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32,
+	0x19, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x69, 0x6e, 0x66, 0x72, 0x61, 0x2e, 0x6c, 0x69, 0x6e, 0x6b,
+	0x2e, 0x42, 0x61, 0x73, 0x69, 0x63, 0x55, 0x73, 0x65, 0x72, 0x52, 0x04, 0x75, 0x73, 0x65, 0x72,
+	0x12, 0x14, 0x0a, 0x05, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x05, 0x52,
+	0x05, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x63, 0x6f, 0x6d, 0x62, 0x6f, 0x18,
+	0x03, 0x20, 0x01, 0x28, 0x05, 0x52, 0x05, 0x63, 0x6f, 0x6d, 0x62, 0x6f, 0x12, 0x1f, 0x0a, 0x0b,
+	0x63, 0x6f, 0x6d, 0x62, 0x6f, 0x5f, 0x67, 0x72, 0x6f, 0x75, 0x70, 0x18, 0x04, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x0a, 0x63, 0x6f, 0x6d, 0x62, 0x6f, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x12, 0x12, 0x0a,
+	0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d,
+	0x65, 0x12, 0x12, 0x0a, 0x04, 0x69, 0x63, 0x6f, 0x6e, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x04, 0x69, 0x63, 0x6f, 0x6e, 0x12, 0x17, 0x0a, 0x07, 0x67, 0x69, 0x66, 0x74, 0x5f, 0x69, 0x64,
+	0x18, 0x07, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x67, 0x69, 0x66, 0x74, 0x49, 0x64, 0x12, 0x21,
+	0x0a, 0x0c, 0x69, 0x73, 0x5f, 0x61, 0x6e, 0x69, 0x6d, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x08,
+	0x20, 0x01, 0x28, 0x08, 0x52, 0x0b, 0x69, 0x73, 0x41, 0x6e, 0x69, 0x6d, 0x61, 0x74, 0x69, 0x6f,
+	0x6e, 0x22, 0x59, 0x0a, 0x14, 0x50, 0x61, 0x79, 0x6c, 0x6f, 0x61, 0x64, 0x4f, 0x70, 0x65, 0x6e,
+	0x46, 0x61, 0x6e, 0x73, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x12, 0x2d, 0x0a, 0x04, 0x75, 0x73, 0x65,
+	0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x69, 0x6e,
+	0x66, 0x72, 0x61, 0x2e, 0x6c, 0x69, 0x6e, 0x6b, 0x2e, 0x42, 0x61, 0x73, 0x69, 0x63, 0x55, 0x73,
+	0x65, 0x72, 0x52, 0x04, 0x75, 0x73, 0x65, 0x72, 0x12, 0x12, 0x0a, 0x04, 0x72, 0x61, 0x6e, 0x6b,
+	0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x04, 0x72, 0x61, 0x6e, 0x6b, 0x22, 0x41, 0x0a, 0x10,
+	0x50, 0x61, 0x79, 0x6c, 0x6f, 0x61, 0x64, 0x4f, 0x70, 0x65, 0x6e, 0x4e, 0x6f, 0x62, 0x6c, 0x65,
+	0x12, 0x2d, 0x0a, 0x04, 0x75, 0x73, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19,
+	0x2e, 0x73, 0x76, 0x63, 0x2e, 0x69, 0x6e, 0x66, 0x72, 0x61, 0x2e, 0x6c, 0x69, 0x6e, 0x6b, 0x2e,
+	0x42, 0x61, 0x73, 0x69, 0x63, 0x55, 0x73, 0x65, 0x72, 0x52, 0x04, 0x75, 0x73, 0x65, 0x72, 0x22,
+	0x41, 0x0a, 0x10, 0x50, 0x61, 0x79, 0x6c, 0x6f, 0x61, 0x64, 0x45, 0x6e, 0x74, 0x65, 0x72, 0x52,
+	0x6f, 0x6f, 0x6d, 0x12, 0x2d, 0x0a, 0x04, 0x75, 0x73, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x0b, 0x32, 0x19, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x69, 0x6e, 0x66, 0x72, 0x61, 0x2e, 0x6c, 0x69,
+	0x6e, 0x6b, 0x2e, 0x42, 0x61, 0x73, 0x69, 0x63, 0x55, 0x73, 0x65, 0x72, 0x52, 0x04, 0x75, 0x73,
+	0x65, 0x72, 0x22, 0x29, 0x0a, 0x13, 0x50, 0x61, 0x79, 0x6c, 0x6f, 0x61, 0x64, 0x53, 0x74, 0x72,
+	0x65, 0x61, 0x6d, 0x4e, 0x6f, 0x74, 0x69, 0x63, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x74, 0x65, 0x78,
+	0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x74, 0x65, 0x78, 0x74, 0x22, 0x1a, 0x0a,
+	0x18, 0x50, 0x61, 0x79, 0x6c, 0x6f, 0x61, 0x64, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x65, 0x72,
+	0x53, 0x74, 0x61, 0x72, 0x74, 0x4c, 0x69, 0x76, 0x65, 0x22, 0x30, 0x0a, 0x16, 0x50, 0x61, 0x79,
+	0x6c, 0x6f, 0x61, 0x64, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x65, 0x72, 0x4f, 0x66, 0x66, 0x6c,
+	0x69, 0x6e, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x66, 0x6f, 0x72, 0x62, 0x69, 0x64, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x06, 0x66, 0x6f, 0x72, 0x62, 0x69, 0x64, 0x22, 0x30, 0x0a, 0x18, 0x50,
+	0x61, 0x79, 0x6c, 0x6f, 0x61, 0x64, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x65, 0x72, 0x52, 0x6f,
+	0x6f, 0x6d, 0x43, 0x68, 0x61, 0x72, 0x6d, 0x12, 0x14, 0x0a, 0x05, 0x63, 0x68, 0x61, 0x72, 0x6d,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x63, 0x68, 0x61, 0x72, 0x6d, 0x22, 0x73, 0x0a,
+	0x17, 0x50, 0x61, 0x79, 0x6c, 0x6f, 0x61, 0x64, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x65, 0x72,
+	0x52, 0x6f, 0x6f, 0x6d, 0x52, 0x61, 0x6e, 0x6b, 0x12, 0x12, 0x0a, 0x04, 0x72, 0x61, 0x6e, 0x6b,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x04, 0x72, 0x61, 0x6e, 0x6b, 0x12, 0x10, 0x0a, 0x03,
+	0x75, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x75, 0x69, 0x64, 0x12, 0x1a,
+	0x0a, 0x08, 0x6e, 0x69, 0x63, 0x6b, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x08, 0x6e, 0x69, 0x63, 0x6b, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x61, 0x76,
+	0x61, 0x74, 0x61, 0x72, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x61, 0x76, 0x61, 0x74,
+	0x61, 0x72, 0x22, 0x43, 0x0a, 0x12, 0x50, 0x61, 0x79, 0x6c, 0x6f, 0x61, 0x64, 0x55, 0x73, 0x65,
+	0x72, 0x4c, 0x65, 0x76, 0x65, 0x6c, 0x55, 0x70, 0x12, 0x2d, 0x0a, 0x04, 0x75, 0x73, 0x65, 0x72,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x69, 0x6e, 0x66,
+	0x72, 0x61, 0x2e, 0x6c, 0x69, 0x6e, 0x6b, 0x2e, 0x42, 0x61, 0x73, 0x69, 0x63, 0x55, 0x73, 0x65,
+	0x72, 0x52, 0x04, 0x75, 0x73, 0x65, 0x72, 0x22, 0x4a, 0x0a, 0x19, 0x50, 0x61, 0x79, 0x6c, 0x6f,
+	0x61, 0x64, 0x55, 0x73, 0x65, 0x72, 0x53, 0x75, 0x62, 0x55, 0x6e, 0x53, 0x75, 0x62, 0x73, 0x63,
+	0x72, 0x69, 0x62, 0x65, 0x12, 0x2d, 0x0a, 0x04, 0x75, 0x73, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x0b, 0x32, 0x19, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x69, 0x6e, 0x66, 0x72, 0x61, 0x2e, 0x6c,
+	0x69, 0x6e, 0x6b, 0x2e, 0x42, 0x61, 0x73, 0x69, 0x63, 0x55, 0x73, 0x65, 0x72, 0x52, 0x04, 0x75,
+	0x73, 0x65, 0x72, 0x22, 0x44, 0x0a, 0x13, 0x50, 0x61, 0x79, 0x6c, 0x6f, 0x61, 0x64, 0x55, 0x73,
+	0x65, 0x72, 0x4b, 0x69, 0x63, 0x6b, 0x52, 0x6f, 0x6f, 0x6d, 0x12, 0x2d, 0x0a, 0x04, 0x75, 0x73,
+	0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x69,
+	0x6e, 0x66, 0x72, 0x61, 0x2e, 0x6c, 0x69, 0x6e, 0x6b, 0x2e, 0x42, 0x61, 0x73, 0x69, 0x63, 0x55,
+	0x73, 0x65, 0x72, 0x52, 0x04, 0x75, 0x73, 0x65, 0x72, 0x22, 0x42, 0x0a, 0x11, 0x50, 0x61, 0x79,
+	0x6c, 0x6f, 0x61, 0x64, 0x55, 0x73, 0x65, 0x72, 0x46, 0x6f, 0x72, 0x62, 0x69, 0x64, 0x12, 0x2d,
+	0x0a, 0x04, 0x75, 0x73, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x73,
+	0x76, 0x63, 0x2e, 0x69, 0x6e, 0x66, 0x72, 0x61, 0x2e, 0x6c, 0x69, 0x6e, 0x6b, 0x2e, 0x42, 0x61,
+	0x73, 0x69, 0x63, 0x55, 0x73, 0x65, 0x72, 0x52, 0x04, 0x75, 0x73, 0x65, 0x72, 0x22, 0x43, 0x0a,
+	0x12, 0x50, 0x61, 0x79, 0x6c, 0x6f, 0x61, 0x64, 0x55, 0x73, 0x65, 0x72, 0x52, 0x6f, 0x6f, 0x6d,
+	0x41, 0x64, 0x6d, 0x12, 0x2d, 0x0a, 0x04, 0x75, 0x73, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x0b, 0x32, 0x19, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x69, 0x6e, 0x66, 0x72, 0x61, 0x2e, 0x6c, 0x69,
+	0x6e, 0x6b, 0x2e, 0x42, 0x61, 0x73, 0x69, 0x63, 0x55, 0x73, 0x65, 0x72, 0x52, 0x04, 0x75, 0x73,
+	0x65, 0x72, 0x22, 0x49, 0x0a, 0x18, 0x50, 0x61, 0x79, 0x6c, 0x6f, 0x61, 0x64, 0x55, 0x73, 0x65,
+	0x72, 0x52, 0x6f, 0x6f, 0x6d, 0x43, 0x61, 0x6e, 0x63, 0x65, 0x6c, 0x41, 0x64, 0x6d, 0x12, 0x2d,
+	0x0a, 0x04, 0x75, 0x73, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x73,
+	0x76, 0x63, 0x2e, 0x69, 0x6e, 0x66, 0x72, 0x61, 0x2e, 0x6c, 0x69, 0x6e, 0x6b, 0x2e, 0x42, 0x61,
+	0x73, 0x69, 0x63, 0x55, 0x73, 0x65, 0x72, 0x52, 0x04, 0x75, 0x73, 0x65, 0x72, 0x22, 0x84, 0x01,
+	0x0a, 0x1c, 0x50, 0x61, 0x79, 0x6c, 0x6f, 0x61, 0x64, 0x50, 0x6c, 0x61, 0x74, 0x66, 0x6f, 0x72,
+	0x6d, 0x55, 0x73, 0x65, 0x72, 0x4f, 0x70, 0x65, 0x6e, 0x4e, 0x6f, 0x62, 0x6c, 0x65, 0x12, 0x2e,
+	0x0a, 0x06, 0x73, 0x65, 0x6e, 0x64, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x16,
+	0x2e, 0x73, 0x76, 0x63, 0x2e, 0x69, 0x6e, 0x66, 0x72, 0x61, 0x2e, 0x6c, 0x69, 0x6e, 0x6b, 0x2e,
+	0x53, 0x65, 0x6e, 0x64, 0x65, 0x72, 0x52, 0x06, 0x73, 0x65, 0x6e, 0x64, 0x65, 0x72, 0x12, 0x34,
+	0x0a, 0x08, 0x72, 0x65, 0x63, 0x65, 0x69, 0x76, 0x65, 0x72, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b,
+	0x32, 0x18, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x69, 0x6e, 0x66, 0x72, 0x61, 0x2e, 0x6c, 0x69, 0x6e,
+	0x6b, 0x2e, 0x52, 0x65, 0x63, 0x65, 0x69, 0x76, 0x65, 0x72, 0x52, 0x08, 0x72, 0x65, 0x63, 0x65,
+	0x69, 0x76, 0x65, 0x72, 0x22, 0x83, 0x01, 0x0a, 0x1b, 0x50, 0x61, 0x79, 0x6c, 0x6f, 0x61, 0x64,
+	0x50, 0x6c, 0x61, 0x74, 0x66, 0x6f, 0x72, 0x6d, 0x55, 0x73, 0x65, 0x72, 0x53, 0x65, 0x6e, 0x64,
+	0x47, 0x69, 0x66, 0x74, 0x12, 0x2e, 0x0a, 0x06, 0x73, 0x65, 0x6e, 0x64, 0x65, 0x72, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x0b, 0x32, 0x16, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x69, 0x6e, 0x66, 0x72, 0x61,
+	0x2e, 0x6c, 0x69, 0x6e, 0x6b, 0x2e, 0x53, 0x65, 0x6e, 0x64, 0x65, 0x72, 0x52, 0x06, 0x73, 0x65,
+	0x6e, 0x64, 0x65, 0x72, 0x12, 0x34, 0x0a, 0x08, 0x72, 0x65, 0x63, 0x65, 0x69, 0x76, 0x65, 0x72,
+	0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x18, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x69, 0x6e, 0x66,
+	0x72, 0x61, 0x2e, 0x6c, 0x69, 0x6e, 0x6b, 0x2e, 0x52, 0x65, 0x63, 0x65, 0x69, 0x76, 0x65, 0x72,
+	0x52, 0x08, 0x72, 0x65, 0x63, 0x65, 0x69, 0x76, 0x65, 0x72, 0x2a, 0x38, 0x0a, 0x0c, 0x50, 0x72,
+	0x69, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x54, 0x79, 0x70, 0x65, 0x12, 0x07, 0x0a, 0x03, 0x4c, 0x6f,
+	0x77, 0x10, 0x00, 0x12, 0x0a, 0x0a, 0x06, 0x4d, 0x69, 0x64, 0x64, 0x6c, 0x65, 0x10, 0x05, 0x12,
+	0x08, 0x0a, 0x04, 0x48, 0x69, 0x67, 0x68, 0x10, 0x0a, 0x12, 0x09, 0x0a, 0x05, 0x55, 0x6c, 0x74,
+	0x72, 0x61, 0x10, 0x64, 0x2a, 0x31, 0x0a, 0x0b, 0x43, 0x6f, 0x6d, 0x6d, 0x61, 0x6e, 0x64, 0x54,
+	0x79, 0x70, 0x65, 0x12, 0x0a, 0x0a, 0x06, 0x55, 0x6e, 0x4b, 0x6e, 0x6f, 0x77, 0x10, 0x00, 0x12,
+	0x16, 0x0a, 0x12, 0x43, 0x6f, 0x6d, 0x6d, 0x61, 0x6e, 0x64, 0x4d, 0x73, 0x67, 0x44, 0x6f, 0x77,
+	0x6e, 0x77, 0x61, 0x72, 0x64, 0x10, 0x0a, 0x2a, 0x3c, 0x0a, 0x09, 0x4c, 0x65, 0x76, 0x65, 0x6c,
+	0x54, 0x79, 0x70, 0x65, 0x12, 0x0f, 0x0a, 0x0b, 0x4c, 0x65, 0x76, 0x65, 0x6c, 0x55, 0x6e, 0x4b,
+	0x6e, 0x6f, 0x77, 0x10, 0x00, 0x12, 0x09, 0x0a, 0x05, 0x43, 0x68, 0x61, 0x72, 0x6d, 0x10, 0x01,
+	0x12, 0x08, 0x0a, 0x04, 0x46, 0x61, 0x6e, 0x73, 0x10, 0x02, 0x12, 0x09, 0x0a, 0x05, 0x47, 0x75,
+	0x61, 0x72, 0x64, 0x10, 0x03, 0x2a, 0x94, 0x03, 0x0a, 0x0b, 0x50, 0x61, 0x79, 0x6c, 0x6f, 0x61,
+	0x64, 0x54, 0x79, 0x70, 0x65, 0x12, 0x0e, 0x0a, 0x0a, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x65,
+	0x72, 0x44, 0x6d, 0x10, 0x00, 0x12, 0x0e, 0x0a, 0x0a, 0x55, 0x73, 0x65, 0x72, 0x43, 0x6f, 0x6d,
+	0x6d, 0x44, 0x6d, 0x10, 0x01, 0x12, 0x0c, 0x0a, 0x08, 0x55, 0x73, 0x65, 0x72, 0x47, 0x69, 0x66,
+	0x74, 0x10, 0x03, 0x12, 0x10, 0x0a, 0x0c, 0x55, 0x73, 0x65, 0x72, 0x4f, 0x70, 0x65, 0x6e, 0x46,
+	0x61, 0x6e, 0x73, 0x10, 0x04, 0x12, 0x11, 0x0a, 0x0d, 0x55, 0x73, 0x65, 0x72, 0x4f, 0x70, 0x65,
+	0x6e, 0x4e, 0x6f, 0x62, 0x6c, 0x65, 0x10, 0x05, 0x12, 0x0d, 0x0a, 0x09, 0x45, 0x6e, 0x74, 0x65,
+	0x72, 0x52, 0x6f, 0x6f, 0x6d, 0x10, 0x06, 0x12, 0x12, 0x0a, 0x0e, 0x53, 0x74, 0x72, 0x65, 0x61,
+	0x6d, 0x65, 0x72, 0x4e, 0x6f, 0x74, 0x69, 0x63, 0x65, 0x10, 0x07, 0x12, 0x10, 0x0a, 0x0c, 0x55,
+	0x73, 0x65, 0x72, 0x4b, 0x69, 0x63, 0x6b, 0x52, 0x6f, 0x6f, 0x6d, 0x10, 0x0d, 0x12, 0x13, 0x0a,
+	0x0f, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x65, 0x72, 0x4f, 0x66, 0x66, 0x6c, 0x69, 0x6e, 0x65,
+	0x10, 0x0e, 0x12, 0x12, 0x0a, 0x0e, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x65, 0x72, 0x4f, 0x6e,
+	0x6c, 0x69, 0x6e, 0x65, 0x10, 0x0f, 0x12, 0x15, 0x0a, 0x11, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d,
+	0x65, 0x72, 0x52, 0x6f, 0x6f, 0x6d, 0x43, 0x68, 0x61, 0x72, 0x6d, 0x10, 0x10, 0x12, 0x14, 0x0a,
+	0x10, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x65, 0x72, 0x52, 0x6f, 0x6f, 0x6d, 0x52, 0x61, 0x6e,
+	0x6b, 0x10, 0x11, 0x12, 0x11, 0x0a, 0x0d, 0x55, 0x73, 0x65, 0x72, 0x53, 0x75, 0x62, 0x73, 0x63,
+	0x72, 0x69, 0x62, 0x65, 0x10, 0x12, 0x12, 0x13, 0x0a, 0x0f, 0x55, 0x73, 0x65, 0x72, 0x55, 0x6e,
+	0x53, 0x75, 0x62, 0x73, 0x63, 0x72, 0x69, 0x62, 0x65, 0x10, 0x13, 0x12, 0x0e, 0x0a, 0x0a, 0x55,
+	0x73, 0x65, 0x72, 0x46, 0x6f, 0x72, 0x62, 0x69, 0x64, 0x10, 0x14, 0x12, 0x13, 0x0a, 0x0f, 0x55,
+	0x73, 0x65, 0x72, 0x52, 0x65, 0x73, 0x65, 0x74, 0x46, 0x6f, 0x72, 0x62, 0x69, 0x64, 0x10, 0x15,
+	0x12, 0x0f, 0x0a, 0x0b, 0x55, 0x73, 0x65, 0x72, 0x52, 0x6f, 0x6f, 0x6d, 0x41, 0x64, 0x6d, 0x10,
+	0x16, 0x12, 0x14, 0x0a, 0x10, 0x55, 0x73, 0x65, 0x72, 0x52, 0x6f, 0x6f, 0x6d, 0x52, 0x65, 0x73,
+	0x65, 0x74, 0x41, 0x64, 0x6d, 0x10, 0x17, 0x12, 0x19, 0x0a, 0x15, 0x50, 0x6c, 0x61, 0x74, 0x66,
+	0x6f, 0x72, 0x6d, 0x55, 0x73, 0x65, 0x72, 0x4f, 0x70, 0x65, 0x6e, 0x4e, 0x6f, 0x62, 0x6c, 0x65,
+	0x10, 0x64, 0x12, 0x18, 0x0a, 0x14, 0x50, 0x6c, 0x61, 0x74, 0x66, 0x6f, 0x72, 0x6d, 0x55, 0x73,
+	0x65, 0x72, 0x53, 0x65, 0x6e, 0x64, 0x47, 0x69, 0x66, 0x74, 0x10, 0x65, 0x42, 0x17, 0x5a, 0x15,
+	0x2e, 0x2f, 0x73, 0x76, 0x63, 0x2e, 0x69, 0x6e, 0x66, 0x72, 0x61, 0x2e, 0x6c, 0x69, 0x6e, 0x6b,
+	0x3b, 0x6c, 0x69, 0x6e, 0x6b, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -1038,36 +1738,57 @@ func file_svc_infra_link_payload_proto_rawDescGZIP() []byte {
 	return file_svc_infra_link_payload_proto_rawDescData
 }
 
-var file_svc_infra_link_payload_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
-var file_svc_infra_link_payload_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
+var file_svc_infra_link_payload_proto_enumTypes = make([]protoimpl.EnumInfo, 4)
+var file_svc_infra_link_payload_proto_msgTypes = make([]protoimpl.MessageInfo, 22)
 var file_svc_infra_link_payload_proto_goTypes = []any{
-	(PriorityType)(0),              // 0: svc.infra.link.PriorityType
-	(CommandType)(0),               // 1: svc.infra.link.CommandType
-	(PayloadType)(0),               // 2: svc.infra.link.PayloadType
-	(*PayloadUserGift)(nil),        // 3: svc.infra.link.PayloadUserGift
-	(*PayloadEnterRoom)(nil),       // 4: svc.infra.link.PayloadEnterRoom
-	(*PayloadStreamNotice)(nil),    // 5: svc.infra.link.PayloadStreamNotice
-	(*PayloadStreamerCard)(nil),    // 6: svc.infra.link.PayloadStreamerCard
-	(*PayloadStreamerOffline)(nil), // 7: svc.infra.link.PayloadStreamerOffline
-	(*PayloadWrap)(nil),            // 8: svc.infra.link.PayloadWrap
-	(*PayloadGuard)(nil),           // 9: svc.infra.link.PayloadGuard
-	(*PayloadFans)(nil),            // 10: svc.infra.link.PayloadFans
-	(*PayloadCharm)(nil),           // 11: svc.infra.link.PayloadCharm
-	(*PayloadStreamerDm)(nil),      // 12: svc.infra.link.PayloadStreamerDm
-	(*PayloadUserCommDm)(nil),      // 13: svc.infra.link.PayloadUserCommDm
+	(PriorityType)(0),                    // 0: svc.infra.link.PriorityType
+	(CommandType)(0),                     // 1: svc.infra.link.CommandType
+	(LevelType)(0),                       // 2: svc.infra.link.LevelType
+	(PayloadType)(0),                     // 3: svc.infra.link.PayloadType
+	(*BasicUser)(nil),                    // 4: svc.infra.link.BasicUser
+	(*Sender)(nil),                       // 5: svc.infra.link.Sender
+	(*Receiver)(nil),                     // 6: svc.infra.link.Receiver
+	(*PayloadStreamerDm)(nil),            // 7: svc.infra.link.PayloadStreamerDm
+	(*PayloadUserDm)(nil),                // 8: svc.infra.link.PayloadUserDm
+	(*PayloadUserGift)(nil),              // 9: svc.infra.link.PayloadUserGift
+	(*PayloadOpenFansGroup)(nil),         // 10: svc.infra.link.PayloadOpenFansGroup
+	(*PayloadOpenNoble)(nil),             // 11: svc.infra.link.PayloadOpenNoble
+	(*PayloadEnterRoom)(nil),             // 12: svc.infra.link.PayloadEnterRoom
+	(*PayloadStreamNotice)(nil),          // 13: svc.infra.link.PayloadStreamNotice
+	(*PayloadStreamerStartLive)(nil),     // 14: svc.infra.link.PayloadStreamerStartLive
+	(*PayloadStreamerOffline)(nil),       // 15: svc.infra.link.PayloadStreamerOffline
+	(*PayloadStreamerRoomCharm)(nil),     // 16: svc.infra.link.PayloadStreamerRoomCharm
+	(*PayloadStreamerRoomRank)(nil),      // 17: svc.infra.link.PayloadStreamerRoomRank
+	(*PayloadUserLevelUp)(nil),           // 18: svc.infra.link.PayloadUserLevelUp
+	(*PayloadUserSubUnSubscribe)(nil),    // 19: svc.infra.link.PayloadUserSubUnSubscribe
+	(*PayloadUserKickRoom)(nil),          // 20: svc.infra.link.PayloadUserKickRoom
+	(*PayloadUserForbid)(nil),            // 21: svc.infra.link.PayloadUserForbid
+	(*PayloadUserRoomAdm)(nil),           // 22: svc.infra.link.PayloadUserRoomAdm
+	(*PayloadUserRoomCancelAdm)(nil),     // 23: svc.infra.link.PayloadUserRoomCancelAdm
+	(*PayloadPlatformUserOpenNoble)(nil), // 24: svc.infra.link.PayloadPlatformUserOpenNoble
+	(*PayloadPlatformUserSendGift)(nil),  // 25: svc.infra.link.PayloadPlatformUserSendGift
 }
 var file_svc_infra_link_payload_proto_depIdxs = []int32{
-	11, // 0: svc.infra.link.PayloadEnterRoom.charm:type_name -> svc.infra.link.PayloadCharm
-	10, // 1: svc.infra.link.PayloadEnterRoom.fans:type_name -> svc.infra.link.PayloadFans
-	9,  // 2: svc.infra.link.PayloadEnterRoom.guard:type_name -> svc.infra.link.PayloadGuard
-	11, // 3: svc.infra.link.PayloadUserCommDm.charm:type_name -> svc.infra.link.PayloadCharm
-	10, // 4: svc.infra.link.PayloadUserCommDm.fans:type_name -> svc.infra.link.PayloadFans
-	9,  // 5: svc.infra.link.PayloadUserCommDm.guard:type_name -> svc.infra.link.PayloadGuard
-	6,  // [6:6] is the sub-list for method output_type
-	6,  // [6:6] is the sub-list for method input_type
-	6,  // [6:6] is the sub-list for extension type_name
-	6,  // [6:6] is the sub-list for extension extendee
-	0,  // [0:6] is the sub-list for field type_name
+	4,  // 0: svc.infra.link.PayloadUserDm.user:type_name -> svc.infra.link.BasicUser
+	4,  // 1: svc.infra.link.PayloadUserGift.user:type_name -> svc.infra.link.BasicUser
+	4,  // 2: svc.infra.link.PayloadOpenFansGroup.user:type_name -> svc.infra.link.BasicUser
+	4,  // 3: svc.infra.link.PayloadOpenNoble.user:type_name -> svc.infra.link.BasicUser
+	4,  // 4: svc.infra.link.PayloadEnterRoom.user:type_name -> svc.infra.link.BasicUser
+	4,  // 5: svc.infra.link.PayloadUserLevelUp.user:type_name -> svc.infra.link.BasicUser
+	4,  // 6: svc.infra.link.PayloadUserSubUnSubscribe.user:type_name -> svc.infra.link.BasicUser
+	4,  // 7: svc.infra.link.PayloadUserKickRoom.user:type_name -> svc.infra.link.BasicUser
+	4,  // 8: svc.infra.link.PayloadUserForbid.user:type_name -> svc.infra.link.BasicUser
+	4,  // 9: svc.infra.link.PayloadUserRoomAdm.user:type_name -> svc.infra.link.BasicUser
+	4,  // 10: svc.infra.link.PayloadUserRoomCancelAdm.user:type_name -> svc.infra.link.BasicUser
+	5,  // 11: svc.infra.link.PayloadPlatformUserOpenNoble.sender:type_name -> svc.infra.link.Sender
+	6,  // 12: svc.infra.link.PayloadPlatformUserOpenNoble.receiver:type_name -> svc.infra.link.Receiver
+	5,  // 13: svc.infra.link.PayloadPlatformUserSendGift.sender:type_name -> svc.infra.link.Sender
+	6,  // 14: svc.infra.link.PayloadPlatformUserSendGift.receiver:type_name -> svc.infra.link.Receiver
+	15, // [15:15] is the sub-list for method output_type
+	15, // [15:15] is the sub-list for method input_type
+	15, // [15:15] is the sub-list for extension type_name
+	15, // [15:15] is the sub-list for extension extendee
+	0,  // [0:15] is the sub-list for field type_name
 }
 
 func init() { file_svc_infra_link_payload_proto_init() }
@@ -1077,7 +1798,7 @@ func file_svc_infra_link_payload_proto_init() {
 	}
 	if !protoimpl.UnsafeEnabled {
 		file_svc_infra_link_payload_proto_msgTypes[0].Exporter = func(v any, i int) any {
-			switch v := v.(*PayloadUserGift); i {
+			switch v := v.(*BasicUser); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1089,7 +1810,7 @@ func file_svc_infra_link_payload_proto_init() {
 			}
 		}
 		file_svc_infra_link_payload_proto_msgTypes[1].Exporter = func(v any, i int) any {
-			switch v := v.(*PayloadEnterRoom); i {
+			switch v := v.(*Sender); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1101,7 +1822,7 @@ func file_svc_infra_link_payload_proto_init() {
 			}
 		}
 		file_svc_infra_link_payload_proto_msgTypes[2].Exporter = func(v any, i int) any {
-			switch v := v.(*PayloadStreamNotice); i {
+			switch v := v.(*Receiver); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1113,78 +1834,6 @@ func file_svc_infra_link_payload_proto_init() {
 			}
 		}
 		file_svc_infra_link_payload_proto_msgTypes[3].Exporter = func(v any, i int) any {
-			switch v := v.(*PayloadStreamerCard); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_svc_infra_link_payload_proto_msgTypes[4].Exporter = func(v any, i int) any {
-			switch v := v.(*PayloadStreamerOffline); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_svc_infra_link_payload_proto_msgTypes[5].Exporter = func(v any, i int) any {
-			switch v := v.(*PayloadWrap); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_svc_infra_link_payload_proto_msgTypes[6].Exporter = func(v any, i int) any {
-			switch v := v.(*PayloadGuard); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_svc_infra_link_payload_proto_msgTypes[7].Exporter = func(v any, i int) any {
-			switch v := v.(*PayloadFans); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_svc_infra_link_payload_proto_msgTypes[8].Exporter = func(v any, i int) any {
-			switch v := v.(*PayloadCharm); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_svc_infra_link_payload_proto_msgTypes[9].Exporter = func(v any, i int) any {
 			switch v := v.(*PayloadStreamerDm); i {
 			case 0:
 				return &v.state
@@ -1196,8 +1845,212 @@ func file_svc_infra_link_payload_proto_init() {
 				return nil
 			}
 		}
+		file_svc_infra_link_payload_proto_msgTypes[4].Exporter = func(v any, i int) any {
+			switch v := v.(*PayloadUserDm); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_infra_link_payload_proto_msgTypes[5].Exporter = func(v any, i int) any {
+			switch v := v.(*PayloadUserGift); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_infra_link_payload_proto_msgTypes[6].Exporter = func(v any, i int) any {
+			switch v := v.(*PayloadOpenFansGroup); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_infra_link_payload_proto_msgTypes[7].Exporter = func(v any, i int) any {
+			switch v := v.(*PayloadOpenNoble); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_infra_link_payload_proto_msgTypes[8].Exporter = func(v any, i int) any {
+			switch v := v.(*PayloadEnterRoom); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_infra_link_payload_proto_msgTypes[9].Exporter = func(v any, i int) any {
+			switch v := v.(*PayloadStreamNotice); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 		file_svc_infra_link_payload_proto_msgTypes[10].Exporter = func(v any, i int) any {
-			switch v := v.(*PayloadUserCommDm); i {
+			switch v := v.(*PayloadStreamerStartLive); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_infra_link_payload_proto_msgTypes[11].Exporter = func(v any, i int) any {
+			switch v := v.(*PayloadStreamerOffline); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_infra_link_payload_proto_msgTypes[12].Exporter = func(v any, i int) any {
+			switch v := v.(*PayloadStreamerRoomCharm); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_infra_link_payload_proto_msgTypes[13].Exporter = func(v any, i int) any {
+			switch v := v.(*PayloadStreamerRoomRank); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_infra_link_payload_proto_msgTypes[14].Exporter = func(v any, i int) any {
+			switch v := v.(*PayloadUserLevelUp); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_infra_link_payload_proto_msgTypes[15].Exporter = func(v any, i int) any {
+			switch v := v.(*PayloadUserSubUnSubscribe); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_infra_link_payload_proto_msgTypes[16].Exporter = func(v any, i int) any {
+			switch v := v.(*PayloadUserKickRoom); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_infra_link_payload_proto_msgTypes[17].Exporter = func(v any, i int) any {
+			switch v := v.(*PayloadUserForbid); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_infra_link_payload_proto_msgTypes[18].Exporter = func(v any, i int) any {
+			switch v := v.(*PayloadUserRoomAdm); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_infra_link_payload_proto_msgTypes[19].Exporter = func(v any, i int) any {
+			switch v := v.(*PayloadUserRoomCancelAdm); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_infra_link_payload_proto_msgTypes[20].Exporter = func(v any, i int) any {
+			switch v := v.(*PayloadPlatformUserOpenNoble); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_infra_link_payload_proto_msgTypes[21].Exporter = func(v any, i int) any {
+			switch v := v.(*PayloadPlatformUserSendGift); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1214,8 +2067,8 @@ func file_svc_infra_link_payload_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_svc_infra_link_payload_proto_rawDesc,
-			NumEnums:      3,
-			NumMessages:   11,
+			NumEnums:      4,
+			NumMessages:   22,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
