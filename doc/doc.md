@@ -10853,6 +10853,8 @@ Models
 | ----- | ---- | ----- | ----------- |
 | page | [int32](#int32) |  |  |
 | limit | [int32](#int32) |  |  |
+| rank_period | [StreamerRankPeriod](#svc-biz-rank-StreamerRankPeriod) |  | 排行榜周期 |
+| period_time | [string](#string) |  | 传空则按照当前时间计算（日2006-01-02，月2006-01，周2006-1、使用&#34;-&#34;拼接time.ISOWeek返回值） |
 
 
 

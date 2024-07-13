@@ -21,6 +21,8 @@ enum StreamerRankPeriod {
 message GetStreamerRankReq {
     int32 page = 1;
     int32 limit = 2;
+    StreamerRankPeriod rank_period = 3; // 排行榜周期
+    string period_time = 4; // 传空则按照当前时间计算（日2006-01-02，月2006-01，周2006-1、使用"-"拼接time.ISOWeek返回值）
 }
 
 message GetStreamerRankResp {
