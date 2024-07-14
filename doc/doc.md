@@ -292,6 +292,8 @@
     - [MGetRoomsByStreamerIDsReq](#svc-biz-room-MGetRoomsByStreamerIDsReq)
     - [MGetRoomsByStreamerIDsResp](#svc-biz-room-MGetRoomsByStreamerIDsResp)
     - [MGetRoomsByStreamerIDsResp.ItemsEntry](#svc-biz-room-MGetRoomsByStreamerIDsResp-ItemsEntry)
+    - [MGetRoomsByStreamerIDsWithOnlineSortReq](#svc-biz-room-MGetRoomsByStreamerIDsWithOnlineSortReq)
+    - [MGetRoomsByStreamerIDsWithOnlineSortResp](#svc-biz-room-MGetRoomsByStreamerIDsWithOnlineSortResp)
     - [MGetRoomsReq](#svc-biz-room-MGetRoomsReq)
     - [MGetRoomsResp](#svc-biz-room-MGetRoomsResp)
     - [MGetRoomsResp.ItemsEntry](#svc-biz-room-MGetRoomsResp-ItemsEntry)
@@ -4999,6 +5001,14 @@ CategoryInfo 分类详情
 | category_id | [string](#string) |  | 分类id |
 | start_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开播时间 |
 | end_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 结束时间 |
+| gift_total_num | [int64](#int64) |  | 礼物总数 |
+| gift_total_price | [int64](#int64) |  | 礼物代币总数 |
+| gift_total_user | [int64](#int64) |  | 礼物用户总数 |
+| total_viewer | [int64](#int64) |  | 观看人数 |
+| new_follow | [int64](#int64) |  | 新增订阅 |
+| new_fanbse | [int64](#int64) |  | 新增粉丝团 |
+| new_nobble | [int64](#int64) |  | 新增贵族 |
+| new_nobble_price | [int64](#int64) |  | 新增贵族代币数 |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
 | updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 更新时间 |
 
@@ -5369,6 +5379,38 @@ CategoryInfo 分类详情
 
 
 
+<a name="svc-biz-room-MGetRoomsByStreamerIDsWithOnlineSortReq"></a>
+
+### MGetRoomsByStreamerIDsWithOnlineSortReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer_ids | [string](#string) | repeated | 主播id |
+| page | [int32](#int32) |  | 页数 |
+| limit | [int32](#int32) |  | 条数 |
+
+
+
+
+
+
+<a name="svc-biz-room-MGetRoomsByStreamerIDsWithOnlineSortResp"></a>
+
+### MGetRoomsByStreamerIDsWithOnlineSortResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [RoomInfo](#svc-biz-room-RoomInfo) | repeated | 房间列表 |
+
+
+
+
+
+
 <a name="svc-biz-room-MGetRoomsReq"></a>
 
 ### MGetRoomsReq
@@ -5468,9 +5510,17 @@ CategoryInfo 分类详情
 | live_display_type | [LiveDisplayType](#svc-biz-room-LiveDisplayType) |  | 横竖屏类型（开播状态时才会有，关播时清空） |
 | live_start_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开播时间（开播状态时才会有，关播时清空） |
 | score_recommend | [int32](#int32) |  | 推荐分数（后台配置） |
+| score_recommend_start_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+| score_recommend_end_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
 | score_search | [int32](#int32) |  | 搜索分数（后台配置） |
+| score_search_start_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+| score_search_end_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
 | score_subscribe | [int32](#int32) |  | 关注分数（后台配置） |
+| score_subscribe_start_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+| score_subscribe_end_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
 | score_hot | [int32](#int32) |  | 热度分数（后台配置） |
+| score_hot_start_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+| score_hot_end_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
 | score_glamour | [int32](#int32) |  | 魅力值 |
 | score_online | [int32](#int32) |  | 在线人数 |
 | score_selected_gift | [int32](#int32) |  | 精选礼物最后赠送时间戳 |
@@ -5709,6 +5759,7 @@ Room 房间
 | GetRoomByStreamerID | [GetRoomByStreamerIDReq](#svc-biz-room-GetRoomByStreamerIDReq) | [GetRoomByStreamerIDResp](#svc-biz-room-GetRoomByStreamerIDResp) | GetRoomByStreamerID 查询房间 |
 | MGetRooms | [MGetRoomsReq](#svc-biz-room-MGetRoomsReq) | [MGetRoomsResp](#svc-biz-room-MGetRoomsResp) | MGetRooms 查询房间 |
 | MGetRoomsByStreamerIDs | [MGetRoomsByStreamerIDsReq](#svc-biz-room-MGetRoomsByStreamerIDsReq) | [MGetRoomsByStreamerIDsResp](#svc-biz-room-MGetRoomsByStreamerIDsResp) | MGetRoomByStreamerIDs 批量查询房间 |
+| MGetRoomsByStreamerIDsWithOnlineSort | [MGetRoomsByStreamerIDsWithOnlineSortReq](#svc-biz-room-MGetRoomsByStreamerIDsWithOnlineSortReq) | [MGetRoomsByStreamerIDsWithOnlineSortResp](#svc-biz-room-MGetRoomsByStreamerIDsWithOnlineSortResp) | MGetRoomsByStreamerIDsWithOnlineSort 批量查询房间（带在线分页，按照传入顺序获取，在线排在最前） |
 | GetRoomList | [GetRoomListReq](#svc-biz-room-GetRoomListReq) | [GetRoomListResp](#svc-biz-room-GetRoomListResp) | GetRoomList 查询房间列表（后台使用此接口） |
 | GetOnlineRoomList | [GetOnlineRoomListReq](#svc-biz-room-GetOnlineRoomListReq) | [GetOnlineRoomListResp](#svc-biz-room-GetOnlineRoomListResp) | GetOnlineRoomList 查询在线房间列表（用户端列表使用此接口） |
 | ForbidRoom | [ForbidRoomReq](#svc-biz-room-ForbidRoomReq) | [ForbidRoomResp](#svc-biz-room-ForbidRoomResp) | ForbidRoom 封禁直播间 |
@@ -14601,9 +14652,9 @@ topic: topic.gift.send
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| total_num | [int32](#int32) |  | 礼物总数 |
-| total_price | [int32](#int32) |  | 礼物代币总数 |
-| total_user | [int32](#int32) |  | 礼物用户总数 |
+| total_num | [int64](#int64) |  | 礼物总数 |
+| total_price | [int64](#int64) |  | 礼物代币总数 |
+| total_user | [int64](#int64) |  | 礼物用户总数 |
 
 
 
