@@ -52,7 +52,9 @@ enum PayloadType {
   UserRoomAdm = 22; // 用户房管
   UserRoomResetAdm = 23; // 用户撤销房管
 
-  StreamerCardUpdate =  24; // 主播名片设置
+  UserLevelUp = 24; // 用户等级升级
+
+  StreamerCardUpdate =  25; // 主播名片设置
 
   PlatformUserOpenNoble = 100; // 全平台开通贵族通知
   PlatformUserSendGift = 101; // 全平台用户送礼通知
