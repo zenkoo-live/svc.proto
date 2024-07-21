@@ -107,6 +107,8 @@ message PayloadUserGift {
   string icon = 6; // 礼物icon
   string gift_id = 7; // 礼物ID
   bool is_animation = 8; // 是否动画礼物
+  int32 combo_timeout = 9; // combo延时
+  int32 combo_showtime = 10; // combo显示时间
 }
 // 用户开通粉丝团
 message PayloadOpenFansGroup {
