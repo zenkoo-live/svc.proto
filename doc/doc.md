@@ -478,6 +478,7 @@
     - [PayloadPlatformUserOpenNoble](#svc-infra-link-PayloadPlatformUserOpenNoble)
     - [PayloadPlatformUserSendGift](#svc-infra-link-PayloadPlatformUserSendGift)
     - [PayloadStreamNotice](#svc-infra-link-PayloadStreamNotice)
+    - [PayloadStreamerCardUpdate](#svc-infra-link-PayloadStreamerCardUpdate)
     - [PayloadStreamerDm](#svc-infra-link-PayloadStreamerDm)
     - [PayloadStreamerOffline](#svc-infra-link-PayloadStreamerOffline)
     - [PayloadStreamerRoomCharm](#svc-infra-link-PayloadStreamerRoomCharm)
@@ -779,9 +780,13 @@
     - [NobleMember](#svc-biz-vip-NobleMember)
   
 - [svc.biz.vip/level.proto](#svc-biz-vip_level-proto)
+    - [AddConfReq](#svc-biz-vip-AddConfReq)
+    - [GetConfListResp](#svc-biz-vip-GetConfListResp)
     - [GetMemberLevelReq](#svc-biz-vip-GetMemberLevelReq)
     - [GetMemberLevelResp](#svc-biz-vip-GetMemberLevelResp)
+    - [LevelConf](#svc-biz-vip-LevelConf)
     - [LevelInfo](#svc-biz-vip-LevelInfo)
+    - [UpdateConfReq](#svc-biz-vip-UpdateConfReq)
   
     - [Level](#svc-biz-vip-Level)
   
@@ -8356,6 +8361,24 @@ Service of stat
 
 
 
+<a name="svc-infra-link-PayloadStreamerCardUpdate"></a>
+
+### PayloadStreamerCardUpdate
+主播名片更新
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| remark | [string](#string) |  | 备注说名 |
+| amount | [int64](#int64) |  | 收费标准 |
+| desc | [string](#string) |  | 展示内容 |
+| enabled | [bool](#bool) |  | 开启状态 |
+
+
+
+
+
+
 <a name="svc-infra-link-PayloadStreamerDm"></a>
 
 ### PayloadStreamerDm
@@ -8481,6 +8504,8 @@ Service of stat
 | icon | [string](#string) |  | 礼物icon |
 | gift_id | [string](#string) |  | 礼物ID |
 | is_animation | [bool](#bool) |  | 是否动画礼物 |
+| combo_timeout | [int32](#int32) |  | combo延时 |
+| combo_showtime | [int32](#int32) |  | combo显示时间 |
 
 
 
@@ -8649,6 +8674,8 @@ Service of stat
 | UserResetForbid | 21 | 用户解除禁言 |
 | UserRoomAdm | 22 | 用户房管 |
 | UserRoomResetAdm | 23 | 用户撤销房管 |
+| UserLevelUp | 24 | 用户等级升级 |
+| StreamerCardUpdate | 25 | 主播名片设置 |
 | PlatformUserOpenNoble | 100 | 全平台开通贵族通知 |
 | PlatformUserSendGift | 101 | 全平台用户送礼通知 |
 
@@ -13405,6 +13432,36 @@ service started /////////////////
 
 
 
+<a name="svc-biz-vip-AddConfReq"></a>
+
+### AddConfReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| conf | [LevelConf](#svc-biz-vip-LevelConf) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-GetConfListResp"></a>
+
+### GetConfListResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| conf_list | [LevelConf](#svc-biz-vip-LevelConf) | repeated |  |
+
+
+
+
+
+
 <a name="svc-biz-vip-GetMemberLevelReq"></a>
 
 ### GetMemberLevelReq
@@ -13435,6 +13492,23 @@ service started /////////////////
 
 
 
+<a name="svc-biz-vip-LevelConf"></a>
+
+### LevelConf
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| level | [int32](#int32) |  |  |
+| min_exp | [int64](#int64) |  |  |
+| max_exp | [int64](#int64) |  |  |
+
+
+
+
+
+
 <a name="svc-biz-vip-LevelInfo"></a>
 
 ### LevelInfo
@@ -13448,6 +13522,21 @@ service started /////////////////
 | exp | [int64](#int64) |  |  |
 | exp_current_level | [int64](#int64) |  | 当前等级所需经验 |
 | exp_next_level | [int64](#int64) |  | 下一等级所需经验 |
+
+
+
+
+
+
+<a name="svc-biz-vip-UpdateConfReq"></a>
+
+### UpdateConfReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| conf | [LevelConf](#svc-biz-vip-LevelConf) |  |  |
 
 
 
@@ -13469,6 +13558,9 @@ service started /////////////////
 | ----------- | ------------ | ------------- | ------------|
 | ReLoadLevelConf | [.google.protobuf.Empty](#google-protobuf-Empty) | [.google.protobuf.Empty](#google-protobuf-Empty) | ReLoadLevelConf 重载等级配置 |
 | GetMemberLevel | [GetMemberLevelReq](#svc-biz-vip-GetMemberLevelReq) | [GetMemberLevelResp](#svc-biz-vip-GetMemberLevelResp) | GetMemberLevel 获取成员等级 |
+| GetConfList | [.google.protobuf.Empty](#google-protobuf-Empty) | [GetConfListResp](#svc-biz-vip-GetConfListResp) | GetConfList 获取等级配置列表 |
+| AddConf | [AddConfReq](#svc-biz-vip-AddConfReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | AddConf 添加等级配置 |
+| UpdateConf | [UpdateConfReq](#svc-biz-vip-UpdateConfReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | UpdateConf 更新等级配置（按照level字段更新） |
 
  
 

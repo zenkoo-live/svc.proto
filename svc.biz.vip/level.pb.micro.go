@@ -41,6 +41,12 @@ type LevelService interface {
 	ReLoadLevelConf(ctx context.Context, in *emptypb.Empty, opts ...client.CallOption) (*emptypb.Empty, error)
 	// GetMemberLevel 获取成员等级
 	GetMemberLevel(ctx context.Context, in *GetMemberLevelReq, opts ...client.CallOption) (*GetMemberLevelResp, error)
+	// GetConfList 获取等级配置列表
+	GetConfList(ctx context.Context, in *emptypb.Empty, opts ...client.CallOption) (*GetConfListResp, error)
+	// AddConf 添加等级配置
+	AddConf(ctx context.Context, in *AddConfReq, opts ...client.CallOption) (*emptypb.Empty, error)
+	// UpdateConf 更新等级配置（按照level字段更新）
+	UpdateConf(ctx context.Context, in *UpdateConfReq, opts ...client.CallOption) (*emptypb.Empty, error)
 }
 
 type levelService struct {
@@ -75,6 +81,36 @@ func (c *levelService) GetMemberLevel(ctx context.Context, in *GetMemberLevelReq
 	return out, nil
 }
 
+func (c *levelService) GetConfList(ctx context.Context, in *emptypb.Empty, opts ...client.CallOption) (*GetConfListResp, error) {
+	req := c.c.NewRequest(c.name, "Level.GetConfList", in)
+	out := new(GetConfListResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *levelService) AddConf(ctx context.Context, in *AddConfReq, opts ...client.CallOption) (*emptypb.Empty, error) {
+	req := c.c.NewRequest(c.name, "Level.AddConf", in)
+	out := new(emptypb.Empty)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *levelService) UpdateConf(ctx context.Context, in *UpdateConfReq, opts ...client.CallOption) (*emptypb.Empty, error) {
+	req := c.c.NewRequest(c.name, "Level.UpdateConf", in)
+	out := new(emptypb.Empty)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for Level service
 
 type LevelHandler interface {
@@ -82,12 +118,21 @@ type LevelHandler interface {
 	ReLoadLevelConf(context.Context, *emptypb.Empty, *emptypb.Empty) error
 	// GetMemberLevel 获取成员等级
 	GetMemberLevel(context.Context, *GetMemberLevelReq, *GetMemberLevelResp) error
+	// GetConfList 获取等级配置列表
+	GetConfList(context.Context, *emptypb.Empty, *GetConfListResp) error
+	// AddConf 添加等级配置
+	AddConf(context.Context, *AddConfReq, *emptypb.Empty) error
+	// UpdateConf 更新等级配置（按照level字段更新）
+	UpdateConf(context.Context, *UpdateConfReq, *emptypb.Empty) error
 }
 
 func RegisterLevelHandler(s server.Server, hdlr LevelHandler, opts ...server.HandlerOption) error {
 	type level interface {
 		ReLoadLevelConf(ctx context.Context, in *emptypb.Empty, out *emptypb.Empty) error
 		GetMemberLevel(ctx context.Context, in *GetMemberLevelReq, out *GetMemberLevelResp) error
+		GetConfList(ctx context.Context, in *emptypb.Empty, out *GetConfListResp) error
+		AddConf(ctx context.Context, in *AddConfReq, out *emptypb.Empty) error
+		UpdateConf(ctx context.Context, in *UpdateConfReq, out *emptypb.Empty) error
 	}
 	type Level struct {
 		level
@@ -106,4 +151,16 @@ func (h *levelHandler) ReLoadLevelConf(ctx context.Context, in *emptypb.Empty, o
 
 func (h *levelHandler) GetMemberLevel(ctx context.Context, in *GetMemberLevelReq, out *GetMemberLevelResp) error {
 	return h.LevelHandler.GetMemberLevel(ctx, in, out)
+}
+
+func (h *levelHandler) GetConfList(ctx context.Context, in *emptypb.Empty, out *GetConfListResp) error {
+	return h.LevelHandler.GetConfList(ctx, in, out)
+}
+
+func (h *levelHandler) AddConf(ctx context.Context, in *AddConfReq, out *emptypb.Empty) error {
+	return h.LevelHandler.AddConf(ctx, in, out)
+}
+
+func (h *levelHandler) UpdateConf(ctx context.Context, in *UpdateConfReq, out *emptypb.Empty) error {
+	return h.LevelHandler.UpdateConf(ctx, in, out)
 }
