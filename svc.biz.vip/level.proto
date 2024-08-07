@@ -7,20 +7,18 @@ option go_package="./svc.biz.vip;vip";
 
 // 等级
 service Level {
-	// ReLoadLevelConf 重载等级配置
-	rpc ReLoadLevelConf (google.protobuf.Empty) returns (google.protobuf.Empty) {}
     // GetMemberLevel 获取成员等级
     rpc GetMemberLevel (GetMemberLevelReq) returns (GetMemberLevelResp) {}
 
-	// GetConfList 获取等级配置列表
-	rpc GetConfList (google.protobuf.Empty) returns (GetConfListResp) {}
-	// AddConf 添加等级配置
-	rpc AddConf (AddConfReq) returns (google.protobuf.Empty) {}
-	// UpdateConf 更新等级配置（按照level字段更新）
-	rpc UpdateConf (UpdateConfReq) returns (google.protobuf.Empty) {}
+	// GetLevelList 获取等级配置列表
+	rpc GetLevelList (google.protobuf.Empty) returns (GetLevelListResp) {}
+	// AddLevel 添加等级配置
+	rpc AddLevel (AddLevelReq) returns (google.protobuf.Empty) {}
+	// UpdateLevel 更新等级配置（按照level字段更新）
+	rpc UpdateLevel (UpdateLevelReq) returns (google.protobuf.Empty) {}
 }
 
-message LevelInfo {
+message MemberLevelInfo {
 	string member_id = 1;
 	int32 level = 2;
 	int64 exp = 3;
@@ -32,24 +30,24 @@ message GetMemberLevelReq {
 	string member_id = 1;
 }
 message GetMemberLevelResp {
-	LevelInfo level_info = 1;
+	MemberLevelInfo level_info = 1;
 }
 
 
-message LevelConf {
+message LevelInfo {
 	int32 level = 1;
 	int64 min_exp = 2;
 	int64 max_exp = 3;
 }
 
-message GetConfListResp {
-	repeated LevelConf conf_list = 1;
+message GetLevelListResp {
+	repeated LevelInfo items = 1;
 }
 
-message AddConfReq {
-	LevelConf conf = 1;
+message AddLevelReq {
+	LevelInfo level = 1;
 }
 
-message UpdateConfReq {
-	LevelConf conf = 1;
+message UpdateLevelReq {
+	LevelInfo level = 1;
 }

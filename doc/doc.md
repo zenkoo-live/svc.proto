@@ -784,13 +784,13 @@
     - [NobleMember](#svc-biz-vip-NobleMember)
   
 - [svc.biz.vip/level.proto](#svc-biz-vip_level-proto)
-    - [AddConfReq](#svc-biz-vip-AddConfReq)
-    - [GetConfListResp](#svc-biz-vip-GetConfListResp)
+    - [AddLevelReq](#svc-biz-vip-AddLevelReq)
+    - [GetLevelListResp](#svc-biz-vip-GetLevelListResp)
     - [GetMemberLevelReq](#svc-biz-vip-GetMemberLevelReq)
     - [GetMemberLevelResp](#svc-biz-vip-GetMemberLevelResp)
-    - [LevelConf](#svc-biz-vip-LevelConf)
     - [LevelInfo](#svc-biz-vip-LevelInfo)
-    - [UpdateConfReq](#svc-biz-vip-UpdateConfReq)
+    - [MemberLevelInfo](#svc-biz-vip-MemberLevelInfo)
+    - [UpdateLevelReq](#svc-biz-vip-UpdateLevelReq)
   
     - [Level](#svc-biz-vip-Level)
   
@@ -13500,30 +13500,30 @@ service started /////////////////
 
 
 
-<a name="svc-biz-vip-AddConfReq"></a>
+<a name="svc-biz-vip-AddLevelReq"></a>
 
-### AddConfReq
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| conf | [LevelConf](#svc-biz-vip-LevelConf) |  |  |
-
-
-
-
-
-
-<a name="svc-biz-vip-GetConfListResp"></a>
-
-### GetConfListResp
+### AddLevelReq
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| conf_list | [LevelConf](#svc-biz-vip-LevelConf) | repeated |  |
+| level | [LevelInfo](#svc-biz-vip-LevelInfo) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-GetLevelListResp"></a>
+
+### GetLevelListResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [LevelInfo](#svc-biz-vip-LevelInfo) | repeated |  |
 
 
 
@@ -13553,16 +13553,16 @@ service started /////////////////
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| level_info | [LevelInfo](#svc-biz-vip-LevelInfo) |  |  |
+| level_info | [MemberLevelInfo](#svc-biz-vip-MemberLevelInfo) |  |  |
 
 
 
 
 
 
-<a name="svc-biz-vip-LevelConf"></a>
+<a name="svc-biz-vip-LevelInfo"></a>
 
-### LevelConf
+### LevelInfo
 
 
 
@@ -13577,9 +13577,9 @@ service started /////////////////
 
 
 
-<a name="svc-biz-vip-LevelInfo"></a>
+<a name="svc-biz-vip-MemberLevelInfo"></a>
 
-### LevelInfo
+### MemberLevelInfo
 
 
 
@@ -13596,15 +13596,15 @@ service started /////////////////
 
 
 
-<a name="svc-biz-vip-UpdateConfReq"></a>
+<a name="svc-biz-vip-UpdateLevelReq"></a>
 
-### UpdateConfReq
+### UpdateLevelReq
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| conf | [LevelConf](#svc-biz-vip-LevelConf) |  |  |
+| level | [LevelInfo](#svc-biz-vip-LevelInfo) |  |  |
 
 
 
@@ -13624,11 +13624,10 @@ service started /////////////////
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| ReLoadLevelConf | [.google.protobuf.Empty](#google-protobuf-Empty) | [.google.protobuf.Empty](#google-protobuf-Empty) | ReLoadLevelConf 重载等级配置 |
 | GetMemberLevel | [GetMemberLevelReq](#svc-biz-vip-GetMemberLevelReq) | [GetMemberLevelResp](#svc-biz-vip-GetMemberLevelResp) | GetMemberLevel 获取成员等级 |
-| GetConfList | [.google.protobuf.Empty](#google-protobuf-Empty) | [GetConfListResp](#svc-biz-vip-GetConfListResp) | GetConfList 获取等级配置列表 |
-| AddConf | [AddConfReq](#svc-biz-vip-AddConfReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | AddConf 添加等级配置 |
-| UpdateConf | [UpdateConfReq](#svc-biz-vip-UpdateConfReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | UpdateConf 更新等级配置（按照level字段更新） |
+| GetLevelList | [.google.protobuf.Empty](#google-protobuf-Empty) | [GetLevelListResp](#svc-biz-vip-GetLevelListResp) | GetLevelList 获取等级配置列表 |
+| AddLevel | [AddLevelReq](#svc-biz-vip-AddLevelReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | AddLevel 添加等级配置 |
+| UpdateLevel | [UpdateLevelReq](#svc-biz-vip-UpdateLevelReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | UpdateLevel 更新等级配置（按照level字段更新） |
 
  
 
