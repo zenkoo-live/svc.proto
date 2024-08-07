@@ -785,12 +785,15 @@
   
 - [svc.biz.vip/level.proto](#svc-biz-vip_level-proto)
     - [AddLevelReq](#svc-biz-vip-AddLevelReq)
+    - [AddLevelResp](#svc-biz-vip-AddLevelResp)
+    - [GetLevelListReq](#svc-biz-vip-GetLevelListReq)
     - [GetLevelListResp](#svc-biz-vip-GetLevelListResp)
     - [GetMemberLevelReq](#svc-biz-vip-GetMemberLevelReq)
     - [GetMemberLevelResp](#svc-biz-vip-GetMemberLevelResp)
     - [LevelInfo](#svc-biz-vip-LevelInfo)
     - [MemberLevelInfo](#svc-biz-vip-MemberLevelInfo)
     - [UpdateLevelReq](#svc-biz-vip-UpdateLevelReq)
+    - [UpdateLevelReqResp](#svc-biz-vip-UpdateLevelReqResp)
   
     - [Level](#svc-biz-vip-Level)
   
@@ -13515,6 +13518,26 @@ service started /////////////////
 
 
 
+<a name="svc-biz-vip-AddLevelResp"></a>
+
+### AddLevelResp
+
+
+
+
+
+
+
+<a name="svc-biz-vip-GetLevelListReq"></a>
+
+### GetLevelListReq
+
+
+
+
+
+
+
 <a name="svc-biz-vip-GetLevelListResp"></a>
 
 ### GetLevelListResp
@@ -13610,6 +13633,16 @@ service started /////////////////
 
 
 
+
+<a name="svc-biz-vip-UpdateLevelReqResp"></a>
+
+### UpdateLevelReqResp
+
+
+
+
+
+
  
 
  
@@ -13625,9 +13658,9 @@ service started /////////////////
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
 | GetMemberLevel | [GetMemberLevelReq](#svc-biz-vip-GetMemberLevelReq) | [GetMemberLevelResp](#svc-biz-vip-GetMemberLevelResp) | GetMemberLevel 获取成员等级 |
-| GetLevelList | [.google.protobuf.Empty](#google-protobuf-Empty) | [GetLevelListResp](#svc-biz-vip-GetLevelListResp) | GetLevelList 获取等级配置列表 |
-| AddLevel | [AddLevelReq](#svc-biz-vip-AddLevelReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | AddLevel 添加等级配置 |
-| UpdateLevel | [UpdateLevelReq](#svc-biz-vip-UpdateLevelReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | UpdateLevel 更新等级配置（按照level字段更新） |
+| GetLevelList | [GetLevelListReq](#svc-biz-vip-GetLevelListReq) | [GetLevelListResp](#svc-biz-vip-GetLevelListResp) | GetLevelList 获取等级配置列表 |
+| AddLevel | [AddLevelReq](#svc-biz-vip-AddLevelReq) | [AddLevelResp](#svc-biz-vip-AddLevelResp) | AddLevel 添加等级配置 |
+| UpdateLevel | [UpdateLevelReq](#svc-biz-vip-UpdateLevelReq) | [UpdateLevelReqResp](#svc-biz-vip-UpdateLevelReqResp) | UpdateLevel 更新等级配置（按照level字段更新） |
 
  
 

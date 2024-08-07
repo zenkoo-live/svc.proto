@@ -11,7 +11,6 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
-	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -35,11 +34,11 @@ type LevelClient interface {
 	// GetMemberLevel 获取成员等级
 	GetMemberLevel(ctx context.Context, in *GetMemberLevelReq, opts ...grpc.CallOption) (*GetMemberLevelResp, error)
 	// GetLevelList 获取等级配置列表
-	GetLevelList(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetLevelListResp, error)
+	GetLevelList(ctx context.Context, in *GetLevelListReq, opts ...grpc.CallOption) (*GetLevelListResp, error)
 	// AddLevel 添加等级配置
-	AddLevel(ctx context.Context, in *AddLevelReq, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	AddLevel(ctx context.Context, in *AddLevelReq, opts ...grpc.CallOption) (*AddLevelResp, error)
 	// UpdateLevel 更新等级配置（按照level字段更新）
-	UpdateLevel(ctx context.Context, in *UpdateLevelReq, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	UpdateLevel(ctx context.Context, in *UpdateLevelReq, opts ...grpc.CallOption) (*UpdateLevelReqResp, error)
 }
 
 type levelClient struct {
@@ -60,7 +59,7 @@ func (c *levelClient) GetMemberLevel(ctx context.Context, in *GetMemberLevelReq,
 	return out, nil
 }
 
-func (c *levelClient) GetLevelList(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetLevelListResp, error) {
+func (c *levelClient) GetLevelList(ctx context.Context, in *GetLevelListReq, opts ...grpc.CallOption) (*GetLevelListResp, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetLevelListResp)
 	err := c.cc.Invoke(ctx, Level_GetLevelList_FullMethodName, in, out, cOpts...)
@@ -70,9 +69,9 @@ func (c *levelClient) GetLevelList(ctx context.Context, in *emptypb.Empty, opts 
 	return out, nil
 }
 
-func (c *levelClient) AddLevel(ctx context.Context, in *AddLevelReq, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *levelClient) AddLevel(ctx context.Context, in *AddLevelReq, opts ...grpc.CallOption) (*AddLevelResp, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(emptypb.Empty)
+	out := new(AddLevelResp)
 	err := c.cc.Invoke(ctx, Level_AddLevel_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -80,9 +79,9 @@ func (c *levelClient) AddLevel(ctx context.Context, in *AddLevelReq, opts ...grp
 	return out, nil
 }
 
-func (c *levelClient) UpdateLevel(ctx context.Context, in *UpdateLevelReq, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *levelClient) UpdateLevel(ctx context.Context, in *UpdateLevelReq, opts ...grpc.CallOption) (*UpdateLevelReqResp, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(emptypb.Empty)
+	out := new(UpdateLevelReqResp)
 	err := c.cc.Invoke(ctx, Level_UpdateLevel_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -99,11 +98,11 @@ type LevelServer interface {
 	// GetMemberLevel 获取成员等级
 	GetMemberLevel(context.Context, *GetMemberLevelReq) (*GetMemberLevelResp, error)
 	// GetLevelList 获取等级配置列表
-	GetLevelList(context.Context, *emptypb.Empty) (*GetLevelListResp, error)
+	GetLevelList(context.Context, *GetLevelListReq) (*GetLevelListResp, error)
 	// AddLevel 添加等级配置
-	AddLevel(context.Context, *AddLevelReq) (*emptypb.Empty, error)
+	AddLevel(context.Context, *AddLevelReq) (*AddLevelResp, error)
 	// UpdateLevel 更新等级配置（按照level字段更新）
-	UpdateLevel(context.Context, *UpdateLevelReq) (*emptypb.Empty, error)
+	UpdateLevel(context.Context, *UpdateLevelReq) (*UpdateLevelReqResp, error)
 	mustEmbedUnimplementedLevelServer()
 }
 
@@ -114,13 +113,13 @@ type UnimplementedLevelServer struct {
 func (UnimplementedLevelServer) GetMemberLevel(context.Context, *GetMemberLevelReq) (*GetMemberLevelResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMemberLevel not implemented")
 }
-func (UnimplementedLevelServer) GetLevelList(context.Context, *emptypb.Empty) (*GetLevelListResp, error) {
+func (UnimplementedLevelServer) GetLevelList(context.Context, *GetLevelListReq) (*GetLevelListResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetLevelList not implemented")
 }
-func (UnimplementedLevelServer) AddLevel(context.Context, *AddLevelReq) (*emptypb.Empty, error) {
+func (UnimplementedLevelServer) AddLevel(context.Context, *AddLevelReq) (*AddLevelResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddLevel not implemented")
 }
-func (UnimplementedLevelServer) UpdateLevel(context.Context, *UpdateLevelReq) (*emptypb.Empty, error) {
+func (UnimplementedLevelServer) UpdateLevel(context.Context, *UpdateLevelReq) (*UpdateLevelReqResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateLevel not implemented")
 }
 func (UnimplementedLevelServer) mustEmbedUnimplementedLevelServer() {}
@@ -155,7 +154,7 @@ func _Level_GetMemberLevel_Handler(srv interface{}, ctx context.Context, dec fun
 }
 
 func _Level_GetLevelList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(emptypb.Empty)
+	in := new(GetLevelListReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -167,7 +166,7 @@ func _Level_GetLevelList_Handler(srv interface{}, ctx context.Context, dec func(
 		FullMethod: Level_GetLevelList_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(LevelServer).GetLevelList(ctx, req.(*emptypb.Empty))
+		return srv.(LevelServer).GetLevelList(ctx, req.(*GetLevelListReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }

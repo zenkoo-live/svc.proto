@@ -6,7 +6,6 @@ package vip
 import (
 	fmt "fmt"
 	proto "google.golang.org/protobuf/proto"
-	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	math "math"
 )
 
@@ -40,11 +39,11 @@ type LevelService interface {
 	// GetMemberLevel 获取成员等级
 	GetMemberLevel(ctx context.Context, in *GetMemberLevelReq, opts ...client.CallOption) (*GetMemberLevelResp, error)
 	// GetLevelList 获取等级配置列表
-	GetLevelList(ctx context.Context, in *emptypb.Empty, opts ...client.CallOption) (*GetLevelListResp, error)
+	GetLevelList(ctx context.Context, in *GetLevelListReq, opts ...client.CallOption) (*GetLevelListResp, error)
 	// AddLevel 添加等级配置
-	AddLevel(ctx context.Context, in *AddLevelReq, opts ...client.CallOption) (*emptypb.Empty, error)
+	AddLevel(ctx context.Context, in *AddLevelReq, opts ...client.CallOption) (*AddLevelResp, error)
 	// UpdateLevel 更新等级配置（按照level字段更新）
-	UpdateLevel(ctx context.Context, in *UpdateLevelReq, opts ...client.CallOption) (*emptypb.Empty, error)
+	UpdateLevel(ctx context.Context, in *UpdateLevelReq, opts ...client.CallOption) (*UpdateLevelReqResp, error)
 }
 
 type levelService struct {
@@ -69,7 +68,7 @@ func (c *levelService) GetMemberLevel(ctx context.Context, in *GetMemberLevelReq
 	return out, nil
 }
 
-func (c *levelService) GetLevelList(ctx context.Context, in *emptypb.Empty, opts ...client.CallOption) (*GetLevelListResp, error) {
+func (c *levelService) GetLevelList(ctx context.Context, in *GetLevelListReq, opts ...client.CallOption) (*GetLevelListResp, error) {
 	req := c.c.NewRequest(c.name, "Level.GetLevelList", in)
 	out := new(GetLevelListResp)
 	err := c.c.Call(ctx, req, out, opts...)
@@ -79,9 +78,9 @@ func (c *levelService) GetLevelList(ctx context.Context, in *emptypb.Empty, opts
 	return out, nil
 }
 
-func (c *levelService) AddLevel(ctx context.Context, in *AddLevelReq, opts ...client.CallOption) (*emptypb.Empty, error) {
+func (c *levelService) AddLevel(ctx context.Context, in *AddLevelReq, opts ...client.CallOption) (*AddLevelResp, error) {
 	req := c.c.NewRequest(c.name, "Level.AddLevel", in)
-	out := new(emptypb.Empty)
+	out := new(AddLevelResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -89,9 +88,9 @@ func (c *levelService) AddLevel(ctx context.Context, in *AddLevelReq, opts ...cl
 	return out, nil
 }
 
-func (c *levelService) UpdateLevel(ctx context.Context, in *UpdateLevelReq, opts ...client.CallOption) (*emptypb.Empty, error) {
+func (c *levelService) UpdateLevel(ctx context.Context, in *UpdateLevelReq, opts ...client.CallOption) (*UpdateLevelReqResp, error) {
 	req := c.c.NewRequest(c.name, "Level.UpdateLevel", in)
-	out := new(emptypb.Empty)
+	out := new(UpdateLevelReqResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -105,19 +104,19 @@ type LevelHandler interface {
 	// GetMemberLevel 获取成员等级
 	GetMemberLevel(context.Context, *GetMemberLevelReq, *GetMemberLevelResp) error
 	// GetLevelList 获取等级配置列表
-	GetLevelList(context.Context, *emptypb.Empty, *GetLevelListResp) error
+	GetLevelList(context.Context, *GetLevelListReq, *GetLevelListResp) error
 	// AddLevel 添加等级配置
-	AddLevel(context.Context, *AddLevelReq, *emptypb.Empty) error
+	AddLevel(context.Context, *AddLevelReq, *AddLevelResp) error
 	// UpdateLevel 更新等级配置（按照level字段更新）
-	UpdateLevel(context.Context, *UpdateLevelReq, *emptypb.Empty) error
+	UpdateLevel(context.Context, *UpdateLevelReq, *UpdateLevelReqResp) error
 }
 
 func RegisterLevelHandler(s server.Server, hdlr LevelHandler, opts ...server.HandlerOption) error {
 	type level interface {
 		GetMemberLevel(ctx context.Context, in *GetMemberLevelReq, out *GetMemberLevelResp) error
-		GetLevelList(ctx context.Context, in *emptypb.Empty, out *GetLevelListResp) error
-		AddLevel(ctx context.Context, in *AddLevelReq, out *emptypb.Empty) error
-		UpdateLevel(ctx context.Context, in *UpdateLevelReq, out *emptypb.Empty) error
+		GetLevelList(ctx context.Context, in *GetLevelListReq, out *GetLevelListResp) error
+		AddLevel(ctx context.Context, in *AddLevelReq, out *AddLevelResp) error
+		UpdateLevel(ctx context.Context, in *UpdateLevelReq, out *UpdateLevelReqResp) error
 	}
 	type Level struct {
 		level
@@ -134,14 +133,14 @@ func (h *levelHandler) GetMemberLevel(ctx context.Context, in *GetMemberLevelReq
 	return h.LevelHandler.GetMemberLevel(ctx, in, out)
 }
 
-func (h *levelHandler) GetLevelList(ctx context.Context, in *emptypb.Empty, out *GetLevelListResp) error {
+func (h *levelHandler) GetLevelList(ctx context.Context, in *GetLevelListReq, out *GetLevelListResp) error {
 	return h.LevelHandler.GetLevelList(ctx, in, out)
 }
 
-func (h *levelHandler) AddLevel(ctx context.Context, in *AddLevelReq, out *emptypb.Empty) error {
+func (h *levelHandler) AddLevel(ctx context.Context, in *AddLevelReq, out *AddLevelResp) error {
 	return h.LevelHandler.AddLevel(ctx, in, out)
 }
 
-func (h *levelHandler) UpdateLevel(ctx context.Context, in *UpdateLevelReq, out *emptypb.Empty) error {
+func (h *levelHandler) UpdateLevel(ctx context.Context, in *UpdateLevelReq, out *UpdateLevelReqResp) error {
 	return h.LevelHandler.UpdateLevel(ctx, in, out)
 }

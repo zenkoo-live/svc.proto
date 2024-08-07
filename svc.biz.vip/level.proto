@@ -1,7 +1,6 @@
 syntax = "proto3";
 
 package svc.biz.vip;
-import "google/protobuf/empty.proto";
 
 option go_package="./svc.biz.vip;vip";
 
@@ -11,11 +10,11 @@ service Level {
     rpc GetMemberLevel (GetMemberLevelReq) returns (GetMemberLevelResp) {}
 
 	// GetLevelList 获取等级配置列表
-	rpc GetLevelList (google.protobuf.Empty) returns (GetLevelListResp) {}
+	rpc GetLevelList (GetLevelListReq) returns (GetLevelListResp) {}
 	// AddLevel 添加等级配置
-	rpc AddLevel (AddLevelReq) returns (google.protobuf.Empty) {}
+	rpc AddLevel (AddLevelReq) returns (AddLevelResp) {}
 	// UpdateLevel 更新等级配置（按照level字段更新）
-	rpc UpdateLevel (UpdateLevelReq) returns (google.protobuf.Empty) {}
+	rpc UpdateLevel (UpdateLevelReq) returns (UpdateLevelReqResp) {}
 }
 
 message MemberLevelInfo {
@@ -40,6 +39,9 @@ message LevelInfo {
 	int64 max_exp = 3;
 }
 
+message GetLevelListReq {
+
+}
 message GetLevelListResp {
 	repeated LevelInfo items = 1;
 }
@@ -47,7 +49,13 @@ message GetLevelListResp {
 message AddLevelReq {
 	LevelInfo level = 1;
 }
+message AddLevelResp {
+
+}
 
 message UpdateLevelReq {
 	LevelInfo level = 1;
+}
+message UpdateLevelReqResp {
+	
 }
