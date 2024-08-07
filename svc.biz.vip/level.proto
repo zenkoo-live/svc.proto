@@ -11,6 +11,13 @@ service Level {
 	rpc ReLoadLevelConf (google.protobuf.Empty) returns (google.protobuf.Empty) {}
     // GetMemberLevel 获取成员等级
     rpc GetMemberLevel (GetMemberLevelReq) returns (GetMemberLevelResp) {}
+
+	// GetConfList 获取等级配置列表
+	rpc GetConfList (google.protobuf.Empty) returns (GetConfListResp) {}
+	// AddConf 添加等级配置
+	rpc AddConf (AddConfReq) returns (google.protobuf.Empty) {}
+	// UpdateConf 更新等级配置（按照level字段更新）
+	rpc UpdateConf (UpdateConfReq) returns (google.protobuf.Empty) {}
 }
 
 message LevelInfo {
@@ -26,4 +33,23 @@ message GetMemberLevelReq {
 }
 message GetMemberLevelResp {
 	LevelInfo level_info = 1;
+}
+
+
+message LevelConf {
+	int32 level = 1;
+	int64 min_exp = 2;
+	int64 max_exp = 3;
+}
+
+message GetConfListResp {
+	repeated LevelConf conf_list = 1;
+}
+
+message AddConfReq {
+	LevelConf conf = 1;
+}
+
+message UpdateConfReq {
+	LevelConf conf = 1;
 }

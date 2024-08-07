@@ -52,6 +52,9 @@ enum PayloadType {
   UserRoomAdm = 22; // 用户房管
   UserRoomResetAdm = 23; // 用户撤销房管
 
+  UserLevelUp = 24; // 用户等级升级
+
+  StreamerCardUpdate =  25; // 主播名片设置
 
   PlatformUserOpenNoble = 100; // 全平台开通贵族通知
   PlatformUserSendGift = 101; // 全平台用户送礼通知
@@ -104,6 +107,8 @@ message PayloadUserGift {
   string icon = 6; // 礼物icon
   string gift_id = 7; // 礼物ID
   bool is_animation = 8; // 是否动画礼物
+  int32 combo_timeout = 9; // combo延时
+  int32 combo_showtime = 10; // combo显示时间
 }
 // 用户开通粉丝团
 message PayloadOpenFansGroup {
@@ -174,6 +179,13 @@ message PayloadUserRoomCancelAdm {
   BasicUser user = 1; // 基础信息
 }
 
+// 主播名片更新
+message PayloadStreamerCardUpdate {
+  string remark = 1; // 备注说名
+  int64 amount = 2; // 收费标准
+  string desc = 3;// 展示内容
+  bool enabled = 4;  // 开启状态
+}
 
 // 平台开通贵族通知
 message PayloadPlatformUserOpenNoble {
