@@ -15,6 +15,8 @@ service Level {
 	rpc AddLevel (AddLevelReq) returns (AddLevelResp) {}
 	// UpdateLevel 更新等级配置（按照level字段更新）
 	rpc UpdateLevel (UpdateLevelReq) returns (UpdateLevelReqResp) {}
+	// DelLevel 删除等级配置
+	rpc DelLevel (DelLevelReq) returns (DelLevelResp) {}
 }
 
 message MemberLevelInfo {
@@ -35,8 +37,9 @@ message GetMemberLevelResp {
 
 message LevelInfo {
 	int32 level = 1;
-	int64 min_exp = 2;
-	int64 max_exp = 3;
+	int64 max_exp = 2;
+	string icon = 3;
+	string color = 4;
 }
 
 message GetLevelListReq {
@@ -47,15 +50,23 @@ message GetLevelListResp {
 }
 
 message AddLevelReq {
-	LevelInfo level = 1;
+	LevelInfo level_info = 1;
 }
 message AddLevelResp {
 
 }
 
 message UpdateLevelReq {
-	LevelInfo level = 1;
+	int32 level = 1;
+	LevelInfo level_info = 2;
 }
 message UpdateLevelReqResp {
-	
+
+}
+
+message DelLevelReq {
+	int32 level = 1;
+}
+message DelLevelResp {
+
 }

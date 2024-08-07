@@ -786,6 +786,8 @@
 - [svc.biz.vip/level.proto](#svc-biz-vip_level-proto)
     - [AddLevelReq](#svc-biz-vip-AddLevelReq)
     - [AddLevelResp](#svc-biz-vip-AddLevelResp)
+    - [DelLevelReq](#svc-biz-vip-DelLevelReq)
+    - [DelLevelResp](#svc-biz-vip-DelLevelResp)
     - [GetLevelListReq](#svc-biz-vip-GetLevelListReq)
     - [GetLevelListResp](#svc-biz-vip-GetLevelListResp)
     - [GetMemberLevelReq](#svc-biz-vip-GetMemberLevelReq)
@@ -13511,7 +13513,7 @@ service started /////////////////
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| level | [LevelInfo](#svc-biz-vip-LevelInfo) |  |  |
+| level_info | [LevelInfo](#svc-biz-vip-LevelInfo) |  |  |
 
 
 
@@ -13521,6 +13523,31 @@ service started /////////////////
 <a name="svc-biz-vip-AddLevelResp"></a>
 
 ### AddLevelResp
+
+
+
+
+
+
+
+<a name="svc-biz-vip-DelLevelReq"></a>
+
+### DelLevelReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| level | [int32](#int32) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-DelLevelResp"></a>
+
+### DelLevelResp
 
 
 
@@ -13592,8 +13619,9 @@ service started /////////////////
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | level | [int32](#int32) |  |  |
-| min_exp | [int64](#int64) |  |  |
 | max_exp | [int64](#int64) |  |  |
+| icon | [string](#string) |  |  |
+| color | [string](#string) |  |  |
 
 
 
@@ -13627,7 +13655,8 @@ service started /////////////////
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| level | [LevelInfo](#svc-biz-vip-LevelInfo) |  |  |
+| level | [int32](#int32) |  |  |
+| level_info | [LevelInfo](#svc-biz-vip-LevelInfo) |  |  |
 
 
 
@@ -13661,6 +13690,7 @@ service started /////////////////
 | GetLevelList | [GetLevelListReq](#svc-biz-vip-GetLevelListReq) | [GetLevelListResp](#svc-biz-vip-GetLevelListResp) | GetLevelList 获取等级配置列表 |
 | AddLevel | [AddLevelReq](#svc-biz-vip-AddLevelReq) | [AddLevelResp](#svc-biz-vip-AddLevelResp) | AddLevel 添加等级配置 |
 | UpdateLevel | [UpdateLevelReq](#svc-biz-vip-UpdateLevelReq) | [UpdateLevelReqResp](#svc-biz-vip-UpdateLevelReqResp) | UpdateLevel 更新等级配置（按照level字段更新） |
+| DelLevel | [DelLevelReq](#svc-biz-vip-DelLevelReq) | [DelLevelResp](#svc-biz-vip-DelLevelResp) | DelLevel 删除等级配置 |
 
  
 

@@ -23,6 +23,7 @@ const (
 	Level_GetLevelList_FullMethodName   = "/svc.biz.vip.Level/GetLevelList"
 	Level_AddLevel_FullMethodName       = "/svc.biz.vip.Level/AddLevel"
 	Level_UpdateLevel_FullMethodName    = "/svc.biz.vip.Level/UpdateLevel"
+	Level_DelLevel_FullMethodName       = "/svc.biz.vip.Level/DelLevel"
 )
 
 // LevelClient is the client API for Level service.
@@ -39,6 +40,8 @@ type LevelClient interface {
 	AddLevel(ctx context.Context, in *AddLevelReq, opts ...grpc.CallOption) (*AddLevelResp, error)
 	// UpdateLevel 更新等级配置（按照level字段更新）
 	UpdateLevel(ctx context.Context, in *UpdateLevelReq, opts ...grpc.CallOption) (*UpdateLevelReqResp, error)
+	// DelLevel 删除等级配置
+	DelLevel(ctx context.Context, in *DelLevelReq, opts ...grpc.CallOption) (*DelLevelResp, error)
 }
 
 type levelClient struct {
@@ -89,6 +92,16 @@ func (c *levelClient) UpdateLevel(ctx context.Context, in *UpdateLevelReq, opts 
 	return out, nil
 }
 
+func (c *levelClient) DelLevel(ctx context.Context, in *DelLevelReq, opts ...grpc.CallOption) (*DelLevelResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DelLevelResp)
+	err := c.cc.Invoke(ctx, Level_DelLevel_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // LevelServer is the server API for Level service.
 // All implementations must embed UnimplementedLevelServer
 // for forward compatibility
@@ -103,6 +116,8 @@ type LevelServer interface {
 	AddLevel(context.Context, *AddLevelReq) (*AddLevelResp, error)
 	// UpdateLevel 更新等级配置（按照level字段更新）
 	UpdateLevel(context.Context, *UpdateLevelReq) (*UpdateLevelReqResp, error)
+	// DelLevel 删除等级配置
+	DelLevel(context.Context, *DelLevelReq) (*DelLevelResp, error)
 	mustEmbedUnimplementedLevelServer()
 }
 
@@ -121,6 +136,9 @@ func (UnimplementedLevelServer) AddLevel(context.Context, *AddLevelReq) (*AddLev
 }
 func (UnimplementedLevelServer) UpdateLevel(context.Context, *UpdateLevelReq) (*UpdateLevelReqResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateLevel not implemented")
+}
+func (UnimplementedLevelServer) DelLevel(context.Context, *DelLevelReq) (*DelLevelResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DelLevel not implemented")
 }
 func (UnimplementedLevelServer) mustEmbedUnimplementedLevelServer() {}
 
@@ -207,6 +225,24 @@ func _Level_UpdateLevel_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Level_DelLevel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DelLevelReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LevelServer).DelLevel(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Level_DelLevel_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LevelServer).DelLevel(ctx, req.(*DelLevelReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Level_ServiceDesc is the grpc.ServiceDesc for Level service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -229,6 +265,10 @@ var Level_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateLevel",
 			Handler:    _Level_UpdateLevel_Handler,
+		},
+		{
+			MethodName: "DelLevel",
+			Handler:    _Level_DelLevel_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

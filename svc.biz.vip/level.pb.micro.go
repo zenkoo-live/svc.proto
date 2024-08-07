@@ -44,6 +44,8 @@ type LevelService interface {
 	AddLevel(ctx context.Context, in *AddLevelReq, opts ...client.CallOption) (*AddLevelResp, error)
 	// UpdateLevel 更新等级配置（按照level字段更新）
 	UpdateLevel(ctx context.Context, in *UpdateLevelReq, opts ...client.CallOption) (*UpdateLevelReqResp, error)
+	// DelLevel 删除等级配置
+	DelLevel(ctx context.Context, in *DelLevelReq, opts ...client.CallOption) (*DelLevelResp, error)
 }
 
 type levelService struct {
@@ -98,6 +100,16 @@ func (c *levelService) UpdateLevel(ctx context.Context, in *UpdateLevelReq, opts
 	return out, nil
 }
 
+func (c *levelService) DelLevel(ctx context.Context, in *DelLevelReq, opts ...client.CallOption) (*DelLevelResp, error) {
+	req := c.c.NewRequest(c.name, "Level.DelLevel", in)
+	out := new(DelLevelResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for Level service
 
 type LevelHandler interface {
@@ -109,6 +121,8 @@ type LevelHandler interface {
 	AddLevel(context.Context, *AddLevelReq, *AddLevelResp) error
 	// UpdateLevel 更新等级配置（按照level字段更新）
 	UpdateLevel(context.Context, *UpdateLevelReq, *UpdateLevelReqResp) error
+	// DelLevel 删除等级配置
+	DelLevel(context.Context, *DelLevelReq, *DelLevelResp) error
 }
 
 func RegisterLevelHandler(s server.Server, hdlr LevelHandler, opts ...server.HandlerOption) error {
@@ -117,6 +131,7 @@ func RegisterLevelHandler(s server.Server, hdlr LevelHandler, opts ...server.Han
 		GetLevelList(ctx context.Context, in *GetLevelListReq, out *GetLevelListResp) error
 		AddLevel(ctx context.Context, in *AddLevelReq, out *AddLevelResp) error
 		UpdateLevel(ctx context.Context, in *UpdateLevelReq, out *UpdateLevelReqResp) error
+		DelLevel(ctx context.Context, in *DelLevelReq, out *DelLevelResp) error
 	}
 	type Level struct {
 		level
@@ -143,4 +158,8 @@ func (h *levelHandler) AddLevel(ctx context.Context, in *AddLevelReq, out *AddLe
 
 func (h *levelHandler) UpdateLevel(ctx context.Context, in *UpdateLevelReq, out *UpdateLevelReqResp) error {
 	return h.LevelHandler.UpdateLevel(ctx, in, out)
+}
+
+func (h *levelHandler) DelLevel(ctx context.Context, in *DelLevelReq, out *DelLevelResp) error {
+	return h.LevelHandler.DelLevel(ctx, in, out)
 }
