@@ -13639,6 +13639,8 @@ service started /////////////////
 | max_exp | [int64](#int64) |  |  |
 | icon | [string](#string) |  |  |
 | color | [string](#string) |  |  |
+| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+| updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 更新时间 |
 
 
 
