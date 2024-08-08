@@ -1,19 +1,25 @@
 syntax = "proto3";
 
 package svc.biz.vip;
-import "google/protobuf/empty.proto";
 
 option go_package="./svc.biz.vip;vip";
 
 // 等级
 service Level {
-	// ReLoadLevelConf 重载等级配置
-	rpc ReLoadLevelConf (google.protobuf.Empty) returns (google.protobuf.Empty) {}
     // GetMemberLevel 获取成员等级
     rpc GetMemberLevel (GetMemberLevelReq) returns (GetMemberLevelResp) {}
+
+	// GetLevelList 获取等级配置列表
+	rpc GetLevelList (GetLevelListReq) returns (GetLevelListResp) {}
+	// AddLevel 添加等级配置
+	rpc AddLevel (AddLevelReq) returns (AddLevelResp) {}
+	// UpdateLevel 更新等级配置（按照level字段更新）
+	rpc UpdateLevel (UpdateLevelReq) returns (UpdateLevelReqResp) {}
+	// DelLevel 删除等级配置
+	rpc DelLevel (DelLevelReq) returns (DelLevelResp) {}
 }
 
-message LevelInfo {
+message MemberLevelInfo {
 	string member_id = 1;
 	int32 level = 2;
 	int64 exp = 3;
@@ -25,5 +31,42 @@ message GetMemberLevelReq {
 	string member_id = 1;
 }
 message GetMemberLevelResp {
+	MemberLevelInfo level_info = 1;
+}
+
+
+message LevelInfo {
+	int32 level = 1;
+	int64 max_exp = 2;
+	string icon = 3;
+	string color = 4;
+}
+
+message GetLevelListReq {
+
+}
+message GetLevelListResp {
+	repeated LevelInfo items = 1;
+}
+
+message AddLevelReq {
 	LevelInfo level_info = 1;
+}
+message AddLevelResp {
+
+}
+
+message UpdateLevelReq {
+	int32 level = 1;
+	LevelInfo level_info = 2;
+}
+message UpdateLevelReqResp {
+
+}
+
+message DelLevelReq {
+	int32 level = 1;
+}
+message DelLevelResp {
+
 }

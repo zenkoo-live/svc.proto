@@ -478,6 +478,7 @@
     - [PayloadPlatformUserOpenNoble](#svc-infra-link-PayloadPlatformUserOpenNoble)
     - [PayloadPlatformUserSendGift](#svc-infra-link-PayloadPlatformUserSendGift)
     - [PayloadStreamNotice](#svc-infra-link-PayloadStreamNotice)
+    - [PayloadStreamerCardUpdate](#svc-infra-link-PayloadStreamerCardUpdate)
     - [PayloadStreamerDm](#svc-infra-link-PayloadStreamerDm)
     - [PayloadStreamerOffline](#svc-infra-link-PayloadStreamerOffline)
     - [PayloadStreamerRoomCharm](#svc-infra-link-PayloadStreamerRoomCharm)
@@ -775,13 +776,26 @@
     - [JoinNobleReq](#svc-biz-vip-JoinNobleReq)
     - [JoinNobleResp](#svc-biz-vip-JoinNobleResp)
     - [NobleMemberInfo](#svc-biz-vip-NobleMemberInfo)
+    - [RenewNobleReq](#svc-biz-vip-RenewNobleReq)
+    - [RenewNobleResp](#svc-biz-vip-RenewNobleResp)
+    - [UpgradeNobleReq](#svc-biz-vip-UpgradeNobleReq)
+    - [UpgradeNobleResp](#svc-biz-vip-UpgradeNobleResp)
   
     - [NobleMember](#svc-biz-vip-NobleMember)
   
 - [svc.biz.vip/level.proto](#svc-biz-vip_level-proto)
+    - [AddLevelReq](#svc-biz-vip-AddLevelReq)
+    - [AddLevelResp](#svc-biz-vip-AddLevelResp)
+    - [DelLevelReq](#svc-biz-vip-DelLevelReq)
+    - [DelLevelResp](#svc-biz-vip-DelLevelResp)
+    - [GetLevelListReq](#svc-biz-vip-GetLevelListReq)
+    - [GetLevelListResp](#svc-biz-vip-GetLevelListResp)
     - [GetMemberLevelReq](#svc-biz-vip-GetMemberLevelReq)
     - [GetMemberLevelResp](#svc-biz-vip-GetMemberLevelResp)
     - [LevelInfo](#svc-biz-vip-LevelInfo)
+    - [MemberLevelInfo](#svc-biz-vip-MemberLevelInfo)
+    - [UpdateLevelReq](#svc-biz-vip-UpdateLevelReq)
+    - [UpdateLevelReqResp](#svc-biz-vip-UpdateLevelReqResp)
   
     - [Level](#svc-biz-vip-Level)
   
@@ -8356,6 +8370,24 @@ Service of stat
 
 
 
+<a name="svc-infra-link-PayloadStreamerCardUpdate"></a>
+
+### PayloadStreamerCardUpdate
+主播名片更新
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| remark | [string](#string) |  | 备注说名 |
+| amount | [int64](#int64) |  | 收费标准 |
+| desc | [string](#string) |  | 展示内容 |
+| enabled | [bool](#bool) |  | 开启状态 |
+
+
+
+
+
+
 <a name="svc-infra-link-PayloadStreamerDm"></a>
 
 ### PayloadStreamerDm
@@ -8481,6 +8513,8 @@ Service of stat
 | icon | [string](#string) |  | 礼物icon |
 | gift_id | [string](#string) |  | 礼物ID |
 | is_animation | [bool](#bool) |  | 是否动画礼物 |
+| combo_timeout | [int32](#int32) |  | combo延时 |
+| combo_showtime | [int32](#int32) |  | combo显示时间 |
 
 
 
@@ -8649,6 +8683,8 @@ Service of stat
 | UserResetForbid | 21 | 用户解除禁言 |
 | UserRoomAdm | 22 | 用户房管 |
 | UserRoomResetAdm | 23 | 用户撤销房管 |
+| UserLevelUp | 24 | 用户等级升级 |
+| StreamerCardUpdate | 25 | 主播名片设置 |
 | PlatformUserOpenNoble | 100 | 全平台开通贵族通知 |
 | PlatformUserSendGift | 101 | 全平台用户送礼通知 |
 
@@ -13339,6 +13375,8 @@ service started /////////////////
 | level | [NobleLevel](#svc-biz-vip-NobleLevel) |  | 贵族等级 |
 | member_id | [string](#string) |  | 用户id |
 | streamer_id | [string](#string) |  | 主播id（可为空；贵族可直接开通，也可在某个直播间开通） |
+| order_id | [string](#string) |  | 支付订单id |
+| order_price | [int64](#int64) |  | 支付订单价格 |
 
 
 
@@ -13374,6 +13412,66 @@ service started /////////////////
 
 
 
+
+<a name="svc-biz-vip-RenewNobleReq"></a>
+
+### RenewNobleReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| level | [NobleLevel](#svc-biz-vip-NobleLevel) |  | 贵族等级 |
+| member_id | [string](#string) |  | 用户id |
+| order_id | [string](#string) |  | string streamer_id = 3; // 主播id（可为空；贵族可直接开通，也可在某个直播间开通）
+
+支付订单id |
+| order_price | [int64](#int64) |  | 支付订单价格 |
+
+
+
+
+
+
+<a name="svc-biz-vip-RenewNobleResp"></a>
+
+### RenewNobleResp
+
+
+
+
+
+
+
+<a name="svc-biz-vip-UpgradeNobleReq"></a>
+
+### UpgradeNobleReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| level | [NobleLevel](#svc-biz-vip-NobleLevel) |  | 贵族等级 |
+| member_id | [string](#string) |  | 用户id |
+| order_id | [string](#string) |  | string streamer_id = 3; // 主播id（可为空；贵族可直接开通，也可在某个直播间开通）
+
+支付订单id |
+| order_price | [int64](#int64) |  | 支付订单价格 |
+
+
+
+
+
+
+<a name="svc-biz-vip-UpgradeNobleResp"></a>
+
+### UpgradeNobleResp
+
+
+
+
+
+
  
 
  
@@ -13389,6 +13487,8 @@ service started /////////////////
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
 | JoinNoble | [JoinNobleReq](#svc-biz-vip-JoinNobleReq) | [JoinNobleResp](#svc-biz-vip-JoinNobleResp) | JoinNoble 加入贵族 |
+| RenewNoble | [RenewNobleReq](#svc-biz-vip-RenewNobleReq) | [RenewNobleResp](#svc-biz-vip-RenewNobleResp) | RenewNoble 续费贵族 |
+| UpgradeNoble | [UpgradeNobleReq](#svc-biz-vip-UpgradeNobleReq) | [UpgradeNobleResp](#svc-biz-vip-UpgradeNobleResp) | UpgradeNoble 升级贵族 |
 | GetNobleMember | [GetNobleMemberReq](#svc-biz-vip-GetNobleMemberReq) | [GetNobleMemberResp](#svc-biz-vip-GetNobleMemberResp) | GetNobleMember 获取成员贵族信息 |
 | GetNobleMemberList | [GetNobleMemberListReq](#svc-biz-vip-GetNobleMemberListReq) | [GetNobleMemberListResp](#svc-biz-vip-GetNobleMemberListResp) | GetNobleMemberList 获取贵族成员列表（streamer_id传空字符串取所有） |
 | CountNobleMember | [CountNobleMemberReq](#svc-biz-vip-CountNobleMemberReq) | [CountNobleMemberResp](#svc-biz-vip-CountNobleMemberResp) | CountNobleMember 获取成员总数 |
@@ -13402,6 +13502,81 @@ service started /////////////////
 <p align="right"><a href="#top">Top</a></p>
 
 ## svc.biz.vip/level.proto
+
+
+
+<a name="svc-biz-vip-AddLevelReq"></a>
+
+### AddLevelReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| level_info | [LevelInfo](#svc-biz-vip-LevelInfo) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-AddLevelResp"></a>
+
+### AddLevelResp
+
+
+
+
+
+
+
+<a name="svc-biz-vip-DelLevelReq"></a>
+
+### DelLevelReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| level | [int32](#int32) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-DelLevelResp"></a>
+
+### DelLevelResp
+
+
+
+
+
+
+
+<a name="svc-biz-vip-GetLevelListReq"></a>
+
+### GetLevelListReq
+
+
+
+
+
+
+
+<a name="svc-biz-vip-GetLevelListResp"></a>
+
+### GetLevelListResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [LevelInfo](#svc-biz-vip-LevelInfo) | repeated |  |
+
+
+
 
 
 
@@ -13428,7 +13603,7 @@ service started /////////////////
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| level_info | [LevelInfo](#svc-biz-vip-LevelInfo) |  |  |
+| level_info | [MemberLevelInfo](#svc-biz-vip-MemberLevelInfo) |  |  |
 
 
 
@@ -13443,11 +13618,55 @@ service started /////////////////
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| level | [int32](#int32) |  |  |
+| max_exp | [int64](#int64) |  |  |
+| icon | [string](#string) |  |  |
+| color | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-MemberLevelInfo"></a>
+
+### MemberLevelInfo
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
 | member_id | [string](#string) |  |  |
 | level | [int32](#int32) |  |  |
 | exp | [int64](#int64) |  |  |
 | exp_current_level | [int64](#int64) |  | 当前等级所需经验 |
 | exp_next_level | [int64](#int64) |  | 下一等级所需经验 |
+
+
+
+
+
+
+<a name="svc-biz-vip-UpdateLevelReq"></a>
+
+### UpdateLevelReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| level | [int32](#int32) |  |  |
+| level_info | [LevelInfo](#svc-biz-vip-LevelInfo) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-UpdateLevelReqResp"></a>
+
+### UpdateLevelReqResp
+
 
 
 
@@ -13467,8 +13686,11 @@ service started /////////////////
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| ReLoadLevelConf | [.google.protobuf.Empty](#google-protobuf-Empty) | [.google.protobuf.Empty](#google-protobuf-Empty) | ReLoadLevelConf 重载等级配置 |
 | GetMemberLevel | [GetMemberLevelReq](#svc-biz-vip-GetMemberLevelReq) | [GetMemberLevelResp](#svc-biz-vip-GetMemberLevelResp) | GetMemberLevel 获取成员等级 |
+| GetLevelList | [GetLevelListReq](#svc-biz-vip-GetLevelListReq) | [GetLevelListResp](#svc-biz-vip-GetLevelListResp) | GetLevelList 获取等级配置列表 |
+| AddLevel | [AddLevelReq](#svc-biz-vip-AddLevelReq) | [AddLevelResp](#svc-biz-vip-AddLevelResp) | AddLevel 添加等级配置 |
+| UpdateLevel | [UpdateLevelReq](#svc-biz-vip-UpdateLevelReq) | [UpdateLevelReqResp](#svc-biz-vip-UpdateLevelReqResp) | UpdateLevel 更新等级配置（按照level字段更新） |
+| DelLevel | [DelLevelReq](#svc-biz-vip-DelLevelReq) | [DelLevelResp](#svc-biz-vip-DelLevelResp) | DelLevel 删除等级配置 |
 
  
 
@@ -13870,6 +14092,8 @@ service started /////////////////
 | streamer_id | [string](#string) |  |  |
 | member_id | [string](#string) |  |  |
 | level | [FanbaseLevel](#svc-biz-vip-FanbaseLevel) |  |  |
+| order_id | [string](#string) |  | 支付订单id |
+| order_price | [string](#string) |  | 支付订单价格 |
 
 
 
@@ -14035,10 +14259,12 @@ service started /////////////////
 | level | [NobleLevel](#svc-biz-vip-NobleLevel) |  | 等级 |
 | name | [string](#string) |  | 名称 |
 | icon | [string](#string) |  | 贵族图标 |
-| first_open_price | [int32](#int32) |  | 首次开通价格 |
-| first_remand_diamond | [int32](#int32) |  | 首次开通奖励金 |
+| open_price | [int32](#int32) |  | 开通价格 |
+| remand_diamond | [int32](#int32) |  | 开通奖励金 |
 | renew_price | [int32](#int32) |  | 续费价格 |
 | renew_remand_diamond | [int32](#int32) |  | 续费奖励金 |
+| upgrade_price | [int32](#int32) |  | 升级价格 |
+| upgrade_remand_diamond | [int32](#int32) |  | 升级奖励金 |
 | rights | [NobleRights](#svc-biz-vip-NobleRights) |  | 权益 |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
 | updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 更新时间 |
