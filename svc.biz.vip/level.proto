@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package svc.biz.vip;
 
+import "google/protobuf/timestamp.proto";
+
 option go_package="./svc.biz.vip;vip";
 
 // 等级
@@ -9,7 +11,9 @@ service Level {
     // GetMemberLevel 获取成员等级
     rpc GetMemberLevel (GetMemberLevelReq) returns (GetMemberLevelResp) {}
 
-	// GetLevelList 获取等级配置列表
+	// GetAllLevelList 获取所有等级配置列表
+	rpc GetAllLevelList (GetAllLevelListReq) returns (GetLevelListResp) {}
+	// GetLevelList 分页获取等级配置列表
 	rpc GetLevelList (GetLevelListReq) returns (GetLevelListResp) {}
 	// AddLevel 添加等级配置
 	rpc AddLevel (AddLevelReq) returns (AddLevelResp) {}
@@ -40,10 +44,18 @@ message LevelInfo {
 	int64 max_exp = 2;
 	string icon = 3;
 	string color = 4;
+
+	google.protobuf.Timestamp created_at = 101; // 创建时间
+	google.protobuf.Timestamp updated_at = 102; // 更新时间
+}
+
+message GetAllLevelListReq {
+
 }
 
 message GetLevelListReq {
-
+	int32 page = 1; // 页数
+    int32 limit = 2; // 条数
 }
 message GetLevelListResp {
 	repeated LevelInfo items = 1;

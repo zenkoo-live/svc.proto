@@ -19,11 +19,12 @@ import (
 const _ = grpc.SupportPackageIsVersion8
 
 const (
-	Level_GetMemberLevel_FullMethodName = "/svc.biz.vip.Level/GetMemberLevel"
-	Level_GetLevelList_FullMethodName   = "/svc.biz.vip.Level/GetLevelList"
-	Level_AddLevel_FullMethodName       = "/svc.biz.vip.Level/AddLevel"
-	Level_UpdateLevel_FullMethodName    = "/svc.biz.vip.Level/UpdateLevel"
-	Level_DelLevel_FullMethodName       = "/svc.biz.vip.Level/DelLevel"
+	Level_GetMemberLevel_FullMethodName  = "/svc.biz.vip.Level/GetMemberLevel"
+	Level_GetAllLevelList_FullMethodName = "/svc.biz.vip.Level/GetAllLevelList"
+	Level_GetLevelList_FullMethodName    = "/svc.biz.vip.Level/GetLevelList"
+	Level_AddLevel_FullMethodName        = "/svc.biz.vip.Level/AddLevel"
+	Level_UpdateLevel_FullMethodName     = "/svc.biz.vip.Level/UpdateLevel"
+	Level_DelLevel_FullMethodName        = "/svc.biz.vip.Level/DelLevel"
 )
 
 // LevelClient is the client API for Level service.
@@ -34,7 +35,9 @@ const (
 type LevelClient interface {
 	// GetMemberLevel 获取成员等级
 	GetMemberLevel(ctx context.Context, in *GetMemberLevelReq, opts ...grpc.CallOption) (*GetMemberLevelResp, error)
-	// GetLevelList 获取等级配置列表
+	// GetAllLevelList 获取所有等级配置列表
+	GetAllLevelList(ctx context.Context, in *GetAllLevelListReq, opts ...grpc.CallOption) (*GetLevelListResp, error)
+	// GetLevelList 分页获取等级配置列表
 	GetLevelList(ctx context.Context, in *GetLevelListReq, opts ...grpc.CallOption) (*GetLevelListResp, error)
 	// AddLevel 添加等级配置
 	AddLevel(ctx context.Context, in *AddLevelReq, opts ...grpc.CallOption) (*AddLevelResp, error)
@@ -56,6 +59,16 @@ func (c *levelClient) GetMemberLevel(ctx context.Context, in *GetMemberLevelReq,
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetMemberLevelResp)
 	err := c.cc.Invoke(ctx, Level_GetMemberLevel_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *levelClient) GetAllLevelList(ctx context.Context, in *GetAllLevelListReq, opts ...grpc.CallOption) (*GetLevelListResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetLevelListResp)
+	err := c.cc.Invoke(ctx, Level_GetAllLevelList_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -110,7 +123,9 @@ func (c *levelClient) DelLevel(ctx context.Context, in *DelLevelReq, opts ...grp
 type LevelServer interface {
 	// GetMemberLevel 获取成员等级
 	GetMemberLevel(context.Context, *GetMemberLevelReq) (*GetMemberLevelResp, error)
-	// GetLevelList 获取等级配置列表
+	// GetAllLevelList 获取所有等级配置列表
+	GetAllLevelList(context.Context, *GetAllLevelListReq) (*GetLevelListResp, error)
+	// GetLevelList 分页获取等级配置列表
 	GetLevelList(context.Context, *GetLevelListReq) (*GetLevelListResp, error)
 	// AddLevel 添加等级配置
 	AddLevel(context.Context, *AddLevelReq) (*AddLevelResp, error)
@@ -127,6 +142,9 @@ type UnimplementedLevelServer struct {
 
 func (UnimplementedLevelServer) GetMemberLevel(context.Context, *GetMemberLevelReq) (*GetMemberLevelResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMemberLevel not implemented")
+}
+func (UnimplementedLevelServer) GetAllLevelList(context.Context, *GetAllLevelListReq) (*GetLevelListResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAllLevelList not implemented")
 }
 func (UnimplementedLevelServer) GetLevelList(context.Context, *GetLevelListReq) (*GetLevelListResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetLevelList not implemented")
@@ -167,6 +185,24 @@ func _Level_GetMemberLevel_Handler(srv interface{}, ctx context.Context, dec fun
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(LevelServer).GetMemberLevel(ctx, req.(*GetMemberLevelReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Level_GetAllLevelList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAllLevelListReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LevelServer).GetAllLevelList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Level_GetAllLevelList_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LevelServer).GetAllLevelList(ctx, req.(*GetAllLevelListReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -253,6 +289,10 @@ var Level_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetMemberLevel",
 			Handler:    _Level_GetMemberLevel_Handler,
+		},
+		{
+			MethodName: "GetAllLevelList",
+			Handler:    _Level_GetAllLevelList_Handler,
 		},
 		{
 			MethodName: "GetLevelList",
