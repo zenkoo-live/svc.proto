@@ -38,7 +38,9 @@ func NewLevelEndpoints() []*api.Endpoint {
 type LevelService interface {
 	// GetMemberLevel 获取成员等级
 	GetMemberLevel(ctx context.Context, in *GetMemberLevelReq, opts ...client.CallOption) (*GetMemberLevelResp, error)
-	// GetLevelList 获取等级配置列表
+	// GetAllLevelList 获取所有等级配置列表
+	GetAllLevelList(ctx context.Context, in *GetAllLevelListReq, opts ...client.CallOption) (*GetLevelListResp, error)
+	// GetLevelList 分页获取等级配置列表
 	GetLevelList(ctx context.Context, in *GetLevelListReq, opts ...client.CallOption) (*GetLevelListResp, error)
 	// AddLevel 添加等级配置
 	AddLevel(ctx context.Context, in *AddLevelReq, opts ...client.CallOption) (*AddLevelResp, error)
@@ -63,6 +65,16 @@ func NewLevelService(name string, c client.Client) LevelService {
 func (c *levelService) GetMemberLevel(ctx context.Context, in *GetMemberLevelReq, opts ...client.CallOption) (*GetMemberLevelResp, error) {
 	req := c.c.NewRequest(c.name, "Level.GetMemberLevel", in)
 	out := new(GetMemberLevelResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *levelService) GetAllLevelList(ctx context.Context, in *GetAllLevelListReq, opts ...client.CallOption) (*GetLevelListResp, error) {
+	req := c.c.NewRequest(c.name, "Level.GetAllLevelList", in)
+	out := new(GetLevelListResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -115,7 +127,9 @@ func (c *levelService) DelLevel(ctx context.Context, in *DelLevelReq, opts ...cl
 type LevelHandler interface {
 	// GetMemberLevel 获取成员等级
 	GetMemberLevel(context.Context, *GetMemberLevelReq, *GetMemberLevelResp) error
-	// GetLevelList 获取等级配置列表
+	// GetAllLevelList 获取所有等级配置列表
+	GetAllLevelList(context.Context, *GetAllLevelListReq, *GetLevelListResp) error
+	// GetLevelList 分页获取等级配置列表
 	GetLevelList(context.Context, *GetLevelListReq, *GetLevelListResp) error
 	// AddLevel 添加等级配置
 	AddLevel(context.Context, *AddLevelReq, *AddLevelResp) error
@@ -128,6 +142,7 @@ type LevelHandler interface {
 func RegisterLevelHandler(s server.Server, hdlr LevelHandler, opts ...server.HandlerOption) error {
 	type level interface {
 		GetMemberLevel(ctx context.Context, in *GetMemberLevelReq, out *GetMemberLevelResp) error
+		GetAllLevelList(ctx context.Context, in *GetAllLevelListReq, out *GetLevelListResp) error
 		GetLevelList(ctx context.Context, in *GetLevelListReq, out *GetLevelListResp) error
 		AddLevel(ctx context.Context, in *AddLevelReq, out *AddLevelResp) error
 		UpdateLevel(ctx context.Context, in *UpdateLevelReq, out *UpdateLevelReqResp) error
@@ -146,6 +161,10 @@ type levelHandler struct {
 
 func (h *levelHandler) GetMemberLevel(ctx context.Context, in *GetMemberLevelReq, out *GetMemberLevelResp) error {
 	return h.LevelHandler.GetMemberLevel(ctx, in, out)
+}
+
+func (h *levelHandler) GetAllLevelList(ctx context.Context, in *GetAllLevelListReq, out *GetLevelListResp) error {
+	return h.LevelHandler.GetAllLevelList(ctx, in, out)
 }
 
 func (h *levelHandler) GetLevelList(ctx context.Context, in *GetLevelListReq, out *GetLevelListResp) error {

@@ -264,16 +264,57 @@ func (x *LevelInfo) GetColor() string {
 	return ""
 }
 
-type GetLevelListReq struct {
+type GetAllLevelListReq struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 }
 
+func (x *GetAllLevelListReq) Reset() {
+	*x = GetAllLevelListReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_biz_vip_level_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetAllLevelListReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetAllLevelListReq) ProtoMessage() {}
+
+func (x *GetAllLevelListReq) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_biz_vip_level_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetAllLevelListReq.ProtoReflect.Descriptor instead.
+func (*GetAllLevelListReq) Descriptor() ([]byte, []int) {
+	return file_svc_biz_vip_level_proto_rawDescGZIP(), []int{4}
+}
+
+type GetLevelListReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Page  int32 `protobuf:"varint,1,opt,name=page,proto3" json:"page,omitempty"`   // 页数
+	Limit int32 `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"` // 条数
+}
+
 func (x *GetLevelListReq) Reset() {
 	*x = GetLevelListReq{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_svc_biz_vip_level_proto_msgTypes[4]
+		mi := &file_svc_biz_vip_level_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -286,7 +327,7 @@ func (x *GetLevelListReq) String() string {
 func (*GetLevelListReq) ProtoMessage() {}
 
 func (x *GetLevelListReq) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_biz_vip_level_proto_msgTypes[4]
+	mi := &file_svc_biz_vip_level_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -299,7 +340,21 @@ func (x *GetLevelListReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetLevelListReq.ProtoReflect.Descriptor instead.
 func (*GetLevelListReq) Descriptor() ([]byte, []int) {
-	return file_svc_biz_vip_level_proto_rawDescGZIP(), []int{4}
+	return file_svc_biz_vip_level_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *GetLevelListReq) GetPage() int32 {
+	if x != nil {
+		return x.Page
+	}
+	return 0
+}
+
+func (x *GetLevelListReq) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
 }
 
 type GetLevelListResp struct {
@@ -313,7 +368,7 @@ type GetLevelListResp struct {
 func (x *GetLevelListResp) Reset() {
 	*x = GetLevelListResp{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_svc_biz_vip_level_proto_msgTypes[5]
+		mi := &file_svc_biz_vip_level_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -326,7 +381,7 @@ func (x *GetLevelListResp) String() string {
 func (*GetLevelListResp) ProtoMessage() {}
 
 func (x *GetLevelListResp) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_biz_vip_level_proto_msgTypes[5]
+	mi := &file_svc_biz_vip_level_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -339,7 +394,7 @@ func (x *GetLevelListResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetLevelListResp.ProtoReflect.Descriptor instead.
 func (*GetLevelListResp) Descriptor() ([]byte, []int) {
-	return file_svc_biz_vip_level_proto_rawDescGZIP(), []int{5}
+	return file_svc_biz_vip_level_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *GetLevelListResp) GetItems() []*LevelInfo {
@@ -360,7 +415,7 @@ type AddLevelReq struct {
 func (x *AddLevelReq) Reset() {
 	*x = AddLevelReq{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_svc_biz_vip_level_proto_msgTypes[6]
+		mi := &file_svc_biz_vip_level_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -373,7 +428,7 @@ func (x *AddLevelReq) String() string {
 func (*AddLevelReq) ProtoMessage() {}
 
 func (x *AddLevelReq) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_biz_vip_level_proto_msgTypes[6]
+	mi := &file_svc_biz_vip_level_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -386,7 +441,7 @@ func (x *AddLevelReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddLevelReq.ProtoReflect.Descriptor instead.
 func (*AddLevelReq) Descriptor() ([]byte, []int) {
-	return file_svc_biz_vip_level_proto_rawDescGZIP(), []int{6}
+	return file_svc_biz_vip_level_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *AddLevelReq) GetLevelInfo() *LevelInfo {
@@ -405,7 +460,7 @@ type AddLevelResp struct {
 func (x *AddLevelResp) Reset() {
 	*x = AddLevelResp{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_svc_biz_vip_level_proto_msgTypes[7]
+		mi := &file_svc_biz_vip_level_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -418,7 +473,7 @@ func (x *AddLevelResp) String() string {
 func (*AddLevelResp) ProtoMessage() {}
 
 func (x *AddLevelResp) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_biz_vip_level_proto_msgTypes[7]
+	mi := &file_svc_biz_vip_level_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -431,7 +486,7 @@ func (x *AddLevelResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddLevelResp.ProtoReflect.Descriptor instead.
 func (*AddLevelResp) Descriptor() ([]byte, []int) {
-	return file_svc_biz_vip_level_proto_rawDescGZIP(), []int{7}
+	return file_svc_biz_vip_level_proto_rawDescGZIP(), []int{8}
 }
 
 type UpdateLevelReq struct {
@@ -446,7 +501,7 @@ type UpdateLevelReq struct {
 func (x *UpdateLevelReq) Reset() {
 	*x = UpdateLevelReq{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_svc_biz_vip_level_proto_msgTypes[8]
+		mi := &file_svc_biz_vip_level_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -459,7 +514,7 @@ func (x *UpdateLevelReq) String() string {
 func (*UpdateLevelReq) ProtoMessage() {}
 
 func (x *UpdateLevelReq) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_biz_vip_level_proto_msgTypes[8]
+	mi := &file_svc_biz_vip_level_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -472,7 +527,7 @@ func (x *UpdateLevelReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateLevelReq.ProtoReflect.Descriptor instead.
 func (*UpdateLevelReq) Descriptor() ([]byte, []int) {
-	return file_svc_biz_vip_level_proto_rawDescGZIP(), []int{8}
+	return file_svc_biz_vip_level_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *UpdateLevelReq) GetLevel() int32 {
@@ -498,7 +553,7 @@ type UpdateLevelReqResp struct {
 func (x *UpdateLevelReqResp) Reset() {
 	*x = UpdateLevelReqResp{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_svc_biz_vip_level_proto_msgTypes[9]
+		mi := &file_svc_biz_vip_level_proto_msgTypes[10]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -511,7 +566,7 @@ func (x *UpdateLevelReqResp) String() string {
 func (*UpdateLevelReqResp) ProtoMessage() {}
 
 func (x *UpdateLevelReqResp) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_biz_vip_level_proto_msgTypes[9]
+	mi := &file_svc_biz_vip_level_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -524,7 +579,7 @@ func (x *UpdateLevelReqResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateLevelReqResp.ProtoReflect.Descriptor instead.
 func (*UpdateLevelReqResp) Descriptor() ([]byte, []int) {
-	return file_svc_biz_vip_level_proto_rawDescGZIP(), []int{9}
+	return file_svc_biz_vip_level_proto_rawDescGZIP(), []int{10}
 }
 
 type DelLevelReq struct {
@@ -538,7 +593,7 @@ type DelLevelReq struct {
 func (x *DelLevelReq) Reset() {
 	*x = DelLevelReq{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_svc_biz_vip_level_proto_msgTypes[10]
+		mi := &file_svc_biz_vip_level_proto_msgTypes[11]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -551,7 +606,7 @@ func (x *DelLevelReq) String() string {
 func (*DelLevelReq) ProtoMessage() {}
 
 func (x *DelLevelReq) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_biz_vip_level_proto_msgTypes[10]
+	mi := &file_svc_biz_vip_level_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -564,7 +619,7 @@ func (x *DelLevelReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DelLevelReq.ProtoReflect.Descriptor instead.
 func (*DelLevelReq) Descriptor() ([]byte, []int) {
-	return file_svc_biz_vip_level_proto_rawDescGZIP(), []int{10}
+	return file_svc_biz_vip_level_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *DelLevelReq) GetLevel() int32 {
@@ -583,7 +638,7 @@ type DelLevelResp struct {
 func (x *DelLevelResp) Reset() {
 	*x = DelLevelResp{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_svc_biz_vip_level_proto_msgTypes[11]
+		mi := &file_svc_biz_vip_level_proto_msgTypes[12]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -596,7 +651,7 @@ func (x *DelLevelResp) String() string {
 func (*DelLevelResp) ProtoMessage() {}
 
 func (x *DelLevelResp) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_biz_vip_level_proto_msgTypes[11]
+	mi := &file_svc_biz_vip_level_proto_msgTypes[12]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -609,7 +664,7 @@ func (x *DelLevelResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DelLevelResp.ProtoReflect.Descriptor instead.
 func (*DelLevelResp) Descriptor() ([]byte, []int) {
-	return file_svc_biz_vip_level_proto_rawDescGZIP(), []int{11}
+	return file_svc_biz_vip_level_proto_rawDescGZIP(), []int{12}
 }
 
 var File_svc_biz_vip_level_proto protoreflect.FileDescriptor
@@ -642,8 +697,12 @@ var file_svc_biz_vip_level_proto_rawDesc = []byte{
 	0x5f, 0x65, 0x78, 0x70, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x6d, 0x61, 0x78, 0x45,
 	0x78, 0x70, 0x12, 0x12, 0x0a, 0x04, 0x69, 0x63, 0x6f, 0x6e, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09,
 	0x52, 0x04, 0x69, 0x63, 0x6f, 0x6e, 0x12, 0x14, 0x0a, 0x05, 0x63, 0x6f, 0x6c, 0x6f, 0x72, 0x18,
-	0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x63, 0x6f, 0x6c, 0x6f, 0x72, 0x22, 0x11, 0x0a, 0x0f,
-	0x47, 0x65, 0x74, 0x4c, 0x65, 0x76, 0x65, 0x6c, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x71, 0x22,
+	0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x63, 0x6f, 0x6c, 0x6f, 0x72, 0x22, 0x14, 0x0a, 0x12,
+	0x47, 0x65, 0x74, 0x41, 0x6c, 0x6c, 0x4c, 0x65, 0x76, 0x65, 0x6c, 0x4c, 0x69, 0x73, 0x74, 0x52,
+	0x65, 0x71, 0x22, 0x3b, 0x0a, 0x0f, 0x47, 0x65, 0x74, 0x4c, 0x65, 0x76, 0x65, 0x6c, 0x4c, 0x69,
+	0x73, 0x74, 0x52, 0x65, 0x71, 0x12, 0x12, 0x0a, 0x04, 0x70, 0x61, 0x67, 0x65, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x05, 0x52, 0x04, 0x70, 0x61, 0x67, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x6c, 0x69, 0x6d,
+	0x69, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x05, 0x52, 0x05, 0x6c, 0x69, 0x6d, 0x69, 0x74, 0x22,
 	0x40, 0x0a, 0x10, 0x47, 0x65, 0x74, 0x4c, 0x65, 0x76, 0x65, 0x6c, 0x4c, 0x69, 0x73, 0x74, 0x52,
 	0x65, 0x73, 0x70, 0x12, 0x2c, 0x0a, 0x05, 0x69, 0x74, 0x65, 0x6d, 0x73, 0x18, 0x01, 0x20, 0x03,
 	0x28, 0x0b, 0x32, 0x16, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x76, 0x69, 0x70,
@@ -664,33 +723,38 @@ var file_svc_biz_vip_level_proto_rawDesc = []byte{
 	0x44, 0x65, 0x6c, 0x4c, 0x65, 0x76, 0x65, 0x6c, 0x52, 0x65, 0x71, 0x12, 0x14, 0x0a, 0x05, 0x6c,
 	0x65, 0x76, 0x65, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x05, 0x6c, 0x65, 0x76, 0x65,
 	0x6c, 0x22, 0x0e, 0x0a, 0x0c, 0x44, 0x65, 0x6c, 0x4c, 0x65, 0x76, 0x65, 0x6c, 0x52, 0x65, 0x73,
-	0x70, 0x32, 0x80, 0x03, 0x0a, 0x05, 0x4c, 0x65, 0x76, 0x65, 0x6c, 0x12, 0x53, 0x0a, 0x0e, 0x47,
+	0x70, 0x32, 0xd5, 0x03, 0x0a, 0x05, 0x4c, 0x65, 0x76, 0x65, 0x6c, 0x12, 0x53, 0x0a, 0x0e, 0x47,
 	0x65, 0x74, 0x4d, 0x65, 0x6d, 0x62, 0x65, 0x72, 0x4c, 0x65, 0x76, 0x65, 0x6c, 0x12, 0x1e, 0x2e,
 	0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x76, 0x69, 0x70, 0x2e, 0x47, 0x65, 0x74, 0x4d,
 	0x65, 0x6d, 0x62, 0x65, 0x72, 0x4c, 0x65, 0x76, 0x65, 0x6c, 0x52, 0x65, 0x71, 0x1a, 0x1f, 0x2e,
 	0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x76, 0x69, 0x70, 0x2e, 0x47, 0x65, 0x74, 0x4d,
 	0x65, 0x6d, 0x62, 0x65, 0x72, 0x4c, 0x65, 0x76, 0x65, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x22, 0x00,
-	0x12, 0x4d, 0x0a, 0x0c, 0x47, 0x65, 0x74, 0x4c, 0x65, 0x76, 0x65, 0x6c, 0x4c, 0x69, 0x73, 0x74,
-	0x12, 0x1c, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x76, 0x69, 0x70, 0x2e, 0x47,
-	0x65, 0x74, 0x4c, 0x65, 0x76, 0x65, 0x6c, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x71, 0x1a, 0x1d,
-	0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x76, 0x69, 0x70, 0x2e, 0x47, 0x65, 0x74,
-	0x4c, 0x65, 0x76, 0x65, 0x6c, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x73, 0x70, 0x22, 0x00, 0x12,
-	0x41, 0x0a, 0x08, 0x41, 0x64, 0x64, 0x4c, 0x65, 0x76, 0x65, 0x6c, 0x12, 0x18, 0x2e, 0x73, 0x76,
-	0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x76, 0x69, 0x70, 0x2e, 0x41, 0x64, 0x64, 0x4c, 0x65, 0x76,
-	0x65, 0x6c, 0x52, 0x65, 0x71, 0x1a, 0x19, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e,
-	0x76, 0x69, 0x70, 0x2e, 0x41, 0x64, 0x64, 0x4c, 0x65, 0x76, 0x65, 0x6c, 0x52, 0x65, 0x73, 0x70,
-	0x22, 0x00, 0x12, 0x4d, 0x0a, 0x0b, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4c, 0x65, 0x76, 0x65,
-	0x6c, 0x12, 0x1b, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x76, 0x69, 0x70, 0x2e,
-	0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4c, 0x65, 0x76, 0x65, 0x6c, 0x52, 0x65, 0x71, 0x1a, 0x1f,
-	0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x76, 0x69, 0x70, 0x2e, 0x55, 0x70, 0x64,
-	0x61, 0x74, 0x65, 0x4c, 0x65, 0x76, 0x65, 0x6c, 0x52, 0x65, 0x71, 0x52, 0x65, 0x73, 0x70, 0x22,
-	0x00, 0x12, 0x41, 0x0a, 0x08, 0x44, 0x65, 0x6c, 0x4c, 0x65, 0x76, 0x65, 0x6c, 0x12, 0x18, 0x2e,
-	0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x76, 0x69, 0x70, 0x2e, 0x44, 0x65, 0x6c, 0x4c,
-	0x65, 0x76, 0x65, 0x6c, 0x52, 0x65, 0x71, 0x1a, 0x19, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69,
-	0x7a, 0x2e, 0x76, 0x69, 0x70, 0x2e, 0x44, 0x65, 0x6c, 0x4c, 0x65, 0x76, 0x65, 0x6c, 0x52, 0x65,
-	0x73, 0x70, 0x22, 0x00, 0x42, 0x13, 0x5a, 0x11, 0x2e, 0x2f, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69,
-	0x7a, 0x2e, 0x76, 0x69, 0x70, 0x3b, 0x76, 0x69, 0x70, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x33,
+	0x12, 0x53, 0x0a, 0x0f, 0x47, 0x65, 0x74, 0x41, 0x6c, 0x6c, 0x4c, 0x65, 0x76, 0x65, 0x6c, 0x4c,
+	0x69, 0x73, 0x74, 0x12, 0x1f, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x76, 0x69,
+	0x70, 0x2e, 0x47, 0x65, 0x74, 0x41, 0x6c, 0x6c, 0x4c, 0x65, 0x76, 0x65, 0x6c, 0x4c, 0x69, 0x73,
+	0x74, 0x52, 0x65, 0x71, 0x1a, 0x1d, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x76,
+	0x69, 0x70, 0x2e, 0x47, 0x65, 0x74, 0x4c, 0x65, 0x76, 0x65, 0x6c, 0x4c, 0x69, 0x73, 0x74, 0x52,
+	0x65, 0x73, 0x70, 0x22, 0x00, 0x12, 0x4d, 0x0a, 0x0c, 0x47, 0x65, 0x74, 0x4c, 0x65, 0x76, 0x65,
+	0x6c, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x1c, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e,
+	0x76, 0x69, 0x70, 0x2e, 0x47, 0x65, 0x74, 0x4c, 0x65, 0x76, 0x65, 0x6c, 0x4c, 0x69, 0x73, 0x74,
+	0x52, 0x65, 0x71, 0x1a, 0x1d, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x76, 0x69,
+	0x70, 0x2e, 0x47, 0x65, 0x74, 0x4c, 0x65, 0x76, 0x65, 0x6c, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65,
+	0x73, 0x70, 0x22, 0x00, 0x12, 0x41, 0x0a, 0x08, 0x41, 0x64, 0x64, 0x4c, 0x65, 0x76, 0x65, 0x6c,
+	0x12, 0x18, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x76, 0x69, 0x70, 0x2e, 0x41,
+	0x64, 0x64, 0x4c, 0x65, 0x76, 0x65, 0x6c, 0x52, 0x65, 0x71, 0x1a, 0x19, 0x2e, 0x73, 0x76, 0x63,
+	0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x76, 0x69, 0x70, 0x2e, 0x41, 0x64, 0x64, 0x4c, 0x65, 0x76, 0x65,
+	0x6c, 0x52, 0x65, 0x73, 0x70, 0x22, 0x00, 0x12, 0x4d, 0x0a, 0x0b, 0x55, 0x70, 0x64, 0x61, 0x74,
+	0x65, 0x4c, 0x65, 0x76, 0x65, 0x6c, 0x12, 0x1b, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a,
+	0x2e, 0x76, 0x69, 0x70, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4c, 0x65, 0x76, 0x65, 0x6c,
+	0x52, 0x65, 0x71, 0x1a, 0x1f, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x76, 0x69,
+	0x70, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4c, 0x65, 0x76, 0x65, 0x6c, 0x52, 0x65, 0x71,
+	0x52, 0x65, 0x73, 0x70, 0x22, 0x00, 0x12, 0x41, 0x0a, 0x08, 0x44, 0x65, 0x6c, 0x4c, 0x65, 0x76,
+	0x65, 0x6c, 0x12, 0x18, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x76, 0x69, 0x70,
+	0x2e, 0x44, 0x65, 0x6c, 0x4c, 0x65, 0x76, 0x65, 0x6c, 0x52, 0x65, 0x71, 0x1a, 0x19, 0x2e, 0x73,
+	0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x76, 0x69, 0x70, 0x2e, 0x44, 0x65, 0x6c, 0x4c, 0x65,
+	0x76, 0x65, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x22, 0x00, 0x42, 0x13, 0x5a, 0x11, 0x2e, 0x2f, 0x73,
+	0x76, 0x63, 0x2e, 0x62, 0x69, 0x7a, 0x2e, 0x76, 0x69, 0x70, 0x3b, 0x76, 0x69, 0x70, 0x62, 0x06,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -705,20 +769,21 @@ func file_svc_biz_vip_level_proto_rawDescGZIP() []byte {
 	return file_svc_biz_vip_level_proto_rawDescData
 }
 
-var file_svc_biz_vip_level_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
+var file_svc_biz_vip_level_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
 var file_svc_biz_vip_level_proto_goTypes = []any{
 	(*MemberLevelInfo)(nil),    // 0: svc.biz.vip.MemberLevelInfo
 	(*GetMemberLevelReq)(nil),  // 1: svc.biz.vip.GetMemberLevelReq
 	(*GetMemberLevelResp)(nil), // 2: svc.biz.vip.GetMemberLevelResp
 	(*LevelInfo)(nil),          // 3: svc.biz.vip.LevelInfo
-	(*GetLevelListReq)(nil),    // 4: svc.biz.vip.GetLevelListReq
-	(*GetLevelListResp)(nil),   // 5: svc.biz.vip.GetLevelListResp
-	(*AddLevelReq)(nil),        // 6: svc.biz.vip.AddLevelReq
-	(*AddLevelResp)(nil),       // 7: svc.biz.vip.AddLevelResp
-	(*UpdateLevelReq)(nil),     // 8: svc.biz.vip.UpdateLevelReq
-	(*UpdateLevelReqResp)(nil), // 9: svc.biz.vip.UpdateLevelReqResp
-	(*DelLevelReq)(nil),        // 10: svc.biz.vip.DelLevelReq
-	(*DelLevelResp)(nil),       // 11: svc.biz.vip.DelLevelResp
+	(*GetAllLevelListReq)(nil), // 4: svc.biz.vip.GetAllLevelListReq
+	(*GetLevelListReq)(nil),    // 5: svc.biz.vip.GetLevelListReq
+	(*GetLevelListResp)(nil),   // 6: svc.biz.vip.GetLevelListResp
+	(*AddLevelReq)(nil),        // 7: svc.biz.vip.AddLevelReq
+	(*AddLevelResp)(nil),       // 8: svc.biz.vip.AddLevelResp
+	(*UpdateLevelReq)(nil),     // 9: svc.biz.vip.UpdateLevelReq
+	(*UpdateLevelReqResp)(nil), // 10: svc.biz.vip.UpdateLevelReqResp
+	(*DelLevelReq)(nil),        // 11: svc.biz.vip.DelLevelReq
+	(*DelLevelResp)(nil),       // 12: svc.biz.vip.DelLevelResp
 }
 var file_svc_biz_vip_level_proto_depIdxs = []int32{
 	0,  // 0: svc.biz.vip.GetMemberLevelResp.level_info:type_name -> svc.biz.vip.MemberLevelInfo
@@ -726,17 +791,19 @@ var file_svc_biz_vip_level_proto_depIdxs = []int32{
 	3,  // 2: svc.biz.vip.AddLevelReq.level_info:type_name -> svc.biz.vip.LevelInfo
 	3,  // 3: svc.biz.vip.UpdateLevelReq.level_info:type_name -> svc.biz.vip.LevelInfo
 	1,  // 4: svc.biz.vip.Level.GetMemberLevel:input_type -> svc.biz.vip.GetMemberLevelReq
-	4,  // 5: svc.biz.vip.Level.GetLevelList:input_type -> svc.biz.vip.GetLevelListReq
-	6,  // 6: svc.biz.vip.Level.AddLevel:input_type -> svc.biz.vip.AddLevelReq
-	8,  // 7: svc.biz.vip.Level.UpdateLevel:input_type -> svc.biz.vip.UpdateLevelReq
-	10, // 8: svc.biz.vip.Level.DelLevel:input_type -> svc.biz.vip.DelLevelReq
-	2,  // 9: svc.biz.vip.Level.GetMemberLevel:output_type -> svc.biz.vip.GetMemberLevelResp
-	5,  // 10: svc.biz.vip.Level.GetLevelList:output_type -> svc.biz.vip.GetLevelListResp
-	7,  // 11: svc.biz.vip.Level.AddLevel:output_type -> svc.biz.vip.AddLevelResp
-	9,  // 12: svc.biz.vip.Level.UpdateLevel:output_type -> svc.biz.vip.UpdateLevelReqResp
-	11, // 13: svc.biz.vip.Level.DelLevel:output_type -> svc.biz.vip.DelLevelResp
-	9,  // [9:14] is the sub-list for method output_type
-	4,  // [4:9] is the sub-list for method input_type
+	4,  // 5: svc.biz.vip.Level.GetAllLevelList:input_type -> svc.biz.vip.GetAllLevelListReq
+	5,  // 6: svc.biz.vip.Level.GetLevelList:input_type -> svc.biz.vip.GetLevelListReq
+	7,  // 7: svc.biz.vip.Level.AddLevel:input_type -> svc.biz.vip.AddLevelReq
+	9,  // 8: svc.biz.vip.Level.UpdateLevel:input_type -> svc.biz.vip.UpdateLevelReq
+	11, // 9: svc.biz.vip.Level.DelLevel:input_type -> svc.biz.vip.DelLevelReq
+	2,  // 10: svc.biz.vip.Level.GetMemberLevel:output_type -> svc.biz.vip.GetMemberLevelResp
+	6,  // 11: svc.biz.vip.Level.GetAllLevelList:output_type -> svc.biz.vip.GetLevelListResp
+	6,  // 12: svc.biz.vip.Level.GetLevelList:output_type -> svc.biz.vip.GetLevelListResp
+	8,  // 13: svc.biz.vip.Level.AddLevel:output_type -> svc.biz.vip.AddLevelResp
+	10, // 14: svc.biz.vip.Level.UpdateLevel:output_type -> svc.biz.vip.UpdateLevelReqResp
+	12, // 15: svc.biz.vip.Level.DelLevel:output_type -> svc.biz.vip.DelLevelResp
+	10, // [10:16] is the sub-list for method output_type
+	4,  // [4:10] is the sub-list for method input_type
 	4,  // [4:4] is the sub-list for extension type_name
 	4,  // [4:4] is the sub-list for extension extendee
 	0,  // [0:4] is the sub-list for field type_name
@@ -797,7 +864,7 @@ func file_svc_biz_vip_level_proto_init() {
 			}
 		}
 		file_svc_biz_vip_level_proto_msgTypes[4].Exporter = func(v any, i int) any {
-			switch v := v.(*GetLevelListReq); i {
+			switch v := v.(*GetAllLevelListReq); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -809,7 +876,7 @@ func file_svc_biz_vip_level_proto_init() {
 			}
 		}
 		file_svc_biz_vip_level_proto_msgTypes[5].Exporter = func(v any, i int) any {
-			switch v := v.(*GetLevelListResp); i {
+			switch v := v.(*GetLevelListReq); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -821,7 +888,7 @@ func file_svc_biz_vip_level_proto_init() {
 			}
 		}
 		file_svc_biz_vip_level_proto_msgTypes[6].Exporter = func(v any, i int) any {
-			switch v := v.(*AddLevelReq); i {
+			switch v := v.(*GetLevelListResp); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -833,7 +900,7 @@ func file_svc_biz_vip_level_proto_init() {
 			}
 		}
 		file_svc_biz_vip_level_proto_msgTypes[7].Exporter = func(v any, i int) any {
-			switch v := v.(*AddLevelResp); i {
+			switch v := v.(*AddLevelReq); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -845,7 +912,7 @@ func file_svc_biz_vip_level_proto_init() {
 			}
 		}
 		file_svc_biz_vip_level_proto_msgTypes[8].Exporter = func(v any, i int) any {
-			switch v := v.(*UpdateLevelReq); i {
+			switch v := v.(*AddLevelResp); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -857,7 +924,7 @@ func file_svc_biz_vip_level_proto_init() {
 			}
 		}
 		file_svc_biz_vip_level_proto_msgTypes[9].Exporter = func(v any, i int) any {
-			switch v := v.(*UpdateLevelReqResp); i {
+			switch v := v.(*UpdateLevelReq); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -869,7 +936,7 @@ func file_svc_biz_vip_level_proto_init() {
 			}
 		}
 		file_svc_biz_vip_level_proto_msgTypes[10].Exporter = func(v any, i int) any {
-			switch v := v.(*DelLevelReq); i {
+			switch v := v.(*UpdateLevelReqResp); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -881,6 +948,18 @@ func file_svc_biz_vip_level_proto_init() {
 			}
 		}
 		file_svc_biz_vip_level_proto_msgTypes[11].Exporter = func(v any, i int) any {
+			switch v := v.(*DelLevelReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_biz_vip_level_proto_msgTypes[12].Exporter = func(v any, i int) any {
 			switch v := v.(*DelLevelResp); i {
 			case 0:
 				return &v.state
@@ -899,7 +978,7 @@ func file_svc_biz_vip_level_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_svc_biz_vip_level_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   12,
+			NumMessages:   13,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
