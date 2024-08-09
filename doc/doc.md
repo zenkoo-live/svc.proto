@@ -14329,18 +14329,15 @@ enum NobleLevel {
 | rights_icon | [string](#string) |  | 身份标签 |
 | rights_avoid_kick | [bool](#bool) |  | 防踢 |
 | rights_avoid_ban_speaking | [bool](#bool) |  | 防禁言 |
-| rights_identity_icon | [bool](#bool) |  | 身份标签（所有贵族都有，此字段不入库默认为true） |
 | rights_upgrade_addition | [int32](#int32) |  | 升级加成（保存的是加成比例，20%的话，存的是数字20） |
-| rights_inroom_effect | [bool](#bool) |  | 进场特效（所有贵族都有，此字段不入库默认为true） |
 | rights_barrage_colors | [string](#string) | repeated | 弹幕颜色 |
-| rights_remand_diamond | [bool](#bool) |  | 专属俸禄（所有贵族都有，此字段不入库默认为true） |
 | rights_mounts | [string](#string) | repeated | 坐骑（进场特效） |
 | rights_free_gifts | [NobleRightsFreeGift](#svc-biz-vip-NobleRightsFreeGift) | repeated | 免费礼物 |
-| rights_noble_gift | [bool](#bool) |  | 专属礼物（所有贵族都有，此字段不入库默认为true） |
-| rights_into_room_hide | [bool](#bool) |  | 进场隐身 |
+| rights_inroom_hide | [bool](#bool) |  | 进场隐身 |
 | rights_rank_hide | [bool](#bool) |  | 榜单隐身 |
 | rights_discount_gifts | [NobleRightsDiscountGift](#svc-biz-vip-NobleRightsDiscountGift) | repeated | 特价礼物 |
 | rights_global_notify | [bool](#bool) |  | 全局通知 |
+| rights_inroom_effect | [string](#string) |  | 进场特效 |
 
 
 
