@@ -42,12 +42,10 @@ type NobleService interface {
 	CreateNoble(ctx context.Context, in *CreateNobleReq, opts ...client.CallOption) (*CreateNobleResp, error)
 	// GetNoble 查询
 	GetNoble(ctx context.Context, in *GetNobleReq, opts ...client.CallOption) (*GetNobleResp, error)
-	// GetNobleByLevel 查询
-	GetNobleByLevel(ctx context.Context, in *GetNobleByLevelReq, opts ...client.CallOption) (*GetNobleResp, error)
-	// CreateNoble 查询列表
+	// UpdateNoble 查询
+	UpdateNoble(ctx context.Context, in *UpdateNobleReq, opts ...client.CallOption) (*UpdateNobleResp, error)
+	// GetNobleList 查询列表
 	GetNobleList(ctx context.Context, in *GetNobleListReq, opts ...client.CallOption) (*GetNobleListResp, error)
-	// UpdateNobleByLevel 更新
-	UpdateNobleByLevel(ctx context.Context, in *UpdateNobleByLevelReq, opts ...client.CallOption) (*UpdateNobleByLevelResp, error)
 }
 
 type nobleService struct {
@@ -82,9 +80,9 @@ func (c *nobleService) GetNoble(ctx context.Context, in *GetNobleReq, opts ...cl
 	return out, nil
 }
 
-func (c *nobleService) GetNobleByLevel(ctx context.Context, in *GetNobleByLevelReq, opts ...client.CallOption) (*GetNobleResp, error) {
-	req := c.c.NewRequest(c.name, "Noble.GetNobleByLevel", in)
-	out := new(GetNobleResp)
+func (c *nobleService) UpdateNoble(ctx context.Context, in *UpdateNobleReq, opts ...client.CallOption) (*UpdateNobleResp, error) {
+	req := c.c.NewRequest(c.name, "Noble.UpdateNoble", in)
+	out := new(UpdateNobleResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -102,16 +100,6 @@ func (c *nobleService) GetNobleList(ctx context.Context, in *GetNobleListReq, op
 	return out, nil
 }
 
-func (c *nobleService) UpdateNobleByLevel(ctx context.Context, in *UpdateNobleByLevelReq, opts ...client.CallOption) (*UpdateNobleByLevelResp, error) {
-	req := c.c.NewRequest(c.name, "Noble.UpdateNobleByLevel", in)
-	out := new(UpdateNobleByLevelResp)
-	err := c.c.Call(ctx, req, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // Server API for Noble service
 
 type NobleHandler interface {
@@ -119,21 +107,18 @@ type NobleHandler interface {
 	CreateNoble(context.Context, *CreateNobleReq, *CreateNobleResp) error
 	// GetNoble 查询
 	GetNoble(context.Context, *GetNobleReq, *GetNobleResp) error
-	// GetNobleByLevel 查询
-	GetNobleByLevel(context.Context, *GetNobleByLevelReq, *GetNobleResp) error
-	// CreateNoble 查询列表
+	// UpdateNoble 查询
+	UpdateNoble(context.Context, *UpdateNobleReq, *UpdateNobleResp) error
+	// GetNobleList 查询列表
 	GetNobleList(context.Context, *GetNobleListReq, *GetNobleListResp) error
-	// UpdateNobleByLevel 更新
-	UpdateNobleByLevel(context.Context, *UpdateNobleByLevelReq, *UpdateNobleByLevelResp) error
 }
 
 func RegisterNobleHandler(s server.Server, hdlr NobleHandler, opts ...server.HandlerOption) error {
 	type noble interface {
 		CreateNoble(ctx context.Context, in *CreateNobleReq, out *CreateNobleResp) error
 		GetNoble(ctx context.Context, in *GetNobleReq, out *GetNobleResp) error
-		GetNobleByLevel(ctx context.Context, in *GetNobleByLevelReq, out *GetNobleResp) error
+		UpdateNoble(ctx context.Context, in *UpdateNobleReq, out *UpdateNobleResp) error
 		GetNobleList(ctx context.Context, in *GetNobleListReq, out *GetNobleListResp) error
-		UpdateNobleByLevel(ctx context.Context, in *UpdateNobleByLevelReq, out *UpdateNobleByLevelResp) error
 	}
 	type Noble struct {
 		noble
@@ -154,14 +139,10 @@ func (h *nobleHandler) GetNoble(ctx context.Context, in *GetNobleReq, out *GetNo
 	return h.NobleHandler.GetNoble(ctx, in, out)
 }
 
-func (h *nobleHandler) GetNobleByLevel(ctx context.Context, in *GetNobleByLevelReq, out *GetNobleResp) error {
-	return h.NobleHandler.GetNobleByLevel(ctx, in, out)
+func (h *nobleHandler) UpdateNoble(ctx context.Context, in *UpdateNobleReq, out *UpdateNobleResp) error {
+	return h.NobleHandler.UpdateNoble(ctx, in, out)
 }
 
 func (h *nobleHandler) GetNobleList(ctx context.Context, in *GetNobleListReq, out *GetNobleListResp) error {
 	return h.NobleHandler.GetNobleList(ctx, in, out)
-}
-
-func (h *nobleHandler) UpdateNobleByLevel(ctx context.Context, in *UpdateNobleByLevelReq, out *UpdateNobleByLevelResp) error {
-	return h.NobleHandler.UpdateNobleByLevel(ctx, in, out)
 }
