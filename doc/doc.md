@@ -14333,11 +14333,11 @@ enum NobleLevel {
 | rights_barrage_colors | [string](#string) | repeated | 弹幕颜色 |
 | rights_mounts | [string](#string) | repeated | 坐骑（进场特效） |
 | rights_free_gifts | [NobleRightsFreeGift](#svc-biz-vip-NobleRightsFreeGift) | repeated | 免费礼物 |
-| rights_inroom_hide | [bool](#bool) |  | 进场隐身 |
+| rights_enter_room_hide | [bool](#bool) |  | 进场隐身 |
 | rights_rank_hide | [bool](#bool) |  | 榜单隐身 |
 | rights_discount_gifts | [NobleRightsDiscountGift](#svc-biz-vip-NobleRightsDiscountGift) | repeated | 特价礼物 |
 | rights_global_notify | [bool](#bool) |  | 全局通知 |
-| rights_inroom_effect | [string](#string) |  | 进场特效 |
+| rights_enter_room_effect | [string](#string) |  | 进场特效 |
 
 
 
