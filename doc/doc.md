@@ -14301,6 +14301,7 @@ service started /////////////////
 | upgrade_price | [int32](#int32) |  | 升级价格 |
 | upgrade_remand_diamond | [int32](#int32) |  | 升级奖励金 |
 | rights | [NobleRights](#svc-biz-vip-NobleRights) |  | 权益 |
+| rights_num | [int32](#int32) |  | 权益数量 |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
 | updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 更新时间 |
 

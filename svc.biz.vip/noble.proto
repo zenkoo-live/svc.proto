@@ -95,6 +95,7 @@ message NobleInfo {
     int32 upgrade_remand_diamond = 10; // 升级奖励金
     
     NobleRights rights = 100; // 权益
+    int32 rights_num = 101; // 权益数量
 
     google.protobuf.Timestamp created_at = 201; // 创建时间
     google.protobuf.Timestamp updated_at = 202; // 更新时间
