@@ -68,18 +68,20 @@ message NobleRights {
     string rights_icon = 1; // 身份标签
     bool rights_avoid_kick = 2; // 防踢
     bool rights_avoid_ban_speaking = 3; // 防禁言
-    bool rights_identity_icon = 4; // 身份标签（所有贵族都有，此字段不入库默认为true）
-    int32 rights_upgrade_addition = 5; // 升级加成（保存的是加成比例，20%的话，存的是数字20）
-    bool  rights_inroom_effect = 6; // 进场特效（所有贵族都有，此字段不入库默认为true）
-    repeated string rights_barrage_colors = 7; // 弹幕颜色
-    bool rights_remand_diamond = 8; // 专属俸禄（所有贵族都有，此字段不入库默认为true）
-    repeated string rights_mounts = 9; // 坐骑（进场特效）
-    repeated NobleRightsFreeGift rights_free_gifts = 10; // 免费礼物
-    bool rights_noble_gift = 11; // 专属礼物（所有贵族都有，此字段不入库默认为true）
-    bool rights_into_room_hide = 12; // 进场隐身
-    bool rights_rank_hide = 13; // 榜单隐身
-    repeated NobleRightsDiscountGift rights_discount_gifts = 14; // 特价礼物
-    bool rights_global_notify = 15; // 全局通知
+    int32 rights_upgrade_addition = 4; // 升级加成（保存的是加成比例，20%的话，存的是数字20）
+    repeated string rights_barrage_colors = 5; // 弹幕颜色
+    repeated string rights_mounts = 6; // 坐骑（进场特效）
+    repeated NobleRightsFreeGift rights_free_gifts = 7; // 免费礼物
+    bool rights_inroom_hide = 8; // 进场隐身
+    bool rights_rank_hide = 9; // 榜单隐身
+    repeated NobleRightsDiscountGift rights_discount_gifts = 10; // 特价礼物
+    bool rights_global_notify = 11; // 全局通知
+    string rights_inroom_effect = 12; // 进场特效
+
+    // bool rights_identity_icon = 4; // 身份标签（所有贵族都有，此字段不入库默认为true）
+    // bool rights_inroom_effect = 6; // 进场特效（所有贵族都有，此字段不入库默认为true）
+    // bool rights_remand_diamond = 8; // 专属俸禄（所有贵族都有，此字段不入库默认为true）
+    // bool rights_noble_gift = 11; // 专属礼物（所有贵族都有，此字段不入库默认为true）
 }
 
 message NobleInfo {
