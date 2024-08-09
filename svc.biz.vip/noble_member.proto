@@ -29,7 +29,7 @@ service NobleMember {
 }
 
 message NobleMemberInfo {
-    NobleLevel level = 1; // 贵族等级
+    string noble_id = 1; // 贵族id
     string member_id = 2; // 用户id
     string streamer_id = 3; // 主播id（可为空）
     google.protobuf.Timestamp join_time = 4; // 加入时间
@@ -39,7 +39,7 @@ message NobleMemberInfo {
 }
 
 message JoinNobleReq {
-    NobleLevel level = 1; // 贵族等级
+    string noble_id = 1; // 贵族id
     string member_id = 2; // 用户id
     string streamer_id = 3; // 主播id（可为空；贵族可直接开通，也可在某个直播间开通）
     string order_id = 4; // 支付订单id
@@ -49,7 +49,7 @@ message JoinNobleResp {
 }
 
 message RenewNobleReq {
-    NobleLevel level = 1; // 贵族等级
+    string noble_id = 1; // 贵族id
     string member_id = 2; // 用户id
     // string streamer_id = 3; // 主播id（可为空；贵族可直接开通，也可在某个直播间开通）
     string order_id = 4; // 支付订单id
@@ -59,7 +59,7 @@ message RenewNobleResp {
 }
 
 message UpgradeNobleReq {
-    NobleLevel level = 1; // 贵族等级
+    string noble_id = 1; // 贵族id
     string member_id = 2; // 用户id
     // string streamer_id = 3; // 主播id（可为空；贵族可直接开通，也可在某个直播间开通）
     string order_id = 4; // 支付订单id
@@ -81,7 +81,7 @@ message GetNobleMemberListReq {
     int32 page = 1; // 页数
     int32 limit = 2; // 条数
     bool with_noble_info = 3; // 是否返回贵族信息
-    NobleLevel level = 4; // 贵族等级
+    string noble_id = 4; // 贵族id
     string streamer_id = 5; // 主播id
     google.protobuf.Timestamp join_time_start = 6; // 开通贵族的开始时间
     google.protobuf.Timestamp join_time_end = 7; // 开通贵族的结束时间
@@ -98,7 +98,7 @@ message GetNobleMemberListResp {
 
 message CountNobleMemberReq {
     string streamer_id = 1; // 主播id
-    NobleLevel level = 2; // 贵族等级
+    string noble_id = 2; // 贵族id
     google.protobuf.Timestamp join_time_start = 3; // 开通贵族的开始时间
     google.protobuf.Timestamp join_time_end = 4; // 开通贵族的结束时间
 }

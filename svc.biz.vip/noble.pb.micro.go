@@ -40,8 +40,10 @@ func NewNobleEndpoints() []*api.Endpoint {
 type NobleService interface {
 	// CreateNoble 创建
 	CreateNoble(ctx context.Context, in *CreateNobleReq, opts ...client.CallOption) (*CreateNobleResp, error)
+	// GetNoble 查询
+	GetNoble(ctx context.Context, in *GetNobleReq, opts ...client.CallOption) (*GetNobleResp, error)
 	// GetNobleByLevel 查询
-	GetNobleByLevel(ctx context.Context, in *GetNobleByLevelReq, opts ...client.CallOption) (*GetNobleByLevelResp, error)
+	GetNobleByLevel(ctx context.Context, in *GetNobleByLevelReq, opts ...client.CallOption) (*GetNobleResp, error)
 	// CreateNoble 查询列表
 	GetNobleList(ctx context.Context, in *GetNobleListReq, opts ...client.CallOption) (*GetNobleListResp, error)
 	// UpdateNobleByLevel 更新
@@ -70,9 +72,19 @@ func (c *nobleService) CreateNoble(ctx context.Context, in *CreateNobleReq, opts
 	return out, nil
 }
 
-func (c *nobleService) GetNobleByLevel(ctx context.Context, in *GetNobleByLevelReq, opts ...client.CallOption) (*GetNobleByLevelResp, error) {
+func (c *nobleService) GetNoble(ctx context.Context, in *GetNobleReq, opts ...client.CallOption) (*GetNobleResp, error) {
+	req := c.c.NewRequest(c.name, "Noble.GetNoble", in)
+	out := new(GetNobleResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *nobleService) GetNobleByLevel(ctx context.Context, in *GetNobleByLevelReq, opts ...client.CallOption) (*GetNobleResp, error) {
 	req := c.c.NewRequest(c.name, "Noble.GetNobleByLevel", in)
-	out := new(GetNobleByLevelResp)
+	out := new(GetNobleResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -105,8 +117,10 @@ func (c *nobleService) UpdateNobleByLevel(ctx context.Context, in *UpdateNobleBy
 type NobleHandler interface {
 	// CreateNoble 创建
 	CreateNoble(context.Context, *CreateNobleReq, *CreateNobleResp) error
+	// GetNoble 查询
+	GetNoble(context.Context, *GetNobleReq, *GetNobleResp) error
 	// GetNobleByLevel 查询
-	GetNobleByLevel(context.Context, *GetNobleByLevelReq, *GetNobleByLevelResp) error
+	GetNobleByLevel(context.Context, *GetNobleByLevelReq, *GetNobleResp) error
 	// CreateNoble 查询列表
 	GetNobleList(context.Context, *GetNobleListReq, *GetNobleListResp) error
 	// UpdateNobleByLevel 更新
@@ -116,7 +130,8 @@ type NobleHandler interface {
 func RegisterNobleHandler(s server.Server, hdlr NobleHandler, opts ...server.HandlerOption) error {
 	type noble interface {
 		CreateNoble(ctx context.Context, in *CreateNobleReq, out *CreateNobleResp) error
-		GetNobleByLevel(ctx context.Context, in *GetNobleByLevelReq, out *GetNobleByLevelResp) error
+		GetNoble(ctx context.Context, in *GetNobleReq, out *GetNobleResp) error
+		GetNobleByLevel(ctx context.Context, in *GetNobleByLevelReq, out *GetNobleResp) error
 		GetNobleList(ctx context.Context, in *GetNobleListReq, out *GetNobleListResp) error
 		UpdateNobleByLevel(ctx context.Context, in *UpdateNobleByLevelReq, out *UpdateNobleByLevelResp) error
 	}
@@ -135,7 +150,11 @@ func (h *nobleHandler) CreateNoble(ctx context.Context, in *CreateNobleReq, out 
 	return h.NobleHandler.CreateNoble(ctx, in, out)
 }
 
-func (h *nobleHandler) GetNobleByLevel(ctx context.Context, in *GetNobleByLevelReq, out *GetNobleByLevelResp) error {
+func (h *nobleHandler) GetNoble(ctx context.Context, in *GetNobleReq, out *GetNobleResp) error {
+	return h.NobleHandler.GetNoble(ctx, in, out)
+}
+
+func (h *nobleHandler) GetNobleByLevel(ctx context.Context, in *GetNobleByLevelReq, out *GetNobleResp) error {
 	return h.NobleHandler.GetNobleByLevel(ctx, in, out)
 }
 

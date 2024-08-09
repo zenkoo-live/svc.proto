@@ -837,17 +837,16 @@
     - [CreateNobleReq](#svc-biz-vip-CreateNobleReq)
     - [CreateNobleResp](#svc-biz-vip-CreateNobleResp)
     - [GetNobleByLevelReq](#svc-biz-vip-GetNobleByLevelReq)
-    - [GetNobleByLevelResp](#svc-biz-vip-GetNobleByLevelResp)
     - [GetNobleListReq](#svc-biz-vip-GetNobleListReq)
     - [GetNobleListResp](#svc-biz-vip-GetNobleListResp)
+    - [GetNobleReq](#svc-biz-vip-GetNobleReq)
+    - [GetNobleResp](#svc-biz-vip-GetNobleResp)
     - [NobleInfo](#svc-biz-vip-NobleInfo)
     - [NobleRights](#svc-biz-vip-NobleRights)
     - [NobleRightsDiscountGift](#svc-biz-vip-NobleRightsDiscountGift)
     - [NobleRightsFreeGift](#svc-biz-vip-NobleRightsFreeGift)
     - [UpdateNobleByLevelReq](#svc-biz-vip-UpdateNobleByLevelReq)
     - [UpdateNobleByLevelResp](#svc-biz-vip-UpdateNobleByLevelResp)
-  
-    - [NobleLevel](#svc-biz-vip-NobleLevel)
   
     - [Noble](#svc-biz-vip-Noble)
   
@@ -13256,7 +13255,7 @@ service started /////////////////
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | streamer_id | [string](#string) |  | 主播id |
-| level | [NobleLevel](#svc-biz-vip-NobleLevel) |  | 贵族等级 |
+| noble_id | [string](#string) |  | 贵族id |
 | join_time_start | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开通贵族的开始时间 |
 | join_time_end | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开通贵族的结束时间 |
 
@@ -13291,7 +13290,7 @@ service started /////////////////
 | page | [int32](#int32) |  | 页数 |
 | limit | [int32](#int32) |  | 条数 |
 | with_noble_info | [bool](#bool) |  | 是否返回贵族信息 |
-| level | [NobleLevel](#svc-biz-vip-NobleLevel) |  | 贵族等级 |
+| noble_id | [string](#string) |  | 贵族id |
 | streamer_id | [string](#string) |  | 主播id |
 | join_time_start | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开通贵族的开始时间 |
 | join_time_end | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开通贵族的结束时间 |
@@ -13373,7 +13372,7 @@ service started /////////////////
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| level | [NobleLevel](#svc-biz-vip-NobleLevel) |  | 贵族等级 |
+| noble_id | [string](#string) |  | 贵族id |
 | member_id | [string](#string) |  | 用户id |
 | streamer_id | [string](#string) |  | 主播id（可为空；贵族可直接开通，也可在某个直播间开通） |
 | order_id | [string](#string) |  | 支付订单id |
@@ -13402,7 +13401,7 @@ service started /////////////////
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| level | [NobleLevel](#svc-biz-vip-NobleLevel) |  | 贵族等级 |
+| noble_id | [string](#string) |  | 贵族id |
 | member_id | [string](#string) |  | 用户id |
 | streamer_id | [string](#string) |  | 主播id（可为空） |
 | join_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 加入时间 |
@@ -13422,7 +13421,7 @@ service started /////////////////
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| level | [NobleLevel](#svc-biz-vip-NobleLevel) |  | 贵族等级 |
+| noble_id | [string](#string) |  | 贵族id |
 | member_id | [string](#string) |  | 用户id |
 | order_id | [string](#string) |  | string streamer_id = 3; // 主播id（可为空；贵族可直接开通，也可在某个直播间开通）
 
@@ -13452,7 +13451,7 @@ service started /////////////////
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| level | [NobleLevel](#svc-biz-vip-NobleLevel) |  | 贵族等级 |
+| noble_id | [string](#string) |  | 贵族id |
 | member_id | [string](#string) |  | 用户id |
 | order_id | [string](#string) |  | string streamer_id = 3; // 主播id（可为空；贵族可直接开通，也可在某个直播间开通）
 
@@ -14221,22 +14220,7 @@ service started /////////////////
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| level | [NobleLevel](#svc-biz-vip-NobleLevel) |  |  |
-
-
-
-
-
-
-<a name="svc-biz-vip-GetNobleByLevelResp"></a>
-
-### GetNobleByLevelResp
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| noble | [NobleInfo](#svc-biz-vip-NobleInfo) |  |  |
+| level | [int32](#int32) |  |  |
 
 
 
@@ -14268,6 +14252,36 @@ service started /////////////////
 
 
 
+<a name="svc-biz-vip-GetNobleReq"></a>
+
+### GetNobleReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| noble_id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-GetNobleResp"></a>
+
+### GetNobleResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| noble | [NobleInfo](#svc-biz-vip-NobleInfo) |  |  |
+
+
+
+
+
+
 <a name="svc-biz-vip-NobleInfo"></a>
 
 ### NobleInfo
@@ -14276,7 +14290,8 @@ service started /////////////////
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| level | [NobleLevel](#svc-biz-vip-NobleLevel) |  | 等级 |
+| noble_id | [string](#string) |  | 贵族id |
+| level | [int32](#int32) |  | 等级（排序） |
 | name | [string](#string) |  | 名称 |
 | icon | [string](#string) |  | 贵族图标 |
 | open_price | [int32](#int32) |  | 开通价格 |
@@ -14286,6 +14301,7 @@ service started /////////////////
 | upgrade_price | [int32](#int32) |  | 升级价格 |
 | upgrade_remand_diamond | [int32](#int32) |  | 升级奖励金 |
 | rights | [NobleRights](#svc-biz-vip-NobleRights) |  | 权益 |
+| rights_num | [int32](#int32) |  | 权益数量 |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
 | updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 更新时间 |
 
@@ -14297,7 +14313,15 @@ service started /////////////////
 <a name="svc-biz-vip-NobleRights"></a>
 
 ### NobleRights
-
+enum NobleLevel {
+    NobleLevelUnknown = 0; // 未知
+    NobleLevelKnight = 1; // 骑士
+    NobleLevelViscount = 2; // 子爵
+    NobleLevelEarl = 3; // 伯爵
+    NobleLevelMarquis = 4; // 侯爵
+    NobleLevelDuke = 5; // 公爵
+    NobleLevelKing = 6; // 国王
+}
 
 
 | Field | Type | Label | Description |
@@ -14316,6 +14340,7 @@ service started /////////////////
 | rights_into_room_hide | [bool](#bool) |  | 进场隐身 |
 | rights_rank_hide | [bool](#bool) |  | 榜单隐身 |
 | rights_discount_gifts | [NobleRightsDiscountGift](#svc-biz-vip-NobleRightsDiscountGift) | repeated | 特价礼物 |
+| rights_global_notify | [bool](#bool) |  | 全局通知 |
 
 
 
@@ -14362,7 +14387,7 @@ service started /////////////////
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| level | [NobleLevel](#svc-biz-vip-NobleLevel) |  |  |
+| noble_id | [string](#string) |  | 贵族id |
 | noble | [NobleInfo](#svc-biz-vip-NobleInfo) |  |  |
 | update_mask | [google.protobuf.FieldMask](#google-protobuf-FieldMask) |  |  |
 
@@ -14382,23 +14407,6 @@ service started /////////////////
 
  
 
-
-<a name="svc-biz-vip-NobleLevel"></a>
-
-### NobleLevel
-
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| NobleLevelUnknown | 0 | 未知 |
-| NobleLevelKnight | 1 | 骑士 |
-| NobleLevelViscount | 2 | 子爵 |
-| NobleLevelEarl | 3 | 伯爵 |
-| NobleLevelMarquis | 4 | 侯爵 |
-| NobleLevelDuke | 5 | 公爵 |
-| NobleLevelKing | 6 | 国王 |
-
-
  
 
  
@@ -14412,7 +14420,8 @@ service started /////////////////
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
 | CreateNoble | [CreateNobleReq](#svc-biz-vip-CreateNobleReq) | [CreateNobleResp](#svc-biz-vip-CreateNobleResp) | CreateNoble 创建 |
-| GetNobleByLevel | [GetNobleByLevelReq](#svc-biz-vip-GetNobleByLevelReq) | [GetNobleByLevelResp](#svc-biz-vip-GetNobleByLevelResp) | GetNobleByLevel 查询 |
+| GetNoble | [GetNobleReq](#svc-biz-vip-GetNobleReq) | [GetNobleResp](#svc-biz-vip-GetNobleResp) | GetNoble 查询 |
+| GetNobleByLevel | [GetNobleByLevelReq](#svc-biz-vip-GetNobleByLevelReq) | [GetNobleResp](#svc-biz-vip-GetNobleResp) | GetNobleByLevel 查询 |
 | GetNobleList | [GetNobleListReq](#svc-biz-vip-GetNobleListReq) | [GetNobleListResp](#svc-biz-vip-GetNobleListResp) | CreateNoble 查询列表 |
 | UpdateNobleByLevel | [UpdateNobleByLevelReq](#svc-biz-vip-UpdateNobleByLevelReq) | [UpdateNobleByLevelResp](#svc-biz-vip-UpdateNobleByLevelResp) | UpdateNobleByLevel 更新 |
 
