@@ -43,7 +43,7 @@ message JoinNobleReq {
     string member_id = 2; // 用户id
     string streamer_id = 3; // 主播id（可为空；贵族可直接开通，也可在某个直播间开通）
     string order_id = 4; // 支付订单id
-    int64 order_price = 5; // 支付订单价格
+    int32 order_price = 5; // 支付订单价格
 }
 message JoinNobleResp {
 }
@@ -53,7 +53,7 @@ message RenewNobleReq {
     string member_id = 2; // 用户id
     string streamer_id = 3; // 主播id（可为空；贵族可直接开通，也可在某个直播间开通）
     string order_id = 4; // 支付订单id
-    int64 order_price = 5; // 支付订单价格
+    int32 order_price = 5; // 支付订单价格
 }
 message RenewNobleResp {
 }
@@ -63,7 +63,7 @@ message UpgradeNobleReq {
     string member_id = 2; // 用户id
     string streamer_id = 3; // 主播id（可为空；贵族可直接开通，也可在某个直播间开通）
     string order_id = 4; // 支付订单id
-    int64 order_price = 5; // 支付订单价格
+    int32 order_price = 5; // 支付订单价格
 }
 message UpgradeNobleResp {
 }
