@@ -13422,9 +13422,8 @@ service started /////////////////
 | ----- | ---- | ----- | ----------- |
 | noble_id | [string](#string) |  | 贵族id |
 | member_id | [string](#string) |  | 用户id |
-| order_id | [string](#string) |  | string streamer_id = 3; // 主播id（可为空；贵族可直接开通，也可在某个直播间开通）
-
-支付订单id |
+| streamer_id | [string](#string) |  | 主播id（可为空；贵族可直接开通，也可在某个直播间开通） |
+| order_id | [string](#string) |  | 支付订单id |
 | order_price | [int64](#int64) |  | 支付订单价格 |
 
 
@@ -13452,9 +13451,8 @@ service started /////////////////
 | ----- | ---- | ----- | ----------- |
 | noble_id | [string](#string) |  | 贵族id |
 | member_id | [string](#string) |  | 用户id |
-| order_id | [string](#string) |  | string streamer_id = 3; // 主播id（可为空；贵族可直接开通，也可在某个直播间开通）
-
-支付订单id |
+| streamer_id | [string](#string) |  | 主播id（可为空；贵族可直接开通，也可在某个直播间开通） |
+| order_id | [string](#string) |  | 支付订单id |
 | order_price | [int64](#int64) |  | 支付订单价格 |
 
 
