@@ -13376,6 +13376,7 @@ service started /////////////////
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| noble_id | [string](#string) |  | 贵族id |
 | streamer_id | [string](#string) |  | 主播uid |
 | start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开始时间 |
 | end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 结束时间 |
@@ -13410,6 +13411,9 @@ service started /////////////////
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| page | [int32](#int32) |  | 页数 |
+| limit | [int32](#int32) |  | 条数 |
+| noble_id | [string](#string) |  | 贵族id |
 | streamer_id | [string](#string) |  | 主播uid |
 | start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开始时间 |
 | end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 结束时间 |
@@ -13584,7 +13588,7 @@ service started /////////////////
 | CountNobleMember | [CountNobleMemberReq](#svc-biz-vip-CountNobleMemberReq) | [CountNobleMemberResp](#svc-biz-vip-CountNobleMemberResp) | CountNobleMember 获取成员总数 |
 | GetOnlineNobleMemberListByStreamerID | [GetOnlineNobleMemberListByStreamerIDReq](#svc-biz-vip-GetOnlineNobleMemberListByStreamerIDReq) | [GetNobleMemberListResp](#svc-biz-vip-GetNobleMemberListResp) | GetOnlineNobleMemberListByStreamerID 获取主播贵族在线成员列表 |
 | GetOrders | [GetOrdersReq](#svc-biz-vip-GetOrdersReq) | [GetOrdersResp](#svc-biz-vip-GetOrdersResp) | GetOrders 获取开通的贵族订单 |
-| GetOrderStat | [GetOrderStatReq](#svc-biz-vip-GetOrderStatReq) | [GetOrderStatResp](#svc-biz-vip-GetOrderStatResp) | GetOrderStat 获取开通的贵族订单统计 |
+| GetOrderStat | [GetOrderStatReq](#svc-biz-vip-GetOrderStatReq) | [GetOrderStatResp](#svc-biz-vip-GetOrderStatResp) | GetOrderStat 获取开通的贵族订单 |
 
  
 

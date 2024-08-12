@@ -28,7 +28,7 @@ service NobleMember {
 
     // GetOrders 获取开通的贵族订单
     rpc GetOrders (GetOrdersReq) returns (GetOrdersResp) {}
-    // GetOrderStat 获取开通的贵族订单统计
+    // GetOrderStat 获取开通的贵族订单
     rpc GetOrderStat (GetOrderStatReq) returns (GetOrderStatResp) {}
 
 }
@@ -113,9 +113,12 @@ message CountNobleMemberResp {
 
 
 message GetOrdersReq {
-    string streamer_id = 1; // 主播uid
-    google.protobuf.Timestamp  start_time = 2; // 开始时间
-    google.protobuf.Timestamp  end_time = 3; // 结束时间
+    int32 page = 1; // 页数
+    int32 limit = 2; // 条数
+    string noble_id = 3; // 贵族id
+    string streamer_id = 4; // 主播uid
+    google.protobuf.Timestamp  start_time = 5; // 开始时间
+    google.protobuf.Timestamp  end_time = 6; // 结束时间
 }
 
 message NobleOrder {
@@ -133,9 +136,10 @@ message GetOrdersResp {
 }
 
 message GetOrderStatReq {
-    string streamer_id = 1; // 主播uid
-    google.protobuf.Timestamp  start_time = 2; // 开始时间
-    google.protobuf.Timestamp  end_time = 3; // 结束时间
+    string noble_id = 1; // 贵族id
+    string streamer_id = 2; // 主播uid
+    google.protobuf.Timestamp  start_time = 3; // 开始时间
+    google.protobuf.Timestamp  end_time = 4; // 结束时间
 }
 
 message GetOrderStatResp {
