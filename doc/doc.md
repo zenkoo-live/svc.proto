@@ -773,9 +773,14 @@
     - [GetNobleMemberReq](#svc-biz-vip-GetNobleMemberReq)
     - [GetNobleMemberResp](#svc-biz-vip-GetNobleMemberResp)
     - [GetOnlineNobleMemberListByStreamerIDReq](#svc-biz-vip-GetOnlineNobleMemberListByStreamerIDReq)
+    - [GetOrderStatReq](#svc-biz-vip-GetOrderStatReq)
+    - [GetOrderStatResp](#svc-biz-vip-GetOrderStatResp)
+    - [GetOrdersReq](#svc-biz-vip-GetOrdersReq)
+    - [GetOrdersResp](#svc-biz-vip-GetOrdersResp)
     - [JoinNobleReq](#svc-biz-vip-JoinNobleReq)
     - [JoinNobleResp](#svc-biz-vip-JoinNobleResp)
     - [NobleMemberInfo](#svc-biz-vip-NobleMemberInfo)
+    - [NobleOrder](#svc-biz-vip-NobleOrder)
     - [RenewNobleReq](#svc-biz-vip-RenewNobleReq)
     - [RenewNobleResp](#svc-biz-vip-RenewNobleResp)
     - [UpgradeNobleReq](#svc-biz-vip-UpgradeNobleReq)
@@ -13363,6 +13368,72 @@ service started /////////////////
 
 
 
+<a name="svc-biz-vip-GetOrderStatReq"></a>
+
+### GetOrderStatReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer_id | [string](#string) |  | 主播uid |
+| start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开始时间 |
+| end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 结束时间 |
+
+
+
+
+
+
+<a name="svc-biz-vip-GetOrderStatResp"></a>
+
+### GetOrderStatResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| total_num | [int64](#int64) |  | 开通贵族订单总数 |
+| total_price | [int64](#int64) |  | 开通贵族代币总数 |
+| total_user | [int64](#int64) |  | 开通贵族用户总数 |
+
+
+
+
+
+
+<a name="svc-biz-vip-GetOrdersReq"></a>
+
+### GetOrdersReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer_id | [string](#string) |  | 主播uid |
+| start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开始时间 |
+| end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 结束时间 |
+
+
+
+
+
+
+<a name="svc-biz-vip-GetOrdersResp"></a>
+
+### GetOrdersResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [NobleOrder](#svc-biz-vip-NobleOrder) | repeated | 贵族订单 |
+
+
+
+
+
+
 <a name="svc-biz-vip-JoinNobleReq"></a>
 
 ### JoinNobleReq
@@ -13406,6 +13477,28 @@ service started /////////////////
 | join_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 加入时间 |
 | expire_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 过期时间 |
 | noble | [NobleInfo](#svc-biz-vip-NobleInfo) |  | 仅在请求时带了with_noble_info时返回 |
+
+
+
+
+
+
+<a name="svc-biz-vip-NobleOrder"></a>
+
+### NobleOrder
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| member_id | [string](#string) |  | 用户id |
+| noble_id | [string](#string) |  | 贵族id |
+| streamer_id | [string](#string) |  | 主播id |
+| join_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 订单对应贵族开始时间 |
+| expire_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 订单对应贵族结束时间 |
+| order_id | [string](#string) |  | 支付订单id |
+| order_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 订单支付时间 |
+| order_price | [int32](#int32) |  | 支付订单价格 |
 
 
 

@@ -105,3 +105,36 @@ message CountNobleMemberReq {
 message CountNobleMemberResp {
     int64 count = 1; // 总数
 }
+
+
+message GetOrdersReq {
+    string streamer_id = 1; // 主播uid
+    google.protobuf.Timestamp  start_time = 2; // 开始时间
+    google.protobuf.Timestamp  end_time = 3; // 结束时间
+}
+
+message NobleOrder {
+    string member_id = 1; // 用户id
+    string noble_id = 2; // 贵族id
+    string streamer_id = 3; // 主播id
+    google.protobuf.Timestamp join_time = 4; // 订单对应贵族开始时间
+    google.protobuf.Timestamp expire_time = 5; // 订单对应贵族结束时间
+    string order_id = 6; // 支付订单id
+    google.protobuf.Timestamp order_time = 7; // 订单支付时间
+    int32 order_price = 8; // 支付订单价格
+}
+message GetOrdersResp {
+    repeated NobleOrder items = 1; // 贵族订单
+}
+
+message GetOrderStatReq {
+    string streamer_id = 1; // 主播uid
+    google.protobuf.Timestamp  start_time = 2; // 开始时间
+    google.protobuf.Timestamp  end_time = 3; // 结束时间
+}
+
+message GetOrderStatResp {
+    int64 total_num = 1; // 开通贵族订单总数
+    int64 total_price = 2; // 开通贵族代币总数
+    int64 total_user = 3; // 开通贵族用户总数
+}
