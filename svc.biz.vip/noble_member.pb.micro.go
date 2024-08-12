@@ -51,6 +51,10 @@ type NobleMemberService interface {
 	CountNobleMember(ctx context.Context, in *CountNobleMemberReq, opts ...client.CallOption) (*CountNobleMemberResp, error)
 	// GetOnlineNobleMemberListByStreamerID 获取主播贵族在线成员列表
 	GetOnlineNobleMemberListByStreamerID(ctx context.Context, in *GetOnlineNobleMemberListByStreamerIDReq, opts ...client.CallOption) (*GetNobleMemberListResp, error)
+	// GetOrders 获取开通的贵族订单
+	GetOrders(ctx context.Context, in *GetOrdersReq, opts ...client.CallOption) (*GetOrdersResp, error)
+	// GetOrderStat 获取开通的贵族订单统计
+	GetOrderStat(ctx context.Context, in *GetOrderStatReq, opts ...client.CallOption) (*GetOrderStatResp, error)
 }
 
 type nobleMemberService struct {
@@ -135,6 +139,26 @@ func (c *nobleMemberService) GetOnlineNobleMemberListByStreamerID(ctx context.Co
 	return out, nil
 }
 
+func (c *nobleMemberService) GetOrders(ctx context.Context, in *GetOrdersReq, opts ...client.CallOption) (*GetOrdersResp, error) {
+	req := c.c.NewRequest(c.name, "NobleMember.GetOrders", in)
+	out := new(GetOrdersResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *nobleMemberService) GetOrderStat(ctx context.Context, in *GetOrderStatReq, opts ...client.CallOption) (*GetOrderStatResp, error) {
+	req := c.c.NewRequest(c.name, "NobleMember.GetOrderStat", in)
+	out := new(GetOrderStatResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for NobleMember service
 
 type NobleMemberHandler interface {
@@ -152,6 +176,10 @@ type NobleMemberHandler interface {
 	CountNobleMember(context.Context, *CountNobleMemberReq, *CountNobleMemberResp) error
 	// GetOnlineNobleMemberListByStreamerID 获取主播贵族在线成员列表
 	GetOnlineNobleMemberListByStreamerID(context.Context, *GetOnlineNobleMemberListByStreamerIDReq, *GetNobleMemberListResp) error
+	// GetOrders 获取开通的贵族订单
+	GetOrders(context.Context, *GetOrdersReq, *GetOrdersResp) error
+	// GetOrderStat 获取开通的贵族订单统计
+	GetOrderStat(context.Context, *GetOrderStatReq, *GetOrderStatResp) error
 }
 
 func RegisterNobleMemberHandler(s server.Server, hdlr NobleMemberHandler, opts ...server.HandlerOption) error {
@@ -163,6 +191,8 @@ func RegisterNobleMemberHandler(s server.Server, hdlr NobleMemberHandler, opts .
 		GetNobleMemberList(ctx context.Context, in *GetNobleMemberListReq, out *GetNobleMemberListResp) error
 		CountNobleMember(ctx context.Context, in *CountNobleMemberReq, out *CountNobleMemberResp) error
 		GetOnlineNobleMemberListByStreamerID(ctx context.Context, in *GetOnlineNobleMemberListByStreamerIDReq, out *GetNobleMemberListResp) error
+		GetOrders(ctx context.Context, in *GetOrdersReq, out *GetOrdersResp) error
+		GetOrderStat(ctx context.Context, in *GetOrderStatReq, out *GetOrderStatResp) error
 	}
 	type NobleMember struct {
 		nobleMember
@@ -201,4 +231,12 @@ func (h *nobleMemberHandler) CountNobleMember(ctx context.Context, in *CountNobl
 
 func (h *nobleMemberHandler) GetOnlineNobleMemberListByStreamerID(ctx context.Context, in *GetOnlineNobleMemberListByStreamerIDReq, out *GetNobleMemberListResp) error {
 	return h.NobleMemberHandler.GetOnlineNobleMemberListByStreamerID(ctx, in, out)
+}
+
+func (h *nobleMemberHandler) GetOrders(ctx context.Context, in *GetOrdersReq, out *GetOrdersResp) error {
+	return h.NobleMemberHandler.GetOrders(ctx, in, out)
+}
+
+func (h *nobleMemberHandler) GetOrderStat(ctx context.Context, in *GetOrderStatReq, out *GetOrderStatResp) error {
+	return h.NobleMemberHandler.GetOrderStat(ctx, in, out)
 }

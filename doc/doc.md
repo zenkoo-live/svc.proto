@@ -13583,6 +13583,8 @@ service started /////////////////
 | GetNobleMemberList | [GetNobleMemberListReq](#svc-biz-vip-GetNobleMemberListReq) | [GetNobleMemberListResp](#svc-biz-vip-GetNobleMemberListResp) | GetNobleMemberList 获取贵族成员列表（streamer_id传空字符串取所有） |
 | CountNobleMember | [CountNobleMemberReq](#svc-biz-vip-CountNobleMemberReq) | [CountNobleMemberResp](#svc-biz-vip-CountNobleMemberResp) | CountNobleMember 获取成员总数 |
 | GetOnlineNobleMemberListByStreamerID | [GetOnlineNobleMemberListByStreamerIDReq](#svc-biz-vip-GetOnlineNobleMemberListByStreamerIDReq) | [GetNobleMemberListResp](#svc-biz-vip-GetNobleMemberListResp) | GetOnlineNobleMemberListByStreamerID 获取主播贵族在线成员列表 |
+| GetOrders | [GetOrdersReq](#svc-biz-vip-GetOrdersReq) | [GetOrdersResp](#svc-biz-vip-GetOrdersResp) | GetOrders 获取开通的贵族订单 |
+| GetOrderStat | [GetOrderStatReq](#svc-biz-vip-GetOrderStatReq) | [GetOrderStatResp](#svc-biz-vip-GetOrderStatResp) | GetOrderStat 获取开通的贵族订单统计 |
 
  
 

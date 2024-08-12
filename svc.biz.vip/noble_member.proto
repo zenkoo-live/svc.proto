@@ -26,6 +26,11 @@ service NobleMember {
     // GetOnlineNobleMemberListByStreamerID 获取主播贵族在线成员列表
     rpc GetOnlineNobleMemberListByStreamerID (GetOnlineNobleMemberListByStreamerIDReq) returns (GetNobleMemberListResp) {}
 
+    // GetOrders 获取开通的贵族订单
+    rpc GetOrders (GetOrdersReq) returns (GetOrdersResp) {}
+    // GetOrderStat 获取开通的贵族订单统计
+    rpc GetOrderStat (GetOrderStatReq) returns (GetOrderStatResp) {}
+
 }
 
 message NobleMemberInfo {
