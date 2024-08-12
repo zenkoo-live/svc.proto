@@ -14,12 +14,10 @@ service Noble {
     rpc CreateNoble (CreateNobleReq) returns (CreateNobleResp) {}
     // GetNoble 查询
     rpc GetNoble (GetNobleReq) returns (GetNobleResp) {}
-    // GetNobleByLevel 查询
-    rpc GetNobleByLevel (GetNobleByLevelReq) returns (GetNobleResp) {}
-    // CreateNoble 查询列表
+    // UpdateNoble 查询
+    rpc UpdateNoble (UpdateNobleReq) returns (UpdateNobleResp) {}
+    // GetNobleList 查询列表
     rpc GetNobleList (GetNobleListReq) returns (GetNobleListResp) {}
-    // UpdateNobleByLevel 更新
-    rpc UpdateNobleByLevel (UpdateNobleByLevelReq) returns (UpdateNobleByLevelResp) {}
 }
 
 message CreateNobleReq {
@@ -36,22 +34,18 @@ message GetNobleResp {
     NobleInfo noble = 1;
 }
 
-message GetNobleByLevelReq {
-    int32 level = 1;
-}
-
 message GetNobleListReq {
 }
 message GetNobleListResp {
     repeated NobleInfo items = 1;
 }
 
-message UpdateNobleByLevelReq {
+message UpdateNobleReq {
     string noble_id = 1; // 贵族id
     NobleInfo noble = 2;
     google.protobuf.FieldMask update_mask = 3;
 }
-message UpdateNobleByLevelResp {
+message UpdateNobleResp {
 }
 
 

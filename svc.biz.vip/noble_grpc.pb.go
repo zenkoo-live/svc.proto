@@ -19,11 +19,10 @@ import (
 const _ = grpc.SupportPackageIsVersion8
 
 const (
-	Noble_CreateNoble_FullMethodName        = "/svc.biz.vip.Noble/CreateNoble"
-	Noble_GetNoble_FullMethodName           = "/svc.biz.vip.Noble/GetNoble"
-	Noble_GetNobleByLevel_FullMethodName    = "/svc.biz.vip.Noble/GetNobleByLevel"
-	Noble_GetNobleList_FullMethodName       = "/svc.biz.vip.Noble/GetNobleList"
-	Noble_UpdateNobleByLevel_FullMethodName = "/svc.biz.vip.Noble/UpdateNobleByLevel"
+	Noble_CreateNoble_FullMethodName  = "/svc.biz.vip.Noble/CreateNoble"
+	Noble_GetNoble_FullMethodName     = "/svc.biz.vip.Noble/GetNoble"
+	Noble_UpdateNoble_FullMethodName  = "/svc.biz.vip.Noble/UpdateNoble"
+	Noble_GetNobleList_FullMethodName = "/svc.biz.vip.Noble/GetNobleList"
 )
 
 // NobleClient is the client API for Noble service.
@@ -36,12 +35,10 @@ type NobleClient interface {
 	CreateNoble(ctx context.Context, in *CreateNobleReq, opts ...grpc.CallOption) (*CreateNobleResp, error)
 	// GetNoble 查询
 	GetNoble(ctx context.Context, in *GetNobleReq, opts ...grpc.CallOption) (*GetNobleResp, error)
-	// GetNobleByLevel 查询
-	GetNobleByLevel(ctx context.Context, in *GetNobleByLevelReq, opts ...grpc.CallOption) (*GetNobleResp, error)
-	// CreateNoble 查询列表
+	// UpdateNoble 查询
+	UpdateNoble(ctx context.Context, in *UpdateNobleReq, opts ...grpc.CallOption) (*UpdateNobleResp, error)
+	// GetNobleList 查询列表
 	GetNobleList(ctx context.Context, in *GetNobleListReq, opts ...grpc.CallOption) (*GetNobleListResp, error)
-	// UpdateNobleByLevel 更新
-	UpdateNobleByLevel(ctx context.Context, in *UpdateNobleByLevelReq, opts ...grpc.CallOption) (*UpdateNobleByLevelResp, error)
 }
 
 type nobleClient struct {
@@ -72,10 +69,10 @@ func (c *nobleClient) GetNoble(ctx context.Context, in *GetNobleReq, opts ...grp
 	return out, nil
 }
 
-func (c *nobleClient) GetNobleByLevel(ctx context.Context, in *GetNobleByLevelReq, opts ...grpc.CallOption) (*GetNobleResp, error) {
+func (c *nobleClient) UpdateNoble(ctx context.Context, in *UpdateNobleReq, opts ...grpc.CallOption) (*UpdateNobleResp, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetNobleResp)
-	err := c.cc.Invoke(ctx, Noble_GetNobleByLevel_FullMethodName, in, out, cOpts...)
+	out := new(UpdateNobleResp)
+	err := c.cc.Invoke(ctx, Noble_UpdateNoble_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -92,16 +89,6 @@ func (c *nobleClient) GetNobleList(ctx context.Context, in *GetNobleListReq, opt
 	return out, nil
 }
 
-func (c *nobleClient) UpdateNobleByLevel(ctx context.Context, in *UpdateNobleByLevelReq, opts ...grpc.CallOption) (*UpdateNobleByLevelResp, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(UpdateNobleByLevelResp)
-	err := c.cc.Invoke(ctx, Noble_UpdateNobleByLevel_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // NobleServer is the server API for Noble service.
 // All implementations must embed UnimplementedNobleServer
 // for forward compatibility
@@ -112,12 +99,10 @@ type NobleServer interface {
 	CreateNoble(context.Context, *CreateNobleReq) (*CreateNobleResp, error)
 	// GetNoble 查询
 	GetNoble(context.Context, *GetNobleReq) (*GetNobleResp, error)
-	// GetNobleByLevel 查询
-	GetNobleByLevel(context.Context, *GetNobleByLevelReq) (*GetNobleResp, error)
-	// CreateNoble 查询列表
+	// UpdateNoble 查询
+	UpdateNoble(context.Context, *UpdateNobleReq) (*UpdateNobleResp, error)
+	// GetNobleList 查询列表
 	GetNobleList(context.Context, *GetNobleListReq) (*GetNobleListResp, error)
-	// UpdateNobleByLevel 更新
-	UpdateNobleByLevel(context.Context, *UpdateNobleByLevelReq) (*UpdateNobleByLevelResp, error)
 	mustEmbedUnimplementedNobleServer()
 }
 
@@ -131,14 +116,11 @@ func (UnimplementedNobleServer) CreateNoble(context.Context, *CreateNobleReq) (*
 func (UnimplementedNobleServer) GetNoble(context.Context, *GetNobleReq) (*GetNobleResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetNoble not implemented")
 }
-func (UnimplementedNobleServer) GetNobleByLevel(context.Context, *GetNobleByLevelReq) (*GetNobleResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetNobleByLevel not implemented")
+func (UnimplementedNobleServer) UpdateNoble(context.Context, *UpdateNobleReq) (*UpdateNobleResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateNoble not implemented")
 }
 func (UnimplementedNobleServer) GetNobleList(context.Context, *GetNobleListReq) (*GetNobleListResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetNobleList not implemented")
-}
-func (UnimplementedNobleServer) UpdateNobleByLevel(context.Context, *UpdateNobleByLevelReq) (*UpdateNobleByLevelResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateNobleByLevel not implemented")
 }
 func (UnimplementedNobleServer) mustEmbedUnimplementedNobleServer() {}
 
@@ -189,20 +171,20 @@ func _Noble_GetNoble_Handler(srv interface{}, ctx context.Context, dec func(inte
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Noble_GetNobleByLevel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetNobleByLevelReq)
+func _Noble_UpdateNoble_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateNobleReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(NobleServer).GetNobleByLevel(ctx, in)
+		return srv.(NobleServer).UpdateNoble(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Noble_GetNobleByLevel_FullMethodName,
+		FullMethod: Noble_UpdateNoble_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NobleServer).GetNobleByLevel(ctx, req.(*GetNobleByLevelReq))
+		return srv.(NobleServer).UpdateNoble(ctx, req.(*UpdateNobleReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -225,24 +207,6 @@ func _Noble_GetNobleList_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Noble_UpdateNobleByLevel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateNobleByLevelReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(NobleServer).UpdateNobleByLevel(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Noble_UpdateNobleByLevel_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NobleServer).UpdateNobleByLevel(ctx, req.(*UpdateNobleByLevelReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // Noble_ServiceDesc is the grpc.ServiceDesc for Noble service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -259,16 +223,12 @@ var Noble_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Noble_GetNoble_Handler,
 		},
 		{
-			MethodName: "GetNobleByLevel",
-			Handler:    _Noble_GetNobleByLevel_Handler,
+			MethodName: "UpdateNoble",
+			Handler:    _Noble_UpdateNoble_Handler,
 		},
 		{
 			MethodName: "GetNobleList",
 			Handler:    _Noble_GetNobleList_Handler,
-		},
-		{
-			MethodName: "UpdateNobleByLevel",
-			Handler:    _Noble_UpdateNobleByLevel_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
