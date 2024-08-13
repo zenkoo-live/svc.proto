@@ -35,7 +35,7 @@ message JoinFanbaseReq {
     string member_id = 2;
     FanbaseLevel level = 3;
     string order_id = 4; // 支付订单id（暂时没用到）
-    string order_price = 5; // 支付订单价格（暂时没用到）
+    int64 order_price = 5; // 支付订单价格（暂时没用到）
 }
 
 message LeaveFanbaseReq {
