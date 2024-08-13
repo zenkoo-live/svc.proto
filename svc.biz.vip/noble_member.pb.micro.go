@@ -53,7 +53,7 @@ type NobleMemberService interface {
 	GetOnlineNobleMemberListByStreamerID(ctx context.Context, in *GetOnlineNobleMemberListByStreamerIDReq, opts ...client.CallOption) (*GetNobleMemberListResp, error)
 	// GetOrders 获取开通的贵族订单
 	GetOrders(ctx context.Context, in *GetOrdersReq, opts ...client.CallOption) (*GetOrdersResp, error)
-	// GetOrderStat 获取开通的贵族订单统计
+	// GetOrderStat 获取开通的贵族订单
 	GetOrderStat(ctx context.Context, in *GetOrderStatReq, opts ...client.CallOption) (*GetOrderStatResp, error)
 }
 
@@ -178,7 +178,7 @@ type NobleMemberHandler interface {
 	GetOnlineNobleMemberListByStreamerID(context.Context, *GetOnlineNobleMemberListByStreamerIDReq, *GetNobleMemberListResp) error
 	// GetOrders 获取开通的贵族订单
 	GetOrders(context.Context, *GetOrdersReq, *GetOrdersResp) error
-	// GetOrderStat 获取开通的贵族订单统计
+	// GetOrderStat 获取开通的贵族订单
 	GetOrderStat(context.Context, *GetOrderStatReq, *GetOrderStatResp) error
 }
 
