@@ -30,8 +30,8 @@ type JoinFanbaseReq struct {
 	StreamerId string       `protobuf:"bytes,1,opt,name=streamer_id,json=streamerId,proto3" json:"streamer_id,omitempty"`
 	MemberId   string       `protobuf:"bytes,2,opt,name=member_id,json=memberId,proto3" json:"member_id,omitempty"`
 	Level      FanbaseLevel `protobuf:"varint,3,opt,name=level,proto3,enum=svc.biz.vip.FanbaseLevel" json:"level,omitempty"`
-	OrderId    string       `protobuf:"bytes,4,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`          // 支付订单id
-	OrderPrice string       `protobuf:"bytes,5,opt,name=order_price,json=orderPrice,proto3" json:"order_price,omitempty"` // 支付订单价格
+	OrderId    string       `protobuf:"bytes,4,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`          // 支付订单id（暂时没用到）
+	OrderPrice string       `protobuf:"bytes,5,opt,name=order_price,json=orderPrice,proto3" json:"order_price,omitempty"` // 支付订单价格（暂时没用到）
 }
 
 func (x *JoinFanbaseReq) Reset() {
