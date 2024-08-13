@@ -808,11 +808,17 @@
 - [svc.biz.vip/fanbase.proto](#svc-biz-vip_fanbase-proto)
     - [CreateFanbaseReq](#svc-biz-vip-CreateFanbaseReq)
     - [CreateFanbaseResp](#svc-biz-vip-CreateFanbaseResp)
+    - [FanbaseConf](#svc-biz-vip-FanbaseConf)
     - [FanbaseInfo](#svc-biz-vip-FanbaseInfo)
     - [GetFanbaseByNameReq](#svc-biz-vip-GetFanbaseByNameReq)
     - [GetFanbaseByStreamerIDResp](#svc-biz-vip-GetFanbaseByStreamerIDResp)
+    - [GetFanbaseConfListReq](#svc-biz-vip-GetFanbaseConfListReq)
+    - [GetFanbaseConfListResp](#svc-biz-vip-GetFanbaseConfListResp)
     - [GetFanbaseResp](#svc-biz-vip-GetFanbaseResp)
+    - [SetFanbaseConfReq](#svc-biz-vip-SetFanbaseConfReq)
     - [UpdateFanbaseByStreamerIDReq](#svc-biz-vip-UpdateFanbaseByStreamerIDReq)
+  
+    - [FanbaseLevel](#svc-biz-vip-FanbaseLevel)
   
     - [Fanbase](#svc-biz-vip-Fanbase)
   
@@ -833,8 +839,6 @@
     - [GetOnlineFanbaseMemberByStreamerIDResp](#svc-biz-vip-GetOnlineFanbaseMemberByStreamerIDResp)
     - [JoinFanbaseReq](#svc-biz-vip-JoinFanbaseReq)
     - [LeaveFanbaseReq](#svc-biz-vip-LeaveFanbaseReq)
-  
-    - [FanbaseLevel](#svc-biz-vip-FanbaseLevel)
   
     - [FanbaseMember](#svc-biz-vip-FanbaseMember)
   
@@ -13450,7 +13454,7 @@ service started /////////////////
 | member_id | [string](#string) |  | 用户id |
 | streamer_id | [string](#string) |  | 主播id（可为空；贵族可直接开通，也可在某个直播间开通） |
 | order_id | [string](#string) |  | 支付订单id |
-| order_price | [int32](#int32) |  | 支付订单价格 |
+| order_price | [int64](#int64) |  | 支付订单价格 |
 
 
 
@@ -13502,7 +13506,7 @@ service started /////////////////
 | expire_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 订单对应贵族结束时间 |
 | order_id | [string](#string) |  | 支付订单id |
 | order_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 订单支付时间 |
-| order_price | [int32](#int32) |  | 支付订单价格 |
+| order_price | [int64](#int64) |  | 支付订单价格 |
 
 
 
@@ -13521,7 +13525,7 @@ service started /////////////////
 | member_id | [string](#string) |  | 用户id |
 | streamer_id | [string](#string) |  | 主播id（可为空；贵族可直接开通，也可在某个直播间开通） |
 | order_id | [string](#string) |  | 支付订单id |
-| order_price | [int32](#int32) |  | 支付订单价格 |
+| order_price | [int64](#int64) |  | 支付订单价格 |
 
 
 
@@ -13550,7 +13554,7 @@ service started /////////////////
 | member_id | [string](#string) |  | 用户id |
 | streamer_id | [string](#string) |  | 主播id（可为空；贵族可直接开通，也可在某个直播间开通） |
 | order_id | [string](#string) |  | 支付订单id |
-| order_price | [int32](#int32) |  | 支付订单价格 |
+| order_price | [int64](#int64) |  | 支付订单价格 |
 
 
 
@@ -13848,6 +13852,23 @@ service started /////////////////
 
 
 
+<a name="svc-biz-vip-FanbaseConf"></a>
+
+### FanbaseConf
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| level | [FanbaseLevel](#svc-biz-vip-FanbaseLevel) |  |  |
+| name | [string](#string) |  |  |
+| price | [int64](#int64) |  |  |
+
+
+
+
+
+
 <a name="svc-biz-vip-FanbaseInfo"></a>
 
 ### FanbaseInfo
@@ -13897,6 +13918,31 @@ service started /////////////////
 
 
 
+<a name="svc-biz-vip-GetFanbaseConfListReq"></a>
+
+### GetFanbaseConfListReq
+
+
+
+
+
+
+
+<a name="svc-biz-vip-GetFanbaseConfListResp"></a>
+
+### GetFanbaseConfListResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [FanbaseConf](#svc-biz-vip-FanbaseConf) | repeated |  |
+
+
+
+
+
+
 <a name="svc-biz-vip-GetFanbaseResp"></a>
 
 ### GetFanbaseResp
@@ -13906,6 +13952,23 @@ service started /////////////////
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | fanbase | [FanbaseInfo](#svc-biz-vip-FanbaseInfo) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-SetFanbaseConfReq"></a>
+
+### SetFanbaseConfReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| level | [FanbaseLevel](#svc-biz-vip-FanbaseLevel) |  |  |
+| conf | [FanbaseConf](#svc-biz-vip-FanbaseConf) |  |  |
+| update_mask | [google.protobuf.FieldMask](#google-protobuf-FieldMask) |  |  |
 
 
 
@@ -13930,6 +13993,20 @@ service started /////////////////
 
  
 
+
+<a name="svc-biz-vip-FanbaseLevel"></a>
+
+### FanbaseLevel
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| FanbaseLevelUnknown | 0 | 未知 |
+| FanbaseLevelPrimary | 1 | 初级 |
+| FanbaseLevelSuper | 2 | 超级 |
+| FanbaseLevelExtreme | 3 | 至尊 |
+
+
  
 
  
@@ -13942,6 +14019,8 @@ service started /////////////////
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
+| SetFanbaseConf | [SetFanbaseConfReq](#svc-biz-vip-SetFanbaseConfReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | SetFanbaseConf 设置粉丝团配置 |
+| GetFanbaseConfList | [GetFanbaseConfListReq](#svc-biz-vip-GetFanbaseConfListReq) | [GetFanbaseConfListResp](#svc-biz-vip-GetFanbaseConfListResp) | GetFanbaseConfList 获取粉丝团配置列表 |
 | CreateFanbase | [CreateFanbaseReq](#svc-biz-vip-CreateFanbaseReq) | [CreateFanbaseResp](#svc-biz-vip-CreateFanbaseResp) | CreateFanbase 创建粉丝团 |
 | GetFanbaseByStreamerID | [GetFanbaseByStreamerIDResp](#svc-biz-vip-GetFanbaseByStreamerIDResp) | [GetFanbaseResp](#svc-biz-vip-GetFanbaseResp) | GetFanbaseByStreamerID 获取粉丝团 |
 | GetFanbaseByName | [GetFanbaseByNameReq](#svc-biz-vip-GetFanbaseByNameReq) | [GetFanbaseResp](#svc-biz-vip-GetFanbaseResp) | GetFanbaseByName 通过名称获取粉丝团 |
@@ -14207,8 +14286,8 @@ service started /////////////////
 | streamer_id | [string](#string) |  |  |
 | member_id | [string](#string) |  |  |
 | level | [FanbaseLevel](#svc-biz-vip-FanbaseLevel) |  |  |
-| order_id | [string](#string) |  | 支付订单id |
-| order_price | [string](#string) |  | 支付订单价格 |
+| order_id | [string](#string) |  | 支付订单id（暂时没用到） |
+| order_price | [string](#string) |  | 支付订单价格（暂时没用到） |
 
 
 
@@ -14231,20 +14310,6 @@ service started /////////////////
 
 
  
-
-
-<a name="svc-biz-vip-FanbaseLevel"></a>
-
-### FanbaseLevel
-
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| FanbaseLevelUnknown | 0 | 未知 |
-| FanbaseLevelPrimary | 1 | 初级 |
-| FanbaseLevelSuper | 2 | 超级 |
-| FanbaseLevelExtreme | 3 | 至尊 |
-
 
  
 
