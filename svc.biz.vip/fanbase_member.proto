@@ -8,13 +8,6 @@ import "svc.biz.vip/fanbase.proto";
 
 option go_package="./svc.biz.vip;vip";
 
-enum FanbaseLevel {
-    FanbaseLevelUnknown = 0; // 未知
-    FanbaseLevelPrimary = 1; // 初级
-    FanbaseLevelSuper = 2; // 超级
-    FanbaseLevelExtreme = 3; // 至尊
-}
-
 // 粉丝团
 service FanbaseMember {
     // JoinFanbase 加入粉丝团

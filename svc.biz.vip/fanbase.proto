@@ -8,6 +8,14 @@ import "google/protobuf/empty.proto";
 
 option go_package="./svc.biz.vip;vip";
 
+
+enum FanbaseLevel {
+    FanbaseLevelUnknown = 0; // 未知
+    FanbaseLevelPrimary = 1; // 初级
+    FanbaseLevelSuper = 2; // 超级
+    FanbaseLevelExtreme = 3; // 至尊
+}
+
 // 粉丝团
 service Fanbase {
     // CreateFanbase 创建粉丝团
@@ -18,6 +26,11 @@ service Fanbase {
     rpc GetFanbaseByName(GetFanbaseByNameReq) returns (GetFanbaseResp) {}
     // UpdateFanbaseByStreamerID 更新粉丝团
     rpc UpdateFanbaseByStreamerID (UpdateFanbaseByStreamerIDReq) returns (google.protobuf.Empty) {}
+
+    // SetFanbaseConf 设置粉丝团配置
+    rpc SetFanbaseConf (SetFanbaseConfReq) returns (google.protobuf.Empty) {}
+    // GetFanbaseConfList 获取粉丝团配置列表
+    rpc GetFanbaseConfList (GetFanbaseConfListReq) returns (GetFanbaseConfListResp) {}
 }
 
 message FanbaseInfo {
@@ -50,4 +63,23 @@ message UpdateFanbaseByStreamerIDReq {
     string streamer_id = 1;
     FanbaseInfo fanbase = 2;
     google.protobuf.FieldMask update_mask = 3;
+}
+
+message FanbaseConf {
+    FanbaseLevel level = 1;
+    string name = 2;
+    int64 price = 3;
+}
+
+message SetFanbaseConfReq {
+    FanbaseLevel level = 1;
+    FanbaseConf conf = 2;
+    google.protobuf.FieldMask update_mask = 3;
+}
+
+message GetFanbaseConfListReq {
+
+}
+message GetFanbaseConfListResp {
+    repeated FanbaseConf items = 1;
 }
