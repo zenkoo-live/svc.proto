@@ -18,6 +18,11 @@ enum FanbaseLevel {
 
 // 粉丝团
 service Fanbase {
+    // SetFanbaseConf 设置粉丝团配置
+    rpc SetFanbaseConf (SetFanbaseConfReq) returns (google.protobuf.Empty) {}
+    // GetFanbaseConfList 获取粉丝团配置列表
+    rpc GetFanbaseConfList (GetFanbaseConfListReq) returns (GetFanbaseConfListResp) {}
+
     // CreateFanbase 创建粉丝团
     rpc CreateFanbase (CreateFanbaseReq) returns (CreateFanbaseResp) {}
     // GetFanbaseByStreamerID 获取粉丝团
@@ -27,10 +32,25 @@ service Fanbase {
     // UpdateFanbaseByStreamerID 更新粉丝团
     rpc UpdateFanbaseByStreamerID (UpdateFanbaseByStreamerIDReq) returns (google.protobuf.Empty) {}
 
-    // SetFanbaseConf 设置粉丝团配置
-    rpc SetFanbaseConf (SetFanbaseConfReq) returns (google.protobuf.Empty) {}
-    // GetFanbaseConfList 获取粉丝团配置列表
-    rpc GetFanbaseConfList (GetFanbaseConfListReq) returns (GetFanbaseConfListResp) {}
+}
+
+message FanbaseConf {
+    FanbaseLevel level = 1;
+    string name = 2;
+    int64 price = 3;
+}
+
+message SetFanbaseConfReq {
+    FanbaseLevel level = 1;
+    FanbaseConf conf = 2;
+    google.protobuf.FieldMask update_mask = 3;
+}
+
+message GetFanbaseConfListReq {
+
+}
+message GetFanbaseConfListResp {
+    repeated FanbaseConf items = 1;
 }
 
 message FanbaseInfo {
@@ -63,23 +83,4 @@ message UpdateFanbaseByStreamerIDReq {
     string streamer_id = 1;
     FanbaseInfo fanbase = 2;
     google.protobuf.FieldMask update_mask = 3;
-}
-
-message FanbaseConf {
-    FanbaseLevel level = 1;
-    string name = 2;
-    int64 price = 3;
-}
-
-message SetFanbaseConfReq {
-    FanbaseLevel level = 1;
-    FanbaseConf conf = 2;
-    google.protobuf.FieldMask update_mask = 3;
-}
-
-message GetFanbaseConfListReq {
-
-}
-message GetFanbaseConfListResp {
-    repeated FanbaseConf items = 1;
 }

@@ -39,6 +39,10 @@ func NewFanbaseEndpoints() []*api.Endpoint {
 // Client API for Fanbase service
 
 type FanbaseService interface {
+	// SetFanbaseConf 设置粉丝团配置
+	SetFanbaseConf(ctx context.Context, in *SetFanbaseConfReq, opts ...client.CallOption) (*emptypb.Empty, error)
+	// GetFanbaseConfList 获取粉丝团配置列表
+	GetFanbaseConfList(ctx context.Context, in *GetFanbaseConfListReq, opts ...client.CallOption) (*GetFanbaseConfListResp, error)
 	// CreateFanbase 创建粉丝团
 	CreateFanbase(ctx context.Context, in *CreateFanbaseReq, opts ...client.CallOption) (*CreateFanbaseResp, error)
 	// GetFanbaseByStreamerID 获取粉丝团
@@ -47,10 +51,6 @@ type FanbaseService interface {
 	GetFanbaseByName(ctx context.Context, in *GetFanbaseByNameReq, opts ...client.CallOption) (*GetFanbaseResp, error)
 	// UpdateFanbaseByStreamerID 更新粉丝团
 	UpdateFanbaseByStreamerID(ctx context.Context, in *UpdateFanbaseByStreamerIDReq, opts ...client.CallOption) (*emptypb.Empty, error)
-	// SetFanbaseConf 设置粉丝团配置
-	SetFanbaseConf(ctx context.Context, in *SetFanbaseConfReq, opts ...client.CallOption) (*emptypb.Empty, error)
-	// GetFanbaseConfList 获取粉丝团配置列表
-	GetFanbaseConfList(ctx context.Context, in *GetFanbaseConfListReq, opts ...client.CallOption) (*GetFanbaseConfListResp, error)
 }
 
 type fanbaseService struct {
@@ -63,6 +63,26 @@ func NewFanbaseService(name string, c client.Client) FanbaseService {
 		c:    c,
 		name: name,
 	}
+}
+
+func (c *fanbaseService) SetFanbaseConf(ctx context.Context, in *SetFanbaseConfReq, opts ...client.CallOption) (*emptypb.Empty, error) {
+	req := c.c.NewRequest(c.name, "Fanbase.SetFanbaseConf", in)
+	out := new(emptypb.Empty)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *fanbaseService) GetFanbaseConfList(ctx context.Context, in *GetFanbaseConfListReq, opts ...client.CallOption) (*GetFanbaseConfListResp, error) {
+	req := c.c.NewRequest(c.name, "Fanbase.GetFanbaseConfList", in)
+	out := new(GetFanbaseConfListResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *fanbaseService) CreateFanbase(ctx context.Context, in *CreateFanbaseReq, opts ...client.CallOption) (*CreateFanbaseResp, error) {
@@ -105,29 +125,13 @@ func (c *fanbaseService) UpdateFanbaseByStreamerID(ctx context.Context, in *Upda
 	return out, nil
 }
 
-func (c *fanbaseService) SetFanbaseConf(ctx context.Context, in *SetFanbaseConfReq, opts ...client.CallOption) (*emptypb.Empty, error) {
-	req := c.c.NewRequest(c.name, "Fanbase.SetFanbaseConf", in)
-	out := new(emptypb.Empty)
-	err := c.c.Call(ctx, req, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *fanbaseService) GetFanbaseConfList(ctx context.Context, in *GetFanbaseConfListReq, opts ...client.CallOption) (*GetFanbaseConfListResp, error) {
-	req := c.c.NewRequest(c.name, "Fanbase.GetFanbaseConfList", in)
-	out := new(GetFanbaseConfListResp)
-	err := c.c.Call(ctx, req, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // Server API for Fanbase service
 
 type FanbaseHandler interface {
+	// SetFanbaseConf 设置粉丝团配置
+	SetFanbaseConf(context.Context, *SetFanbaseConfReq, *emptypb.Empty) error
+	// GetFanbaseConfList 获取粉丝团配置列表
+	GetFanbaseConfList(context.Context, *GetFanbaseConfListReq, *GetFanbaseConfListResp) error
 	// CreateFanbase 创建粉丝团
 	CreateFanbase(context.Context, *CreateFanbaseReq, *CreateFanbaseResp) error
 	// GetFanbaseByStreamerID 获取粉丝团
@@ -136,20 +140,16 @@ type FanbaseHandler interface {
 	GetFanbaseByName(context.Context, *GetFanbaseByNameReq, *GetFanbaseResp) error
 	// UpdateFanbaseByStreamerID 更新粉丝团
 	UpdateFanbaseByStreamerID(context.Context, *UpdateFanbaseByStreamerIDReq, *emptypb.Empty) error
-	// SetFanbaseConf 设置粉丝团配置
-	SetFanbaseConf(context.Context, *SetFanbaseConfReq, *emptypb.Empty) error
-	// GetFanbaseConfList 获取粉丝团配置列表
-	GetFanbaseConfList(context.Context, *GetFanbaseConfListReq, *GetFanbaseConfListResp) error
 }
 
 func RegisterFanbaseHandler(s server.Server, hdlr FanbaseHandler, opts ...server.HandlerOption) error {
 	type fanbase interface {
+		SetFanbaseConf(ctx context.Context, in *SetFanbaseConfReq, out *emptypb.Empty) error
+		GetFanbaseConfList(ctx context.Context, in *GetFanbaseConfListReq, out *GetFanbaseConfListResp) error
 		CreateFanbase(ctx context.Context, in *CreateFanbaseReq, out *CreateFanbaseResp) error
 		GetFanbaseByStreamerID(ctx context.Context, in *GetFanbaseByStreamerIDResp, out *GetFanbaseResp) error
 		GetFanbaseByName(ctx context.Context, in *GetFanbaseByNameReq, out *GetFanbaseResp) error
 		UpdateFanbaseByStreamerID(ctx context.Context, in *UpdateFanbaseByStreamerIDReq, out *emptypb.Empty) error
-		SetFanbaseConf(ctx context.Context, in *SetFanbaseConfReq, out *emptypb.Empty) error
-		GetFanbaseConfList(ctx context.Context, in *GetFanbaseConfListReq, out *GetFanbaseConfListResp) error
 	}
 	type Fanbase struct {
 		fanbase
@@ -160,6 +160,14 @@ func RegisterFanbaseHandler(s server.Server, hdlr FanbaseHandler, opts ...server
 
 type fanbaseHandler struct {
 	FanbaseHandler
+}
+
+func (h *fanbaseHandler) SetFanbaseConf(ctx context.Context, in *SetFanbaseConfReq, out *emptypb.Empty) error {
+	return h.FanbaseHandler.SetFanbaseConf(ctx, in, out)
+}
+
+func (h *fanbaseHandler) GetFanbaseConfList(ctx context.Context, in *GetFanbaseConfListReq, out *GetFanbaseConfListResp) error {
+	return h.FanbaseHandler.GetFanbaseConfList(ctx, in, out)
 }
 
 func (h *fanbaseHandler) CreateFanbase(ctx context.Context, in *CreateFanbaseReq, out *CreateFanbaseResp) error {
@@ -176,12 +184,4 @@ func (h *fanbaseHandler) GetFanbaseByName(ctx context.Context, in *GetFanbaseByN
 
 func (h *fanbaseHandler) UpdateFanbaseByStreamerID(ctx context.Context, in *UpdateFanbaseByStreamerIDReq, out *emptypb.Empty) error {
 	return h.FanbaseHandler.UpdateFanbaseByStreamerID(ctx, in, out)
-}
-
-func (h *fanbaseHandler) SetFanbaseConf(ctx context.Context, in *SetFanbaseConfReq, out *emptypb.Empty) error {
-	return h.FanbaseHandler.SetFanbaseConf(ctx, in, out)
-}
-
-func (h *fanbaseHandler) GetFanbaseConfList(ctx context.Context, in *GetFanbaseConfListReq, out *GetFanbaseConfListResp) error {
-	return h.FanbaseHandler.GetFanbaseConfList(ctx, in, out)
 }

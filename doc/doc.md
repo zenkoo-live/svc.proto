@@ -14019,12 +14019,12 @@ service started /////////////////
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
+| SetFanbaseConf | [SetFanbaseConfReq](#svc-biz-vip-SetFanbaseConfReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | SetFanbaseConf 设置粉丝团配置 |
+| GetFanbaseConfList | [GetFanbaseConfListReq](#svc-biz-vip-GetFanbaseConfListReq) | [GetFanbaseConfListResp](#svc-biz-vip-GetFanbaseConfListResp) | GetFanbaseConfList 获取粉丝团配置列表 |
 | CreateFanbase | [CreateFanbaseReq](#svc-biz-vip-CreateFanbaseReq) | [CreateFanbaseResp](#svc-biz-vip-CreateFanbaseResp) | CreateFanbase 创建粉丝团 |
 | GetFanbaseByStreamerID | [GetFanbaseByStreamerIDResp](#svc-biz-vip-GetFanbaseByStreamerIDResp) | [GetFanbaseResp](#svc-biz-vip-GetFanbaseResp) | GetFanbaseByStreamerID 获取粉丝团 |
 | GetFanbaseByName | [GetFanbaseByNameReq](#svc-biz-vip-GetFanbaseByNameReq) | [GetFanbaseResp](#svc-biz-vip-GetFanbaseResp) | GetFanbaseByName 通过名称获取粉丝团 |
 | UpdateFanbaseByStreamerID | [UpdateFanbaseByStreamerIDReq](#svc-biz-vip-UpdateFanbaseByStreamerIDReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | UpdateFanbaseByStreamerID 更新粉丝团 |
-| SetFanbaseConf | [SetFanbaseConfReq](#svc-biz-vip-SetFanbaseConfReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | SetFanbaseConf 设置粉丝团配置 |
-| GetFanbaseConfList | [GetFanbaseConfListReq](#svc-biz-vip-GetFanbaseConfListReq) | [GetFanbaseConfListResp](#svc-biz-vip-GetFanbaseConfListResp) | GetFanbaseConfList 获取粉丝团配置列表 |
 
  
 

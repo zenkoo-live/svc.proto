@@ -20,12 +20,12 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
+	Fanbase_SetFanbaseConf_FullMethodName            = "/svc.biz.vip.Fanbase/SetFanbaseConf"
+	Fanbase_GetFanbaseConfList_FullMethodName        = "/svc.biz.vip.Fanbase/GetFanbaseConfList"
 	Fanbase_CreateFanbase_FullMethodName             = "/svc.biz.vip.Fanbase/CreateFanbase"
 	Fanbase_GetFanbaseByStreamerID_FullMethodName    = "/svc.biz.vip.Fanbase/GetFanbaseByStreamerID"
 	Fanbase_GetFanbaseByName_FullMethodName          = "/svc.biz.vip.Fanbase/GetFanbaseByName"
 	Fanbase_UpdateFanbaseByStreamerID_FullMethodName = "/svc.biz.vip.Fanbase/UpdateFanbaseByStreamerID"
-	Fanbase_SetFanbaseConf_FullMethodName            = "/svc.biz.vip.Fanbase/SetFanbaseConf"
-	Fanbase_GetFanbaseConfList_FullMethodName        = "/svc.biz.vip.Fanbase/GetFanbaseConfList"
 )
 
 // FanbaseClient is the client API for Fanbase service.
@@ -34,6 +34,10 @@ const (
 //
 // 粉丝团
 type FanbaseClient interface {
+	// SetFanbaseConf 设置粉丝团配置
+	SetFanbaseConf(ctx context.Context, in *SetFanbaseConfReq, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// GetFanbaseConfList 获取粉丝团配置列表
+	GetFanbaseConfList(ctx context.Context, in *GetFanbaseConfListReq, opts ...grpc.CallOption) (*GetFanbaseConfListResp, error)
 	// CreateFanbase 创建粉丝团
 	CreateFanbase(ctx context.Context, in *CreateFanbaseReq, opts ...grpc.CallOption) (*CreateFanbaseResp, error)
 	// GetFanbaseByStreamerID 获取粉丝团
@@ -42,10 +46,6 @@ type FanbaseClient interface {
 	GetFanbaseByName(ctx context.Context, in *GetFanbaseByNameReq, opts ...grpc.CallOption) (*GetFanbaseResp, error)
 	// UpdateFanbaseByStreamerID 更新粉丝团
 	UpdateFanbaseByStreamerID(ctx context.Context, in *UpdateFanbaseByStreamerIDReq, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// SetFanbaseConf 设置粉丝团配置
-	SetFanbaseConf(ctx context.Context, in *SetFanbaseConfReq, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// GetFanbaseConfList 获取粉丝团配置列表
-	GetFanbaseConfList(ctx context.Context, in *GetFanbaseConfListReq, opts ...grpc.CallOption) (*GetFanbaseConfListResp, error)
 }
 
 type fanbaseClient struct {
@@ -54,6 +54,26 @@ type fanbaseClient struct {
 
 func NewFanbaseClient(cc grpc.ClientConnInterface) FanbaseClient {
 	return &fanbaseClient{cc}
+}
+
+func (c *fanbaseClient) SetFanbaseConf(ctx context.Context, in *SetFanbaseConfReq, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Fanbase_SetFanbaseConf_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *fanbaseClient) GetFanbaseConfList(ctx context.Context, in *GetFanbaseConfListReq, opts ...grpc.CallOption) (*GetFanbaseConfListResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetFanbaseConfListResp)
+	err := c.cc.Invoke(ctx, Fanbase_GetFanbaseConfList_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *fanbaseClient) CreateFanbase(ctx context.Context, in *CreateFanbaseReq, opts ...grpc.CallOption) (*CreateFanbaseResp, error) {
@@ -96,32 +116,16 @@ func (c *fanbaseClient) UpdateFanbaseByStreamerID(ctx context.Context, in *Updat
 	return out, nil
 }
 
-func (c *fanbaseClient) SetFanbaseConf(ctx context.Context, in *SetFanbaseConfReq, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, Fanbase_SetFanbaseConf_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *fanbaseClient) GetFanbaseConfList(ctx context.Context, in *GetFanbaseConfListReq, opts ...grpc.CallOption) (*GetFanbaseConfListResp, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetFanbaseConfListResp)
-	err := c.cc.Invoke(ctx, Fanbase_GetFanbaseConfList_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // FanbaseServer is the server API for Fanbase service.
 // All implementations must embed UnimplementedFanbaseServer
 // for forward compatibility.
 //
 // 粉丝团
 type FanbaseServer interface {
+	// SetFanbaseConf 设置粉丝团配置
+	SetFanbaseConf(context.Context, *SetFanbaseConfReq) (*emptypb.Empty, error)
+	// GetFanbaseConfList 获取粉丝团配置列表
+	GetFanbaseConfList(context.Context, *GetFanbaseConfListReq) (*GetFanbaseConfListResp, error)
 	// CreateFanbase 创建粉丝团
 	CreateFanbase(context.Context, *CreateFanbaseReq) (*CreateFanbaseResp, error)
 	// GetFanbaseByStreamerID 获取粉丝团
@@ -130,10 +134,6 @@ type FanbaseServer interface {
 	GetFanbaseByName(context.Context, *GetFanbaseByNameReq) (*GetFanbaseResp, error)
 	// UpdateFanbaseByStreamerID 更新粉丝团
 	UpdateFanbaseByStreamerID(context.Context, *UpdateFanbaseByStreamerIDReq) (*emptypb.Empty, error)
-	// SetFanbaseConf 设置粉丝团配置
-	SetFanbaseConf(context.Context, *SetFanbaseConfReq) (*emptypb.Empty, error)
-	// GetFanbaseConfList 获取粉丝团配置列表
-	GetFanbaseConfList(context.Context, *GetFanbaseConfListReq) (*GetFanbaseConfListResp, error)
 	mustEmbedUnimplementedFanbaseServer()
 }
 
@@ -144,6 +144,12 @@ type FanbaseServer interface {
 // pointer dereference when methods are called.
 type UnimplementedFanbaseServer struct{}
 
+func (UnimplementedFanbaseServer) SetFanbaseConf(context.Context, *SetFanbaseConfReq) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetFanbaseConf not implemented")
+}
+func (UnimplementedFanbaseServer) GetFanbaseConfList(context.Context, *GetFanbaseConfListReq) (*GetFanbaseConfListResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetFanbaseConfList not implemented")
+}
 func (UnimplementedFanbaseServer) CreateFanbase(context.Context, *CreateFanbaseReq) (*CreateFanbaseResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateFanbase not implemented")
 }
@@ -155,12 +161,6 @@ func (UnimplementedFanbaseServer) GetFanbaseByName(context.Context, *GetFanbaseB
 }
 func (UnimplementedFanbaseServer) UpdateFanbaseByStreamerID(context.Context, *UpdateFanbaseByStreamerIDReq) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateFanbaseByStreamerID not implemented")
-}
-func (UnimplementedFanbaseServer) SetFanbaseConf(context.Context, *SetFanbaseConfReq) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SetFanbaseConf not implemented")
-}
-func (UnimplementedFanbaseServer) GetFanbaseConfList(context.Context, *GetFanbaseConfListReq) (*GetFanbaseConfListResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetFanbaseConfList not implemented")
 }
 func (UnimplementedFanbaseServer) mustEmbedUnimplementedFanbaseServer() {}
 func (UnimplementedFanbaseServer) testEmbeddedByValue()                 {}
@@ -181,6 +181,42 @@ func RegisterFanbaseServer(s grpc.ServiceRegistrar, srv FanbaseServer) {
 		t.testEmbeddedByValue()
 	}
 	s.RegisterService(&Fanbase_ServiceDesc, srv)
+}
+
+func _Fanbase_SetFanbaseConf_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetFanbaseConfReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FanbaseServer).SetFanbaseConf(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Fanbase_SetFanbaseConf_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FanbaseServer).SetFanbaseConf(ctx, req.(*SetFanbaseConfReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Fanbase_GetFanbaseConfList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetFanbaseConfListReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FanbaseServer).GetFanbaseConfList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Fanbase_GetFanbaseConfList_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FanbaseServer).GetFanbaseConfList(ctx, req.(*GetFanbaseConfListReq))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _Fanbase_CreateFanbase_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -255,42 +291,6 @@ func _Fanbase_UpdateFanbaseByStreamerID_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Fanbase_SetFanbaseConf_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SetFanbaseConfReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(FanbaseServer).SetFanbaseConf(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Fanbase_SetFanbaseConf_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FanbaseServer).SetFanbaseConf(ctx, req.(*SetFanbaseConfReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Fanbase_GetFanbaseConfList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetFanbaseConfListReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(FanbaseServer).GetFanbaseConfList(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Fanbase_GetFanbaseConfList_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FanbaseServer).GetFanbaseConfList(ctx, req.(*GetFanbaseConfListReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // Fanbase_ServiceDesc is the grpc.ServiceDesc for Fanbase service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -298,6 +298,14 @@ var Fanbase_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "svc.biz.vip.Fanbase",
 	HandlerType: (*FanbaseServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "SetFanbaseConf",
+			Handler:    _Fanbase_SetFanbaseConf_Handler,
+		},
+		{
+			MethodName: "GetFanbaseConfList",
+			Handler:    _Fanbase_GetFanbaseConfList_Handler,
+		},
 		{
 			MethodName: "CreateFanbase",
 			Handler:    _Fanbase_CreateFanbase_Handler,
@@ -313,14 +321,6 @@ var Fanbase_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateFanbaseByStreamerID",
 			Handler:    _Fanbase_UpdateFanbaseByStreamerID_Handler,
-		},
-		{
-			MethodName: "SetFanbaseConf",
-			Handler:    _Fanbase_SetFanbaseConf_Handler,
-		},
-		{
-			MethodName: "GetFanbaseConfList",
-			Handler:    _Fanbase_GetFanbaseConfList_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
