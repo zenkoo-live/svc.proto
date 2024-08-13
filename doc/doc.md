@@ -14287,7 +14287,7 @@ service started /////////////////
 | member_id | [string](#string) |  |  |
 | level | [FanbaseLevel](#svc-biz-vip-FanbaseLevel) |  |  |
 | order_id | [string](#string) |  | 支付订单id（暂时没用到） |
-| order_price | [string](#string) |  | 支付订单价格（暂时没用到） |
+| order_price | [int64](#int64) |  | 支付订单价格（暂时没用到） |
 
 
 
