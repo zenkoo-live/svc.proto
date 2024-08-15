@@ -8,13 +8,6 @@ import "svc.biz.vip/fanbase.proto";
 
 option go_package="./svc.biz.vip;vip";
 
-enum FanbaseLevel {
-    FanbaseLevelUnknown = 0; // 未知
-    FanbaseLevelPrimary = 1; // 初级
-    FanbaseLevelSuper = 2; // 超级
-    FanbaseLevelExtreme = 3; // 至尊
-}
-
 // 粉丝团
 service FanbaseMember {
     // JoinFanbase 加入粉丝团
@@ -41,6 +34,8 @@ message JoinFanbaseReq {
     string streamer_id = 1;
     string member_id = 2;
     FanbaseLevel level = 3;
+    string order_id = 4; // 支付订单id（暂时没用到）
+    int64 order_price = 5; // 支付订单价格（暂时没用到）
 }
 
 message LeaveFanbaseReq {

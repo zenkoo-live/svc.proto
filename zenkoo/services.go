@@ -70,6 +70,7 @@ var (
 	SvcInfraNotifierNotifier       = svcInfraNotifier.NewNotifierService(AppName+"::"+SvcInfraNotifier+runtime.AppendEnv(), clt)
 	SvcBizOrgOrg                   = svcBizOrg.NewOrgService(AppName+"::"+SvcBizOrg+runtime.AppendEnv(), clt)
 	SvcInfraPayPay                 = svcInfraPay.NewPayService(AppName+"::"+SvcInfraPay+runtime.AppendEnv(), clt)
+	SvcBizRankStreamer_rank        = svcBizRank.NewStreamerRankService(AppName+"::"+SvcBizRank+runtime.AppendEnv(), clt)
 	SvcBizRankStreamer_viewer_rank = svcBizRank.NewStreamerViewerRankService(AppName+"::"+SvcBizRank+runtime.AppendEnv(), clt)
 	SvcBizRelationRelation         = svcBizRelation.NewRelationService(AppName+"::"+SvcBizRelation+runtime.AppendEnv(), clt)
 	SvcBizRoomCategory             = svcBizRoom.NewCategoryService(AppName+"::"+SvcBizRoom+runtime.AppendEnv(), clt)

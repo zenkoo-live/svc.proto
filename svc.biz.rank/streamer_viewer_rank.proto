@@ -4,7 +4,7 @@ package svc.biz.rank;
 
 option go_package="./svc.biz.rank;rank";
 
-// 排行
+// 主播观众排行
 service StreamerViewerRank {
     // 获取主播某场直播的排行榜成员
     rpc GetStreamerViewerLiveMember(GetStreamerViewerLiveMemberReq) returns (GetStreamerViewerRankResp) {}

@@ -51,6 +51,8 @@ type RoomService interface {
 	MGetRooms(ctx context.Context, in *MGetRoomsReq, opts ...client.CallOption) (*MGetRoomsResp, error)
 	// MGetRoomByStreamerIDs 批量查询房间
 	MGetRoomsByStreamerIDs(ctx context.Context, in *MGetRoomsByStreamerIDsReq, opts ...client.CallOption) (*MGetRoomsByStreamerIDsResp, error)
+	// MGetRoomsByStreamerIDsWithOnlineSort 批量查询房间（带在线分页，按照传入顺序获取，在线排在最前）
+	MGetRoomsByStreamerIDsWithOnlineSort(ctx context.Context, in *MGetRoomsByStreamerIDsWithOnlineSortReq, opts ...client.CallOption) (*MGetRoomsByStreamerIDsWithOnlineSortResp, error)
 	// GetRoomList 查询房间列表（后台使用此接口）
 	GetRoomList(ctx context.Context, in *GetRoomListReq, opts ...client.CallOption) (*GetRoomListResp, error)
 	// GetOnlineRoomList 查询在线房间列表（用户端列表使用此接口）
@@ -137,6 +139,16 @@ func (c *roomService) MGetRoomsByStreamerIDs(ctx context.Context, in *MGetRoomsB
 	return out, nil
 }
 
+func (c *roomService) MGetRoomsByStreamerIDsWithOnlineSort(ctx context.Context, in *MGetRoomsByStreamerIDsWithOnlineSortReq, opts ...client.CallOption) (*MGetRoomsByStreamerIDsWithOnlineSortResp, error) {
+	req := c.c.NewRequest(c.name, "Room.MGetRoomsByStreamerIDsWithOnlineSort", in)
+	out := new(MGetRoomsByStreamerIDsWithOnlineSortResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *roomService) GetRoomList(ctx context.Context, in *GetRoomListReq, opts ...client.CallOption) (*GetRoomListResp, error) {
 	req := c.c.NewRequest(c.name, "Room.GetRoomList", in)
 	out := new(GetRoomListResp)
@@ -212,6 +224,8 @@ type RoomHandler interface {
 	MGetRooms(context.Context, *MGetRoomsReq, *MGetRoomsResp) error
 	// MGetRoomByStreamerIDs 批量查询房间
 	MGetRoomsByStreamerIDs(context.Context, *MGetRoomsByStreamerIDsReq, *MGetRoomsByStreamerIDsResp) error
+	// MGetRoomsByStreamerIDsWithOnlineSort 批量查询房间（带在线分页，按照传入顺序获取，在线排在最前）
+	MGetRoomsByStreamerIDsWithOnlineSort(context.Context, *MGetRoomsByStreamerIDsWithOnlineSortReq, *MGetRoomsByStreamerIDsWithOnlineSortResp) error
 	// GetRoomList 查询房间列表（后台使用此接口）
 	GetRoomList(context.Context, *GetRoomListReq, *GetRoomListResp) error
 	// GetOnlineRoomList 查询在线房间列表（用户端列表使用此接口）
@@ -234,6 +248,7 @@ func RegisterRoomHandler(s server.Server, hdlr RoomHandler, opts ...server.Handl
 		GetRoomByStreamerID(ctx context.Context, in *GetRoomByStreamerIDReq, out *GetRoomByStreamerIDResp) error
 		MGetRooms(ctx context.Context, in *MGetRoomsReq, out *MGetRoomsResp) error
 		MGetRoomsByStreamerIDs(ctx context.Context, in *MGetRoomsByStreamerIDsReq, out *MGetRoomsByStreamerIDsResp) error
+		MGetRoomsByStreamerIDsWithOnlineSort(ctx context.Context, in *MGetRoomsByStreamerIDsWithOnlineSortReq, out *MGetRoomsByStreamerIDsWithOnlineSortResp) error
 		GetRoomList(ctx context.Context, in *GetRoomListReq, out *GetRoomListResp) error
 		GetOnlineRoomList(ctx context.Context, in *GetOnlineRoomListReq, out *GetOnlineRoomListResp) error
 		ForbidRoom(ctx context.Context, in *ForbidRoomReq, out *ForbidRoomResp) error
@@ -274,6 +289,10 @@ func (h *roomHandler) MGetRooms(ctx context.Context, in *MGetRoomsReq, out *MGet
 
 func (h *roomHandler) MGetRoomsByStreamerIDs(ctx context.Context, in *MGetRoomsByStreamerIDsReq, out *MGetRoomsByStreamerIDsResp) error {
 	return h.RoomHandler.MGetRoomsByStreamerIDs(ctx, in, out)
+}
+
+func (h *roomHandler) MGetRoomsByStreamerIDsWithOnlineSort(ctx context.Context, in *MGetRoomsByStreamerIDsWithOnlineSortReq, out *MGetRoomsByStreamerIDsWithOnlineSortResp) error {
+	return h.RoomHandler.MGetRoomsByStreamerIDsWithOnlineSort(ctx, in, out)
 }
 
 func (h *roomHandler) GetRoomList(ctx context.Context, in *GetRoomListReq, out *GetRoomListResp) error {
