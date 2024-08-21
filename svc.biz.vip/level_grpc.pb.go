@@ -11,7 +11,6 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
-	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -20,8 +19,12 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Level_ReLoadLevelConf_FullMethodName = "/svc.biz.vip.Level/ReLoadLevelConf"
 	Level_GetMemberLevel_FullMethodName  = "/svc.biz.vip.Level/GetMemberLevel"
+	Level_GetAllLevelList_FullMethodName = "/svc.biz.vip.Level/GetAllLevelList"
+	Level_GetLevelList_FullMethodName    = "/svc.biz.vip.Level/GetLevelList"
+	Level_AddLevel_FullMethodName        = "/svc.biz.vip.Level/AddLevel"
+	Level_UpdateLevel_FullMethodName     = "/svc.biz.vip.Level/UpdateLevel"
+	Level_DelLevel_FullMethodName        = "/svc.biz.vip.Level/DelLevel"
 )
 
 // LevelClient is the client API for Level service.
@@ -30,10 +33,18 @@ const (
 //
 // 等级
 type LevelClient interface {
-	// ReLoadLevelConf 重载等级配置
-	ReLoadLevelConf(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// GetMemberLevel 获取成员等级
 	GetMemberLevel(ctx context.Context, in *GetMemberLevelReq, opts ...grpc.CallOption) (*GetMemberLevelResp, error)
+	// GetAllLevelList 获取所有等级配置列表
+	GetAllLevelList(ctx context.Context, in *GetAllLevelListReq, opts ...grpc.CallOption) (*GetLevelListResp, error)
+	// GetLevelList 分页获取等级配置列表
+	GetLevelList(ctx context.Context, in *GetLevelListReq, opts ...grpc.CallOption) (*GetLevelListResp, error)
+	// AddLevel 添加等级配置
+	AddLevel(ctx context.Context, in *AddLevelReq, opts ...grpc.CallOption) (*AddLevelResp, error)
+	// UpdateLevel 更新等级配置（按照level字段更新）
+	UpdateLevel(ctx context.Context, in *UpdateLevelReq, opts ...grpc.CallOption) (*UpdateLevelReqResp, error)
+	// DelLevel 删除等级配置
+	DelLevel(ctx context.Context, in *DelLevelReq, opts ...grpc.CallOption) (*DelLevelResp, error)
 }
 
 type levelClient struct {
@@ -42,16 +53,6 @@ type levelClient struct {
 
 func NewLevelClient(cc grpc.ClientConnInterface) LevelClient {
 	return &levelClient{cc}
-}
-
-func (c *levelClient) ReLoadLevelConf(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, Level_ReLoadLevelConf_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *levelClient) GetMemberLevel(ctx context.Context, in *GetMemberLevelReq, opts ...grpc.CallOption) (*GetMemberLevelResp, error) {
@@ -64,16 +65,74 @@ func (c *levelClient) GetMemberLevel(ctx context.Context, in *GetMemberLevelReq,
 	return out, nil
 }
 
+func (c *levelClient) GetAllLevelList(ctx context.Context, in *GetAllLevelListReq, opts ...grpc.CallOption) (*GetLevelListResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetLevelListResp)
+	err := c.cc.Invoke(ctx, Level_GetAllLevelList_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *levelClient) GetLevelList(ctx context.Context, in *GetLevelListReq, opts ...grpc.CallOption) (*GetLevelListResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetLevelListResp)
+	err := c.cc.Invoke(ctx, Level_GetLevelList_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *levelClient) AddLevel(ctx context.Context, in *AddLevelReq, opts ...grpc.CallOption) (*AddLevelResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AddLevelResp)
+	err := c.cc.Invoke(ctx, Level_AddLevel_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *levelClient) UpdateLevel(ctx context.Context, in *UpdateLevelReq, opts ...grpc.CallOption) (*UpdateLevelReqResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdateLevelReqResp)
+	err := c.cc.Invoke(ctx, Level_UpdateLevel_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *levelClient) DelLevel(ctx context.Context, in *DelLevelReq, opts ...grpc.CallOption) (*DelLevelResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DelLevelResp)
+	err := c.cc.Invoke(ctx, Level_DelLevel_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // LevelServer is the server API for Level service.
 // All implementations must embed UnimplementedLevelServer
 // for forward compatibility.
 //
 // 等级
 type LevelServer interface {
-	// ReLoadLevelConf 重载等级配置
-	ReLoadLevelConf(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
 	// GetMemberLevel 获取成员等级
 	GetMemberLevel(context.Context, *GetMemberLevelReq) (*GetMemberLevelResp, error)
+	// GetAllLevelList 获取所有等级配置列表
+	GetAllLevelList(context.Context, *GetAllLevelListReq) (*GetLevelListResp, error)
+	// GetLevelList 分页获取等级配置列表
+	GetLevelList(context.Context, *GetLevelListReq) (*GetLevelListResp, error)
+	// AddLevel 添加等级配置
+	AddLevel(context.Context, *AddLevelReq) (*AddLevelResp, error)
+	// UpdateLevel 更新等级配置（按照level字段更新）
+	UpdateLevel(context.Context, *UpdateLevelReq) (*UpdateLevelReqResp, error)
+	// DelLevel 删除等级配置
+	DelLevel(context.Context, *DelLevelReq) (*DelLevelResp, error)
 	mustEmbedUnimplementedLevelServer()
 }
 
@@ -84,11 +143,23 @@ type LevelServer interface {
 // pointer dereference when methods are called.
 type UnimplementedLevelServer struct{}
 
-func (UnimplementedLevelServer) ReLoadLevelConf(context.Context, *emptypb.Empty) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ReLoadLevelConf not implemented")
-}
 func (UnimplementedLevelServer) GetMemberLevel(context.Context, *GetMemberLevelReq) (*GetMemberLevelResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMemberLevel not implemented")
+}
+func (UnimplementedLevelServer) GetAllLevelList(context.Context, *GetAllLevelListReq) (*GetLevelListResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAllLevelList not implemented")
+}
+func (UnimplementedLevelServer) GetLevelList(context.Context, *GetLevelListReq) (*GetLevelListResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetLevelList not implemented")
+}
+func (UnimplementedLevelServer) AddLevel(context.Context, *AddLevelReq) (*AddLevelResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddLevel not implemented")
+}
+func (UnimplementedLevelServer) UpdateLevel(context.Context, *UpdateLevelReq) (*UpdateLevelReqResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateLevel not implemented")
+}
+func (UnimplementedLevelServer) DelLevel(context.Context, *DelLevelReq) (*DelLevelResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DelLevel not implemented")
 }
 func (UnimplementedLevelServer) mustEmbedUnimplementedLevelServer() {}
 func (UnimplementedLevelServer) testEmbeddedByValue()               {}
@@ -111,24 +182,6 @@ func RegisterLevelServer(s grpc.ServiceRegistrar, srv LevelServer) {
 	s.RegisterService(&Level_ServiceDesc, srv)
 }
 
-func _Level_ReLoadLevelConf_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(emptypb.Empty)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(LevelServer).ReLoadLevelConf(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Level_ReLoadLevelConf_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(LevelServer).ReLoadLevelConf(ctx, req.(*emptypb.Empty))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _Level_GetMemberLevel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetMemberLevelReq)
 	if err := dec(in); err != nil {
@@ -147,6 +200,96 @@ func _Level_GetMemberLevel_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Level_GetAllLevelList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAllLevelListReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LevelServer).GetAllLevelList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Level_GetAllLevelList_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LevelServer).GetAllLevelList(ctx, req.(*GetAllLevelListReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Level_GetLevelList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetLevelListReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LevelServer).GetLevelList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Level_GetLevelList_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LevelServer).GetLevelList(ctx, req.(*GetLevelListReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Level_AddLevel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddLevelReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LevelServer).AddLevel(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Level_AddLevel_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LevelServer).AddLevel(ctx, req.(*AddLevelReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Level_UpdateLevel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateLevelReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LevelServer).UpdateLevel(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Level_UpdateLevel_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LevelServer).UpdateLevel(ctx, req.(*UpdateLevelReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Level_DelLevel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DelLevelReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LevelServer).DelLevel(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Level_DelLevel_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LevelServer).DelLevel(ctx, req.(*DelLevelReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Level_ServiceDesc is the grpc.ServiceDesc for Level service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -155,12 +298,28 @@ var Level_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*LevelServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "ReLoadLevelConf",
-			Handler:    _Level_ReLoadLevelConf_Handler,
-		},
-		{
 			MethodName: "GetMemberLevel",
 			Handler:    _Level_GetMemberLevel_Handler,
+		},
+		{
+			MethodName: "GetAllLevelList",
+			Handler:    _Level_GetAllLevelList_Handler,
+		},
+		{
+			MethodName: "GetLevelList",
+			Handler:    _Level_GetLevelList_Handler,
+		},
+		{
+			MethodName: "AddLevel",
+			Handler:    _Level_AddLevel_Handler,
+		},
+		{
+			MethodName: "UpdateLevel",
+			Handler:    _Level_UpdateLevel_Handler,
+		},
+		{
+			MethodName: "DelLevel",
+			Handler:    _Level_DelLevel_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

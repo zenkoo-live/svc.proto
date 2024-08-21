@@ -130,9 +130,10 @@ message DeletedSmsChannelRequest {
 message SmsTemplateListRequest {
   int64 page = 1;
   int64 size = 2;
-  string channel_id = 3;
-  google.protobuf.Timestamp start_time = 4;
-  google.protobuf.Timestamp end_time = 5;
+  string channel_id = 3; // 渠道ID, 可选
+  google.protobuf.Timestamp start_time = 4; // 开始时间, 可选
+  google.protobuf.Timestamp end_time = 5; // 结束时间, 可选
+  string merchant_id = 6; // 商户ID 获取当前商户下所有模板, 可选
 }
 
 message SmsTemplate {
@@ -239,10 +240,11 @@ message SmsBizSendLogListResponse {
 
 message CreatedSmsBizSendLogRequest {
   int64 sms_template_id = 1 ;
-  string params = 2;
-  string biz_type = 3;
-  int32 user_set = 4;
+  string params = 2; // 自定义补充占位符内容， 如模板“您的验证码{code}, 注意查收。”，补充内容为 {"code": "9527"}
+  string biz_type = 3; // 业务类型，根据实际模板 （可选）
+  int32 user_set = 4;  // 用户集合， 1/全体用户， 2/贵族用户 3/充值用户 4/游客用户 5/自定义用户
   string remark = 5;
+  string user_set_extra = 6; // user_set = 5的时候，带上英文逗号分割的用户UID
 }
 
 ////////////////// sms send biz ///////////////////
@@ -273,8 +275,8 @@ message CreatedSmsVerifyRequest {
 
 message GetCloudSmsTemplateRequest {
   string merchant_id = 1;
-  int64 channel_id = 2;
-  int64 template_id = 3;
+  int64 channel_id = 2; // 渠道ID
+  int64 template_id = 3; // 模板ID (可选)
   string external_code_key = 4;
 }
 
@@ -294,8 +296,9 @@ message GetCloudSmsTemplateResponse {
 }
 
 message GetCloudSmsSignRequest {
-  string merchant_id = 1;
-  string channel_name = 2;
+  string merchant_id = 1; // 商户ID
+  string channel_name = 2; // 渠道名称
+  int64 channel_id = 3; // 渠道ID
 }
 
 message GetCloudSmsSignResponse {
