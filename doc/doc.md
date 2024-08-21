@@ -5509,6 +5509,7 @@ CategoryInfo 分类详情
 | live_status | [LiveStatus](#svc-biz-room-LiveStatus) |  | 房间状态：1关播，2开播 |
 | live_display_type | [LiveDisplayType](#svc-biz-room-LiveDisplayType) |  | 横竖屏类型（开播状态时才会有，关播时清空） |
 | live_start_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开播时间（开播状态时才会有，关播时清空） |
+| resolution | [int32](#int32) |  | 分辨率（开播状态时才会有，关播时清空） |
 | score_recommend | [int32](#int32) |  | 推荐分数（后台配置） |
 | score_recommend_start_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
 | score_recommend_end_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |

@@ -119,6 +119,7 @@ message RoomInfo {
     LiveStatus live_status = 23; // 房间状态：1关播，2开播
     LiveDisplayType live_display_type = 24; // 横竖屏类型（开播状态时才会有，关播时清空）
     google.protobuf.Timestamp live_start_at = 25; // 开播时间（开播状态时才会有，关播时清空）
+    int32 resolution = 26; // 分辨率（开播状态时才会有，关播时清空）
 
     int32 score_recommend = 41; // 推荐分数（后台配置）
     google.protobuf.Timestamp score_recommend_start_at = 42;
