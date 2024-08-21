@@ -241,7 +241,8 @@ message ResumeRoomResp {
 message StartLiveReq {
     string streamer_id = 1; // 主播id
     LiveDisplayType display_type = 2; // 横竖屏类型
-    bool force_close_exist = 3; //是否强制关闭当前正在进行的直播 
+    bool force_close_exist = 3; // 是否强制关闭当前正在进行的直播 
+    int32 resolution = 4; // 分辨率
 }
 message StartLiveResp {
     RoomInfo room = 1; // 房间信息
