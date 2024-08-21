@@ -5531,6 +5531,7 @@ CategoryInfo 分类详情
 | live_status | [LiveStatus](#svc-biz-room-LiveStatus) |  | 房间状态：1关播，2开播 |
 | live_display_type | [LiveDisplayType](#svc-biz-room-LiveDisplayType) |  | 横竖屏类型（开播状态时才会有，关播时清空） |
 | live_start_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开播时间（开播状态时才会有，关播时清空） |
+| resolution | [int32](#int32) |  | 分辨率（开播状态时才会有，关播时清空） |
 | score_recommend | [int32](#int32) |  | 推荐分数（后台配置） |
 | score_recommend_start_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
 | score_recommend_end_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
@@ -12626,10 +12627,11 @@ sync system template to merchant
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | sms_template_id | [int64](#int64) |  |  |
-| params | [string](#string) |  |  |
-| biz_type | [string](#string) |  |  |
-| user_set | [int32](#int32) |  |  |
+| params | [string](#string) |  | 自定义补充占位符内容， 如模板“您的验证码{code}, 注意查收。”，补充内容为 {&#34;code&#34;: &#34;9527&#34;} |
+| biz_type | [string](#string) |  | 业务类型，根据实际模板 （可选） |
+| user_set | [int32](#int32) |  | 用户集合， 1/全体用户， 2/贵族用户 3/充值用户 4/游客用户 5/自定义用户 |
 | remark | [string](#string) |  |  |
+| user_set_extra | [string](#string) |  | user_set = 5的时候，带上英文逗号分割的用户UID |
 
 
 
@@ -12826,8 +12828,9 @@ CreatedSmsSendRequest 发送短信请求
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| merchant_id | [string](#string) |  |  |
-| channel_name | [string](#string) |  |  |
+| merchant_id | [string](#string) |  | 商户ID |
+| channel_name | [string](#string) |  | 渠道名称 |
+| channel_id | [int64](#int64) |  | 渠道ID |
 
 
 
@@ -12859,8 +12862,8 @@ CreatedSmsSendRequest 发送短信请求
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | merchant_id | [string](#string) |  |  |
-| channel_id | [int64](#int64) |  |  |
-| template_id | [int64](#int64) |  |  |
+| channel_id | [int64](#int64) |  | 渠道ID |
+| template_id | [int64](#int64) |  | 模板ID (可选) |
 | external_code_key | [string](#string) |  |  |
 
 
@@ -13116,9 +13119,10 @@ biz sms send /////////////
 | ----- | ---- | ----- | ----------- |
 | page | [int64](#int64) |  |  |
 | size | [int64](#int64) |  |  |
-| channel_id | [string](#string) |  |  |
-| start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
-| end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+| channel_id | [string](#string) |  | 渠道ID, 可选 |
+| start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开始时间, 可选 |
+| end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 结束时间, 可选 |
+| merchant_id | [string](#string) |  | 商户ID 获取当前商户下所有模板, 可选 |
 
 
 
