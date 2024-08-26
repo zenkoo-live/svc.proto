@@ -164,12 +164,17 @@ type Static_UploadStreamFileService interface {
 	Context() context.Context
 	SendMsg(interface{}) error
 	RecvMsg(interface{}) error
+	CloseSend() error
 	Close() error
 	Send(*UploadStreamRequestMessage) error
 }
 
 type staticServiceUploadStreamFile struct {
 	stream client.Stream
+}
+
+func (x *staticServiceUploadStreamFile) CloseSend() error {
+	return x.stream.CloseSend()
 }
 
 func (x *staticServiceUploadStreamFile) Close() error {

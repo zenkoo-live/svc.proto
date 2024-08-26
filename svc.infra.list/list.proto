@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package svc.infra.list;
+option go_package="./svc.infra.list;list";
+
+import "google/protobuf/empty.proto";
+//import "google/protobuf/timestamp.proto";
+
+service List {
+    rpc InitDB(google.protobuf.Empty) returns (InitDBResp); // 初始化数据库
+};
+
+message InitDBResp {
+    bool result = 1;
+};

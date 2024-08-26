@@ -19,6 +19,7 @@ import (
 	svcBizVip "github.com/zenkoo-live/svc.proto/svc.biz.vip"
 	svcInfraGenerator "github.com/zenkoo-live/svc.proto/svc.infra.generator"
 	svcInfraLink "github.com/zenkoo-live/svc.proto/svc.infra.link"
+	svcInfraList "github.com/zenkoo-live/svc.proto/svc.infra.list"
 	svcInfraNotifier "github.com/zenkoo-live/svc.proto/svc.infra.notifier"
 	svcInfraPay "github.com/zenkoo-live/svc.proto/svc.infra.pay"
 	svcInfraSetting "github.com/zenkoo-live/svc.proto/svc.infra.setting"
@@ -37,6 +38,7 @@ const (
 	SvcInfraGenerator = "svc.infra.generator"
 	SvcBizGift        = "svc.biz.gift"
 	SvcInfraLink      = "svc.infra.link"
+	SvcInfraList      = "svc.infra.list"
 	SvcBizLog         = "svc.biz.log"
 	SvcInfraNotifier  = "svc.infra.notifier"
 	SvcBizOrg         = "svc.biz.org"
@@ -66,6 +68,7 @@ var (
 	SvcInfraLinkMessage            = svcInfraLink.NewLinkMessageService(AppName+"::"+SvcInfraLink+runtime.AppendEnv(), clt)
 	SvcInfraLinkStat               = svcInfraLink.NewLinkStatService(AppName+"::"+SvcInfraLink+runtime.AppendEnv(), clt)
 	SvcInfraLinkTrace              = svcInfraLink.NewLinkTraceService(AppName+"::"+SvcInfraLink+runtime.AppendEnv(), clt)
+	SvcInfraListList               = svcInfraList.NewListService(AppName+"::"+SvcInfraList+runtime.AppendEnv(), clt)
 	SvcBizLogLog                   = svcBizLog.NewLogService(AppName+"::"+SvcBizLog+runtime.AppendEnv(), clt)
 	SvcInfraNotifierNotifier       = svcInfraNotifier.NewNotifierService(AppName+"::"+SvcInfraNotifier+runtime.AppendEnv(), clt)
 	SvcBizOrgOrg                   = svcBizOrg.NewOrgService(AppName+"::"+SvcBizOrg+runtime.AppendEnv(), clt)
