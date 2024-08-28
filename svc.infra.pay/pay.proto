@@ -207,7 +207,7 @@ message ChannelTypeListResponse {
     int64 status = 5; // 状态
     int64 ratio = 6; // 费率
     string creator = 7; // 创建者
-    int64 pay_platform = 8; // 支付平台
+    string pay_platform = 8; // 支付平台
     google.protobuf.Timestamp created_at = 9;
     google.protobuf.Timestamp updated_at = 10;
   }
