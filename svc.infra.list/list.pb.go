@@ -10,6 +10,7 @@ import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
 )
@@ -68,6 +69,689 @@ func (x *InitDBResp) GetResult() bool {
 	return false
 }
 
+type Item struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id        string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Type      string                 `protobuf:"bytes,2,opt,name=type,proto3" json:"type,omitempty"`
+	Filter    int64                  `protobuf:"varint,3,opt,name=filter,proto3" json:"filter,omitempty"`
+	Detail    string                 `protobuf:"bytes,11,opt,name=detail,proto3" json:"detail,omitempty"`
+	CreatedAt *timestamppb.Timestamp `protobuf:"bytes,255,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"` // 创建时间
+	UpdatedAt *timestamppb.Timestamp `protobuf:"bytes,256,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"` // 更新时间
+}
+
+func (x *Item) Reset() {
+	*x = Item{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_infra_list_list_proto_msgTypes[1]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Item) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Item) ProtoMessage() {}
+
+func (x *Item) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_infra_list_list_proto_msgTypes[1]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Item.ProtoReflect.Descriptor instead.
+func (*Item) Descriptor() ([]byte, []int) {
+	return file_svc_infra_list_list_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *Item) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *Item) GetType() string {
+	if x != nil {
+		return x.Type
+	}
+	return ""
+}
+
+func (x *Item) GetFilter() int64 {
+	if x != nil {
+		return x.Filter
+	}
+	return 0
+}
+
+func (x *Item) GetDetail() string {
+	if x != nil {
+		return x.Detail
+	}
+	return ""
+}
+
+func (x *Item) GetCreatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return nil
+}
+
+func (x *Item) GetUpdatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.UpdatedAt
+	}
+	return nil
+}
+
+type GetItemReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Condition *Item `protobuf:"bytes,1,opt,name=condition,proto3" json:"condition,omitempty"`
+}
+
+func (x *GetItemReq) Reset() {
+	*x = GetItemReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_infra_list_list_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetItemReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetItemReq) ProtoMessage() {}
+
+func (x *GetItemReq) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_infra_list_list_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetItemReq.ProtoReflect.Descriptor instead.
+func (*GetItemReq) Descriptor() ([]byte, []int) {
+	return file_svc_infra_list_list_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *GetItemReq) GetCondition() *Item {
+	if x != nil {
+		return x.Condition
+	}
+	return nil
+}
+
+type GetItemResp struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Item *Item `protobuf:"bytes,1,opt,name=item,proto3" json:"item,omitempty"`
+}
+
+func (x *GetItemResp) Reset() {
+	*x = GetItemResp{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_infra_list_list_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetItemResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetItemResp) ProtoMessage() {}
+
+func (x *GetItemResp) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_infra_list_list_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetItemResp.ProtoReflect.Descriptor instead.
+func (*GetItemResp) Descriptor() ([]byte, []int) {
+	return file_svc_infra_list_list_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *GetItemResp) GetItem() *Item {
+	if x != nil {
+		return x.Item
+	}
+	return nil
+}
+
+type AddItemReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Item *Item `protobuf:"bytes,1,opt,name=item,proto3" json:"item,omitempty"`
+}
+
+func (x *AddItemReq) Reset() {
+	*x = AddItemReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_infra_list_list_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddItemReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddItemReq) ProtoMessage() {}
+
+func (x *AddItemReq) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_infra_list_list_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddItemReq.ProtoReflect.Descriptor instead.
+func (*AddItemReq) Descriptor() ([]byte, []int) {
+	return file_svc_infra_list_list_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *AddItemReq) GetItem() *Item {
+	if x != nil {
+		return x.Item
+	}
+	return nil
+}
+
+type AddItemResp struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Item   *Item `protobuf:"bytes,1,opt,name=item,proto3" json:"item,omitempty"`
+	Result bool  `protobuf:"varint,255,opt,name=result,proto3" json:"result,omitempty"`
+}
+
+func (x *AddItemResp) Reset() {
+	*x = AddItemResp{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_infra_list_list_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddItemResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddItemResp) ProtoMessage() {}
+
+func (x *AddItemResp) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_infra_list_list_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddItemResp.ProtoReflect.Descriptor instead.
+func (*AddItemResp) Descriptor() ([]byte, []int) {
+	return file_svc_infra_list_list_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *AddItemResp) GetItem() *Item {
+	if x != nil {
+		return x.Item
+	}
+	return nil
+}
+
+func (x *AddItemResp) GetResult() bool {
+	if x != nil {
+		return x.Result
+	}
+	return false
+}
+
+type DeleteItemReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Condition *Item `protobuf:"bytes,1,opt,name=condition,proto3" json:"condition,omitempty"`
+}
+
+func (x *DeleteItemReq) Reset() {
+	*x = DeleteItemReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_infra_list_list_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteItemReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteItemReq) ProtoMessage() {}
+
+func (x *DeleteItemReq) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_infra_list_list_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteItemReq.ProtoReflect.Descriptor instead.
+func (*DeleteItemReq) Descriptor() ([]byte, []int) {
+	return file_svc_infra_list_list_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *DeleteItemReq) GetCondition() *Item {
+	if x != nil {
+		return x.Condition
+	}
+	return nil
+}
+
+type DeleteItemResp struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Deleted int64 `protobuf:"varint,1,opt,name=deleted,proto3" json:"deleted,omitempty"`
+}
+
+func (x *DeleteItemResp) Reset() {
+	*x = DeleteItemResp{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_infra_list_list_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteItemResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteItemResp) ProtoMessage() {}
+
+func (x *DeleteItemResp) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_infra_list_list_proto_msgTypes[7]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteItemResp.ProtoReflect.Descriptor instead.
+func (*DeleteItemResp) Descriptor() ([]byte, []int) {
+	return file_svc_infra_list_list_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *DeleteItemResp) GetDeleted() int64 {
+	if x != nil {
+		return x.Deleted
+	}
+	return 0
+}
+
+type UpdateItemReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Condition *Item `protobuf:"bytes,1,opt,name=condition,proto3" json:"condition,omitempty"`
+}
+
+func (x *UpdateItemReq) Reset() {
+	*x = UpdateItemReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_infra_list_list_proto_msgTypes[8]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateItemReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateItemReq) ProtoMessage() {}
+
+func (x *UpdateItemReq) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_infra_list_list_proto_msgTypes[8]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateItemReq.ProtoReflect.Descriptor instead.
+func (*UpdateItemReq) Descriptor() ([]byte, []int) {
+	return file_svc_infra_list_list_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *UpdateItemReq) GetCondition() *Item {
+	if x != nil {
+		return x.Condition
+	}
+	return nil
+}
+
+type UpdateItemResp struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Updated int64 `protobuf:"varint,1,opt,name=updated,proto3" json:"updated,omitempty"`
+}
+
+func (x *UpdateItemResp) Reset() {
+	*x = UpdateItemResp{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_infra_list_list_proto_msgTypes[9]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateItemResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateItemResp) ProtoMessage() {}
+
+func (x *UpdateItemResp) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_infra_list_list_proto_msgTypes[9]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateItemResp.ProtoReflect.Descriptor instead.
+func (*UpdateItemResp) Descriptor() ([]byte, []int) {
+	return file_svc_infra_list_list_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *UpdateItemResp) GetUpdated() int64 {
+	if x != nil {
+		return x.Updated
+	}
+	return 0
+}
+
+type ListItemsReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Condition *Item `protobuf:"bytes,1,opt,name=condition,proto3" json:"condition,omitempty"`
+	Limit     int32 `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
+	Offset    int32 `protobuf:"varint,3,opt,name=offset,proto3" json:"offset,omitempty"`
+}
+
+func (x *ListItemsReq) Reset() {
+	*x = ListItemsReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_infra_list_list_proto_msgTypes[10]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListItemsReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListItemsReq) ProtoMessage() {}
+
+func (x *ListItemsReq) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_infra_list_list_proto_msgTypes[10]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListItemsReq.ProtoReflect.Descriptor instead.
+func (*ListItemsReq) Descriptor() ([]byte, []int) {
+	return file_svc_infra_list_list_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *ListItemsReq) GetCondition() *Item {
+	if x != nil {
+		return x.Condition
+	}
+	return nil
+}
+
+func (x *ListItemsReq) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+func (x *ListItemsReq) GetOffset() int32 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
+}
+
+type ListItemsResp struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Items []*Item `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
+	Total int64   `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
+}
+
+func (x *ListItemsResp) Reset() {
+	*x = ListItemsResp{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_infra_list_list_proto_msgTypes[11]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListItemsResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListItemsResp) ProtoMessage() {}
+
+func (x *ListItemsResp) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_infra_list_list_proto_msgTypes[11]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListItemsResp.ProtoReflect.Descriptor instead.
+func (*ListItemsResp) Descriptor() ([]byte, []int) {
+	return file_svc_infra_list_list_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *ListItemsResp) GetItems() []*Item {
+	if x != nil {
+		return x.Items
+	}
+	return nil
+}
+
+func (x *ListItemsResp) GetTotal() int64 {
+	if x != nil {
+		return x.Total
+	}
+	return 0
+}
+
+type TotalItemsReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Condition *Item `protobuf:"bytes,1,opt,name=condition,proto3" json:"condition,omitempty"`
+}
+
+func (x *TotalItemsReq) Reset() {
+	*x = TotalItemsReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_infra_list_list_proto_msgTypes[12]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *TotalItemsReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TotalItemsReq) ProtoMessage() {}
+
+func (x *TotalItemsReq) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_infra_list_list_proto_msgTypes[12]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TotalItemsReq.ProtoReflect.Descriptor instead.
+func (*TotalItemsReq) Descriptor() ([]byte, []int) {
+	return file_svc_infra_list_list_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *TotalItemsReq) GetCondition() *Item {
+	if x != nil {
+		return x.Condition
+	}
+	return nil
+}
+
+type TotalItemsResp struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Total int64 `protobuf:"varint,1,opt,name=total,proto3" json:"total,omitempty"`
+}
+
+func (x *TotalItemsResp) Reset() {
+	*x = TotalItemsResp{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_infra_list_list_proto_msgTypes[13]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *TotalItemsResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TotalItemsResp) ProtoMessage() {}
+
+func (x *TotalItemsResp) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_infra_list_list_proto_msgTypes[13]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TotalItemsResp.ProtoReflect.Descriptor instead.
+func (*TotalItemsResp) Descriptor() ([]byte, []int) {
+	return file_svc_infra_list_list_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *TotalItemsResp) GetTotal() int64 {
+	if x != nil {
+		return x.Total
+	}
+	return 0
+}
+
 var File_svc_infra_list_list_proto protoreflect.FileDescriptor
 
 var file_svc_infra_list_list_proto_rawDesc = []byte{
@@ -75,16 +759,108 @@ var file_svc_infra_list_list_proto_rawDesc = []byte{
 	0x2f, 0x6c, 0x69, 0x73, 0x74, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x0e, 0x73, 0x76, 0x63,
 	0x2e, 0x69, 0x6e, 0x66, 0x72, 0x61, 0x2e, 0x6c, 0x69, 0x73, 0x74, 0x1a, 0x1b, 0x67, 0x6f, 0x6f,
 	0x67, 0x6c, 0x65, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x65, 0x6d, 0x70,
-	0x74, 0x79, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x24, 0x0a, 0x0a, 0x49, 0x6e, 0x69, 0x74,
-	0x44, 0x42, 0x52, 0x65, 0x73, 0x70, 0x12, 0x16, 0x0a, 0x06, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74,
-	0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x06, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x32, 0x44,
+	0x74, 0x79, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1f, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65,
+	0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x74, 0x69, 0x6d, 0x65, 0x73, 0x74,
+	0x61, 0x6d, 0x70, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x24, 0x0a, 0x0a, 0x49, 0x6e, 0x69,
+	0x74, 0x44, 0x42, 0x52, 0x65, 0x73, 0x70, 0x12, 0x16, 0x0a, 0x06, 0x72, 0x65, 0x73, 0x75, 0x6c,
+	0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x06, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x22,
+	0xd2, 0x01, 0x0a, 0x04, 0x49, 0x74, 0x65, 0x6d, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x74, 0x79, 0x70, 0x65,
+	0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x74, 0x79, 0x70, 0x65, 0x12, 0x16, 0x0a, 0x06,
+	0x66, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x18, 0x03, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x66, 0x69,
+	0x6c, 0x74, 0x65, 0x72, 0x12, 0x16, 0x0a, 0x06, 0x64, 0x65, 0x74, 0x61, 0x69, 0x6c, 0x18, 0x0b,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x64, 0x65, 0x74, 0x61, 0x69, 0x6c, 0x12, 0x3a, 0x0a, 0x0a,
+	0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x64, 0x5f, 0x61, 0x74, 0x18, 0xff, 0x01, 0x20, 0x01, 0x28,
+	0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x52, 0x09, 0x63,
+	0x72, 0x65, 0x61, 0x74, 0x65, 0x64, 0x41, 0x74, 0x12, 0x3a, 0x0a, 0x0a, 0x75, 0x70, 0x64, 0x61,
+	0x74, 0x65, 0x64, 0x5f, 0x61, 0x74, 0x18, 0x80, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e,
+	0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e,
+	0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x52, 0x09, 0x75, 0x70, 0x64, 0x61, 0x74,
+	0x65, 0x64, 0x41, 0x74, 0x22, 0x40, 0x0a, 0x0a, 0x47, 0x65, 0x74, 0x49, 0x74, 0x65, 0x6d, 0x52,
+	0x65, 0x71, 0x12, 0x32, 0x0a, 0x09, 0x63, 0x6f, 0x6e, 0x64, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x14, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x69, 0x6e, 0x66, 0x72,
+	0x61, 0x2e, 0x6c, 0x69, 0x73, 0x74, 0x2e, 0x49, 0x74, 0x65, 0x6d, 0x52, 0x09, 0x63, 0x6f, 0x6e,
+	0x64, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x22, 0x37, 0x0a, 0x0b, 0x47, 0x65, 0x74, 0x49, 0x74, 0x65,
+	0x6d, 0x52, 0x65, 0x73, 0x70, 0x12, 0x28, 0x0a, 0x04, 0x69, 0x74, 0x65, 0x6d, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x0b, 0x32, 0x14, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x69, 0x6e, 0x66, 0x72, 0x61, 0x2e,
+	0x6c, 0x69, 0x73, 0x74, 0x2e, 0x49, 0x74, 0x65, 0x6d, 0x52, 0x04, 0x69, 0x74, 0x65, 0x6d, 0x22,
+	0x36, 0x0a, 0x0a, 0x41, 0x64, 0x64, 0x49, 0x74, 0x65, 0x6d, 0x52, 0x65, 0x71, 0x12, 0x28, 0x0a,
+	0x04, 0x69, 0x74, 0x65, 0x6d, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x14, 0x2e, 0x73, 0x76,
+	0x63, 0x2e, 0x69, 0x6e, 0x66, 0x72, 0x61, 0x2e, 0x6c, 0x69, 0x73, 0x74, 0x2e, 0x49, 0x74, 0x65,
+	0x6d, 0x52, 0x04, 0x69, 0x74, 0x65, 0x6d, 0x22, 0x50, 0x0a, 0x0b, 0x41, 0x64, 0x64, 0x49, 0x74,
+	0x65, 0x6d, 0x52, 0x65, 0x73, 0x70, 0x12, 0x28, 0x0a, 0x04, 0x69, 0x74, 0x65, 0x6d, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x0b, 0x32, 0x14, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x69, 0x6e, 0x66, 0x72, 0x61,
+	0x2e, 0x6c, 0x69, 0x73, 0x74, 0x2e, 0x49, 0x74, 0x65, 0x6d, 0x52, 0x04, 0x69, 0x74, 0x65, 0x6d,
+	0x12, 0x17, 0x0a, 0x06, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x18, 0xff, 0x01, 0x20, 0x01, 0x28,
+	0x08, 0x52, 0x06, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x22, 0x43, 0x0a, 0x0d, 0x44, 0x65, 0x6c,
+	0x65, 0x74, 0x65, 0x49, 0x74, 0x65, 0x6d, 0x52, 0x65, 0x71, 0x12, 0x32, 0x0a, 0x09, 0x63, 0x6f,
+	0x6e, 0x64, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x14, 0x2e,
+	0x73, 0x76, 0x63, 0x2e, 0x69, 0x6e, 0x66, 0x72, 0x61, 0x2e, 0x6c, 0x69, 0x73, 0x74, 0x2e, 0x49,
+	0x74, 0x65, 0x6d, 0x52, 0x09, 0x63, 0x6f, 0x6e, 0x64, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x22, 0x2a,
+	0x0a, 0x0e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x49, 0x74, 0x65, 0x6d, 0x52, 0x65, 0x73, 0x70,
+	0x12, 0x18, 0x0a, 0x07, 0x64, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x03, 0x52, 0x07, 0x64, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x64, 0x22, 0x43, 0x0a, 0x0d, 0x55, 0x70,
+	0x64, 0x61, 0x74, 0x65, 0x49, 0x74, 0x65, 0x6d, 0x52, 0x65, 0x71, 0x12, 0x32, 0x0a, 0x09, 0x63,
+	0x6f, 0x6e, 0x64, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x14,
+	0x2e, 0x73, 0x76, 0x63, 0x2e, 0x69, 0x6e, 0x66, 0x72, 0x61, 0x2e, 0x6c, 0x69, 0x73, 0x74, 0x2e,
+	0x49, 0x74, 0x65, 0x6d, 0x52, 0x09, 0x63, 0x6f, 0x6e, 0x64, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x22,
+	0x2a, 0x0a, 0x0e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x49, 0x74, 0x65, 0x6d, 0x52, 0x65, 0x73,
+	0x70, 0x12, 0x18, 0x0a, 0x07, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x64, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x03, 0x52, 0x07, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x64, 0x22, 0x70, 0x0a, 0x0c, 0x4c,
+	0x69, 0x73, 0x74, 0x49, 0x74, 0x65, 0x6d, 0x73, 0x52, 0x65, 0x71, 0x12, 0x32, 0x0a, 0x09, 0x63,
+	0x6f, 0x6e, 0x64, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x14,
+	0x2e, 0x73, 0x76, 0x63, 0x2e, 0x69, 0x6e, 0x66, 0x72, 0x61, 0x2e, 0x6c, 0x69, 0x73, 0x74, 0x2e,
+	0x49, 0x74, 0x65, 0x6d, 0x52, 0x09, 0x63, 0x6f, 0x6e, 0x64, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x12,
+	0x14, 0x0a, 0x05, 0x6c, 0x69, 0x6d, 0x69, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x05, 0x52, 0x05,
+	0x6c, 0x69, 0x6d, 0x69, 0x74, 0x12, 0x16, 0x0a, 0x06, 0x6f, 0x66, 0x66, 0x73, 0x65, 0x74, 0x18,
+	0x03, 0x20, 0x01, 0x28, 0x05, 0x52, 0x06, 0x6f, 0x66, 0x66, 0x73, 0x65, 0x74, 0x22, 0x51, 0x0a,
+	0x0d, 0x4c, 0x69, 0x73, 0x74, 0x49, 0x74, 0x65, 0x6d, 0x73, 0x52, 0x65, 0x73, 0x70, 0x12, 0x2a,
+	0x0a, 0x05, 0x69, 0x74, 0x65, 0x6d, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x14, 0x2e,
+	0x73, 0x76, 0x63, 0x2e, 0x69, 0x6e, 0x66, 0x72, 0x61, 0x2e, 0x6c, 0x69, 0x73, 0x74, 0x2e, 0x49,
+	0x74, 0x65, 0x6d, 0x52, 0x05, 0x69, 0x74, 0x65, 0x6d, 0x73, 0x12, 0x14, 0x0a, 0x05, 0x74, 0x6f,
+	0x74, 0x61, 0x6c, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x74, 0x6f, 0x74, 0x61, 0x6c,
+	0x22, 0x43, 0x0a, 0x0d, 0x54, 0x6f, 0x74, 0x61, 0x6c, 0x49, 0x74, 0x65, 0x6d, 0x73, 0x52, 0x65,
+	0x71, 0x12, 0x32, 0x0a, 0x09, 0x63, 0x6f, 0x6e, 0x64, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x0b, 0x32, 0x14, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x69, 0x6e, 0x66, 0x72, 0x61,
+	0x2e, 0x6c, 0x69, 0x73, 0x74, 0x2e, 0x49, 0x74, 0x65, 0x6d, 0x52, 0x09, 0x63, 0x6f, 0x6e, 0x64,
+	0x69, 0x74, 0x69, 0x6f, 0x6e, 0x22, 0x26, 0x0a, 0x0e, 0x54, 0x6f, 0x74, 0x61, 0x6c, 0x49, 0x74,
+	0x65, 0x6d, 0x73, 0x52, 0x65, 0x73, 0x70, 0x12, 0x14, 0x0a, 0x05, 0x74, 0x6f, 0x74, 0x61, 0x6c,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x32, 0xfd, 0x03,
 	0x0a, 0x04, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x3c, 0x0a, 0x06, 0x49, 0x6e, 0x69, 0x74, 0x44, 0x42,
 	0x12, 0x16, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62,
 	0x75, 0x66, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x1a, 0x1a, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x69,
 	0x6e, 0x66, 0x72, 0x61, 0x2e, 0x6c, 0x69, 0x73, 0x74, 0x2e, 0x49, 0x6e, 0x69, 0x74, 0x44, 0x42,
-	0x52, 0x65, 0x73, 0x70, 0x42, 0x17, 0x5a, 0x15, 0x2e, 0x2f, 0x73, 0x76, 0x63, 0x2e, 0x69, 0x6e,
-	0x66, 0x72, 0x61, 0x2e, 0x6c, 0x69, 0x73, 0x74, 0x3b, 0x6c, 0x69, 0x73, 0x74, 0x62, 0x06, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x52, 0x65, 0x73, 0x70, 0x12, 0x42, 0x0a, 0x07, 0x47, 0x65, 0x74, 0x49, 0x74, 0x65, 0x6d, 0x12,
+	0x1a, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x69, 0x6e, 0x66, 0x72, 0x61, 0x2e, 0x6c, 0x69, 0x73, 0x74,
+	0x2e, 0x47, 0x65, 0x74, 0x49, 0x74, 0x65, 0x6d, 0x52, 0x65, 0x71, 0x1a, 0x1b, 0x2e, 0x73, 0x76,
+	0x63, 0x2e, 0x69, 0x6e, 0x66, 0x72, 0x61, 0x2e, 0x6c, 0x69, 0x73, 0x74, 0x2e, 0x47, 0x65, 0x74,
+	0x49, 0x74, 0x65, 0x6d, 0x52, 0x65, 0x73, 0x70, 0x12, 0x42, 0x0a, 0x07, 0x41, 0x64, 0x64, 0x49,
+	0x74, 0x65, 0x6d, 0x12, 0x1a, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x69, 0x6e, 0x66, 0x72, 0x61, 0x2e,
+	0x6c, 0x69, 0x73, 0x74, 0x2e, 0x41, 0x64, 0x64, 0x49, 0x74, 0x65, 0x6d, 0x52, 0x65, 0x71, 0x1a,
+	0x1b, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x69, 0x6e, 0x66, 0x72, 0x61, 0x2e, 0x6c, 0x69, 0x73, 0x74,
+	0x2e, 0x41, 0x64, 0x64, 0x49, 0x74, 0x65, 0x6d, 0x52, 0x65, 0x73, 0x70, 0x12, 0x4b, 0x0a, 0x0a,
+	0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x49, 0x74, 0x65, 0x6d, 0x12, 0x1d, 0x2e, 0x73, 0x76, 0x63,
+	0x2e, 0x69, 0x6e, 0x66, 0x72, 0x61, 0x2e, 0x6c, 0x69, 0x73, 0x74, 0x2e, 0x44, 0x65, 0x6c, 0x65,
+	0x74, 0x65, 0x49, 0x74, 0x65, 0x6d, 0x52, 0x65, 0x71, 0x1a, 0x1e, 0x2e, 0x73, 0x76, 0x63, 0x2e,
+	0x69, 0x6e, 0x66, 0x72, 0x61, 0x2e, 0x6c, 0x69, 0x73, 0x74, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74,
+	0x65, 0x49, 0x74, 0x65, 0x6d, 0x52, 0x65, 0x73, 0x70, 0x12, 0x4b, 0x0a, 0x0a, 0x55, 0x70, 0x64,
+	0x61, 0x74, 0x65, 0x49, 0x74, 0x65, 0x6d, 0x12, 0x1d, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x69, 0x6e,
+	0x66, 0x72, 0x61, 0x2e, 0x6c, 0x69, 0x73, 0x74, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x49,
+	0x74, 0x65, 0x6d, 0x52, 0x65, 0x71, 0x1a, 0x1e, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x69, 0x6e, 0x66,
+	0x72, 0x61, 0x2e, 0x6c, 0x69, 0x73, 0x74, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x49, 0x74,
+	0x65, 0x6d, 0x52, 0x65, 0x73, 0x70, 0x12, 0x48, 0x0a, 0x09, 0x4c, 0x69, 0x73, 0x74, 0x49, 0x74,
+	0x65, 0x6d, 0x73, 0x12, 0x1c, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x69, 0x6e, 0x66, 0x72, 0x61, 0x2e,
+	0x6c, 0x69, 0x73, 0x74, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x49, 0x74, 0x65, 0x6d, 0x73, 0x52, 0x65,
+	0x71, 0x1a, 0x1d, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x69, 0x6e, 0x66, 0x72, 0x61, 0x2e, 0x6c, 0x69,
+	0x73, 0x74, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x49, 0x74, 0x65, 0x6d, 0x73, 0x52, 0x65, 0x73, 0x70,
+	0x12, 0x4b, 0x0a, 0x0a, 0x54, 0x6f, 0x74, 0x61, 0x6c, 0x49, 0x74, 0x65, 0x6d, 0x73, 0x12, 0x1d,
+	0x2e, 0x73, 0x76, 0x63, 0x2e, 0x69, 0x6e, 0x66, 0x72, 0x61, 0x2e, 0x6c, 0x69, 0x73, 0x74, 0x2e,
+	0x54, 0x6f, 0x74, 0x61, 0x6c, 0x49, 0x74, 0x65, 0x6d, 0x73, 0x52, 0x65, 0x71, 0x1a, 0x1e, 0x2e,
+	0x73, 0x76, 0x63, 0x2e, 0x69, 0x6e, 0x66, 0x72, 0x61, 0x2e, 0x6c, 0x69, 0x73, 0x74, 0x2e, 0x54,
+	0x6f, 0x74, 0x61, 0x6c, 0x49, 0x74, 0x65, 0x6d, 0x73, 0x52, 0x65, 0x73, 0x70, 0x42, 0x17, 0x5a,
+	0x15, 0x2e, 0x2f, 0x73, 0x76, 0x63, 0x2e, 0x69, 0x6e, 0x66, 0x72, 0x61, 0x2e, 0x6c, 0x69, 0x73,
+	0x74, 0x3b, 0x6c, 0x69, 0x73, 0x74, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -99,19 +875,56 @@ func file_svc_infra_list_list_proto_rawDescGZIP() []byte {
 	return file_svc_infra_list_list_proto_rawDescData
 }
 
-var file_svc_infra_list_list_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
+var file_svc_infra_list_list_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
 var file_svc_infra_list_list_proto_goTypes = []any{
-	(*InitDBResp)(nil),    // 0: svc.infra.list.InitDBResp
-	(*emptypb.Empty)(nil), // 1: google.protobuf.Empty
+	(*InitDBResp)(nil),            // 0: svc.infra.list.InitDBResp
+	(*Item)(nil),                  // 1: svc.infra.list.Item
+	(*GetItemReq)(nil),            // 2: svc.infra.list.GetItemReq
+	(*GetItemResp)(nil),           // 3: svc.infra.list.GetItemResp
+	(*AddItemReq)(nil),            // 4: svc.infra.list.AddItemReq
+	(*AddItemResp)(nil),           // 5: svc.infra.list.AddItemResp
+	(*DeleteItemReq)(nil),         // 6: svc.infra.list.DeleteItemReq
+	(*DeleteItemResp)(nil),        // 7: svc.infra.list.DeleteItemResp
+	(*UpdateItemReq)(nil),         // 8: svc.infra.list.UpdateItemReq
+	(*UpdateItemResp)(nil),        // 9: svc.infra.list.UpdateItemResp
+	(*ListItemsReq)(nil),          // 10: svc.infra.list.ListItemsReq
+	(*ListItemsResp)(nil),         // 11: svc.infra.list.ListItemsResp
+	(*TotalItemsReq)(nil),         // 12: svc.infra.list.TotalItemsReq
+	(*TotalItemsResp)(nil),        // 13: svc.infra.list.TotalItemsResp
+	(*timestamppb.Timestamp)(nil), // 14: google.protobuf.Timestamp
+	(*emptypb.Empty)(nil),         // 15: google.protobuf.Empty
 }
 var file_svc_infra_list_list_proto_depIdxs = []int32{
-	1, // 0: svc.infra.list.List.InitDB:input_type -> google.protobuf.Empty
-	0, // 1: svc.infra.list.List.InitDB:output_type -> svc.infra.list.InitDBResp
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	14, // 0: svc.infra.list.Item.created_at:type_name -> google.protobuf.Timestamp
+	14, // 1: svc.infra.list.Item.updated_at:type_name -> google.protobuf.Timestamp
+	1,  // 2: svc.infra.list.GetItemReq.condition:type_name -> svc.infra.list.Item
+	1,  // 3: svc.infra.list.GetItemResp.item:type_name -> svc.infra.list.Item
+	1,  // 4: svc.infra.list.AddItemReq.item:type_name -> svc.infra.list.Item
+	1,  // 5: svc.infra.list.AddItemResp.item:type_name -> svc.infra.list.Item
+	1,  // 6: svc.infra.list.DeleteItemReq.condition:type_name -> svc.infra.list.Item
+	1,  // 7: svc.infra.list.UpdateItemReq.condition:type_name -> svc.infra.list.Item
+	1,  // 8: svc.infra.list.ListItemsReq.condition:type_name -> svc.infra.list.Item
+	1,  // 9: svc.infra.list.ListItemsResp.items:type_name -> svc.infra.list.Item
+	1,  // 10: svc.infra.list.TotalItemsReq.condition:type_name -> svc.infra.list.Item
+	15, // 11: svc.infra.list.List.InitDB:input_type -> google.protobuf.Empty
+	2,  // 12: svc.infra.list.List.GetItem:input_type -> svc.infra.list.GetItemReq
+	4,  // 13: svc.infra.list.List.AddItem:input_type -> svc.infra.list.AddItemReq
+	6,  // 14: svc.infra.list.List.DeleteItem:input_type -> svc.infra.list.DeleteItemReq
+	8,  // 15: svc.infra.list.List.UpdateItem:input_type -> svc.infra.list.UpdateItemReq
+	10, // 16: svc.infra.list.List.ListItems:input_type -> svc.infra.list.ListItemsReq
+	12, // 17: svc.infra.list.List.TotalItems:input_type -> svc.infra.list.TotalItemsReq
+	0,  // 18: svc.infra.list.List.InitDB:output_type -> svc.infra.list.InitDBResp
+	3,  // 19: svc.infra.list.List.GetItem:output_type -> svc.infra.list.GetItemResp
+	5,  // 20: svc.infra.list.List.AddItem:output_type -> svc.infra.list.AddItemResp
+	7,  // 21: svc.infra.list.List.DeleteItem:output_type -> svc.infra.list.DeleteItemResp
+	9,  // 22: svc.infra.list.List.UpdateItem:output_type -> svc.infra.list.UpdateItemResp
+	11, // 23: svc.infra.list.List.ListItems:output_type -> svc.infra.list.ListItemsResp
+	13, // 24: svc.infra.list.List.TotalItems:output_type -> svc.infra.list.TotalItemsResp
+	18, // [18:25] is the sub-list for method output_type
+	11, // [11:18] is the sub-list for method input_type
+	11, // [11:11] is the sub-list for extension type_name
+	11, // [11:11] is the sub-list for extension extendee
+	0,  // [0:11] is the sub-list for field type_name
 }
 
 func init() { file_svc_infra_list_list_proto_init() }
@@ -132,6 +945,162 @@ func file_svc_infra_list_list_proto_init() {
 				return nil
 			}
 		}
+		file_svc_infra_list_list_proto_msgTypes[1].Exporter = func(v any, i int) any {
+			switch v := v.(*Item); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_infra_list_list_proto_msgTypes[2].Exporter = func(v any, i int) any {
+			switch v := v.(*GetItemReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_infra_list_list_proto_msgTypes[3].Exporter = func(v any, i int) any {
+			switch v := v.(*GetItemResp); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_infra_list_list_proto_msgTypes[4].Exporter = func(v any, i int) any {
+			switch v := v.(*AddItemReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_infra_list_list_proto_msgTypes[5].Exporter = func(v any, i int) any {
+			switch v := v.(*AddItemResp); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_infra_list_list_proto_msgTypes[6].Exporter = func(v any, i int) any {
+			switch v := v.(*DeleteItemReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_infra_list_list_proto_msgTypes[7].Exporter = func(v any, i int) any {
+			switch v := v.(*DeleteItemResp); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_infra_list_list_proto_msgTypes[8].Exporter = func(v any, i int) any {
+			switch v := v.(*UpdateItemReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_infra_list_list_proto_msgTypes[9].Exporter = func(v any, i int) any {
+			switch v := v.(*UpdateItemResp); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_infra_list_list_proto_msgTypes[10].Exporter = func(v any, i int) any {
+			switch v := v.(*ListItemsReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_infra_list_list_proto_msgTypes[11].Exporter = func(v any, i int) any {
+			switch v := v.(*ListItemsResp); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_infra_list_list_proto_msgTypes[12].Exporter = func(v any, i int) any {
+			switch v := v.(*TotalItemsReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_infra_list_list_proto_msgTypes[13].Exporter = func(v any, i int) any {
+			switch v := v.(*TotalItemsResp); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -139,7 +1108,7 @@ func file_svc_infra_list_list_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_svc_infra_list_list_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   1,
+			NumMessages:   14,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

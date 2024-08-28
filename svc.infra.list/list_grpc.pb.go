@@ -20,7 +20,13 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	List_InitDB_FullMethodName = "/svc.infra.list.List/InitDB"
+	List_InitDB_FullMethodName     = "/svc.infra.list.List/InitDB"
+	List_GetItem_FullMethodName    = "/svc.infra.list.List/GetItem"
+	List_AddItem_FullMethodName    = "/svc.infra.list.List/AddItem"
+	List_DeleteItem_FullMethodName = "/svc.infra.list.List/DeleteItem"
+	List_UpdateItem_FullMethodName = "/svc.infra.list.List/UpdateItem"
+	List_ListItems_FullMethodName  = "/svc.infra.list.List/ListItems"
+	List_TotalItems_FullMethodName = "/svc.infra.list.List/TotalItems"
 )
 
 // ListClient is the client API for List service.
@@ -28,6 +34,13 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ListClient interface {
 	InitDB(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*InitDBResp, error)
+	// Methods
+	GetItem(ctx context.Context, in *GetItemReq, opts ...grpc.CallOption) (*GetItemResp, error)
+	AddItem(ctx context.Context, in *AddItemReq, opts ...grpc.CallOption) (*AddItemResp, error)
+	DeleteItem(ctx context.Context, in *DeleteItemReq, opts ...grpc.CallOption) (*DeleteItemResp, error)
+	UpdateItem(ctx context.Context, in *UpdateItemReq, opts ...grpc.CallOption) (*UpdateItemResp, error)
+	ListItems(ctx context.Context, in *ListItemsReq, opts ...grpc.CallOption) (*ListItemsResp, error)
+	TotalItems(ctx context.Context, in *TotalItemsReq, opts ...grpc.CallOption) (*TotalItemsResp, error)
 }
 
 type listClient struct {
@@ -48,11 +61,78 @@ func (c *listClient) InitDB(ctx context.Context, in *emptypb.Empty, opts ...grpc
 	return out, nil
 }
 
+func (c *listClient) GetItem(ctx context.Context, in *GetItemReq, opts ...grpc.CallOption) (*GetItemResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetItemResp)
+	err := c.cc.Invoke(ctx, List_GetItem_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *listClient) AddItem(ctx context.Context, in *AddItemReq, opts ...grpc.CallOption) (*AddItemResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AddItemResp)
+	err := c.cc.Invoke(ctx, List_AddItem_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *listClient) DeleteItem(ctx context.Context, in *DeleteItemReq, opts ...grpc.CallOption) (*DeleteItemResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteItemResp)
+	err := c.cc.Invoke(ctx, List_DeleteItem_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *listClient) UpdateItem(ctx context.Context, in *UpdateItemReq, opts ...grpc.CallOption) (*UpdateItemResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdateItemResp)
+	err := c.cc.Invoke(ctx, List_UpdateItem_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *listClient) ListItems(ctx context.Context, in *ListItemsReq, opts ...grpc.CallOption) (*ListItemsResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListItemsResp)
+	err := c.cc.Invoke(ctx, List_ListItems_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *listClient) TotalItems(ctx context.Context, in *TotalItemsReq, opts ...grpc.CallOption) (*TotalItemsResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TotalItemsResp)
+	err := c.cc.Invoke(ctx, List_TotalItems_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ListServer is the server API for List service.
 // All implementations must embed UnimplementedListServer
 // for forward compatibility.
 type ListServer interface {
 	InitDB(context.Context, *emptypb.Empty) (*InitDBResp, error)
+	// Methods
+	GetItem(context.Context, *GetItemReq) (*GetItemResp, error)
+	AddItem(context.Context, *AddItemReq) (*AddItemResp, error)
+	DeleteItem(context.Context, *DeleteItemReq) (*DeleteItemResp, error)
+	UpdateItem(context.Context, *UpdateItemReq) (*UpdateItemResp, error)
+	ListItems(context.Context, *ListItemsReq) (*ListItemsResp, error)
+	TotalItems(context.Context, *TotalItemsReq) (*TotalItemsResp, error)
 	mustEmbedUnimplementedListServer()
 }
 
@@ -65,6 +145,24 @@ type UnimplementedListServer struct{}
 
 func (UnimplementedListServer) InitDB(context.Context, *emptypb.Empty) (*InitDBResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method InitDB not implemented")
+}
+func (UnimplementedListServer) GetItem(context.Context, *GetItemReq) (*GetItemResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetItem not implemented")
+}
+func (UnimplementedListServer) AddItem(context.Context, *AddItemReq) (*AddItemResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddItem not implemented")
+}
+func (UnimplementedListServer) DeleteItem(context.Context, *DeleteItemReq) (*DeleteItemResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteItem not implemented")
+}
+func (UnimplementedListServer) UpdateItem(context.Context, *UpdateItemReq) (*UpdateItemResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateItem not implemented")
+}
+func (UnimplementedListServer) ListItems(context.Context, *ListItemsReq) (*ListItemsResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListItems not implemented")
+}
+func (UnimplementedListServer) TotalItems(context.Context, *TotalItemsReq) (*TotalItemsResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TotalItems not implemented")
 }
 func (UnimplementedListServer) mustEmbedUnimplementedListServer() {}
 func (UnimplementedListServer) testEmbeddedByValue()              {}
@@ -105,6 +203,114 @@ func _List_InitDB_Handler(srv interface{}, ctx context.Context, dec func(interfa
 	return interceptor(ctx, in, info, handler)
 }
 
+func _List_GetItem_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetItemReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ListServer).GetItem(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: List_GetItem_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ListServer).GetItem(ctx, req.(*GetItemReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _List_AddItem_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddItemReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ListServer).AddItem(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: List_AddItem_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ListServer).AddItem(ctx, req.(*AddItemReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _List_DeleteItem_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteItemReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ListServer).DeleteItem(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: List_DeleteItem_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ListServer).DeleteItem(ctx, req.(*DeleteItemReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _List_UpdateItem_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateItemReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ListServer).UpdateItem(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: List_UpdateItem_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ListServer).UpdateItem(ctx, req.(*UpdateItemReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _List_ListItems_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListItemsReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ListServer).ListItems(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: List_ListItems_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ListServer).ListItems(ctx, req.(*ListItemsReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _List_TotalItems_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TotalItemsReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ListServer).TotalItems(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: List_TotalItems_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ListServer).TotalItems(ctx, req.(*TotalItemsReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // List_ServiceDesc is the grpc.ServiceDesc for List service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -115,6 +321,30 @@ var List_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "InitDB",
 			Handler:    _List_InitDB_Handler,
+		},
+		{
+			MethodName: "GetItem",
+			Handler:    _List_GetItem_Handler,
+		},
+		{
+			MethodName: "AddItem",
+			Handler:    _List_AddItem_Handler,
+		},
+		{
+			MethodName: "DeleteItem",
+			Handler:    _List_DeleteItem_Handler,
+		},
+		{
+			MethodName: "UpdateItem",
+			Handler:    _List_UpdateItem_Handler,
+		},
+		{
+			MethodName: "ListItems",
+			Handler:    _List_ListItems_Handler,
+		},
+		{
+			MethodName: "TotalItems",
+			Handler:    _List_TotalItems_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

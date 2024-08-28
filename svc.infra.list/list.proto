@@ -4,12 +4,75 @@ package svc.infra.list;
 option go_package="./svc.infra.list;list";
 
 import "google/protobuf/empty.proto";
-//import "google/protobuf/timestamp.proto";
+import "google/protobuf/timestamp.proto";
 
 service List {
     rpc InitDB(google.protobuf.Empty) returns (InitDBResp); // 初始化数据库
+    // Methods
+    rpc GetItem(GetItemReq) returns (GetItemResp); // 获取条目
+    rpc AddItem(AddItemReq) returns (AddItemResp); // 添加条目
+    rpc DeleteItem(DeleteItemReq) returns (DeleteItemResp); // 删除条目
+    rpc UpdateItem(UpdateItemReq) returns (UpdateItemResp); // 更新条目
+    rpc ListItems(ListItemsReq) returns (ListItemsResp); // 项目列表
+    rpc TotalItems(TotalItemsReq) returns (TotalItemsResp); // 获取项目总数
 };
 
 message InitDBResp {
     bool result = 1;
 };
+
+message Item {
+    string id = 1;
+    string type = 2;
+    int64 filter = 3;
+    string detail = 11;
+    google.protobuf.Timestamp created_at = 255; // 创建时间
+    google.protobuf.Timestamp updated_at = 256; // 更新时间
+};
+
+message GetItemReq {
+    Item condition = 1;
+
+};
+message GetItemResp {
+    Item item = 1;
+};
+
+message AddItemReq {
+    Item item = 1;
+};
+message AddItemResp {
+    Item item = 1;
+    bool result = 255;
+};
+
+message DeleteItemReq {
+    Item condition = 1;
+};
+message DeleteItemResp {
+    int64 deleted = 1;
+};
+
+message UpdateItemReq {
+    Item condition = 1;
+};
+message UpdateItemResp {
+    int64 updated = 1;      
+};
+
+message ListItemsReq {
+    Item condition = 1;
+    int32 limit = 2;
+    int32 offset = 3;
+};
+message ListItemsResp {
+    repeated Item items = 1;
+    int64 total = 2;
+};
+
+message TotalItemsReq {
+    Item condition = 1;
+};
+message TotalItemsResp {
+    int64 total = 1;
+};          

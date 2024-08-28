@@ -852,7 +852,20 @@
     - [Live](#svc-biz-room-Live)
   
 - [svc.infra.list/list.proto](#svc-infra-list_list-proto)
+    - [AddItemReq](#svc-infra-list-AddItemReq)
+    - [AddItemResp](#svc-infra-list-AddItemResp)
+    - [DeleteItemReq](#svc-infra-list-DeleteItemReq)
+    - [DeleteItemResp](#svc-infra-list-DeleteItemResp)
+    - [GetItemReq](#svc-infra-list-GetItemReq)
+    - [GetItemResp](#svc-infra-list-GetItemResp)
     - [InitDBResp](#svc-infra-list-InitDBResp)
+    - [Item](#svc-infra-list-Item)
+    - [ListItemsReq](#svc-infra-list-ListItemsReq)
+    - [ListItemsResp](#svc-infra-list-ListItemsResp)
+    - [TotalItemsReq](#svc-infra-list-TotalItemsReq)
+    - [TotalItemsResp](#svc-infra-list-TotalItemsResp)
+    - [UpdateItemReq](#svc-infra-list-UpdateItemReq)
+    - [UpdateItemResp](#svc-infra-list-UpdateItemResp)
   
     - [List](#svc-infra-list-List)
   
@@ -14351,6 +14364,97 @@ Room 房间
 
 
 
+<a name="svc-infra-list-AddItemReq"></a>
+
+### AddItemReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| item | [Item](#svc-infra-list-Item) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-list-AddItemResp"></a>
+
+### AddItemResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| item | [Item](#svc-infra-list-Item) |  |  |
+| result | [bool](#bool) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-list-DeleteItemReq"></a>
+
+### DeleteItemReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Item](#svc-infra-list-Item) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-list-DeleteItemResp"></a>
+
+### DeleteItemResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| deleted | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-list-GetItemReq"></a>
+
+### GetItemReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Item](#svc-infra-list-Item) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-list-GetItemResp"></a>
+
+### GetItemResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| item | [Item](#svc-infra-list-Item) |  |  |
+
+
+
+
+
+
 <a name="svc-infra-list-InitDBResp"></a>
 
 ### InitDBResp
@@ -14360,6 +14464,119 @@ Room 房间
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | result | [bool](#bool) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-list-Item"></a>
+
+### Item
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+| type | [string](#string) |  |  |
+| filter | [int64](#int64) |  |  |
+| detail | [string](#string) |  |  |
+| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
+| updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 更新时间 |
+
+
+
+
+
+
+<a name="svc-infra-list-ListItemsReq"></a>
+
+### ListItemsReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Item](#svc-infra-list-Item) |  |  |
+| limit | [int32](#int32) |  |  |
+| offset | [int32](#int32) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-list-ListItemsResp"></a>
+
+### ListItemsResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [Item](#svc-infra-list-Item) | repeated |  |
+| total | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-list-TotalItemsReq"></a>
+
+### TotalItemsReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Item](#svc-infra-list-Item) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-list-TotalItemsResp"></a>
+
+### TotalItemsResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| total | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-list-UpdateItemReq"></a>
+
+### UpdateItemReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| condition | [Item](#svc-infra-list-Item) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-list-UpdateItemResp"></a>
+
+### UpdateItemResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| updated | [int64](#int64) |  |  |
 
 
 
@@ -14380,6 +14597,14 @@ Room 房间
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
 | InitDB | [.google.protobuf.Empty](#google-protobuf-Empty) | [InitDBResp](#svc-infra-list-InitDBResp) | 初始化数据库 |
+| GetItem | [GetItemReq](#svc-infra-list-GetItemReq) | [GetItemResp](#svc-infra-list-GetItemResp) | Methods
+
+获取条目 |
+| AddItem | [AddItemReq](#svc-infra-list-AddItemReq) | [AddItemResp](#svc-infra-list-AddItemResp) | 添加条目 |
+| DeleteItem | [DeleteItemReq](#svc-infra-list-DeleteItemReq) | [DeleteItemResp](#svc-infra-list-DeleteItemResp) | 删除条目 |
+| UpdateItem | [UpdateItemReq](#svc-infra-list-UpdateItemReq) | [UpdateItemResp](#svc-infra-list-UpdateItemResp) | 更新条目 |
+| ListItems | [ListItemsReq](#svc-infra-list-ListItemsReq) | [ListItemsResp](#svc-infra-list-ListItemsResp) | 项目列表 |
+| TotalItems | [TotalItemsReq](#svc-infra-list-TotalItemsReq) | [TotalItemsResp](#svc-infra-list-TotalItemsResp) | 获取项目总数 |
 
  
 
@@ -14574,7 +14799,7 @@ ChannelType 渠道支付类型
 | status | [int64](#int64) |  | 状态 |
 | ratio | [int64](#int64) |  | 费率 |
 | creator | [string](#string) |  | 创建者 |
-| pay_platform | [int64](#int64) |  | 支付平台 |
+| pay_platform | [string](#string) |  | 支付平台 |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
 | updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
 
