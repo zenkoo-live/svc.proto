@@ -19,6 +19,16 @@ func example() {
 			BuildTime:    timestamppb.Now(),
 		},
 	})
+	// 我关注的数量
+	relationClient.GetRelationCount(ctx, &GetRelationCountReq{
+		RelationType: RelationType_RelationTypeFollow,
+		MemberId:     "用户id",
+	})
+	// 关注我得数量
+	relationClient.GetRelationCount(ctx, &GetRelationCountReq{
+		RelationType: RelationType_RelationTypeFollow,
+		RMemberId:    "被关注的主播id",
+	})
 
 	// 观看历史
 	relationClient.RelationAdd(ctx, &RelationAddReq{
