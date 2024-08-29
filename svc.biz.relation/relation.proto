@@ -94,9 +94,10 @@ message RelationMCheckResp {
 
 message GetRelationCountReq  {
     RelationType relation_type = 1;
-    string member_id = 2; 
-    google.protobuf.Timestamp build_start_time = 3; 
-    google.protobuf.Timestamp build_end_time = 4;
+    string member_id = 2; // 正向关系传这个
+    string r_member_id = 3; // 反向关系传这个
+    google.protobuf.Timestamp build_start_time = 4; 
+    google.protobuf.Timestamp build_end_time = 5;
 }
 message GetRelationCountResp {
     int64 count = 1;
@@ -104,9 +105,10 @@ message GetRelationCountResp {
 
 message GetRelationListReq {
     RelationType relation_type = 1;
-    string member_id = 2; 
-    int64 page = 3;
-    int64 limit = 4;
+    string member_id = 2; // 正向关系传这个
+    string r_member_id = 3; // 反向关系传这个
+    int64 page = 4;
+    int64 limit = 5;
 }
 message GetRelationListResp {
     repeated RelationInfo items = 1;
