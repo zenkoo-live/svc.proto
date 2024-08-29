@@ -23,7 +23,7 @@ message InitDBResp {
 
 message Item {
     string id = 1;
-    string type = 2;
+    string subject = 2;
     int64 filter = 3;
     string detail = 11;
     google.protobuf.Timestamp created_at = 255; // 创建时间
@@ -32,7 +32,6 @@ message Item {
 
 message GetItemReq {
     Item condition = 1;
-
 };
 message GetItemResp {
     Item item = 1;
