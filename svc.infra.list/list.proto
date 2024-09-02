@@ -25,7 +25,11 @@ message Item {
     string id = 1;
     string subject = 2;
     int64 filter = 3;
+    string title = 4;
     string detail = 11;
+    int64 status = 12;
+    google.protobuf.Timestamp start_at = 127; // 生效时间
+    google.protobuf.Timestamp end_at = 128; // 失效时间
     google.protobuf.Timestamp created_at = 255; // 创建时间
     google.protobuf.Timestamp updated_at = 256; // 更新时间
 };
