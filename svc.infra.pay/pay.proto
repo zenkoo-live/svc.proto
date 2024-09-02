@@ -20,6 +20,16 @@ enum DeliveryStatus {
   Delivered = 1;
 }
 
+enum RecordType {
+  Channel = 0;
+  ChannelType = 1;
+  ChannelTypeOption = 2;
+}
+
+enum RecordStatus {
+  Close = 0;
+  Open = 1;
+}
 
 message PayRecord {
   string order_no = 1; // 订单号
@@ -46,7 +56,7 @@ message RechargeRequest {
   string merchant_id = 1;                      // 商户ID
   string user_id = 2;                          // 用户ID
   uint64 money = 3;                            // 充值金额
-  string type_channel_id= 4;                     // 通过获取充值方式列表中的Id UUID类型
+  string type_channel_id = 4;                     // 通过获取充值方式列表中的Id UUID类型
   string app_id = 5;                           // 充值的APPID
   string remote_addr = 6;                      // 请求IP
 }
@@ -306,6 +316,19 @@ message ChannelTypeMerchantListResponse {
   repeated ChannelTypeMerchant list = 2;
 }
 
+// 更新记录状态
+message UpdateRecordStatusRequest {
+  string record_id = 1;
+  RecordStatus status = 2;
+  RecordType type = 3;
+}
+
+// 更新记录状态结果
+message UpdateRecordStatusResponse {
+  bool result = 1;
+}
+
+
 
 ///////////////////////////////////////////////////////////// 渠道相关 》》》》 //////////////////////////////////////////////////////////////////////
 
@@ -363,6 +386,9 @@ service PayService {
 
   // GetChannelTypeMerchantList merchant channel type list api for dashboard
   rpc GetChannelTypeMerchantList(ChannelTypeMerchantListRequest) returns (ChannelTypeMerchantListResponse);
+
+  // 更新记录状态
+  rpc UpdateRecordStatus(UpdateRecordStatusRequest) returns (UpdateRecordStatusResponse);
 
   ////////////////////////// 渠道 》》》》 /////////////////////////////////
 

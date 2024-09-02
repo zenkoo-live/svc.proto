@@ -74,6 +74,8 @@ type PayService interface {
 	DeletedChannelTypeMerchant(ctx context.Context, in *CommonDeletedRequest, opts ...client.CallOption) (*CommonResponse, error)
 	// GetChannelTypeMerchantList merchant channel type list api for dashboard
 	GetChannelTypeMerchantList(ctx context.Context, in *ChannelTypeMerchantListRequest, opts ...client.CallOption) (*ChannelTypeMerchantListResponse, error)
+	// 更新记录状态
+	UpdateRecordStatus(ctx context.Context, in *UpdateRecordStatusRequest, opts ...client.CallOption) (*UpdateRecordStatusResponse, error)
 	// GetChargeChannelTypeList fetch charge channel list api for viewer layer
 	GetChargeChannelTypeList(ctx context.Context, in *ChargeChannelTypeRequest, opts ...client.CallOption) (*ChargeChannelTypeResponse, error)
 }
@@ -270,6 +272,16 @@ func (c *payService) GetChannelTypeMerchantList(ctx context.Context, in *Channel
 	return out, nil
 }
 
+func (c *payService) UpdateRecordStatus(ctx context.Context, in *UpdateRecordStatusRequest, opts ...client.CallOption) (*UpdateRecordStatusResponse, error) {
+	req := c.c.NewRequest(c.name, "PayService.UpdateRecordStatus", in)
+	out := new(UpdateRecordStatusResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *payService) GetChargeChannelTypeList(ctx context.Context, in *ChargeChannelTypeRequest, opts ...client.CallOption) (*ChargeChannelTypeResponse, error) {
 	req := c.c.NewRequest(c.name, "PayService.GetChargeChannelTypeList", in)
 	out := new(ChargeChannelTypeResponse)
@@ -319,6 +331,8 @@ type PayServiceHandler interface {
 	DeletedChannelTypeMerchant(context.Context, *CommonDeletedRequest, *CommonResponse) error
 	// GetChannelTypeMerchantList merchant channel type list api for dashboard
 	GetChannelTypeMerchantList(context.Context, *ChannelTypeMerchantListRequest, *ChannelTypeMerchantListResponse) error
+	// 更新记录状态
+	UpdateRecordStatus(context.Context, *UpdateRecordStatusRequest, *UpdateRecordStatusResponse) error
 	// GetChargeChannelTypeList fetch charge channel list api for viewer layer
 	GetChargeChannelTypeList(context.Context, *ChargeChannelTypeRequest, *ChargeChannelTypeResponse) error
 }
@@ -343,6 +357,7 @@ func RegisterPayServiceHandler(s server.Server, hdlr PayServiceHandler, opts ...
 		UpdatedChannelTypeMerchant(ctx context.Context, in *UpdatedChannelTypeMerchantRequest, out *CommonResponse) error
 		DeletedChannelTypeMerchant(ctx context.Context, in *CommonDeletedRequest, out *CommonResponse) error
 		GetChannelTypeMerchantList(ctx context.Context, in *ChannelTypeMerchantListRequest, out *ChannelTypeMerchantListResponse) error
+		UpdateRecordStatus(ctx context.Context, in *UpdateRecordStatusRequest, out *UpdateRecordStatusResponse) error
 		GetChargeChannelTypeList(ctx context.Context, in *ChargeChannelTypeRequest, out *ChargeChannelTypeResponse) error
 	}
 	type PayService struct {
@@ -426,6 +441,10 @@ func (h *payServiceHandler) DeletedChannelTypeMerchant(ctx context.Context, in *
 
 func (h *payServiceHandler) GetChannelTypeMerchantList(ctx context.Context, in *ChannelTypeMerchantListRequest, out *ChannelTypeMerchantListResponse) error {
 	return h.PayServiceHandler.GetChannelTypeMerchantList(ctx, in, out)
+}
+
+func (h *payServiceHandler) UpdateRecordStatus(ctx context.Context, in *UpdateRecordStatusRequest, out *UpdateRecordStatusResponse) error {
+	return h.PayServiceHandler.UpdateRecordStatus(ctx, in, out)
 }
 
 func (h *payServiceHandler) GetChargeChannelTypeList(ctx context.Context, in *ChargeChannelTypeRequest, out *ChargeChannelTypeResponse) error {
