@@ -65,7 +65,7 @@ message FanbaseMemberInfo {
     string member_id = 3;
     FanbaseLevel level = 4;
     google.protobuf.Timestamp join_time = 5; // 加入时间
-    int32 score = 6;
+    int64 score = 6;
 
     FanbaseInfo fanbase = 100; // 粉丝团详情，仅在请求时传递了with_fanbase_info时返回
     FanbaseRights rights = 101;
