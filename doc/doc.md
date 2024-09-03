@@ -895,6 +895,10 @@
     - [CreatedChannelRequest](#svc-infra-pay-CreatedChannelRequest)
     - [CreatedChannelTypeMerchantRequest](#svc-infra-pay-CreatedChannelTypeMerchantRequest)
     - [CreatedChannelTypeRequest](#svc-infra-pay-CreatedChannelTypeRequest)
+    - [GetChannelResponse](#svc-infra-pay-GetChannelResponse)
+    - [GetChannelTypeMerchantResponse](#svc-infra-pay-GetChannelTypeMerchantResponse)
+    - [GetChannelTypeResponse](#svc-infra-pay-GetChannelTypeResponse)
+    - [GetRecordRequest](#svc-infra-pay-GetRecordRequest)
     - [OrderInfo](#svc-infra-pay-OrderInfo)
     - [OrderNotifyRequest](#svc-infra-pay-OrderNotifyRequest)
     - [OrderNotifyRequest.BodyEntry](#svc-infra-pay-OrderNotifyRequest-BodyEntry)
@@ -14485,11 +14489,11 @@ Room 房间
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | id | [string](#string) |  |  |
-| subject | [string](#string) |  |  |
-| filter | [int64](#int64) |  |  |
-| title | [string](#string) |  |  |
-| detail | [string](#string) |  |  |
-| status | [int64](#int64) |  |  |
+| subject | [string](#string) |  | 列表项目类型 |
+| filter | [int64](#int64) |  | 过滤条件（位运算） |
+| title | [string](#string) |  | 列表项目标题 |
+| detail | [string](#string) |  | 内容（json） |
+| status | [int64](#int64) |  | 状态 |
 | start_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 生效时间 |
 | end_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 失效时间 |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
@@ -15073,6 +15077,91 @@ CreatedChannelTypeRequest 渠道支付类型
 
 
 
+<a name="svc-infra-pay-GetChannelResponse"></a>
+
+### GetChannelResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| merchant_id | [string](#string) |  | 商户号 |
+| name | [string](#string) |  | 名称 |
+| display_id | [int64](#int64) |  | 显示ID |
+| merchant_no | [string](#string) |  | 商户号 |
+| secret | [string](#string) |  | 密钥 |
+| gateway_url | [string](#string) |  | 网关地址 |
+| notify_url | [string](#string) |  | 通知地址 |
+| status | [int64](#int64) |  | 状态 0/关 1/开启 |
+| creator | [string](#string) |  | 创建者 |
+
+
+
+
+
+
+<a name="svc-infra-pay-GetChannelTypeMerchantResponse"></a>
+
+### GetChannelTypeMerchantResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| merchant_id | [string](#string) |  |  |
+| channel_id | [string](#string) |  |  |
+| channel_type_id | [string](#string) |  |  |
+| pay_type_name | [string](#string) |  |  |
+| type_no | [string](#string) |  |  |
+| amount_type | [int64](#int64) |  |  |
+| amount_min | [int64](#int64) |  |  |
+| amount_max | [int64](#int64) |  |  |
+| channel_ratio | [int64](#int64) |  |  |
+| platform | [int64](#int64) |  |  |
+| weight | [int64](#int64) |  |  |
+| status | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-pay-GetChannelTypeResponse"></a>
+
+### GetChannelTypeResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| channel_id | [string](#string) |  | 渠道ID |
+| name | [string](#string) |  | 名称 |
+| channel_type_id | [string](#string) |  | 充值字符串 |
+| status | [int64](#int64) |  | 状态 |
+| ratio | [int64](#int64) |  | 费率 |
+| creator | [string](#string) |  | 创建者 |
+| pay_platform | [string](#string) |  | 支付平台 |
+
+
+
+
+
+
+<a name="svc-infra-pay-GetRecordRequest"></a>
+
+### GetRecordRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+
+
+
+
+
+
 <a name="svc-infra-pay-OrderInfo"></a>
 
 ### OrderInfo
@@ -15347,6 +15436,7 @@ UpdatedChannelTypeRequest 更新渠道
 | name | [string](#string) |  | 名称 |
 | channel_type_key | [string](#string) |  | 充值字符串 |
 | status | [int64](#int64) |  | 状态 |
+| ratio | [int64](#int64) |  | 费率 |
 | pay_platform | [string](#string) |  | 支付平台 |
 
 
@@ -15404,7 +15494,7 @@ UpdatedChannelTypeRequest 更新渠道
 | ---- | ------ | ----------- |
 | Channel | 0 |  |
 | ChannelType | 1 |  |
-| ChannelTypeOption | 2 |  |
+| ChannelTypeMerchant | 2 |  |
 
 
  
@@ -15429,14 +15519,17 @@ UpdatedChannelTypeRequest 更新渠道
 | DeletedChannel | [CommonDeletedRequest](#svc-infra-pay-CommonDeletedRequest) | [CommonResponse](#svc-infra-pay-CommonResponse) | DeletedChannel delete useless channel rows |
 | UpdatedChannel | [UpdatedChannelRequest](#svc-infra-pay-UpdatedChannelRequest) | [CommonResponse](#svc-infra-pay-CommonResponse) | UpdatedChannel update channel basic information |
 | GetChannelsList | [ChannelsListRequest](#svc-infra-pay-ChannelsListRequest) | [ChannelsListResponse](#svc-infra-pay-ChannelsListResponse) | GetChannelsList fetch channel list api for dashboard |
+| GetChannel | [GetRecordRequest](#svc-infra-pay-GetRecordRequest) | [GetChannelResponse](#svc-infra-pay-GetChannelResponse) |  |
 | CreatedChannelType | [CreatedChannelTypeRequest](#svc-infra-pay-CreatedChannelTypeRequest) | [CommonResponse](#svc-infra-pay-CommonResponse) | CreatedChannelType created channel types api for dashboard |
 | UpdatedChannelType | [UpdatedChannelTypeRequest](#svc-infra-pay-UpdatedChannelTypeRequest) | [CommonResponse](#svc-infra-pay-CommonResponse) | UpdatedChannelType updated channel types api for dashboard |
 | DeletedChannelType | [CommonDeletedRequest](#svc-infra-pay-CommonDeletedRequest) | [CommonResponse](#svc-infra-pay-CommonResponse) | DeletedChannelType deleted channel types api for dashboard |
 | GetChannelTypeList | [ChannelTypeListRequest](#svc-infra-pay-ChannelTypeListRequest) | [ChannelTypeListResponse](#svc-infra-pay-ChannelTypeListResponse) | GetChannelTypeList fetch channel types api for dashboard |
+| GetChannelType | [GetRecordRequest](#svc-infra-pay-GetRecordRequest) | [GetChannelTypeResponse](#svc-infra-pay-GetChannelTypeResponse) |  |
 | CreatedChannelTypeMerchant | [CreatedChannelTypeMerchantRequest](#svc-infra-pay-CreatedChannelTypeMerchantRequest) | [CommonResponse](#svc-infra-pay-CommonResponse) | CreatedChannelTypeMerchant merchant channel type created api for dashboard |
 | UpdatedChannelTypeMerchant | [UpdatedChannelTypeMerchantRequest](#svc-infra-pay-UpdatedChannelTypeMerchantRequest) | [CommonResponse](#svc-infra-pay-CommonResponse) | UpdatedChannelTypeMerchant merchant channel type updated api for dashboard |
 | DeletedChannelTypeMerchant | [CommonDeletedRequest](#svc-infra-pay-CommonDeletedRequest) | [CommonResponse](#svc-infra-pay-CommonResponse) | DeletedChannelTypeMerchant merchant channel type deleted api for dashboard |
 | GetChannelTypeMerchantList | [ChannelTypeMerchantListRequest](#svc-infra-pay-ChannelTypeMerchantListRequest) | [ChannelTypeMerchantListResponse](#svc-infra-pay-ChannelTypeMerchantListResponse) | GetChannelTypeMerchantList merchant channel type list api for dashboard |
+| GetChannelTypeMerchant | [GetRecordRequest](#svc-infra-pay-GetRecordRequest) | [GetChannelTypeMerchantResponse](#svc-infra-pay-GetChannelTypeMerchantResponse) |  |
 | UpdateRecordStatus | [UpdateRecordStatusRequest](#svc-infra-pay-UpdateRecordStatusRequest) | [UpdateRecordStatusResponse](#svc-infra-pay-UpdateRecordStatusResponse) | 更新记录状态 |
 | GetChargeChannelTypeList | [ChargeChannelTypeRequest](#svc-infra-pay-ChargeChannelTypeRequest) | [ChargeChannelTypeResponse](#svc-infra-pay-ChargeChannelTypeResponse) | GetChargeChannelTypeList fetch charge channel list api for viewer layer
 
