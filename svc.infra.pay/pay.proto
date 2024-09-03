@@ -329,6 +329,46 @@ message UpdateRecordStatusResponse {
   bool result = 1;
 }
 
+message GetRecordRequest {
+  string id = 1;
+}
+
+message GetChannelResponse {
+  string merchant_id = 1; // 商户号
+  string name = 2; // 名称
+  int64 display_id = 3; // 显示ID
+  string merchant_no = 4; // 商户号
+  string secret = 5; // 密钥
+  string gateway_url = 6; // 网关地址
+  string notify_url = 7; // 通知地址
+  int64 status = 8; // 状态 0/关 1/开启
+  string creator = 9; // 创建者
+}
+
+message GetChannelTypeResponse {
+  string channel_id = 2; // 渠道ID
+  string name = 3; // 名称
+  string channel_type_id = 4; // 充值字符串
+  int64 status = 5; // 状态
+  int64 ratio = 6; // 费率
+  string creator = 7; // 创建者
+  string pay_platform = 8; // 支付平台
+}
+
+message GetChannelTypeMerchantResponse {
+  string merchant_id = 1;
+  string channel_id = 2;
+  string channel_type_id = 3;
+  string pay_type_name = 4;
+  string type_no = 5;
+  int64 amount_type = 6;
+  int64 amount_min = 7;
+  int64 amount_max = 8;
+  int64 channel_ratio = 9;
+  int64 platform = 10;
+  int64 weight = 11;
+  int64 status = 12;
+}
 
 
 ///////////////////////////////////////////////////////////// 渠道相关 》》》》 //////////////////////////////////////////////////////////////////////
@@ -364,6 +404,8 @@ service PayService {
   //  GetChannelsList fetch channel list api for dashboard
   rpc GetChannelsList(ChannelsListRequest) returns (ChannelsListResponse);
 
+  rpc GetChannel(GetRecordRequest) returns (GetChannelResponse);
+
   // CreatedChannelType created channel types api for dashboard
   rpc CreatedChannelType (CreatedChannelTypeRequest) returns (CommonResponse);
 
@@ -376,6 +418,8 @@ service PayService {
   // GetChannelTypeList fetch channel types api for dashboard
   rpc GetChannelTypeList(ChannelTypeListRequest) returns (ChannelTypeListResponse);
 
+  rpc GetChannelType(GetRecordRequest) returns (GetChannelTypeResponse);
+
   // CreatedChannelTypeMerchant merchant channel type created api for dashboard
   rpc CreatedChannelTypeMerchant(CreatedChannelTypeMerchantRequest) returns (CommonResponse);
 
@@ -387,6 +431,8 @@ service PayService {
 
   // GetChannelTypeMerchantList merchant channel type list api for dashboard
   rpc GetChannelTypeMerchantList(ChannelTypeMerchantListRequest) returns (ChannelTypeMerchantListResponse);
+
+  rpc GetChannelTypeMerchant(GetRecordRequest) returns (GetChannelTypeMerchantResponse);
 
   // 更新记录状态
   rpc UpdateRecordStatus(UpdateRecordStatusRequest) returns (UpdateRecordStatusResponse);

@@ -58,6 +58,7 @@ type PayService interface {
 	UpdatedChannel(ctx context.Context, in *UpdatedChannelRequest, opts ...client.CallOption) (*CommonResponse, error)
 	// GetChannelsList fetch channel list api for dashboard
 	GetChannelsList(ctx context.Context, in *ChannelsListRequest, opts ...client.CallOption) (*ChannelsListResponse, error)
+	GetChannel(ctx context.Context, in *GetRecordRequest, opts ...client.CallOption) (*GetChannelResponse, error)
 	// CreatedChannelType created channel types api for dashboard
 	CreatedChannelType(ctx context.Context, in *CreatedChannelTypeRequest, opts ...client.CallOption) (*CommonResponse, error)
 	// UpdatedChannelType updated channel types api for dashboard
@@ -66,6 +67,7 @@ type PayService interface {
 	DeletedChannelType(ctx context.Context, in *CommonDeletedRequest, opts ...client.CallOption) (*CommonResponse, error)
 	// GetChannelTypeList fetch channel types api for dashboard
 	GetChannelTypeList(ctx context.Context, in *ChannelTypeListRequest, opts ...client.CallOption) (*ChannelTypeListResponse, error)
+	GetChannelType(ctx context.Context, in *GetRecordRequest, opts ...client.CallOption) (*GetChannelTypeResponse, error)
 	// CreatedChannelTypeMerchant merchant channel type created api for dashboard
 	CreatedChannelTypeMerchant(ctx context.Context, in *CreatedChannelTypeMerchantRequest, opts ...client.CallOption) (*CommonResponse, error)
 	// UpdatedChannelTypeMerchant merchant channel type updated api for dashboard
@@ -74,6 +76,7 @@ type PayService interface {
 	DeletedChannelTypeMerchant(ctx context.Context, in *CommonDeletedRequest, opts ...client.CallOption) (*CommonResponse, error)
 	// GetChannelTypeMerchantList merchant channel type list api for dashboard
 	GetChannelTypeMerchantList(ctx context.Context, in *ChannelTypeMerchantListRequest, opts ...client.CallOption) (*ChannelTypeMerchantListResponse, error)
+	GetChannelTypeMerchant(ctx context.Context, in *GetRecordRequest, opts ...client.CallOption) (*GetChannelTypeMerchantResponse, error)
 	// 更新记录状态
 	UpdateRecordStatus(ctx context.Context, in *UpdateRecordStatusRequest, opts ...client.CallOption) (*UpdateRecordStatusResponse, error)
 	// GetChargeChannelTypeList fetch charge channel list api for viewer layer
@@ -192,6 +195,16 @@ func (c *payService) GetChannelsList(ctx context.Context, in *ChannelsListReques
 	return out, nil
 }
 
+func (c *payService) GetChannel(ctx context.Context, in *GetRecordRequest, opts ...client.CallOption) (*GetChannelResponse, error) {
+	req := c.c.NewRequest(c.name, "PayService.GetChannel", in)
+	out := new(GetChannelResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *payService) CreatedChannelType(ctx context.Context, in *CreatedChannelTypeRequest, opts ...client.CallOption) (*CommonResponse, error) {
 	req := c.c.NewRequest(c.name, "PayService.CreatedChannelType", in)
 	out := new(CommonResponse)
@@ -232,6 +245,16 @@ func (c *payService) GetChannelTypeList(ctx context.Context, in *ChannelTypeList
 	return out, nil
 }
 
+func (c *payService) GetChannelType(ctx context.Context, in *GetRecordRequest, opts ...client.CallOption) (*GetChannelTypeResponse, error) {
+	req := c.c.NewRequest(c.name, "PayService.GetChannelType", in)
+	out := new(GetChannelTypeResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *payService) CreatedChannelTypeMerchant(ctx context.Context, in *CreatedChannelTypeMerchantRequest, opts ...client.CallOption) (*CommonResponse, error) {
 	req := c.c.NewRequest(c.name, "PayService.CreatedChannelTypeMerchant", in)
 	out := new(CommonResponse)
@@ -265,6 +288,16 @@ func (c *payService) DeletedChannelTypeMerchant(ctx context.Context, in *CommonD
 func (c *payService) GetChannelTypeMerchantList(ctx context.Context, in *ChannelTypeMerchantListRequest, opts ...client.CallOption) (*ChannelTypeMerchantListResponse, error) {
 	req := c.c.NewRequest(c.name, "PayService.GetChannelTypeMerchantList", in)
 	out := new(ChannelTypeMerchantListResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *payService) GetChannelTypeMerchant(ctx context.Context, in *GetRecordRequest, opts ...client.CallOption) (*GetChannelTypeMerchantResponse, error) {
+	req := c.c.NewRequest(c.name, "PayService.GetChannelTypeMerchant", in)
+	out := new(GetChannelTypeMerchantResponse)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -315,6 +348,7 @@ type PayServiceHandler interface {
 	UpdatedChannel(context.Context, *UpdatedChannelRequest, *CommonResponse) error
 	// GetChannelsList fetch channel list api for dashboard
 	GetChannelsList(context.Context, *ChannelsListRequest, *ChannelsListResponse) error
+	GetChannel(context.Context, *GetRecordRequest, *GetChannelResponse) error
 	// CreatedChannelType created channel types api for dashboard
 	CreatedChannelType(context.Context, *CreatedChannelTypeRequest, *CommonResponse) error
 	// UpdatedChannelType updated channel types api for dashboard
@@ -323,6 +357,7 @@ type PayServiceHandler interface {
 	DeletedChannelType(context.Context, *CommonDeletedRequest, *CommonResponse) error
 	// GetChannelTypeList fetch channel types api for dashboard
 	GetChannelTypeList(context.Context, *ChannelTypeListRequest, *ChannelTypeListResponse) error
+	GetChannelType(context.Context, *GetRecordRequest, *GetChannelTypeResponse) error
 	// CreatedChannelTypeMerchant merchant channel type created api for dashboard
 	CreatedChannelTypeMerchant(context.Context, *CreatedChannelTypeMerchantRequest, *CommonResponse) error
 	// UpdatedChannelTypeMerchant merchant channel type updated api for dashboard
@@ -331,6 +366,7 @@ type PayServiceHandler interface {
 	DeletedChannelTypeMerchant(context.Context, *CommonDeletedRequest, *CommonResponse) error
 	// GetChannelTypeMerchantList merchant channel type list api for dashboard
 	GetChannelTypeMerchantList(context.Context, *ChannelTypeMerchantListRequest, *ChannelTypeMerchantListResponse) error
+	GetChannelTypeMerchant(context.Context, *GetRecordRequest, *GetChannelTypeMerchantResponse) error
 	// 更新记录状态
 	UpdateRecordStatus(context.Context, *UpdateRecordStatusRequest, *UpdateRecordStatusResponse) error
 	// GetChargeChannelTypeList fetch charge channel list api for viewer layer
@@ -349,14 +385,17 @@ func RegisterPayServiceHandler(s server.Server, hdlr PayServiceHandler, opts ...
 		DeletedChannel(ctx context.Context, in *CommonDeletedRequest, out *CommonResponse) error
 		UpdatedChannel(ctx context.Context, in *UpdatedChannelRequest, out *CommonResponse) error
 		GetChannelsList(ctx context.Context, in *ChannelsListRequest, out *ChannelsListResponse) error
+		GetChannel(ctx context.Context, in *GetRecordRequest, out *GetChannelResponse) error
 		CreatedChannelType(ctx context.Context, in *CreatedChannelTypeRequest, out *CommonResponse) error
 		UpdatedChannelType(ctx context.Context, in *UpdatedChannelTypeRequest, out *CommonResponse) error
 		DeletedChannelType(ctx context.Context, in *CommonDeletedRequest, out *CommonResponse) error
 		GetChannelTypeList(ctx context.Context, in *ChannelTypeListRequest, out *ChannelTypeListResponse) error
+		GetChannelType(ctx context.Context, in *GetRecordRequest, out *GetChannelTypeResponse) error
 		CreatedChannelTypeMerchant(ctx context.Context, in *CreatedChannelTypeMerchantRequest, out *CommonResponse) error
 		UpdatedChannelTypeMerchant(ctx context.Context, in *UpdatedChannelTypeMerchantRequest, out *CommonResponse) error
 		DeletedChannelTypeMerchant(ctx context.Context, in *CommonDeletedRequest, out *CommonResponse) error
 		GetChannelTypeMerchantList(ctx context.Context, in *ChannelTypeMerchantListRequest, out *ChannelTypeMerchantListResponse) error
+		GetChannelTypeMerchant(ctx context.Context, in *GetRecordRequest, out *GetChannelTypeMerchantResponse) error
 		UpdateRecordStatus(ctx context.Context, in *UpdateRecordStatusRequest, out *UpdateRecordStatusResponse) error
 		GetChargeChannelTypeList(ctx context.Context, in *ChargeChannelTypeRequest, out *ChargeChannelTypeResponse) error
 	}
@@ -411,6 +450,10 @@ func (h *payServiceHandler) GetChannelsList(ctx context.Context, in *ChannelsLis
 	return h.PayServiceHandler.GetChannelsList(ctx, in, out)
 }
 
+func (h *payServiceHandler) GetChannel(ctx context.Context, in *GetRecordRequest, out *GetChannelResponse) error {
+	return h.PayServiceHandler.GetChannel(ctx, in, out)
+}
+
 func (h *payServiceHandler) CreatedChannelType(ctx context.Context, in *CreatedChannelTypeRequest, out *CommonResponse) error {
 	return h.PayServiceHandler.CreatedChannelType(ctx, in, out)
 }
@@ -427,6 +470,10 @@ func (h *payServiceHandler) GetChannelTypeList(ctx context.Context, in *ChannelT
 	return h.PayServiceHandler.GetChannelTypeList(ctx, in, out)
 }
 
+func (h *payServiceHandler) GetChannelType(ctx context.Context, in *GetRecordRequest, out *GetChannelTypeResponse) error {
+	return h.PayServiceHandler.GetChannelType(ctx, in, out)
+}
+
 func (h *payServiceHandler) CreatedChannelTypeMerchant(ctx context.Context, in *CreatedChannelTypeMerchantRequest, out *CommonResponse) error {
 	return h.PayServiceHandler.CreatedChannelTypeMerchant(ctx, in, out)
 }
@@ -441,6 +488,10 @@ func (h *payServiceHandler) DeletedChannelTypeMerchant(ctx context.Context, in *
 
 func (h *payServiceHandler) GetChannelTypeMerchantList(ctx context.Context, in *ChannelTypeMerchantListRequest, out *ChannelTypeMerchantListResponse) error {
 	return h.PayServiceHandler.GetChannelTypeMerchantList(ctx, in, out)
+}
+
+func (h *payServiceHandler) GetChannelTypeMerchant(ctx context.Context, in *GetRecordRequest, out *GetChannelTypeMerchantResponse) error {
+	return h.PayServiceHandler.GetChannelTypeMerchant(ctx, in, out)
 }
 
 func (h *payServiceHandler) UpdateRecordStatus(ctx context.Context, in *UpdateRecordStatusRequest, out *UpdateRecordStatusResponse) error {

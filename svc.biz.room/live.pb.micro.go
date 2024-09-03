@@ -37,11 +37,11 @@ func NewLiveEndpoints() []*api.Endpoint {
 // Client API for Live service
 
 type LiveService interface {
-	// GetLive 查询直播间信息
+	// GetLive 查询直播信息
 	GetLive(ctx context.Context, in *GetLiveReq, opts ...client.CallOption) (*GetLiveResp, error)
-	// MGetLive 批量获取直播间信息
+	// MGetLive 批量获取直播信息
 	MGetLive(ctx context.Context, in *MGetLiveReq, opts ...client.CallOption) (*MGetLiveResp, error)
-	// ListLive 获取在播直播间列表
+	// ListLive 获取直播列表
 	ListLive(ctx context.Context, in *ListLiveReq, opts ...client.CallOption) (*ListLiveResp, error)
 	// StatLive 获取直播统计信息
 	StatLive(ctx context.Context, in *StatLiveReq, opts ...client.CallOption) (*StatLiveResp, error)
@@ -102,11 +102,11 @@ func (c *liveService) StatLive(ctx context.Context, in *StatLiveReq, opts ...cli
 // Server API for Live service
 
 type LiveHandler interface {
-	// GetLive 查询直播间信息
+	// GetLive 查询直播信息
 	GetLive(context.Context, *GetLiveReq, *GetLiveResp) error
-	// MGetLive 批量获取直播间信息
+	// MGetLive 批量获取直播信息
 	MGetLive(context.Context, *MGetLiveReq, *MGetLiveResp) error
-	// ListLive 获取在播直播间列表
+	// ListLive 获取直播列表
 	ListLive(context.Context, *ListLiveReq, *ListLiveResp) error
 	// StatLive 获取直播统计信息
 	StatLive(context.Context, *StatLiveReq, *StatLiveResp) error

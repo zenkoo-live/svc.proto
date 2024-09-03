@@ -196,6 +196,10 @@
     - [CreatedChannelRequest](#svc-infra-pay-CreatedChannelRequest)
     - [CreatedChannelTypeMerchantRequest](#svc-infra-pay-CreatedChannelTypeMerchantRequest)
     - [CreatedChannelTypeRequest](#svc-infra-pay-CreatedChannelTypeRequest)
+    - [GetChannelResponse](#svc-infra-pay-GetChannelResponse)
+    - [GetChannelTypeMerchantResponse](#svc-infra-pay-GetChannelTypeMerchantResponse)
+    - [GetChannelTypeResponse](#svc-infra-pay-GetChannelTypeResponse)
+    - [GetRecordRequest](#svc-infra-pay-GetRecordRequest)
     - [OrderInfo](#svc-infra-pay-OrderInfo)
     - [OrderNotifyRequest](#svc-infra-pay-OrderNotifyRequest)
     - [OrderNotifyRequest.BodyEntry](#svc-infra-pay-OrderNotifyRequest-BodyEntry)
@@ -293,6 +297,8 @@
     - [GetRoomListResp](#svc-biz-room-GetRoomListResp)
     - [GetRoomReq](#svc-biz-room-GetRoomReq)
     - [GetRoomResp](#svc-biz-room-GetRoomResp)
+    - [KickoutUserInRoomReq](#svc-biz-room-KickoutUserInRoomReq)
+    - [KickoutUserInRoomResp](#svc-biz-room-KickoutUserInRoomResp)
     - [MGetRoomsByStreamerIDsReq](#svc-biz-room-MGetRoomsByStreamerIDsReq)
     - [MGetRoomsByStreamerIDsResp](#svc-biz-room-MGetRoomsByStreamerIDsResp)
     - [MGetRoomsByStreamerIDsResp.ItemsEntry](#svc-biz-room-MGetRoomsByStreamerIDsResp-ItemsEntry)
@@ -4035,6 +4041,91 @@ CreatedChannelTypeRequest 渠道支付类型
 
 
 
+<a name="svc-infra-pay-GetChannelResponse"></a>
+
+### GetChannelResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| merchant_id | [string](#string) |  | 商户号 |
+| name | [string](#string) |  | 名称 |
+| display_id | [int64](#int64) |  | 显示ID |
+| merchant_no | [string](#string) |  | 商户号 |
+| secret | [string](#string) |  | 密钥 |
+| gateway_url | [string](#string) |  | 网关地址 |
+| notify_url | [string](#string) |  | 通知地址 |
+| status | [int64](#int64) |  | 状态 0/关 1/开启 |
+| creator | [string](#string) |  | 创建者 |
+
+
+
+
+
+
+<a name="svc-infra-pay-GetChannelTypeMerchantResponse"></a>
+
+### GetChannelTypeMerchantResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| merchant_id | [string](#string) |  |  |
+| channel_id | [string](#string) |  |  |
+| channel_type_id | [string](#string) |  |  |
+| pay_type_name | [string](#string) |  |  |
+| type_no | [string](#string) |  |  |
+| amount_type | [int64](#int64) |  |  |
+| amount_min | [int64](#int64) |  |  |
+| amount_max | [int64](#int64) |  |  |
+| channel_ratio | [int64](#int64) |  |  |
+| platform | [int64](#int64) |  |  |
+| weight | [int64](#int64) |  |  |
+| status | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-pay-GetChannelTypeResponse"></a>
+
+### GetChannelTypeResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| channel_id | [string](#string) |  | 渠道ID |
+| name | [string](#string) |  | 名称 |
+| channel_type_id | [string](#string) |  | 充值字符串 |
+| status | [int64](#int64) |  | 状态 |
+| ratio | [int64](#int64) |  | 费率 |
+| creator | [string](#string) |  | 创建者 |
+| pay_platform | [string](#string) |  | 支付平台 |
+
+
+
+
+
+
+<a name="svc-infra-pay-GetRecordRequest"></a>
+
+### GetRecordRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+
+
+
+
+
+
 <a name="svc-infra-pay-OrderInfo"></a>
 
 ### OrderInfo
@@ -4392,14 +4483,17 @@ UpdatedChannelTypeRequest 更新渠道
 | DeletedChannel | [CommonDeletedRequest](#svc-infra-pay-CommonDeletedRequest) | [CommonResponse](#svc-infra-pay-CommonResponse) | DeletedChannel delete useless channel rows |
 | UpdatedChannel | [UpdatedChannelRequest](#svc-infra-pay-UpdatedChannelRequest) | [CommonResponse](#svc-infra-pay-CommonResponse) | UpdatedChannel update channel basic information |
 | GetChannelsList | [ChannelsListRequest](#svc-infra-pay-ChannelsListRequest) | [ChannelsListResponse](#svc-infra-pay-ChannelsListResponse) | GetChannelsList fetch channel list api for dashboard |
+| GetChannel | [GetRecordRequest](#svc-infra-pay-GetRecordRequest) | [GetChannelResponse](#svc-infra-pay-GetChannelResponse) |  |
 | CreatedChannelType | [CreatedChannelTypeRequest](#svc-infra-pay-CreatedChannelTypeRequest) | [CommonResponse](#svc-infra-pay-CommonResponse) | CreatedChannelType created channel types api for dashboard |
 | UpdatedChannelType | [UpdatedChannelTypeRequest](#svc-infra-pay-UpdatedChannelTypeRequest) | [CommonResponse](#svc-infra-pay-CommonResponse) | UpdatedChannelType updated channel types api for dashboard |
 | DeletedChannelType | [CommonDeletedRequest](#svc-infra-pay-CommonDeletedRequest) | [CommonResponse](#svc-infra-pay-CommonResponse) | DeletedChannelType deleted channel types api for dashboard |
 | GetChannelTypeList | [ChannelTypeListRequest](#svc-infra-pay-ChannelTypeListRequest) | [ChannelTypeListResponse](#svc-infra-pay-ChannelTypeListResponse) | GetChannelTypeList fetch channel types api for dashboard |
+| GetChannelType | [GetRecordRequest](#svc-infra-pay-GetRecordRequest) | [GetChannelTypeResponse](#svc-infra-pay-GetChannelTypeResponse) |  |
 | CreatedChannelTypeMerchant | [CreatedChannelTypeMerchantRequest](#svc-infra-pay-CreatedChannelTypeMerchantRequest) | [CommonResponse](#svc-infra-pay-CommonResponse) | CreatedChannelTypeMerchant merchant channel type created api for dashboard |
 | UpdatedChannelTypeMerchant | [UpdatedChannelTypeMerchantRequest](#svc-infra-pay-UpdatedChannelTypeMerchantRequest) | [CommonResponse](#svc-infra-pay-CommonResponse) | UpdatedChannelTypeMerchant merchant channel type updated api for dashboard |
 | DeletedChannelTypeMerchant | [CommonDeletedRequest](#svc-infra-pay-CommonDeletedRequest) | [CommonResponse](#svc-infra-pay-CommonResponse) | DeletedChannelTypeMerchant merchant channel type deleted api for dashboard |
 | GetChannelTypeMerchantList | [ChannelTypeMerchantListRequest](#svc-infra-pay-ChannelTypeMerchantListRequest) | [ChannelTypeMerchantListResponse](#svc-infra-pay-ChannelTypeMerchantListResponse) | GetChannelTypeMerchantList merchant channel type list api for dashboard |
+| GetChannelTypeMerchant | [GetRecordRequest](#svc-infra-pay-GetRecordRequest) | [GetChannelTypeMerchantResponse](#svc-infra-pay-GetChannelTypeMerchantResponse) |  |
 | UpdateRecordStatus | [UpdateRecordStatusRequest](#svc-infra-pay-UpdateRecordStatusRequest) | [UpdateRecordStatusResponse](#svc-infra-pay-UpdateRecordStatusResponse) | 更新记录状态 |
 | GetChargeChannelTypeList | [ChargeChannelTypeRequest](#svc-infra-pay-ChargeChannelTypeRequest) | [ChargeChannelTypeResponse](#svc-infra-pay-ChargeChannelTypeResponse) | GetChargeChannelTypeList fetch charge channel list api for viewer layer
 
@@ -5069,6 +5163,8 @@ CategoryInfo 分类详情
 | page | [int32](#int32) |  | 页数 |
 | limit | [int32](#int32) |  | 条数 |
 | streamer_id | [string](#string) |  | 主播id |
+| start_at | [TimeBeginEnd](#svc-biz-room-TimeBeginEnd) |  |  |
+| end_at | [TimeBeginEnd](#svc-biz-room-TimeBeginEnd) |  |  |
 
 
 
@@ -5228,9 +5324,9 @@ CategoryInfo 分类详情
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| GetLive | [GetLiveReq](#svc-biz-room-GetLiveReq) | [GetLiveResp](#svc-biz-room-GetLiveResp) | GetLive 查询直播间信息 |
-| MGetLive | [MGetLiveReq](#svc-biz-room-MGetLiveReq) | [MGetLiveResp](#svc-biz-room-MGetLiveResp) | MGetLive 批量获取直播间信息 |
-| ListLive | [ListLiveReq](#svc-biz-room-ListLiveReq) | [ListLiveResp](#svc-biz-room-ListLiveResp) | ListLive 获取在播直播间列表 |
+| GetLive | [GetLiveReq](#svc-biz-room-GetLiveReq) | [GetLiveResp](#svc-biz-room-GetLiveResp) | GetLive 查询直播信息 |
+| MGetLive | [MGetLiveReq](#svc-biz-room-MGetLiveReq) | [MGetLiveResp](#svc-biz-room-MGetLiveResp) | MGetLive 批量获取直播信息 |
+| ListLive | [ListLiveReq](#svc-biz-room-ListLiveReq) | [ListLiveResp](#svc-biz-room-ListLiveResp) | ListLive 获取直播列表 |
 | StatLive | [StatLiveReq](#svc-biz-room-StatLiveReq) | [StatLiveResp](#svc-biz-room-StatLiveResp) | StatLive 获取直播统计信息 |
 
  
@@ -5430,6 +5526,32 @@ CategoryInfo 分类详情
 | room | [RoomInfo](#svc-biz-room-RoomInfo) |  | 房间信息 |
 | stream | [Stream](#svc-biz-room-Stream) |  | 流信息 |
 | trtc_conf | [TrtcConf](#svc-biz-room-TrtcConf) |  | trtc信息 |
+
+
+
+
+
+
+<a name="svc-biz-room-KickoutUserInRoomReq"></a>
+
+### KickoutUserInRoomReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer_id | [string](#string) |  | 主播id |
+| user_id | [string](#string) |  | 用户id |
+
+
+
+
+
+
+<a name="svc-biz-room-KickoutUserInRoomResp"></a>
+
+### KickoutUserInRoomResp
+
 
 
 
@@ -5867,6 +5989,7 @@ Room 房间
 | MGetRoomsByStreamerIDsWithOnlineSort | [MGetRoomsByStreamerIDsWithOnlineSortReq](#svc-biz-room-MGetRoomsByStreamerIDsWithOnlineSortReq) | [MGetRoomsByStreamerIDsWithOnlineSortResp](#svc-biz-room-MGetRoomsByStreamerIDsWithOnlineSortResp) | MGetRoomsByStreamerIDsWithOnlineSort 批量查询房间（带在线分页，按照传入顺序获取，在线排在最前） |
 | GetRoomList | [GetRoomListReq](#svc-biz-room-GetRoomListReq) | [GetRoomListResp](#svc-biz-room-GetRoomListResp) | GetRoomList 查询房间列表（后台使用此接口） |
 | GetOnlineRoomList | [GetOnlineRoomListReq](#svc-biz-room-GetOnlineRoomListReq) | [GetOnlineRoomListResp](#svc-biz-room-GetOnlineRoomListResp) | GetOnlineRoomList 查询在线房间列表（用户端列表使用此接口） |
+| KickoutUserInRoom | [KickoutUserInRoomReq](#svc-biz-room-KickoutUserInRoomReq) | [KickoutUserInRoomResp](#svc-biz-room-KickoutUserInRoomResp) | KickoutUserInRoom 踢出直播间用 |
 | ForbidRoom | [ForbidRoomReq](#svc-biz-room-ForbidRoomReq) | [ForbidRoomResp](#svc-biz-room-ForbidRoomResp) | ForbidRoom 封禁直播间 |
 | ResumeRoom | [ResumeRoomReq](#svc-biz-room-ResumeRoomReq) | [ResumeRoomResp](#svc-biz-room-ResumeRoomResp) | ResumeRoom 解封直播间 |
 | StartLive | [StartLiveReq](#svc-biz-room-StartLiveReq) | [StartLiveResp](#svc-biz-room-StartLiveResp) | StartLive 开始直播 |
@@ -11366,11 +11489,11 @@ RankMemberInfo 排行榜成员信息
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | id | [string](#string) |  |  |
-| subject | [string](#string) |  |  |
-| filter | [int64](#int64) |  |  |
-| title | [string](#string) |  |  |
-| detail | [string](#string) |  |  |
-| status | [int64](#int64) |  |  |
+| subject | [string](#string) |  | 列表项目类型 |
+| filter | [int64](#int64) |  | 过滤条件（位运算） |
+| title | [string](#string) |  | 列表项目标题 |
+| detail | [string](#string) |  | 内容（json） |
+| status | [int64](#int64) |  | 状态 |
 | start_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 生效时间 |
 | end_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 失效时间 |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |

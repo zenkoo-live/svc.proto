@@ -75,11 +75,11 @@ type Item struct {
 	unknownFields protoimpl.UnknownFields
 
 	Id        string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Subject   string                 `protobuf:"bytes,2,opt,name=subject,proto3" json:"subject,omitempty"`
-	Filter    int64                  `protobuf:"varint,3,opt,name=filter,proto3" json:"filter,omitempty"`
-	Title     string                 `protobuf:"bytes,4,opt,name=title,proto3" json:"title,omitempty"`
-	Detail    string                 `protobuf:"bytes,11,opt,name=detail,proto3" json:"detail,omitempty"`
-	Status    int64                  `protobuf:"varint,12,opt,name=status,proto3" json:"status,omitempty"`
+	Subject   string                 `protobuf:"bytes,2,opt,name=subject,proto3" json:"subject,omitempty"`                        // 列表项目类型
+	Filter    int64                  `protobuf:"varint,3,opt,name=filter,proto3" json:"filter,omitempty"`                         // 过滤条件（位运算）
+	Title     string                 `protobuf:"bytes,4,opt,name=title,proto3" json:"title,omitempty"`                            // 列表项目标题
+	Detail    string                 `protobuf:"bytes,11,opt,name=detail,proto3" json:"detail,omitempty"`                         // 内容（json）
+	Status    int64                  `protobuf:"varint,12,opt,name=status,proto3" json:"status,omitempty"`                        // 状态
 	StartAt   *timestamppb.Timestamp `protobuf:"bytes,127,opt,name=start_at,json=startAt,proto3" json:"start_at,omitempty"`       // 生效时间
 	EndAt     *timestamppb.Timestamp `protobuf:"bytes,128,opt,name=end_at,json=endAt,proto3" json:"end_at,omitempty"`             // 失效时间
 	CreatedAt *timestamppb.Timestamp `protobuf:"bytes,255,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"` // 创建时间
