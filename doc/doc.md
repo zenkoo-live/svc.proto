@@ -11489,11 +11489,11 @@ RankMemberInfo 排行榜成员信息
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | id | [string](#string) |  |  |
-| subject | [string](#string) |  |  |
-| filter | [int64](#int64) |  |  |
-| title | [string](#string) |  |  |
-| detail | [string](#string) |  |  |
-| status | [int64](#int64) |  |  |
+| subject | [string](#string) |  | 列表项目类型 |
+| filter | [int64](#int64) |  | 过滤条件（位运算） |
+| title | [string](#string) |  | 列表项目标题 |
+| detail | [string](#string) |  | 内容（json） |
+| status | [int64](#int64) |  | 状态 |
 | start_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 生效时间 |
 | end_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 失效时间 |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
