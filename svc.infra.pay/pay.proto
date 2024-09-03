@@ -23,7 +23,7 @@ enum DeliveryStatus {
 enum RecordType {
   Channel = 0;
   ChannelType = 1;
-  ChannelTypeOption = 2;
+  ChannelTypeMerchant = 2;
 }
 
 enum RecordStatus {
