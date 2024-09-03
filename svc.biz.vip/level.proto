@@ -56,9 +56,11 @@ message GetAllLevelListReq {
 message GetLevelListReq {
 	int32 page = 1; // 页数
     int32 limit = 2; // 条数
+	bool with_total = 3; // 是否返回总数
 }
 message GetLevelListResp {
 	repeated LevelInfo items = 1;
+	int64 total = 2;
 }
 
 message AddLevelReq {
