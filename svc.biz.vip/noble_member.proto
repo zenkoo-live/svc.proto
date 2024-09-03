@@ -17,6 +17,8 @@ service NobleMember {
     rpc UpgradeNoble (UpgradeNobleReq) returns (UpgradeNobleResp) {}
     // GetNobleMember 获取成员贵族信息
     rpc GetNobleMember (GetNobleMemberReq) returns (GetNobleMemberResp) {}
+    // MGetNobleMember 批量获取成员贵族信息
+    rpc MGetNobleMember (MGetNobleMemberReq) returns (MGetNobleMemberResp) {}
 
 
     // GetNobleMemberList 获取贵族成员列表（streamer_id传空字符串取所有）
@@ -79,6 +81,13 @@ message GetNobleMemberReq {
 }
 message GetNobleMemberResp {
     NobleMemberInfo noble_member = 1;
+}
+
+message MGetNobleMemberReq {
+    repeated string member_ids = 1;
+}
+message MGetNobleMemberResp {
+    map<string, NobleMemberInfo> items = 1;
 }
 
 

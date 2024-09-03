@@ -20,6 +20,7 @@ const _ = grpc.SupportPackageIsVersion9
 
 const (
 	Level_GetMemberLevel_FullMethodName  = "/svc.biz.vip.Level/GetMemberLevel"
+	Level_MGetMemberLevel_FullMethodName = "/svc.biz.vip.Level/MGetMemberLevel"
 	Level_GetAllLevelList_FullMethodName = "/svc.biz.vip.Level/GetAllLevelList"
 	Level_GetLevelList_FullMethodName    = "/svc.biz.vip.Level/GetLevelList"
 	Level_AddLevel_FullMethodName        = "/svc.biz.vip.Level/AddLevel"
@@ -35,6 +36,8 @@ const (
 type LevelClient interface {
 	// GetMemberLevel 获取成员等级
 	GetMemberLevel(ctx context.Context, in *GetMemberLevelReq, opts ...grpc.CallOption) (*GetMemberLevelResp, error)
+	// MGetMemberLevel 批量获取成员等级
+	MGetMemberLevel(ctx context.Context, in *MGetMemberLevelReq, opts ...grpc.CallOption) (*MGetMemberLevelResp, error)
 	// GetAllLevelList 获取所有等级配置列表
 	GetAllLevelList(ctx context.Context, in *GetAllLevelListReq, opts ...grpc.CallOption) (*GetLevelListResp, error)
 	// GetLevelList 分页获取等级配置列表
@@ -59,6 +62,16 @@ func (c *levelClient) GetMemberLevel(ctx context.Context, in *GetMemberLevelReq,
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetMemberLevelResp)
 	err := c.cc.Invoke(ctx, Level_GetMemberLevel_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *levelClient) MGetMemberLevel(ctx context.Context, in *MGetMemberLevelReq, opts ...grpc.CallOption) (*MGetMemberLevelResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MGetMemberLevelResp)
+	err := c.cc.Invoke(ctx, Level_MGetMemberLevel_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -123,6 +136,8 @@ func (c *levelClient) DelLevel(ctx context.Context, in *DelLevelReq, opts ...grp
 type LevelServer interface {
 	// GetMemberLevel 获取成员等级
 	GetMemberLevel(context.Context, *GetMemberLevelReq) (*GetMemberLevelResp, error)
+	// MGetMemberLevel 批量获取成员等级
+	MGetMemberLevel(context.Context, *MGetMemberLevelReq) (*MGetMemberLevelResp, error)
 	// GetAllLevelList 获取所有等级配置列表
 	GetAllLevelList(context.Context, *GetAllLevelListReq) (*GetLevelListResp, error)
 	// GetLevelList 分页获取等级配置列表
@@ -145,6 +160,9 @@ type UnimplementedLevelServer struct{}
 
 func (UnimplementedLevelServer) GetMemberLevel(context.Context, *GetMemberLevelReq) (*GetMemberLevelResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMemberLevel not implemented")
+}
+func (UnimplementedLevelServer) MGetMemberLevel(context.Context, *MGetMemberLevelReq) (*MGetMemberLevelResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method MGetMemberLevel not implemented")
 }
 func (UnimplementedLevelServer) GetAllLevelList(context.Context, *GetAllLevelListReq) (*GetLevelListResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAllLevelList not implemented")
@@ -196,6 +214,24 @@ func _Level_GetMemberLevel_Handler(srv interface{}, ctx context.Context, dec fun
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(LevelServer).GetMemberLevel(ctx, req.(*GetMemberLevelReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Level_MGetMemberLevel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MGetMemberLevelReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LevelServer).MGetMemberLevel(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Level_MGetMemberLevel_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LevelServer).MGetMemberLevel(ctx, req.(*MGetMemberLevelReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -300,6 +336,10 @@ var Level_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetMemberLevel",
 			Handler:    _Level_GetMemberLevel_Handler,
+		},
+		{
+			MethodName: "MGetMemberLevel",
+			Handler:    _Level_MGetMemberLevel_Handler,
 		},
 		{
 			MethodName: "GetAllLevelList",
