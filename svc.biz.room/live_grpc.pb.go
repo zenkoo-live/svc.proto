@@ -31,11 +31,11 @@ const (
 //
 // 直播
 type LiveClient interface {
-	// GetLive 查询直播间信息
+	// GetLive 查询直播信息
 	GetLive(ctx context.Context, in *GetLiveReq, opts ...grpc.CallOption) (*GetLiveResp, error)
-	// MGetLive 批量获取直播间信息
+	// MGetLive 批量获取直播信息
 	MGetLive(ctx context.Context, in *MGetLiveReq, opts ...grpc.CallOption) (*MGetLiveResp, error)
-	// ListLive 获取在播直播间列表
+	// ListLive 获取直播列表
 	ListLive(ctx context.Context, in *ListLiveReq, opts ...grpc.CallOption) (*ListLiveResp, error)
 	// StatLive 获取直播统计信息
 	StatLive(ctx context.Context, in *StatLiveReq, opts ...grpc.CallOption) (*StatLiveResp, error)
@@ -95,11 +95,11 @@ func (c *liveClient) StatLive(ctx context.Context, in *StatLiveReq, opts ...grpc
 //
 // 直播
 type LiveServer interface {
-	// GetLive 查询直播间信息
+	// GetLive 查询直播信息
 	GetLive(context.Context, *GetLiveReq) (*GetLiveResp, error)
-	// MGetLive 批量获取直播间信息
+	// MGetLive 批量获取直播信息
 	MGetLive(context.Context, *MGetLiveReq) (*MGetLiveResp, error)
-	// ListLive 获取在播直播间列表
+	// ListLive 获取直播列表
 	ListLive(context.Context, *ListLiveReq) (*ListLiveResp, error)
 	// StatLive 获取直播统计信息
 	StatLive(context.Context, *StatLiveReq) (*StatLiveResp, error)
