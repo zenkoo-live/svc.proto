@@ -14,8 +14,10 @@ service FanbaseMember {
     rpc JoinFanbase (JoinFanbaseReq) returns (google.protobuf.Empty) {}
     // LeaveFanbase 离开粉丝团
     rpc LeaveFanbase (LeaveFanbaseReq) returns (google.protobuf.Empty) {}
-    // GetFanbaseMember 获取粉丝团成员信息
+    // GetFanbaseMember 获取主播的某个粉丝团成员信息
     rpc GetFanbaseMember (GetFanbaseMemberReq) returns (GetFanbaseMemberResp) {}
+    // MGetFanbaseMember 批量获取主播的粉丝团成员信息
+    rpc MGetFanbaseMember (MGetFanbaseMemberReq) returns (MGetFanbaseMemberResp) {}
 
     // GetFanbaseMemberByStreamerID 获取主播粉丝团成员列表
     rpc GetFanbaseMemberByStreamerID (GetFanbaseMemberByStreamerIDReq) returns (GetFanbaseMemberByStreamerIDResp) {}
@@ -50,6 +52,14 @@ message GetFanbaseMemberReq {
 }
 message GetFanbaseMemberResp {
     FanbaseMemberInfo fanbase_member = 1;
+}
+
+message MGetFanbaseMemberReq {
+    string streamer_id = 1;
+    repeated string member_ids = 2;
+}
+message MGetFanbaseMemberResp {
+    map<string, FanbaseMemberInfo> items = 1;
 }
 
 message FanbaseRights {

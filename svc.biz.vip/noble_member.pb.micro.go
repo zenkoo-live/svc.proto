@@ -45,6 +45,8 @@ type NobleMemberService interface {
 	UpgradeNoble(ctx context.Context, in *UpgradeNobleReq, opts ...client.CallOption) (*UpgradeNobleResp, error)
 	// GetNobleMember 获取成员贵族信息
 	GetNobleMember(ctx context.Context, in *GetNobleMemberReq, opts ...client.CallOption) (*GetNobleMemberResp, error)
+	// MGetNobleMember 批量获取成员贵族信息
+	MGetNobleMember(ctx context.Context, in *MGetNobleMemberReq, opts ...client.CallOption) (*MGetNobleMemberResp, error)
 	// GetNobleMemberList 获取贵族成员列表（streamer_id传空字符串取所有）
 	GetNobleMemberList(ctx context.Context, in *GetNobleMemberListReq, opts ...client.CallOption) (*GetNobleMemberListResp, error)
 	// CountNobleMember 获取成员总数
@@ -102,6 +104,16 @@ func (c *nobleMemberService) UpgradeNoble(ctx context.Context, in *UpgradeNobleR
 func (c *nobleMemberService) GetNobleMember(ctx context.Context, in *GetNobleMemberReq, opts ...client.CallOption) (*GetNobleMemberResp, error) {
 	req := c.c.NewRequest(c.name, "NobleMember.GetNobleMember", in)
 	out := new(GetNobleMemberResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *nobleMemberService) MGetNobleMember(ctx context.Context, in *MGetNobleMemberReq, opts ...client.CallOption) (*MGetNobleMemberResp, error) {
+	req := c.c.NewRequest(c.name, "NobleMember.MGetNobleMember", in)
+	out := new(MGetNobleMemberResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -170,6 +182,8 @@ type NobleMemberHandler interface {
 	UpgradeNoble(context.Context, *UpgradeNobleReq, *UpgradeNobleResp) error
 	// GetNobleMember 获取成员贵族信息
 	GetNobleMember(context.Context, *GetNobleMemberReq, *GetNobleMemberResp) error
+	// MGetNobleMember 批量获取成员贵族信息
+	MGetNobleMember(context.Context, *MGetNobleMemberReq, *MGetNobleMemberResp) error
 	// GetNobleMemberList 获取贵族成员列表（streamer_id传空字符串取所有）
 	GetNobleMemberList(context.Context, *GetNobleMemberListReq, *GetNobleMemberListResp) error
 	// CountNobleMember 获取成员总数
@@ -188,6 +202,7 @@ func RegisterNobleMemberHandler(s server.Server, hdlr NobleMemberHandler, opts .
 		RenewNoble(ctx context.Context, in *RenewNobleReq, out *RenewNobleResp) error
 		UpgradeNoble(ctx context.Context, in *UpgradeNobleReq, out *UpgradeNobleResp) error
 		GetNobleMember(ctx context.Context, in *GetNobleMemberReq, out *GetNobleMemberResp) error
+		MGetNobleMember(ctx context.Context, in *MGetNobleMemberReq, out *MGetNobleMemberResp) error
 		GetNobleMemberList(ctx context.Context, in *GetNobleMemberListReq, out *GetNobleMemberListResp) error
 		CountNobleMember(ctx context.Context, in *CountNobleMemberReq, out *CountNobleMemberResp) error
 		GetOnlineNobleMemberListByStreamerID(ctx context.Context, in *GetOnlineNobleMemberListByStreamerIDReq, out *GetNobleMemberListResp) error
@@ -219,6 +234,10 @@ func (h *nobleMemberHandler) UpgradeNoble(ctx context.Context, in *UpgradeNobleR
 
 func (h *nobleMemberHandler) GetNobleMember(ctx context.Context, in *GetNobleMemberReq, out *GetNobleMemberResp) error {
 	return h.NobleMemberHandler.GetNobleMember(ctx, in, out)
+}
+
+func (h *nobleMemberHandler) MGetNobleMember(ctx context.Context, in *MGetNobleMemberReq, out *MGetNobleMemberResp) error {
+	return h.NobleMemberHandler.MGetNobleMember(ctx, in, out)
 }
 
 func (h *nobleMemberHandler) GetNobleMemberList(ctx context.Context, in *GetNobleMemberListReq, out *GetNobleMemberListResp) error {

@@ -10,6 +10,8 @@ option go_package="./svc.biz.vip;vip";
 service Level {
     // GetMemberLevel 获取成员等级
     rpc GetMemberLevel (GetMemberLevelReq) returns (GetMemberLevelResp) {}
+	// MGetMemberLevel 批量获取成员等级
+	rpc MGetMemberLevel (MGetMemberLevelReq) returns (MGetMemberLevelResp) {}
 
 	// GetAllLevelList 获取所有等级配置列表
 	rpc GetAllLevelList (GetAllLevelListReq) returns (GetLevelListResp) {}
@@ -36,6 +38,13 @@ message GetMemberLevelReq {
 }
 message GetMemberLevelResp {
 	MemberLevelInfo level_info = 1;
+}
+
+message MGetMemberLevelReq {
+	repeated string member_ids = 1;
+}
+message MGetMemberLevelResp {
+	map<string, MemberLevelInfo> items = 1;
 }
 
 

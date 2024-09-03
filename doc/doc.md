@@ -807,6 +807,9 @@
     - [GetOrdersResp](#svc-biz-vip-GetOrdersResp)
     - [JoinNobleReq](#svc-biz-vip-JoinNobleReq)
     - [JoinNobleResp](#svc-biz-vip-JoinNobleResp)
+    - [MGetNobleMemberReq](#svc-biz-vip-MGetNobleMemberReq)
+    - [MGetNobleMemberResp](#svc-biz-vip-MGetNobleMemberResp)
+    - [MGetNobleMemberResp.ItemsEntry](#svc-biz-vip-MGetNobleMemberResp-ItemsEntry)
     - [NobleMemberInfo](#svc-biz-vip-NobleMemberInfo)
     - [NobleOrder](#svc-biz-vip-NobleOrder)
     - [RenewNobleReq](#svc-biz-vip-RenewNobleReq)
@@ -827,6 +830,9 @@
     - [GetMemberLevelReq](#svc-biz-vip-GetMemberLevelReq)
     - [GetMemberLevelResp](#svc-biz-vip-GetMemberLevelResp)
     - [LevelInfo](#svc-biz-vip-LevelInfo)
+    - [MGetMemberLevelReq](#svc-biz-vip-MGetMemberLevelReq)
+    - [MGetMemberLevelResp](#svc-biz-vip-MGetMemberLevelResp)
+    - [MGetMemberLevelResp.ItemsEntry](#svc-biz-vip-MGetMemberLevelResp-ItemsEntry)
     - [MemberLevelInfo](#svc-biz-vip-MemberLevelInfo)
     - [UpdateLevelReq](#svc-biz-vip-UpdateLevelReq)
     - [UpdateLevelReqResp](#svc-biz-vip-UpdateLevelReqResp)
@@ -867,6 +873,9 @@
     - [GetOnlineFanbaseMemberByStreamerIDResp](#svc-biz-vip-GetOnlineFanbaseMemberByStreamerIDResp)
     - [JoinFanbaseReq](#svc-biz-vip-JoinFanbaseReq)
     - [LeaveFanbaseReq](#svc-biz-vip-LeaveFanbaseReq)
+    - [MGetFanbaseMemberReq](#svc-biz-vip-MGetFanbaseMemberReq)
+    - [MGetFanbaseMemberResp](#svc-biz-vip-MGetFanbaseMemberResp)
+    - [MGetFanbaseMemberResp.ItemsEntry](#svc-biz-vip-MGetFanbaseMemberResp-ItemsEntry)
   
     - [FanbaseMember](#svc-biz-vip-FanbaseMember)
   
@@ -13939,6 +13948,52 @@ service started /////////////////
 
 
 
+<a name="svc-biz-vip-MGetNobleMemberReq"></a>
+
+### MGetNobleMemberReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| member_ids | [string](#string) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-MGetNobleMemberResp"></a>
+
+### MGetNobleMemberResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [MGetNobleMemberResp.ItemsEntry](#svc-biz-vip-MGetNobleMemberResp-ItemsEntry) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-MGetNobleMemberResp-ItemsEntry"></a>
+
+### MGetNobleMemberResp.ItemsEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [NobleMemberInfo](#svc-biz-vip-NobleMemberInfo) |  |  |
+
+
+
+
+
+
 <a name="svc-biz-vip-NobleMemberInfo"></a>
 
 ### NobleMemberInfo
@@ -14056,6 +14111,7 @@ service started /////////////////
 | RenewNoble | [RenewNobleReq](#svc-biz-vip-RenewNobleReq) | [RenewNobleResp](#svc-biz-vip-RenewNobleResp) | RenewNoble 续费贵族 |
 | UpgradeNoble | [UpgradeNobleReq](#svc-biz-vip-UpgradeNobleReq) | [UpgradeNobleResp](#svc-biz-vip-UpgradeNobleResp) | UpgradeNoble 升级贵族 |
 | GetNobleMember | [GetNobleMemberReq](#svc-biz-vip-GetNobleMemberReq) | [GetNobleMemberResp](#svc-biz-vip-GetNobleMemberResp) | GetNobleMember 获取成员贵族信息 |
+| MGetNobleMember | [MGetNobleMemberReq](#svc-biz-vip-MGetNobleMemberReq) | [MGetNobleMemberResp](#svc-biz-vip-MGetNobleMemberResp) | MGetNobleMember 批量获取成员贵族信息 |
 | GetNobleMemberList | [GetNobleMemberListReq](#svc-biz-vip-GetNobleMemberListReq) | [GetNobleMemberListResp](#svc-biz-vip-GetNobleMemberListResp) | GetNobleMemberList 获取贵族成员列表（streamer_id传空字符串取所有） |
 | CountNobleMember | [CountNobleMemberReq](#svc-biz-vip-CountNobleMemberReq) | [CountNobleMemberResp](#svc-biz-vip-CountNobleMemberResp) | CountNobleMember 获取成员总数 |
 | GetOnlineNobleMemberListByStreamerID | [GetOnlineNobleMemberListByStreamerIDReq](#svc-biz-vip-GetOnlineNobleMemberListByStreamerIDReq) | [GetNobleMemberListResp](#svc-biz-vip-GetNobleMemberListResp) | GetOnlineNobleMemberListByStreamerID 获取主播贵族在线成员列表 |
@@ -14216,6 +14272,52 @@ service started /////////////////
 
 
 
+<a name="svc-biz-vip-MGetMemberLevelReq"></a>
+
+### MGetMemberLevelReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| member_ids | [string](#string) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-MGetMemberLevelResp"></a>
+
+### MGetMemberLevelResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [MGetMemberLevelResp.ItemsEntry](#svc-biz-vip-MGetMemberLevelResp-ItemsEntry) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-MGetMemberLevelResp-ItemsEntry"></a>
+
+### MGetMemberLevelResp.ItemsEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [MemberLevelInfo](#svc-biz-vip-MemberLevelInfo) |  |  |
+
+
+
+
+
+
 <a name="svc-biz-vip-MemberLevelInfo"></a>
 
 ### MemberLevelInfo
@@ -14275,6 +14377,7 @@ service started /////////////////
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
 | GetMemberLevel | [GetMemberLevelReq](#svc-biz-vip-GetMemberLevelReq) | [GetMemberLevelResp](#svc-biz-vip-GetMemberLevelResp) | GetMemberLevel 获取成员等级 |
+| MGetMemberLevel | [MGetMemberLevelReq](#svc-biz-vip-MGetMemberLevelReq) | [MGetMemberLevelResp](#svc-biz-vip-MGetMemberLevelResp) | MGetMemberLevel 批量获取成员等级 |
 | GetAllLevelList | [GetAllLevelListReq](#svc-biz-vip-GetAllLevelListReq) | [GetLevelListResp](#svc-biz-vip-GetLevelListResp) | GetAllLevelList 获取所有等级配置列表 |
 | GetLevelList | [GetLevelListReq](#svc-biz-vip-GetLevelListReq) | [GetLevelListResp](#svc-biz-vip-GetLevelListResp) | GetLevelList 分页获取等级配置列表 |
 | AddLevel | [AddLevelReq](#svc-biz-vip-AddLevelReq) | [AddLevelResp](#svc-biz-vip-AddLevelResp) | AddLevel 添加等级配置 |
@@ -14779,6 +14882,53 @@ service started /////////////////
 
 
 
+
+<a name="svc-biz-vip-MGetFanbaseMemberReq"></a>
+
+### MGetFanbaseMemberReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer_id | [string](#string) |  |  |
+| member_ids | [string](#string) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-MGetFanbaseMemberResp"></a>
+
+### MGetFanbaseMemberResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [MGetFanbaseMemberResp.ItemsEntry](#svc-biz-vip-MGetFanbaseMemberResp-ItemsEntry) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-MGetFanbaseMemberResp-ItemsEntry"></a>
+
+### MGetFanbaseMemberResp.ItemsEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [FanbaseMemberInfo](#svc-biz-vip-FanbaseMemberInfo) |  |  |
+
+
+
+
+
  
 
  
@@ -14795,7 +14945,8 @@ service started /////////////////
 | ----------- | ------------ | ------------- | ------------|
 | JoinFanbase | [JoinFanbaseReq](#svc-biz-vip-JoinFanbaseReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | JoinFanbase 加入粉丝团 |
 | LeaveFanbase | [LeaveFanbaseReq](#svc-biz-vip-LeaveFanbaseReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | LeaveFanbase 离开粉丝团 |
-| GetFanbaseMember | [GetFanbaseMemberReq](#svc-biz-vip-GetFanbaseMemberReq) | [GetFanbaseMemberResp](#svc-biz-vip-GetFanbaseMemberResp) | GetFanbaseMember 获取粉丝团成员信息 |
+| GetFanbaseMember | [GetFanbaseMemberReq](#svc-biz-vip-GetFanbaseMemberReq) | [GetFanbaseMemberResp](#svc-biz-vip-GetFanbaseMemberResp) | GetFanbaseMember 获取主播的某个粉丝团成员信息 |
+| MGetFanbaseMember | [MGetFanbaseMemberReq](#svc-biz-vip-MGetFanbaseMemberReq) | [MGetFanbaseMemberResp](#svc-biz-vip-MGetFanbaseMemberResp) | MGetFanbaseMember 批量获取主播的粉丝团成员信息 |
 | GetFanbaseMemberByStreamerID | [GetFanbaseMemberByStreamerIDReq](#svc-biz-vip-GetFanbaseMemberByStreamerIDReq) | [GetFanbaseMemberByStreamerIDResp](#svc-biz-vip-GetFanbaseMemberByStreamerIDResp) | GetFanbaseMemberByStreamerID 获取主播粉丝团成员列表 |
 | CountFanbaseMemberByStreamerID | [CountFanbaseMemberByStreamerIDReq](#svc-biz-vip-CountFanbaseMemberByStreamerIDReq) | [CountFanbaseMemberByStreamerIDResp](#svc-biz-vip-CountFanbaseMemberByStreamerIDResp) | CountFanbaseMemberByStreamerID 获取主播粉丝团成员总数 |
 | GetOnlineFanbaseMemberByStreamerID | [GetOnlineFanbaseMemberByStreamerIDReq](#svc-biz-vip-GetOnlineFanbaseMemberByStreamerIDReq) | [GetOnlineFanbaseMemberByStreamerIDResp](#svc-biz-vip-GetOnlineFanbaseMemberByStreamerIDResp) | GetOnlineFanbaseMemberByStreamerID 获取主播粉丝团在线成员列表 |
