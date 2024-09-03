@@ -194,6 +194,7 @@ message UpdatedChannelTypeRequest {
   string name = 3; // 名称
   string channel_type_key = 4; // 充值字符串
   int64 status = 5; // 状态
+  int64 ratio = 6; // 费率
   string pay_platform = 8; // 支付平台
 }
 
