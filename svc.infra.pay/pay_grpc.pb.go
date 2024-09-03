@@ -29,14 +29,17 @@ const (
 	PayService_DeletedChannel_FullMethodName             = "/svc.infra.pay.PayService/DeletedChannel"
 	PayService_UpdatedChannel_FullMethodName             = "/svc.infra.pay.PayService/UpdatedChannel"
 	PayService_GetChannelsList_FullMethodName            = "/svc.infra.pay.PayService/GetChannelsList"
+	PayService_GetChannel_FullMethodName                 = "/svc.infra.pay.PayService/GetChannel"
 	PayService_CreatedChannelType_FullMethodName         = "/svc.infra.pay.PayService/CreatedChannelType"
 	PayService_UpdatedChannelType_FullMethodName         = "/svc.infra.pay.PayService/UpdatedChannelType"
 	PayService_DeletedChannelType_FullMethodName         = "/svc.infra.pay.PayService/DeletedChannelType"
 	PayService_GetChannelTypeList_FullMethodName         = "/svc.infra.pay.PayService/GetChannelTypeList"
+	PayService_GetChannelType_FullMethodName             = "/svc.infra.pay.PayService/GetChannelType"
 	PayService_CreatedChannelTypeMerchant_FullMethodName = "/svc.infra.pay.PayService/CreatedChannelTypeMerchant"
 	PayService_UpdatedChannelTypeMerchant_FullMethodName = "/svc.infra.pay.PayService/UpdatedChannelTypeMerchant"
 	PayService_DeletedChannelTypeMerchant_FullMethodName = "/svc.infra.pay.PayService/DeletedChannelTypeMerchant"
 	PayService_GetChannelTypeMerchantList_FullMethodName = "/svc.infra.pay.PayService/GetChannelTypeMerchantList"
+	PayService_GetChannelTypeMerchant_FullMethodName     = "/svc.infra.pay.PayService/GetChannelTypeMerchant"
 	PayService_UpdateRecordStatus_FullMethodName         = "/svc.infra.pay.PayService/UpdateRecordStatus"
 	PayService_GetChargeChannelTypeList_FullMethodName   = "/svc.infra.pay.PayService/GetChargeChannelTypeList"
 )
@@ -67,6 +70,7 @@ type PayServiceClient interface {
 	UpdatedChannel(ctx context.Context, in *UpdatedChannelRequest, opts ...grpc.CallOption) (*CommonResponse, error)
 	// GetChannelsList fetch channel list api for dashboard
 	GetChannelsList(ctx context.Context, in *ChannelsListRequest, opts ...grpc.CallOption) (*ChannelsListResponse, error)
+	GetChannel(ctx context.Context, in *GetRecordRequest, opts ...grpc.CallOption) (*GetChannelResponse, error)
 	// CreatedChannelType created channel types api for dashboard
 	CreatedChannelType(ctx context.Context, in *CreatedChannelTypeRequest, opts ...grpc.CallOption) (*CommonResponse, error)
 	// UpdatedChannelType updated channel types api for dashboard
@@ -75,6 +79,7 @@ type PayServiceClient interface {
 	DeletedChannelType(ctx context.Context, in *CommonDeletedRequest, opts ...grpc.CallOption) (*CommonResponse, error)
 	// GetChannelTypeList fetch channel types api for dashboard
 	GetChannelTypeList(ctx context.Context, in *ChannelTypeListRequest, opts ...grpc.CallOption) (*ChannelTypeListResponse, error)
+	GetChannelType(ctx context.Context, in *GetRecordRequest, opts ...grpc.CallOption) (*GetChannelTypeResponse, error)
 	// CreatedChannelTypeMerchant merchant channel type created api for dashboard
 	CreatedChannelTypeMerchant(ctx context.Context, in *CreatedChannelTypeMerchantRequest, opts ...grpc.CallOption) (*CommonResponse, error)
 	// UpdatedChannelTypeMerchant merchant channel type updated api for dashboard
@@ -83,6 +88,7 @@ type PayServiceClient interface {
 	DeletedChannelTypeMerchant(ctx context.Context, in *CommonDeletedRequest, opts ...grpc.CallOption) (*CommonResponse, error)
 	// GetChannelTypeMerchantList merchant channel type list api for dashboard
 	GetChannelTypeMerchantList(ctx context.Context, in *ChannelTypeMerchantListRequest, opts ...grpc.CallOption) (*ChannelTypeMerchantListResponse, error)
+	GetChannelTypeMerchant(ctx context.Context, in *GetRecordRequest, opts ...grpc.CallOption) (*GetChannelTypeMerchantResponse, error)
 	// 更新记录状态
 	UpdateRecordStatus(ctx context.Context, in *UpdateRecordStatusRequest, opts ...grpc.CallOption) (*UpdateRecordStatusResponse, error)
 	// GetChargeChannelTypeList fetch charge channel list api for viewer layer
@@ -197,6 +203,16 @@ func (c *payServiceClient) GetChannelsList(ctx context.Context, in *ChannelsList
 	return out, nil
 }
 
+func (c *payServiceClient) GetChannel(ctx context.Context, in *GetRecordRequest, opts ...grpc.CallOption) (*GetChannelResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetChannelResponse)
+	err := c.cc.Invoke(ctx, PayService_GetChannel_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *payServiceClient) CreatedChannelType(ctx context.Context, in *CreatedChannelTypeRequest, opts ...grpc.CallOption) (*CommonResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(CommonResponse)
@@ -237,6 +253,16 @@ func (c *payServiceClient) GetChannelTypeList(ctx context.Context, in *ChannelTy
 	return out, nil
 }
 
+func (c *payServiceClient) GetChannelType(ctx context.Context, in *GetRecordRequest, opts ...grpc.CallOption) (*GetChannelTypeResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetChannelTypeResponse)
+	err := c.cc.Invoke(ctx, PayService_GetChannelType_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *payServiceClient) CreatedChannelTypeMerchant(ctx context.Context, in *CreatedChannelTypeMerchantRequest, opts ...grpc.CallOption) (*CommonResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(CommonResponse)
@@ -271,6 +297,16 @@ func (c *payServiceClient) GetChannelTypeMerchantList(ctx context.Context, in *C
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ChannelTypeMerchantListResponse)
 	err := c.cc.Invoke(ctx, PayService_GetChannelTypeMerchantList_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *payServiceClient) GetChannelTypeMerchant(ctx context.Context, in *GetRecordRequest, opts ...grpc.CallOption) (*GetChannelTypeMerchantResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetChannelTypeMerchantResponse)
+	err := c.cc.Invoke(ctx, PayService_GetChannelTypeMerchant_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -323,6 +359,7 @@ type PayServiceServer interface {
 	UpdatedChannel(context.Context, *UpdatedChannelRequest) (*CommonResponse, error)
 	// GetChannelsList fetch channel list api for dashboard
 	GetChannelsList(context.Context, *ChannelsListRequest) (*ChannelsListResponse, error)
+	GetChannel(context.Context, *GetRecordRequest) (*GetChannelResponse, error)
 	// CreatedChannelType created channel types api for dashboard
 	CreatedChannelType(context.Context, *CreatedChannelTypeRequest) (*CommonResponse, error)
 	// UpdatedChannelType updated channel types api for dashboard
@@ -331,6 +368,7 @@ type PayServiceServer interface {
 	DeletedChannelType(context.Context, *CommonDeletedRequest) (*CommonResponse, error)
 	// GetChannelTypeList fetch channel types api for dashboard
 	GetChannelTypeList(context.Context, *ChannelTypeListRequest) (*ChannelTypeListResponse, error)
+	GetChannelType(context.Context, *GetRecordRequest) (*GetChannelTypeResponse, error)
 	// CreatedChannelTypeMerchant merchant channel type created api for dashboard
 	CreatedChannelTypeMerchant(context.Context, *CreatedChannelTypeMerchantRequest) (*CommonResponse, error)
 	// UpdatedChannelTypeMerchant merchant channel type updated api for dashboard
@@ -339,6 +377,7 @@ type PayServiceServer interface {
 	DeletedChannelTypeMerchant(context.Context, *CommonDeletedRequest) (*CommonResponse, error)
 	// GetChannelTypeMerchantList merchant channel type list api for dashboard
 	GetChannelTypeMerchantList(context.Context, *ChannelTypeMerchantListRequest) (*ChannelTypeMerchantListResponse, error)
+	GetChannelTypeMerchant(context.Context, *GetRecordRequest) (*GetChannelTypeMerchantResponse, error)
 	// 更新记录状态
 	UpdateRecordStatus(context.Context, *UpdateRecordStatusRequest) (*UpdateRecordStatusResponse, error)
 	// GetChargeChannelTypeList fetch charge channel list api for viewer layer
@@ -380,6 +419,9 @@ func (UnimplementedPayServiceServer) UpdatedChannel(context.Context, *UpdatedCha
 func (UnimplementedPayServiceServer) GetChannelsList(context.Context, *ChannelsListRequest) (*ChannelsListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetChannelsList not implemented")
 }
+func (UnimplementedPayServiceServer) GetChannel(context.Context, *GetRecordRequest) (*GetChannelResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetChannel not implemented")
+}
 func (UnimplementedPayServiceServer) CreatedChannelType(context.Context, *CreatedChannelTypeRequest) (*CommonResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreatedChannelType not implemented")
 }
@@ -392,6 +434,9 @@ func (UnimplementedPayServiceServer) DeletedChannelType(context.Context, *Common
 func (UnimplementedPayServiceServer) GetChannelTypeList(context.Context, *ChannelTypeListRequest) (*ChannelTypeListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetChannelTypeList not implemented")
 }
+func (UnimplementedPayServiceServer) GetChannelType(context.Context, *GetRecordRequest) (*GetChannelTypeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetChannelType not implemented")
+}
 func (UnimplementedPayServiceServer) CreatedChannelTypeMerchant(context.Context, *CreatedChannelTypeMerchantRequest) (*CommonResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreatedChannelTypeMerchant not implemented")
 }
@@ -403,6 +448,9 @@ func (UnimplementedPayServiceServer) DeletedChannelTypeMerchant(context.Context,
 }
 func (UnimplementedPayServiceServer) GetChannelTypeMerchantList(context.Context, *ChannelTypeMerchantListRequest) (*ChannelTypeMerchantListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetChannelTypeMerchantList not implemented")
+}
+func (UnimplementedPayServiceServer) GetChannelTypeMerchant(context.Context, *GetRecordRequest) (*GetChannelTypeMerchantResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetChannelTypeMerchant not implemented")
 }
 func (UnimplementedPayServiceServer) UpdateRecordStatus(context.Context, *UpdateRecordStatusRequest) (*UpdateRecordStatusResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateRecordStatus not implemented")
@@ -603,6 +651,24 @@ func _PayService_GetChannelsList_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PayService_GetChannel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetRecordRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PayServiceServer).GetChannel(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PayService_GetChannel_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PayServiceServer).GetChannel(ctx, req.(*GetRecordRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _PayService_CreatedChannelType_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreatedChannelTypeRequest)
 	if err := dec(in); err != nil {
@@ -675,6 +741,24 @@ func _PayService_GetChannelTypeList_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PayService_GetChannelType_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetRecordRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PayServiceServer).GetChannelType(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PayService_GetChannelType_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PayServiceServer).GetChannelType(ctx, req.(*GetRecordRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _PayService_CreatedChannelTypeMerchant_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreatedChannelTypeMerchantRequest)
 	if err := dec(in); err != nil {
@@ -743,6 +827,24 @@ func _PayService_GetChannelTypeMerchantList_Handler(srv interface{}, ctx context
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PayServiceServer).GetChannelTypeMerchantList(ctx, req.(*ChannelTypeMerchantListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PayService_GetChannelTypeMerchant_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetRecordRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PayServiceServer).GetChannelTypeMerchant(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PayService_GetChannelTypeMerchant_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PayServiceServer).GetChannelTypeMerchant(ctx, req.(*GetRecordRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -831,6 +933,10 @@ var PayService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _PayService_GetChannelsList_Handler,
 		},
 		{
+			MethodName: "GetChannel",
+			Handler:    _PayService_GetChannel_Handler,
+		},
+		{
 			MethodName: "CreatedChannelType",
 			Handler:    _PayService_CreatedChannelType_Handler,
 		},
@@ -847,6 +953,10 @@ var PayService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _PayService_GetChannelTypeList_Handler,
 		},
 		{
+			MethodName: "GetChannelType",
+			Handler:    _PayService_GetChannelType_Handler,
+		},
+		{
 			MethodName: "CreatedChannelTypeMerchant",
 			Handler:    _PayService_CreatedChannelTypeMerchant_Handler,
 		},
@@ -861,6 +971,10 @@ var PayService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetChannelTypeMerchantList",
 			Handler:    _PayService_GetChannelTypeMerchantList_Handler,
+		},
+		{
+			MethodName: "GetChannelTypeMerchant",
+			Handler:    _PayService_GetChannelTypeMerchant_Handler,
 		},
 		{
 			MethodName: "UpdateRecordStatus",
