@@ -57,6 +57,8 @@ type RoomService interface {
 	GetRoomList(ctx context.Context, in *GetRoomListReq, opts ...client.CallOption) (*GetRoomListResp, error)
 	// GetOnlineRoomList 查询在线房间列表（用户端列表使用此接口）
 	GetOnlineRoomList(ctx context.Context, in *GetOnlineRoomListReq, opts ...client.CallOption) (*GetOnlineRoomListResp, error)
+	// KickoutUserInRoom 踢出直播间用
+	KickoutUserInRoom(ctx context.Context, in *KickoutUserInRoomReq, opts ...client.CallOption) (*KickoutUserInRoomResp, error)
 	// ForbidRoom 封禁直播间
 	ForbidRoom(ctx context.Context, in *ForbidRoomReq, opts ...client.CallOption) (*ForbidRoomResp, error)
 	// ResumeRoom 解封直播间
@@ -169,6 +171,16 @@ func (c *roomService) GetOnlineRoomList(ctx context.Context, in *GetOnlineRoomLi
 	return out, nil
 }
 
+func (c *roomService) KickoutUserInRoom(ctx context.Context, in *KickoutUserInRoomReq, opts ...client.CallOption) (*KickoutUserInRoomResp, error) {
+	req := c.c.NewRequest(c.name, "Room.KickoutUserInRoom", in)
+	out := new(KickoutUserInRoomResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *roomService) ForbidRoom(ctx context.Context, in *ForbidRoomReq, opts ...client.CallOption) (*ForbidRoomResp, error) {
 	req := c.c.NewRequest(c.name, "Room.ForbidRoom", in)
 	out := new(ForbidRoomResp)
@@ -230,6 +242,8 @@ type RoomHandler interface {
 	GetRoomList(context.Context, *GetRoomListReq, *GetRoomListResp) error
 	// GetOnlineRoomList 查询在线房间列表（用户端列表使用此接口）
 	GetOnlineRoomList(context.Context, *GetOnlineRoomListReq, *GetOnlineRoomListResp) error
+	// KickoutUserInRoom 踢出直播间用
+	KickoutUserInRoom(context.Context, *KickoutUserInRoomReq, *KickoutUserInRoomResp) error
 	// ForbidRoom 封禁直播间
 	ForbidRoom(context.Context, *ForbidRoomReq, *ForbidRoomResp) error
 	// ResumeRoom 解封直播间
@@ -251,6 +265,7 @@ func RegisterRoomHandler(s server.Server, hdlr RoomHandler, opts ...server.Handl
 		MGetRoomsByStreamerIDsWithOnlineSort(ctx context.Context, in *MGetRoomsByStreamerIDsWithOnlineSortReq, out *MGetRoomsByStreamerIDsWithOnlineSortResp) error
 		GetRoomList(ctx context.Context, in *GetRoomListReq, out *GetRoomListResp) error
 		GetOnlineRoomList(ctx context.Context, in *GetOnlineRoomListReq, out *GetOnlineRoomListResp) error
+		KickoutUserInRoom(ctx context.Context, in *KickoutUserInRoomReq, out *KickoutUserInRoomResp) error
 		ForbidRoom(ctx context.Context, in *ForbidRoomReq, out *ForbidRoomResp) error
 		ResumeRoom(ctx context.Context, in *ResumeRoomReq, out *ResumeRoomResp) error
 		StartLive(ctx context.Context, in *StartLiveReq, out *StartLiveResp) error
@@ -301,6 +316,10 @@ func (h *roomHandler) GetRoomList(ctx context.Context, in *GetRoomListReq, out *
 
 func (h *roomHandler) GetOnlineRoomList(ctx context.Context, in *GetOnlineRoomListReq, out *GetOnlineRoomListResp) error {
 	return h.RoomHandler.GetOnlineRoomList(ctx, in, out)
+}
+
+func (h *roomHandler) KickoutUserInRoom(ctx context.Context, in *KickoutUserInRoomReq, out *KickoutUserInRoomResp) error {
+	return h.RoomHandler.KickoutUserInRoom(ctx, in, out)
 }
 
 func (h *roomHandler) ForbidRoom(ctx context.Context, in *ForbidRoomReq, out *ForbidRoomResp) error {

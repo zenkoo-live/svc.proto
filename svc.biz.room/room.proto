@@ -30,6 +30,8 @@ service Room {
     // GetOnlineRoomList 查询在线房间列表（用户端列表使用此接口）
     rpc GetOnlineRoomList (GetOnlineRoomListReq) returns(GetOnlineRoomListResp);
 
+    // KickoutUserInRoom 踢出直播间用 
+    rpc KickoutUserInRoom(KickoutUserInRoomReq) returns(KickoutUserInRoomResp);
     // ForbidRoom 封禁直播间
     rpc ForbidRoom(ForbidRoomReq) returns(ForbidRoomResp);
     // ResumeRoom 解封直播间
@@ -220,6 +222,14 @@ message GetOnlineRoomListReq {
 }
 message GetOnlineRoomListResp {
     repeated RoomInfo items = 1; // 房间列表
+}
+
+message KickoutUserInRoomReq {
+    string streamer_id = 1; // 主播id
+    string user_id = 2; // 用户id
+}
+message KickoutUserInRoomResp {
+
 }
 
 message ForbidRoomReq {
