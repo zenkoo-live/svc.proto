@@ -294,6 +294,7 @@
     - [GetRoomByStreamerIDReq](#svc-biz-room-GetRoomByStreamerIDReq)
     - [GetRoomByStreamerIDResp](#svc-biz-room-GetRoomByStreamerIDResp)
     - [GetRoomListReq](#svc-biz-room-GetRoomListReq)
+    - [GetRoomListReq.ScoreFilterEntry](#svc-biz-room-GetRoomListReq-ScoreFilterEntry)
     - [GetRoomListResp](#svc-biz-room-GetRoomListResp)
     - [GetRoomReq](#svc-biz-room-GetRoomReq)
     - [GetRoomResp](#svc-biz-room-GetRoomResp)
@@ -322,6 +323,7 @@
   
     - [LiveDisplayType](#svc-biz-room-LiveDisplayType)
     - [LiveStatus](#svc-biz-room-LiveStatus)
+    - [ScoreFilterVal](#svc-biz-room-ScoreFilterVal)
     - [ShowStatus](#svc-biz-room-ShowStatus)
     - [SortType](#svc-biz-room-SortType)
   
@@ -5486,6 +5488,24 @@ CategoryInfo 分类详情
 | page | [int32](#int32) |  | 页数 |
 | limit | [int32](#int32) |  | 条数 |
 | streamer_id | [string](#string) |  | 主播id |
+| keyword | [string](#string) |  | 关键字（标题或者房间号） |
+| score_filter | [GetRoomListReq.ScoreFilterEntry](#svc-biz-room-GetRoomListReq-ScoreFilterEntry) | repeated | 分数字段筛选 |
+
+
+
+
+
+
+<a name="svc-biz-room-GetRoomListReq-ScoreFilterEntry"></a>
+
+### GetRoomListReq.ScoreFilterEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [ScoreFilterVal](#svc-biz-room-ScoreFilterVal) |  |  |
 
 
 
@@ -5949,6 +5969,20 @@ CategoryInfo 分类详情
 
 
 
+<a name="svc-biz-room-ScoreFilterVal"></a>
+
+### ScoreFilterVal
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| ScoreFilterValAll | 0 | 全部 |
+| ScoreFilterValBeforeTime | 1 | 未到时间 |
+| ScoreFilterValInTime | 2 | 在时间内 |
+| ScoreFilterValAfterTime | 3 | 在时间后 |
+
+
+
 <a name="svc-biz-room-ShowStatus"></a>
 
 ### ShowStatus
@@ -5996,7 +6030,7 @@ Room 房间
 | MGetRooms | [MGetRoomsReq](#svc-biz-room-MGetRoomsReq) | [MGetRoomsResp](#svc-biz-room-MGetRoomsResp) | MGetRooms 查询房间 |
 | MGetRoomsByStreamerIDs | [MGetRoomsByStreamerIDsReq](#svc-biz-room-MGetRoomsByStreamerIDsReq) | [MGetRoomsByStreamerIDsResp](#svc-biz-room-MGetRoomsByStreamerIDsResp) | MGetRoomByStreamerIDs 批量查询房间 |
 | MGetRoomsByStreamerIDsWithOnlineSort | [MGetRoomsByStreamerIDsWithOnlineSortReq](#svc-biz-room-MGetRoomsByStreamerIDsWithOnlineSortReq) | [MGetRoomsByStreamerIDsWithOnlineSortResp](#svc-biz-room-MGetRoomsByStreamerIDsWithOnlineSortResp) | MGetRoomsByStreamerIDsWithOnlineSort 批量查询房间（带在线分页，按照传入顺序获取，在线排在最前） |
-| GetRoomList | [GetRoomListReq](#svc-biz-room-GetRoomListReq) | [GetRoomListResp](#svc-biz-room-GetRoomListResp) | GetRoomList 查询房间列表（后台使用此接口） |
+| GetRoomList | [GetRoomListReq](#svc-biz-room-GetRoomListReq) | [GetRoomListResp](#svc-biz-room-GetRoomListResp) | GetRoomList 查询房间列表（前台的搜索或者后台使用此接口） |
 | GetOnlineRoomList | [GetOnlineRoomListReq](#svc-biz-room-GetOnlineRoomListReq) | [GetOnlineRoomListResp](#svc-biz-room-GetOnlineRoomListResp) | GetOnlineRoomList 查询在线房间列表（用户端列表使用此接口） |
 | KickoutUserInRoom | [KickoutUserInRoomReq](#svc-biz-room-KickoutUserInRoomReq) | [KickoutUserInRoomResp](#svc-biz-room-KickoutUserInRoomResp) | KickoutUserInRoom 踢出直播间用 |
 | ForbidRoom | [ForbidRoomReq](#svc-biz-room-ForbidRoomReq) | [ForbidRoomResp](#svc-biz-room-ForbidRoomResp) | ForbidRoom 封禁直播间 |

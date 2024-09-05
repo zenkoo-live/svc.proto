@@ -56,7 +56,7 @@ type RoomClient interface {
 	MGetRoomsByStreamerIDs(ctx context.Context, in *MGetRoomsByStreamerIDsReq, opts ...grpc.CallOption) (*MGetRoomsByStreamerIDsResp, error)
 	// MGetRoomsByStreamerIDsWithOnlineSort 批量查询房间（带在线分页，按照传入顺序获取，在线排在最前）
 	MGetRoomsByStreamerIDsWithOnlineSort(ctx context.Context, in *MGetRoomsByStreamerIDsWithOnlineSortReq, opts ...grpc.CallOption) (*MGetRoomsByStreamerIDsWithOnlineSortResp, error)
-	// GetRoomList 查询房间列表（后台使用此接口）
+	// GetRoomList 查询房间列表（前台的搜索或者后台使用此接口）
 	GetRoomList(ctx context.Context, in *GetRoomListReq, opts ...grpc.CallOption) (*GetRoomListResp, error)
 	// GetOnlineRoomList 查询在线房间列表（用户端列表使用此接口）
 	GetOnlineRoomList(ctx context.Context, in *GetOnlineRoomListReq, opts ...grpc.CallOption) (*GetOnlineRoomListResp, error)
@@ -240,7 +240,7 @@ type RoomServer interface {
 	MGetRoomsByStreamerIDs(context.Context, *MGetRoomsByStreamerIDsReq) (*MGetRoomsByStreamerIDsResp, error)
 	// MGetRoomsByStreamerIDsWithOnlineSort 批量查询房间（带在线分页，按照传入顺序获取，在线排在最前）
 	MGetRoomsByStreamerIDsWithOnlineSort(context.Context, *MGetRoomsByStreamerIDsWithOnlineSortReq) (*MGetRoomsByStreamerIDsWithOnlineSortResp, error)
-	// GetRoomList 查询房间列表（后台使用此接口）
+	// GetRoomList 查询房间列表（前台的搜索或者后台使用此接口）
 	GetRoomList(context.Context, *GetRoomListReq) (*GetRoomListResp, error)
 	// GetOnlineRoomList 查询在线房间列表（用户端列表使用此接口）
 	GetOnlineRoomList(context.Context, *GetOnlineRoomListReq) (*GetOnlineRoomListResp, error)
