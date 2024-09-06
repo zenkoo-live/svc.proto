@@ -25,7 +25,7 @@ service Room {
     rpc MGetRoomsByStreamerIDs(MGetRoomsByStreamerIDsReq) returns(MGetRoomsByStreamerIDsResp);
     // MGetRoomsByStreamerIDsWithOnlineSort 批量查询房间（带在线分页，按照传入顺序获取，在线排在最前）
     rpc MGetRoomsByStreamerIDsWithOnlineSort(MGetRoomsByStreamerIDsWithOnlineSortReq) returns(MGetRoomsByStreamerIDsWithOnlineSortResp);
-    // GetRoomList 查询房间列表（后台使用此接口）
+    // GetRoomList 查询房间列表（前台的搜索或者后台使用此接口）
     rpc GetRoomList(GetRoomListReq) returns(GetRoomListResp);
     // GetOnlineRoomList 查询在线房间列表（用户端列表使用此接口）
     rpc GetOnlineRoomList (GetOnlineRoomListReq) returns(GetOnlineRoomListResp);
@@ -203,10 +203,18 @@ message MGetRoomsByStreamerIDsWithOnlineSortResp {
     repeated RoomInfo items = 1; // 房间列表
 }
 
+enum ScoreFilterVal {
+    ScoreFilterValAll = 0; // 全部
+    ScoreFilterValBeforeTime = 1; // 未到时间
+    ScoreFilterValInTime = 2; // 在时间内
+    ScoreFilterValAfterTime = 3; // 在时间后
+}
 message GetRoomListReq {
     int32 page = 1; // 页数
     int32 limit = 2; // 条数
     string streamer_id = 3; // 主播id
+    string keyword = 4; // 关键字（标题或者房间号）
+    map <string, ScoreFilterVal> score_filter = 5; // 分数字段筛选
 }
 message GetRoomListResp {
     repeated RoomInfo items = 1; // 房间列表
