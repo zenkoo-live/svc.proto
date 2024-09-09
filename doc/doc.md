@@ -5302,12 +5302,12 @@ CategoryInfo 分类详情
 | duration | [float](#float) |  | 直播时长 |
 | gift_total_num | [int64](#int64) |  | 礼物总数 |
 | gift_total_price | [int64](#int64) |  | 礼物代币总数 |
-| gift_total_user | [int64](#int64) |  | 礼物用户总数 |
-| total_viewer | [int64](#int64) |  | 观看人数 |
-| new_follow | [int64](#int64) |  | 新增订阅 |
-| new_fanbase | [int64](#int64) |  | 新增粉丝团 |
-| new_nobble | [int64](#int64) |  | 新增贵族 |
-| new_nobble_price | [int64](#int64) |  | 新增贵族代币数 |
+| gift_total_user | [int64](#int64) |  | 礼物用户总数（每场直播礼物用户总数相加，不去重） |
+| total_viewer | [int64](#int64) |  | 观看人数（每场直播观看人数相加，不去重） |
+| new_follow | [int64](#int64) |  | 新增订阅（每场新增订阅人数相加，不去重） |
+| new_fanbase | [int64](#int64) |  | 新增粉丝团（每场新增粉丝团相加，不去重） |
+| new_nobble | [int64](#int64) |  | 新增贵族（每场直播贵族付费用户数相加，包含续费、升级） |
+| new_nobble_price | [int64](#int64) |  | 新增贵族代币数（每场直播贵族付费数相加，包含续费、升级） |
 
 
 
