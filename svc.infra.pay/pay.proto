@@ -71,7 +71,7 @@ message OrderNotifyRequest {
 }
 
 message OrderNotifyResponse {
-
+  string result = 1;
 }
 
 message OrderQueryRequest {
