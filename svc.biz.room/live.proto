@@ -36,7 +36,7 @@ message LiveInfo {
     int64 gift_total_user = 23; // 礼物用户总数
     int64 total_viewer = 24; // 观看人数
     int64 new_follow = 25; // 新增订阅
-    int64 new_fanbse = 26; // 新增粉丝团
+    int64 new_fanbase = 26; // 新增粉丝团
     int64 new_nobble = 27; // 新增贵族
     int64 new_nobble_price = 28; // 新增贵族代币数
 
@@ -77,4 +77,12 @@ message StatLiveReq {
 message StatLiveResp {
     int64 count = 1; // 直播次数
     float duration = 2; // 直播时长
+    int64 gift_total_num = 3; // 礼物总数
+    int64 gift_total_price = 4; // 礼物代币总数
+    int64 gift_total_user = 5; // 礼物用户总数
+    int64 total_viewer = 6; // 观看人数
+    int64 new_follow = 7; // 新增订阅
+    int64 new_fanbase = 8; // 新增粉丝团
+    int64 new_nobble = 9; // 新增贵族
+    int64 new_nobble_price = 10; // 新增贵族代币数
 }

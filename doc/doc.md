@@ -5216,7 +5216,7 @@ CategoryInfo 分类详情
 | gift_total_user | [int64](#int64) |  | 礼物用户总数 |
 | total_viewer | [int64](#int64) |  | 观看人数 |
 | new_follow | [int64](#int64) |  | 新增订阅 |
-| new_fanbse | [int64](#int64) |  | 新增粉丝团 |
+| new_fanbase | [int64](#int64) |  | 新增粉丝团 |
 | new_nobble | [int64](#int64) |  | 新增贵族 |
 | new_nobble_price | [int64](#int64) |  | 新增贵族代币数 |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
@@ -5300,6 +5300,14 @@ CategoryInfo 分类详情
 | ----- | ---- | ----- | ----------- |
 | count | [int64](#int64) |  | 直播次数 |
 | duration | [float](#float) |  | 直播时长 |
+| gift_total_num | [int64](#int64) |  | 礼物总数 |
+| gift_total_price | [int64](#int64) |  | 礼物代币总数 |
+| gift_total_user | [int64](#int64) |  | 礼物用户总数 |
+| total_viewer | [int64](#int64) |  | 观看人数 |
+| new_follow | [int64](#int64) |  | 新增订阅 |
+| new_fanbase | [int64](#int64) |  | 新增粉丝团 |
+| new_nobble | [int64](#int64) |  | 新增贵族 |
+| new_nobble_price | [int64](#int64) |  | 新增贵族代币数 |
 
 
 
