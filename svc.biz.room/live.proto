@@ -8,11 +8,11 @@ option go_package="./svc.biz.room;room";
 
 // 直播
 service Live {
-    // GetLive 查询直播间信息
+    // GetLive 查询直播信息
     rpc GetLive(GetLiveReq) returns(GetLiveResp);
-    // MGetLive 批量获取直播间信息
+    // MGetLive 批量获取直播信息
     rpc MGetLive(MGetLiveReq) returns(MGetLiveResp);
-    // ListLive 获取在播直播间列表
+    // ListLive 获取直播列表
     rpc ListLive(ListLiveReq) returns (ListLiveResp);
     // StatLive 获取直播统计信息
     rpc StatLive(StatLiveReq) returns (StatLiveResp);
@@ -36,7 +36,7 @@ message LiveInfo {
     int64 gift_total_user = 23; // 礼物用户总数
     int64 total_viewer = 24; // 观看人数
     int64 new_follow = 25; // 新增订阅
-    int64 new_fanbse = 26; // 新增粉丝团
+    int64 new_fanbase = 26; // 新增粉丝团
     int64 new_nobble = 27; // 新增贵族
     int64 new_nobble_price = 28; // 新增贵族代币数
 
@@ -62,6 +62,8 @@ message ListLiveReq {
     int32 page = 1; // 页数
     int32 limit = 2; // 条数
     string streamer_id = 3; // 主播id
+    TimeBeginEnd start_at = 4;
+    TimeBeginEnd end_at = 5;
 }
 message ListLiveResp {
     repeated LiveInfo items = 1; // 直播信息
@@ -75,4 +77,12 @@ message StatLiveReq {
 message StatLiveResp {
     int64 count = 1; // 直播次数
     float duration = 2; // 直播时长
+    int64 gift_total_num = 3; // 礼物总数
+    int64 gift_total_price = 4; // 礼物代币总数
+    int64 gift_total_user = 5; // 礼物用户总数（每场直播礼物用户总数相加，不去重）
+    int64 total_viewer = 6; // 观看人数（每场直播观看人数相加，不去重）
+    int64 new_follow = 7; // 新增订阅（每场新增订阅人数相加，不去重）
+    int64 new_fanbase = 8; // 新增粉丝团（每场新增粉丝团相加，不去重）
+    int64 new_nobble = 9; // 新增贵族（每场直播贵族付费用户数相加，包含续费、升级）
+    int64 new_nobble_price = 10; // 新增贵族代币数（每场直播贵族付费数相加，包含续费、升级）
 }

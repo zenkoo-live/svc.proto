@@ -150,6 +150,9 @@
     - [GetOnlineFanbaseMemberByStreamerIDResp](#svc-biz-vip-GetOnlineFanbaseMemberByStreamerIDResp)
     - [JoinFanbaseReq](#svc-biz-vip-JoinFanbaseReq)
     - [LeaveFanbaseReq](#svc-biz-vip-LeaveFanbaseReq)
+    - [MGetFanbaseMemberReq](#svc-biz-vip-MGetFanbaseMemberReq)
+    - [MGetFanbaseMemberResp](#svc-biz-vip-MGetFanbaseMemberResp)
+    - [MGetFanbaseMemberResp.ItemsEntry](#svc-biz-vip-MGetFanbaseMemberResp-ItemsEntry)
   
     - [FanbaseMember](#svc-biz-vip-FanbaseMember)
   
@@ -183,6 +186,9 @@
     - [GetOrdersResp](#svc-biz-vip-GetOrdersResp)
     - [JoinNobleReq](#svc-biz-vip-JoinNobleReq)
     - [JoinNobleResp](#svc-biz-vip-JoinNobleResp)
+    - [MGetNobleMemberReq](#svc-biz-vip-MGetNobleMemberReq)
+    - [MGetNobleMemberResp](#svc-biz-vip-MGetNobleMemberResp)
+    - [MGetNobleMemberResp.ItemsEntry](#svc-biz-vip-MGetNobleMemberResp-ItemsEntry)
     - [NobleMemberInfo](#svc-biz-vip-NobleMemberInfo)
     - [NobleOrder](#svc-biz-vip-NobleOrder)
     - [RenewNobleReq](#svc-biz-vip-RenewNobleReq)
@@ -203,6 +209,9 @@
     - [GetMemberLevelReq](#svc-biz-vip-GetMemberLevelReq)
     - [GetMemberLevelResp](#svc-biz-vip-GetMemberLevelResp)
     - [LevelInfo](#svc-biz-vip-LevelInfo)
+    - [MGetMemberLevelReq](#svc-biz-vip-MGetMemberLevelReq)
+    - [MGetMemberLevelResp](#svc-biz-vip-MGetMemberLevelResp)
+    - [MGetMemberLevelResp.ItemsEntry](#svc-biz-vip-MGetMemberLevelResp-ItemsEntry)
     - [MemberLevelInfo](#svc-biz-vip-MemberLevelInfo)
     - [UpdateLevelReq](#svc-biz-vip-UpdateLevelReq)
     - [UpdateLevelReqResp](#svc-biz-vip-UpdateLevelReqResp)
@@ -805,9 +814,12 @@
     - [GetRoomByStreamerIDReq](#svc-biz-room-GetRoomByStreamerIDReq)
     - [GetRoomByStreamerIDResp](#svc-biz-room-GetRoomByStreamerIDResp)
     - [GetRoomListReq](#svc-biz-room-GetRoomListReq)
+    - [GetRoomListReq.ScoreFilterEntry](#svc-biz-room-GetRoomListReq-ScoreFilterEntry)
     - [GetRoomListResp](#svc-biz-room-GetRoomListResp)
     - [GetRoomReq](#svc-biz-room-GetRoomReq)
     - [GetRoomResp](#svc-biz-room-GetRoomResp)
+    - [KickoutUserInRoomReq](#svc-biz-room-KickoutUserInRoomReq)
+    - [KickoutUserInRoomResp](#svc-biz-room-KickoutUserInRoomResp)
     - [MGetRoomsByStreamerIDsReq](#svc-biz-room-MGetRoomsByStreamerIDsReq)
     - [MGetRoomsByStreamerIDsResp](#svc-biz-room-MGetRoomsByStreamerIDsResp)
     - [MGetRoomsByStreamerIDsResp.ItemsEntry](#svc-biz-room-MGetRoomsByStreamerIDsResp-ItemsEntry)
@@ -831,6 +843,7 @@
   
     - [LiveDisplayType](#svc-biz-room-LiveDisplayType)
     - [LiveStatus](#svc-biz-room-LiveStatus)
+    - [ScoreFilterVal](#svc-biz-room-ScoreFilterVal)
     - [ShowStatus](#svc-biz-room-ShowStatus)
     - [SortType](#svc-biz-room-SortType)
   
@@ -895,6 +908,10 @@
     - [CreatedChannelRequest](#svc-infra-pay-CreatedChannelRequest)
     - [CreatedChannelTypeMerchantRequest](#svc-infra-pay-CreatedChannelTypeMerchantRequest)
     - [CreatedChannelTypeRequest](#svc-infra-pay-CreatedChannelTypeRequest)
+    - [GetChannelResponse](#svc-infra-pay-GetChannelResponse)
+    - [GetChannelTypeMerchantResponse](#svc-infra-pay-GetChannelTypeMerchantResponse)
+    - [GetChannelTypeResponse](#svc-infra-pay-GetChannelTypeResponse)
+    - [GetRecordRequest](#svc-infra-pay-GetRecordRequest)
     - [OrderInfo](#svc-infra-pay-OrderInfo)
     - [OrderNotifyRequest](#svc-infra-pay-OrderNotifyRequest)
     - [OrderNotifyRequest.BodyEntry](#svc-infra-pay-OrderNotifyRequest-BodyEntry)
@@ -3683,6 +3700,53 @@ service started /////////////////
 
 
 
+
+<a name="svc-biz-vip-MGetFanbaseMemberReq"></a>
+
+### MGetFanbaseMemberReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer_id | [string](#string) |  |  |
+| member_ids | [string](#string) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-MGetFanbaseMemberResp"></a>
+
+### MGetFanbaseMemberResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [MGetFanbaseMemberResp.ItemsEntry](#svc-biz-vip-MGetFanbaseMemberResp-ItemsEntry) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-MGetFanbaseMemberResp-ItemsEntry"></a>
+
+### MGetFanbaseMemberResp.ItemsEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [FanbaseMemberInfo](#svc-biz-vip-FanbaseMemberInfo) |  |  |
+
+
+
+
+
  
 
  
@@ -3699,7 +3763,8 @@ service started /////////////////
 | ----------- | ------------ | ------------- | ------------|
 | JoinFanbase | [JoinFanbaseReq](#svc-biz-vip-JoinFanbaseReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | JoinFanbase 加入粉丝团 |
 | LeaveFanbase | [LeaveFanbaseReq](#svc-biz-vip-LeaveFanbaseReq) | [.google.protobuf.Empty](#google-protobuf-Empty) | LeaveFanbase 离开粉丝团 |
-| GetFanbaseMember | [GetFanbaseMemberReq](#svc-biz-vip-GetFanbaseMemberReq) | [GetFanbaseMemberResp](#svc-biz-vip-GetFanbaseMemberResp) | GetFanbaseMember 获取粉丝团成员信息 |
+| GetFanbaseMember | [GetFanbaseMemberReq](#svc-biz-vip-GetFanbaseMemberReq) | [GetFanbaseMemberResp](#svc-biz-vip-GetFanbaseMemberResp) | GetFanbaseMember 获取主播的某个粉丝团成员信息 |
+| MGetFanbaseMember | [MGetFanbaseMemberReq](#svc-biz-vip-MGetFanbaseMemberReq) | [MGetFanbaseMemberResp](#svc-biz-vip-MGetFanbaseMemberResp) | MGetFanbaseMember 批量获取主播的粉丝团成员信息 |
 | GetFanbaseMemberByStreamerID | [GetFanbaseMemberByStreamerIDReq](#svc-biz-vip-GetFanbaseMemberByStreamerIDReq) | [GetFanbaseMemberByStreamerIDResp](#svc-biz-vip-GetFanbaseMemberByStreamerIDResp) | GetFanbaseMemberByStreamerID 获取主播粉丝团成员列表 |
 | CountFanbaseMemberByStreamerID | [CountFanbaseMemberByStreamerIDReq](#svc-biz-vip-CountFanbaseMemberByStreamerIDReq) | [CountFanbaseMemberByStreamerIDResp](#svc-biz-vip-CountFanbaseMemberByStreamerIDResp) | CountFanbaseMemberByStreamerID 获取主播粉丝团成员总数 |
 | GetOnlineFanbaseMemberByStreamerID | [GetOnlineFanbaseMemberByStreamerIDReq](#svc-biz-vip-GetOnlineFanbaseMemberByStreamerIDReq) | [GetOnlineFanbaseMemberByStreamerIDResp](#svc-biz-vip-GetOnlineFanbaseMemberByStreamerIDResp) | GetOnlineFanbaseMemberByStreamerID 获取主播粉丝团在线成员列表 |
@@ -4169,6 +4234,52 @@ enum NobleLevel {
 
 
 
+<a name="svc-biz-vip-MGetNobleMemberReq"></a>
+
+### MGetNobleMemberReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| member_ids | [string](#string) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-MGetNobleMemberResp"></a>
+
+### MGetNobleMemberResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [MGetNobleMemberResp.ItemsEntry](#svc-biz-vip-MGetNobleMemberResp-ItemsEntry) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-MGetNobleMemberResp-ItemsEntry"></a>
+
+### MGetNobleMemberResp.ItemsEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [NobleMemberInfo](#svc-biz-vip-NobleMemberInfo) |  |  |
+
+
+
+
+
+
 <a name="svc-biz-vip-NobleMemberInfo"></a>
 
 ### NobleMemberInfo
@@ -4286,6 +4397,7 @@ enum NobleLevel {
 | RenewNoble | [RenewNobleReq](#svc-biz-vip-RenewNobleReq) | [RenewNobleResp](#svc-biz-vip-RenewNobleResp) | RenewNoble 续费贵族 |
 | UpgradeNoble | [UpgradeNobleReq](#svc-biz-vip-UpgradeNobleReq) | [UpgradeNobleResp](#svc-biz-vip-UpgradeNobleResp) | UpgradeNoble 升级贵族 |
 | GetNobleMember | [GetNobleMemberReq](#svc-biz-vip-GetNobleMemberReq) | [GetNobleMemberResp](#svc-biz-vip-GetNobleMemberResp) | GetNobleMember 获取成员贵族信息 |
+| MGetNobleMember | [MGetNobleMemberReq](#svc-biz-vip-MGetNobleMemberReq) | [MGetNobleMemberResp](#svc-biz-vip-MGetNobleMemberResp) | MGetNobleMember 批量获取成员贵族信息 |
 | GetNobleMemberList | [GetNobleMemberListReq](#svc-biz-vip-GetNobleMemberListReq) | [GetNobleMemberListResp](#svc-biz-vip-GetNobleMemberListResp) | GetNobleMemberList 获取贵族成员列表（streamer_id传空字符串取所有） |
 | CountNobleMember | [CountNobleMemberReq](#svc-biz-vip-CountNobleMemberReq) | [CountNobleMemberResp](#svc-biz-vip-CountNobleMemberResp) | CountNobleMember 获取成员总数 |
 | GetOnlineNobleMemberListByStreamerID | [GetOnlineNobleMemberListByStreamerIDReq](#svc-biz-vip-GetOnlineNobleMemberListByStreamerIDReq) | [GetNobleMemberListResp](#svc-biz-vip-GetNobleMemberListResp) | GetOnlineNobleMemberListByStreamerID 获取主播贵族在线成员列表 |
@@ -4373,6 +4485,7 @@ enum NobleLevel {
 | ----- | ---- | ----- | ----------- |
 | page | [int32](#int32) |  | 页数 |
 | limit | [int32](#int32) |  | 条数 |
+| with_total | [bool](#bool) |  | 是否返回总数 |
 
 
 
@@ -4388,6 +4501,7 @@ enum NobleLevel {
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | items | [LevelInfo](#svc-biz-vip-LevelInfo) | repeated |  |
+| total | [int64](#int64) |  |  |
 
 
 
@@ -4438,6 +4552,52 @@ enum NobleLevel {
 | color | [string](#string) |  |  |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
 | updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 更新时间 |
+
+
+
+
+
+
+<a name="svc-biz-vip-MGetMemberLevelReq"></a>
+
+### MGetMemberLevelReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| member_ids | [string](#string) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-MGetMemberLevelResp"></a>
+
+### MGetMemberLevelResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [MGetMemberLevelResp.ItemsEntry](#svc-biz-vip-MGetMemberLevelResp-ItemsEntry) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-MGetMemberLevelResp-ItemsEntry"></a>
+
+### MGetMemberLevelResp.ItemsEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [MemberLevelInfo](#svc-biz-vip-MemberLevelInfo) |  |  |
 
 
 
@@ -4503,6 +4663,7 @@ enum NobleLevel {
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
 | GetMemberLevel | [GetMemberLevelReq](#svc-biz-vip-GetMemberLevelReq) | [GetMemberLevelResp](#svc-biz-vip-GetMemberLevelResp) | GetMemberLevel 获取成员等级 |
+| MGetMemberLevel | [MGetMemberLevelReq](#svc-biz-vip-MGetMemberLevelReq) | [MGetMemberLevelResp](#svc-biz-vip-MGetMemberLevelResp) | MGetMemberLevel 批量获取成员等级 |
 | GetAllLevelList | [GetAllLevelListReq](#svc-biz-vip-GetAllLevelListReq) | [GetLevelListResp](#svc-biz-vip-GetLevelListResp) | GetAllLevelList 获取所有等级配置列表 |
 | GetLevelList | [GetLevelListReq](#svc-biz-vip-GetLevelListReq) | [GetLevelListResp](#svc-biz-vip-GetLevelListResp) | GetLevelList 分页获取等级配置列表 |
 | AddLevel | [AddLevelReq](#svc-biz-vip-AddLevelReq) | [AddLevelResp](#svc-biz-vip-AddLevelResp) | AddLevel 添加等级配置 |
@@ -13652,6 +13813,24 @@ topic: topic.room.stop_live
 | page | [int32](#int32) |  | 页数 |
 | limit | [int32](#int32) |  | 条数 |
 | streamer_id | [string](#string) |  | 主播id |
+| keyword | [string](#string) |  | 关键字（标题或者房间号） |
+| score_filter | [GetRoomListReq.ScoreFilterEntry](#svc-biz-room-GetRoomListReq-ScoreFilterEntry) | repeated | 分数字段筛选 |
+
+
+
+
+
+
+<a name="svc-biz-room-GetRoomListReq-ScoreFilterEntry"></a>
+
+### GetRoomListReq.ScoreFilterEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [ScoreFilterVal](#svc-biz-room-ScoreFilterVal) |  |  |
 
 
 
@@ -13701,6 +13880,32 @@ topic: topic.room.stop_live
 | room | [RoomInfo](#svc-biz-room-RoomInfo) |  | 房间信息 |
 | stream | [Stream](#svc-biz-room-Stream) |  | 流信息 |
 | trtc_conf | [TrtcConf](#svc-biz-room-TrtcConf) |  | trtc信息 |
+
+
+
+
+
+
+<a name="svc-biz-room-KickoutUserInRoomReq"></a>
+
+### KickoutUserInRoomReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer_id | [string](#string) |  | 主播id |
+| user_id | [string](#string) |  | 用户id |
+
+
+
+
+
+
+<a name="svc-biz-room-KickoutUserInRoomResp"></a>
+
+### KickoutUserInRoomResp
+
 
 
 
@@ -14089,6 +14294,20 @@ topic: topic.room.stop_live
 
 
 
+<a name="svc-biz-room-ScoreFilterVal"></a>
+
+### ScoreFilterVal
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| ScoreFilterValAll | 0 | 全部 |
+| ScoreFilterValBeforeTime | 1 | 未到时间 |
+| ScoreFilterValInTime | 2 | 在时间内 |
+| ScoreFilterValAfterTime | 3 | 在时间后 |
+
+
+
 <a name="svc-biz-room-ShowStatus"></a>
 
 ### ShowStatus
@@ -14136,8 +14355,9 @@ Room 房间
 | MGetRooms | [MGetRoomsReq](#svc-biz-room-MGetRoomsReq) | [MGetRoomsResp](#svc-biz-room-MGetRoomsResp) | MGetRooms 查询房间 |
 | MGetRoomsByStreamerIDs | [MGetRoomsByStreamerIDsReq](#svc-biz-room-MGetRoomsByStreamerIDsReq) | [MGetRoomsByStreamerIDsResp](#svc-biz-room-MGetRoomsByStreamerIDsResp) | MGetRoomByStreamerIDs 批量查询房间 |
 | MGetRoomsByStreamerIDsWithOnlineSort | [MGetRoomsByStreamerIDsWithOnlineSortReq](#svc-biz-room-MGetRoomsByStreamerIDsWithOnlineSortReq) | [MGetRoomsByStreamerIDsWithOnlineSortResp](#svc-biz-room-MGetRoomsByStreamerIDsWithOnlineSortResp) | MGetRoomsByStreamerIDsWithOnlineSort 批量查询房间（带在线分页，按照传入顺序获取，在线排在最前） |
-| GetRoomList | [GetRoomListReq](#svc-biz-room-GetRoomListReq) | [GetRoomListResp](#svc-biz-room-GetRoomListResp) | GetRoomList 查询房间列表（后台使用此接口） |
+| GetRoomList | [GetRoomListReq](#svc-biz-room-GetRoomListReq) | [GetRoomListResp](#svc-biz-room-GetRoomListResp) | GetRoomList 查询房间列表（前台的搜索或者后台使用此接口） |
 | GetOnlineRoomList | [GetOnlineRoomListReq](#svc-biz-room-GetOnlineRoomListReq) | [GetOnlineRoomListResp](#svc-biz-room-GetOnlineRoomListResp) | GetOnlineRoomList 查询在线房间列表（用户端列表使用此接口） |
+| KickoutUserInRoom | [KickoutUserInRoomReq](#svc-biz-room-KickoutUserInRoomReq) | [KickoutUserInRoomResp](#svc-biz-room-KickoutUserInRoomResp) | KickoutUserInRoom 踢出直播间用 |
 | ForbidRoom | [ForbidRoomReq](#svc-biz-room-ForbidRoomReq) | [ForbidRoomResp](#svc-biz-room-ForbidRoomResp) | ForbidRoom 封禁直播间 |
 | ResumeRoom | [ResumeRoomReq](#svc-biz-room-ResumeRoomReq) | [ResumeRoomResp](#svc-biz-room-ResumeRoomResp) | ResumeRoom 解封直播间 |
 | StartLive | [StartLiveReq](#svc-biz-room-StartLiveReq) | [StartLiveResp](#svc-biz-room-StartLiveResp) | StartLive 开始直播 |
@@ -14195,6 +14415,8 @@ Room 房间
 | page | [int32](#int32) |  | 页数 |
 | limit | [int32](#int32) |  | 条数 |
 | streamer_id | [string](#string) |  | 主播id |
+| start_at | [TimeBeginEnd](#svc-biz-room-TimeBeginEnd) |  |  |
+| end_at | [TimeBeginEnd](#svc-biz-room-TimeBeginEnd) |  |  |
 
 
 
@@ -14235,7 +14457,7 @@ Room 房间
 | gift_total_user | [int64](#int64) |  | 礼物用户总数 |
 | total_viewer | [int64](#int64) |  | 观看人数 |
 | new_follow | [int64](#int64) |  | 新增订阅 |
-| new_fanbse | [int64](#int64) |  | 新增粉丝团 |
+| new_fanbase | [int64](#int64) |  | 新增粉丝团 |
 | new_nobble | [int64](#int64) |  | 新增贵族 |
 | new_nobble_price | [int64](#int64) |  | 新增贵族代币数 |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
@@ -14319,6 +14541,14 @@ Room 房间
 | ----- | ---- | ----- | ----------- |
 | count | [int64](#int64) |  | 直播次数 |
 | duration | [float](#float) |  | 直播时长 |
+| gift_total_num | [int64](#int64) |  | 礼物总数 |
+| gift_total_price | [int64](#int64) |  | 礼物代币总数 |
+| gift_total_user | [int64](#int64) |  | 礼物用户总数（每场直播礼物用户总数相加，不去重） |
+| total_viewer | [int64](#int64) |  | 观看人数（每场直播观看人数相加，不去重） |
+| new_follow | [int64](#int64) |  | 新增订阅（每场新增订阅人数相加，不去重） |
+| new_fanbase | [int64](#int64) |  | 新增粉丝团（每场新增粉丝团相加，不去重） |
+| new_nobble | [int64](#int64) |  | 新增贵族（每场直播贵族付费用户数相加，包含续费、升级） |
+| new_nobble_price | [int64](#int64) |  | 新增贵族代币数（每场直播贵族付费数相加，包含续费、升级） |
 
 
 
@@ -14354,9 +14584,9 @@ Room 房间
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| GetLive | [GetLiveReq](#svc-biz-room-GetLiveReq) | [GetLiveResp](#svc-biz-room-GetLiveResp) | GetLive 查询直播间信息 |
-| MGetLive | [MGetLiveReq](#svc-biz-room-MGetLiveReq) | [MGetLiveResp](#svc-biz-room-MGetLiveResp) | MGetLive 批量获取直播间信息 |
-| ListLive | [ListLiveReq](#svc-biz-room-ListLiveReq) | [ListLiveResp](#svc-biz-room-ListLiveResp) | ListLive 获取在播直播间列表 |
+| GetLive | [GetLiveReq](#svc-biz-room-GetLiveReq) | [GetLiveResp](#svc-biz-room-GetLiveResp) | GetLive 查询直播信息 |
+| MGetLive | [MGetLiveReq](#svc-biz-room-MGetLiveReq) | [MGetLiveResp](#svc-biz-room-MGetLiveResp) | MGetLive 批量获取直播信息 |
+| ListLive | [ListLiveReq](#svc-biz-room-ListLiveReq) | [ListLiveResp](#svc-biz-room-ListLiveResp) | ListLive 获取直播列表 |
 | StatLive | [StatLiveReq](#svc-biz-room-StatLiveReq) | [StatLiveResp](#svc-biz-room-StatLiveResp) | StatLive 获取直播统计信息 |
 
  
@@ -14485,11 +14715,14 @@ Room 房间
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | id | [string](#string) |  |  |
-| subject | [string](#string) |  |  |
-| filter | [int64](#int64) |  |  |
-| title | [string](#string) |  |  |
-| detail | [string](#string) |  |  |
-| status | [int64](#int64) |  |  |
+| subject | [string](#string) |  | 列表项目类型 |
+| filter | [int64](#int64) |  | 过滤条件（位运算） |
+| title | [string](#string) |  | 列表项目标题 |
+| target_device | [int64](#int64) |  | 目标设备类型 |
+| target_user | [int64](#int64) |  | 目标用户类型 |
+| detail | [string](#string) |  | 内容（json） |
+| status | [int64](#int64) |  | 状态 |
+| related_ids | [string](#string) | repeated | 关联的ID数组 |
 | start_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 生效时间 |
 | end_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 失效时间 |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
@@ -15073,6 +15306,91 @@ CreatedChannelTypeRequest 渠道支付类型
 
 
 
+<a name="svc-infra-pay-GetChannelResponse"></a>
+
+### GetChannelResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| merchant_id | [string](#string) |  | 商户号 |
+| name | [string](#string) |  | 名称 |
+| display_id | [int64](#int64) |  | 显示ID |
+| merchant_no | [string](#string) |  | 商户号 |
+| secret | [string](#string) |  | 密钥 |
+| gateway_url | [string](#string) |  | 网关地址 |
+| notify_url | [string](#string) |  | 通知地址 |
+| status | [int64](#int64) |  | 状态 0/关 1/开启 |
+| creator | [string](#string) |  | 创建者 |
+
+
+
+
+
+
+<a name="svc-infra-pay-GetChannelTypeMerchantResponse"></a>
+
+### GetChannelTypeMerchantResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| merchant_id | [string](#string) |  |  |
+| channel_id | [string](#string) |  |  |
+| channel_type_id | [string](#string) |  |  |
+| pay_type_name | [string](#string) |  |  |
+| type_no | [string](#string) |  |  |
+| amount_type | [int64](#int64) |  |  |
+| amount_min | [int64](#int64) |  |  |
+| amount_max | [int64](#int64) |  |  |
+| channel_ratio | [int64](#int64) |  |  |
+| platform | [int64](#int64) |  |  |
+| weight | [int64](#int64) |  |  |
+| status | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-pay-GetChannelTypeResponse"></a>
+
+### GetChannelTypeResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| channel_id | [string](#string) |  | 渠道ID |
+| name | [string](#string) |  | 名称 |
+| channel_type_id | [string](#string) |  | 充值字符串 |
+| status | [int64](#int64) |  | 状态 |
+| ratio | [int64](#int64) |  | 费率 |
+| creator | [string](#string) |  | 创建者 |
+| pay_platform | [string](#string) |  | 支付平台 |
+
+
+
+
+
+
+<a name="svc-infra-pay-GetRecordRequest"></a>
+
+### GetRecordRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+
+
+
+
+
+
 <a name="svc-infra-pay-OrderInfo"></a>
 
 ### OrderInfo
@@ -15347,6 +15665,7 @@ UpdatedChannelTypeRequest 更新渠道
 | name | [string](#string) |  | 名称 |
 | channel_type_key | [string](#string) |  | 充值字符串 |
 | status | [int64](#int64) |  | 状态 |
+| ratio | [int64](#int64) |  | 费率 |
 | pay_platform | [string](#string) |  | 支付平台 |
 
 
@@ -15404,7 +15723,7 @@ UpdatedChannelTypeRequest 更新渠道
 | ---- | ------ | ----------- |
 | Channel | 0 |  |
 | ChannelType | 1 |  |
-| ChannelTypeOption | 2 |  |
+| ChannelTypeMerchant | 2 |  |
 
 
  
@@ -15429,14 +15748,17 @@ UpdatedChannelTypeRequest 更新渠道
 | DeletedChannel | [CommonDeletedRequest](#svc-infra-pay-CommonDeletedRequest) | [CommonResponse](#svc-infra-pay-CommonResponse) | DeletedChannel delete useless channel rows |
 | UpdatedChannel | [UpdatedChannelRequest](#svc-infra-pay-UpdatedChannelRequest) | [CommonResponse](#svc-infra-pay-CommonResponse) | UpdatedChannel update channel basic information |
 | GetChannelsList | [ChannelsListRequest](#svc-infra-pay-ChannelsListRequest) | [ChannelsListResponse](#svc-infra-pay-ChannelsListResponse) | GetChannelsList fetch channel list api for dashboard |
+| GetChannel | [GetRecordRequest](#svc-infra-pay-GetRecordRequest) | [GetChannelResponse](#svc-infra-pay-GetChannelResponse) |  |
 | CreatedChannelType | [CreatedChannelTypeRequest](#svc-infra-pay-CreatedChannelTypeRequest) | [CommonResponse](#svc-infra-pay-CommonResponse) | CreatedChannelType created channel types api for dashboard |
 | UpdatedChannelType | [UpdatedChannelTypeRequest](#svc-infra-pay-UpdatedChannelTypeRequest) | [CommonResponse](#svc-infra-pay-CommonResponse) | UpdatedChannelType updated channel types api for dashboard |
 | DeletedChannelType | [CommonDeletedRequest](#svc-infra-pay-CommonDeletedRequest) | [CommonResponse](#svc-infra-pay-CommonResponse) | DeletedChannelType deleted channel types api for dashboard |
 | GetChannelTypeList | [ChannelTypeListRequest](#svc-infra-pay-ChannelTypeListRequest) | [ChannelTypeListResponse](#svc-infra-pay-ChannelTypeListResponse) | GetChannelTypeList fetch channel types api for dashboard |
+| GetChannelType | [GetRecordRequest](#svc-infra-pay-GetRecordRequest) | [GetChannelTypeResponse](#svc-infra-pay-GetChannelTypeResponse) |  |
 | CreatedChannelTypeMerchant | [CreatedChannelTypeMerchantRequest](#svc-infra-pay-CreatedChannelTypeMerchantRequest) | [CommonResponse](#svc-infra-pay-CommonResponse) | CreatedChannelTypeMerchant merchant channel type created api for dashboard |
 | UpdatedChannelTypeMerchant | [UpdatedChannelTypeMerchantRequest](#svc-infra-pay-UpdatedChannelTypeMerchantRequest) | [CommonResponse](#svc-infra-pay-CommonResponse) | UpdatedChannelTypeMerchant merchant channel type updated api for dashboard |
 | DeletedChannelTypeMerchant | [CommonDeletedRequest](#svc-infra-pay-CommonDeletedRequest) | [CommonResponse](#svc-infra-pay-CommonResponse) | DeletedChannelTypeMerchant merchant channel type deleted api for dashboard |
 | GetChannelTypeMerchantList | [ChannelTypeMerchantListRequest](#svc-infra-pay-ChannelTypeMerchantListRequest) | [ChannelTypeMerchantListResponse](#svc-infra-pay-ChannelTypeMerchantListResponse) | GetChannelTypeMerchantList merchant channel type list api for dashboard |
+| GetChannelTypeMerchant | [GetRecordRequest](#svc-infra-pay-GetRecordRequest) | [GetChannelTypeMerchantResponse](#svc-infra-pay-GetChannelTypeMerchantResponse) |  |
 | UpdateRecordStatus | [UpdateRecordStatusRequest](#svc-infra-pay-UpdateRecordStatusRequest) | [UpdateRecordStatusResponse](#svc-infra-pay-UpdateRecordStatusResponse) | 更新记录状态 |
 | GetChargeChannelTypeList | [ChargeChannelTypeRequest](#svc-infra-pay-ChargeChannelTypeRequest) | [ChargeChannelTypeResponse](#svc-infra-pay-ChargeChannelTypeResponse) | GetChargeChannelTypeList fetch charge channel list api for viewer layer
 

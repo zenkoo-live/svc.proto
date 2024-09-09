@@ -23,11 +23,14 @@ message InitDBResp {
 
 message Item {
     string id = 1;
-    string subject = 2;
-    int64 filter = 3;
-    string title = 4;
-    string detail = 11;
-    int64 status = 12;
+    string subject = 2; // 列表项目类型
+    int64 filter = 3; // 过滤条件（位运算）
+    string title = 4; // 列表项目标题
+    int64 target_device = 5; // 目标设备类型
+    int64 target_user = 6; // 目标用户类型
+    string detail = 11; // 内容（json）
+    int64 status = 12; // 状态
+    repeated string related_ids = 63; // 关联的ID数组  
     google.protobuf.Timestamp start_at = 127; // 生效时间
     google.protobuf.Timestamp end_at = 128; // 失效时间
     google.protobuf.Timestamp created_at = 255; // 创建时间

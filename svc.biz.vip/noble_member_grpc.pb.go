@@ -23,6 +23,7 @@ const (
 	NobleMember_RenewNoble_FullMethodName                           = "/svc.biz.vip.NobleMember/RenewNoble"
 	NobleMember_UpgradeNoble_FullMethodName                         = "/svc.biz.vip.NobleMember/UpgradeNoble"
 	NobleMember_GetNobleMember_FullMethodName                       = "/svc.biz.vip.NobleMember/GetNobleMember"
+	NobleMember_MGetNobleMember_FullMethodName                      = "/svc.biz.vip.NobleMember/MGetNobleMember"
 	NobleMember_GetNobleMemberList_FullMethodName                   = "/svc.biz.vip.NobleMember/GetNobleMemberList"
 	NobleMember_CountNobleMember_FullMethodName                     = "/svc.biz.vip.NobleMember/CountNobleMember"
 	NobleMember_GetOnlineNobleMemberListByStreamerID_FullMethodName = "/svc.biz.vip.NobleMember/GetOnlineNobleMemberListByStreamerID"
@@ -44,6 +45,8 @@ type NobleMemberClient interface {
 	UpgradeNoble(ctx context.Context, in *UpgradeNobleReq, opts ...grpc.CallOption) (*UpgradeNobleResp, error)
 	// GetNobleMember 获取成员贵族信息
 	GetNobleMember(ctx context.Context, in *GetNobleMemberReq, opts ...grpc.CallOption) (*GetNobleMemberResp, error)
+	// MGetNobleMember 批量获取成员贵族信息
+	MGetNobleMember(ctx context.Context, in *MGetNobleMemberReq, opts ...grpc.CallOption) (*MGetNobleMemberResp, error)
 	// GetNobleMemberList 获取贵族成员列表（streamer_id传空字符串取所有）
 	GetNobleMemberList(ctx context.Context, in *GetNobleMemberListReq, opts ...grpc.CallOption) (*GetNobleMemberListResp, error)
 	// CountNobleMember 获取成员总数
@@ -98,6 +101,16 @@ func (c *nobleMemberClient) GetNobleMember(ctx context.Context, in *GetNobleMemb
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetNobleMemberResp)
 	err := c.cc.Invoke(ctx, NobleMember_GetNobleMember_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *nobleMemberClient) MGetNobleMember(ctx context.Context, in *MGetNobleMemberReq, opts ...grpc.CallOption) (*MGetNobleMemberResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MGetNobleMemberResp)
+	err := c.cc.Invoke(ctx, NobleMember_MGetNobleMember_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -168,6 +181,8 @@ type NobleMemberServer interface {
 	UpgradeNoble(context.Context, *UpgradeNobleReq) (*UpgradeNobleResp, error)
 	// GetNobleMember 获取成员贵族信息
 	GetNobleMember(context.Context, *GetNobleMemberReq) (*GetNobleMemberResp, error)
+	// MGetNobleMember 批量获取成员贵族信息
+	MGetNobleMember(context.Context, *MGetNobleMemberReq) (*MGetNobleMemberResp, error)
 	// GetNobleMemberList 获取贵族成员列表（streamer_id传空字符串取所有）
 	GetNobleMemberList(context.Context, *GetNobleMemberListReq) (*GetNobleMemberListResp, error)
 	// CountNobleMember 获取成员总数
@@ -199,6 +214,9 @@ func (UnimplementedNobleMemberServer) UpgradeNoble(context.Context, *UpgradeNobl
 }
 func (UnimplementedNobleMemberServer) GetNobleMember(context.Context, *GetNobleMemberReq) (*GetNobleMemberResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetNobleMember not implemented")
+}
+func (UnimplementedNobleMemberServer) MGetNobleMember(context.Context, *MGetNobleMemberReq) (*MGetNobleMemberResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method MGetNobleMember not implemented")
 }
 func (UnimplementedNobleMemberServer) GetNobleMemberList(context.Context, *GetNobleMemberListReq) (*GetNobleMemberListResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetNobleMemberList not implemented")
@@ -304,6 +322,24 @@ func _NobleMember_GetNobleMember_Handler(srv interface{}, ctx context.Context, d
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(NobleMemberServer).GetNobleMember(ctx, req.(*GetNobleMemberReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NobleMember_MGetNobleMember_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MGetNobleMemberReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NobleMemberServer).MGetNobleMember(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: NobleMember_MGetNobleMember_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NobleMemberServer).MGetNobleMember(ctx, req.(*MGetNobleMemberReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -420,6 +456,10 @@ var NobleMember_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetNobleMember",
 			Handler:    _NobleMember_GetNobleMember_Handler,
+		},
+		{
+			MethodName: "MGetNobleMember",
+			Handler:    _NobleMember_MGetNobleMember_Handler,
 		},
 		{
 			MethodName: "GetNobleMemberList",
