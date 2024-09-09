@@ -79,10 +79,10 @@ message StatLiveResp {
     float duration = 2; // 直播时长
     int64 gift_total_num = 3; // 礼物总数
     int64 gift_total_price = 4; // 礼物代币总数
-    int64 gift_total_user = 5; // 礼物用户总数
-    int64 total_viewer = 6; // 观看人数
-    int64 new_follow = 7; // 新增订阅
-    int64 new_fanbase = 8; // 新增粉丝团
-    int64 new_nobble = 9; // 新增贵族
-    int64 new_nobble_price = 10; // 新增贵族代币数
+    int64 gift_total_user = 5; // 礼物用户总数（每场直播礼物用户总数相加，不去重）
+    int64 total_viewer = 6; // 观看人数（每场直播观看人数相加，不去重）
+    int64 new_follow = 7; // 新增订阅（每场新增订阅人数相加，不去重）
+    int64 new_fanbase = 8; // 新增粉丝团（每场新增粉丝团相加，不去重）
+    int64 new_nobble = 9; // 新增贵族（每场直播贵族付费用户数相加，包含续费、升级）
+    int64 new_nobble_price = 10; // 新增贵族代币数（每场直播贵族付费数相加，包含续费、升级）
 }

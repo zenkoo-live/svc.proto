@@ -629,12 +629,12 @@ type StatLiveResp struct {
 	Duration       float32 `protobuf:"fixed32,2,opt,name=duration,proto3" json:"duration,omitempty"`                                     // 直播时长
 	GiftTotalNum   int64   `protobuf:"varint,3,opt,name=gift_total_num,json=giftTotalNum,proto3" json:"gift_total_num,omitempty"`        // 礼物总数
 	GiftTotalPrice int64   `protobuf:"varint,4,opt,name=gift_total_price,json=giftTotalPrice,proto3" json:"gift_total_price,omitempty"`  // 礼物代币总数
-	GiftTotalUser  int64   `protobuf:"varint,5,opt,name=gift_total_user,json=giftTotalUser,proto3" json:"gift_total_user,omitempty"`     // 礼物用户总数
-	TotalViewer    int64   `protobuf:"varint,6,opt,name=total_viewer,json=totalViewer,proto3" json:"total_viewer,omitempty"`             // 观看人数
-	NewFollow      int64   `protobuf:"varint,7,opt,name=new_follow,json=newFollow,proto3" json:"new_follow,omitempty"`                   // 新增订阅
-	NewFanbase     int64   `protobuf:"varint,8,opt,name=new_fanbase,json=newFanbase,proto3" json:"new_fanbase,omitempty"`                // 新增粉丝团
-	NewNobble      int64   `protobuf:"varint,9,opt,name=new_nobble,json=newNobble,proto3" json:"new_nobble,omitempty"`                   // 新增贵族
-	NewNobblePrice int64   `protobuf:"varint,10,opt,name=new_nobble_price,json=newNobblePrice,proto3" json:"new_nobble_price,omitempty"` // 新增贵族代币数
+	GiftTotalUser  int64   `protobuf:"varint,5,opt,name=gift_total_user,json=giftTotalUser,proto3" json:"gift_total_user,omitempty"`     // 礼物用户总数（每场直播礼物用户总数相加，不去重）
+	TotalViewer    int64   `protobuf:"varint,6,opt,name=total_viewer,json=totalViewer,proto3" json:"total_viewer,omitempty"`             // 观看人数（每场直播观看人数相加，不去重）
+	NewFollow      int64   `protobuf:"varint,7,opt,name=new_follow,json=newFollow,proto3" json:"new_follow,omitempty"`                   // 新增订阅（每场新增订阅人数相加，不去重）
+	NewFanbase     int64   `protobuf:"varint,8,opt,name=new_fanbase,json=newFanbase,proto3" json:"new_fanbase,omitempty"`                // 新增粉丝团（每场新增粉丝团相加，不去重）
+	NewNobble      int64   `protobuf:"varint,9,opt,name=new_nobble,json=newNobble,proto3" json:"new_nobble,omitempty"`                   // 新增贵族（每场直播贵族付费用户数相加，包含续费、升级）
+	NewNobblePrice int64   `protobuf:"varint,10,opt,name=new_nobble_price,json=newNobblePrice,proto3" json:"new_nobble_price,omitempty"` // 新增贵族代币数（每场直播贵族付费数相加，包含续费、升级）
 }
 
 func (x *StatLiveResp) Reset() {
