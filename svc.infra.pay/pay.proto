@@ -57,6 +57,7 @@ message DetailPayRecord {
   string creator = 13; // 操作者
   string channel_type_name = 14; // 渠道支付方式名称
   string trans_no = 15; // 三方交易ID
+  string platform = 16; // 充值端口
 }
 
 message OrderInfo {
@@ -78,6 +79,7 @@ message RechargeRequest {
   string type_channel_id = 4;                     // 通过获取充值方式列表中的Id UUID类型
   string app_id = 5;                           // 充值的APPID
   string remote_addr = 6;                      // 请求IP
+  string platform = 7;                         // 充值的端口: ios,android,h5,pc这种
 }
 
 message RechargeResponse {
