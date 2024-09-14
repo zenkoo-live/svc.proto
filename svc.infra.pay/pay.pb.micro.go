@@ -47,6 +47,8 @@ type PayService interface {
 	OrderQuery(ctx context.Context, in *OrderQueryRequest, opts ...client.CallOption) (*OrderQueryResponse, error)
 	// 回调通知
 	Notify(ctx context.Context, in *OrderNotifyRequest, opts ...client.CallOption) (*OrderNotifyResponse, error)
+	// 详细的充值订单记录
+	DetailPayRecords(ctx context.Context, in *DetailPayRecordRequest, opts ...client.CallOption) (*DetailPayRecordResponse, error)
 	// ChannelSupportedList api for dashbaord
 	GetChannelSupportedList(ctx context.Context, in *ChannelSupportedListRequest, opts ...client.CallOption) (*ChannelSupportedListResponse, error)
 	// Channel
@@ -137,6 +139,16 @@ func (c *payService) OrderQuery(ctx context.Context, in *OrderQueryRequest, opts
 func (c *payService) Notify(ctx context.Context, in *OrderNotifyRequest, opts ...client.CallOption) (*OrderNotifyResponse, error) {
 	req := c.c.NewRequest(c.name, "PayService.Notify", in)
 	out := new(OrderNotifyResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *payService) DetailPayRecords(ctx context.Context, in *DetailPayRecordRequest, opts ...client.CallOption) (*DetailPayRecordResponse, error) {
+	req := c.c.NewRequest(c.name, "PayService.DetailPayRecords", in)
+	out := new(DetailPayRecordResponse)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -337,6 +349,8 @@ type PayServiceHandler interface {
 	OrderQuery(context.Context, *OrderQueryRequest, *OrderQueryResponse) error
 	// 回调通知
 	Notify(context.Context, *OrderNotifyRequest, *OrderNotifyResponse) error
+	// 详细的充值订单记录
+	DetailPayRecords(context.Context, *DetailPayRecordRequest, *DetailPayRecordResponse) error
 	// ChannelSupportedList api for dashbaord
 	GetChannelSupportedList(context.Context, *ChannelSupportedListRequest, *ChannelSupportedListResponse) error
 	// Channel
@@ -379,6 +393,7 @@ func RegisterPayServiceHandler(s server.Server, hdlr PayServiceHandler, opts ...
 		PayRecords(ctx context.Context, in *PayRecordRequest, out *PayRecordResponse) error
 		OrderQuery(ctx context.Context, in *OrderQueryRequest, out *OrderQueryResponse) error
 		Notify(ctx context.Context, in *OrderNotifyRequest, out *OrderNotifyResponse) error
+		DetailPayRecords(ctx context.Context, in *DetailPayRecordRequest, out *DetailPayRecordResponse) error
 		GetChannelSupportedList(ctx context.Context, in *ChannelSupportedListRequest, out *ChannelSupportedListResponse) error
 		CreatedChannel(ctx context.Context, in *CreatedChannelRequest, out *CommonResponse) error
 		DeletedChannel(ctx context.Context, in *CommonDeletedRequest, out *CommonResponse) error
@@ -427,6 +442,10 @@ func (h *payServiceHandler) OrderQuery(ctx context.Context, in *OrderQueryReques
 
 func (h *payServiceHandler) Notify(ctx context.Context, in *OrderNotifyRequest, out *OrderNotifyResponse) error {
 	return h.PayServiceHandler.Notify(ctx, in, out)
+}
+
+func (h *payServiceHandler) DetailPayRecords(ctx context.Context, in *DetailPayRecordRequest, out *DetailPayRecordResponse) error {
+	return h.PayServiceHandler.DetailPayRecords(ctx, in, out)
 }
 
 func (h *payServiceHandler) GetChannelSupportedList(ctx context.Context, in *ChannelSupportedListRequest, out *ChannelSupportedListResponse) error {

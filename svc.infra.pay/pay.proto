@@ -40,6 +40,25 @@ message PayRecord {
   google.protobuf.Timestamp created_at = 6; // 结束时间
   google.protobuf.Timestamp updated_at = 7; // 结束时间
 }
+
+message DetailPayRecord {
+  string order_no = 1; // 订单号
+  int64 money = 2; // 充值金额
+  PayStatus status = 3; // 订单状态
+  DeliveryStatus delivery_status = 4; // 发货状态
+  int64 ObtainAmount = 5; // 到账金额
+  google.protobuf.Timestamp created_at = 6; // 结束时间
+  google.protobuf.Timestamp updated_at = 7; // 结束时间
+  string merchant_id =8; // 商户ID
+  string user_id = 9; // 用户ID
+  string app_id = 10; // 应用ID
+  string channel_id = 11;//渠道ID
+  string channel_type_id = 12;// 渠道支付方式
+  string creator = 13; // 操作者
+  string channel_type_name = 14; // 渠道支付方式名称
+  string trans_no = 15; // 三方交易ID
+}
+
 message OrderInfo {
   string order_no = 1;
   int64 money = 2;
@@ -92,9 +111,30 @@ message PayRecordRequest {
   uint32 size = 4;                           // 每页数量
 };
 
+message DetailPayRecordRequest {
+  string merchant_id = 1;                     // 商户ID
+  string user_id = 2;                         // 用户ID
+  string app_id = 3;                          // 应用ID
+  string order_no = 4;                        // 订单号
+  string channel_id = 5;                      // 渠道ID
+  google.protobuf.Timestamp start_at = 6;     // 结束时间
+  google.protobuf.Timestamp end_at = 7;       // 结束时间
+  PayStatus status = 8;                       // 支付状态
+
+  uint32 page = 100;                           // 页数
+  uint32 size = 200;                           // 每页数量
+}
+
+
+
 message PayRecordResponse {
   int64 count = 1;                            // 总数
   repeated PayRecord list = 2;                 // 记录
+};
+
+message DetailPayRecordResponse {
+  int64 count = 1;                            // 总数
+  repeated DetailPayRecord list = 2;                 // 记录
 };
 
 ///////////////////////////////////////////////////////////// 支付相关 》》》》 //////////////////////////////////////////////////////////////////////
@@ -386,6 +426,8 @@ service PayService {
   rpc OrderQuery(OrderQueryRequest) returns (OrderQueryResponse);
   // 回调通知
   rpc Notify(OrderNotifyRequest) returns (OrderNotifyResponse);
+  // 详细的充值订单记录
+  rpc DetailPayRecords(DetailPayRecordRequest) returns (DetailPayRecordResponse);
 
   /////////////////// 《《《《 渠道 /////////////////////////////////
 
