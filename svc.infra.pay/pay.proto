@@ -49,7 +49,7 @@ message DetailPayRecord {
   int64 ObtainAmount = 5; // 到账金额
   google.protobuf.Timestamp created_at = 6; // 结束时间
   google.protobuf.Timestamp updated_at = 7; // 结束时间
-  string merchant_id =8; // 商户ID
+  string merchant_id = 8; // 商户ID
   string user_id = 9; // 用户ID
   string app_id = 10; // 应用ID
   string channel_id = 11;//渠道ID
@@ -121,8 +121,8 @@ message DetailPayRecordRequest {
   string channel_id = 5;                      // 渠道ID
   google.protobuf.Timestamp start_at = 6;     // 结束时间
   google.protobuf.Timestamp end_at = 7;       // 结束时间
-  PayStatus status = 8;                       // 支付状态
-
+  optional PayStatus status = 8;              // 支付状态
+  optional PayStatus not_status = 9;          // 不等于某个状态
   uint32 page = 100;                           // 页数
   uint32 size = 200;                           // 每页数量
 }
