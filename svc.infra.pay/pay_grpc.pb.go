@@ -25,6 +25,7 @@ const (
 	PayService_OrderQuery_FullMethodName                 = "/svc.infra.pay.PayService/OrderQuery"
 	PayService_Notify_FullMethodName                     = "/svc.infra.pay.PayService/Notify"
 	PayService_DetailPayRecords_FullMethodName           = "/svc.infra.pay.PayService/DetailPayRecords"
+	PayService_Reissue_FullMethodName                    = "/svc.infra.pay.PayService/Reissue"
 	PayService_GetChannelSupportedList_FullMethodName    = "/svc.infra.pay.PayService/GetChannelSupportedList"
 	PayService_CreatedChannel_FullMethodName             = "/svc.infra.pay.PayService/CreatedChannel"
 	PayService_DeletedChannel_FullMethodName             = "/svc.infra.pay.PayService/DeletedChannel"
@@ -63,6 +64,8 @@ type PayServiceClient interface {
 	Notify(ctx context.Context, in *OrderNotifyRequest, opts ...grpc.CallOption) (*OrderNotifyResponse, error)
 	// 详细的充值订单记录
 	DetailPayRecords(ctx context.Context, in *DetailPayRecordRequest, opts ...grpc.CallOption) (*DetailPayRecordResponse, error)
+	// 补发订单
+	Reissue(ctx context.Context, in *ReissueRequest, opts ...grpc.CallOption) (*ReissueResponse, error)
 	// ChannelSupportedList api for dashbaord
 	GetChannelSupportedList(ctx context.Context, in *ChannelSupportedListRequest, opts ...grpc.CallOption) (*ChannelSupportedListResponse, error)
 	// Channel
@@ -160,6 +163,16 @@ func (c *payServiceClient) DetailPayRecords(ctx context.Context, in *DetailPayRe
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(DetailPayRecordResponse)
 	err := c.cc.Invoke(ctx, PayService_DetailPayRecords_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *payServiceClient) Reissue(ctx context.Context, in *ReissueRequest, opts ...grpc.CallOption) (*ReissueResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ReissueResponse)
+	err := c.cc.Invoke(ctx, PayService_Reissue_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -364,6 +377,8 @@ type PayServiceServer interface {
 	Notify(context.Context, *OrderNotifyRequest) (*OrderNotifyResponse, error)
 	// 详细的充值订单记录
 	DetailPayRecords(context.Context, *DetailPayRecordRequest) (*DetailPayRecordResponse, error)
+	// 补发订单
+	Reissue(context.Context, *ReissueRequest) (*ReissueResponse, error)
 	// ChannelSupportedList api for dashbaord
 	GetChannelSupportedList(context.Context, *ChannelSupportedListRequest) (*ChannelSupportedListResponse, error)
 	// Channel
@@ -421,6 +436,9 @@ func (UnimplementedPayServiceServer) Notify(context.Context, *OrderNotifyRequest
 }
 func (UnimplementedPayServiceServer) DetailPayRecords(context.Context, *DetailPayRecordRequest) (*DetailPayRecordResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DetailPayRecords not implemented")
+}
+func (UnimplementedPayServiceServer) Reissue(context.Context, *ReissueRequest) (*ReissueResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Reissue not implemented")
 }
 func (UnimplementedPayServiceServer) GetChannelSupportedList(context.Context, *ChannelSupportedListRequest) (*ChannelSupportedListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetChannelSupportedList not implemented")
@@ -593,6 +611,24 @@ func _PayService_DetailPayRecords_Handler(srv interface{}, ctx context.Context, 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PayServiceServer).DetailPayRecords(ctx, req.(*DetailPayRecordRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PayService_Reissue_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReissueRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PayServiceServer).Reissue(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PayService_Reissue_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PayServiceServer).Reissue(ctx, req.(*ReissueRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -951,6 +987,10 @@ var PayService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DetailPayRecords",
 			Handler:    _PayService_DetailPayRecords_Handler,
+		},
+		{
+			MethodName: "Reissue",
+			Handler:    _PayService_Reissue_Handler,
 		},
 		{
 			MethodName: "GetChannelSupportedList",
