@@ -58,6 +58,7 @@ message DetailPayRecord {
   string channel_type_name = 14; // 渠道支付方式名称
   string trans_no = 15; // 三方交易ID
   string platform = 16; // 充值端口
+  string remark = 17; // 备注
 }
 
 message OrderInfo {
