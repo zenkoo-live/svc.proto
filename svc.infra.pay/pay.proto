@@ -239,7 +239,8 @@ message CreatedChannelTypeRequest {
   int64 status = 5; // 状态
   int64 ratio = 6; // 费率
   string creator = 7; // 创建者
-  string pay_platform = 8; // 支付平台
+  string pay_platform = 8; // 支付平台: 支付宝、微信
+  string image = 9; // 支付方式的图标
 }
 
 // UpdatedChannelTypeRequest 更新渠道
@@ -250,14 +251,15 @@ message UpdatedChannelTypeRequest {
   string channel_type_key = 4; // 充值字符串
   int64 status = 5; // 状态
   int64 ratio = 6; // 费率
-  string pay_platform = 8; // 支付平台
+  string pay_platform = 8; // 支付平台: 支付宝、微信
+  string image = 9; // 支付方式的图标
 }
 
 // ChannelTypeListRequest 列表查询
 message ChannelTypeListRequest {
   int64 status = 1; // 状态 0/关 1/开 -1/全部
   string name = 2; // 名称搜索
-  string pay_platform = 3; // 支付平台
+  string pay_platform = 3; // 支付平台: 支付宝、微信
   int64 page = 4;
   int64 size = 5;
 }
@@ -273,9 +275,10 @@ message ChannelTypeListResponse {
     int64 status = 5; // 状态
     int64 ratio = 6; // 费率
     string creator = 7; // 创建者
-    string pay_platform = 8; // 支付平台
+    string pay_platform = 8; // 支付平台: 支付宝、微信
     google.protobuf.Timestamp created_at = 9;
     google.protobuf.Timestamp updated_at = 10;
+    string image = 11; // 支付方式的图标
   }
   int64 cnt = 1;
   repeated ChannelType list = 2;
