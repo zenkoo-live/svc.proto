@@ -227,3 +227,12 @@ message MoneyExchangeCoinReq {
 message MoneyExchangeCoinResp {
   MoneyResult money_result = 1;
 }
+
+
+// 后台充值代币余额目前就一步操作，不在trade内实现，直接调用asset，但summary内使用trade内的req结构体，保持统一
+message CoinRechargeReq {
+    TradeInfo trade_info = 1;
+    UserInfo user = 2;
+    int64 recharge_amount = 3;
+    string attach = 4;
+}

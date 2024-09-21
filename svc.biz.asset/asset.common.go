@@ -41,6 +41,8 @@ const (
 	TransTypeMoneyRecharge     TransType = 21
 	TransTypeMoneyWithdraw     TransType = 22
 	TransTypeMoneyExchangeCoin TransType = 23
+
+	TransTypeCoinAdminRecharge TransType = 24
 )
 
 // AssetType 账户类型
