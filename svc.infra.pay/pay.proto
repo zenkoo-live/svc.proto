@@ -262,6 +262,9 @@ message ChannelTypeListRequest {
   string pay_platform = 3; // 支付平台: 支付宝、微信
   int64 page = 4;
   int64 size = 5;
+  string channel_id = 6;
+  google.protobuf.Timestamp start_time = 7; // 开始时间
+  google.protobuf.Timestamp end_time = 8; // 结束时间
 }
 
 // ChannelTypeListResponse 列表数据
@@ -279,6 +282,8 @@ message ChannelTypeListResponse {
     google.protobuf.Timestamp created_at = 9;
     google.protobuf.Timestamp updated_at = 10;
     string image = 11; // 支付方式的图标
+    string merchant_id = 12; // 商户号
+    string chanel_name = 13; // 渠道名称, etc. 永成支付
   }
   int64 cnt = 1;
   repeated ChannelType list = 2;
@@ -348,7 +353,7 @@ message ChannelTypeMerchantListRequest {
   google.protobuf.Timestamp end_time = 6;
   int64 page = 7;
   int64 size = 8;
-
+  string channel_type_id = 9;
 }
 
 // ChannelTypeMerchantListResponse 返回数据
@@ -370,6 +375,8 @@ message ChannelTypeMerchantListResponse {
     google.protobuf.Timestamp created_at = 14;
     google.protobuf.Timestamp updated_at = 15;
     google.protobuf.Timestamp deleted_at = 16;
+    string channel_name = 17;
+    string channel_type_name = 18;
   }
   int64 cnt = 1;
   repeated ChannelTypeMerchant list = 2;
