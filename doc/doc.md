@@ -915,6 +915,7 @@
     - [GiftGetReq](#svc-biz-gift-GiftGetReq)
     - [GiftGetResp](#svc-biz-gift-GiftGetResp)
     - [GiftInfo](#svc-biz-gift-GiftInfo)
+    - [GiftInfoPicField](#svc-biz-gift-GiftInfoPicField)
     - [GiftSendReq](#svc-biz-gift-GiftSendReq)
     - [GiftSendResp](#svc-biz-gift-GiftSendResp)
     - [GiftUpdateReq](#svc-biz-gift-GiftUpdateReq)
@@ -3775,6 +3776,9 @@ ChannelTypeListRequest 列表查询
 | pay_platform | [string](#string) |  | 支付平台: 支付宝、微信 |
 | page | [int64](#int64) |  |  |
 | size | [int64](#int64) |  |  |
+| channel_id | [string](#string) |  |  |
+| start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开始时间 |
+| end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 结束时间 |
 
 
 
@@ -3816,6 +3820,8 @@ ChannelType 渠道支付类型
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
 | updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
 | image | [string](#string) |  | 支付方式的图标 |
+| merchant_id | [string](#string) |  | 商户号 |
+| chanel_name | [string](#string) |  | 渠道名称, etc. 永成支付 |
 
 
 
@@ -3838,6 +3844,7 @@ ChannelTypeMerchantListRequest 请求数据
 | end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
 | page | [int64](#int64) |  |  |
 | size | [int64](#int64) |  |  |
+| channel_type_id | [string](#string) |  |  |
 
 
 
@@ -3884,6 +3891,8 @@ ChannelTypeMerchantListResponse 返回数据
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
 | updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
 | deleted_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+| channel_name | [string](#string) |  |  |
+| channel_type_name | [string](#string) |  |  |
 
 
 
@@ -15536,6 +15545,25 @@ topic: topic.gift.send
 | pic | [string](#string) |  | 图片资源(json字符串:{&#34;icon&#34;:&#34;&#34;, &#34;icon_gif&#34;:&#34;&#34;, &#34;chat_icon&#34;:&#34;&#34;, &#34;combo_bg&#34;:&#34;&#34;, &#34;combo_icon&#34;:&#34;&#34;}) |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
 | updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-gift-GiftInfoPicField"></a>
+
+### GiftInfoPicField
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| icon | [string](#string) |  |  |
+| icon_gif | [string](#string) |  |  |
+| chat_icon | [string](#string) |  |  |
+| combo_bg | [string](#string) |  |  |
+| combo_icon | [string](#string) |  |  |
 
 
 

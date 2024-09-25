@@ -133,3 +133,11 @@ message GiftSendResp {
     int32 combo_num = 2; // 连击数
     string combo_group = 3; // 连击组
 }
+
+message GiftInfoPicField  {
+    string icon = 1;
+    string icon_gif = 2;
+    string chat_icon = 3;
+    string combo_bg = 4;
+    string combo_icon = 5;
+}
