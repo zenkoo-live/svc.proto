@@ -39,6 +39,7 @@ message PayRecord {
   int64 ObtainAmount = 5; // 到账金额
   google.protobuf.Timestamp created_at = 6; // 结束时间
   google.protobuf.Timestamp updated_at = 7; // 结束时间
+  string AfterObtainAmount = 8; // 改变之后的金额
 }
 
 message DetailPayRecord {
@@ -59,6 +60,7 @@ message DetailPayRecord {
   string trans_no = 15; // 三方交易ID
   string platform = 16; // 充值端口
   string remark = 17; // 备注
+  string AfterObtainAmount = 18; // 改变之后的金额
 }
 
 message OrderInfo {
