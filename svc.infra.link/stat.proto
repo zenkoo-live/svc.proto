@@ -28,6 +28,13 @@ service LinkStat {
   rpc CheckDevice(CheckDeviceRequest) returns (CheckDeviceResponse);
   // 直播间统计数据
   rpc RoomLiveStat(RoomLiveStatRequest) returns (RoomLiveStatResponse);
+  // 检查账号是否在房间内
+  rpc CheckAccountRoom(CheckAccountRoomRequest) returns (CheckAccountResponse);
+  // 检查session是否在房间内
+  rpc CheckSessionRoom(CheckSessionRoomRequest) returns (CheckSessionResponse);
+  // 检查设备是否在房间内
+  rpc CheckDeviceRoom(CheckDeviceRoomRequest) returns (CheckDeviceResponse);
+
 
   // 刷新统计
   rpc Refresh(RefreshStatRequest) returns (RefreshStatResponse);
@@ -69,6 +76,13 @@ message CheckSessionRequest {
   string merchant_id = 1;                      // 商户ID
   repeated string session_ids = 2;            // 连接ID（列表）
 };
+message CheckSessionRoomRequest {
+  string merchant_id = 1;                      // 商户ID
+  repeated string session_ids = 2;            // 连接ID（列表）
+  string room_id = 3;                          // 房间ID
+  string live_id = 4;                          // 直播ID, 房间ID和直播ID 不能同时为空
+};
+
 message CheckSessionResponse {
   map<string, bool> online = 1;               // 连接ID => 是否在线
 };
@@ -76,6 +90,12 @@ message CheckSessionResponse {
 message CheckAccountRequest {
   string merchant_id = 1;                      // 商户ID
   repeated string account_ids = 2;             // 账号ID（列表）
+};
+message CheckAccountRoomRequest {
+  string merchant_id = 1;                      // 商户ID
+  repeated string account_ids = 2;             // 账号ID（列表）
+  string room_id = 3;                          // 房间ID
+  string live_id = 4;                          // 直播ID, 房间ID和直播ID 不能同时为空
 };
 message CheckAccountResponse {
   map<string, bool> online = 1;                // 账号ID => 是否在线
@@ -85,6 +105,13 @@ message CheckDeviceRequest {
   string merchant_id = 1;                      // 商户ID
   repeated string devices = 2;                // 设备标识（列表）
 };
+message CheckDeviceRoomRequest {
+  string merchant_id = 1;                      // 商户ID
+  repeated string devices = 2;                // 设备标识（列表）
+  string room_id = 3;                          // 房间ID
+  string live_id = 4;                          // 直播ID, 房间ID和直播ID 不能同时为空
+};
+
 
 
 message RoomLiveStatRequest {

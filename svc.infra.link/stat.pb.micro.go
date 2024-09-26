@@ -56,6 +56,12 @@ type LinkStatService interface {
 	CheckDevice(ctx context.Context, in *CheckDeviceRequest, opts ...client.CallOption) (*CheckDeviceResponse, error)
 	// 直播间统计数据
 	RoomLiveStat(ctx context.Context, in *RoomLiveStatRequest, opts ...client.CallOption) (*RoomLiveStatResponse, error)
+	// 检查账号是否在房间内
+	CheckAccountRoom(ctx context.Context, in *CheckAccountRoomRequest, opts ...client.CallOption) (*CheckAccountResponse, error)
+	// 检查session是否在房间内
+	CheckSessionRoom(ctx context.Context, in *CheckSessionRoomRequest, opts ...client.CallOption) (*CheckSessionResponse, error)
+	// 检查设备是否在房间内
+	CheckDeviceRoom(ctx context.Context, in *CheckDeviceRoomRequest, opts ...client.CallOption) (*CheckDeviceResponse, error)
 	// 刷新统计
 	Refresh(ctx context.Context, in *RefreshStatRequest, opts ...client.CallOption) (*RefreshStatResponse, error)
 }
@@ -172,6 +178,36 @@ func (c *linkStatService) RoomLiveStat(ctx context.Context, in *RoomLiveStatRequ
 	return out, nil
 }
 
+func (c *linkStatService) CheckAccountRoom(ctx context.Context, in *CheckAccountRoomRequest, opts ...client.CallOption) (*CheckAccountResponse, error) {
+	req := c.c.NewRequest(c.name, "LinkStat.CheckAccountRoom", in)
+	out := new(CheckAccountResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *linkStatService) CheckSessionRoom(ctx context.Context, in *CheckSessionRoomRequest, opts ...client.CallOption) (*CheckSessionResponse, error) {
+	req := c.c.NewRequest(c.name, "LinkStat.CheckSessionRoom", in)
+	out := new(CheckSessionResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *linkStatService) CheckDeviceRoom(ctx context.Context, in *CheckDeviceRoomRequest, opts ...client.CallOption) (*CheckDeviceResponse, error) {
+	req := c.c.NewRequest(c.name, "LinkStat.CheckDeviceRoom", in)
+	out := new(CheckDeviceResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *linkStatService) Refresh(ctx context.Context, in *RefreshStatRequest, opts ...client.CallOption) (*RefreshStatResponse, error) {
 	req := c.c.NewRequest(c.name, "LinkStat.Refresh", in)
 	out := new(RefreshStatResponse)
@@ -205,6 +241,12 @@ type LinkStatHandler interface {
 	CheckDevice(context.Context, *CheckDeviceRequest, *CheckDeviceResponse) error
 	// 直播间统计数据
 	RoomLiveStat(context.Context, *RoomLiveStatRequest, *RoomLiveStatResponse) error
+	// 检查账号是否在房间内
+	CheckAccountRoom(context.Context, *CheckAccountRoomRequest, *CheckAccountResponse) error
+	// 检查session是否在房间内
+	CheckSessionRoom(context.Context, *CheckSessionRoomRequest, *CheckSessionResponse) error
+	// 检查设备是否在房间内
+	CheckDeviceRoom(context.Context, *CheckDeviceRoomRequest, *CheckDeviceResponse) error
 	// 刷新统计
 	Refresh(context.Context, *RefreshStatRequest, *RefreshStatResponse) error
 }
@@ -221,6 +263,9 @@ func RegisterLinkStatHandler(s server.Server, hdlr LinkStatHandler, opts ...serv
 		CheckAccount(ctx context.Context, in *CheckAccountRequest, out *CheckAccountResponse) error
 		CheckDevice(ctx context.Context, in *CheckDeviceRequest, out *CheckDeviceResponse) error
 		RoomLiveStat(ctx context.Context, in *RoomLiveStatRequest, out *RoomLiveStatResponse) error
+		CheckAccountRoom(ctx context.Context, in *CheckAccountRoomRequest, out *CheckAccountResponse) error
+		CheckSessionRoom(ctx context.Context, in *CheckSessionRoomRequest, out *CheckSessionResponse) error
+		CheckDeviceRoom(ctx context.Context, in *CheckDeviceRoomRequest, out *CheckDeviceResponse) error
 		Refresh(ctx context.Context, in *RefreshStatRequest, out *RefreshStatResponse) error
 	}
 	type LinkStat struct {
@@ -272,6 +317,18 @@ func (h *linkStatHandler) CheckDevice(ctx context.Context, in *CheckDeviceReques
 
 func (h *linkStatHandler) RoomLiveStat(ctx context.Context, in *RoomLiveStatRequest, out *RoomLiveStatResponse) error {
 	return h.LinkStatHandler.RoomLiveStat(ctx, in, out)
+}
+
+func (h *linkStatHandler) CheckAccountRoom(ctx context.Context, in *CheckAccountRoomRequest, out *CheckAccountResponse) error {
+	return h.LinkStatHandler.CheckAccountRoom(ctx, in, out)
+}
+
+func (h *linkStatHandler) CheckSessionRoom(ctx context.Context, in *CheckSessionRoomRequest, out *CheckSessionResponse) error {
+	return h.LinkStatHandler.CheckSessionRoom(ctx, in, out)
+}
+
+func (h *linkStatHandler) CheckDeviceRoom(ctx context.Context, in *CheckDeviceRoomRequest, out *CheckDeviceResponse) error {
+	return h.LinkStatHandler.CheckDeviceRoom(ctx, in, out)
 }
 
 func (h *linkStatHandler) Refresh(ctx context.Context, in *RefreshStatRequest, out *RefreshStatResponse) error {
