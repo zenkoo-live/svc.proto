@@ -886,6 +886,8 @@
     - [UpdateItemReq](#svc-infra-list-UpdateItemReq)
     - [UpdateItemResp](#svc-infra-list-UpdateItemResp)
   
+    - [Status](#svc-infra-list-Status)
+  
     - [List](#svc-infra-list-List)
   
 - [svc.infra.pay/comm.inc.proto](#svc-infra-pay_comm-inc-proto)
@@ -14955,6 +14957,20 @@ Room 房间
 
 
  
+
+
+<a name="svc-infra-list-Status"></a>
+
+### Status
+Status
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| STATUS_NONE | 0 |  |
+| STATUS_ACTIVE | 1 |  |
+| STATUS_PENDING | 2 |  |
+| STATUS_EXPIRED | 3 |  |
+
 
  
 

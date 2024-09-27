@@ -37,6 +37,14 @@ message Item {
     google.protobuf.Timestamp updated_at = 256; // 更新时间
 };
 
+// Status
+enum Status {
+    STATUS_NONE = 0;
+    STATUS_ACTIVE = 1;
+    STATUS_PENDING = 2;
+    STATUS_EXPIRED = 3;
+};
+
 message GetItemReq {
     Item condition = 1;
 };
