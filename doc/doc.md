@@ -73,6 +73,7 @@
     - [StreamerAdditionsSetResp](#svc-biz-account-StreamerAdditionsSetResp)
     - [StreamerStatusSetReq](#svc-biz-account-StreamerStatusSetReq)
     - [StreamerStatusSetResp](#svc-biz-account-StreamerStatusSetResp)
+    - [TimePeriod](#svc-biz-account-TimePeriod)
     - [TotalManagersReq](#svc-biz-account-TotalManagersReq)
     - [TotalManagersResp](#svc-biz-account-TotalManagersResp)
     - [TotalStreamersReq](#svc-biz-account-TotalStreamersReq)
@@ -457,12 +458,15 @@
     - [CheckAccountRequest](#svc-infra-link-CheckAccountRequest)
     - [CheckAccountResponse](#svc-infra-link-CheckAccountResponse)
     - [CheckAccountResponse.OnlineEntry](#svc-infra-link-CheckAccountResponse-OnlineEntry)
+    - [CheckAccountRoomRequest](#svc-infra-link-CheckAccountRoomRequest)
     - [CheckDeviceRequest](#svc-infra-link-CheckDeviceRequest)
     - [CheckDeviceResponse](#svc-infra-link-CheckDeviceResponse)
     - [CheckDeviceResponse.OnlineEntry](#svc-infra-link-CheckDeviceResponse-OnlineEntry)
+    - [CheckDeviceRoomRequest](#svc-infra-link-CheckDeviceRoomRequest)
     - [CheckSessionRequest](#svc-infra-link-CheckSessionRequest)
     - [CheckSessionResponse](#svc-infra-link-CheckSessionResponse)
     - [CheckSessionResponse.OnlineEntry](#svc-infra-link-CheckSessionResponse-OnlineEntry)
+    - [CheckSessionRoomRequest](#svc-infra-link-CheckSessionRoomRequest)
     - [OnlineAccountListResponse](#svc-infra-link-OnlineAccountListResponse)
     - [OnlineCountRequest](#svc-infra-link-OnlineCountRequest)
     - [OnlineCountResponse](#svc-infra-link-OnlineCountResponse)
@@ -669,6 +673,8 @@
     - [TotalItemsResp](#svc-infra-list-TotalItemsResp)
     - [UpdateItemReq](#svc-infra-list-UpdateItemReq)
     - [UpdateItemResp](#svc-infra-list-UpdateItemResp)
+  
+    - [Status](#svc-infra-list-Status)
   
     - [List](#svc-infra-list-List)
   
@@ -1472,6 +1478,7 @@
 | condition | [Manager](#svc-biz-account-Manager) |  |  |
 | limit | [int32](#int32) |  |  |
 | offset | [int32](#int32) |  |  |
+| period | [TimePeriod](#svc-biz-account-TimePeriod) |  |  |
 | include_additions | [bool](#bool) |  |  |
 | exclude_platform | [bool](#bool) |  |  |
 
@@ -1507,6 +1514,7 @@
 | condition | [Streamer](#svc-biz-account-Streamer) |  |  |
 | limit | [int32](#int32) |  |  |
 | offset | [int32](#int32) |  |  |
+| period | [TimePeriod](#svc-biz-account-TimePeriod) |  |  |
 | include_additions | [bool](#bool) |  |  |
 | exclude_platform | [bool](#bool) |  |  |
 
@@ -1542,6 +1550,7 @@
 | condition | [Union](#svc-biz-account-Union) |  |  |
 | limit | [int32](#int32) |  |  |
 | offset | [int32](#int32) |  |  |
+| period | [TimePeriod](#svc-biz-account-TimePeriod) |  |  |
 | include_additions | [bool](#bool) |  |  |
 | exclude_platform | [bool](#bool) |  |  |
 
@@ -1577,6 +1586,7 @@
 | condition | [Viewer](#svc-biz-account-Viewer) |  |  |
 | limit | [int32](#int32) |  |  |
 | offset | [int32](#int32) |  |  |
+| period | [TimePeriod](#svc-biz-account-TimePeriod) |  |  |
 | include_additions | [bool](#bool) |  |  |
 | exclude_platform | [bool](#bool) |  |  |
 
@@ -2064,6 +2074,22 @@
 
 
 
+<a name="svc-biz-account-TimePeriod"></a>
+
+### TimePeriod
+Additional
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| start_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开始于 |
+| end_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 结束于 |
+
+
+
+
+
+
 <a name="svc-biz-account-TotalManagersReq"></a>
 
 ### TotalManagersReq
@@ -2073,6 +2099,7 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | condition | [Manager](#svc-biz-account-Manager) |  |  |
+| period | [TimePeriod](#svc-biz-account-TimePeriod) |  |  |
 
 
 
@@ -2103,6 +2130,7 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | condition | [Streamer](#svc-biz-account-Streamer) |  |  |
+| period | [TimePeriod](#svc-biz-account-TimePeriod) |  |  |
 
 
 
@@ -2133,6 +2161,7 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | condition | [Union](#svc-biz-account-Union) |  |  |
+| period | [TimePeriod](#svc-biz-account-TimePeriod) |  |  |
 
 
 
@@ -2163,6 +2192,7 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | condition | [Viewer](#svc-biz-account-Viewer) |  |  |
+| period | [TimePeriod](#svc-biz-account-TimePeriod) |  |  |
 
 
 
@@ -4099,7 +4129,7 @@ CreatedChannelTypeRequest 渠道支付类型
 | money | [int64](#int64) |  | 充值金额 |
 | status | [PayStatus](#svc-infra-pay-PayStatus) |  | 订单状态 |
 | delivery_status | [DeliveryStatus](#svc-infra-pay-DeliveryStatus) |  | 发货状态 |
-| ObtainAmount | [int64](#int64) |  | 到账金额 |
+| obtain_amount | [int64](#int64) |  | 到账金额 |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 结束时间 |
 | updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 结束时间 |
 | merchant_id | [string](#string) |  | 商户ID |
@@ -4112,6 +4142,8 @@ CreatedChannelTypeRequest 渠道支付类型
 | trans_no | [string](#string) |  | 三方交易ID |
 | platform | [string](#string) |  | 充值端口 |
 | remark | [string](#string) |  | 备注 |
+| after_obtain_amount | [int64](#int64) |  | 改变之后的金额 |
+| channel_type_image | [string](#string) |  | 支付方式图片 |
 
 
 
@@ -4355,9 +4387,12 @@ CreatedChannelTypeRequest 渠道支付类型
 | money | [int64](#int64) |  | 充值金额 |
 | status | [PayStatus](#svc-infra-pay-PayStatus) |  | 订单状态 |
 | delivery_status | [DeliveryStatus](#svc-infra-pay-DeliveryStatus) |  | 发货状态 |
-| ObtainAmount | [int64](#int64) |  | 到账金额 |
+| obtain_amount | [int64](#int64) |  | 到账金额 |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 结束时间 |
 | updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 结束时间 |
+| after_obtain_amount | [int64](#int64) |  | 改变之后的金额 |
+| channel_type_name | [string](#string) |  | 支付方式名称 |
+| channel_type_image | [string](#string) |  | 支付方式图片 |
 
 
 
@@ -5693,9 +5728,11 @@ CategoryInfo 分类详情
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| room_id | [string](#string) |  | id |
+| room_id | [string](#string) |  | room_id、display_id、streamer_id三选一 |
 | with_stream | [bool](#bool) |  | 是否带流信息 |
 | user_id | [string](#string) |  | 如果需要带流信息，需要传递user_id |
+| display_id | [string](#string) |  | room_id、display_id、streamer_id三选一 |
+| streamer_id | [string](#string) |  | room_id、display_id、streamer_id三选一 |
 
 
 
@@ -8254,6 +8291,24 @@ Room 房间
 
 
 
+<a name="svc-infra-link-CheckAccountRoomRequest"></a>
+
+### CheckAccountRoomRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| merchant_id | [string](#string) |  | 商户ID |
+| account_ids | [string](#string) | repeated | 账号ID（列表） |
+| room_id | [string](#string) |  | 房间ID |
+| live_id | [string](#string) |  | 直播ID, 房间ID和直播ID 不能同时为空 |
+
+
+
+
+
+
 <a name="svc-infra-link-CheckDeviceRequest"></a>
 
 ### CheckDeviceRequest
@@ -8301,6 +8356,24 @@ Room 房间
 
 
 
+<a name="svc-infra-link-CheckDeviceRoomRequest"></a>
+
+### CheckDeviceRoomRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| merchant_id | [string](#string) |  | 商户ID |
+| devices | [string](#string) | repeated | 设备标识（列表） |
+| room_id | [string](#string) |  | 房间ID |
+| live_id | [string](#string) |  | 直播ID, 房间ID和直播ID 不能同时为空 |
+
+
+
+
+
+
 <a name="svc-infra-link-CheckSessionRequest"></a>
 
 ### CheckSessionRequest
@@ -8342,6 +8415,24 @@ Room 房间
 | ----- | ---- | ----- | ----------- |
 | key | [string](#string) |  |  |
 | value | [bool](#bool) |  |  |
+
+
+
+
+
+
+<a name="svc-infra-link-CheckSessionRoomRequest"></a>
+
+### CheckSessionRoomRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| merchant_id | [string](#string) |  | 商户ID |
+| session_ids | [string](#string) | repeated | 连接ID（列表） |
+| room_id | [string](#string) |  | 房间ID |
+| live_id | [string](#string) |  | 直播ID, 房间ID和直播ID 不能同时为空 |
 
 
 
@@ -8554,6 +8645,9 @@ Service of stat
 | CheckAccount | [CheckAccountRequest](#svc-infra-link-CheckAccountRequest) | [CheckAccountResponse](#svc-infra-link-CheckAccountResponse) | 检查账号是否在线 |
 | CheckDevice | [CheckDeviceRequest](#svc-infra-link-CheckDeviceRequest) | [CheckDeviceResponse](#svc-infra-link-CheckDeviceResponse) | 检查设备是否在线 |
 | RoomLiveStat | [RoomLiveStatRequest](#svc-infra-link-RoomLiveStatRequest) | [RoomLiveStatResponse](#svc-infra-link-RoomLiveStatResponse) | 直播间统计数据 |
+| CheckAccountRoom | [CheckAccountRoomRequest](#svc-infra-link-CheckAccountRoomRequest) | [CheckAccountResponse](#svc-infra-link-CheckAccountResponse) | 检查账号是否在房间内 |
+| CheckSessionRoom | [CheckSessionRoomRequest](#svc-infra-link-CheckSessionRoomRequest) | [CheckSessionResponse](#svc-infra-link-CheckSessionResponse) | 检查session是否在房间内 |
+| CheckDeviceRoom | [CheckDeviceRoomRequest](#svc-infra-link-CheckDeviceRoomRequest) | [CheckDeviceResponse](#svc-infra-link-CheckDeviceResponse) | 检查设备是否在房间内 |
 | Refresh | [RefreshStatRequest](#svc-infra-link-RefreshStatRequest) | [RefreshStatResponse](#svc-infra-link-RefreshStatResponse) | 刷新统计 |
 
  
@@ -11801,6 +11895,20 @@ RankMemberInfo 排行榜成员信息
 
 
  
+
+
+<a name="svc-infra-list-Status"></a>
+
+### Status
+Status
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| STATUS_NONE | 0 |  |
+| STATUS_ACTIVE | 1 |  |
+| STATUS_PENDING | 2 |  |
+| STATUS_EXPIRED | 3 |  |
+
 
  
 
