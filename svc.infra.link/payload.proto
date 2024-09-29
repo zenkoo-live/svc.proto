@@ -54,7 +54,9 @@ enum PayloadType {
 
   UserLevelUp = 24; // 用户等级升级
 
-  StreamerCardUpdate =  25; // 主播名片设置
+  StreamerCardUpdate = 25; // 主播名片设置
+
+  UserExpChange = 26; // 用户经验值改变
 
   PlatformUserOpenNoble = 100; // 全平台开通贵族通知
   PlatformUserSendGift = 101; // 全平台用户送礼通知
@@ -185,6 +187,14 @@ message PayloadStreamerCardUpdate {
   int64 amount = 2; // 收费标准
   string desc = 3;// 展示内容
   bool enabled = 4;  // 开启状态
+}
+
+// 用户经验值变更
+message PayloadUserExpChange {
+  int32 current_level = 1; // 当前等级
+  int32 next_level = 2; // 下一级
+  int32 current_value = 3; // 当前经验值
+  int32 next_value = 4; // 下一级需要的经验值
 }
 
 // 平台开通贵族通知
