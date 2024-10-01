@@ -202,6 +202,7 @@ message PayloadUserExpChange {
 // 踢出登录
 message PayloadKickLogin {
   int32 flag = 1; // 标识
+  string msg = 2; // 下线一些原因或者其它显示的消息
 }
 
 
