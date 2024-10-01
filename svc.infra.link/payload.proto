@@ -58,6 +58,8 @@ enum PayloadType {
 
   UserExpChange = 26; // 用户经验值改变
 
+  KickLogin = 27; // 踢出登录
+
   PlatformUserOpenNoble = 100; // 全平台开通贵族通知
   PlatformUserSendGift = 101; // 全平台用户送礼通知
 }
@@ -196,6 +198,12 @@ message PayloadUserExpChange {
   int32 current_value = 3; // 当前经验值
   int32 next_value = 4; // 下一级需要的经验值
 }
+
+// 踢出登录
+message PayloadKickLogin {
+  int32 flag = 1; // 标识
+}
+
 
 // 平台开通贵族通知
 message PayloadPlatformUserOpenNoble {
