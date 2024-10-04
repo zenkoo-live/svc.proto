@@ -495,6 +495,7 @@
 - [svc.infra.link/payload.proto](#svc-infra-link_payload-proto)
     - [BasicUser](#svc-infra-link-BasicUser)
     - [PayloadEnterRoom](#svc-infra-link-PayloadEnterRoom)
+    - [PayloadKickLogin](#svc-infra-link-PayloadKickLogin)
     - [PayloadOpenFansGroup](#svc-infra-link-PayloadOpenFansGroup)
     - [PayloadOpenNoble](#svc-infra-link-PayloadOpenNoble)
     - [PayloadPlatformUserOpenNoble](#svc-infra-link-PayloadPlatformUserOpenNoble)
@@ -507,6 +508,7 @@
     - [PayloadStreamerRoomRank](#svc-infra-link-PayloadStreamerRoomRank)
     - [PayloadStreamerStartLive](#svc-infra-link-PayloadStreamerStartLive)
     - [PayloadUserDm](#svc-infra-link-PayloadUserDm)
+    - [PayloadUserExpChange](#svc-infra-link-PayloadUserExpChange)
     - [PayloadUserForbid](#svc-infra-link-PayloadUserForbid)
     - [PayloadUserGift](#svc-infra-link-PayloadUserGift)
     - [PayloadUserKickRoom](#svc-infra-link-PayloadUserKickRoom)
@@ -8801,6 +8803,22 @@ Service of stat
 
 
 
+<a name="svc-infra-link-PayloadKickLogin"></a>
+
+### PayloadKickLogin
+踢出登录
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| flag | [int32](#int32) |  | 标识 |
+| msg | [string](#string) |  | 下线一些原因或者其它显示的消息 |
+
+
+
+
+
+
 <a name="svc-infra-link-PayloadOpenFansGroup"></a>
 
 ### PayloadOpenFansGroup
@@ -8985,6 +9003,24 @@ Service of stat
 | user | [BasicUser](#svc-infra-link-BasicUser) |  | 基础信息 |
 | is_paid | [bool](#bool) |  | 是否是付费弹幕 |
 | text | [string](#string) |  | 聊天内容 |
+
+
+
+
+
+
+<a name="svc-infra-link-PayloadUserExpChange"></a>
+
+### PayloadUserExpChange
+用户经验值变更
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| current_level | [int32](#int32) |  | 当前等级 |
+| next_level | [int32](#int32) |  | 下一级 |
+| current_value | [int32](#int32) |  | 当前经验值 |
+| next_value | [int32](#int32) |  | 下一级需要的经验值 |
 
 
 
@@ -9194,6 +9230,8 @@ Service of stat
 | UserRoomResetAdm | 23 | 用户撤销房管 |
 | UserLevelUp | 24 | 用户等级升级 |
 | StreamerCardUpdate | 25 | 主播名片设置 |
+| UserExpChange | 26 | 用户经验值改变 |
+| KickLogin | 27 | 踢出登录 |
 | PlatformUserOpenNoble | 100 | 全平台开通贵族通知 |
 | PlatformUserSendGift | 101 | 全平台用户送礼通知 |
 
@@ -14328,6 +14366,7 @@ service started /////////////////
 | member_id | [string](#string) |  | 用户id |
 | noble_id | [string](#string) |  | 贵族id |
 | streamer_id | [string](#string) |  | 主播id |
+| live_id | [string](#string) |  | 直播id |
 | join_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 订单对应贵族开始时间 |
 | expire_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 订单对应贵族结束时间 |
 | order_id | [string](#string) |  | 支付订单id |

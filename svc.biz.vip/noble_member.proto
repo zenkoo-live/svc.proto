@@ -134,11 +134,12 @@ message NobleOrder {
     string member_id = 1; // 用户id
     string noble_id = 2; // 贵族id
     string streamer_id = 3; // 主播id
-    google.protobuf.Timestamp join_time = 4; // 订单对应贵族开始时间
-    google.protobuf.Timestamp expire_time = 5; // 订单对应贵族结束时间
-    string order_id = 6; // 支付订单id
-    google.protobuf.Timestamp order_time = 7; // 订单支付时间
-    int64 order_price = 8; // 支付订单价格
+    string live_id = 4; // 直播id
+    google.protobuf.Timestamp join_time = 5; // 订单对应贵族开始时间
+    google.protobuf.Timestamp expire_time = 6; // 订单对应贵族结束时间
+    string order_id = 7; // 支付订单id
+    google.protobuf.Timestamp order_time = 8; // 订单支付时间
+    int64 order_price = 9; // 支付订单价格
 }
 message GetOrdersResp {
     repeated NobleOrder items = 1; // 贵族订单
