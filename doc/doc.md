@@ -816,11 +816,11 @@
     - [GetNobleMemberListResp](#svc-biz-vip-GetNobleMemberListResp)
     - [GetNobleMemberReq](#svc-biz-vip-GetNobleMemberReq)
     - [GetNobleMemberResp](#svc-biz-vip-GetNobleMemberResp)
+    - [GetNobleOrderStatReq](#svc-biz-vip-GetNobleOrderStatReq)
+    - [GetNobleOrderStatResp](#svc-biz-vip-GetNobleOrderStatResp)
+    - [GetNobleOrdersReq](#svc-biz-vip-GetNobleOrdersReq)
+    - [GetNobleOrdersResp](#svc-biz-vip-GetNobleOrdersResp)
     - [GetOnlineNobleMemberListByStreamerIDReq](#svc-biz-vip-GetOnlineNobleMemberListByStreamerIDReq)
-    - [GetOrderStatReq](#svc-biz-vip-GetOrderStatReq)
-    - [GetOrderStatResp](#svc-biz-vip-GetOrderStatResp)
-    - [GetOrdersReq](#svc-biz-vip-GetOrdersReq)
-    - [GetOrdersResp](#svc-biz-vip-GetOrdersResp)
     - [JoinNobleReq](#svc-biz-vip-JoinNobleReq)
     - [JoinNobleResp](#svc-biz-vip-JoinNobleResp)
     - [MGetNobleMemberReq](#svc-biz-vip-MGetNobleMemberReq)
@@ -878,6 +878,7 @@
     - [CountFanbaseMembertByMemberIDReq](#svc-biz-vip-CountFanbaseMembertByMemberIDReq)
     - [CountFanbaseMembertByMemberIDResp](#svc-biz-vip-CountFanbaseMembertByMemberIDResp)
     - [FanbaseMemberInfo](#svc-biz-vip-FanbaseMemberInfo)
+    - [FanbaseOrder](#svc-biz-vip-FanbaseOrder)
     - [FanbaseRights](#svc-biz-vip-FanbaseRights)
     - [GetFanbaseMemberByStreamerIDReq](#svc-biz-vip-GetFanbaseMemberByStreamerIDReq)
     - [GetFanbaseMemberByStreamerIDResp](#svc-biz-vip-GetFanbaseMemberByStreamerIDResp)
@@ -885,6 +886,10 @@
     - [GetFanbaseMemberResp](#svc-biz-vip-GetFanbaseMemberResp)
     - [GetFanbaseMembertByMemberIDReq](#svc-biz-vip-GetFanbaseMembertByMemberIDReq)
     - [GetFanbaseMembertByMemberIDResp](#svc-biz-vip-GetFanbaseMembertByMemberIDResp)
+    - [GetFanbaseOrderStatReq](#svc-biz-vip-GetFanbaseOrderStatReq)
+    - [GetFanbaseOrderStatResp](#svc-biz-vip-GetFanbaseOrderStatResp)
+    - [GetFanbaseOrdersReq](#svc-biz-vip-GetFanbaseOrdersReq)
+    - [GetFanbaseOrdersResp](#svc-biz-vip-GetFanbaseOrdersResp)
     - [GetOnlineFanbaseMemberByStreamerIDReq](#svc-biz-vip-GetOnlineFanbaseMemberByStreamerIDReq)
     - [GetOnlineFanbaseMemberByStreamerIDResp](#svc-biz-vip-GetOnlineFanbaseMemberByStreamerIDResp)
     - [JoinFanbaseReq](#svc-biz-vip-JoinFanbaseReq)
@@ -14172,27 +14177,9 @@ service started /////////////////
 
 
 
-<a name="svc-biz-vip-GetOnlineNobleMemberListByStreamerIDReq"></a>
+<a name="svc-biz-vip-GetNobleOrderStatReq"></a>
 
-### GetOnlineNobleMemberListByStreamerIDReq
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| page | [int32](#int32) |  | 页数 |
-| limit | [int32](#int32) |  | 条数 |
-| with_noble_info | [bool](#bool) |  | 是否返回贵族信息 |
-| streamer_id | [string](#string) |  | 主播id |
-
-
-
-
-
-
-<a name="svc-biz-vip-GetOrderStatReq"></a>
-
-### GetOrderStatReq
+### GetNobleOrderStatReq
 
 
 
@@ -14208,9 +14195,9 @@ service started /////////////////
 
 
 
-<a name="svc-biz-vip-GetOrderStatResp"></a>
+<a name="svc-biz-vip-GetNobleOrderStatResp"></a>
 
-### GetOrderStatResp
+### GetNobleOrderStatResp
 
 
 
@@ -14225,9 +14212,9 @@ service started /////////////////
 
 
 
-<a name="svc-biz-vip-GetOrdersReq"></a>
+<a name="svc-biz-vip-GetNobleOrdersReq"></a>
 
-### GetOrdersReq
+### GetNobleOrdersReq
 
 
 
@@ -14245,15 +14232,33 @@ service started /////////////////
 
 
 
-<a name="svc-biz-vip-GetOrdersResp"></a>
+<a name="svc-biz-vip-GetNobleOrdersResp"></a>
 
-### GetOrdersResp
+### GetNobleOrdersResp
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | items | [NobleOrder](#svc-biz-vip-NobleOrder) | repeated | 贵族订单 |
+
+
+
+
+
+
+<a name="svc-biz-vip-GetOnlineNobleMemberListByStreamerIDReq"></a>
+
+### GetOnlineNobleMemberListByStreamerIDReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| page | [int32](#int32) |  | 页数 |
+| limit | [int32](#int32) |  | 条数 |
+| with_noble_info | [bool](#bool) |  | 是否返回贵族信息 |
+| streamer_id | [string](#string) |  | 主播id |
 
 
 
@@ -14460,8 +14465,8 @@ service started /////////////////
 | GetNobleMemberList | [GetNobleMemberListReq](#svc-biz-vip-GetNobleMemberListReq) | [GetNobleMemberListResp](#svc-biz-vip-GetNobleMemberListResp) | GetNobleMemberList 获取贵族成员列表（streamer_id传空字符串取所有） |
 | CountNobleMember | [CountNobleMemberReq](#svc-biz-vip-CountNobleMemberReq) | [CountNobleMemberResp](#svc-biz-vip-CountNobleMemberResp) | CountNobleMember 获取成员总数 |
 | GetOnlineNobleMemberListByStreamerID | [GetOnlineNobleMemberListByStreamerIDReq](#svc-biz-vip-GetOnlineNobleMemberListByStreamerIDReq) | [GetNobleMemberListResp](#svc-biz-vip-GetNobleMemberListResp) | GetOnlineNobleMemberListByStreamerID 获取主播贵族在线成员列表 |
-| GetOrders | [GetOrdersReq](#svc-biz-vip-GetOrdersReq) | [GetOrdersResp](#svc-biz-vip-GetOrdersResp) | GetOrders 获取开通的贵族订单 |
-| GetOrderStat | [GetOrderStatReq](#svc-biz-vip-GetOrderStatReq) | [GetOrderStatResp](#svc-biz-vip-GetOrderStatResp) | GetOrderStat 获取开通的贵族订单 |
+| GetNobleOrders | [GetNobleOrdersReq](#svc-biz-vip-GetNobleOrdersReq) | [GetNobleOrdersResp](#svc-biz-vip-GetNobleOrdersResp) | GetNobleOrders 获取贵族订单列表 |
+| GetONoblerderStat | [GetNobleOrderStatReq](#svc-biz-vip-GetNobleOrderStatReq) | [GetNobleOrderStatResp](#svc-biz-vip-GetNobleOrderStatResp) | GetONoblerderStat 获取贵族订单统计 |
 
  
 
@@ -15042,6 +15047,27 @@ service started /////////////////
 
 
 
+<a name="svc-biz-vip-FanbaseOrder"></a>
+
+### FanbaseOrder
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| member_id | [string](#string) |  | 用户id |
+| level | [FanbaseLevel](#svc-biz-vip-FanbaseLevel) |  | 粉丝团等级 |
+| streamer_id | [string](#string) |  | 主播id |
+| live_id | [string](#string) |  | 直播id |
+| order_id | [string](#string) |  | 支付订单id |
+| order_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 订单支付时间 |
+| order_price | [int64](#int64) |  | 支付订单价格 |
+
+
+
+
+
+
 <a name="svc-biz-vip-FanbaseRights"></a>
 
 ### FanbaseRights
@@ -15154,6 +15180,76 @@ service started /////////////////
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | items | [FanbaseMemberInfo](#svc-biz-vip-FanbaseMemberInfo) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-GetFanbaseOrderStatReq"></a>
+
+### GetFanbaseOrderStatReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| level | [FanbaseLevel](#svc-biz-vip-FanbaseLevel) |  | 粉丝团等级 |
+| streamer_id | [string](#string) |  | 主播uid |
+| start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开始时间 |
+| end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 结束时间 |
+
+
+
+
+
+
+<a name="svc-biz-vip-GetFanbaseOrderStatResp"></a>
+
+### GetFanbaseOrderStatResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| total_num | [int64](#int64) |  | 开通粉丝团订单总数 |
+| total_price | [int64](#int64) |  | 开通粉丝团代币总数 |
+| total_user | [int64](#int64) |  | 开通粉丝团用户总数 |
+
+
+
+
+
+
+<a name="svc-biz-vip-GetFanbaseOrdersReq"></a>
+
+### GetFanbaseOrdersReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| page | [int32](#int32) |  | 页数 |
+| limit | [int32](#int32) |  | 条数 |
+| level | [FanbaseLevel](#svc-biz-vip-FanbaseLevel) |  | 粉丝团等级 |
+| streamer_id | [string](#string) |  | 主播uid |
+| start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开始时间 |
+| end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 结束时间 |
+
+
+
+
+
+
+<a name="svc-biz-vip-GetFanbaseOrdersResp"></a>
+
+### GetFanbaseOrdersResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [FanbaseOrder](#svc-biz-vip-FanbaseOrder) | repeated | 粉丝团订单 |
 
 
 
@@ -15297,6 +15393,8 @@ service started /////////////////
 | GetOnlineFanbaseMemberByStreamerID | [GetOnlineFanbaseMemberByStreamerIDReq](#svc-biz-vip-GetOnlineFanbaseMemberByStreamerIDReq) | [GetOnlineFanbaseMemberByStreamerIDResp](#svc-biz-vip-GetOnlineFanbaseMemberByStreamerIDResp) | GetOnlineFanbaseMemberByStreamerID 获取主播粉丝团在线成员列表 |
 | GetFanbaseMembertByMemberID | [GetFanbaseMembertByMemberIDReq](#svc-biz-vip-GetFanbaseMembertByMemberIDReq) | [GetFanbaseMembertByMemberIDResp](#svc-biz-vip-GetFanbaseMembertByMemberIDResp) | GetFanbaseMembertByMemberID 获取用户加入的粉丝团列表 |
 | CountFanbaseMembertByMemberID | [CountFanbaseMembertByMemberIDReq](#svc-biz-vip-CountFanbaseMembertByMemberIDReq) | [CountFanbaseMembertByMemberIDResp](#svc-biz-vip-CountFanbaseMembertByMemberIDResp) | CountFanbaseMembertByMemberID 获取用户加入的粉丝团数量 |
+| GetFanbaseOrders | [GetFanbaseOrdersReq](#svc-biz-vip-GetFanbaseOrdersReq) | [GetFanbaseOrdersResp](#svc-biz-vip-GetFanbaseOrdersResp) | GetFanbaseOrders 获取粉丝团订单列表 |
+| GetFanbaseOrderStat | [GetFanbaseOrderStatReq](#svc-biz-vip-GetFanbaseOrderStatReq) | [GetFanbaseOrderStatResp](#svc-biz-vip-GetFanbaseOrderStatResp) | GetFanbaseOrderStat 获取粉丝团订单统计 |
 
  
 

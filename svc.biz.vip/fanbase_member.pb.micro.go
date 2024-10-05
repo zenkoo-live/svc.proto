@@ -56,6 +56,10 @@ type FanbaseMemberService interface {
 	GetFanbaseMembertByMemberID(ctx context.Context, in *GetFanbaseMembertByMemberIDReq, opts ...client.CallOption) (*GetFanbaseMembertByMemberIDResp, error)
 	// CountFanbaseMembertByMemberID 获取用户加入的粉丝团数量
 	CountFanbaseMembertByMemberID(ctx context.Context, in *CountFanbaseMembertByMemberIDReq, opts ...client.CallOption) (*CountFanbaseMembertByMemberIDResp, error)
+	// GetFanbaseOrders 获取粉丝团订单列表
+	GetFanbaseOrders(ctx context.Context, in *GetFanbaseOrdersReq, opts ...client.CallOption) (*GetFanbaseOrdersResp, error)
+	// GetFanbaseOrderStat 获取粉丝团订单统计
+	GetFanbaseOrderStat(ctx context.Context, in *GetFanbaseOrderStatReq, opts ...client.CallOption) (*GetFanbaseOrderStatResp, error)
 }
 
 type fanbaseMemberService struct {
@@ -160,6 +164,26 @@ func (c *fanbaseMemberService) CountFanbaseMembertByMemberID(ctx context.Context
 	return out, nil
 }
 
+func (c *fanbaseMemberService) GetFanbaseOrders(ctx context.Context, in *GetFanbaseOrdersReq, opts ...client.CallOption) (*GetFanbaseOrdersResp, error) {
+	req := c.c.NewRequest(c.name, "FanbaseMember.GetFanbaseOrders", in)
+	out := new(GetFanbaseOrdersResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *fanbaseMemberService) GetFanbaseOrderStat(ctx context.Context, in *GetFanbaseOrderStatReq, opts ...client.CallOption) (*GetFanbaseOrderStatResp, error) {
+	req := c.c.NewRequest(c.name, "FanbaseMember.GetFanbaseOrderStat", in)
+	out := new(GetFanbaseOrderStatResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for FanbaseMember service
 
 type FanbaseMemberHandler interface {
@@ -181,6 +205,10 @@ type FanbaseMemberHandler interface {
 	GetFanbaseMembertByMemberID(context.Context, *GetFanbaseMembertByMemberIDReq, *GetFanbaseMembertByMemberIDResp) error
 	// CountFanbaseMembertByMemberID 获取用户加入的粉丝团数量
 	CountFanbaseMembertByMemberID(context.Context, *CountFanbaseMembertByMemberIDReq, *CountFanbaseMembertByMemberIDResp) error
+	// GetFanbaseOrders 获取粉丝团订单列表
+	GetFanbaseOrders(context.Context, *GetFanbaseOrdersReq, *GetFanbaseOrdersResp) error
+	// GetFanbaseOrderStat 获取粉丝团订单统计
+	GetFanbaseOrderStat(context.Context, *GetFanbaseOrderStatReq, *GetFanbaseOrderStatResp) error
 }
 
 func RegisterFanbaseMemberHandler(s server.Server, hdlr FanbaseMemberHandler, opts ...server.HandlerOption) error {
@@ -194,6 +222,8 @@ func RegisterFanbaseMemberHandler(s server.Server, hdlr FanbaseMemberHandler, op
 		GetOnlineFanbaseMemberByStreamerID(ctx context.Context, in *GetOnlineFanbaseMemberByStreamerIDReq, out *GetOnlineFanbaseMemberByStreamerIDResp) error
 		GetFanbaseMembertByMemberID(ctx context.Context, in *GetFanbaseMembertByMemberIDReq, out *GetFanbaseMembertByMemberIDResp) error
 		CountFanbaseMembertByMemberID(ctx context.Context, in *CountFanbaseMembertByMemberIDReq, out *CountFanbaseMembertByMemberIDResp) error
+		GetFanbaseOrders(ctx context.Context, in *GetFanbaseOrdersReq, out *GetFanbaseOrdersResp) error
+		GetFanbaseOrderStat(ctx context.Context, in *GetFanbaseOrderStatReq, out *GetFanbaseOrderStatResp) error
 	}
 	type FanbaseMember struct {
 		fanbaseMember
@@ -240,4 +270,12 @@ func (h *fanbaseMemberHandler) GetFanbaseMembertByMemberID(ctx context.Context, 
 
 func (h *fanbaseMemberHandler) CountFanbaseMembertByMemberID(ctx context.Context, in *CountFanbaseMembertByMemberIDReq, out *CountFanbaseMembertByMemberIDResp) error {
 	return h.FanbaseMemberHandler.CountFanbaseMembertByMemberID(ctx, in, out)
+}
+
+func (h *fanbaseMemberHandler) GetFanbaseOrders(ctx context.Context, in *GetFanbaseOrdersReq, out *GetFanbaseOrdersResp) error {
+	return h.FanbaseMemberHandler.GetFanbaseOrders(ctx, in, out)
+}
+
+func (h *fanbaseMemberHandler) GetFanbaseOrderStat(ctx context.Context, in *GetFanbaseOrderStatReq, out *GetFanbaseOrderStatResp) error {
+	return h.FanbaseMemberHandler.GetFanbaseOrderStat(ctx, in, out)
 }

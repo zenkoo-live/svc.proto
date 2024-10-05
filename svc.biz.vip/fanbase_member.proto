@@ -30,6 +30,11 @@ service FanbaseMember {
     rpc GetFanbaseMembertByMemberID (GetFanbaseMembertByMemberIDReq) returns (GetFanbaseMembertByMemberIDResp) {}
     // CountFanbaseMembertByMemberID 获取用户加入的粉丝团数量
     rpc CountFanbaseMembertByMemberID (CountFanbaseMembertByMemberIDReq) returns (CountFanbaseMembertByMemberIDResp) {}
+
+    // GetFanbaseOrders 获取粉丝团订单列表
+    rpc GetFanbaseOrders (GetFanbaseOrdersReq) returns (GetFanbaseOrdersResp) {}
+    // GetFanbaseOrderStat 获取粉丝团订单统计
+    rpc GetFanbaseOrderStat (GetFanbaseOrderStatReq) returns (GetFanbaseOrderStatResp) {}
 }
 
 message JoinFanbaseReq {
@@ -130,4 +135,38 @@ message CountFanbaseMembertByMemberIDReq {
 }
 message CountFanbaseMembertByMemberIDResp {
     int64 total = 1; // 总数
+}
+
+
+message GetFanbaseOrdersReq {
+    int32 page = 1; // 页数
+    int32 limit = 2; // 条数
+    FanbaseLevel level = 3; // 粉丝团等级
+    string streamer_id = 4; // 主播uid
+    google.protobuf.Timestamp  start_time = 5; // 开始时间
+    google.protobuf.Timestamp  end_time = 6; // 结束时间
+}
+message FanbaseOrder {
+    string member_id = 1; // 用户id
+    FanbaseLevel level = 2; // 粉丝团等级
+    string streamer_id = 3; // 主播id
+    string live_id = 4; // 直播id
+    string order_id = 5; // 支付订单id
+    google.protobuf.Timestamp order_time = 6; // 订单支付时间
+    int64 order_price = 7; // 支付订单价格
+}
+message GetFanbaseOrdersResp {
+    repeated FanbaseOrder items = 1; // 粉丝团订单
+}
+
+message GetFanbaseOrderStatReq {
+    FanbaseLevel level = 1; // 粉丝团等级
+    string streamer_id = 2; // 主播uid
+    google.protobuf.Timestamp  start_time = 3; // 开始时间
+    google.protobuf.Timestamp  end_time = 4; // 结束时间
+}
+message GetFanbaseOrderStatResp {
+    int64 total_num = 1; // 开通粉丝团订单总数
+    int64 total_price = 2; // 开通粉丝团代币总数
+    int64 total_user = 3; // 开通粉丝团用户总数
 }

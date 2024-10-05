@@ -29,6 +29,8 @@ const (
 	FanbaseMember_GetOnlineFanbaseMemberByStreamerID_FullMethodName = "/svc.biz.vip.FanbaseMember/GetOnlineFanbaseMemberByStreamerID"
 	FanbaseMember_GetFanbaseMembertByMemberID_FullMethodName        = "/svc.biz.vip.FanbaseMember/GetFanbaseMembertByMemberID"
 	FanbaseMember_CountFanbaseMembertByMemberID_FullMethodName      = "/svc.biz.vip.FanbaseMember/CountFanbaseMembertByMemberID"
+	FanbaseMember_GetFanbaseOrders_FullMethodName                   = "/svc.biz.vip.FanbaseMember/GetFanbaseOrders"
+	FanbaseMember_GetFanbaseOrderStat_FullMethodName                = "/svc.biz.vip.FanbaseMember/GetFanbaseOrderStat"
 )
 
 // FanbaseMemberClient is the client API for FanbaseMember service.
@@ -55,6 +57,10 @@ type FanbaseMemberClient interface {
 	GetFanbaseMembertByMemberID(ctx context.Context, in *GetFanbaseMembertByMemberIDReq, opts ...grpc.CallOption) (*GetFanbaseMembertByMemberIDResp, error)
 	// CountFanbaseMembertByMemberID 获取用户加入的粉丝团数量
 	CountFanbaseMembertByMemberID(ctx context.Context, in *CountFanbaseMembertByMemberIDReq, opts ...grpc.CallOption) (*CountFanbaseMembertByMemberIDResp, error)
+	// GetFanbaseOrders 获取粉丝团订单列表
+	GetFanbaseOrders(ctx context.Context, in *GetFanbaseOrdersReq, opts ...grpc.CallOption) (*GetFanbaseOrdersResp, error)
+	// GetFanbaseOrderStat 获取粉丝团订单统计
+	GetFanbaseOrderStat(ctx context.Context, in *GetFanbaseOrderStatReq, opts ...grpc.CallOption) (*GetFanbaseOrderStatResp, error)
 }
 
 type fanbaseMemberClient struct {
@@ -155,6 +161,26 @@ func (c *fanbaseMemberClient) CountFanbaseMembertByMemberID(ctx context.Context,
 	return out, nil
 }
 
+func (c *fanbaseMemberClient) GetFanbaseOrders(ctx context.Context, in *GetFanbaseOrdersReq, opts ...grpc.CallOption) (*GetFanbaseOrdersResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetFanbaseOrdersResp)
+	err := c.cc.Invoke(ctx, FanbaseMember_GetFanbaseOrders_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *fanbaseMemberClient) GetFanbaseOrderStat(ctx context.Context, in *GetFanbaseOrderStatReq, opts ...grpc.CallOption) (*GetFanbaseOrderStatResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetFanbaseOrderStatResp)
+	err := c.cc.Invoke(ctx, FanbaseMember_GetFanbaseOrderStat_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // FanbaseMemberServer is the server API for FanbaseMember service.
 // All implementations must embed UnimplementedFanbaseMemberServer
 // for forward compatibility.
@@ -179,6 +205,10 @@ type FanbaseMemberServer interface {
 	GetFanbaseMembertByMemberID(context.Context, *GetFanbaseMembertByMemberIDReq) (*GetFanbaseMembertByMemberIDResp, error)
 	// CountFanbaseMembertByMemberID 获取用户加入的粉丝团数量
 	CountFanbaseMembertByMemberID(context.Context, *CountFanbaseMembertByMemberIDReq) (*CountFanbaseMembertByMemberIDResp, error)
+	// GetFanbaseOrders 获取粉丝团订单列表
+	GetFanbaseOrders(context.Context, *GetFanbaseOrdersReq) (*GetFanbaseOrdersResp, error)
+	// GetFanbaseOrderStat 获取粉丝团订单统计
+	GetFanbaseOrderStat(context.Context, *GetFanbaseOrderStatReq) (*GetFanbaseOrderStatResp, error)
 	mustEmbedUnimplementedFanbaseMemberServer()
 }
 
@@ -215,6 +245,12 @@ func (UnimplementedFanbaseMemberServer) GetFanbaseMembertByMemberID(context.Cont
 }
 func (UnimplementedFanbaseMemberServer) CountFanbaseMembertByMemberID(context.Context, *CountFanbaseMembertByMemberIDReq) (*CountFanbaseMembertByMemberIDResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CountFanbaseMembertByMemberID not implemented")
+}
+func (UnimplementedFanbaseMemberServer) GetFanbaseOrders(context.Context, *GetFanbaseOrdersReq) (*GetFanbaseOrdersResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetFanbaseOrders not implemented")
+}
+func (UnimplementedFanbaseMemberServer) GetFanbaseOrderStat(context.Context, *GetFanbaseOrderStatReq) (*GetFanbaseOrderStatResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetFanbaseOrderStat not implemented")
 }
 func (UnimplementedFanbaseMemberServer) mustEmbedUnimplementedFanbaseMemberServer() {}
 func (UnimplementedFanbaseMemberServer) testEmbeddedByValue()                       {}
@@ -399,6 +435,42 @@ func _FanbaseMember_CountFanbaseMembertByMemberID_Handler(srv interface{}, ctx c
 	return interceptor(ctx, in, info, handler)
 }
 
+func _FanbaseMember_GetFanbaseOrders_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetFanbaseOrdersReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FanbaseMemberServer).GetFanbaseOrders(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: FanbaseMember_GetFanbaseOrders_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FanbaseMemberServer).GetFanbaseOrders(ctx, req.(*GetFanbaseOrdersReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _FanbaseMember_GetFanbaseOrderStat_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetFanbaseOrderStatReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FanbaseMemberServer).GetFanbaseOrderStat(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: FanbaseMember_GetFanbaseOrderStat_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FanbaseMemberServer).GetFanbaseOrderStat(ctx, req.(*GetFanbaseOrderStatReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // FanbaseMember_ServiceDesc is the grpc.ServiceDesc for FanbaseMember service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -441,6 +513,14 @@ var FanbaseMember_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CountFanbaseMembertByMemberID",
 			Handler:    _FanbaseMember_CountFanbaseMembertByMemberID_Handler,
+		},
+		{
+			MethodName: "GetFanbaseOrders",
+			Handler:    _FanbaseMember_GetFanbaseOrders_Handler,
+		},
+		{
+			MethodName: "GetFanbaseOrderStat",
+			Handler:    _FanbaseMember_GetFanbaseOrderStat_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
