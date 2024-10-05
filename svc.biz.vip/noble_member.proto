@@ -30,8 +30,8 @@ service NobleMember {
 
     // GetNobleOrders 获取贵族订单列表
     rpc GetNobleOrders (GetNobleOrdersReq) returns (GetNobleOrdersResp) {}
-    // GetONoblerderStat 获取贵族订单统计
-    rpc GetONoblerderStat (GetNobleOrderStatReq) returns (GetNobleOrderStatResp) {}
+    // GetNobleOrderStat 获取贵族订单统计
+    rpc GetNobleOrderStat (GetNobleOrderStatReq) returns (GetNobleOrderStatResp) {}
 
 }
 

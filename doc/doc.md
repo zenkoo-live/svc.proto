@@ -14466,7 +14466,7 @@ service started /////////////////
 | CountNobleMember | [CountNobleMemberReq](#svc-biz-vip-CountNobleMemberReq) | [CountNobleMemberResp](#svc-biz-vip-CountNobleMemberResp) | CountNobleMember 获取成员总数 |
 | GetOnlineNobleMemberListByStreamerID | [GetOnlineNobleMemberListByStreamerIDReq](#svc-biz-vip-GetOnlineNobleMemberListByStreamerIDReq) | [GetNobleMemberListResp](#svc-biz-vip-GetNobleMemberListResp) | GetOnlineNobleMemberListByStreamerID 获取主播贵族在线成员列表 |
 | GetNobleOrders | [GetNobleOrdersReq](#svc-biz-vip-GetNobleOrdersReq) | [GetNobleOrdersResp](#svc-biz-vip-GetNobleOrdersResp) | GetNobleOrders 获取贵族订单列表 |
-| GetONoblerderStat | [GetNobleOrderStatReq](#svc-biz-vip-GetNobleOrderStatReq) | [GetNobleOrderStatResp](#svc-biz-vip-GetNobleOrderStatResp) | GetONoblerderStat 获取贵族订单统计 |
+| GetNobleOrderStat | [GetNobleOrderStatReq](#svc-biz-vip-GetNobleOrderStatReq) | [GetNobleOrderStatResp](#svc-biz-vip-GetNobleOrderStatResp) | GetNobleOrderStat 获取贵族订单统计 |
 
  
 
