@@ -7719,7 +7719,6 @@ Room 房间
 | trans_type | [int64](#int64) | repeated | 交易类别: 空表示不限 |
 | start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开始时间(含) |
 | end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 结束时间(不含) |
-| merchant_id | [string](#string) |  | 商户 |
 | trade_id | [string](#string) |  | 业务方交易id |
 | page | [int64](#int64) |  | 页码 |
 | page_size | [int64](#int64) |  | 单页条数 |
