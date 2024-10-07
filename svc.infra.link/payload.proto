@@ -148,10 +148,13 @@ message PayloadStreamerRoomCharm {
 }
 // 主播房间粉丝榜单变化
 message PayloadStreamerRoomRank {
-  int64 rank = 1;
-  string uid = 2;
-  string nickname = 3;
-  string avatar = 4;
+  message RoomRank {
+    int64 rank = 1;
+    string uid = 2;
+    string nickname = 3;
+    string avatar = 4;
+  }
+  repeated RoomRank ranks = 1;
 }
 
 // 用户等级升级
