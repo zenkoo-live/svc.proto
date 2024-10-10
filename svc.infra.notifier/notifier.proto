@@ -262,6 +262,7 @@ message CreatedSmsSendRequest {
 
 message CreatedSmsSendResponse {
   map<string, bool> send_result = 1;
+  map<string, string> send_msg = 2;
 }
 
 message CreatedSmsVerifyRequest {
