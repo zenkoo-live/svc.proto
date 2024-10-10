@@ -3514,6 +3514,7 @@ Masks
 | ----- | ---- | ----- | ----------- |
 | trade_info | [TradeInfo](#svc-biz-trade-TradeInfo) |  |  |
 | buyer | [UserInfo](#svc-biz-trade-UserInfo) |  |  |
+| receiver | [UserInfo](#svc-biz-trade-UserInfo) |  |  |
 | vip | [VipActivateInfo](#svc-biz-trade-VipActivateInfo) |  |  |
 
 
@@ -3561,6 +3562,7 @@ Masks
 | ----- | ---- | ----- | ----------- |
 | trade_info | [TradeInfo](#svc-biz-trade-TradeInfo) |  |  |
 | buyer | [UserInfo](#svc-biz-trade-UserInfo) |  |  |
+| receiver | [UserInfo](#svc-biz-trade-UserInfo) |  |  |
 | vip | [VipExtendInfo](#svc-biz-trade-VipExtendInfo) |  |  |
 
 
@@ -3608,6 +3610,7 @@ Masks
 | ----- | ---- | ----- | ----------- |
 | trade_info | [TradeInfo](#svc-biz-trade-TradeInfo) |  |  |
 | buyer | [UserInfo](#svc-biz-trade-UserInfo) |  |  |
+| receiver | [UserInfo](#svc-biz-trade-UserInfo) |  |  |
 | vip | [VipUpgradeInfo](#svc-biz-trade-VipUpgradeInfo) |  |  |
 
 

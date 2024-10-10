@@ -158,6 +158,7 @@ message PayBulletChatResp {
 message VipActivateReq {
   TradeInfo trade_info = 1;
   UserInfo buyer = 2;
+  UserInfo receiver = 3;
   VipActivateInfo vip = 4;
 }
 message VipActivateResp {
@@ -166,6 +167,7 @@ message VipActivateResp {
 message VipExtendReq {
   TradeInfo trade_info = 1;
   UserInfo buyer = 2;
+  UserInfo receiver = 3;
   VipExtendInfo vip = 4;
 }
 message VipExtendResp {
@@ -174,6 +176,7 @@ message VipExtendResp {
 message VipUpgradeReq {
   TradeInfo trade_info = 1;
   UserInfo buyer = 2;
+  UserInfo receiver = 3;
   VipUpgradeInfo vip = 4;
 }
 message VipUpgradeResp {
