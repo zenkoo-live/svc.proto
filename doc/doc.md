@@ -3672,6 +3672,7 @@ StreamerWageReq 主播时薪
 | hour_amount | [int64](#int64) |  | 时薪 |
 | hour_upper_limit | [int64](#int64) |  | 时薪上限（几个小时） |
 | duration | [int64](#int64) |  | 时长（单位秒） |
+| wage_duration | [int64](#int64) |  | 能计算时薪的时长 |
 | wage | [int64](#int64) |  | 薪资 |
 
 

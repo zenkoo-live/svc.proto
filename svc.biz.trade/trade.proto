@@ -111,7 +111,8 @@ message WageInfo {
   int64 hour_amount = 1; // 时薪
 	int64 hour_upper_limit = 2; // 时薪上限（几个小时）
   int64 duration = 3; // 时长（单位秒）
-  int64 wage = 4; // 薪资
+  int64 wage_duration = 4; // 能计算时薪的时长
+  int64 wage = 5; // 薪资
 }
 
 // end ------------公共参数--------------
