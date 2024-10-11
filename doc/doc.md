@@ -506,6 +506,7 @@
     - [PayloadStreamerOffline](#svc-infra-link-PayloadStreamerOffline)
     - [PayloadStreamerRoomCharm](#svc-infra-link-PayloadStreamerRoomCharm)
     - [PayloadStreamerRoomRank](#svc-infra-link-PayloadStreamerRoomRank)
+    - [PayloadStreamerRoomRank.RoomRank](#svc-infra-link-PayloadStreamerRoomRank-RoomRank)
     - [PayloadStreamerStartLive](#svc-infra-link-PayloadStreamerStartLive)
     - [PayloadUserDm](#svc-infra-link-PayloadUserDm)
     - [PayloadUserExpChange](#svc-infra-link-PayloadUserExpChange)
@@ -779,6 +780,7 @@
     - [CreatedSmsCodeBindRequest](#svc-infra-notifier-CreatedSmsCodeBindRequest)
     - [CreatedSmsSendRequest](#svc-infra-notifier-CreatedSmsSendRequest)
     - [CreatedSmsSendResponse](#svc-infra-notifier-CreatedSmsSendResponse)
+    - [CreatedSmsSendResponse.SendMsgEntry](#svc-infra-notifier-CreatedSmsSendResponse-SendMsgEntry)
     - [CreatedSmsSendResponse.SendResultEntry](#svc-infra-notifier-CreatedSmsSendResponse-SendResultEntry)
     - [CreatedSmsTemplateRequest](#svc-infra-notifier-CreatedSmsTemplateRequest)
     - [CreatedSmsVerifyRequest](#svc-infra-notifier-CreatedSmsVerifyRequest)
@@ -808,6 +810,12 @@
     - [CodeKey](#svc-infra-notifier-CodeKey)
   
     - [Notifier](#svc-infra-notifier-Notifier)
+  
+- [svc.biz.vip/mq.proto](#svc-biz-vip_mq-proto)
+    - [JoinFanbaseTopicInfo](#svc-biz-vip-JoinFanbaseTopicInfo)
+    - [JoinNobleTopicInfo](#svc-biz-vip-JoinNobleTopicInfo)
+    - [RenewNobleTopicInfo](#svc-biz-vip-RenewNobleTopicInfo)
+    - [UpgradeNobleTopicInfo](#svc-biz-vip-UpgradeNobleTopicInfo)
   
 - [svc.biz.vip/noble_member.proto](#svc-biz-vip_noble_member-proto)
     - [CountNobleMemberReq](#svc-biz-vip-CountNobleMemberReq)
@@ -8981,6 +8989,21 @@ Service of stat
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| ranks | [PayloadStreamerRoomRank.RoomRank](#svc-infra-link-PayloadStreamerRoomRank-RoomRank) | repeated |  |
+
+
+
+
+
+
+<a name="svc-infra-link-PayloadStreamerRoomRank-RoomRank"></a>
+
+### PayloadStreamerRoomRank.RoomRank
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
 | rank | [int64](#int64) |  |  |
 | uid | [string](#string) |  |  |
 | nickname | [string](#string) |  |  |
@@ -13543,6 +13566,23 @@ CreatedSmsSendRequest 发送短信请求
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | send_result | [CreatedSmsSendResponse.SendResultEntry](#svc-infra-notifier-CreatedSmsSendResponse-SendResultEntry) | repeated |  |
+| send_msg | [CreatedSmsSendResponse.SendMsgEntry](#svc-infra-notifier-CreatedSmsSendResponse-SendMsgEntry) | repeated |  |
+
+
+
+
+
+
+<a name="svc-infra-notifier-CreatedSmsSendResponse-SendMsgEntry"></a>
+
+### CreatedSmsSendResponse.SendMsgEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [string](#string) |  |  |
 
 
 
@@ -14069,6 +14109,113 @@ service started /////////////////
 | CreatedSmsCodeBind | [CreatedSmsCodeBindRequest](#svc-infra-notifier-CreatedSmsCodeBindRequest) | [CommonResponse](#svc-infra-notifier-CommonResponse) |  |
 | GetCloudSmsSign | [GetCloudSmsSignRequest](#svc-infra-notifier-GetCloudSmsSignRequest) | [GetCloudSmsSignResponse](#svc-infra-notifier-GetCloudSmsSignResponse) | 获取签名列表 |
 | CreatedMerchantInitTemplate | [CreatedMerchantInitTemplateRequest](#svc-infra-notifier-CreatedMerchantInitTemplateRequest) | [CommonResponse](#svc-infra-notifier-CommonResponse) | merchant created channel need init system template |
+
+ 
+
+
+
+<a name="svc-biz-vip_mq-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.biz.vip/mq.proto
+
+
+
+<a name="svc-biz-vip-JoinFanbaseTopicInfo"></a>
+
+### JoinFanbaseTopicInfo
+topic: topic.vip.join_fanbase
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| streamer_id | [string](#string) |  | 主播id |
+| room_id | [string](#string) |  | 房间id |
+| live_id | [string](#string) |  | 直播id |
+| member_id | [string](#string) |  | 用户id |
+| level | [FanbaseLevel](#svc-biz-vip-FanbaseLevel) |  | 粉丝牌等级 |
+| order_id | [string](#string) |  | 支付订单id |
+| order_price | [int64](#int64) |  | 支付订单价格 |
+| join_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 时间 |
+
+
+
+
+
+
+<a name="svc-biz-vip-JoinNobleTopicInfo"></a>
+
+### JoinNobleTopicInfo
+topic: topic.vip.join_noble
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| noble_id | [string](#string) |  | 贵族id |
+| level | [int32](#int32) |  | 等级 |
+| member_id | [string](#string) |  | 用户id |
+| streamer_id | [string](#string) |  | 主播id |
+| room_id | [string](#string) |  | 房间id |
+| live_id | [string](#string) |  | 直播id |
+| order_id | [string](#string) |  | 支付订单id |
+| order_price | [int64](#int64) |  | 支付订单价格 |
+| join_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 时间 |
+
+
+
+
+
+
+<a name="svc-biz-vip-RenewNobleTopicInfo"></a>
+
+### RenewNobleTopicInfo
+topic: topic.vip.renew_noble
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| noble_id | [string](#string) |  | 贵族id |
+| level | [int32](#int32) |  | 等级 |
+| member_id | [string](#string) |  | 用户id |
+| streamer_id | [string](#string) |  | 主播id |
+| room_id | [string](#string) |  | 房间id |
+| live_id | [string](#string) |  | 直播id |
+| order_id | [string](#string) |  | 支付订单id |
+| order_price | [int64](#int64) |  | 支付订单价格 |
+| renew_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 时间 |
+
+
+
+
+
+
+<a name="svc-biz-vip-UpgradeNobleTopicInfo"></a>
+
+### UpgradeNobleTopicInfo
+topic: topic.vip.upgrade_noble
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| noble_id | [string](#string) |  | 贵族id |
+| level | [int32](#int32) |  | 等级 |
+| member_id | [string](#string) |  | 用户id |
+| streamer_id | [string](#string) |  | 主播id |
+| room_id | [string](#string) |  | 房间id |
+| live_id | [string](#string) |  | 直播id |
+| order_id | [string](#string) |  | 支付订单id |
+| order_price | [int64](#int64) |  | 支付订单价格 |
+| upgrade_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 时间 |
+
+
+
+
+
+ 
+
+ 
+
+ 
 
  
 
