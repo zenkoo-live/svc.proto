@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+package svc.biz.vip;
+
+import "google/protobuf/timestamp.proto";
+import "svc.biz.vip/fanbase.proto";
+
+option go_package="./svc.biz.vip;vip";
+
+// topic: topic.vip.join_fanbase
+message JoinFanbaseTopicInfo {
+    string streamer_id = 1; // 主播id
+    string room_id = 2; // 房间id
+    string live_id = 3; // 直播id
+    string member_id = 4; // 用户id
+    FanbaseLevel level = 5; // 粉丝牌等级
+    string order_id = 6; // 支付订单id
+    int64 order_price = 7; // 支付订单价格
+    google.protobuf.Timestamp join_time = 8; // 时间
+}
+
+// topic: topic.vip.join_noble
+message JoinNobleTopicInfo {
+    string noble_id = 1; // 贵族id
+    int32 level = 2; // 等级
+    string member_id = 3; // 用户id
+    string streamer_id = 4; // 主播id
+    string room_id = 5; // 房间id
+    string live_id = 6; // 直播id
+    string order_id = 7; // 支付订单id
+    int64 order_price = 8; // 支付订单价格
+    google.protobuf.Timestamp join_time = 9; // 时间
+}
+
+// topic: topic.vip.renew_noble
+message RenewNobleTopicInfo {
+    string noble_id = 1; // 贵族id
+    int32 level = 2; // 等级
+    string member_id = 3; // 用户id
+    string streamer_id = 4; // 主播id
+    string room_id = 5; // 房间id
+    string live_id = 6; // 直播id
+    string order_id = 7; // 支付订单id
+    int64 order_price = 8; // 支付订单价格
+    google.protobuf.Timestamp renew_time = 9; // 时间
+}
+
+// topic: topic.vip.upgrade_noble
+message UpgradeNobleTopicInfo {
+    string noble_id = 1; // 贵族id
+    int32 level = 2; // 等级
+    string member_id = 3; // 用户id
+    string streamer_id = 4; // 主播id
+    string room_id = 5; // 房间id
+    string live_id = 6; // 直播id
+    string order_id = 7; // 支付订单id
+    int64 order_price = 8; // 支付订单价格
+    google.protobuf.Timestamp upgrade_time = 9; // 时间
+}
