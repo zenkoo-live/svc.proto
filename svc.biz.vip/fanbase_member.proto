@@ -39,11 +39,12 @@ service FanbaseMember {
 
 message JoinFanbaseReq {
     string streamer_id = 1;
-    string live_id = 2;
-    string member_id = 3;
-    FanbaseLevel level = 4;
-    string order_id = 5; // 支付订单id
-    int64 order_price = 6; // 支付订单价格
+    string room_id = 2;
+    string live_id = 3;
+    string member_id = 4;
+    FanbaseLevel level = 5;
+    string order_id = 6; // 支付订单id
+    int64 order_price = 7; // 支付订单价格
 }
 
 message LeaveFanbaseReq {

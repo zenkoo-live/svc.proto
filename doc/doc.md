@@ -14427,6 +14427,7 @@ topic: topic.vip.upgrade_noble
 | noble_id | [string](#string) |  | 贵族id |
 | member_id | [string](#string) |  | 用户id |
 | streamer_id | [string](#string) |  | 主播id（可为空；贵族可直接开通，也可在某个直播间开通） |
+| room_id | [string](#string) |  |  |
 | live_id | [string](#string) |  | 直播id |
 | order_id | [string](#string) |  | 支付订单id |
 | order_price | [int64](#int64) |  | 支付订单价格 |
@@ -14546,6 +14547,7 @@ topic: topic.vip.upgrade_noble
 | noble_id | [string](#string) |  | 贵族id |
 | member_id | [string](#string) |  | 用户id |
 | streamer_id | [string](#string) |  | 主播id（可为空；贵族可直接开通，也可在某个直播间开通） |
+| room_id | [string](#string) |  |  |
 | live_id | [string](#string) |  | 直播id |
 | order_id | [string](#string) |  | 支付订单id |
 | order_price | [int64](#int64) |  | 支付订单价格 |
@@ -14576,6 +14578,7 @@ topic: topic.vip.upgrade_noble
 | noble_id | [string](#string) |  | 贵族id |
 | member_id | [string](#string) |  | 用户id |
 | streamer_id | [string](#string) |  | 主播id（可为空；贵族可直接开通，也可在某个直播间开通） |
+| room_id | [string](#string) |  |  |
 | live_id | [string](#string) |  | 直播id |
 | order_id | [string](#string) |  | 支付订单id |
 | order_price | [int64](#int64) |  | 支付订单价格 |
@@ -15449,6 +15452,7 @@ topic: topic.vip.upgrade_noble
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | streamer_id | [string](#string) |  |  |
+| room_id | [string](#string) |  |  |
 | live_id | [string](#string) |  |  |
 | member_id | [string](#string) |  |  |
 | level | [FanbaseLevel](#svc-biz-vip-FanbaseLevel) |  |  |
