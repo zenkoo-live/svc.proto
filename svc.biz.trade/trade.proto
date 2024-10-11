@@ -107,6 +107,13 @@ message UserCoinValue {// 总余额=value+limited_value
   int64 limited_value = 2;// 低权限余额
 }
 
+message WageInfo {
+  int64 hour_amount = 1; // 时薪
+	int64 hour_upper_limit = 2; // 时薪上限（几个小时）
+  int64 duration = 3; // 时长（单位秒）
+  int64 wage = 4; // 薪资
+}
+
 // end ------------公共参数--------------
 
 message SendGiftInRoomReq {
@@ -232,10 +239,18 @@ message MoneyExchangeCoinResp {
 }
 
 
-// 后台充值代币余额目前就一步操作，不在trade内实现，直接调用asset，但summary内使用trade内的req结构体，保持统一
+// CoinRechargeReq 后台充值代币余额目前就一步操作，不在trade内实现，直接调用asset，但summary内使用trade内的req结构体，保持统一
 message CoinRechargeReq {
     TradeInfo trade_info = 1;
     UserInfo user = 2;
     int64 recharge_amount = 3;
     string attach = 4;
+}
+
+// StreamerWageReq 主播时薪
+message StreamerWageReq {
+    TradeInfo trade_info = 1;
+    RoomInfo room_info = 2;
+    UserInfo streamer = 3;
+    WageInfo wage_info = 4;
 }

@@ -156,6 +156,7 @@
     - [RoomTicketInfo](#svc-biz-trade-RoomTicketInfo)
     - [SendGiftInRoomReq](#svc-biz-trade-SendGiftInRoomReq)
     - [SendGiftInRoomResp](#svc-biz-trade-SendGiftInRoomResp)
+    - [StreamerWageReq](#svc-biz-trade-StreamerWageReq)
     - [TradeInfo](#svc-biz-trade-TradeInfo)
     - [TradeResult](#svc-biz-trade-TradeResult)
     - [UserCoinValue](#svc-biz-trade-UserCoinValue)
@@ -169,6 +170,7 @@
     - [VipUpgradeInfo](#svc-biz-trade-VipUpgradeInfo)
     - [VipUpgradeReq](#svc-biz-trade-VipUpgradeReq)
     - [VipUpgradeResp](#svc-biz-trade-VipUpgradeResp)
+    - [WageInfo](#svc-biz-trade-WageInfo)
   
     - [Trade](#svc-biz-trade-Trade)
   
@@ -3030,7 +3032,7 @@ Masks
 <a name="svc-biz-trade-CoinRechargeReq"></a>
 
 ### CoinRechargeReq
-后台充值代币余额目前就一步操作，不在trade内实现，直接调用asset，但summary内使用trade内的req结构体，保持统一
+CoinRechargeReq 后台充值代币余额目前就一步操作，不在trade内实现，直接调用asset，但summary内使用trade内的req结构体，保持统一
 
 
 | Field | Type | Label | Description |
@@ -3427,6 +3429,24 @@ Masks
 
 
 
+<a name="svc-biz-trade-StreamerWageReq"></a>
+
+### StreamerWageReq
+StreamerWageReq 主播时薪
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| trade_info | [TradeInfo](#svc-biz-trade-TradeInfo) |  |  |
+| room_info | [RoomInfo](#svc-biz-trade-RoomInfo) |  |  |
+| streamer | [UserInfo](#svc-biz-trade-UserInfo) |  |  |
+| wage_info | [WageInfo](#svc-biz-trade-WageInfo) |  |  |
+
+
+
+
+
+
 <a name="svc-biz-trade-TradeInfo"></a>
 
 ### TradeInfo
@@ -3635,6 +3655,24 @@ Masks
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | trade_result | [TradeResult](#svc-biz-trade-TradeResult) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-trade-WageInfo"></a>
+
+### WageInfo
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| hour_amount | [int64](#int64) |  | 时薪 |
+| hour_upper_limit | [int64](#int64) |  | 时薪上限（几个小时） |
+| duration | [int64](#int64) |  | 时长（单位秒） |
+| wage | [int64](#int64) |  | 薪资 |
 
 
 
