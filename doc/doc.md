@@ -7570,6 +7570,7 @@ Room 房间
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | merchant_id | [string](#string) |  |  |
+| trade_id | [string](#string) |  | 业务方交易id |
 | trans_direction | [int64](#int64) |  | 交易方向 0 不限 1 增加 2 减少 |
 | trans_type | [int64](#int64) | repeated | 交易类别: 空表示不限 |
 | start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开始时间(含) |
@@ -7608,6 +7609,7 @@ Room 房间
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| trade_id | [string](#string) |  | 业务方交易id |
 | streamer_id | [string](#string) |  |  |
 | trans_direction | [int64](#int64) |  | 交易方向 0 不限 1 增加 2 减少 |
 | trans_type | [int64](#int64) | repeated | 交易类别: 空表示不限 |
@@ -7647,6 +7649,7 @@ Room 房间
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| trade_id | [string](#string) |  | 业务方交易id |
 | streamer_id | [string](#string) |  |  |
 | trans_direction | [int64](#int64) |  | 交易方向 0 不限 1 增加 2 减少 |
 | trans_type | [int64](#int64) | repeated | 交易类别: 空表示不限 |
@@ -7686,6 +7689,7 @@ Room 房间
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| trade_id | [string](#string) |  | 业务方交易id |
 | union_id | [string](#string) |  |  |
 | trans_direction | [int64](#int64) |  | 交易方向 0 不限 1 增加 2 减少 |
 | trans_type | [int64](#int64) | repeated | 交易类别: 空表示不限 |
@@ -7725,6 +7729,7 @@ Room 房间
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| trade_id | [string](#string) |  | 业务方交易id |
 | union_id | [string](#string) |  |  |
 | trans_direction | [int64](#int64) |  | 交易方向 0 不限 1 增加 2 减少 |
 | trans_type | [int64](#int64) | repeated | 交易类别: 空表示不限 |
@@ -7764,12 +7769,12 @@ Room 房间
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| trade_id | [string](#string) |  | 业务方交易id |
 | uid | [string](#string) |  |  |
 | trans_direction | [int64](#int64) |  | 交易方向 0 不限 1 增加 2 减少 |
 | trans_type | [int64](#int64) | repeated | 交易类别: 空表示不限 |
 | start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开始时间(含) |
 | end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 结束时间(不含) |
-| trade_id | [string](#string) |  | 业务方交易id |
 | page | [int64](#int64) |  | 页码 |
 | page_size | [int64](#int64) |  | 单页条数 |
 
@@ -7805,6 +7810,7 @@ Room 房间
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | merchant_id | [string](#string) |  |  |
+| trade_id | [string](#string) |  | 交易id |
 | uid | [string](#string) |  |  |
 | trans_direction | [int64](#int64) |  | 交易方向 0 不限 1 增加 2 减少 |
 | trans_type | [int64](#int64) | repeated | 交易类别: 空表示不限 |

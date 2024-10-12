@@ -116,6 +116,7 @@ message ChangeUserMoneyResp {
 }
 message ListUserMoneyDetailReq {
   string merchant_id = 1;
+  string trade_id = 2; // 交易id
   string uid = 3;
   int64 trans_direction = 4; // 交易方向 0 不限 1 增加 2 减少
   repeated int64 trans_type = 5; // 交易类别: 空表示不限
@@ -189,12 +190,12 @@ message ChangeUserCoinResp {
   int64 trans_direction = 10; // 交易方向 1 增加 2 减少
 }
 message ListUserCoinDetailReq {
+  string trade_id = 2; // 业务方交易id
   string uid = 3;
   int64 trans_direction = 4; // 交易方向 0 不限 1 增加 2 减少
   repeated int64 trans_type = 5; // 交易类别: 空表示不限
   google.protobuf.Timestamp start_time = 6; // 开始时间(含)
   google.protobuf.Timestamp end_time = 7; // 结束时间(不含)
-  string trade_id = 8; // 业务方交易id
 
   int64 page = 50; // 页码
   int64 page_size = 51; // 单页条数
@@ -258,6 +259,7 @@ message ChangeStreamerMoneyResp {
   google.protobuf.Timestamp trans_time = 8; // 业务时间
 }
 message ListStreamerMoneyDetailReq {
+  string trade_id = 2; // 业务方交易id
   string streamer_id = 3;
   int64 trans_direction = 4; // 交易方向 0 不限 1 增加 2 减少
   repeated int64 trans_type = 5; // 交易类别: 空表示不限
@@ -330,6 +332,7 @@ message ChangeStreamerCoinResp {
   int64 trans_direction = 10; // 交易方向 1 增加 2 减少
 }
 message ListStreamerCoinDetailReq {
+  string trade_id = 2; // 业务方交易id
   string streamer_id = 3;
   int64 trans_direction = 4; // 交易方向 0 不限 1 增加 2 减少
   repeated int64 trans_type = 5; // 交易类别: 空表示不限
@@ -405,6 +408,7 @@ message ChangeUnionMoneyResp {
   google.protobuf.Timestamp trans_time = 8; // 业务时间
 }
 message ListUnionMoneyDetailReq {
+  string trade_id = 2; // 业务方交易id
   string union_id = 3;
   int64 trans_direction = 4; // 交易方向 0 不限 1 增加 2 减少
   repeated int64 trans_type = 5; // 交易类别: 空表示不限
@@ -477,6 +481,7 @@ message ChangeUnionCoinResp {
   int64 trans_direction = 10; // 交易方向 1 增加 2 减少
 }
 message ListUnionCoinDetailReq {
+  string trade_id = 2; // 业务方交易id
   string union_id = 3;
   int64 trans_direction = 4; // 交易方向 0 不限 1 增加 2 减少
   repeated int64 trans_type = 5; // 交易类别: 空表示不限
@@ -553,6 +558,7 @@ message ChangeMerchantCoinResp {
 }
 message ListMerchantCoinDetailReq {
   string merchant_id = 1;
+  string trade_id = 2; // 业务方交易id
   int64 trans_direction = 4; // 交易方向 0 不限 1 增加 2 减少
   repeated int64 trans_type = 5; // 交易类别: 空表示不限
   google.protobuf.Timestamp start_time = 6; // 开始时间(含)
