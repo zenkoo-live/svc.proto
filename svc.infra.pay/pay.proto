@@ -93,7 +93,7 @@ message RechargeRequest {
   string remote_addr = 6;                      // 请求IP
   string platform = 7;                         // 充值的端口: ios,android,h5,pc这种
   string creator = 8;                         // 充值操作人
-  optional string remark  = 9;                         // 充值备注
+  optional string remark = 9;                         // 充值备注
 }
 
 message RechargeResponse {
@@ -141,8 +141,10 @@ message DetailPayRecordRequest {
   google.protobuf.Timestamp end_at = 7;       // 结束时间
   optional PayStatus status = 8;              // 支付状态
   optional PayStatus not_status = 9;          // 不等于某个状态
-  uint32 page = 100;                           // 页数
-  uint32 size = 200;                           // 每页数量
+  string support_channel_name = 10;           // 可支持的渠道名称
+  string channel_type_id = 11;                // 渠道类型
+  uint32 page = 100;                          // 页数
+  uint32 size = 200;                          // 每页数量
 }
 
 
