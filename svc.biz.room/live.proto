@@ -37,8 +37,9 @@ message LiveInfo {
     int64 total_viewer = 24; // 观看人数
     int64 new_follow = 25; // 新增订阅
     int64 new_fanbase = 26; // 新增粉丝团
-    int64 new_nobble = 27; // 新增贵族
-    int64 new_nobble_price = 28; // 新增贵族代币数
+    int64 new_fanbase_price = 27; // 新增粉丝团代币数
+    int64 new_nobble = 28; // 新增贵族
+    int64 new_nobble_price = 29; // 新增贵族代币数
 
     google.protobuf.Timestamp created_at = 255; // 创建时间
     google.protobuf.Timestamp updated_at = 256; // 更新时间
@@ -83,6 +84,7 @@ message StatLiveResp {
     int64 total_viewer = 6; // 观看人数（每场直播观看人数相加，不去重）
     int64 new_follow = 7; // 新增订阅（每场新增订阅人数相加，不去重）
     int64 new_fanbase = 8; // 新增粉丝团（每场新增粉丝团相加，不去重）
-    int64 new_nobble = 9; // 新增贵族（每场直播贵族付费用户数相加，包含续费、升级）
-    int64 new_nobble_price = 10; // 新增贵族代币数（每场直播贵族付费数相加，包含续费、升级）
+    int64 new_fanbase_price = 9; // 新增粉丝团代币数（每场直播粉丝团付费数相加）
+    int64 new_nobble = 10; // 新增贵族（每场直播贵族付费用户数相加）
+    int64 new_nobble_price = 11; // 新增贵族代币数（每场直播贵族付费数相加）
 }

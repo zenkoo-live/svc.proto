@@ -5459,6 +5459,7 @@ CategoryInfo 分类详情
 | total_viewer | [int64](#int64) |  | 观看人数 |
 | new_follow | [int64](#int64) |  | 新增订阅 |
 | new_fanbase | [int64](#int64) |  | 新增粉丝团 |
+| new_fanbase_price | [int64](#int64) |  | 新增粉丝团代币数 |
 | new_nobble | [int64](#int64) |  | 新增贵族 |
 | new_nobble_price | [int64](#int64) |  | 新增贵族代币数 |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
@@ -5548,8 +5549,9 @@ CategoryInfo 分类详情
 | total_viewer | [int64](#int64) |  | 观看人数（每场直播观看人数相加，不去重） |
 | new_follow | [int64](#int64) |  | 新增订阅（每场新增订阅人数相加，不去重） |
 | new_fanbase | [int64](#int64) |  | 新增粉丝团（每场新增粉丝团相加，不去重） |
-| new_nobble | [int64](#int64) |  | 新增贵族（每场直播贵族付费用户数相加，包含续费、升级） |
-| new_nobble_price | [int64](#int64) |  | 新增贵族代币数（每场直播贵族付费数相加，包含续费、升级） |
+| new_fanbase_price | [int64](#int64) |  | 新增粉丝团代币数（每场直播粉丝团付费数相加） |
+| new_nobble | [int64](#int64) |  | 新增贵族（每场直播贵族付费用户数相加） |
+| new_nobble_price | [int64](#int64) |  | 新增贵族代币数（每场直播贵族付费数相加） |
 
 
 
