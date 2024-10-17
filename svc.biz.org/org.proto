@@ -100,6 +100,8 @@ message ListDepartmentsReq {
     Department condition = 1;
     int32 limit = 2;
     int32 offset = 3;
+    string sort_by = 11;
+    string order = 12;
     bool include_additions = 127;
 };
 message ListDepartmentsResp {
@@ -201,6 +203,8 @@ message ListMerchantsReq {
     Merchant condition = 1;
     int32 limit = 2;
     int32 offset = 3;
+    string sort_by = 11;
+    string order = 12;
     bool include_additions = 127;
 };
 message ListMerchantsResp {
@@ -302,6 +306,8 @@ message ListUnionsReq {
     Union condition = 1;
     int32 limit = 2;
     int32 offset = 3;
+    string sort_by = 11;
+    string order = 12;
     bool include_additions = 127;
 };
 message ListUnionsResp {

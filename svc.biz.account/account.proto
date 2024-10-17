@@ -154,7 +154,9 @@ message ListViewersReq {
     Viewer condition = 1;
     int32 limit = 2;
     int32 offset = 3;
-    TimePeriod period = 4;      
+    TimePeriod period = 4; 
+    string sort_by = 11;
+    string order = 12;
     bool include_additions = 127;
     bool exclude_platform = 255;
 };
@@ -259,6 +261,8 @@ message ListStreamersReq {
     int32 limit = 2;
     int32 offset = 3;
     TimePeriod period = 4;
+    string sort_by = 11;
+    string order = 12;
     bool include_additions = 127;
     bool exclude_platform = 255;
 };
@@ -363,6 +367,8 @@ message ListManagersReq {
     int32 limit = 2;
     int32 offset = 3;
     TimePeriod period = 4;
+    string sort_by = 11;
+    string order = 12;
     bool include_additions = 127;
     bool exclude_platform = 255;
 };
@@ -467,6 +473,8 @@ message ListUnionsReq {
     int32 limit = 2;
     int32 offset = 3;
     TimePeriod period = 4;
+    string sort_by = 11;
+    string order = 12;
     bool include_additions = 127;
     bool exclude_platform = 255;
 };

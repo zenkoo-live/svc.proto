@@ -78,6 +78,8 @@ message ListItemsReq {
     Item condition = 1;
     int32 limit = 2;
     int32 offset = 3;
+    string sort_by = 11;
+    string order = 12;
 };
 message ListItemsResp {
     repeated Item items = 1;
