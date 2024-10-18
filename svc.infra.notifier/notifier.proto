@@ -229,13 +229,13 @@ message SmsBizSendLogListRequest {
 }
 
 message SmsBizSendLogListResponse {
-  message SmsBizSendLog {
+  message SmsBizSendLogItem {
     SmsBizSendLog sms_biz_send_log = 1;
     SmsTemplate sms_template = 2;
     SmsChannel sms_channel = 3;
   }
   int64 cnt = 1;
-  repeated SmsBizSendLog list = 3;
+  repeated SmsBizSendLogItem list = 3;
 }
 
 message CreatedSmsBizSendLogRequest {
