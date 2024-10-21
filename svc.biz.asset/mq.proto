@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package svc.biz.asset;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package="./svc.biz.asset;asset";
+
+// topic: asset.user_money.incr
+message AssetUserMoneyIncrTopicInfo {
+    string merchant_id = 1;
+    string uid = 2;
+    int64 incr_value = 3;
+    int64 new_value = 4;
+    int64 trans_type = 5;
+    string trade_id = 6;
+    string detail_id = 7;
+    int64 serial_number = 8;
+    string summary = 9;
+    google.protobuf.Timestamp trans_time = 10;
+}
