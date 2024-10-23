@@ -134,6 +134,7 @@ message SmsTemplateListRequest {
   google.protobuf.Timestamp start_time = 4; // 开始时间, 可选
   google.protobuf.Timestamp end_time = 5; // 结束时间, 可选
   string merchant_id = 6; // 商户ID 获取当前商户下所有模板, 可选
+  string template_name = 7; // 模版名称
 }
 
 message SmsTemplate {
