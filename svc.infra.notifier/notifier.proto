@@ -246,6 +246,7 @@ message CreatedSmsBizSendLogRequest {
   int32 user_set = 4;  // 用户集合， 1/全体用户， 2/贵族用户 3/充值用户 4/游客用户 5/自定义用户
   string remark = 5;
   string user_set_extra = 6; // user_set = 5的时候，带上英文逗号分割的用户UID
+  string creator = 7; //  创建人
 }
 
 ////////////////// sms send biz ///////////////////
