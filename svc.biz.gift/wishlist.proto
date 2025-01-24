@@ -1,0 +1,100 @@
+syntax = "proto3";
+
+package svc.biz.gift;
+
+option go_package="./svc.biz.gift;gift";
+
+// 心愿单
+service LiveWishlist {
+    // 创建心愿单
+    rpc Create(AddWishlistReq) returns (AddWishlistCommonResp) {}
+
+    // 查询指定房间的心愿单信息
+    rpc GetByRoomId(GetWishlistByRoomIdReq) returns (WishlistInfoResp) {}
+
+    // 修改心愿单礼物
+    rpc UpdateWishGifts(UpdateGiftsReq) returns (WishlistInfoResp) {}
+
+    // 是否开启心愿单
+    rpc SetActiveStatus(EnabledStatusInfo) returns (EnabledStatusInfo) {}
+
+    // 是否开启自动模式(每天自动刷新心愿单)
+    rpc SetAutomodeStatus(EnabledStatusInfo) returns (EnabledStatusInfo) {}
+}
+
+message EnabledStatusInfo {
+    string room_id = 1;
+    bool   enabled = 2;  // 是否启用心愿单
+}
+
+
+message UpdateGiftsReq {
+    string   room_id                  = 1;  // 房间ID
+    repeated WishGiftInfoField detail = 2;  // 礼物详情
+}
+
+message UpdateDetailGiftItemsResp {
+    string room_id           = 1; // 房间ID
+    string gift_id           = 2; // 礼物ID
+    string received_quantity = 3; // 收到的数量
+    string target_quantity   = 4; // 目标数
+    bool   is_completed      = 5; // 是否已完成当前礼物目标
+}
+
+message AddWishlistCommonResp {
+    string id = 1;
+}
+
+// 公用删除反回
+message LiveWishlistCommonDeleteResp {
+    int64 affect_rows = 1;
+}
+
+message LiveWishlistDetailAddReq {
+    string room_id         = 1;  // 房间号
+    string gift_id         = 2;  // 礼物ID
+    int32  target_quantity = 3;  // 目标数量
+}
+
+message WishGiftInfo {
+    string id                = 1;
+    string wishlist_id       = 2;  // 心愿单ID
+    string gift_id           = 3;  // 礼物ID
+    string gift_name         = 4;  // 礼物名称
+    string gift_icon         = 5;  // 礼物图标
+    int32  gift_price        = 6;  // 礼物价格
+    int32  gift_total_price  = 7;  // 礼物总价格
+    int32  target_quantity   = 8;  // 目标数量
+    int32  received_quantity = 9;  // 完成数量
+    bool   is_completed      = 10;  // 是否已完成当前心愿
+}
+
+// 心愿单信息
+message WishlistInfoResp {
+    string   id                        = 1;
+    string   streamer_id               = 3; // 主播ID
+    string   room_id                   = 4; // 房间ID
+    string   live_id                   = 2; // 直播ID
+    string   name                      = 5; // 心愿单名称
+    string   desc                      = 6; // 心愿单描述
+    bool     is_active                 = 7; // 是否为激活的心愿单
+    bool     is_completed              = 8; // 是否已完成
+    repeated WishGiftInfo detail = 9; // 心愿单礼物列表
+}
+
+// 心愿单详情(创建时参数)
+message WishGiftInfoField {
+    string gift_id         = 1;  // 礼物ID
+    int32  target_quantity = 2;  // 目标数量
+}
+
+message AddWishlistReq {
+    string   room_id                        = 1;  // 房间ID
+    bool     is_automode                    = 2;  // 是否为自动重置(每天0点自动重置心愿单数据)
+    bool     enabled                        = 3;   // 是否启用心愿单
+    repeated WishGiftInfoField detail = 4;  // 心愿单礼物配置
+}
+
+message GetWishlistByRoomIdReq {
+    string room_id = 1;
+}
