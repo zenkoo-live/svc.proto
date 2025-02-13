@@ -63,6 +63,7 @@ var (
 	SvcInfraGeneratorGenerator     = svcInfraGenerator.NewGeneratorService(AppName+"::"+SvcInfraGenerator+runtime.AppendEnv(), clt)
 	SvcBizGiftGift                 = svcBizGift.NewGiftService(AppName+"::"+SvcBizGift+runtime.AppendEnv(), clt)
 	SvcBizGiftGift_record          = svcBizGift.NewGiftRecordService(AppName+"::"+SvcBizGift+runtime.AppendEnv(), clt)
+	SvcBizGiftWishlist             = svcBizGift.NewLiveWishlistService(AppName+"::"+SvcBizGift+runtime.AppendEnv(), clt)
 	SvcInfraLinkGateway            = svcInfraLink.NewLinkGatewayService(AppName+"::"+SvcInfraLink+runtime.AppendEnv(), clt)
 	SvcInfraLinkInstruction        = svcInfraLink.NewLinkInstructionService(AppName+"::"+SvcInfraLink+runtime.AppendEnv(), clt)
 	SvcInfraLinkMessage            = svcInfraLink.NewLinkMessageService(AppName+"::"+SvcInfraLink+runtime.AppendEnv(), clt)
