@@ -36,16 +36,18 @@ func NewLiveWishlistEndpoints() []*api.Endpoint {
 // Client API for LiveWishlist service
 
 type LiveWishlistService interface {
-	// 创建心愿单
-	Create(ctx context.Context, in *AddWishlistReq, opts ...client.CallOption) (*AddWishlistCommonResp, error)
+	// 设置心愿单
+	SetWishlist(ctx context.Context, in *SetWishlistReq, opts ...client.CallOption) (*SetWishlistResp, error)
 	// 查询指定房间的心愿单信息
 	GetByRoomId(ctx context.Context, in *GetWishlistByRoomIdReq, opts ...client.CallOption) (*WishlistInfoResp, error)
 	// 修改心愿单礼物
 	UpdateWishGifts(ctx context.Context, in *UpdateGiftsReq, opts ...client.CallOption) (*WishlistInfoResp, error)
-	// 是否开启心愿单
+	// 设置心愿单开启状态
 	SetActiveStatus(ctx context.Context, in *EnabledStatusInfo, opts ...client.CallOption) (*EnabledStatusInfo, error)
-	// 是否开启自动模式(每天自动刷新心愿单)
+	// 设置自动模式(每天自动刷新心愿单)开启状态
 	SetAutomodeStatus(ctx context.Context, in *EnabledStatusInfo, opts ...client.CallOption) (*EnabledStatusInfo, error)
+	// 执行自动模式逻辑(定时任务调用)
+	ExecAutoModeTask(ctx context.Context, in *EmptyRequest, opts ...client.CallOption) (*EmptyResponse, error)
 }
 
 type liveWishlistService struct {
@@ -60,9 +62,9 @@ func NewLiveWishlistService(name string, c client.Client) LiveWishlistService {
 	}
 }
 
-func (c *liveWishlistService) Create(ctx context.Context, in *AddWishlistReq, opts ...client.CallOption) (*AddWishlistCommonResp, error) {
-	req := c.c.NewRequest(c.name, "LiveWishlist.Create", in)
-	out := new(AddWishlistCommonResp)
+func (c *liveWishlistService) SetWishlist(ctx context.Context, in *SetWishlistReq, opts ...client.CallOption) (*SetWishlistResp, error) {
+	req := c.c.NewRequest(c.name, "LiveWishlist.SetWishlist", in)
+	out := new(SetWishlistResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -110,28 +112,41 @@ func (c *liveWishlistService) SetAutomodeStatus(ctx context.Context, in *Enabled
 	return out, nil
 }
 
+func (c *liveWishlistService) ExecAutoModeTask(ctx context.Context, in *EmptyRequest, opts ...client.CallOption) (*EmptyResponse, error) {
+	req := c.c.NewRequest(c.name, "LiveWishlist.ExecAutoModeTask", in)
+	out := new(EmptyResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for LiveWishlist service
 
 type LiveWishlistHandler interface {
-	// 创建心愿单
-	Create(context.Context, *AddWishlistReq, *AddWishlistCommonResp) error
+	// 设置心愿单
+	SetWishlist(context.Context, *SetWishlistReq, *SetWishlistResp) error
 	// 查询指定房间的心愿单信息
 	GetByRoomId(context.Context, *GetWishlistByRoomIdReq, *WishlistInfoResp) error
 	// 修改心愿单礼物
 	UpdateWishGifts(context.Context, *UpdateGiftsReq, *WishlistInfoResp) error
-	// 是否开启心愿单
+	// 设置心愿单开启状态
 	SetActiveStatus(context.Context, *EnabledStatusInfo, *EnabledStatusInfo) error
-	// 是否开启自动模式(每天自动刷新心愿单)
+	// 设置自动模式(每天自动刷新心愿单)开启状态
 	SetAutomodeStatus(context.Context, *EnabledStatusInfo, *EnabledStatusInfo) error
+	// 执行自动模式逻辑(定时任务调用)
+	ExecAutoModeTask(context.Context, *EmptyRequest, *EmptyResponse) error
 }
 
 func RegisterLiveWishlistHandler(s server.Server, hdlr LiveWishlistHandler, opts ...server.HandlerOption) error {
 	type liveWishlist interface {
-		Create(ctx context.Context, in *AddWishlistReq, out *AddWishlistCommonResp) error
+		SetWishlist(ctx context.Context, in *SetWishlistReq, out *SetWishlistResp) error
 		GetByRoomId(ctx context.Context, in *GetWishlistByRoomIdReq, out *WishlistInfoResp) error
 		UpdateWishGifts(ctx context.Context, in *UpdateGiftsReq, out *WishlistInfoResp) error
 		SetActiveStatus(ctx context.Context, in *EnabledStatusInfo, out *EnabledStatusInfo) error
 		SetAutomodeStatus(ctx context.Context, in *EnabledStatusInfo, out *EnabledStatusInfo) error
+		ExecAutoModeTask(ctx context.Context, in *EmptyRequest, out *EmptyResponse) error
 	}
 	type LiveWishlist struct {
 		liveWishlist
@@ -144,8 +159,8 @@ type liveWishlistHandler struct {
 	LiveWishlistHandler
 }
 
-func (h *liveWishlistHandler) Create(ctx context.Context, in *AddWishlistReq, out *AddWishlistCommonResp) error {
-	return h.LiveWishlistHandler.Create(ctx, in, out)
+func (h *liveWishlistHandler) SetWishlist(ctx context.Context, in *SetWishlistReq, out *SetWishlistResp) error {
+	return h.LiveWishlistHandler.SetWishlist(ctx, in, out)
 }
 
 func (h *liveWishlistHandler) GetByRoomId(ctx context.Context, in *GetWishlistByRoomIdReq, out *WishlistInfoResp) error {
@@ -162,4 +177,8 @@ func (h *liveWishlistHandler) SetActiveStatus(ctx context.Context, in *EnabledSt
 
 func (h *liveWishlistHandler) SetAutomodeStatus(ctx context.Context, in *EnabledStatusInfo, out *EnabledStatusInfo) error {
 	return h.LiveWishlistHandler.SetAutomodeStatus(ctx, in, out)
+}
+
+func (h *liveWishlistHandler) ExecAutoModeTask(ctx context.Context, in *EmptyRequest, out *EmptyResponse) error {
+	return h.LiveWishlistHandler.ExecAutoModeTask(ctx, in, out)
 }

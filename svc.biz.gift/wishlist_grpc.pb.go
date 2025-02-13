@@ -19,27 +19,30 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	LiveWishlist_Create_FullMethodName            = "/svc.biz.gift.LiveWishlist/Create"
+	LiveWishlist_SetWishlist_FullMethodName       = "/svc.biz.gift.LiveWishlist/SetWishlist"
 	LiveWishlist_GetByRoomId_FullMethodName       = "/svc.biz.gift.LiveWishlist/GetByRoomId"
 	LiveWishlist_UpdateWishGifts_FullMethodName   = "/svc.biz.gift.LiveWishlist/UpdateWishGifts"
 	LiveWishlist_SetActiveStatus_FullMethodName   = "/svc.biz.gift.LiveWishlist/SetActiveStatus"
 	LiveWishlist_SetAutomodeStatus_FullMethodName = "/svc.biz.gift.LiveWishlist/SetAutomodeStatus"
+	LiveWishlist_ExecAutoModeTask_FullMethodName  = "/svc.biz.gift.LiveWishlist/ExecAutoModeTask"
 )
 
 // LiveWishlistClient is the client API for LiveWishlist service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type LiveWishlistClient interface {
-	// 创建心愿单
-	Create(ctx context.Context, in *AddWishlistReq, opts ...grpc.CallOption) (*AddWishlistCommonResp, error)
+	// 设置心愿单
+	SetWishlist(ctx context.Context, in *SetWishlistReq, opts ...grpc.CallOption) (*SetWishlistResp, error)
 	// 查询指定房间的心愿单信息
 	GetByRoomId(ctx context.Context, in *GetWishlistByRoomIdReq, opts ...grpc.CallOption) (*WishlistInfoResp, error)
 	// 修改心愿单礼物
 	UpdateWishGifts(ctx context.Context, in *UpdateGiftsReq, opts ...grpc.CallOption) (*WishlistInfoResp, error)
-	// 是否开启心愿单
+	// 设置心愿单开启状态
 	SetActiveStatus(ctx context.Context, in *EnabledStatusInfo, opts ...grpc.CallOption) (*EnabledStatusInfo, error)
-	// 是否开启自动模式(每天自动刷新心愿单)
+	// 设置自动模式(每天自动刷新心愿单)开启状态
 	SetAutomodeStatus(ctx context.Context, in *EnabledStatusInfo, opts ...grpc.CallOption) (*EnabledStatusInfo, error)
+	// 执行自动模式逻辑(定时任务调用)
+	ExecAutoModeTask(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*EmptyResponse, error)
 }
 
 type liveWishlistClient struct {
@@ -50,9 +53,9 @@ func NewLiveWishlistClient(cc grpc.ClientConnInterface) LiveWishlistClient {
 	return &liveWishlistClient{cc}
 }
 
-func (c *liveWishlistClient) Create(ctx context.Context, in *AddWishlistReq, opts ...grpc.CallOption) (*AddWishlistCommonResp, error) {
-	out := new(AddWishlistCommonResp)
-	err := c.cc.Invoke(ctx, LiveWishlist_Create_FullMethodName, in, out, opts...)
+func (c *liveWishlistClient) SetWishlist(ctx context.Context, in *SetWishlistReq, opts ...grpc.CallOption) (*SetWishlistResp, error) {
+	out := new(SetWishlistResp)
+	err := c.cc.Invoke(ctx, LiveWishlist_SetWishlist_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -95,20 +98,31 @@ func (c *liveWishlistClient) SetAutomodeStatus(ctx context.Context, in *EnabledS
 	return out, nil
 }
 
+func (c *liveWishlistClient) ExecAutoModeTask(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*EmptyResponse, error) {
+	out := new(EmptyResponse)
+	err := c.cc.Invoke(ctx, LiveWishlist_ExecAutoModeTask_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // LiveWishlistServer is the server API for LiveWishlist service.
 // All implementations must embed UnimplementedLiveWishlistServer
 // for forward compatibility
 type LiveWishlistServer interface {
-	// 创建心愿单
-	Create(context.Context, *AddWishlistReq) (*AddWishlistCommonResp, error)
+	// 设置心愿单
+	SetWishlist(context.Context, *SetWishlistReq) (*SetWishlistResp, error)
 	// 查询指定房间的心愿单信息
 	GetByRoomId(context.Context, *GetWishlistByRoomIdReq) (*WishlistInfoResp, error)
 	// 修改心愿单礼物
 	UpdateWishGifts(context.Context, *UpdateGiftsReq) (*WishlistInfoResp, error)
-	// 是否开启心愿单
+	// 设置心愿单开启状态
 	SetActiveStatus(context.Context, *EnabledStatusInfo) (*EnabledStatusInfo, error)
-	// 是否开启自动模式(每天自动刷新心愿单)
+	// 设置自动模式(每天自动刷新心愿单)开启状态
 	SetAutomodeStatus(context.Context, *EnabledStatusInfo) (*EnabledStatusInfo, error)
+	// 执行自动模式逻辑(定时任务调用)
+	ExecAutoModeTask(context.Context, *EmptyRequest) (*EmptyResponse, error)
 	mustEmbedUnimplementedLiveWishlistServer()
 }
 
@@ -116,8 +130,8 @@ type LiveWishlistServer interface {
 type UnimplementedLiveWishlistServer struct {
 }
 
-func (UnimplementedLiveWishlistServer) Create(context.Context, *AddWishlistReq) (*AddWishlistCommonResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+func (UnimplementedLiveWishlistServer) SetWishlist(context.Context, *SetWishlistReq) (*SetWishlistResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetWishlist not implemented")
 }
 func (UnimplementedLiveWishlistServer) GetByRoomId(context.Context, *GetWishlistByRoomIdReq) (*WishlistInfoResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetByRoomId not implemented")
@@ -130,6 +144,9 @@ func (UnimplementedLiveWishlistServer) SetActiveStatus(context.Context, *Enabled
 }
 func (UnimplementedLiveWishlistServer) SetAutomodeStatus(context.Context, *EnabledStatusInfo) (*EnabledStatusInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetAutomodeStatus not implemented")
+}
+func (UnimplementedLiveWishlistServer) ExecAutoModeTask(context.Context, *EmptyRequest) (*EmptyResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ExecAutoModeTask not implemented")
 }
 func (UnimplementedLiveWishlistServer) mustEmbedUnimplementedLiveWishlistServer() {}
 
@@ -144,20 +161,20 @@ func RegisterLiveWishlistServer(s grpc.ServiceRegistrar, srv LiveWishlistServer)
 	s.RegisterService(&LiveWishlist_ServiceDesc, srv)
 }
 
-func _LiveWishlist_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AddWishlistReq)
+func _LiveWishlist_SetWishlist_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetWishlistReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(LiveWishlistServer).Create(ctx, in)
+		return srv.(LiveWishlistServer).SetWishlist(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: LiveWishlist_Create_FullMethodName,
+		FullMethod: LiveWishlist_SetWishlist_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(LiveWishlistServer).Create(ctx, req.(*AddWishlistReq))
+		return srv.(LiveWishlistServer).SetWishlist(ctx, req.(*SetWishlistReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -234,6 +251,24 @@ func _LiveWishlist_SetAutomodeStatus_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _LiveWishlist_ExecAutoModeTask_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EmptyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LiveWishlistServer).ExecAutoModeTask(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: LiveWishlist_ExecAutoModeTask_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LiveWishlistServer).ExecAutoModeTask(ctx, req.(*EmptyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // LiveWishlist_ServiceDesc is the grpc.ServiceDesc for LiveWishlist service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -242,8 +277,8 @@ var LiveWishlist_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*LiveWishlistServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "Create",
-			Handler:    _LiveWishlist_Create_Handler,
+			MethodName: "SetWishlist",
+			Handler:    _LiveWishlist_SetWishlist_Handler,
 		},
 		{
 			MethodName: "GetByRoomId",
@@ -260,6 +295,10 @@ var LiveWishlist_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SetAutomodeStatus",
 			Handler:    _LiveWishlist_SetAutomodeStatus_Handler,
+		},
+		{
+			MethodName: "ExecAutoModeTask",
+			Handler:    _LiveWishlist_ExecAutoModeTask_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
