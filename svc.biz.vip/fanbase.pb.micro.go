@@ -14,8 +14,9 @@ import (
 
 import (
 	context "context"
-	client "go-micro.dev/v5/client"
-	server "go-micro.dev/v5/server"
+	api "go-micro.dev/v4/api"
+	client "go-micro.dev/v4/client"
+	server "go-micro.dev/v4/server"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -24,9 +25,16 @@ var _ = fmt.Errorf
 var _ = math.Inf
 
 // Reference imports to suppress errors if they are not otherwise used.
+var _ api.Endpoint
 var _ context.Context
 var _ client.Option
 var _ server.Option
+
+// Api Endpoints for Fanbase service
+
+func NewFanbaseEndpoints() []*api.Endpoint {
+	return []*api.Endpoint{}
+}
 
 // Client API for Fanbase service
 
