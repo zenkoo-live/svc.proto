@@ -868,6 +868,20 @@
   
     - [Level](#svc-biz-vip-Level)
   
+- [svc.biz.vip/noble_salarys.proto](#svc-biz-vip_noble_salarys-proto)
+    - [DistributeSalaryResp](#svc-biz-vip-DistributeSalaryResp)
+    - [EmptyRequest](#svc-biz-vip-EmptyRequest)
+    - [EmptyResponse](#svc-biz-vip-EmptyResponse)
+    - [NobleSalaryInfo](#svc-biz-vip-NobleSalaryInfo)
+    - [NobleSalaryListReq](#svc-biz-vip-NobleSalaryListReq)
+    - [NobleSalaryListResp](#svc-biz-vip-NobleSalaryListResp)
+    - [ReceiveSalaryReq](#svc-biz-vip-ReceiveSalaryReq)
+    - [ReceiveSalaryResp](#svc-biz-vip-ReceiveSalaryResp)
+  
+    - [NOBLE_SALARY_STATUS](#svc-biz-vip-NOBLE_SALARY_STATUS)
+  
+    - [NobleSalary](#svc-biz-vip-NobleSalary)
+  
 - [svc.biz.vip/fanbase.proto](#svc-biz-vip_fanbase-proto)
     - [CreateFanbaseReq](#svc-biz-vip-CreateFanbaseReq)
     - [CreateFanbaseResp](#svc-biz-vip-CreateFanbaseResp)
@@ -15014,6 +15028,167 @@ topic: topic.vip.upgrade_noble
 | AddLevel | [AddLevelReq](#svc-biz-vip-AddLevelReq) | [AddLevelResp](#svc-biz-vip-AddLevelResp) | AddLevel 添加等级配置 |
 | UpdateLevel | [UpdateLevelReq](#svc-biz-vip-UpdateLevelReq) | [UpdateLevelReqResp](#svc-biz-vip-UpdateLevelReqResp) | UpdateLevel 更新等级配置（按照level字段更新） |
 | DelLevel | [DelLevelReq](#svc-biz-vip-DelLevelReq) | [DelLevelResp](#svc-biz-vip-DelLevelResp) | DelLevel 删除等级配置 |
+
+ 
+
+
+
+<a name="svc-biz-vip_noble_salarys-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## svc.biz.vip/noble_salarys.proto
+
+
+
+<a name="svc-biz-vip-DistributeSalaryResp"></a>
+
+### DistributeSalaryResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| count | [int32](#int32) |  | 发放数 |
+| run_time | [float](#float) |  | 执行时间 |
+
+
+
+
+
+
+<a name="svc-biz-vip-EmptyRequest"></a>
+
+### EmptyRequest
+空请求类型
+
+
+
+
+
+
+<a name="svc-biz-vip-EmptyResponse"></a>
+
+### EmptyResponse
+空响应类型
+
+
+
+
+
+
+<a name="svc-biz-vip-NobleSalaryInfo"></a>
+
+### NobleSalaryInfo
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  | 俸禄id |
+| amount | [int32](#int32) |  | 俸禄金额 |
+| status | [NOBLE_SALARY_STATUS](#svc-biz-vip-NOBLE_SALARY_STATUS) |  | 领取状态 |
+| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 发放时间 |
+| received_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 领取时间 |
+
+
+
+
+
+
+<a name="svc-biz-vip-NobleSalaryListReq"></a>
+
+### NobleSalaryListReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| viewer_id | [string](#string) |  |  |
+| page | [int32](#int32) |  |  |
+| limit | [int32](#int32) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-NobleSalaryListResp"></a>
+
+### NobleSalaryListResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| total | [int32](#int32) |  |  |
+| items | [NobleSalaryInfo](#svc-biz-vip-NobleSalaryInfo) | repeated |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-ReceiveSalaryReq"></a>
+
+### ReceiveSalaryReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-vip-ReceiveSalaryResp"></a>
+
+### ReceiveSalaryResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+| status | [NOBLE_SALARY_STATUS](#svc-biz-vip-NOBLE_SALARY_STATUS) |  |  |
+
+
+
+
+
+ 
+
+
+<a name="svc-biz-vip-NOBLE_SALARY_STATUS"></a>
+
+### NOBLE_SALARY_STATUS
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| NOBLE_SALARY_STATUS_UNKNOWN | 0 | 未知 |
+| NOBLE_SALARY_STATUS_PENDING | 1 | 待领取 |
+| NOBLE_SALARY_STATUS_EXPIRED | 2 | 已过期 |
+| NOBLE_SALARY_STATUS_RECEIVED | 3 | 已领取 |
+
+
+ 
+
+ 
+
+
+<a name="svc-biz-vip-NobleSalary"></a>
+
+### NobleSalary
+
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| Distribute | [EmptyRequest](#svc-biz-vip-EmptyRequest) | [DistributeSalaryResp](#svc-biz-vip-DistributeSalaryResp) | 发放俸禄(任务系统调用/每天) |
+| Receive | [ReceiveSalaryReq](#svc-biz-vip-ReceiveSalaryReq) | [ReceiveSalaryResp](#svc-biz-vip-ReceiveSalaryResp) | 领取俸禄 |
+| List | [NobleSalaryListReq](#svc-biz-vip-NobleSalaryListReq) | [NobleSalaryListResp](#svc-biz-vip-NobleSalaryListResp) | 查询俸禄列表(按发放时间倒序) |
 
  
 

@@ -90,4 +90,5 @@ var (
 	SvcBizVipLevel                 = svcBizVip.NewLevelService(AppName+"::"+SvcBizVip+runtime.AppendEnv(), clt)
 	SvcBizVipNoble                 = svcBizVip.NewNobleService(AppName+"::"+SvcBizVip+runtime.AppendEnv(), clt)
 	SvcBizVipNoble_member          = svcBizVip.NewNobleMemberService(AppName+"::"+SvcBizVip+runtime.AppendEnv(), clt)
+	SvcBizVipNoble_salarys         = svcBizVip.NewNobleSalaryService(AppName+"::"+SvcBizVip+runtime.AppendEnv(), clt)
 )

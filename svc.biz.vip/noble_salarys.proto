@@ -1,0 +1,64 @@
+syntax = "proto3";
+
+package svc.biz.vip;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package="./svc.biz.vip;vip";
+
+service NobleSalary {
+    // 发放俸禄(任务系统调用/每天)
+    rpc Distribute(EmptyRequest) returns (DistributeSalaryResp) {}
+
+    // 领取俸禄
+    rpc Receive(ReceiveSalaryReq) returns (ReceiveSalaryResp) {}
+
+    // 查询俸禄列表(按发放时间倒序)
+    rpc List(NobleSalaryListReq) returns (NobleSalaryListResp) {}
+}
+
+enum NOBLE_SALARY_STATUS {
+	NOBLE_SALARY_STATUS_UNKNOWN  = 0;  // 未知
+	NOBLE_SALARY_STATUS_PENDING  = 1;  // 待领取
+    NOBLE_SALARY_STATUS_EXPIRED  = 2;  // 已过期
+	NOBLE_SALARY_STATUS_RECEIVED = 3;  // 已领取
+}
+
+message NobleSalaryInfo {
+    string                    id                  = 1; // 俸禄id
+    int32                     amount              = 2; // 俸禄金额
+    NOBLE_SALARY_STATUS       status              = 3; // 领取状态
+    google.protobuf.Timestamp created_at          = 4; // 发放时间
+    google.protobuf.Timestamp received_at         = 5; // 领取时间
+}
+
+// 空请求类型
+message EmptyRequest {}
+
+// 空响应类型
+message EmptyResponse {}
+
+message DistributeSalaryResp {
+    int32 count     = 1;  // 发放数
+    float run_time = 2;  // 执行时间
+}
+
+message ReceiveSalaryReq {
+    string id = 1;
+}
+
+message ReceiveSalaryResp {
+    string              id     = 1;
+    NOBLE_SALARY_STATUS status = 2;
+}
+
+message NobleSalaryListReq {
+    string viewer_id = 1;
+    int32  page      = 2;
+    int32  limit     = 3;
+}
+
+message NobleSalaryListResp {
+    int32    total                 = 1;
+    repeated NobleSalaryInfo items = 2;
+}
