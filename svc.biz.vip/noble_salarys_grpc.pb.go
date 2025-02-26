@@ -19,9 +19,10 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	NobleSalary_Distribute_FullMethodName = "/svc.biz.vip.NobleSalary/Distribute"
-	NobleSalary_Receive_FullMethodName    = "/svc.biz.vip.NobleSalary/Receive"
-	NobleSalary_List_FullMethodName       = "/svc.biz.vip.NobleSalary/List"
+	NobleSalary_Distribute_FullMethodName     = "/svc.biz.vip.NobleSalary/Distribute"
+	NobleSalary_Receive_FullMethodName        = "/svc.biz.vip.NobleSalary/Receive"
+	NobleSalary_List_FullMethodName           = "/svc.biz.vip.NobleSalary/List"
+	NobleSalary_GetReceiveInfo_FullMethodName = "/svc.biz.vip.NobleSalary/GetReceiveInfo"
 )
 
 // NobleSalaryClient is the client API for NobleSalary service.
@@ -34,6 +35,8 @@ type NobleSalaryClient interface {
 	Receive(ctx context.Context, in *ReceiveSalaryReq, opts ...grpc.CallOption) (*ReceiveSalaryResp, error)
 	// 查询俸禄列表(按发放时间倒序)
 	List(ctx context.Context, in *NobleSalaryListReq, opts ...grpc.CallOption) (*NobleSalaryListResp, error)
+	// 查询俸禄领信息(金额、状态等)
+	GetReceiveInfo(ctx context.Context, in *ReceiveSalaryReq, opts ...grpc.CallOption) (*NobleSalaryInfoResp, error)
 }
 
 type nobleSalaryClient struct {
@@ -74,6 +77,16 @@ func (c *nobleSalaryClient) List(ctx context.Context, in *NobleSalaryListReq, op
 	return out, nil
 }
 
+func (c *nobleSalaryClient) GetReceiveInfo(ctx context.Context, in *ReceiveSalaryReq, opts ...grpc.CallOption) (*NobleSalaryInfoResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(NobleSalaryInfoResp)
+	err := c.cc.Invoke(ctx, NobleSalary_GetReceiveInfo_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // NobleSalaryServer is the server API for NobleSalary service.
 // All implementations must embed UnimplementedNobleSalaryServer
 // for forward compatibility.
@@ -84,6 +97,8 @@ type NobleSalaryServer interface {
 	Receive(context.Context, *ReceiveSalaryReq) (*ReceiveSalaryResp, error)
 	// 查询俸禄列表(按发放时间倒序)
 	List(context.Context, *NobleSalaryListReq) (*NobleSalaryListResp, error)
+	// 查询俸禄领信息(金额、状态等)
+	GetReceiveInfo(context.Context, *ReceiveSalaryReq) (*NobleSalaryInfoResp, error)
 	mustEmbedUnimplementedNobleSalaryServer()
 }
 
@@ -102,6 +117,9 @@ func (UnimplementedNobleSalaryServer) Receive(context.Context, *ReceiveSalaryReq
 }
 func (UnimplementedNobleSalaryServer) List(context.Context, *NobleSalaryListReq) (*NobleSalaryListResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
+}
+func (UnimplementedNobleSalaryServer) GetReceiveInfo(context.Context, *ReceiveSalaryReq) (*NobleSalaryInfoResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetReceiveInfo not implemented")
 }
 func (UnimplementedNobleSalaryServer) mustEmbedUnimplementedNobleSalaryServer() {}
 func (UnimplementedNobleSalaryServer) testEmbeddedByValue()                     {}
@@ -178,6 +196,24 @@ func _NobleSalary_List_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
+func _NobleSalary_GetReceiveInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReceiveSalaryReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NobleSalaryServer).GetReceiveInfo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: NobleSalary_GetReceiveInfo_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NobleSalaryServer).GetReceiveInfo(ctx, req.(*ReceiveSalaryReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // NobleSalary_ServiceDesc is the grpc.ServiceDesc for NobleSalary service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -196,6 +232,10 @@ var NobleSalary_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "List",
 			Handler:    _NobleSalary_List_Handler,
+		},
+		{
+			MethodName: "GetReceiveInfo",
+			Handler:    _NobleSalary_GetReceiveInfo_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

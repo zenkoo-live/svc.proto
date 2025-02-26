@@ -43,6 +43,8 @@ type NobleSalaryService interface {
 	Receive(ctx context.Context, in *ReceiveSalaryReq, opts ...client.CallOption) (*ReceiveSalaryResp, error)
 	// 查询俸禄列表(按发放时间倒序)
 	List(ctx context.Context, in *NobleSalaryListReq, opts ...client.CallOption) (*NobleSalaryListResp, error)
+	// 查询俸禄领信息(金额、状态等)
+	GetReceiveInfo(ctx context.Context, in *ReceiveSalaryReq, opts ...client.CallOption) (*NobleSalaryInfoResp, error)
 }
 
 type nobleSalaryService struct {
@@ -87,6 +89,16 @@ func (c *nobleSalaryService) List(ctx context.Context, in *NobleSalaryListReq, o
 	return out, nil
 }
 
+func (c *nobleSalaryService) GetReceiveInfo(ctx context.Context, in *ReceiveSalaryReq, opts ...client.CallOption) (*NobleSalaryInfoResp, error) {
+	req := c.c.NewRequest(c.name, "NobleSalary.GetReceiveInfo", in)
+	out := new(NobleSalaryInfoResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for NobleSalary service
 
 type NobleSalaryHandler interface {
@@ -96,6 +108,8 @@ type NobleSalaryHandler interface {
 	Receive(context.Context, *ReceiveSalaryReq, *ReceiveSalaryResp) error
 	// 查询俸禄列表(按发放时间倒序)
 	List(context.Context, *NobleSalaryListReq, *NobleSalaryListResp) error
+	// 查询俸禄领信息(金额、状态等)
+	GetReceiveInfo(context.Context, *ReceiveSalaryReq, *NobleSalaryInfoResp) error
 }
 
 func RegisterNobleSalaryHandler(s server.Server, hdlr NobleSalaryHandler, opts ...server.HandlerOption) error {
@@ -103,6 +117,7 @@ func RegisterNobleSalaryHandler(s server.Server, hdlr NobleSalaryHandler, opts .
 		Distribute(ctx context.Context, in *EmptyRequest, out *DistributeSalaryResp) error
 		Receive(ctx context.Context, in *ReceiveSalaryReq, out *ReceiveSalaryResp) error
 		List(ctx context.Context, in *NobleSalaryListReq, out *NobleSalaryListResp) error
+		GetReceiveInfo(ctx context.Context, in *ReceiveSalaryReq, out *NobleSalaryInfoResp) error
 	}
 	type NobleSalary struct {
 		nobleSalary
@@ -125,4 +140,8 @@ func (h *nobleSalaryHandler) Receive(ctx context.Context, in *ReceiveSalaryReq, 
 
 func (h *nobleSalaryHandler) List(ctx context.Context, in *NobleSalaryListReq, out *NobleSalaryListResp) error {
 	return h.NobleSalaryHandler.List(ctx, in, out)
+}
+
+func (h *nobleSalaryHandler) GetReceiveInfo(ctx context.Context, in *ReceiveSalaryReq, out *NobleSalaryInfoResp) error {
+	return h.NobleSalaryHandler.GetReceiveInfo(ctx, in, out)
 }

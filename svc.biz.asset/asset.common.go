@@ -44,6 +44,9 @@ const (
 
 	TransTypeCoinAdminRecharge TransType = 24
 	TransTypeCoinStreamerWage  TransType = 25
+
+	// 领取俸禄
+	TransTypeCoinReceivingSalary TransType = 26
 )
 
 // AssetType 账户类型

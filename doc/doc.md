@@ -873,6 +873,7 @@
     - [EmptyRequest](#svc-biz-vip-EmptyRequest)
     - [EmptyResponse](#svc-biz-vip-EmptyResponse)
     - [NobleSalaryInfo](#svc-biz-vip-NobleSalaryInfo)
+    - [NobleSalaryInfoResp](#svc-biz-vip-NobleSalaryInfoResp)
     - [NobleSalaryListReq](#svc-biz-vip-NobleSalaryListReq)
     - [NobleSalaryListResp](#svc-biz-vip-NobleSalaryListResp)
     - [ReceiveSalaryReq](#svc-biz-vip-ReceiveSalaryReq)
@@ -15089,6 +15090,22 @@ topic: topic.vip.upgrade_noble
 | status | [NOBLE_SALARY_STATUS](#svc-biz-vip-NOBLE_SALARY_STATUS) |  | 领取状态 |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 发放时间 |
 | received_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 领取时间 |
+| expired_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 过期时间 |
+
+
+
+
+
+
+<a name="svc-biz-vip-NobleSalaryInfoResp"></a>
+
+### NobleSalaryInfoResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| info | [NobleSalaryInfo](#svc-biz-vip-NobleSalaryInfo) |  |  |
 
 
 
@@ -15189,6 +15206,7 @@ topic: topic.vip.upgrade_noble
 | Distribute | [EmptyRequest](#svc-biz-vip-EmptyRequest) | [DistributeSalaryResp](#svc-biz-vip-DistributeSalaryResp) | 发放俸禄(任务系统调用/每天) |
 | Receive | [ReceiveSalaryReq](#svc-biz-vip-ReceiveSalaryReq) | [ReceiveSalaryResp](#svc-biz-vip-ReceiveSalaryResp) | 领取俸禄 |
 | List | [NobleSalaryListReq](#svc-biz-vip-NobleSalaryListReq) | [NobleSalaryListResp](#svc-biz-vip-NobleSalaryListResp) | 查询俸禄列表(按发放时间倒序) |
+| GetReceiveInfo | [ReceiveSalaryReq](#svc-biz-vip-ReceiveSalaryReq) | [NobleSalaryInfoResp](#svc-biz-vip-NobleSalaryInfoResp) | 查询俸禄领信息(金额、状态等) |
 
  
 

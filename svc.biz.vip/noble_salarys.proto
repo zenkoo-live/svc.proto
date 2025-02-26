@@ -15,6 +15,9 @@ service NobleSalary {
 
     // 查询俸禄列表(按发放时间倒序)
     rpc List(NobleSalaryListReq) returns (NobleSalaryListResp) {}
+
+    // 查询俸禄领信息(金额、状态等)
+    rpc GetReceiveInfo(ReceiveSalaryReq) returns (NobleSalaryInfoResp) {}
 }
 
 enum NOBLE_SALARY_STATUS {
@@ -25,11 +28,12 @@ enum NOBLE_SALARY_STATUS {
 }
 
 message NobleSalaryInfo {
-    string                    id                  = 1; // 俸禄id
-    int32                     amount              = 2; // 俸禄金额
-    NOBLE_SALARY_STATUS       status              = 3; // 领取状态
-    google.protobuf.Timestamp created_at          = 4; // 发放时间
-    google.protobuf.Timestamp received_at         = 5; // 领取时间
+    string                    id          = 1;  // 俸禄id
+    int32                     amount      = 2;  // 俸禄金额
+    NOBLE_SALARY_STATUS       status      = 3;  // 领取状态
+    google.protobuf.Timestamp created_at  = 4;  // 发放时间
+    google.protobuf.Timestamp received_at = 5;  // 领取时间
+    google.protobuf.Timestamp expired_at  = 6;  // 过期时间
 }
 
 // 空请求类型
@@ -37,6 +41,10 @@ message EmptyRequest {}
 
 // 空响应类型
 message EmptyResponse {}
+
+message NobleSalaryInfoResp {
+    NobleSalaryInfo info = 1;
+}
 
 message DistributeSalaryResp {
     int32 count     = 1;  // 发放数
