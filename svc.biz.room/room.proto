@@ -70,6 +70,15 @@ enum ShowStatus {
     ShowStatusShow = 2; // 展示
 }
 
+// 房间权限类型定义
+enum RoomPermsType {
+    RoomPermsTypeNormal   = 0;  // 默认(无限制)
+    RoomPermsTypePassword = 1;  // 密码房间
+    RoomPermsTypeTicket   = 2;  // 门票房间
+    RoomPermsTypeTimer    = 3;  // 计时房间
+    RoomPermsTypeNoble    = 4;  // 贵族房间
+}
+
 message TrtcConf {
     string sdk_app_id = 1;
     string trtc_user_id = 2;
@@ -101,47 +110,51 @@ message Stream {
 }
 
 message RoomInfo {
-    string room_id = 1; // id
-    string display_id = 2; // 显示id
-    string streamer_id = 3; // 主播id
-    string category_id = 4; // 分类id
-    string title = 5; // 标题
-    string intro = 6; // 简介
-    string cover = 7; // 封面
-    string video = 8; // 视频
-    google.protobuf.Timestamp forbid_expire = 9; // 封禁到期时间
-    string forbid_reason = 10; // 封禁原因
-    ShowStatus show_status = 11; // 展示状态
-    repeated string merchants = 12; // 商户id
-    repeated string bind_tags = 13; // 标签
-    bool view_other = 14; // 是否允许观众查看他人信息
+    string                    room_id          = 1;   // id
+    string                    display_id       = 2;   // 显示id
+    string                    streamer_id      = 3;   // 主播id
+    string                    category_id      = 4;   // 分类id
+    string                    title            = 5;   // 标题
+    string                    intro            = 6;   // 简介
+    string                    cover            = 7;   // 封面
+    string                    video            = 8;   // 视频
+    google.protobuf.Timestamp forbid_expire    = 9;   // 封禁到期时间
+    string                    forbid_reason    = 10;  // 封禁原因
+    ShowStatus                show_status      = 11;  // 展示状态
+    repeated                  string merchants = 12;  // 商户id
+    repeated                  string bind_tags = 13;  // 标签
+    bool                      view_other       = 14;  // 是否允许观众查看他人信息
     
-    string live_id = 21; // 直播id（开播状态时才会有，关播时清空）
-    int32 live_region = 22; // 直播区域（开播状态时才会有，关播时清空）
-    LiveStatus live_status = 23; // 房间状态：1关播，2开播
-    LiveDisplayType live_display_type = 24; // 横竖屏类型（开播状态时才会有，关播时清空）
-    google.protobuf.Timestamp live_start_at = 25; // 开播时间（开播状态时才会有，关播时清空）
-    int32 resolution = 26; // 分辨率（开播状态时才会有，关播时清空）
+    string                    live_id           = 21;  // 直播id（开播状态时才会有，关播时清空）
+    int32                     live_region       = 22;  // 直播区域（开播状态时才会有，关播时清空）
+    LiveStatus                live_status       = 23;  // 房间状态：1关播，2开播
+    LiveDisplayType           live_display_type = 24;  // 横竖屏类型（开播状态时才会有，关播时清空）
+    google.protobuf.Timestamp live_start_at     = 25;  // 开播时间（开播状态时才会有，关播时清空）
+    int32                     resolution        = 26;  // 分辨率（开播状态时才会有，关播时清空）
 
-    int32 score_recommend = 41; // 推荐分数（后台配置）
+    int32                     score_recommend          = 41;  // 推荐分数（后台配置）
     google.protobuf.Timestamp score_recommend_start_at = 42;
-    google.protobuf.Timestamp score_recommend_end_at = 43;
-    int32 score_search = 44; // 搜索分数（后台配置）
-    google.protobuf.Timestamp score_search_start_at = 45;
-    google.protobuf.Timestamp score_search_end_at = 46;
-    int32 score_subscribe = 47; // 关注分数（后台配置）
+    google.protobuf.Timestamp score_recommend_end_at   = 43;
+    int32                     score_search             = 44;  // 搜索分数（后台配置）
+    google.protobuf.Timestamp score_search_start_at    = 45;
+    google.protobuf.Timestamp score_search_end_at      = 46;
+    int32                     score_subscribe          = 47;  // 关注分数（后台配置）
     google.protobuf.Timestamp score_subscribe_start_at = 48;
-    google.protobuf.Timestamp score_subscribe_end_at = 49;
-    int32 score_hot = 50; // 热度分数（后台配置）
-    google.protobuf.Timestamp score_hot_start_at = 51;
-    google.protobuf.Timestamp score_hot_end_at = 52;
-    int32 score_glamour = 61; // 魅力值
-    int32 score_online = 62; // 在线人数
-    int32 score_selected_gift = 64; // 精选礼物最后赠送时间戳
-    int32 score_gift = 65; // 纯礼物收益
+    google.protobuf.Timestamp score_subscribe_end_at   = 49;
+    int32                     score_hot                = 50;  // 热度分数（后台配置）
+    google.protobuf.Timestamp score_hot_start_at       = 51;
+    google.protobuf.Timestamp score_hot_end_at         = 52;
+    int32                     score_glamour            = 61;  // 魅力值
+    int32                     score_online             = 62;  // 在线人数
+    int32                     score_selected_gift      = 64;  // 精选礼物最后赠送时间戳
+    int32                     score_gift               = 65;  // 纯礼物收益
+
+    int32 room_type = 67; // 房间类型(0:普通, 1:密码, 2:门票, 3:计时, 3:贵族)
+    RoomPermissionsRules permissions_rules = 68; // 房间权限设置(对应房间类型的权限)
 
     google.protobuf.Timestamp created_at = 101; // 创建时间
     google.protobuf.Timestamp updated_at = 102; // 更新时间
+
 }
 
 message CreateRoomReq {
@@ -275,4 +288,49 @@ message StopLiveReq {
 }
 message StopLiveResp {
     LiveInfo live = 1;
+}
+
+// 主房间权限规则
+message RoomPermissionsRules {
+  RoomPermissionsRuleNormal   normal      = 1;  // 默认权限规则
+  RoomPermissionsRulePassword password    = 2;  // 密码权限规则
+  RoomPermissionsRuleTicket   ticket      = 3;  // 门票权限规则
+  RoomPermissionsRuleTimer    timer       = 4;  // 定时权限规则
+  RoomPermissionsRuleNobles   noble_level = 5;  // 贵族等级权限规则
+}
+
+// 默认权限规则
+message RoomPermissionsRuleNormal {}
+
+// 密码权限规则
+message RoomPermissionsRulePassword {
+  // 密码值
+  string value = 1;
+}
+
+// 门票权限规则
+message RoomPermissionsRuleTicket {
+  // 钻石数量
+  int32 diamond = 1;
+  
+  // 预览时间
+  int32 preview_time = 2;
+}
+
+// 定时权限规则
+message RoomPermissionsRuleTimer {
+  // 时间限制（秒）
+  int32 sec_limit = 1;
+  
+  // 钻石数量
+  int32 diamond = 2;
+  
+  // 预览时间
+  int32 preview_time = 3;
+}
+
+// 贵族等级权限规则
+message RoomPermissionsRuleNobles {
+  // 贵族等级列表(可访问的贵族ID)
+  repeated string levels = 1;
 }

@@ -320,6 +320,12 @@
     - [ResumeRoomReq](#svc-biz-room-ResumeRoomReq)
     - [ResumeRoomResp](#svc-biz-room-ResumeRoomResp)
     - [RoomInfo](#svc-biz-room-RoomInfo)
+    - [RoomPermissionsRuleNobles](#svc-biz-room-RoomPermissionsRuleNobles)
+    - [RoomPermissionsRuleNormal](#svc-biz-room-RoomPermissionsRuleNormal)
+    - [RoomPermissionsRulePassword](#svc-biz-room-RoomPermissionsRulePassword)
+    - [RoomPermissionsRuleTicket](#svc-biz-room-RoomPermissionsRuleTicket)
+    - [RoomPermissionsRuleTimer](#svc-biz-room-RoomPermissionsRuleTimer)
+    - [RoomPermissionsRules](#svc-biz-room-RoomPermissionsRules)
     - [StartLiveReq](#svc-biz-room-StartLiveReq)
     - [StartLiveResp](#svc-biz-room-StartLiveResp)
     - [StopLiveReq](#svc-biz-room-StopLiveReq)
@@ -332,6 +338,7 @@
   
     - [LiveDisplayType](#svc-biz-room-LiveDisplayType)
     - [LiveStatus](#svc-biz-room-LiveStatus)
+    - [RoomPermsType](#svc-biz-room-RoomPermsType)
     - [ScoreFilterVal](#svc-biz-room-ScoreFilterVal)
     - [ShowStatus](#svc-biz-room-ShowStatus)
     - [SortType](#svc-biz-room-SortType)
@@ -6079,8 +6086,102 @@ CategoryInfo 分类详情
 | score_online | [int32](#int32) |  | 在线人数 |
 | score_selected_gift | [int32](#int32) |  | 精选礼物最后赠送时间戳 |
 | score_gift | [int32](#int32) |  | 纯礼物收益 |
+| room_type | [int32](#int32) |  | 房间类型(0:普通, 1:密码, 2:门票, 3:计时, 3:贵族) |
+| permissions_rules | [RoomPermissionsRules](#svc-biz-room-RoomPermissionsRules) |  | 房间权限设置(对应房间类型的权限) |
 | created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 创建时间 |
 | updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 更新时间 |
+
+
+
+
+
+
+<a name="svc-biz-room-RoomPermissionsRuleNobles"></a>
+
+### RoomPermissionsRuleNobles
+贵族等级权限规则
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| levels | [string](#string) | repeated | 贵族等级列表(可访问的贵族ID) |
+
+
+
+
+
+
+<a name="svc-biz-room-RoomPermissionsRuleNormal"></a>
+
+### RoomPermissionsRuleNormal
+默认权限规则
+
+
+
+
+
+
+<a name="svc-biz-room-RoomPermissionsRulePassword"></a>
+
+### RoomPermissionsRulePassword
+密码权限规则
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| value | [string](#string) |  | 密码值 |
+
+
+
+
+
+
+<a name="svc-biz-room-RoomPermissionsRuleTicket"></a>
+
+### RoomPermissionsRuleTicket
+门票权限规则
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| diamond | [int32](#int32) |  | 钻石数量 |
+| preview_time | [int32](#int32) |  | 预览时间 |
+
+
+
+
+
+
+<a name="svc-biz-room-RoomPermissionsRuleTimer"></a>
+
+### RoomPermissionsRuleTimer
+定时权限规则
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| sec_limit | [int32](#int32) |  | 时间限制（秒） |
+| diamond | [int32](#int32) |  | 钻石数量 |
+| preview_time | [int32](#int32) |  | 预览时间 |
+
+
+
+
+
+
+<a name="svc-biz-room-RoomPermissionsRules"></a>
+
+### RoomPermissionsRules
+主房间权限规则
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| normal | [RoomPermissionsRuleNormal](#svc-biz-room-RoomPermissionsRuleNormal) |  | 默认权限规则 |
+| password | [RoomPermissionsRulePassword](#svc-biz-room-RoomPermissionsRulePassword) |  | 密码权限规则 |
+| ticket | [RoomPermissionsRuleTicket](#svc-biz-room-RoomPermissionsRuleTicket) |  | 门票权限规则 |
+| timer | [RoomPermissionsRuleTimer](#svc-biz-room-RoomPermissionsRuleTimer) |  | 定时权限规则 |
+| noble_level | [RoomPermissionsRuleNobles](#svc-biz-room-RoomPermissionsRuleNobles) |  | 贵族等级权限规则 |
 
 
 
@@ -6265,6 +6366,21 @@ CategoryInfo 分类详情
 | LiveStatusUnknown | 0 | 未知 |
 | LiveStatusOnline | 1 | 上线 |
 | LiveStatusOffline | 2 | 下线 |
+
+
+
+<a name="svc-biz-room-RoomPermsType"></a>
+
+### RoomPermsType
+房间权限类型定义
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| RoomPermsTypeNormal | 0 | 默认(无限制) |
+| RoomPermsTypePassword | 1 | 密码房间 |
+| RoomPermsTypeTicket | 2 | 门票房间 |
+| RoomPermsTypeTimer | 3 | 计时房间 |
+| RoomPermsTypeNoble | 4 | 贵族房间 |
 
 
 
