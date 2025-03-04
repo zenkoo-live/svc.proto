@@ -149,8 +149,8 @@ message RoomInfo {
     int32                     score_selected_gift      = 64;  // 精选礼物最后赠送时间戳
     int32                     score_gift               = 65;  // 纯礼物收益
 
-    int32 room_type = 67; // 房间类型(0:普通, 1:密码, 2:门票, 3:计时, 3:贵族)
-    RoomPermissionsRules permissions_rules = 68; // 房间权限设置(对应房间类型的权限)
+    int32                room_type         = 67;  // 房间类型(0:普通, 1:密码, 2:门票, 3:计时, 3:贵族)
+    RoomPermissionsRules permissions_rules = 68;  // 房间权限设置(对应房间类型的权限)
 
     google.protobuf.Timestamp created_at = 101; // 创建时间
     google.protobuf.Timestamp updated_at = 102; // 更新时间
@@ -292,11 +292,11 @@ message StopLiveResp {
 
 // 主房间权限规则
 message RoomPermissionsRules {
-  RoomPermissionsRuleNormal   normal      = 1;  // 默认权限规则
-  RoomPermissionsRulePassword password    = 2;  // 密码权限规则
-  RoomPermissionsRuleTicket   ticket      = 3;  // 门票权限规则
-  RoomPermissionsRuleTimer    timer       = 4;  // 定时权限规则
-  RoomPermissionsRuleNobles   noble_level = 5;  // 贵族等级权限规则
+  RoomPermissionsRuleNormal   normal   = 1;  // 默认权限规则
+  RoomPermissionsRulePassword password = 2;  // 密码权限规则
+  RoomPermissionsRuleTicket   ticket   = 3;  // 门票权限规则
+  RoomPermissionsRuleTimer    timer    = 4;  // 定时权限规则
+  RoomPermissionsRuleNoble    noble    = 5;  // 贵族等级权限规则
 }
 
 // 默认权限规则
@@ -304,33 +304,23 @@ message RoomPermissionsRuleNormal {}
 
 // 密码权限规则
 message RoomPermissionsRulePassword {
-  // 密码值
-  string value = 1;
+  string value = 1; // 密码值
 }
 
 // 门票权限规则
 message RoomPermissionsRuleTicket {
-  // 钻石数量
-  int32 diamond = 1;
-  
-  // 预览时间
-  int32 preview_time = 2;
+  int32 diamond      = 1;  // 钻石数量
+  int32 preview_time = 2;  // 预览时间
 }
 
 // 定时权限规则
 message RoomPermissionsRuleTimer {
-  // 时间限制（秒）
-  int32 sec_limit = 1;
-  
-  // 钻石数量
-  int32 diamond = 2;
-  
-  // 预览时间
-  int32 preview_time = 3;
+  int32 sec_limit    = 1;  // 时间限制（秒）
+  int32 diamond      = 2;  // 钻石数量
+  int32 preview_time = 3;  // 预览时间
 }
 
 // 贵族等级权限规则
-message RoomPermissionsRuleNobles {
-  // 贵族等级列表(可访问的贵族ID)
-  repeated string levels = 1;
+message RoomPermissionsRuleNoble {
+  string basic_id = 1; // 可访问房间的最低贵族等级ID
 }

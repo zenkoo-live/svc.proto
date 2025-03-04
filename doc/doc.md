@@ -320,7 +320,7 @@
     - [ResumeRoomReq](#svc-biz-room-ResumeRoomReq)
     - [ResumeRoomResp](#svc-biz-room-ResumeRoomResp)
     - [RoomInfo](#svc-biz-room-RoomInfo)
-    - [RoomPermissionsRuleNobles](#svc-biz-room-RoomPermissionsRuleNobles)
+    - [RoomPermissionsRuleNoble](#svc-biz-room-RoomPermissionsRuleNoble)
     - [RoomPermissionsRuleNormal](#svc-biz-room-RoomPermissionsRuleNormal)
     - [RoomPermissionsRulePassword](#svc-biz-room-RoomPermissionsRulePassword)
     - [RoomPermissionsRuleTicket](#svc-biz-room-RoomPermissionsRuleTicket)
@@ -6096,15 +6096,15 @@ CategoryInfo 分类详情
 
 
 
-<a name="svc-biz-room-RoomPermissionsRuleNobles"></a>
+<a name="svc-biz-room-RoomPermissionsRuleNoble"></a>
 
-### RoomPermissionsRuleNobles
+### RoomPermissionsRuleNoble
 贵族等级权限规则
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| levels | [string](#string) | repeated | 贵族等级列表(可访问的贵族ID) |
+| basic_id | [string](#string) |  | 可访问房间的最低贵族等级ID |
 
 
 
@@ -6181,7 +6181,7 @@ CategoryInfo 分类详情
 | password | [RoomPermissionsRulePassword](#svc-biz-room-RoomPermissionsRulePassword) |  | 密码权限规则 |
 | ticket | [RoomPermissionsRuleTicket](#svc-biz-room-RoomPermissionsRuleTicket) |  | 门票权限规则 |
 | timer | [RoomPermissionsRuleTimer](#svc-biz-room-RoomPermissionsRuleTimer) |  | 定时权限规则 |
-| noble_level | [RoomPermissionsRuleNobles](#svc-biz-room-RoomPermissionsRuleNobles) |  | 贵族等级权限规则 |
+| noble | [RoomPermissionsRuleNoble](#svc-biz-room-RoomPermissionsRuleNoble) |  | 贵族等级权限规则 |
 
 
 
