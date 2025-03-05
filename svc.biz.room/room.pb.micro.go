@@ -57,6 +57,8 @@ type RoomService interface {
 	GetRoomList(ctx context.Context, in *GetRoomListReq, opts ...client.CallOption) (*GetRoomListResp, error)
 	// GetOnlineRoomList 查询在线房间列表（用户端列表使用此接口）
 	GetOnlineRoomList(ctx context.Context, in *GetOnlineRoomListReq, opts ...client.CallOption) (*GetOnlineRoomListResp, error)
+	// GetRandomRooms 随机获取房间(用户端上滑获取下一个房间用)
+	GetRandomRooms(ctx context.Context, in *GetRandomRoomsReq, opts ...client.CallOption) (*GetRoomListResp, error)
 	// KickoutUserInRoom 踢出直播间用
 	KickoutUserInRoom(ctx context.Context, in *KickoutUserInRoomReq, opts ...client.CallOption) (*KickoutUserInRoomResp, error)
 	// ForbidRoom 封禁直播间
@@ -171,6 +173,16 @@ func (c *roomService) GetOnlineRoomList(ctx context.Context, in *GetOnlineRoomLi
 	return out, nil
 }
 
+func (c *roomService) GetRandomRooms(ctx context.Context, in *GetRandomRoomsReq, opts ...client.CallOption) (*GetRoomListResp, error) {
+	req := c.c.NewRequest(c.name, "Room.GetRandomRooms", in)
+	out := new(GetRoomListResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *roomService) KickoutUserInRoom(ctx context.Context, in *KickoutUserInRoomReq, opts ...client.CallOption) (*KickoutUserInRoomResp, error) {
 	req := c.c.NewRequest(c.name, "Room.KickoutUserInRoom", in)
 	out := new(KickoutUserInRoomResp)
@@ -242,6 +254,8 @@ type RoomHandler interface {
 	GetRoomList(context.Context, *GetRoomListReq, *GetRoomListResp) error
 	// GetOnlineRoomList 查询在线房间列表（用户端列表使用此接口）
 	GetOnlineRoomList(context.Context, *GetOnlineRoomListReq, *GetOnlineRoomListResp) error
+	// GetRandomRooms 随机获取房间(用户端上滑获取下一个房间用)
+	GetRandomRooms(context.Context, *GetRandomRoomsReq, *GetRoomListResp) error
 	// KickoutUserInRoom 踢出直播间用
 	KickoutUserInRoom(context.Context, *KickoutUserInRoomReq, *KickoutUserInRoomResp) error
 	// ForbidRoom 封禁直播间
@@ -265,6 +279,7 @@ func RegisterRoomHandler(s server.Server, hdlr RoomHandler, opts ...server.Handl
 		MGetRoomsByStreamerIDsWithOnlineSort(ctx context.Context, in *MGetRoomsByStreamerIDsWithOnlineSortReq, out *MGetRoomsByStreamerIDsWithOnlineSortResp) error
 		GetRoomList(ctx context.Context, in *GetRoomListReq, out *GetRoomListResp) error
 		GetOnlineRoomList(ctx context.Context, in *GetOnlineRoomListReq, out *GetOnlineRoomListResp) error
+		GetRandomRooms(ctx context.Context, in *GetRandomRoomsReq, out *GetRoomListResp) error
 		KickoutUserInRoom(ctx context.Context, in *KickoutUserInRoomReq, out *KickoutUserInRoomResp) error
 		ForbidRoom(ctx context.Context, in *ForbidRoomReq, out *ForbidRoomResp) error
 		ResumeRoom(ctx context.Context, in *ResumeRoomReq, out *ResumeRoomResp) error
@@ -316,6 +331,10 @@ func (h *roomHandler) GetRoomList(ctx context.Context, in *GetRoomListReq, out *
 
 func (h *roomHandler) GetOnlineRoomList(ctx context.Context, in *GetOnlineRoomListReq, out *GetOnlineRoomListResp) error {
 	return h.RoomHandler.GetOnlineRoomList(ctx, in, out)
+}
+
+func (h *roomHandler) GetRandomRooms(ctx context.Context, in *GetRandomRoomsReq, out *GetRoomListResp) error {
+	return h.RoomHandler.GetRandomRooms(ctx, in, out)
 }
 
 func (h *roomHandler) KickoutUserInRoom(ctx context.Context, in *KickoutUserInRoomReq, out *KickoutUserInRoomResp) error {

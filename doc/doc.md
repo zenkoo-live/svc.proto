@@ -300,6 +300,7 @@
     - [ForbidRoomResp](#svc-biz-room-ForbidRoomResp)
     - [GetOnlineRoomListReq](#svc-biz-room-GetOnlineRoomListReq)
     - [GetOnlineRoomListResp](#svc-biz-room-GetOnlineRoomListResp)
+    - [GetRandomRoomsReq](#svc-biz-room-GetRandomRoomsReq)
     - [GetRoomByStreamerIDReq](#svc-biz-room-GetRoomByStreamerIDReq)
     - [GetRoomByStreamerIDResp](#svc-biz-room-GetRoomByStreamerIDResp)
     - [GetRoomListReq](#svc-biz-room-GetRoomListReq)
@@ -5747,6 +5748,24 @@ CategoryInfo 分类详情
 
 
 
+<a name="svc-biz-room-GetRandomRoomsReq"></a>
+
+### GetRandomRoomsReq
+获取随机直播间
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| count | [int32](#int32) |  | 请求数量 |
+| category_id | [string](#string) |  | 分类id |
+| ignore_ids | [string](#string) | repeated | 要忽略的房间ID |
+| is_online | [bool](#bool) |  | 只获取直播中的房间 |
+
+
+
+
+
+
 <a name="svc-biz-room-GetRoomByStreamerIDReq"></a>
 
 ### GetRoomByStreamerIDReq
@@ -6447,6 +6466,7 @@ Room 房间
 | MGetRoomsByStreamerIDsWithOnlineSort | [MGetRoomsByStreamerIDsWithOnlineSortReq](#svc-biz-room-MGetRoomsByStreamerIDsWithOnlineSortReq) | [MGetRoomsByStreamerIDsWithOnlineSortResp](#svc-biz-room-MGetRoomsByStreamerIDsWithOnlineSortResp) | MGetRoomsByStreamerIDsWithOnlineSort 批量查询房间（带在线分页，按照传入顺序获取，在线排在最前） |
 | GetRoomList | [GetRoomListReq](#svc-biz-room-GetRoomListReq) | [GetRoomListResp](#svc-biz-room-GetRoomListResp) | GetRoomList 查询房间列表（前台的搜索或者后台使用此接口） |
 | GetOnlineRoomList | [GetOnlineRoomListReq](#svc-biz-room-GetOnlineRoomListReq) | [GetOnlineRoomListResp](#svc-biz-room-GetOnlineRoomListResp) | GetOnlineRoomList 查询在线房间列表（用户端列表使用此接口） |
+| GetRandomRooms | [GetRandomRoomsReq](#svc-biz-room-GetRandomRoomsReq) | [GetRoomListResp](#svc-biz-room-GetRoomListResp) | GetRandomRooms 随机获取房间(用户端上滑获取下一个房间用) |
 | KickoutUserInRoom | [KickoutUserInRoomReq](#svc-biz-room-KickoutUserInRoomReq) | [KickoutUserInRoomResp](#svc-biz-room-KickoutUserInRoomResp) | KickoutUserInRoom 踢出直播间用 |
 | ForbidRoom | [ForbidRoomReq](#svc-biz-room-ForbidRoomReq) | [ForbidRoomResp](#svc-biz-room-ForbidRoomResp) | ForbidRoom 封禁直播间 |
 | ResumeRoom | [ResumeRoomReq](#svc-biz-room-ResumeRoomReq) | [ResumeRoomResp](#svc-biz-room-ResumeRoomResp) | ResumeRoom 解封直播间 |

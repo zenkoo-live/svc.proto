@@ -28,7 +28,9 @@ service Room {
     // GetRoomList 查询房间列表（前台的搜索或者后台使用此接口）
     rpc GetRoomList(GetRoomListReq) returns(GetRoomListResp);
     // GetOnlineRoomList 查询在线房间列表（用户端列表使用此接口）
-    rpc GetOnlineRoomList (GetOnlineRoomListReq) returns(GetOnlineRoomListResp);
+    rpc GetOnlineRoomList(GetOnlineRoomListReq) returns(GetOnlineRoomListResp);
+    // GetRandomRooms 随机获取房间(用户端上滑获取下一个房间用)
+    rpc GetRandomRooms(GetRandomRoomsReq) returns(GetRoomListResp);
 
     // KickoutUserInRoom 踢出直播间用 
     rpc KickoutUserInRoom(KickoutUserInRoomReq) returns(KickoutUserInRoomResp);
@@ -181,7 +183,6 @@ message GetRoomResp {
     RoomInfo room = 1; // 房间信息
     Stream stream = 2; // 流信息
     TrtcConf trtc_conf = 3; // trtc信息
-
 }
 
 message GetRoomByStreamerIDReq {
@@ -323,4 +324,12 @@ message RoomPermissionsRuleTimer {
 // 贵族等级权限规则
 message RoomPermissionsRuleNoble {
   string basic_id = 1; // 可访问房间的最低贵族等级ID
+}
+
+// 获取随机直播间
+message GetRandomRoomsReq {
+    int32    count             = 1;  // 请求数量
+    string   category_id       = 2;  // 分类id
+    repeated string ignore_ids = 3;  // 要忽略的房间ID
+    bool     is_online         = 4;  // 只获取直播中的房间
 }
