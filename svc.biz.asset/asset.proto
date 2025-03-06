@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package svc.biz.asset;
 
+// import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 import "third_party/buf/validate/validate.proto";
 
@@ -196,10 +197,20 @@ message ListUserCoinDetailReq {
   repeated int64 trans_type = 5; // 交易类别: 空表示不限
   google.protobuf.Timestamp start_time = 6; // 开始时间(含)
   google.protobuf.Timestamp end_time = 7; // 结束时间(不含)
-
+  ListUserCoinDetailSummaryField summary = 10; 
+  
   int64 page = 50; // 页码
   int64 page_size = 51; // 单页条数
 }
+
+// ListUserCoinDetailReq.summary字段的查询条件
+message ListUserCoinDetailSummaryField {
+  ListUserCoinDetailSummaryTicketType ticket = 1;
+}
+message ListUserCoinDetailSummaryTicketType {
+  string live_id = 1;
+}
+
 message ListUserCoinDetailResp {
   repeated UserCoinDetail items = 1;
   int64 page = 2; // 页码

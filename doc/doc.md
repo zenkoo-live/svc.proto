@@ -440,6 +440,8 @@
     - [ListUnionMoneyDetailResp](#svc-biz-asset-ListUnionMoneyDetailResp)
     - [ListUserCoinDetailReq](#svc-biz-asset-ListUserCoinDetailReq)
     - [ListUserCoinDetailResp](#svc-biz-asset-ListUserCoinDetailResp)
+    - [ListUserCoinDetailSummaryField](#svc-biz-asset-ListUserCoinDetailSummaryField)
+    - [ListUserCoinDetailSummaryTicketType](#svc-biz-asset-ListUserCoinDetailSummaryTicketType)
     - [ListUserMoneyDetailReq](#svc-biz-asset-ListUserMoneyDetailReq)
     - [ListUserMoneyDetailResp](#svc-biz-asset-ListUserMoneyDetailResp)
     - [MerchantCoinDetail](#svc-biz-asset-MerchantCoinDetail)
@@ -7998,6 +8000,7 @@ topic: asset.user_money.incr
 | trans_type | [int64](#int64) | repeated | 交易类别: 空表示不限 |
 | start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 开始时间(含) |
 | end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | 结束时间(不含) |
+| summary | [ListUserCoinDetailSummaryField](#svc-biz-asset-ListUserCoinDetailSummaryField) |  |  |
 | page | [int64](#int64) |  | 页码 |
 | page_size | [int64](#int64) |  | 单页条数 |
 
@@ -8018,6 +8021,36 @@ topic: asset.user_money.incr
 | page | [int64](#int64) |  | 页码 |
 | page_size | [int64](#int64) |  | 单页条数 |
 | total | [int64](#int64) |  | 符合筛选的总条数 |
+
+
+
+
+
+
+<a name="svc-biz-asset-ListUserCoinDetailSummaryField"></a>
+
+### ListUserCoinDetailSummaryField
+ListUserCoinDetailReq.summary字段的查询条件
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| ticket | [ListUserCoinDetailSummaryTicketType](#svc-biz-asset-ListUserCoinDetailSummaryTicketType) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-asset-ListUserCoinDetailSummaryTicketType"></a>
+
+### ListUserCoinDetailSummaryTicketType
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| live_id | [string](#string) |  |  |
 
 
 
