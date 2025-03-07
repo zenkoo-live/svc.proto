@@ -71,7 +71,8 @@ message GiftInfo {
   string icon = 8;
 }
 message RoomTicketInfo {
-  int64 price = 6;
+  int64  price   = 6;
+  string live_id = 7;
 }
 message RoomDurationFeeInfo {
   int64 price = 6;
