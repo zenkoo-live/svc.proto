@@ -308,6 +308,8 @@
     - [GetRoomListResp](#svc-biz-room-GetRoomListResp)
     - [GetRoomReq](#svc-biz-room-GetRoomReq)
     - [GetRoomResp](#svc-biz-room-GetRoomResp)
+    - [GetUserInRoomMuteStatusReq](#svc-biz-room-GetUserInRoomMuteStatusReq)
+    - [GetUserInRoomMuteStatusResp](#svc-biz-room-GetUserInRoomMuteStatusResp)
     - [KickoutUserInRoomReq](#svc-biz-room-KickoutUserInRoomReq)
     - [KickoutUserInRoomResp](#svc-biz-room-KickoutUserInRoomResp)
     - [MGetRoomsByStreamerIDsReq](#svc-biz-room-MGetRoomsByStreamerIDsReq)
@@ -318,6 +320,8 @@
     - [MGetRoomsReq](#svc-biz-room-MGetRoomsReq)
     - [MGetRoomsResp](#svc-biz-room-MGetRoomsResp)
     - [MGetRoomsResp.ItemsEntry](#svc-biz-room-MGetRoomsResp-ItemsEntry)
+    - [MuteUserCommResp](#svc-biz-room-MuteUserCommResp)
+    - [MuteUserInRoomReq](#svc-biz-room-MuteUserInRoomReq)
     - [ResumeRoomReq](#svc-biz-room-ResumeRoomReq)
     - [ResumeRoomResp](#svc-biz-room-ResumeRoomResp)
     - [RoomInfo](#svc-biz-room-RoomInfo)
@@ -5889,6 +5893,37 @@ CategoryInfo 分类详情
 
 
 
+<a name="svc-biz-room-GetUserInRoomMuteStatusReq"></a>
+
+### GetUserInRoomMuteStatusReq
+获取用户在直播间的禁言状态
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| viewer_id | [string](#string) |  |  |
+| room_id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-room-GetUserInRoomMuteStatusResp"></a>
+
+### GetUserInRoomMuteStatusResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| is_mute | [bool](#bool) |  |  |
+
+
+
+
+
+
 <a name="svc-biz-room-KickoutUserInRoomReq"></a>
 
 ### KickoutUserInRoomReq
@@ -6033,6 +6068,39 @@ CategoryInfo 分类详情
 | ----- | ---- | ----- | ----------- |
 | key | [string](#string) |  |  |
 | value | [RoomInfo](#svc-biz-room-RoomInfo) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-room-MuteUserCommResp"></a>
+
+### MuteUserCommResp
+禁言逻辑通用返回
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| viewer_id | [string](#string) |  |  |
+| is_mute | [bool](#bool) |  |  |
+
+
+
+
+
+
+<a name="svc-biz-room-MuteUserInRoomReq"></a>
+
+### MuteUserInRoomReq
+直播间禁言
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| viewer_id | [string](#string) |  | 被禁言用户id |
+| room_id | [string](#string) |  | 主播id |
+| expire_sec | [int32](#int32) |  | 禁言时间(秒，为0时永久禁言) |
 
 
 
@@ -6471,6 +6539,9 @@ Room 房间
 | GetOnlineRoomList | [GetOnlineRoomListReq](#svc-biz-room-GetOnlineRoomListReq) | [GetOnlineRoomListResp](#svc-biz-room-GetOnlineRoomListResp) | GetOnlineRoomList 查询在线房间列表（用户端列表使用此接口） |
 | GetRandomRooms | [GetRandomRoomsReq](#svc-biz-room-GetRandomRoomsReq) | [GetRoomListResp](#svc-biz-room-GetRoomListResp) | GetRandomRooms 随机获取房间(用户端上滑获取下一个房间用) |
 | KickoutUserInRoom | [KickoutUserInRoomReq](#svc-biz-room-KickoutUserInRoomReq) | [KickoutUserInRoomResp](#svc-biz-room-KickoutUserInRoomResp) | KickoutUserInRoom 踢出直播间用 |
+| MuteUserInRoom | [MuteUserInRoomReq](#svc-biz-room-MuteUserInRoomReq) | [MuteUserCommResp](#svc-biz-room-MuteUserCommResp) | 直播间禁言用户 |
+| UNMuteUserInRoom | [MuteUserInRoomReq](#svc-biz-room-MuteUserInRoomReq) | [MuteUserCommResp](#svc-biz-room-MuteUserCommResp) | 取消用户在直播间的禁言 |
+| GetUserInRoomMuteStatus | [GetUserInRoomMuteStatusReq](#svc-biz-room-GetUserInRoomMuteStatusReq) | [GetUserInRoomMuteStatusResp](#svc-biz-room-GetUserInRoomMuteStatusResp) | 获取用户在直播间中的禁言状态 |
 | ForbidRoom | [ForbidRoomReq](#svc-biz-room-ForbidRoomReq) | [ForbidRoomResp](#svc-biz-room-ForbidRoomResp) | ForbidRoom 封禁直播间 |
 | ResumeRoom | [ResumeRoomReq](#svc-biz-room-ResumeRoomReq) | [ResumeRoomResp](#svc-biz-room-ResumeRoomResp) | ResumeRoom 解封直播间 |
 | StartLive | [StartLiveReq](#svc-biz-room-StartLiveReq) | [StartLiveResp](#svc-biz-room-StartLiveResp) | StartLive 开始直播 |

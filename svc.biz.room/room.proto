@@ -34,6 +34,12 @@ service Room {
 
     // KickoutUserInRoom 踢出直播间用 
     rpc KickoutUserInRoom(KickoutUserInRoomReq) returns(KickoutUserInRoomResp);
+    // 直播间禁言用户
+    rpc MuteUserInRoom(MuteUserInRoomReq) returns(MuteUserCommResp);
+    // 取消用户在直播间的禁言
+    rpc UNMuteUserInRoom(MuteUserInRoomReq) returns(MuteUserCommResp);
+    // 获取用户在直播间中的禁言状态
+    rpc GetUserInRoomMuteStatus(GetUserInRoomMuteStatusReq) returns (GetUserInRoomMuteStatusResp);
     // ForbidRoom 封禁直播间
     rpc ForbidRoom(ForbidRoomReq) returns(ForbidRoomResp);
     // ResumeRoom 解封直播间
@@ -332,4 +338,27 @@ message GetRandomRoomsReq {
     string   category_id       = 2;  // 分类id
     repeated string ignore_ids = 3;  // 要忽略的房间ID
     bool     is_online         = 4;  // 只获取直播中的房间
+}
+
+// 直播间禁言
+message MuteUserInRoomReq {
+    string viewer_id  = 1;  // 被禁言用户id
+    string room_id    = 2;  // 主播id
+    int32  expire_sec = 3;  // 禁言时间(秒，为0时永久禁言)
+}
+
+// 禁言逻辑通用返回
+message MuteUserCommResp {
+    string viewer_id  = 1;
+    bool   is_mute    = 3;
+}
+
+// 获取用户在直播间的禁言状态
+message GetUserInRoomMuteStatusReq {
+    string viewer_id = 1;
+    string room_id   = 2;
+}
+
+message GetUserInRoomMuteStatusResp {
+    bool is_mute = 1;
 }
