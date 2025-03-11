@@ -34,16 +34,18 @@ service Room {
 
     // KickoutUserInRoom 踢出直播间用 
     rpc KickoutUserInRoom(KickoutUserInRoomReq) returns(KickoutUserInRoomResp);
-    // 直播间禁言用户
-    rpc MuteUserInRoom(MuteUserInRoomReq) returns(MuteUserCommResp);
-    // 取消用户在直播间的禁言
-    rpc UNMuteUserInRoom(MuteUserInRoomReq) returns(MuteUserCommResp);
-    // 获取用户在直播间中的禁言状态
-    rpc GetUserInRoomMuteStatus(GetUserInRoomMuteStatusReq) returns (GetUserInRoomMuteStatusResp);
     // ForbidRoom 封禁直播间
     rpc ForbidRoom(ForbidRoomReq) returns(ForbidRoomResp);
     // ResumeRoom 解封直播间
     rpc ResumeRoom(ResumeRoomReq) returns(ResumeRoomResp);
+
+    // 禁言
+    rpc MuteUserInType(MuteUserReq) returns(MuteUserCommResp);
+    // 取消禁言
+    rpc UNMuteUser(MuteUserReq) returns(MuteUserCommResp);
+    // 获取禁言信息
+    rpc GetMuteUserInfo(GetMuteInfoReq) returns (GetMuteInfoResp);
+    
 
     // StartLive 开始直播
     rpc StartLive(StartLiveReq) returns(StartLiveResp);
@@ -85,6 +87,15 @@ enum RoomPermsType {
     RoomPermsTypeTicket   = 2;  // 门票房间
     RoomPermsTypeTimer    = 3;  // 计时房间
     RoomPermsTypeNoble    = 4;  // 贵族房间
+}
+
+// 禁言用户类型
+enum MuteUserType {
+	MuteTypeUnknown  = 0;
+	MuteTypePlatform = 1;  // 全平台禁言
+	MuteTypeMerchant = 2;  // 商户下禁言
+	MuteTypeRoom     = 3;  // 直播间禁言(不能访问主播的所有直播场次)
+	MuteTypeLive     = 4;  // 直播禁言(针对单一场次直播)
 }
 
 message TrtcConf {
@@ -341,10 +352,17 @@ message GetRandomRoomsReq {
 }
 
 // 直播间禁言
-message MuteUserInRoomReq {
-    string viewer_id  = 1;  // 被禁言用户id
-    string room_id    = 2;  // 主播id
-    int32  expire_sec = 3;  // 禁言时间(秒，为0时永久禁言)
+message MuteUserReq {
+    MuteUserType mute_type   = 1;  // 禁言类型
+    string       merchant_id = 2;  // 商户id
+    string       viewer_id   = 3;  // 被禁言用户id
+    string       room_id     = 4;  // 主播id
+    // string       live_id     = 5;  // 直播id
+    int32        expire_sec  = 6;  // 禁言时间(秒，为0时永久禁言)
+}
+
+message UNMuteUserReq {
+    MuteUserType mute_type   = 1;  // 禁言类型
 }
 
 // 禁言逻辑通用返回
@@ -353,12 +371,20 @@ message MuteUserCommResp {
     bool   is_mute    = 3;
 }
 
-// 获取用户在直播间的禁言状态
-message GetUserInRoomMuteStatusReq {
-    string viewer_id = 1;
-    string room_id   = 2;
+// 获取用户禁言信息
+message GetMuteInfoReq {
+    string       merchant_id = 2;  // 商户id
+    string       viewer_id   = 3;  // 被禁言用户id
+    string       room_id     = 4;  // 主播id
+    // string       live_id     = 5;  // 直播id
 }
 
-message GetUserInRoomMuteStatusResp {
-    bool is_mute = 1;
+message GetMuteInfoResp {
+    int32                     mute_type   = 1;
+    string                    merchant_id = 2;
+    string                    room_id     = 3;
+    string                    viewer_id   = 5;
+    int32                     expire_sec  = 6;
+    google.protobuf.Timestamp add_time    = 7;
+    // string live_id     = 4;
 }

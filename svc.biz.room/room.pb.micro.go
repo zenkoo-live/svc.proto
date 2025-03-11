@@ -61,16 +61,16 @@ type RoomService interface {
 	GetRandomRooms(ctx context.Context, in *GetRandomRoomsReq, opts ...client.CallOption) (*GetRoomListResp, error)
 	// KickoutUserInRoom 踢出直播间用
 	KickoutUserInRoom(ctx context.Context, in *KickoutUserInRoomReq, opts ...client.CallOption) (*KickoutUserInRoomResp, error)
-	// 直播间禁言用户
-	MuteUserInRoom(ctx context.Context, in *MuteUserInRoomReq, opts ...client.CallOption) (*MuteUserCommResp, error)
-	// 取消用户在直播间的禁言
-	UNMuteUserInRoom(ctx context.Context, in *MuteUserInRoomReq, opts ...client.CallOption) (*MuteUserCommResp, error)
-	// 获取用户在直播间中的禁言状态
-	GetUserInRoomMuteStatus(ctx context.Context, in *GetUserInRoomMuteStatusReq, opts ...client.CallOption) (*GetUserInRoomMuteStatusResp, error)
 	// ForbidRoom 封禁直播间
 	ForbidRoom(ctx context.Context, in *ForbidRoomReq, opts ...client.CallOption) (*ForbidRoomResp, error)
 	// ResumeRoom 解封直播间
 	ResumeRoom(ctx context.Context, in *ResumeRoomReq, opts ...client.CallOption) (*ResumeRoomResp, error)
+	// 禁言
+	MuteUserInType(ctx context.Context, in *MuteUserReq, opts ...client.CallOption) (*MuteUserCommResp, error)
+	// 取消禁言
+	UNMuteUser(ctx context.Context, in *MuteUserReq, opts ...client.CallOption) (*MuteUserCommResp, error)
+	// 获取禁言信息
+	GetMuteUserInfo(ctx context.Context, in *GetMuteInfoReq, opts ...client.CallOption) (*GetMuteInfoResp, error)
 	// StartLive 开始直播
 	StartLive(ctx context.Context, in *StartLiveReq, opts ...client.CallOption) (*StartLiveResp, error)
 	// StopLive 关闭直播
@@ -199,36 +199,6 @@ func (c *roomService) KickoutUserInRoom(ctx context.Context, in *KickoutUserInRo
 	return out, nil
 }
 
-func (c *roomService) MuteUserInRoom(ctx context.Context, in *MuteUserInRoomReq, opts ...client.CallOption) (*MuteUserCommResp, error) {
-	req := c.c.NewRequest(c.name, "Room.MuteUserInRoom", in)
-	out := new(MuteUserCommResp)
-	err := c.c.Call(ctx, req, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *roomService) UNMuteUserInRoom(ctx context.Context, in *MuteUserInRoomReq, opts ...client.CallOption) (*MuteUserCommResp, error) {
-	req := c.c.NewRequest(c.name, "Room.UNMuteUserInRoom", in)
-	out := new(MuteUserCommResp)
-	err := c.c.Call(ctx, req, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *roomService) GetUserInRoomMuteStatus(ctx context.Context, in *GetUserInRoomMuteStatusReq, opts ...client.CallOption) (*GetUserInRoomMuteStatusResp, error) {
-	req := c.c.NewRequest(c.name, "Room.GetUserInRoomMuteStatus", in)
-	out := new(GetUserInRoomMuteStatusResp)
-	err := c.c.Call(ctx, req, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *roomService) ForbidRoom(ctx context.Context, in *ForbidRoomReq, opts ...client.CallOption) (*ForbidRoomResp, error) {
 	req := c.c.NewRequest(c.name, "Room.ForbidRoom", in)
 	out := new(ForbidRoomResp)
@@ -242,6 +212,36 @@ func (c *roomService) ForbidRoom(ctx context.Context, in *ForbidRoomReq, opts ..
 func (c *roomService) ResumeRoom(ctx context.Context, in *ResumeRoomReq, opts ...client.CallOption) (*ResumeRoomResp, error) {
 	req := c.c.NewRequest(c.name, "Room.ResumeRoom", in)
 	out := new(ResumeRoomResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *roomService) MuteUserInType(ctx context.Context, in *MuteUserReq, opts ...client.CallOption) (*MuteUserCommResp, error) {
+	req := c.c.NewRequest(c.name, "Room.MuteUserInType", in)
+	out := new(MuteUserCommResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *roomService) UNMuteUser(ctx context.Context, in *MuteUserReq, opts ...client.CallOption) (*MuteUserCommResp, error) {
+	req := c.c.NewRequest(c.name, "Room.UNMuteUser", in)
+	out := new(MuteUserCommResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *roomService) GetMuteUserInfo(ctx context.Context, in *GetMuteInfoReq, opts ...client.CallOption) (*GetMuteInfoResp, error) {
+	req := c.c.NewRequest(c.name, "Room.GetMuteUserInfo", in)
+	out := new(GetMuteInfoResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -294,16 +294,16 @@ type RoomHandler interface {
 	GetRandomRooms(context.Context, *GetRandomRoomsReq, *GetRoomListResp) error
 	// KickoutUserInRoom 踢出直播间用
 	KickoutUserInRoom(context.Context, *KickoutUserInRoomReq, *KickoutUserInRoomResp) error
-	// 直播间禁言用户
-	MuteUserInRoom(context.Context, *MuteUserInRoomReq, *MuteUserCommResp) error
-	// 取消用户在直播间的禁言
-	UNMuteUserInRoom(context.Context, *MuteUserInRoomReq, *MuteUserCommResp) error
-	// 获取用户在直播间中的禁言状态
-	GetUserInRoomMuteStatus(context.Context, *GetUserInRoomMuteStatusReq, *GetUserInRoomMuteStatusResp) error
 	// ForbidRoom 封禁直播间
 	ForbidRoom(context.Context, *ForbidRoomReq, *ForbidRoomResp) error
 	// ResumeRoom 解封直播间
 	ResumeRoom(context.Context, *ResumeRoomReq, *ResumeRoomResp) error
+	// 禁言
+	MuteUserInType(context.Context, *MuteUserReq, *MuteUserCommResp) error
+	// 取消禁言
+	UNMuteUser(context.Context, *MuteUserReq, *MuteUserCommResp) error
+	// 获取禁言信息
+	GetMuteUserInfo(context.Context, *GetMuteInfoReq, *GetMuteInfoResp) error
 	// StartLive 开始直播
 	StartLive(context.Context, *StartLiveReq, *StartLiveResp) error
 	// StopLive 关闭直播
@@ -323,11 +323,11 @@ func RegisterRoomHandler(s server.Server, hdlr RoomHandler, opts ...server.Handl
 		GetOnlineRoomList(ctx context.Context, in *GetOnlineRoomListReq, out *GetOnlineRoomListResp) error
 		GetRandomRooms(ctx context.Context, in *GetRandomRoomsReq, out *GetRoomListResp) error
 		KickoutUserInRoom(ctx context.Context, in *KickoutUserInRoomReq, out *KickoutUserInRoomResp) error
-		MuteUserInRoom(ctx context.Context, in *MuteUserInRoomReq, out *MuteUserCommResp) error
-		UNMuteUserInRoom(ctx context.Context, in *MuteUserInRoomReq, out *MuteUserCommResp) error
-		GetUserInRoomMuteStatus(ctx context.Context, in *GetUserInRoomMuteStatusReq, out *GetUserInRoomMuteStatusResp) error
 		ForbidRoom(ctx context.Context, in *ForbidRoomReq, out *ForbidRoomResp) error
 		ResumeRoom(ctx context.Context, in *ResumeRoomReq, out *ResumeRoomResp) error
+		MuteUserInType(ctx context.Context, in *MuteUserReq, out *MuteUserCommResp) error
+		UNMuteUser(ctx context.Context, in *MuteUserReq, out *MuteUserCommResp) error
+		GetMuteUserInfo(ctx context.Context, in *GetMuteInfoReq, out *GetMuteInfoResp) error
 		StartLive(ctx context.Context, in *StartLiveReq, out *StartLiveResp) error
 		StopLive(ctx context.Context, in *StopLiveReq, out *StopLiveResp) error
 	}
@@ -386,24 +386,24 @@ func (h *roomHandler) KickoutUserInRoom(ctx context.Context, in *KickoutUserInRo
 	return h.RoomHandler.KickoutUserInRoom(ctx, in, out)
 }
 
-func (h *roomHandler) MuteUserInRoom(ctx context.Context, in *MuteUserInRoomReq, out *MuteUserCommResp) error {
-	return h.RoomHandler.MuteUserInRoom(ctx, in, out)
-}
-
-func (h *roomHandler) UNMuteUserInRoom(ctx context.Context, in *MuteUserInRoomReq, out *MuteUserCommResp) error {
-	return h.RoomHandler.UNMuteUserInRoom(ctx, in, out)
-}
-
-func (h *roomHandler) GetUserInRoomMuteStatus(ctx context.Context, in *GetUserInRoomMuteStatusReq, out *GetUserInRoomMuteStatusResp) error {
-	return h.RoomHandler.GetUserInRoomMuteStatus(ctx, in, out)
-}
-
 func (h *roomHandler) ForbidRoom(ctx context.Context, in *ForbidRoomReq, out *ForbidRoomResp) error {
 	return h.RoomHandler.ForbidRoom(ctx, in, out)
 }
 
 func (h *roomHandler) ResumeRoom(ctx context.Context, in *ResumeRoomReq, out *ResumeRoomResp) error {
 	return h.RoomHandler.ResumeRoom(ctx, in, out)
+}
+
+func (h *roomHandler) MuteUserInType(ctx context.Context, in *MuteUserReq, out *MuteUserCommResp) error {
+	return h.RoomHandler.MuteUserInType(ctx, in, out)
+}
+
+func (h *roomHandler) UNMuteUser(ctx context.Context, in *MuteUserReq, out *MuteUserCommResp) error {
+	return h.RoomHandler.UNMuteUser(ctx, in, out)
+}
+
+func (h *roomHandler) GetMuteUserInfo(ctx context.Context, in *GetMuteInfoReq, out *GetMuteInfoResp) error {
+	return h.RoomHandler.GetMuteUserInfo(ctx, in, out)
 }
 
 func (h *roomHandler) StartLive(ctx context.Context, in *StartLiveReq, out *StartLiveResp) error {
