@@ -3448,7 +3448,7 @@ CoinRechargeReq 后台充值代币余额目前就一步操作，不在trade内�
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | price | [int64](#int64) |  |  |
-| live_id | [string](#string) |  |  |
+| live_id | [string](#string) |  | 直播ID |
 
 
 

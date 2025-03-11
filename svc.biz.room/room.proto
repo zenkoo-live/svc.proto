@@ -46,7 +46,6 @@ service Room {
     // 获取禁言信息
     rpc GetMuteUserInfo(GetMuteInfoReq) returns (GetMuteInfoResp);
     
-
     // StartLive 开始直播
     rpc StartLive(StartLiveReq) returns(StartLiveResp);
     // StopLive 关闭直播

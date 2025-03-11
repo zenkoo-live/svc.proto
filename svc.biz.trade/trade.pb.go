@@ -449,7 +449,7 @@ func (x *GiftInfo) GetIcon() string {
 type RoomTicketInfo struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Price         int64                  `protobuf:"varint,6,opt,name=price,proto3" json:"price,omitempty"`
-	LiveId        string                 `protobuf:"bytes,7,opt,name=live_id,json=liveId,proto3" json:"live_id,omitempty"`
+	LiveId        string                 `protobuf:"bytes,7,opt,name=live_id,json=liveId,proto3" json:"live_id,omitempty"` // 直播ID
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }

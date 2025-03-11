@@ -72,7 +72,7 @@ message GiftInfo {
 }
 message RoomTicketInfo {
   int64  price   = 6;
-  string live_id = 7;
+  string live_id = 7; // 直播ID
 }
 message RoomDurationFeeInfo {
   int64 price = 6;
