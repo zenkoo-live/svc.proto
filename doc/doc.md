@@ -339,9 +339,9 @@
     - [StreamPull](#svc-biz-room-StreamPull)
     - [StreamPush](#svc-biz-room-StreamPush)
     - [TrtcConf](#svc-biz-room-TrtcConf)
-    - [UNMuteUserReq](#svc-biz-room-UNMuteUserReq)
     - [UpdateRoomReq](#svc-biz-room-UpdateRoomReq)
   
+    - [KickoutUserType](#svc-biz-room-KickoutUserType)
     - [LiveDisplayType](#svc-biz-room-LiveDisplayType)
     - [LiveStatus](#svc-biz-room-LiveStatus)
     - [MuteUserType](#svc-biz-room-MuteUserType)
@@ -5940,6 +5940,7 @@ CategoryInfo 分类详情
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| kickout_type | [KickoutUserType](#svc-biz-room-KickoutUserType) |  |  |
 | streamer_id | [string](#string) |  | 主播id |
 | user_id | [string](#string) |  | 用户id |
 
@@ -6426,21 +6427,6 @@ CategoryInfo 分类详情
 
 
 
-<a name="svc-biz-room-UNMuteUserReq"></a>
-
-### UNMuteUserReq
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| mute_type | [MuteUserType](#svc-biz-room-MuteUserType) |  | 禁言类型 |
-
-
-
-
-
-
 <a name="svc-biz-room-UpdateRoomReq"></a>
 
 ### UpdateRoomReq
@@ -6458,6 +6444,19 @@ CategoryInfo 分类详情
 
 
  
+
+
+<a name="svc-biz-room-KickoutUserType"></a>
+
+### KickoutUserType
+踢出用户类型
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| KickoutTypeUnknown | 0 |  |
+| KickoutTypeLive | 1 | 指定场次直播踢出 |
+| KickoutTypeRoom | 2 | 踢出房间(不能访问主播的所有直播场次) |
+
 
 
 <a name="svc-biz-room-LiveDisplayType"></a>

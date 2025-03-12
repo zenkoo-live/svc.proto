@@ -97,6 +97,13 @@ enum MuteUserType {
 	MuteTypeLive     = 4;  // 直播禁言(针对单一场次直播)
 }
 
+// 踢出用户类型
+enum KickoutUserType {
+    KickoutTypeUnknown = 0;
+    KickoutTypeLive    = 1; // 指定场次直播踢出
+    KickoutTypeRoom    = 2; // 踢出房间(不能访问主播的所有直播场次)
+}
+
 message TrtcConf {
     string sdk_app_id = 1;
     string trtc_user_id = 2;
@@ -265,8 +272,9 @@ message GetOnlineRoomListResp {
 }
 
 message KickoutUserInRoomReq {
-    string streamer_id = 1; // 主播id
-    string user_id = 2; // 用户id
+    KickoutUserType kickout_type = 1;
+    string          streamer_id  = 2;  // 主播id
+    string          user_id      = 3;  // 用户id
 }
 message KickoutUserInRoomResp {
 
@@ -358,10 +366,6 @@ message MuteUserReq {
     string       room_id     = 4;  // 主播id
     // string       live_id     = 5;  // 直播id
     int32        expire_sec  = 6;  // 禁言时间(秒，为0时永久禁言)
-}
-
-message UNMuteUserReq {
-    MuteUserType mute_type   = 1;  // 禁言类型
 }
 
 // 禁言逻辑通用返回
