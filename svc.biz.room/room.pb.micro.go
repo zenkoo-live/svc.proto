@@ -59,12 +59,16 @@ type RoomService interface {
 	GetOnlineRoomList(ctx context.Context, in *GetOnlineRoomListReq, opts ...client.CallOption) (*GetOnlineRoomListResp, error)
 	// GetRandomRooms 随机获取房间(用户端上滑获取下一个房间用)
 	GetRandomRooms(ctx context.Context, in *GetRandomRoomsReq, opts ...client.CallOption) (*GetRoomListResp, error)
-	// KickoutUserInRoom 踢出直播间用
-	KickoutUserInRoom(ctx context.Context, in *KickoutUserInRoomReq, opts ...client.CallOption) (*KickoutUserInRoomResp, error)
 	// ForbidRoom 封禁直播间
 	ForbidRoom(ctx context.Context, in *ForbidRoomReq, opts ...client.CallOption) (*ForbidRoomResp, error)
 	// ResumeRoom 解封直播间
 	ResumeRoom(ctx context.Context, in *ResumeRoomReq, opts ...client.CallOption) (*ResumeRoomResp, error)
+	// KickoutUserInRoom 踢出直播间用
+	KickoutUserInRoom(ctx context.Context, in *KickoutUserInRoomReq, opts ...client.CallOption) (*KickoutUserInRoomResp, error)
+	// CheckKickoutUser 查询是否用户被踢出直播
+	CheckKickoutUser(ctx context.Context, in *KickoutUserReq, opts ...client.CallOption) (*CheckKickoutUserResp, error)
+	// RemoveKickoutUser 取消踢出状态
+	RemoveKickoutUser(ctx context.Context, in *KickoutUserReq, opts ...client.CallOption) (*RemoveKickoutUserResp, error)
 	// 禁言
 	MuteUserInType(ctx context.Context, in *MuteUserReq, opts ...client.CallOption) (*MuteUserCommResp, error)
 	// 取消禁言
@@ -189,16 +193,6 @@ func (c *roomService) GetRandomRooms(ctx context.Context, in *GetRandomRoomsReq,
 	return out, nil
 }
 
-func (c *roomService) KickoutUserInRoom(ctx context.Context, in *KickoutUserInRoomReq, opts ...client.CallOption) (*KickoutUserInRoomResp, error) {
-	req := c.c.NewRequest(c.name, "Room.KickoutUserInRoom", in)
-	out := new(KickoutUserInRoomResp)
-	err := c.c.Call(ctx, req, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *roomService) ForbidRoom(ctx context.Context, in *ForbidRoomReq, opts ...client.CallOption) (*ForbidRoomResp, error) {
 	req := c.c.NewRequest(c.name, "Room.ForbidRoom", in)
 	out := new(ForbidRoomResp)
@@ -212,6 +206,36 @@ func (c *roomService) ForbidRoom(ctx context.Context, in *ForbidRoomReq, opts ..
 func (c *roomService) ResumeRoom(ctx context.Context, in *ResumeRoomReq, opts ...client.CallOption) (*ResumeRoomResp, error) {
 	req := c.c.NewRequest(c.name, "Room.ResumeRoom", in)
 	out := new(ResumeRoomResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *roomService) KickoutUserInRoom(ctx context.Context, in *KickoutUserInRoomReq, opts ...client.CallOption) (*KickoutUserInRoomResp, error) {
+	req := c.c.NewRequest(c.name, "Room.KickoutUserInRoom", in)
+	out := new(KickoutUserInRoomResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *roomService) CheckKickoutUser(ctx context.Context, in *KickoutUserReq, opts ...client.CallOption) (*CheckKickoutUserResp, error) {
+	req := c.c.NewRequest(c.name, "Room.CheckKickoutUser", in)
+	out := new(CheckKickoutUserResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *roomService) RemoveKickoutUser(ctx context.Context, in *KickoutUserReq, opts ...client.CallOption) (*RemoveKickoutUserResp, error) {
+	req := c.c.NewRequest(c.name, "Room.RemoveKickoutUser", in)
+	out := new(RemoveKickoutUserResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -292,12 +316,16 @@ type RoomHandler interface {
 	GetOnlineRoomList(context.Context, *GetOnlineRoomListReq, *GetOnlineRoomListResp) error
 	// GetRandomRooms 随机获取房间(用户端上滑获取下一个房间用)
 	GetRandomRooms(context.Context, *GetRandomRoomsReq, *GetRoomListResp) error
-	// KickoutUserInRoom 踢出直播间用
-	KickoutUserInRoom(context.Context, *KickoutUserInRoomReq, *KickoutUserInRoomResp) error
 	// ForbidRoom 封禁直播间
 	ForbidRoom(context.Context, *ForbidRoomReq, *ForbidRoomResp) error
 	// ResumeRoom 解封直播间
 	ResumeRoom(context.Context, *ResumeRoomReq, *ResumeRoomResp) error
+	// KickoutUserInRoom 踢出直播间用
+	KickoutUserInRoom(context.Context, *KickoutUserInRoomReq, *KickoutUserInRoomResp) error
+	// CheckKickoutUser 查询是否用户被踢出直播
+	CheckKickoutUser(context.Context, *KickoutUserReq, *CheckKickoutUserResp) error
+	// RemoveKickoutUser 取消踢出状态
+	RemoveKickoutUser(context.Context, *KickoutUserReq, *RemoveKickoutUserResp) error
 	// 禁言
 	MuteUserInType(context.Context, *MuteUserReq, *MuteUserCommResp) error
 	// 取消禁言
@@ -322,9 +350,11 @@ func RegisterRoomHandler(s server.Server, hdlr RoomHandler, opts ...server.Handl
 		GetRoomList(ctx context.Context, in *GetRoomListReq, out *GetRoomListResp) error
 		GetOnlineRoomList(ctx context.Context, in *GetOnlineRoomListReq, out *GetOnlineRoomListResp) error
 		GetRandomRooms(ctx context.Context, in *GetRandomRoomsReq, out *GetRoomListResp) error
-		KickoutUserInRoom(ctx context.Context, in *KickoutUserInRoomReq, out *KickoutUserInRoomResp) error
 		ForbidRoom(ctx context.Context, in *ForbidRoomReq, out *ForbidRoomResp) error
 		ResumeRoom(ctx context.Context, in *ResumeRoomReq, out *ResumeRoomResp) error
+		KickoutUserInRoom(ctx context.Context, in *KickoutUserInRoomReq, out *KickoutUserInRoomResp) error
+		CheckKickoutUser(ctx context.Context, in *KickoutUserReq, out *CheckKickoutUserResp) error
+		RemoveKickoutUser(ctx context.Context, in *KickoutUserReq, out *RemoveKickoutUserResp) error
 		MuteUserInType(ctx context.Context, in *MuteUserReq, out *MuteUserCommResp) error
 		UNMuteUser(ctx context.Context, in *MuteUserReq, out *MuteUserCommResp) error
 		GetMuteUserInfo(ctx context.Context, in *GetMuteInfoReq, out *GetMuteInfoResp) error
@@ -382,16 +412,24 @@ func (h *roomHandler) GetRandomRooms(ctx context.Context, in *GetRandomRoomsReq,
 	return h.RoomHandler.GetRandomRooms(ctx, in, out)
 }
 
-func (h *roomHandler) KickoutUserInRoom(ctx context.Context, in *KickoutUserInRoomReq, out *KickoutUserInRoomResp) error {
-	return h.RoomHandler.KickoutUserInRoom(ctx, in, out)
-}
-
 func (h *roomHandler) ForbidRoom(ctx context.Context, in *ForbidRoomReq, out *ForbidRoomResp) error {
 	return h.RoomHandler.ForbidRoom(ctx, in, out)
 }
 
 func (h *roomHandler) ResumeRoom(ctx context.Context, in *ResumeRoomReq, out *ResumeRoomResp) error {
 	return h.RoomHandler.ResumeRoom(ctx, in, out)
+}
+
+func (h *roomHandler) KickoutUserInRoom(ctx context.Context, in *KickoutUserInRoomReq, out *KickoutUserInRoomResp) error {
+	return h.RoomHandler.KickoutUserInRoom(ctx, in, out)
+}
+
+func (h *roomHandler) CheckKickoutUser(ctx context.Context, in *KickoutUserReq, out *CheckKickoutUserResp) error {
+	return h.RoomHandler.CheckKickoutUser(ctx, in, out)
+}
+
+func (h *roomHandler) RemoveKickoutUser(ctx context.Context, in *KickoutUserReq, out *RemoveKickoutUserResp) error {
+	return h.RoomHandler.RemoveKickoutUser(ctx, in, out)
 }
 
 func (h *roomHandler) MuteUserInType(ctx context.Context, in *MuteUserReq, out *MuteUserCommResp) error {

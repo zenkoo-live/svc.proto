@@ -37,6 +37,9 @@ enum RelationType {
     RelationTypeBlacklistIP = 303; // ip黑名单
     RelationTypeBlacklistDevice = 304; // 设备黑名单
 
+    RelationTypeBlacklistRoomViewer = 305; // 房间黑名单(MemberId:RoomId)
+    RelationTypeBlacklistLiveViewer = 306; // 直播黑名单(MemberId:LiveId)
+
     RelationTypeSuperManager = 401; // 超级管理员
     RelationTypeRoomManager = 402; // 房间管理员
 }

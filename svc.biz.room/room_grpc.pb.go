@@ -30,9 +30,11 @@ const (
 	Room_GetRoomList_FullMethodName                          = "/svc.biz.room.Room/GetRoomList"
 	Room_GetOnlineRoomList_FullMethodName                    = "/svc.biz.room.Room/GetOnlineRoomList"
 	Room_GetRandomRooms_FullMethodName                       = "/svc.biz.room.Room/GetRandomRooms"
-	Room_KickoutUserInRoom_FullMethodName                    = "/svc.biz.room.Room/KickoutUserInRoom"
 	Room_ForbidRoom_FullMethodName                           = "/svc.biz.room.Room/ForbidRoom"
 	Room_ResumeRoom_FullMethodName                           = "/svc.biz.room.Room/ResumeRoom"
+	Room_KickoutUserInRoom_FullMethodName                    = "/svc.biz.room.Room/KickoutUserInRoom"
+	Room_CheckKickoutUser_FullMethodName                     = "/svc.biz.room.Room/CheckKickoutUser"
+	Room_RemoveKickoutUser_FullMethodName                    = "/svc.biz.room.Room/RemoveKickoutUser"
 	Room_MuteUserInType_FullMethodName                       = "/svc.biz.room.Room/MuteUserInType"
 	Room_UNMuteUser_FullMethodName                           = "/svc.biz.room.Room/UNMuteUser"
 	Room_GetMuteUserInfo_FullMethodName                      = "/svc.biz.room.Room/GetMuteUserInfo"
@@ -66,12 +68,16 @@ type RoomClient interface {
 	GetOnlineRoomList(ctx context.Context, in *GetOnlineRoomListReq, opts ...grpc.CallOption) (*GetOnlineRoomListResp, error)
 	// GetRandomRooms 随机获取房间(用户端上滑获取下一个房间用)
 	GetRandomRooms(ctx context.Context, in *GetRandomRoomsReq, opts ...grpc.CallOption) (*GetRoomListResp, error)
-	// KickoutUserInRoom 踢出直播间用
-	KickoutUserInRoom(ctx context.Context, in *KickoutUserInRoomReq, opts ...grpc.CallOption) (*KickoutUserInRoomResp, error)
 	// ForbidRoom 封禁直播间
 	ForbidRoom(ctx context.Context, in *ForbidRoomReq, opts ...grpc.CallOption) (*ForbidRoomResp, error)
 	// ResumeRoom 解封直播间
 	ResumeRoom(ctx context.Context, in *ResumeRoomReq, opts ...grpc.CallOption) (*ResumeRoomResp, error)
+	// KickoutUserInRoom 踢出直播间用
+	KickoutUserInRoom(ctx context.Context, in *KickoutUserInRoomReq, opts ...grpc.CallOption) (*KickoutUserInRoomResp, error)
+	// CheckKickoutUser 查询是否用户被踢出直播
+	CheckKickoutUser(ctx context.Context, in *KickoutUserReq, opts ...grpc.CallOption) (*CheckKickoutUserResp, error)
+	// RemoveKickoutUser 取消踢出状态
+	RemoveKickoutUser(ctx context.Context, in *KickoutUserReq, opts ...grpc.CallOption) (*RemoveKickoutUserResp, error)
 	// 禁言
 	MuteUserInType(ctx context.Context, in *MuteUserReq, opts ...grpc.CallOption) (*MuteUserCommResp, error)
 	// 取消禁言
@@ -192,16 +198,6 @@ func (c *roomClient) GetRandomRooms(ctx context.Context, in *GetRandomRoomsReq, 
 	return out, nil
 }
 
-func (c *roomClient) KickoutUserInRoom(ctx context.Context, in *KickoutUserInRoomReq, opts ...grpc.CallOption) (*KickoutUserInRoomResp, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(KickoutUserInRoomResp)
-	err := c.cc.Invoke(ctx, Room_KickoutUserInRoom_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *roomClient) ForbidRoom(ctx context.Context, in *ForbidRoomReq, opts ...grpc.CallOption) (*ForbidRoomResp, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ForbidRoomResp)
@@ -216,6 +212,36 @@ func (c *roomClient) ResumeRoom(ctx context.Context, in *ResumeRoomReq, opts ...
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ResumeRoomResp)
 	err := c.cc.Invoke(ctx, Room_ResumeRoom_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *roomClient) KickoutUserInRoom(ctx context.Context, in *KickoutUserInRoomReq, opts ...grpc.CallOption) (*KickoutUserInRoomResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(KickoutUserInRoomResp)
+	err := c.cc.Invoke(ctx, Room_KickoutUserInRoom_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *roomClient) CheckKickoutUser(ctx context.Context, in *KickoutUserReq, opts ...grpc.CallOption) (*CheckKickoutUserResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CheckKickoutUserResp)
+	err := c.cc.Invoke(ctx, Room_CheckKickoutUser_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *roomClient) RemoveKickoutUser(ctx context.Context, in *KickoutUserReq, opts ...grpc.CallOption) (*RemoveKickoutUserResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RemoveKickoutUserResp)
+	err := c.cc.Invoke(ctx, Room_RemoveKickoutUser_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -298,12 +324,16 @@ type RoomServer interface {
 	GetOnlineRoomList(context.Context, *GetOnlineRoomListReq) (*GetOnlineRoomListResp, error)
 	// GetRandomRooms 随机获取房间(用户端上滑获取下一个房间用)
 	GetRandomRooms(context.Context, *GetRandomRoomsReq) (*GetRoomListResp, error)
-	// KickoutUserInRoom 踢出直播间用
-	KickoutUserInRoom(context.Context, *KickoutUserInRoomReq) (*KickoutUserInRoomResp, error)
 	// ForbidRoom 封禁直播间
 	ForbidRoom(context.Context, *ForbidRoomReq) (*ForbidRoomResp, error)
 	// ResumeRoom 解封直播间
 	ResumeRoom(context.Context, *ResumeRoomReq) (*ResumeRoomResp, error)
+	// KickoutUserInRoom 踢出直播间用
+	KickoutUserInRoom(context.Context, *KickoutUserInRoomReq) (*KickoutUserInRoomResp, error)
+	// CheckKickoutUser 查询是否用户被踢出直播
+	CheckKickoutUser(context.Context, *KickoutUserReq) (*CheckKickoutUserResp, error)
+	// RemoveKickoutUser 取消踢出状态
+	RemoveKickoutUser(context.Context, *KickoutUserReq) (*RemoveKickoutUserResp, error)
 	// 禁言
 	MuteUserInType(context.Context, *MuteUserReq) (*MuteUserCommResp, error)
 	// 取消禁言
@@ -354,14 +384,20 @@ func (UnimplementedRoomServer) GetOnlineRoomList(context.Context, *GetOnlineRoom
 func (UnimplementedRoomServer) GetRandomRooms(context.Context, *GetRandomRoomsReq) (*GetRoomListResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetRandomRooms not implemented")
 }
-func (UnimplementedRoomServer) KickoutUserInRoom(context.Context, *KickoutUserInRoomReq) (*KickoutUserInRoomResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method KickoutUserInRoom not implemented")
-}
 func (UnimplementedRoomServer) ForbidRoom(context.Context, *ForbidRoomReq) (*ForbidRoomResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ForbidRoom not implemented")
 }
 func (UnimplementedRoomServer) ResumeRoom(context.Context, *ResumeRoomReq) (*ResumeRoomResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ResumeRoom not implemented")
+}
+func (UnimplementedRoomServer) KickoutUserInRoom(context.Context, *KickoutUserInRoomReq) (*KickoutUserInRoomResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method KickoutUserInRoom not implemented")
+}
+func (UnimplementedRoomServer) CheckKickoutUser(context.Context, *KickoutUserReq) (*CheckKickoutUserResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CheckKickoutUser not implemented")
+}
+func (UnimplementedRoomServer) RemoveKickoutUser(context.Context, *KickoutUserReq) (*RemoveKickoutUserResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RemoveKickoutUser not implemented")
 }
 func (UnimplementedRoomServer) MuteUserInType(context.Context, *MuteUserReq) (*MuteUserCommResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method MuteUserInType not implemented")
@@ -579,24 +615,6 @@ func _Room_GetRandomRooms_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Room_KickoutUserInRoom_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(KickoutUserInRoomReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(RoomServer).KickoutUserInRoom(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Room_KickoutUserInRoom_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RoomServer).KickoutUserInRoom(ctx, req.(*KickoutUserInRoomReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _Room_ForbidRoom_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ForbidRoomReq)
 	if err := dec(in); err != nil {
@@ -629,6 +647,60 @@ func _Room_ResumeRoom_Handler(srv interface{}, ctx context.Context, dec func(int
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(RoomServer).ResumeRoom(ctx, req.(*ResumeRoomReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Room_KickoutUserInRoom_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(KickoutUserInRoomReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RoomServer).KickoutUserInRoom(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Room_KickoutUserInRoom_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RoomServer).KickoutUserInRoom(ctx, req.(*KickoutUserInRoomReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Room_CheckKickoutUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(KickoutUserReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RoomServer).CheckKickoutUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Room_CheckKickoutUser_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RoomServer).CheckKickoutUser(ctx, req.(*KickoutUserReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Room_RemoveKickoutUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(KickoutUserReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RoomServer).RemoveKickoutUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Room_RemoveKickoutUser_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RoomServer).RemoveKickoutUser(ctx, req.(*KickoutUserReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -771,16 +843,24 @@ var Room_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Room_GetRandomRooms_Handler,
 		},
 		{
-			MethodName: "KickoutUserInRoom",
-			Handler:    _Room_KickoutUserInRoom_Handler,
-		},
-		{
 			MethodName: "ForbidRoom",
 			Handler:    _Room_ForbidRoom_Handler,
 		},
 		{
 			MethodName: "ResumeRoom",
 			Handler:    _Room_ResumeRoom_Handler,
+		},
+		{
+			MethodName: "KickoutUserInRoom",
+			Handler:    _Room_KickoutUserInRoom_Handler,
+		},
+		{
+			MethodName: "CheckKickoutUser",
+			Handler:    _Room_CheckKickoutUser_Handler,
+		},
+		{
+			MethodName: "RemoveKickoutUser",
+			Handler:    _Room_RemoveKickoutUser_Handler,
 		},
 		{
 			MethodName: "MuteUserInType",

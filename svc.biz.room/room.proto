@@ -32,12 +32,17 @@ service Room {
     // GetRandomRooms 随机获取房间(用户端上滑获取下一个房间用)
     rpc GetRandomRooms(GetRandomRoomsReq) returns(GetRoomListResp);
 
-    // KickoutUserInRoom 踢出直播间用 
-    rpc KickoutUserInRoom(KickoutUserInRoomReq) returns(KickoutUserInRoomResp);
     // ForbidRoom 封禁直播间
     rpc ForbidRoom(ForbidRoomReq) returns(ForbidRoomResp);
     // ResumeRoom 解封直播间
     rpc ResumeRoom(ResumeRoomReq) returns(ResumeRoomResp);
+
+    // KickoutUserInRoom 踢出直播间用 
+    rpc KickoutUserInRoom(KickoutUserInRoomReq) returns(KickoutUserInRoomResp);
+    // CheckKickoutUser 查询是否用户被踢出直播
+    rpc CheckKickoutUser(KickoutUserReq) returns(CheckKickoutUserResp);
+    // RemoveKickoutUser 取消踢出状态
+    rpc RemoveKickoutUser(KickoutUserReq) returns(RemoveKickoutUserResp);
 
     // 禁言
     rpc MuteUserInType(MuteUserReq) returns(MuteUserCommResp);
@@ -390,4 +395,22 @@ message GetMuteInfoResp {
     int32                     expire_sec  = 6;
     google.protobuf.Timestamp add_time    = 7;
     // string live_id     = 4;
+}
+
+message KickoutUserReq {
+    string streamer_id = 1;
+    string user_id   = 2;
+}
+
+message CheckKickoutUserResp {
+    string          streamer_id  = 1;
+    string          user_id      = 2;
+    string          room_id      = 3;
+    string          live_id      = 4;
+    bool            result       = 5;  // 为true时kickout_type的类型才会有效，否则都返回房间类型
+    KickoutUserType kickout_type = 6;
+}
+
+message RemoveKickoutUserResp {
+    bool result = 1;
 }
