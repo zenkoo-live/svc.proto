@@ -64,11 +64,11 @@ type RoomService interface {
 	// ResumeRoom 解封直播间
 	ResumeRoom(ctx context.Context, in *ResumeRoomReq, opts ...client.CallOption) (*ResumeRoomResp, error)
 	// KickoutUserInRoom 踢出直播间用
-	KickoutUserInRoom(ctx context.Context, in *KickoutUserInRoomReq, opts ...client.CallOption) (*KickoutUserInRoomResp, error)
-	// CheckKickoutUser 查询是否用户被踢出直播
-	CheckKickoutUser(ctx context.Context, in *KickoutUserReq, opts ...client.CallOption) (*CheckKickoutUserResp, error)
+	KickoutUserInType(ctx context.Context, in *KickoutUserInTypeReq, opts ...client.CallOption) (*KickoutUserInTypeResp, error)
 	// RemoveKickoutUser 取消踢出状态
 	RemoveKickoutUser(ctx context.Context, in *KickoutUserReq, opts ...client.CallOption) (*RemoveKickoutUserResp, error)
+	// CheckKickoutUser 查询是否用户被踢出直播
+	CheckKickoutUser(ctx context.Context, in *KickoutUserReq, opts ...client.CallOption) (*CheckKickoutUserResp, error)
 	// 禁言
 	MuteUserInType(ctx context.Context, in *MuteUserReq, opts ...client.CallOption) (*MuteUserCommResp, error)
 	// 取消禁言
@@ -213,19 +213,9 @@ func (c *roomService) ResumeRoom(ctx context.Context, in *ResumeRoomReq, opts ..
 	return out, nil
 }
 
-func (c *roomService) KickoutUserInRoom(ctx context.Context, in *KickoutUserInRoomReq, opts ...client.CallOption) (*KickoutUserInRoomResp, error) {
-	req := c.c.NewRequest(c.name, "Room.KickoutUserInRoom", in)
-	out := new(KickoutUserInRoomResp)
-	err := c.c.Call(ctx, req, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *roomService) CheckKickoutUser(ctx context.Context, in *KickoutUserReq, opts ...client.CallOption) (*CheckKickoutUserResp, error) {
-	req := c.c.NewRequest(c.name, "Room.CheckKickoutUser", in)
-	out := new(CheckKickoutUserResp)
+func (c *roomService) KickoutUserInType(ctx context.Context, in *KickoutUserInTypeReq, opts ...client.CallOption) (*KickoutUserInTypeResp, error) {
+	req := c.c.NewRequest(c.name, "Room.KickoutUserInType", in)
+	out := new(KickoutUserInTypeResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -236,6 +226,16 @@ func (c *roomService) CheckKickoutUser(ctx context.Context, in *KickoutUserReq, 
 func (c *roomService) RemoveKickoutUser(ctx context.Context, in *KickoutUserReq, opts ...client.CallOption) (*RemoveKickoutUserResp, error) {
 	req := c.c.NewRequest(c.name, "Room.RemoveKickoutUser", in)
 	out := new(RemoveKickoutUserResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *roomService) CheckKickoutUser(ctx context.Context, in *KickoutUserReq, opts ...client.CallOption) (*CheckKickoutUserResp, error) {
+	req := c.c.NewRequest(c.name, "Room.CheckKickoutUser", in)
+	out := new(CheckKickoutUserResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -321,11 +321,11 @@ type RoomHandler interface {
 	// ResumeRoom 解封直播间
 	ResumeRoom(context.Context, *ResumeRoomReq, *ResumeRoomResp) error
 	// KickoutUserInRoom 踢出直播间用
-	KickoutUserInRoom(context.Context, *KickoutUserInRoomReq, *KickoutUserInRoomResp) error
-	// CheckKickoutUser 查询是否用户被踢出直播
-	CheckKickoutUser(context.Context, *KickoutUserReq, *CheckKickoutUserResp) error
+	KickoutUserInType(context.Context, *KickoutUserInTypeReq, *KickoutUserInTypeResp) error
 	// RemoveKickoutUser 取消踢出状态
 	RemoveKickoutUser(context.Context, *KickoutUserReq, *RemoveKickoutUserResp) error
+	// CheckKickoutUser 查询是否用户被踢出直播
+	CheckKickoutUser(context.Context, *KickoutUserReq, *CheckKickoutUserResp) error
 	// 禁言
 	MuteUserInType(context.Context, *MuteUserReq, *MuteUserCommResp) error
 	// 取消禁言
@@ -352,9 +352,9 @@ func RegisterRoomHandler(s server.Server, hdlr RoomHandler, opts ...server.Handl
 		GetRandomRooms(ctx context.Context, in *GetRandomRoomsReq, out *GetRoomListResp) error
 		ForbidRoom(ctx context.Context, in *ForbidRoomReq, out *ForbidRoomResp) error
 		ResumeRoom(ctx context.Context, in *ResumeRoomReq, out *ResumeRoomResp) error
-		KickoutUserInRoom(ctx context.Context, in *KickoutUserInRoomReq, out *KickoutUserInRoomResp) error
-		CheckKickoutUser(ctx context.Context, in *KickoutUserReq, out *CheckKickoutUserResp) error
+		KickoutUserInType(ctx context.Context, in *KickoutUserInTypeReq, out *KickoutUserInTypeResp) error
 		RemoveKickoutUser(ctx context.Context, in *KickoutUserReq, out *RemoveKickoutUserResp) error
+		CheckKickoutUser(ctx context.Context, in *KickoutUserReq, out *CheckKickoutUserResp) error
 		MuteUserInType(ctx context.Context, in *MuteUserReq, out *MuteUserCommResp) error
 		UNMuteUser(ctx context.Context, in *MuteUserReq, out *MuteUserCommResp) error
 		GetMuteUserInfo(ctx context.Context, in *GetMuteInfoReq, out *GetMuteInfoResp) error
@@ -420,16 +420,16 @@ func (h *roomHandler) ResumeRoom(ctx context.Context, in *ResumeRoomReq, out *Re
 	return h.RoomHandler.ResumeRoom(ctx, in, out)
 }
 
-func (h *roomHandler) KickoutUserInRoom(ctx context.Context, in *KickoutUserInRoomReq, out *KickoutUserInRoomResp) error {
-	return h.RoomHandler.KickoutUserInRoom(ctx, in, out)
-}
-
-func (h *roomHandler) CheckKickoutUser(ctx context.Context, in *KickoutUserReq, out *CheckKickoutUserResp) error {
-	return h.RoomHandler.CheckKickoutUser(ctx, in, out)
+func (h *roomHandler) KickoutUserInType(ctx context.Context, in *KickoutUserInTypeReq, out *KickoutUserInTypeResp) error {
+	return h.RoomHandler.KickoutUserInType(ctx, in, out)
 }
 
 func (h *roomHandler) RemoveKickoutUser(ctx context.Context, in *KickoutUserReq, out *RemoveKickoutUserResp) error {
 	return h.RoomHandler.RemoveKickoutUser(ctx, in, out)
+}
+
+func (h *roomHandler) CheckKickoutUser(ctx context.Context, in *KickoutUserReq, out *CheckKickoutUserResp) error {
+	return h.RoomHandler.CheckKickoutUser(ctx, in, out)
 }
 
 func (h *roomHandler) MuteUserInType(ctx context.Context, in *MuteUserReq, out *MuteUserCommResp) error {

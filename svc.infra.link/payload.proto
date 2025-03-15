@@ -170,11 +170,15 @@ message PayloadUserSubUnSubscribe {
 // 用户被踢出房间
 message PayloadUserKickRoom {
   BasicUser user = 1; // 基础信息
+  string    reason = 2;  // 踢出原因
+  string    desc   = 3;  // 禁言描述
 }
 
 // 用户被禁言
 message PayloadUserForbid {
-  BasicUser user = 1; // 基础信息
+  BasicUser user   = 1;  // 基础信息
+  string    reason = 2;  // 踢出原因
+  string    desc   = 3;  // 禁言描述
 }
 
 // 用户被设置成房管

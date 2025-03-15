@@ -311,8 +311,8 @@
     - [GetRoomListResp](#svc-biz-room-GetRoomListResp)
     - [GetRoomReq](#svc-biz-room-GetRoomReq)
     - [GetRoomResp](#svc-biz-room-GetRoomResp)
-    - [KickoutUserInRoomReq](#svc-biz-room-KickoutUserInRoomReq)
-    - [KickoutUserInRoomResp](#svc-biz-room-KickoutUserInRoomResp)
+    - [KickoutUserInTypeReq](#svc-biz-room-KickoutUserInTypeReq)
+    - [KickoutUserInTypeResp](#svc-biz-room-KickoutUserInTypeResp)
     - [KickoutUserReq](#svc-biz-room-KickoutUserReq)
     - [MGetRoomsByStreamerIDsReq](#svc-biz-room-MGetRoomsByStreamerIDsReq)
     - [MGetRoomsByStreamerIDsResp](#svc-biz-room-MGetRoomsByStreamerIDsResp)
@@ -5955,9 +5955,9 @@ CategoryInfo 分类详情
 
 
 
-<a name="svc-biz-room-KickoutUserInRoomReq"></a>
+<a name="svc-biz-room-KickoutUserInTypeReq"></a>
 
-### KickoutUserInRoomReq
+### KickoutUserInTypeReq
 
 
 
@@ -5966,16 +5966,22 @@ CategoryInfo 分类详情
 | kickout_type | [KickoutUserType](#svc-biz-room-KickoutUserType) |  |  |
 | streamer_id | [string](#string) |  | 主播id |
 | user_id | [string](#string) |  | 用户id |
+| expire_sec | [int32](#int32) |  | 过期时间(秒) |
 
 
 
 
 
 
-<a name="svc-biz-room-KickoutUserInRoomResp"></a>
+<a name="svc-biz-room-KickoutUserInTypeResp"></a>
 
-### KickoutUserInRoomResp
+### KickoutUserInTypeResp
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| result | [bool](#bool) |  |  |
 
 
 
@@ -6635,9 +6641,9 @@ Room 房间
 | GetRandomRooms | [GetRandomRoomsReq](#svc-biz-room-GetRandomRoomsReq) | [GetRoomListResp](#svc-biz-room-GetRoomListResp) | GetRandomRooms 随机获取房间(用户端上滑获取下一个房间用) |
 | ForbidRoom | [ForbidRoomReq](#svc-biz-room-ForbidRoomReq) | [ForbidRoomResp](#svc-biz-room-ForbidRoomResp) | ForbidRoom 封禁直播间 |
 | ResumeRoom | [ResumeRoomReq](#svc-biz-room-ResumeRoomReq) | [ResumeRoomResp](#svc-biz-room-ResumeRoomResp) | ResumeRoom 解封直播间 |
-| KickoutUserInRoom | [KickoutUserInRoomReq](#svc-biz-room-KickoutUserInRoomReq) | [KickoutUserInRoomResp](#svc-biz-room-KickoutUserInRoomResp) | KickoutUserInRoom 踢出直播间用 |
-| CheckKickoutUser | [KickoutUserReq](#svc-biz-room-KickoutUserReq) | [CheckKickoutUserResp](#svc-biz-room-CheckKickoutUserResp) | CheckKickoutUser 查询是否用户被踢出直播 |
+| KickoutUserInType | [KickoutUserInTypeReq](#svc-biz-room-KickoutUserInTypeReq) | [KickoutUserInTypeResp](#svc-biz-room-KickoutUserInTypeResp) | KickoutUserInRoom 踢出直播间用 |
 | RemoveKickoutUser | [KickoutUserReq](#svc-biz-room-KickoutUserReq) | [RemoveKickoutUserResp](#svc-biz-room-RemoveKickoutUserResp) | RemoveKickoutUser 取消踢出状态 |
+| CheckKickoutUser | [KickoutUserReq](#svc-biz-room-KickoutUserReq) | [CheckKickoutUserResp](#svc-biz-room-CheckKickoutUserResp) | CheckKickoutUser 查询是否用户被踢出直播 |
 | MuteUserInType | [MuteUserReq](#svc-biz-room-MuteUserReq) | [MuteUserCommResp](#svc-biz-room-MuteUserCommResp) | 禁言 |
 | UNMuteUser | [MuteUserReq](#svc-biz-room-MuteUserReq) | [MuteUserCommResp](#svc-biz-room-MuteUserCommResp) | 取消禁言 |
 | GetMuteUserInfo | [GetMuteInfoReq](#svc-biz-room-GetMuteInfoReq) | [GetMuteInfoResp](#svc-biz-room-GetMuteInfoResp) | 获取禁言信息 |
@@ -9538,6 +9544,8 @@ Service of stat
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | user | [BasicUser](#svc-infra-link-BasicUser) |  | 基础信息 |
+| reason | [string](#string) |  | 踢出原因 |
+| desc | [string](#string) |  | 禁言描述 |
 
 
 
@@ -9577,6 +9585,8 @@ Service of stat
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | user | [BasicUser](#svc-infra-link-BasicUser) |  | 基础信息 |
+| reason | [string](#string) |  | 踢出原因 |
+| desc | [string](#string) |  | 禁言描述 |
 
 
 

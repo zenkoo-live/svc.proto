@@ -38,11 +38,11 @@ service Room {
     rpc ResumeRoom(ResumeRoomReq) returns(ResumeRoomResp);
 
     // KickoutUserInRoom 踢出直播间用 
-    rpc KickoutUserInRoom(KickoutUserInRoomReq) returns(KickoutUserInRoomResp);
-    // CheckKickoutUser 查询是否用户被踢出直播
-    rpc CheckKickoutUser(KickoutUserReq) returns(CheckKickoutUserResp);
+    rpc KickoutUserInType(KickoutUserInTypeReq) returns(KickoutUserInTypeResp);
     // RemoveKickoutUser 取消踢出状态
     rpc RemoveKickoutUser(KickoutUserReq) returns(RemoveKickoutUserResp);
+    // CheckKickoutUser 查询是否用户被踢出直播
+    rpc CheckKickoutUser(KickoutUserReq) returns(CheckKickoutUserResp);
 
     // 禁言
     rpc MuteUserInType(MuteUserReq) returns(MuteUserCommResp);
@@ -276,13 +276,14 @@ message GetOnlineRoomListResp {
     repeated RoomInfo items = 1; // 房间列表
 }
 
-message KickoutUserInRoomReq {
+message KickoutUserInTypeReq {
     KickoutUserType kickout_type = 1;
     string          streamer_id  = 2;  // 主播id
     string          user_id      = 3;  // 用户id
+    int32           expire_sec   = 4;  // 过期时间(秒)
 }
-message KickoutUserInRoomResp {
-
+message KickoutUserInTypeResp {
+    bool result = 1;
 }
 
 message ForbidRoomReq {
