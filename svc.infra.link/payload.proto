@@ -243,6 +243,6 @@ message PayloadWishlistInfo {
 
   string   room_id            = 1;
   string   streamer_id        = 2;
-  int32    status             = 3;
+  int32    status             = 3; // 状态(1: 开启, 2: 关闭, 3: 心愿单修改礼物, 4: 收礼物数据更新)
   repeated GiftItem gift_list = 4;
 }
