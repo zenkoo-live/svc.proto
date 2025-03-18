@@ -541,6 +541,8 @@
     - [PayloadUserRoomAdm](#svc-infra-link-PayloadUserRoomAdm)
     - [PayloadUserRoomCancelAdm](#svc-infra-link-PayloadUserRoomCancelAdm)
     - [PayloadUserSubUnSubscribe](#svc-infra-link-PayloadUserSubUnSubscribe)
+    - [PayloadWishlistInfo](#svc-infra-link-PayloadWishlistInfo)
+    - [PayloadWishlistInfo.GiftItem](#svc-infra-link-PayloadWishlistInfo-GiftItem)
     - [Receiver](#svc-infra-link-Receiver)
     - [Sender](#svc-infra-link-Sender)
   
@@ -9653,6 +9655,45 @@ Service of stat
 
 
 
+<a name="svc-infra-link-PayloadWishlistInfo"></a>
+
+### PayloadWishlistInfo
+心愿单消息(开启，关闭，礼物数更新等)
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| room_id | [string](#string) |  |  |
+| streamer_id | [string](#string) |  |  |
+| status | [int32](#int32) |  |  |
+| gift_list | [PayloadWishlistInfo.GiftItem](#svc-infra-link-PayloadWishlistInfo-GiftItem) | repeated |  |
+
+
+
+
+
+
+<a name="svc-infra-link-PayloadWishlistInfo-GiftItem"></a>
+
+### PayloadWishlistInfo.GiftItem
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| gift_id | [string](#string) |  |  |
+| type | [int32](#int32) |  |  |
+| icon | [string](#string) |  |  |
+| name | [string](#string) |  |  |
+| price | [int32](#int32) |  |  |
+| total | [int32](#int32) |  | 总数量 |
+| receive | [int32](#int32) |  | 已收到数量 |
+
+
+
+
+
+
 <a name="svc-infra-link-Receiver"></a>
 
 ### Receiver
@@ -9744,6 +9785,10 @@ Service of stat
 | StreamerCardUpdate | 25 | 主播名片设置 |
 | UserExpChange | 26 | 用户经验值改变 |
 | KickLogin | 27 | 踢出登录 |
+| WishlistInfo | 28 | 心愿单相关
+
+心愿单消息(开启，关闭，礼物数更新) |
+| WishlistChange | 29 | 心愿单礼物变更 |
 | PlatformUserOpenNoble | 100 | 全平台开通贵族通知 |
 | PlatformUserSendGift | 101 | 全平台用户送礼通知 |
 

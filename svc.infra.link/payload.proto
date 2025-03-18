@@ -60,6 +60,10 @@ enum PayloadType {
 
   KickLogin = 27; // 踢出登录
 
+  // 心愿单相关
+  WishlistInfo   = 28;  // 心愿单消息(开启，关闭，礼物数更新)
+  WishlistChange = 29;  // 心愿单礼物变更
+
   PlatformUserOpenNoble = 100; // 全平台开通贵族通知
   PlatformUserSendGift = 101; // 全平台用户送礼通知
 }
@@ -225,3 +229,20 @@ message PayloadPlatformUserSendGift {
   Receiver receiver = 2; //  接收者信息
 }
 
+// 心愿单消息(开启，关闭，礼物数更新等)
+message PayloadWishlistInfo {
+  message GiftItem {
+    string gift_id = 1;
+    int32  type    = 2;
+    string icon    = 3;
+    string name    = 4;
+    int32  price   = 5;
+    int32  total   = 6; // 总数量
+    int32  receive = 7; // 已收到数量
+  }
+
+  string   room_id            = 1;
+  string   streamer_id        = 2;
+  int32    status             = 3;
+  repeated GiftItem gift_list = 4;
+}
