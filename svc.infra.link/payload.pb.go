@@ -1726,7 +1726,7 @@ type PayloadWishlistInfo struct {
 	state         protoimpl.MessageState          `protogen:"open.v1"`
 	RoomId        string                          `protobuf:"bytes,1,opt,name=room_id,json=roomId,proto3" json:"room_id,omitempty"`
 	StreamerId    string                          `protobuf:"bytes,2,opt,name=streamer_id,json=streamerId,proto3" json:"streamer_id,omitempty"`
-	Status        int32                           `protobuf:"varint,3,opt,name=status,proto3" json:"status,omitempty"`
+	Status        int32                           `protobuf:"varint,3,opt,name=status,proto3" json:"status,omitempty"` // 状态(1: 开启, 2: 关闭, 3: 心愿单修改礼物, 4: 收礼物数据更新)
 	GiftList      []*PayloadWishlistInfo_GiftItem `protobuf:"bytes,4,rep,name=gift_list,json=giftList,proto3" json:"gift_list,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache

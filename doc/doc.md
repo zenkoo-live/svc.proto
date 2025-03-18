@@ -9665,7 +9665,7 @@ Service of stat
 | ----- | ---- | ----- | ----------- |
 | room_id | [string](#string) |  |  |
 | streamer_id | [string](#string) |  |  |
-| status | [int32](#int32) |  |  |
+| status | [int32](#int32) |  | 状态(1: 开启, 2: 关闭, 3: 心愿单修改礼物, 4: 收礼物数据更新) |
 | gift_list | [PayloadWishlistInfo.GiftItem](#svc-infra-link-PayloadWishlistInfo-GiftItem) | repeated |  |
 
 
