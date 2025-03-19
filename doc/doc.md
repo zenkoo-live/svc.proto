@@ -978,6 +978,7 @@
     - [GetWishlistByRoomIdReq](#svc-biz-gift-GetWishlistByRoomIdReq)
     - [LiveWishlistCommonDeleteResp](#svc-biz-gift-LiveWishlistCommonDeleteResp)
     - [LiveWishlistDetailAddReq](#svc-biz-gift-LiveWishlistDetailAddReq)
+    - [ResetGiftReceviedCountReq](#svc-biz-gift-ResetGiftReceviedCountReq)
     - [SetWishlistReq](#svc-biz-gift-SetWishlistReq)
     - [SetWishlistResp](#svc-biz-gift-SetWishlistResp)
     - [UpdateDetailGiftItemsResp](#svc-biz-gift-UpdateDetailGiftItemsResp)
@@ -16665,6 +16666,21 @@ topic: topic.gift.send
 
 
 
+<a name="svc-biz-gift-ResetGiftReceviedCountReq"></a>
+
+### ResetGiftReceviedCountReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| room_id | [string](#string) |  |  |
+
+
+
+
+
+
 <a name="svc-biz-gift-SetWishlistReq"></a>
 
 ### SetWishlistReq
@@ -16816,6 +16832,7 @@ topic: topic.gift.send
 | SetActiveStatus | [EnabledStatusInfo](#svc-biz-gift-EnabledStatusInfo) | [EnabledStatusInfo](#svc-biz-gift-EnabledStatusInfo) | 设置心愿单开启状态 |
 | SetAutomodeStatus | [EnabledStatusInfo](#svc-biz-gift-EnabledStatusInfo) | [EnabledStatusInfo](#svc-biz-gift-EnabledStatusInfo) | 设置自动模式(每天自动刷新心愿单)开启状态 |
 | ExecAutoModeTask | [EmptyRequest](#svc-biz-gift-EmptyRequest) | [EmptyResponse](#svc-biz-gift-EmptyResponse) | 执行自动模式逻辑(定时任务调用) |
+| ResetGiftReceviedCount | [ResetGiftReceviedCountReq](#svc-biz-gift-ResetGiftReceviedCountReq) | [EmptyResponse](#svc-biz-gift-EmptyResponse) | 重置心愿单已收礼物数 |
 
  
 

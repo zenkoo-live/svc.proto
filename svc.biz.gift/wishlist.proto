@@ -24,6 +24,9 @@ service LiveWishlist {
 
     // 执行自动模式逻辑(定时任务调用)
     rpc ExecAutoModeTask(EmptyRequest) returns (EmptyResponse) {}
+
+    // 重置心愿单已收礼物数
+    rpc ResetGiftReceviedCount(ResetGiftReceviedCountReq) returns (EmptyResponse) {}
 }
 
 // 空请求类型
@@ -106,5 +109,9 @@ message SetWishlistReq {
 }
 
 message GetWishlistByRoomIdReq {
+    string room_id = 1;
+}
+
+message ResetGiftReceviedCountReq {
     string room_id = 1;
 }

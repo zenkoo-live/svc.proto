@@ -48,6 +48,8 @@ type LiveWishlistService interface {
 	SetAutomodeStatus(ctx context.Context, in *EnabledStatusInfo, opts ...client.CallOption) (*EnabledStatusInfo, error)
 	// 执行自动模式逻辑(定时任务调用)
 	ExecAutoModeTask(ctx context.Context, in *EmptyRequest, opts ...client.CallOption) (*EmptyResponse, error)
+	// 重置心愿单已收礼物数
+	ResetGiftReceviedCount(ctx context.Context, in *ResetGiftReceviedCountReq, opts ...client.CallOption) (*EmptyResponse, error)
 }
 
 type liveWishlistService struct {
@@ -122,6 +124,16 @@ func (c *liveWishlistService) ExecAutoModeTask(ctx context.Context, in *EmptyReq
 	return out, nil
 }
 
+func (c *liveWishlistService) ResetGiftReceviedCount(ctx context.Context, in *ResetGiftReceviedCountReq, opts ...client.CallOption) (*EmptyResponse, error) {
+	req := c.c.NewRequest(c.name, "LiveWishlist.ResetGiftReceviedCount", in)
+	out := new(EmptyResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for LiveWishlist service
 
 type LiveWishlistHandler interface {
@@ -137,6 +149,8 @@ type LiveWishlistHandler interface {
 	SetAutomodeStatus(context.Context, *EnabledStatusInfo, *EnabledStatusInfo) error
 	// 执行自动模式逻辑(定时任务调用)
 	ExecAutoModeTask(context.Context, *EmptyRequest, *EmptyResponse) error
+	// 重置心愿单已收礼物数
+	ResetGiftReceviedCount(context.Context, *ResetGiftReceviedCountReq, *EmptyResponse) error
 }
 
 func RegisterLiveWishlistHandler(s server.Server, hdlr LiveWishlistHandler, opts ...server.HandlerOption) error {
@@ -147,6 +161,7 @@ func RegisterLiveWishlistHandler(s server.Server, hdlr LiveWishlistHandler, opts
 		SetActiveStatus(ctx context.Context, in *EnabledStatusInfo, out *EnabledStatusInfo) error
 		SetAutomodeStatus(ctx context.Context, in *EnabledStatusInfo, out *EnabledStatusInfo) error
 		ExecAutoModeTask(ctx context.Context, in *EmptyRequest, out *EmptyResponse) error
+		ResetGiftReceviedCount(ctx context.Context, in *ResetGiftReceviedCountReq, out *EmptyResponse) error
 	}
 	type LiveWishlist struct {
 		liveWishlist
@@ -181,4 +196,8 @@ func (h *liveWishlistHandler) SetAutomodeStatus(ctx context.Context, in *Enabled
 
 func (h *liveWishlistHandler) ExecAutoModeTask(ctx context.Context, in *EmptyRequest, out *EmptyResponse) error {
 	return h.LiveWishlistHandler.ExecAutoModeTask(ctx, in, out)
+}
+
+func (h *liveWishlistHandler) ResetGiftReceviedCount(ctx context.Context, in *ResetGiftReceviedCountReq, out *EmptyResponse) error {
+	return h.LiveWishlistHandler.ResetGiftReceviedCount(ctx, in, out)
 }

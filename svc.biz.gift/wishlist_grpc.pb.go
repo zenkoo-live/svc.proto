@@ -19,12 +19,13 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	LiveWishlist_SetWishlist_FullMethodName       = "/svc.biz.gift.LiveWishlist/SetWishlist"
-	LiveWishlist_GetByRoomId_FullMethodName       = "/svc.biz.gift.LiveWishlist/GetByRoomId"
-	LiveWishlist_UpdateWishGifts_FullMethodName   = "/svc.biz.gift.LiveWishlist/UpdateWishGifts"
-	LiveWishlist_SetActiveStatus_FullMethodName   = "/svc.biz.gift.LiveWishlist/SetActiveStatus"
-	LiveWishlist_SetAutomodeStatus_FullMethodName = "/svc.biz.gift.LiveWishlist/SetAutomodeStatus"
-	LiveWishlist_ExecAutoModeTask_FullMethodName  = "/svc.biz.gift.LiveWishlist/ExecAutoModeTask"
+	LiveWishlist_SetWishlist_FullMethodName            = "/svc.biz.gift.LiveWishlist/SetWishlist"
+	LiveWishlist_GetByRoomId_FullMethodName            = "/svc.biz.gift.LiveWishlist/GetByRoomId"
+	LiveWishlist_UpdateWishGifts_FullMethodName        = "/svc.biz.gift.LiveWishlist/UpdateWishGifts"
+	LiveWishlist_SetActiveStatus_FullMethodName        = "/svc.biz.gift.LiveWishlist/SetActiveStatus"
+	LiveWishlist_SetAutomodeStatus_FullMethodName      = "/svc.biz.gift.LiveWishlist/SetAutomodeStatus"
+	LiveWishlist_ExecAutoModeTask_FullMethodName       = "/svc.biz.gift.LiveWishlist/ExecAutoModeTask"
+	LiveWishlist_ResetGiftReceviedCount_FullMethodName = "/svc.biz.gift.LiveWishlist/ResetGiftReceviedCount"
 )
 
 // LiveWishlistClient is the client API for LiveWishlist service.
@@ -45,6 +46,8 @@ type LiveWishlistClient interface {
 	SetAutomodeStatus(ctx context.Context, in *EnabledStatusInfo, opts ...grpc.CallOption) (*EnabledStatusInfo, error)
 	// 执行自动模式逻辑(定时任务调用)
 	ExecAutoModeTask(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*EmptyResponse, error)
+	// 重置心愿单已收礼物数
+	ResetGiftReceviedCount(ctx context.Context, in *ResetGiftReceviedCountReq, opts ...grpc.CallOption) (*EmptyResponse, error)
 }
 
 type liveWishlistClient struct {
@@ -115,6 +118,16 @@ func (c *liveWishlistClient) ExecAutoModeTask(ctx context.Context, in *EmptyRequ
 	return out, nil
 }
 
+func (c *liveWishlistClient) ResetGiftReceviedCount(ctx context.Context, in *ResetGiftReceviedCountReq, opts ...grpc.CallOption) (*EmptyResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(EmptyResponse)
+	err := c.cc.Invoke(ctx, LiveWishlist_ResetGiftReceviedCount_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // LiveWishlistServer is the server API for LiveWishlist service.
 // All implementations must embed UnimplementedLiveWishlistServer
 // for forward compatibility.
@@ -133,6 +146,8 @@ type LiveWishlistServer interface {
 	SetAutomodeStatus(context.Context, *EnabledStatusInfo) (*EnabledStatusInfo, error)
 	// 执行自动模式逻辑(定时任务调用)
 	ExecAutoModeTask(context.Context, *EmptyRequest) (*EmptyResponse, error)
+	// 重置心愿单已收礼物数
+	ResetGiftReceviedCount(context.Context, *ResetGiftReceviedCountReq) (*EmptyResponse, error)
 	mustEmbedUnimplementedLiveWishlistServer()
 }
 
@@ -160,6 +175,9 @@ func (UnimplementedLiveWishlistServer) SetAutomodeStatus(context.Context, *Enabl
 }
 func (UnimplementedLiveWishlistServer) ExecAutoModeTask(context.Context, *EmptyRequest) (*EmptyResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ExecAutoModeTask not implemented")
+}
+func (UnimplementedLiveWishlistServer) ResetGiftReceviedCount(context.Context, *ResetGiftReceviedCountReq) (*EmptyResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ResetGiftReceviedCount not implemented")
 }
 func (UnimplementedLiveWishlistServer) mustEmbedUnimplementedLiveWishlistServer() {}
 func (UnimplementedLiveWishlistServer) testEmbeddedByValue()                      {}
@@ -290,6 +308,24 @@ func _LiveWishlist_ExecAutoModeTask_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _LiveWishlist_ResetGiftReceviedCount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ResetGiftReceviedCountReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LiveWishlistServer).ResetGiftReceviedCount(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: LiveWishlist_ResetGiftReceviedCount_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LiveWishlistServer).ResetGiftReceviedCount(ctx, req.(*ResetGiftReceviedCountReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // LiveWishlist_ServiceDesc is the grpc.ServiceDesc for LiveWishlist service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -320,6 +356,10 @@ var LiveWishlist_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ExecAutoModeTask",
 			Handler:    _LiveWishlist_ExecAutoModeTask_Handler,
+		},
+		{
+			MethodName: "ResetGiftReceviedCount",
+			Handler:    _LiveWishlist_ResetGiftReceviedCount_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
